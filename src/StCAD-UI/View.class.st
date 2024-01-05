@@ -1,15 +1,18 @@
 Class {
 	#name : #View,
-	#superclass : #View,
-	#category : #'StCAD-UI-StCAD-UI-App'
+	#superclass : #DependentPart,
+	#instVars : [
+		'controller'
+	],
+	#category : #'Interface-Framework'
 }
 
 { #category : #'VisualWorks metadata' }
 View class >> visualWorksMetadata [
 
 	^ #(
-		'namespace' 'StCAD.UI'
-		'superclassNamespace' 'UI'
+		'namespace' 'UI'
+		'superclassNamespace' 'Graphics'
 	)
 
 ]
