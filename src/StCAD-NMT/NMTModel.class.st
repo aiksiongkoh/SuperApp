@@ -1,5 +1,5 @@
 "
-Model creates and stores all nonUse NMTItem.
+NMTModel creates and stores all nonUse NMTItem.
 
 Subclasses must implement the following messages:
 	calc
@@ -18,7 +18,7 @@ Instance Variables:
 
 "
 Class {
-	#name : #Model,
+	#name : #NMTModel,
 	#superclass : #ConcreteNMT,
 	#instVars : [
 		'cFeature',
@@ -35,7 +35,7 @@ Class {
 }
 
 { #category : #'VisualWorks metadata' }
-Model class >> visualWorksMetadata [
+NMTModel class >> visualWorksMetadata [
 
 	^ #(
 		'namespace' 'StCAD.NMT'
@@ -45,37 +45,37 @@ Model class >> visualWorksMetadata [
 ]
 
 { #category : #accessing }
-Model >> _aRefFrame: aaRefFrame [ 
+NMTModel >> _aRefFrame: aaRefFrame [ 
 	aRefFrame := aaRefFrame.
 	aRefFrame body: self
 ]
 
 { #category : #accessing }
-Model >> aBoundingBox [
+NMTModel >> aBoundingBox [
 	^aBoundingBox ifNil: 
 			[self calcBoundingBox.
 			aBoundingBox]
 ]
 
 { #category : #accessing }
-Model >> aBoundingBox: anObject [
+NMTModel >> aBoundingBox: anObject [
 	aBoundingBox := anObject
 ]
 
 { #category : #accessing }
-Model >> aBoundingBoxF [
-	"Model frame is the same as part frame. No transformation needed."
+NMTModel >> aBoundingBoxF [
+	"NMTModel frame is the same as part frame. No transformation needed."
 
 	^self aBoundingBox
 ]
 
 { #category : #accessing }
-Model >> aDisplayList [
+NMTModel >> aDisplayList [
 	^self triggerEvent: #aDisplayList
 ]
 
 { #category : #accessing }
-Model >> aDisplayList: aDisplayList [ 
+NMTModel >> aDisplayList: aDisplayList [ 
 	self removeActionsForEvent: #aDisplayList.
 	aDisplayList notNil 
 		ifTrue: 
@@ -86,33 +86,33 @@ Model >> aDisplayList: aDisplayList [
 ]
 
 { #category : #accessing }
-Model >> aModel [
+NMTModel >> aModel [
 	^self
 ]
 
 { #category : #accessing }
-Model >> aOutsideRegion [
+NMTModel >> aOutsideRegion [
 	^cRegion at: 1
 ]
 
 { #category : #accessing }
-Model >> aRefFrame [
+NMTModel >> aRefFrame [
 	^aRefFrame
 ]
 
 { #category : #accessing }
-Model >> aRefFrame: aaRefFrame [ 
+NMTModel >> aRefFrame: aaRefFrame [ 
 	aRefFrame := aaRefFrame.
 	aRefFrame body: self
 ]
 
 { #category : #accessing }
-Model >> aSketch [
+NMTModel >> aSketch [
 	^self
 ]
 
 { #category : #accessing }
-Model >> addEdge: aEdge [ 
+NMTModel >> addEdge: aEdge [ 
 	"aSub maybe already in a tree. Make sure aSub is released by its aSup."
 
 	aEdge removeSup.
@@ -122,7 +122,7 @@ Model >> addEdge: aEdge [
 ]
 
 { #category : #accessing }
-Model >> addFace: aFace [ 
+NMTModel >> addFace: aFace [ 
 	"aSub maybe already in a tree. Make sure aSub is released by its aSup."
 
 	aFace removeSup.
@@ -132,7 +132,7 @@ Model >> addFace: aFace [
 ]
 
 { #category : #accessing }
-Model >> addFeature: aFeature [ 
+NMTModel >> addFeature: aFeature [ 
 	"aSub maybe already in a tree. Make sure aSub is released by its aSup."
 
 	self aRefFrame addSub: aFeature aRefFrame.
@@ -143,7 +143,7 @@ Model >> addFeature: aFeature [
 ]
 
 { #category : #accessing }
-Model >> addLoop: aLoop [ 
+NMTModel >> addLoop: aLoop [ 
 	"aSub maybe already in a tree. Make sure aSub is released by its aSup."
 
 	aLoop removeSup.
@@ -153,7 +153,7 @@ Model >> addLoop: aLoop [
 ]
 
 { #category : #accessing }
-Model >> addRegion: aRegion [ 
+NMTModel >> addRegion: aRegion [ 
 	"aSub maybe already in a tree. Make sure aSub is released by its aSup."
 
 	aRegion removeSup.
@@ -163,7 +163,7 @@ Model >> addRegion: aRegion [
 ]
 
 { #category : #accessing }
-Model >> addShell: aShell [ 
+NMTModel >> addShell: aShell [ 
 	"aSub maybe already in a tree. Make sure aSub is released by its aSup."
 
 	aShell removeSup.
@@ -173,7 +173,7 @@ Model >> addShell: aShell [
 ]
 
 { #category : #accessing }
-Model >> addSurface: aSurface [ 
+NMTModel >> addSurface: aSurface [ 
 	aSurface removeSup.
 	aRefFrame addSub: aSurface aRefFrame.
 	aSurface aSup: self.
@@ -181,7 +181,7 @@ Model >> addSurface: aSurface [
 ]
 
 { #category : #accessing }
-Model >> addVertex: aVertex [ 
+NMTModel >> addVertex: aVertex [ 
 	"aSub maybe already in a tree. Make sure aSub is released by its aSup."
 
 	aVertex removeSup.
@@ -191,42 +191,42 @@ Model >> addVertex: aVertex [
 ]
 
 { #category : #ops }
-Model >> buildCutFeature: aCutFeature [ 
+NMTModel >> buildCutFeature: aCutFeature [ 
 	self doDIFFwith: aCutFeature aModel
 ]
 
 { #category : #ops }
-Model >> buildExtrudedFeature: aExtrudedFeature [ 
+NMTModel >> buildExtrudedFeature: aExtrudedFeature [ 
 	self doORwith: aExtrudedFeature aModel
 ]
 
 { #category : #accessing }
-Model >> cFace [
+NMTModel >> cFace [
 	^cFace
 ]
 
 { #category : #accessing }
-Model >> cFace: anObject [
+NMTModel >> cFace: anObject [
 	cFace := anObject
 ]
 
 { #category : #accessing }
-Model >> cFeature [
+NMTModel >> cFeature [
 	^cFeature
 ]
 
 { #category : #calc }
-Model >> cItemWithBoundingBox [
+NMTModel >> cItemWithBoundingBox [
 	self subclassResponsibility
 ]
 
 { #category : #accessing }
-Model >> cSub [
+NMTModel >> cSub [
 	^cRegion
 ]
 
 { #category : #accessing }
-Model >> cadObject: cadObject [ 
+NMTModel >> cadObject: cadObject [ 
 	self removeActionsForEvent: #getCADObject.
 	cadObject notNil 
 		ifTrue: 
@@ -237,20 +237,20 @@ Model >> cadObject: cadObject [
 ]
 
 { #category : #calc }
-Model >> calcBoundingBox [
+NMTModel >> calcBoundingBox [
 	self privateCalcBoundingBox.
 	aSup ifNotNil: [aSup clearBoundingBox]
 ]
 
 { #category : #calc }
-Model >> calcMomentsOfVolume [
+NMTModel >> calcMomentsOfVolume [
 	"To be implemented."
 
 	^self notYetImplemented
 ]
 
 { #category : #ops }
-Model >> clear [
+NMTModel >> clear [
 	cRegion asArray do: [:aRegion | self removeRegion: aRegion].
 	cShell asArray do: [:aShell | self removeShell: aShell].
 	cFace asArray do: [:aFace | self removeFace: aFace].
@@ -261,12 +261,12 @@ Model >> clear [
 ]
 
 { #category : #accessing }
-Model >> container [
+NMTModel >> container [
 	^aSup
 ]
 
 { #category : #executing }
-Model >> doORwith: aModel [ 
+NMTModel >> doORwith: aModel [ 
 	"Do boolean OR. Do nothing for now."
 
 	| cNewRegion |
@@ -276,12 +276,12 @@ Model >> doORwith: aModel [
 ]
 
 { #category : #accessing }
-Model >> emptySelf [
+NMTModel >> emptySelf [
 	cRegion asArray do: [:aRegion | self removeSub: aRegion]
 ]
 
 { #category : #'initialize-release' }
-Model >> initialize [
+NMTModel >> initialize [
 
 	cFeature := StCAD_Misc_OrderedSet new. "VW_TRANSLATION:StCAD.Misc.OrderedSet:StCAD_Misc_OrderedSet"
 	cRegion := StCAD_Misc_OrderedSet new.
@@ -296,12 +296,12 @@ Model >> initialize [
 ]
 
 { #category : #accessing }
-Model >> interface [
+NMTModel >> interface [
 	^aSup interface
 ]
 
 { #category : #ops }
-Model >> magnifySelf: aDouble [ 
+NMTModel >> magnifySelf: aDouble [ 
 	(self selectSurface: [:a | a isSpatial]) do: [:a | a magnifySelf: aDouble].
 	(self selectCurve: [:a | a isSpatial]) do: [:a | a magnifySelf: aDouble].
 	(self selectVertex: [:a | a isSpatial]) do: [:a | a magnifySelf: aDouble].
@@ -312,7 +312,7 @@ Model >> magnifySelf: aDouble [
 ]
 
 { #category : #accessing }
-Model >> newEdgeWith: aVertex1 and: aVertex2 aCurve: aCurve [
+NMTModel >> newEdgeWith: aVertex1 and: aVertex2 aCurve: aCurve [
 
 	| acEdge acVertex aEdge |
 	acEdge := self selectEdge: [ :aaEdge | 
@@ -333,7 +333,7 @@ Model >> newEdgeWith: aVertex1 and: aVertex2 aCurve: aCurve [
 ]
 
 { #category : #accessing }
-Model >> newFace [
+NMTModel >> newFace [
 
 	| aFace |
 	aFace := StCAD_NMT_Face new. "VW_TRANSLATION:StCAD.NMT.Face:StCAD_NMT_Face"
@@ -342,7 +342,7 @@ Model >> newFace [
 ]
 
 { #category : #accessing }
-Model >> newLoop [
+NMTModel >> newLoop [
 
 	| aLoop |
 	aLoop := StCAD_NMT_Loop new. "VW_TRANSLATION:StCAD.NMT.Loop:StCAD_NMT_Loop"
@@ -351,7 +351,7 @@ Model >> newLoop [
 ]
 
 { #category : #accessing }
-Model >> newRegion [
+NMTModel >> newRegion [
 
 	| aRegion |
 	aRegion := StCAD_NMT_Region new. "VW_TRANSLATION:StCAD.NMT.Region:StCAD_NMT_Region"
@@ -360,7 +360,7 @@ Model >> newRegion [
 ]
 
 { #category : #accessing }
-Model >> newShell [
+NMTModel >> newShell [
 
 	| aShell |
 	aShell := StCAD_NMT_Shell new. "VW_TRANSLATION:StCAD.NMT.Shell:StCAD_NMT_Shell"
@@ -369,7 +369,7 @@ Model >> newShell [
 ]
 
 { #category : #accessing }
-Model >> newVertex: aPoint [
+NMTModel >> newVertex: aPoint [
 
 	"A Vertex must be unique in space."
 
@@ -382,13 +382,13 @@ Model >> newVertex: aPoint [
 ]
 
 { #category : #'initialize-release' }
-Model >> preSave [
+NMTModel >> preSave [
 "	self aOutsideRegion preSave."
 	self removeDisplayList
 ]
 
 { #category : #printing }
-Model >> printOn: aStream [ 
+NMTModel >> printOn: aStream [ 
 	aStream nextPutAll: 'aM'.
 	aStream print: (self selectModel: [:item | true]) size.
 	aStream nextPutAll: ':R'.
@@ -414,7 +414,7 @@ Model >> printOn: aStream [
 ]
 
 { #category : #ops }
-Model >> privateBuildSolidModel [
+NMTModel >> privateBuildSolidModel [
 	self clear.
 	cFeature do: [:aFeature | aFeature buildIn: self].
 	self calcBoundingBox.
@@ -422,7 +422,7 @@ Model >> privateBuildSolidModel [
 ]
 
 { #category : #calc }
-Model >> privateCalcBoundingBox [
+NMTModel >> privateCalcBoundingBox [
 
 	| cFaceUse |
 	cFaceUse := self aOutsideRegion selectFaceUse: [ :aFaceUse | true ].
@@ -432,7 +432,7 @@ Model >> privateCalcBoundingBox [
 ]
 
 { #category : #calc }
-Model >> privateCalcBoundingBox1 [
+NMTModel >> privateCalcBoundingBox1 [
 
 	| tcVertex |
 	tcVertex := self aOutsideRegion selectVertex: [ :aVertex | true ].
@@ -443,7 +443,7 @@ Model >> privateCalcBoundingBox1 [
 ]
 
 { #category : #calc }
-Model >> privateCalcBoundingBox2 [
+NMTModel >> privateCalcBoundingBox2 [
 
 	| cFaceUse |
 	cFaceUse := self aOutsideRegion selectFaceUse: [ :aFaceUse | true ].
@@ -453,12 +453,12 @@ Model >> privateCalcBoundingBox2 [
 ]
 
 { #category : #accessing }
-Model >> rDfD [
+NMTModel >> rDfD [
 	^aSup rDfD
 ]
 
 { #category : #accessing }
-Model >> removeDisplayList [
+NMTModel >> removeDisplayList [
 	self aDisplayList ifNotNil: 
 			[:listID | 
 			self interface display aOpenGLContext removeDisplayList: listID.
@@ -466,68 +466,68 @@ Model >> removeDisplayList [
 ]
 
 { #category : #accessing }
-Model >> removeEdge: aEdge [ 
+NMTModel >> removeEdge: aEdge [ 
 	cEdge remove: aEdge ifAbsent: [nil].
 	aEdge aSup: nil.
 	^aEdge
 ]
 
 { #category : #accessing }
-Model >> removeFace: aFace [ 
+NMTModel >> removeFace: aFace [ 
 	cFace remove: aFace ifAbsent: [nil].
 	aFace aSup: nil.
 	^aFace
 ]
 
 { #category : #accessing }
-Model >> removeGeometry: aGeometry [ 
+NMTModel >> removeGeometry: aGeometry [ 
 	aRefFrame removeSub: aGeometry aRefFrame.
 	aGeometry aSup: nil.
 	^aGeometry
 ]
 
 { #category : #accessing }
-Model >> removeLoop: aLoop [ 
+NMTModel >> removeLoop: aLoop [ 
 	cLoop remove: aLoop ifAbsent: [nil].
 	aLoop aSup: nil.
 	^aLoop
 ]
 
 { #category : #accessing }
-Model >> removeRegion: aRegion [ 
+NMTModel >> removeRegion: aRegion [ 
 	cRegion remove: aRegion ifAbsent: [nil].
 	aRegion aSup: nil.
 	^aRegion
 ]
 
 { #category : #accessing }
-Model >> removeShell: aShell [ 
+NMTModel >> removeShell: aShell [ 
 	cShell remove: aShell ifAbsent: [nil].
 	aShell aSup: nil.
 	^aShell
 ]
 
 { #category : #accessing }
-Model >> removeSup [
+NMTModel >> removeSup [
 	self removeDisplayList.
 	self aSup ifNotNil: [:aaSup | aaSup removeNMT: self]
 ]
 
 { #category : #accessing }
-Model >> removeVertex: aVertex [ 
+NMTModel >> removeVertex: aVertex [ 
 	cVertex remove: aVertex ifAbsent: [nil].
 	aVertex aSup: nil.
 	^aVertex
 ]
 
 { #category : #displaying }
-Model >> renderOn1: aOpenGLContext [ 
+NMTModel >> renderOn1: aOpenGLContext [ 
 	self removeDisplayList.
 	self aOutsideRegion renderOn: aOpenGLContext
 ]
 
 { #category : #displaying }
-Model >> renderOn2: aOpenGLContext [ 
+NMTModel >> renderOn2: aOpenGLContext [ 
 	| block |
 	block := 
 			[| listID |
@@ -545,7 +545,7 @@ Model >> renderOn2: aOpenGLContext [
 ]
 
 { #category : #displaying }
-Model >> renderOn: aOpenGLContext [ 
+NMTModel >> renderOn: aOpenGLContext [ 
 	| block |
 	block := 
 			[| listID |
@@ -563,76 +563,76 @@ Model >> renderOn: aOpenGLContext [
 ]
 
 { #category : #enumerating }
-Model >> selectCurve: aBlock into: aSet [ 
+NMTModel >> selectCurve: aBlock into: aSet [ 
 	cEdge do: [:each | each selectCurve: aBlock into: aSet]
 ]
 
 { #category : #enumerating }
-Model >> selectEdge: aBlock into: aSet [ 
+NMTModel >> selectEdge: aBlock into: aSet [ 
 	cEdge do: [:each | each selectEdge: aBlock into: aSet]
 ]
 
 { #category : #enumerating }
-Model >> selectEdgeUse: aBlock into: aSet [ 
+NMTModel >> selectEdgeUse: aBlock into: aSet [ 
 	cRegion do: [:each | each selectEdgeUse: aBlock into: aSet]
 ]
 
 { #category : #enumerating }
-Model >> selectFace: aBlock into: aSet [ 
+NMTModel >> selectFace: aBlock into: aSet [ 
 	cFace do: [:each | each selectFace: aBlock into: aSet]
 ]
 
 { #category : #enumerating }
-Model >> selectFaceUse: aBlock into: aSet [ 
+NMTModel >> selectFaceUse: aBlock into: aSet [ 
 	cRegion do: [:each | each selectFaceUse: aBlock into: aSet]
 ]
 
 { #category : #enumerating }
-Model >> selectLoop: aBlock into: aSet [ 
+NMTModel >> selectLoop: aBlock into: aSet [ 
 	cLoop do: [:each | each selectLoop: aBlock into: aSet]
 ]
 
 { #category : #enumerating }
-Model >> selectLoopUse: aBlock into: aSet [ 
+NMTModel >> selectLoopUse: aBlock into: aSet [ 
 	cRegion do: [:each | each selectLoopUse: aBlock into: aSet]
 ]
 
 { #category : #enumerating }
-Model >> selectModel: aBlock into: aSet [ 
+NMTModel >> selectModel: aBlock into: aSet [ 
 	(aBlock value: self) ifTrue: [aSet add: self]
 ]
 
 { #category : #enumerating }
-Model >> selectRegion: aBlock into: aSet [ 
+NMTModel >> selectRegion: aBlock into: aSet [ 
 	cRegion do: [:each | each selectRegion: aBlock into: aSet]
 ]
 
 { #category : #enumerating }
-Model >> selectShell: aBlock into: aSet [ 
+NMTModel >> selectShell: aBlock into: aSet [ 
 	cShell do: [:each | each selectShell: aBlock into: aSet]
 ]
 
 { #category : #enumerating }
-Model >> selectShellUse: aBlock into: aSet [ 
+NMTModel >> selectShellUse: aBlock into: aSet [ 
 	cRegion do: [:each | each selectShellUse: aBlock into: aSet]
 ]
 
 { #category : #enumerating }
-Model >> selectSurface: aBlock into: aSet [ 
+NMTModel >> selectSurface: aBlock into: aSet [ 
 	cFace do: [:each | each selectSurface: aBlock into: aSet]
 ]
 
 { #category : #enumerating }
-Model >> selectVertex: aBlock into: aSet [ 
+NMTModel >> selectVertex: aBlock into: aSet [ 
 	cVertex do: [:each | each selectVertex: aBlock into: aSet]
 ]
 
 { #category : #enumerating }
-Model >> selectVertexUse: aBlock into: aSet [ 
+NMTModel >> selectVertexUse: aBlock into: aSet [ 
 	cRegion do: [:each | each selectVertexUse: aBlock into: aSet]
 ]
 
 { #category : #ops }
-Model >> unmarkFaceUse [
+NMTModel >> unmarkFaceUse [
 	cFace do: [:aFace | aFace cUse do: [:aFaceUse | aFaceUse unmark]]
 ]
