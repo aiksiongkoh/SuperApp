@@ -1,6 +1,9 @@
 Class {
 	#name : #Item,
 	#superclass : #Object,
+	#instVars : [
+		'name'
+	],
 	#category : #'StCAD-UI-STEP'
 }
 
