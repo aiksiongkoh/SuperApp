@@ -1,7 +1,7 @@
 Class {
 	#name : #'ADVANCED_FACE',
 	#superclass : #'FACE_SURFACE',
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

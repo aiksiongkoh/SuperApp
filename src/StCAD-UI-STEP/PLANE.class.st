@@ -1,7 +1,7 @@
 Class {
 	#name : #PLANE,
 	#superclass : #'ELEMENTARY_SURFACE',
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

@@ -5,7 +5,7 @@ Class {
 		'date_time',
 		'dated_approval'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

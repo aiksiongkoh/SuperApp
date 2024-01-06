@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'conversion_factor'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

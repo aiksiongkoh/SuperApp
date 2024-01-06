@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'swept_curve'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

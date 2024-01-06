@@ -5,7 +5,7 @@ Class {
 		'items',
 		'context_of_items'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

@@ -6,7 +6,7 @@ Class {
 		'minute_offset',
 		'sense'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

@@ -1,7 +1,7 @@
 Class {
 	#name : #SurfaceChangedException,
 	#superclass : #Exception,
-	#category : #'StCAD-UI-STEP-Exception'
+	#category : #'StCAD-STEP-Exception'
 }
 
 { #category : #'VisualWorks metadata' }

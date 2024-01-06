@@ -5,7 +5,7 @@ Class {
 		'segments',
 		'self_intersect'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

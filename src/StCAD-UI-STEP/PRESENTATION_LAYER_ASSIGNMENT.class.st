@@ -5,7 +5,7 @@ Class {
 		'description',
 		'assigned_items'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

@@ -1,7 +1,7 @@
 Class {
 	#name : #Item,
 	#superclass : #Object,
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #accessing }

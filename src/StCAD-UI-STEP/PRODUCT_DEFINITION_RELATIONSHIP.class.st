@@ -7,7 +7,7 @@ Class {
 		'relating_product_definition',
 		'related_product_definition'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

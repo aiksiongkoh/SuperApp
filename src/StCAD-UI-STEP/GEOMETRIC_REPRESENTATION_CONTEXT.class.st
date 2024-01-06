@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'coordinate_space_dimension'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

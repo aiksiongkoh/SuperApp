@@ -8,7 +8,7 @@ Class {
 	#classVars : [
 		'UI'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #accessing }

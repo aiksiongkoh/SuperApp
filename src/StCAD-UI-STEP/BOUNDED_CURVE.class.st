@@ -1,7 +1,7 @@
 Class {
 	#name : #'BOUNDED_CURVE',
 	#superclass : #CURVE,
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

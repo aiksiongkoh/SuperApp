@@ -8,7 +8,7 @@ Class {
 		'edge_geometry',
 		'same_sense'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

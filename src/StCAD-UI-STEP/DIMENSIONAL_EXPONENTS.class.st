@@ -10,7 +10,7 @@ Class {
 		'amount_of_substance_exponent',
 		'luminous_intensity_exponent'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

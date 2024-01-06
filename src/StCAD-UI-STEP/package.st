@@ -1,1 +1,1 @@
-Package { #name : #'StCAD-UI-STEP' }
+Package { #name : #'StCAD-STEP' }

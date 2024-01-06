@@ -6,7 +6,7 @@ Class {
 		'curve_width',
 		'curve_colour'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

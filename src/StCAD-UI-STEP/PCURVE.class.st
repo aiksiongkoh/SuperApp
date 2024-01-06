@@ -5,7 +5,7 @@ Class {
 		'basis_surface',
 		'reference_to_curve'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

@@ -6,7 +6,7 @@ Class {
 		'description',
 		'of_product'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

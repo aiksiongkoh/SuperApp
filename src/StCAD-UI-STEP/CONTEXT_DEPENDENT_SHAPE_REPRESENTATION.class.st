@@ -5,7 +5,7 @@ Class {
 		'representation_relation',
 		'represented_product_relation'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

@@ -5,7 +5,7 @@ Class {
 		'status',
 		'level'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

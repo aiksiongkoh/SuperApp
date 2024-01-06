@@ -5,7 +5,7 @@ Class {
 		'closed_shell_element',
 		'orientation'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

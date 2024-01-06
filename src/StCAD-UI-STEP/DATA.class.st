@@ -1,7 +1,7 @@
 Class {
 	#name : #DATA,
 	#superclass : #STEPParser,
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

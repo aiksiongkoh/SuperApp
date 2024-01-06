@@ -7,7 +7,7 @@ Class {
 		'second_component',
 		'zone'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

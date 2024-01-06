@@ -8,7 +8,7 @@ Class {
 		'UI',
 		'UI'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'class initialization' }

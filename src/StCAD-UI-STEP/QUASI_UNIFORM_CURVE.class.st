@@ -1,7 +1,7 @@
 Class {
 	#name : #'QUASI_UNIFORM_CURVE',
 	#superclass : #'B_SPLINE_CURVE',
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

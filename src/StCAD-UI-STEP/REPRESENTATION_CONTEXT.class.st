@@ -5,7 +5,7 @@ Class {
 		'context_identifier',
 		'context_type'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

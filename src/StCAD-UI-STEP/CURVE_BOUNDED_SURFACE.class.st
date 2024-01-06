@@ -6,7 +6,7 @@ Class {
 		'boundaries',
 		'implicit_outer'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

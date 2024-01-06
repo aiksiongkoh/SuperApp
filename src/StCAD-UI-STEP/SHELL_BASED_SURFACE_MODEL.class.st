@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'sbsm_boundary'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

@@ -8,7 +8,7 @@ Class {
 		'closed_curve',
 		'self_intersect'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

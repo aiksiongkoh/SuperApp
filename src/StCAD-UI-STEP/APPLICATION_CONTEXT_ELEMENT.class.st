@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'frame_of_reference'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

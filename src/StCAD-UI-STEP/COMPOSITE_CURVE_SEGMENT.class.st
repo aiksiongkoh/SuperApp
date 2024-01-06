@@ -6,7 +6,7 @@ Class {
 		'same_sense',
 		'parent_curve'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

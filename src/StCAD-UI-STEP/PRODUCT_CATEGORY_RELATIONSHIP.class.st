@@ -6,7 +6,7 @@ Class {
 		'category',
 		'sub_category'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

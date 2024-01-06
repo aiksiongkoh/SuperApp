@@ -6,7 +6,7 @@ Class {
 		'transform_item_1',
 		'transform_item_2'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

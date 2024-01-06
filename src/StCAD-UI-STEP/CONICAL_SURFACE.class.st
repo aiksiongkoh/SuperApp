@@ -5,7 +5,7 @@ Class {
 		'radius',
 		'semi_angle'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

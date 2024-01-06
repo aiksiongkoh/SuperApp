@@ -1,7 +1,7 @@
 Class {
 	#name : #'FOUNDED_ITEM',
 	#superclass : #Item,
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

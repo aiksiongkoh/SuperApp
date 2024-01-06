@@ -6,7 +6,7 @@ Class {
 		'a2Entity',
 		'cEntity'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

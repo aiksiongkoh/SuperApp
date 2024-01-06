@@ -6,7 +6,7 @@ Class {
 		'rep_1',
 		'rep_2'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

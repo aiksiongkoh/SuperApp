@@ -5,7 +5,7 @@ Class {
 		'the_person',
 		'the_organization'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

@@ -1,7 +1,7 @@
 Class {
 	#name : #'FACE_OUTER_BOUND',
 	#superclass : #'FACE_BOUND',
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }
