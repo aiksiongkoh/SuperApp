@@ -1,7 +1,7 @@
 Class {
 	#name : #'LENGTH_UNIT',
 	#superclass : #'NAMED_UNIT',
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

@@ -5,7 +5,7 @@ Class {
 		'semi_axis_1',
 		'semi_axis_2'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

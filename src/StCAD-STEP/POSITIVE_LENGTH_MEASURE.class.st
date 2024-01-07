@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'length_measure'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

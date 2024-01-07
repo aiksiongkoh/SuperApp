@@ -17,7 +17,7 @@ Class {
 		'people',
 		'description'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

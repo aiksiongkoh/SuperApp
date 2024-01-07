@@ -1,7 +1,7 @@
 Class {
 	#name : #'SHAPE_REPRESENTATION',
 	#superclass : #REPRESENTATION,
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

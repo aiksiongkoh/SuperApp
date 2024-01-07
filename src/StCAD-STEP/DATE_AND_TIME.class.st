@@ -5,7 +5,7 @@ Class {
 		'date_component',
 		'time_component'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

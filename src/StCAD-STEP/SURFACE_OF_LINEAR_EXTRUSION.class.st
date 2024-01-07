@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'extrusion_axis'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

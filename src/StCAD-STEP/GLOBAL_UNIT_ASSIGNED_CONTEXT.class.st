@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'units'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

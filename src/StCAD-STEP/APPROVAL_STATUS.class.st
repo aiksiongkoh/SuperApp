@@ -1,7 +1,7 @@
 Class {
 	#name : #'APPROVAL_STATUS',
 	#superclass : #Item,
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

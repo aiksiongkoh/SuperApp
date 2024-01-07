@@ -5,7 +5,7 @@ Class {
 		'axis',
 		'ref_direction'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

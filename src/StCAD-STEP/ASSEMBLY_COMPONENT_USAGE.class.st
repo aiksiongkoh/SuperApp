@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'reference_designator'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

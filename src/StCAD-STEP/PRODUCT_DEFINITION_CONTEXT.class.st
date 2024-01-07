@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'life_cycle_stage'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

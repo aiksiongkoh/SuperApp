@@ -9,7 +9,7 @@ Class {
 		'prefix_titles',
 		'suffix_titles'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

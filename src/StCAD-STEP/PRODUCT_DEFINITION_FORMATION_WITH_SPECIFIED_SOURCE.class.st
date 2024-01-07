@@ -7,7 +7,7 @@ Class {
 		'of_product',
 		'make_or_buy'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

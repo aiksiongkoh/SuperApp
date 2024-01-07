@@ -6,7 +6,7 @@ Class {
 		'associated_geometry',
 		'master_representation'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

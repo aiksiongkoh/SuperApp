@@ -6,7 +6,7 @@ Class {
 		'unit_component',
 		'description'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

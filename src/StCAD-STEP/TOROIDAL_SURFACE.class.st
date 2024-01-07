@@ -5,7 +5,7 @@ Class {
 		'major_radius',
 		'minor_radius'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

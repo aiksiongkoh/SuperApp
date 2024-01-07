@@ -8,7 +8,7 @@ Class {
 		'sense_agreement',
 		'master_representation'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

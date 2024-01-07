@@ -7,7 +7,7 @@ Class {
 		'application_protocol_year',
 		'application'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

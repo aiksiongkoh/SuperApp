@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'axis_position'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

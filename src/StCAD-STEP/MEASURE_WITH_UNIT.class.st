@@ -5,7 +5,7 @@ Class {
 		'value_component',
 		'unit_component'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

@@ -5,7 +5,7 @@ Class {
 		'bound',
 		'orientation'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

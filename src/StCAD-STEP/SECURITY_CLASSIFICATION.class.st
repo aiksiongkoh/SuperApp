@@ -5,7 +5,7 @@ Class {
 		'purpose',
 		'security_level'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

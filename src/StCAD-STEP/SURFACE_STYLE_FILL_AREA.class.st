@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'fill_area'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

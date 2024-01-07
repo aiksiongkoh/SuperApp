@@ -6,7 +6,7 @@ Class {
 		'orientation',
 		'xyzCurve'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

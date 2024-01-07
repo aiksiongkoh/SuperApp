@@ -6,7 +6,7 @@ Class {
 		'authorized_approval',
 		'role'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

@@ -18,7 +18,7 @@ Class {
 		'cAnyPart',
 		'cAssembly'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'instance creation' }

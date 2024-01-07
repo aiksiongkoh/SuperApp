@@ -1,7 +1,7 @@
 Class {
 	#name : #'CLOSED_SHELL',
 	#superclass : #'CONNECTED_FACE_SET',
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

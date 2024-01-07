@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'transformation_operator'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

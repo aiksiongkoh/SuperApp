@@ -8,7 +8,7 @@ Class {
 		'v_knots',
 		'knot_spec'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }

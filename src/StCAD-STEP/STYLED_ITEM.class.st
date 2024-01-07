@@ -5,7 +5,7 @@ Class {
 		'styles',
 		'item'
 	],
-	#category : #'StCAD-UI-STEP'
+	#category : #'StCAD-STEP'
 }
 
 { #category : #'VisualWorks metadata' }
