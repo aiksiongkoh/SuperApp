@@ -5,15 +5,6 @@ Class {
 	#name : #MachineAccuracy,
 	#superclass : #Object,
 	#classVars : [
-		'Math',
-		'Math',
-		'Math',
-		'Math',
-		'Math',
-		'Math',
-		'Math',
-		'Math',
-		'Math',
 		'Math'
 	],
 	#category : #'StCAD-Math-StMathArraySpecial'
@@ -65,7 +56,7 @@ MachineAccuracy class >> OfLargestDouble [
 ]
 
 { #category : #'class initialization' }
-MachineAccuracy class >> initialize [
+MachineAccuracy class >> initializeX [
 	"To be strictly correct, this should be run everytime the image is started."
 	"MachineAccuracy initialize."
 

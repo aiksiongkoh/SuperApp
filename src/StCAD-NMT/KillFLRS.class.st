@@ -1,7 +1,7 @@
 Class {
 	#name : #KillFLRS,
 	#superclass : #KillF,
-	#category : #'StCAD-NMT-StCAD-NMT-Operator'
+	#category : #'StCAD-NMT-Operator'
 }
 
 { #category : #'VisualWorks metadata' }

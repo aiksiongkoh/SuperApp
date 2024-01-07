@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'aPoint'
 	],
-	#category : #'StCAD-NMT-StCAD-NMT-Basic'
+	#category : #'StCAD-NMT-Basic'
 }
 
 { #category : #'instance creation' }

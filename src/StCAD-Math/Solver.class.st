@@ -1,6 +1,5 @@
 "
-
-	messages	<IdentityDictionary> Stores messages to be passed out for various conditions encountered. Initialized by the user.
+messages	<IdentityDictionary> Stores messages to be passed out for various conditions encountered. Initialized by the user.
 	statistics	<IdentityDictionary> Stores statistics of the solution process.
 "
 Class {

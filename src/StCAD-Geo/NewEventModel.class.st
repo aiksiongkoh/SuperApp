@@ -1,6 +1,5 @@
 "
-
-	Description: 
+Description: 
 	
 	NewEventModel tracks event handlers using its own event table instead of the class variable
 in Object, as is done with standard Digitalk events.  In this way, we can depend on garbage

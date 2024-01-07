@@ -19,14 +19,13 @@ Class {
 		'ppTpEpEdot'
 	],
 	#classVars : [
-		'MbD',
 		'MbD'
 	],
 	#category : #'StCAD-MbD-MbDBasic'
 }
 
 { #category : #'class initialization' }
-MbDPart class >> initialize [
+MbDPart class >> initializeX [
 	"MbDPart initialize."
 
 	Identity3by3 := DiagonalMatrix new: 3 withAll: 1.0d.

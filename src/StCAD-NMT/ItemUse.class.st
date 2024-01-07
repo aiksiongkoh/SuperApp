@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'aNMTItem'
 	],
-	#category : #'StCAD-NMT-StCAD-NMT-Basic'
+	#category : #'StCAD-NMT-Basic'
 }
 
 { #category : #'VisualWorks metadata' }

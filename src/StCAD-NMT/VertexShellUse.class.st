@@ -1,7 +1,7 @@
 Class {
 	#name : #VertexShellUse,
 	#superclass : #ShellUse,
-	#category : #'StCAD-NMT-StCAD-NMT-Basic'
+	#category : #'StCAD-NMT-Basic'
 }
 
 { #category : #'VisualWorks metadata' }

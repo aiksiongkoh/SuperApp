@@ -345,7 +345,7 @@ BasicNURBSCurve class >> fromcDataPoint: cDataPoint uDegree: uDegree [
 ]
 
 { #category : #'class initialization' }
-BasicNURBSCurve class >> initialize [
+BasicNURBSCurve class >> initializeX [
 	"self initialize."
 
 	| n aRow previousRow |

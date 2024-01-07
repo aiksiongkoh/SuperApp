@@ -65,7 +65,7 @@ Class {
 }
 
 { #category : #'class initialization' }
-DifferenceOperator class >> initialize [
+DifferenceOperator class >> initializeX [
 	"StMDifferenceOperator initialize."
 
 	OneOverFactorials := FullRow new: 10.

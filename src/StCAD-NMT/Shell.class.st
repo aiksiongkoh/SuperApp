@@ -16,7 +16,7 @@ Vertex, Wireframe
 Class {
 	#name : #Shell,
 	#superclass : #ManyUseItem,
-	#category : #'StCAD-NMT-StCAD-NMT-Basic'
+	#category : #'StCAD-NMT-Basic'
 }
 
 { #category : #'VisualWorks metadata' }

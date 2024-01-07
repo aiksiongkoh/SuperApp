@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #'class initialization' }
-SingularMatrixError class >> initialize [
+SingularMatrixError class >> initializeX [
 	"SingularMatrixError initialize"
 	SingularMatrixError
 		notifierString: #'Singular Matrix Error' << #'StCAD.UI'

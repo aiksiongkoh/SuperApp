@@ -11,7 +11,7 @@ aNMTItem := xyzCurve in space.
 Class {
 	#name : #FaceEdgeUse,
 	#superclass : #EdgeUse,
-	#category : #'StCAD-NMT-StCAD-NMT-Basic'
+	#category : #'StCAD-NMT-Basic'
 }
 
 { #category : #'VisualWorks metadata' }

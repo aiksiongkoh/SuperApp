@@ -9,7 +9,7 @@ Class {
 		'newShell',
 		'newRegion'
 	],
-	#category : #'StCAD-NMT-StCAD-NMT-Operator'
+	#category : #'StCAD-NMT-Operator'
 }
 
 { #category : #'instance creation' }
@@ -54,6 +54,7 @@ MakeF >> cEdge: anObject [
 { #category : #executing }
 MakeF >> execute [
 
+	| aMakeFU |
 	aMakeFU := StCAD_NMT_MakeFU withEdgeUse: self cEdgeUse. "VW_TRANSLATION:StCAD.NMT.MakeFU:StCAD_NMT_MakeFU"
 	aMakeFU do
 ]

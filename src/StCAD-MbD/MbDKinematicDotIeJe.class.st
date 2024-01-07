@@ -1,5 +1,5 @@
 "
-	J	Jq	Js	Jt	Jqs	Jqt	Jst Jqst
+J	Jq	Js	Jt	Jqs	Jqt	Jst Jqst
 I	x	-	-	-	-	-	-	-
 Iq	x	x	-	-	-	-	-	-
 Is	x	x	x	-	-	-	-	-

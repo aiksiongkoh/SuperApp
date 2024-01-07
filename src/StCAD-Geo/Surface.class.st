@@ -1,7 +1,7 @@
 Class {
 	#name : #Surface,
 	#superclass : #Geometry,
-	#category : #'StCAD-Geo-StCAD-Geo-Basic'
+	#category : #'StCAD-Geo-Basic'
 }
 
 { #category : #'VisualWorks metadata' }

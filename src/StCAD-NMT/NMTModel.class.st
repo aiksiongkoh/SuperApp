@@ -1,5 +1,5 @@
 "
-NMTModel creates and stores all nonUse NMTItem.
+NMTNMTModel creates and stores all nonUse NMTItem.
 
 Subclasses must implement the following messages:
 	calc
@@ -31,7 +31,7 @@ Class {
 		'aRefFrame',
 		'aBoundingBox'
 	],
-	#category : #'StCAD-NMT-StCAD-NMT-Basic'
+	#category : #'StCAD-NMT-Basic'
 }
 
 { #category : #'VisualWorks metadata' }

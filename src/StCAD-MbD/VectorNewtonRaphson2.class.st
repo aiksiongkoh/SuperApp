@@ -13,7 +13,7 @@ VectorNewtonRaphson2 class >> initSignals [
 ]
 
 { #category : #'class initialization' }
-VectorNewtonRaphson2 class >> initialize [
+VectorNewtonRaphson2 class >> initializeX [
 	"MbDVectorNewtonRaphson2 initialize."
 
 	self initSignals

@@ -17,7 +17,7 @@ Integrator class >> initSignals [
 ]
 
 { #category : #'class initialization' }
-Integrator class >> initialize [
+Integrator class >> initializeX [
 	"StMIntegrator initialize."
 
 	self initSignals
