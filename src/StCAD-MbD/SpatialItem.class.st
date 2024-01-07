@@ -13,15 +13,6 @@ SpatialItem class >> aRefFrameClass [
 	self subclassResponsibility
 ]
 
-{ #category : #'VisualWorks metadata' }
-SpatialItem class >> visualWorksMetadata [
-
-	^ #(
-		'namespace' 'StCAD.MbD'
-	)
-
-]
-
 { #category : #accessing }
 SpatialItem >> aRefFrame [
 	^aRefFrame
