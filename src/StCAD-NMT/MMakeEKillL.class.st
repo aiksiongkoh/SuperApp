@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'killedLoop'
 	],
-	#category : #'StCAD-NMT-StCAD-NMT-Operator'
+	#category : #'StCAD-NMT-Operator'
 }
 
 { #category : #'VisualWorks metadata' }

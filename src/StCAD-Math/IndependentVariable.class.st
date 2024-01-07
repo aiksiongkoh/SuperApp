@@ -3,7 +3,7 @@ The independent variable is assigned the value of its argument x.
 "
 Class {
 	#name : #IndependentVariable,
-	#superclass : #Variable,
+	#superclass : #SymVariable,
 	#category : #'StCAD-Math-StMathFunctionSymbolic'
 }
 

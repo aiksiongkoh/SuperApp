@@ -3,7 +3,7 @@ The dependent variable is an unknown function of its argument x.
 "
 Class {
 	#name : #DependentVariable,
-	#superclass : #Variable,
+	#superclass : #SymVariable,
 	#instVars : [
 		'x'
 	],

@@ -6,7 +6,7 @@ This represent the infinite region containing all subelements of the model. It i
 Class {
 	#name : #OutsideRegion,
 	#superclass : #Region,
-	#category : #'StCAD-NMT-StCAD-NMT-Basic'
+	#category : #'StCAD-NMT-Basic'
 }
 
 { #category : #'VisualWorks metadata' }

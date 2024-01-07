@@ -1,6 +1,6 @@
 Class {
 	#name : #Constant,
-	#superclass : #Variable,
+	#superclass : #SymVariable,
 	#category : #'StCAD-Math-StMathFunctionSymbolic'
 }
 

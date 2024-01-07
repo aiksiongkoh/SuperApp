@@ -15,7 +15,7 @@ Instance Variables:
 Class {
 	#name : #Face,
 	#superclass : #ManyUseItem,
-	#category : #'StCAD-NMT-StCAD-NMT-Basic'
+	#category : #'StCAD-NMT-Basic'
 }
 
 { #category : #'binary storage' }

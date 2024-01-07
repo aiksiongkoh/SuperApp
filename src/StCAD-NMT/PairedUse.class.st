@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'mate'
 	],
-	#category : #'StCAD-NMT-StCAD-NMT-Basic'
+	#category : #'StCAD-NMT-Basic'
 }
 
 { #category : #'VisualWorks metadata' }

@@ -7,7 +7,7 @@ Class {
 		'cadView',
 		'aMediator'
 	],
-	#category : #'StCAD-UI-StCAD-UI-App'
+	#category : #'StCAD-UI-App'
 }
 
 { #category : #resources }

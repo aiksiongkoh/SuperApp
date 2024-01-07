@@ -44,7 +44,7 @@ Units class >> Seconds [
 ]
 
 { #category : #'class initialization' }
-Units class >> initialize [
+Units class >> initializeX [
 	"StMPhysicalUnits initialize."
 
 	Meters := IdentityDictionary new.

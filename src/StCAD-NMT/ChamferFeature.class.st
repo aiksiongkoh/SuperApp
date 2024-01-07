@@ -1,7 +1,7 @@
 Class {
 	#name : #ChamferFeature,
 	#superclass : #Feature,
-	#category : #'StCAD-NMT-StCAD-NMT-Basic'
+	#category : #'StCAD-NMT-Basic'
 }
 
 { #category : #'VisualWorks metadata' }

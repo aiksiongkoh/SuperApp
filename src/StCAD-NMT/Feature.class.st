@@ -1,7 +1,7 @@
 Class {
 	#name : #Feature,
 	#superclass : #AnyFeature,
-	#category : #'StCAD-NMT-StCAD-NMT-Basic'
+	#category : #'StCAD-NMT-Basic'
 }
 
 { #category : #'VisualWorks metadata' }

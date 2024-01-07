@@ -1,7 +1,7 @@
 Class {
 	#name : #EulerOperator,
 	#superclass : #AnyOperator,
-	#category : #'StCAD-NMT-StCAD-NMT-Operator'
+	#category : #'StCAD-NMT-Operator'
 }
 
 { #category : #'VisualWorks metadata' }

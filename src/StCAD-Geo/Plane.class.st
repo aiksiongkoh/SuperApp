@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'aRectSurface'
 	],
-	#category : #'StCAD-Geo-StCAD-Geo-Basic'
+	#category : #'StCAD-Geo-Basic'
 }
 
 { #category : #'VisualWorks metadata' }
