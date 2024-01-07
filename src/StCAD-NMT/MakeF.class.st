@@ -54,8 +54,9 @@ MakeF >> cEdge: anObject [
 { #category : #executing }
 MakeF >> execute [
 
-	MakeFU := StCAD_NMT_MakeFU withEdgeUse: self cEdgeUse. "VW_TRANSLATION:StCAD.NMT.MakeFU:StCAD_NMT_MakeFU"
-	MakeFU do
+	| aMakeFU |
+	aMakeFU := StCAD_NMT_MakeFU withEdgeUse: self cEdgeUse. "VW_TRANSLATION:StCAD.NMT.MakeFU:StCAD_NMT_MakeFU"
+	aMakeFU do
 ]
 
 { #category : #accessing }
