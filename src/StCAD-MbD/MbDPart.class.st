@@ -19,7 +19,6 @@ Class {
 		'ppTpEpEdot'
 	],
 	#classVars : [
-		'MbD',
 		'MbD'
 	],
 	#category : #'StCAD-MbD-MbDBasic'

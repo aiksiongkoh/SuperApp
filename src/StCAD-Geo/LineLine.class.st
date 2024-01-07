@@ -1,6 +1,5 @@
 "
-
-	Find the minimum distance between two lines. 
+Find the minimum distance between two lines. 
 	Line is a(ap) = a0 + ap*ad. 
 	Line is b(bp) = b0 + bp*bd. 
 	Minimize a(ap) - b(bp). 

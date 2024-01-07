@@ -5,15 +5,6 @@ Class {
 	#name : #MachineAccuracy,
 	#superclass : #Object,
 	#classVars : [
-		'Math',
-		'Math',
-		'Math',
-		'Math',
-		'Math',
-		'Math',
-		'Math',
-		'Math',
-		'Math',
 		'Math'
 	],
 	#category : #'StCAD-Math-StMathArraySpecial'

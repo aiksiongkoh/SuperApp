@@ -5,8 +5,6 @@ Class {
 	#name : #Combination,
 	#superclass : #Item,
 	#classVars : [
-		'Geo',
-		'Geo',
 		'Geo'
 	],
 	#category : #'StCAD-Geo'

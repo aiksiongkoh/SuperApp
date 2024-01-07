@@ -15,9 +15,6 @@ Class {
 		'torque'
 	],
 	#classVars : [
-		'Math',
-		'Math',
-		'Math',
 		'Math'
 	],
 	#category : #'StCAD-Math-StMathArraySpecial'
@@ -41,20 +38,6 @@ Units class >> Newtons [
 { #category : #accessing }
 Units class >> Seconds [
 	^Seconds
-]
-
-{ #category : #'class initialization' }
-Units class >> initializeX [
-	"StMPhysicalUnits initialize."
-
-	Meters := IdentityDictionary new.
-	Kilograms := IdentityDictionary new.
-	Seconds := IdentityDictionary new.
-	Newtons := IdentityDictionary new.
-	self initializeLengthUnits.
-	self initializeMassUnits.
-	self initializeTimeUnits.
-	self initializeForceUnits
 ]
 
 { #category : #'class initialization' }
@@ -96,6 +79,20 @@ Units class >> initializeTimeUnits [
 	Seconds at: #MILLISECOND put: 0.001d.
 	Seconds at: #MINUTE put: 60.0d.
 	Seconds at: #SECOND put: 1.0d
+]
+
+{ #category : #'class initialization' }
+Units class >> initializeX [
+	"StMPhysicalUnits initialize."
+
+	Meters := IdentityDictionary new.
+	Kilograms := IdentityDictionary new.
+	Seconds := IdentityDictionary new.
+	Newtons := IdentityDictionary new.
+	self initializeLengthUnits.
+	self initializeMassUnits.
+	self initializeTimeUnits.
+	self initializeForceUnits
 ]
 
 { #category : #'instance creation' }

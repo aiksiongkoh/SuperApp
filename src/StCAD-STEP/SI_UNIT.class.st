@@ -5,7 +5,6 @@ Class {
 		'prefix'
 	],
 	#classVars : [
-		'UI',
 		'UI'
 	],
 	#category : #'StCAD-STEP'
