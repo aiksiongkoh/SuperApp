@@ -1,48 +1,47 @@
-How to clone SuperApp in Pharo
+# How to clone SuperApp in Pharo
+   
+SuperApp is a work in progress   
+It is code ported from a Visualworks [motion simulator](https://ar-cad.com)   
+It is the start of [Digital Twin applied to Software](https://askoh.com/twin/DigitalTwinsCppSt20230620.pdf)   
 
-SuperApp is a work in progress. 
-It is code ported from a Visualworks motion simulator
-https://ar-cad.com
-It is the start of Digital Twin applied to Software
-https://askoh.com/twin/DigitalTwinsCppSt20230620.pdf
-
-Install Pharo
-https://pharo.org
-https://pharo.org/download
-Download Pharo Launcher
-	Click/Windows icon
-In FileExplorer
-	Look for "C:\Users\askoh\Downloads\pharo-launcher-3.0.1.msi"
-	DoubleClick/pharo-launcher-3.0.1.msi
-		Accept all defaults to install.
-			Beware the installer and Pharo Launcher does not work well with non defaults
-In Windows Start icon
-	Launch PharoLauncher
-In PharoLauncher
-	Click/New
-	  Select/Official Distribution/Pharo 11.0 - 64bit (stable)
-	  Enter Image name:/Pharo11SuperApp
-	  Click/Create image
-	Select/Pharo11SuperApp
-	Click/Launch
-In Pharo
-	Click/Sources/Git Repositories Browser
-		Click/Add
-			Click/Clone from github.com
-				Enter Owner name/aiksiongkoh
-				Enter Project name/SuperApp
-				Select Protocol/HTTPS
-				Click/OK
-		DoubleClick/SuperApp
-			Select/VWCompatibility
-			RightClick/Load
-			Repeat in alphabatical order until StCAD-Basic
-			Then StCAD-Math
-			StCAD-UI
-			StCAD-Geo
-			StCAD-MbD
-			StCAD-Misc
-			StCAD-NMT
-			StCAD-STEP
-	Click/Browse/System Browser
-		to view loaded code
+Install [Pharo](https://pharo.org)  
+[Download Pharo Launcher](https://pharo.org/download)  
+&emsp;Click/Windows icon  
+&emsp;Click/Save As  
+&emsp;Select/Downloads folder  
+&emsp;Click/Save  
+In Windows FileExplorer  
+&emsp;Look for "C:\Users\askoh\Downloads\pharo-launcher-3.0.1.msi"  
+&emsp;DoubleClick/pharo-launcher-3.0.1.msi  
+&emsp;&emsp;Accept all defaults to install  
+&emsp;&emsp;&emsp;Beware the installer and Pharo Launcher does not work well with non defaults  
+In Windows Start icon  
+&emsp;Launch PharoLauncher  
+In PharoLauncher  
+&emsp;Click/New  
+&emsp;&emsp;Select/Official Distribution/Pharo 11.0 - 64bit (stable)  
+&emsp;&emsp;Enter Image name:/Pharo11SuperApp  
+&emsp;&emsp;Click/Create image  
+&emsp;Select/Pharo11SuperApp  
+&emsp;Click/Launch  
+In Pharo  
+&emsp;Click/Sources/Git Repositories Browser  
+&emsp;&emsp;Click/Add  
+&emsp;&emsp;&emsp;Click/Clone from github.com  
+&emsp;&emsp;&emsp;&emsp;Enter Owner name/aiksiongkoh  
+&emsp;&emsp;&emsp;&emsp;Enter Project name/SuperApp  
+&emsp;&emsp;&emsp;&emsp;Select Protocol/HTTPS  
+&emsp;&emsp;&emsp;&emsp;Click/OK  
+&emsp;&emsp;DoubleClick/SuperApp  
+&emsp;&emsp;&emsp;Select/VWCompatibility  
+&emsp;&emsp;&emsp;RightClick/Load  
+&emsp;&emsp;&emsp;Repeat in alphabatical order until StCAD-Basic  
+&emsp;&emsp;&emsp;Then StCAD-Math  
+&emsp;&emsp;&emsp;StCAD-UI  
+&emsp;&emsp;&emsp;StCAD-Geo  
+&emsp;&emsp;&emsp;StCAD-MbD  
+&emsp;&emsp;&emsp;StCAD-Misc  
+&emsp;&emsp;&emsp;StCAD-NMT  
+&emsp;&emsp;&emsp;StCAD-STEP  
+&emsp;Click/Browse/System Browser  
+&emsp;&emsp;to view loaded code  
