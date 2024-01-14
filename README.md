@@ -2,8 +2,9 @@
    
 SuperApp is a work in progress   
 It is code ported from a Visualworks Smalltalk [motion simulator](https://ar-cad.com)   
+Its goal is to be a full 3D CAD with Motion Simulation.   
 It is the start of [Digital Twin applied to Software](https://askoh.com/index.html#DigitalTwinS)   
-The motion simulator has been translated to C++ as [OndselSolver](https://github.com/Ondsel-Development/OndselSolver).   
+The motion simulator has been translated to C++ as open source [OndselSolver](https://github.com/Ondsel-Development/OndselSolver).   
 
 Install [Pharo](https://pharo.org)  
 [Download Pharo Launcher](https://pharo.org/download)  
