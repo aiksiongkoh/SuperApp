@@ -2,7 +2,7 @@
    
 SuperApp is a work in progress   
 It is code ported from a Visualworks Smalltalk [motion simulator](https://ar-cad.com)   
-It is the start of [Digital Twin applied to Software](https://askoh.com/twin/DigitalTwinsCppSt20230620.pdf)   
+It is the start of [Digital Twin applied to Software](https://askoh.com/index.html#DigitalTwinS)   
 The motion simulator has been translated to C++ as [OndselSolver](https://github.com/Ondsel-Development/OndselSolver).   
 
 Install [Pharo](https://pharo.org)  
