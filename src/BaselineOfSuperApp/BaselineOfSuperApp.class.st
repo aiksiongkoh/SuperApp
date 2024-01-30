@@ -14,7 +14,7 @@ BaselineOfSuperApp >> baseline: spec [
 			with: [ spec requires: #( 'Magnitude-General' 'VWCompatibility' ) ];
 			package: 'StCAD-Geo' with: [
 				spec requires:
-						#( 'Jun-Geometry-Boundaries' '' Jun - OpenGL - Trim '' 'Magnitude-Numbers'
+						#( 'Jun-Geometry-Boundaries' 'Jun-OpenGL-Trim' 'Magnitude-Numbers'
 						   'StCAD-Basic' 'StCAD-Math' 'StCAD-MbD' 'StCAD-Misc'
 						   'StCAD-UI' 'VWCompatibility' ) ];
 			package: 'StCAD-Math'
