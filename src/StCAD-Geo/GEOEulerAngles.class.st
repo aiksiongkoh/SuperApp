@@ -1,6 +1,6 @@
 Class {
 	#name : #GEOEulerAngles,
-	#superclass : #EulerArray,
+	#superclass : #StEulerArray,
 	#type : #variable,
 	#instVars : [
 		'aA'
@@ -87,7 +87,7 @@ GEOEulerAngles >> rotatex: the [
 	| sthe cthe answer |
 	sthe := the sin.
 	cthe := the cos.
-	answer := FullMatrix new: 3 by: 3.
+	answer := StMFullMatrix new: 3 by: 3.
 	(answer at: 1)
 		at: 1 put: 1.0d;
 		at: 2 put: 0.0d;
@@ -108,7 +108,7 @@ GEOEulerAngles >> rotatey: the [
 	| sthe cthe answer |
 	sthe := the sin.
 	cthe := the cos.
-	answer := FullMatrix new: 3 by: 3.
+	answer := StMFullMatrix new: 3 by: 3.
 	(answer at: 1)
 		at: 1 put: cthe;
 		at: 2 put: 0.0d;
@@ -129,7 +129,7 @@ GEOEulerAngles >> rotatez: the [
 	| sthe cthe answer |
 	sthe := the sin.
 	cthe := the cos.
-	answer := FullMatrix new: 3 by: 3.
+	answer := StMFullMatrix new: 3 by: 3.
 	(answer at: 1)
 		at: 1 put: cthe;
 		at: 2 put: 0.0d - sthe;

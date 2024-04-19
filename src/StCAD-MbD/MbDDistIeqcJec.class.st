@@ -34,7 +34,7 @@ MbDDistIeqcJec class >> withFrmI: afrmI frmJ: afrmJ [
 MbDDistIeqcJec >> calcPrivate [
 	| mprIeJeOpEI mpprIeJeOpEIpEI pprIeJepXIipXI prIeJepXIi element pprIeJepXIipEI mprIeJeOipEI pprIeJepEIipEI prIeJepEIi mpprIeJeOpEIipEI mprIeJeOpEIiT muIeJeOT |
 	super calcPrivate.
-	rIeJe = 0.0d ifTrue: [^self].
+	rIeJe = 0.0 ifTrue: [^self].
 	mprIeJeOpEI := frmI prOeOpE.
 	mprIeJeOpEIT := mprIeJeOpEI transpose.
 	mpprIeJeOpEIpEI := frmI pprOeOpEpE.
@@ -46,11 +46,11 @@ MbDDistIeqcJec >> calcPrivate [
 			prIeJepXIi := prIeJepXI at: i.
 			1 to: 3 do: [:j | 
 					element := i == j
-								ifTrue: [1.0d]
-								ifFalse: [0.0d].
+								ifTrue: [1.0]
+								ifFalse: [0.0].
 					element := element - (prIeJepXIi * (prIeJepXI at: j)).
 					pprIeJepXIipXI at: j put: element / rIeJe]].
-	pprIeJepXIpEI := FullMatrix new: 3 by: 4.
+	pprIeJepXIpEI := StMFullMatrix new: 3 by: 4.
 	1 to: 3 do: [:i | 
 			pprIeJepXIipEI := pprIeJepXIpEI at: i.
 			prIeJepXIi := prIeJepXI at: i.
@@ -58,7 +58,7 @@ MbDDistIeqcJec >> calcPrivate [
 			1 to: 4 do: [:j | 
 					element := (mprIeJeOipEI at: j) - (prIeJepXIi * (prIeJepEI at: j)).
 					pprIeJepXIipEI at: j put: element / rIeJe]].
-	pprIeJepEIpEI := FullMatrix new: 4 by: 4.
+	pprIeJepEIpEI := StMFullMatrix new: 4 by: 4.
 	1 to: 4 do: [:i | 
 			pprIeJepEIipEI := pprIeJepEIpEI at: i.
 			prIeJepEIi := prIeJepEI at: i.
@@ -73,11 +73,11 @@ MbDDistIeqcJec >> calcPrivate [
 { #category : #'initialize-release' }
 MbDDistIeqcJec >> initialize [
 	super initialize.
-	prIeJepXI := FullRow new: 3.
-	prIeJepEI := FullRow new: 4.
-	pprIeJepXIpXI := FullMatrix new: 3 by: 3.
-	pprIeJepXIpEI := FullMatrix new: 3 by: 4.
-	pprIeJepEIpEI := FullMatrix new: 4 by: 4
+	prIeJepXI := StMFullRow new: 3.
+	prIeJepEI := StMFullRow new: 4.
+	pprIeJepXIpXI := StMFullMatrix new: 3 by: 3.
+	pprIeJepXIpEI := StMFullMatrix new: 3 by: 4.
+	pprIeJepEIpEI := StMFullMatrix new: 4 by: 4
 ]
 
 { #category : #accessing }
@@ -108,7 +108,7 @@ MbDDistIeqcJec >> prIeJepXI [
 { #category : #accessing }
 MbDDistIeqcJec >> puIeJeOpEI [
 	| answer m1OverrIeJe m1OverrIeJeSq answeri rIeJeOi aij mprIeJeOpEI mprIeJeOpEIi |
-	answer := FullMatrix new: 3 by: 4.
+	answer := StMFullMatrix new: 3 by: 4.
 	mprIeJeOpEI := frmI prOeOpE.
 	m1OverrIeJe := -1.0d / rIeJe.
 	m1OverrIeJeSq := m1OverrIeJe / rIeJe.
@@ -125,7 +125,7 @@ MbDDistIeqcJec >> puIeJeOpEI [
 { #category : #accessing }
 MbDDistIeqcJec >> puIeJeOpXI [
 	| answer m1OverrIeJe m1OverrIeJeSq answeri rIeJeOi aij |
-	answer := FullMatrix new: 3 by: 3.
+	answer := StMFullMatrix new: 3 by: 3.
 	m1OverrIeJe := -1.0d / rIeJe.
 	m1OverrIeJeSq := m1OverrIeJe / rIeJe.
 	1 to: 3 do: [:i | 

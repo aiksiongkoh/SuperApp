@@ -85,7 +85,7 @@ GEOMomentsOfVolume >> calc [
 
 { #category : #calc }
 GEOMomentsOfVolume >> calcaJPP [
-	aJPP := FullMatrix new: 3 by: 3.
+	aJPP := StMFullMatrix new: 3 by: 3.
 	aJPP at: 1 and: 1 put: mYY + mZZ.
 	aJPP at: 2 and: 2 put: mXX + mZZ.
 	aJPP at: 3 and: 3 put: mXX + mYY.
@@ -99,7 +99,7 @@ GEOMomentsOfVolume >> calcaJPP [
 GEOMomentsOfVolume >> calcrPcP [
 	"P to centroid in P components."
 
-	rPcP := FullColumn
+	rPcP := StMFullColumn
 				with: mX / m1
 				with: mY / m1
 				with: mZ / m1

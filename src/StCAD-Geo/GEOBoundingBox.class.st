@@ -73,8 +73,8 @@ GEOBoundingBox >> extent [
 
 { #category : #'initialize-release' }
 GEOBoundingBox >> initialize [
-	minCorner := FullColumn new: 3.
-	maxCorner := FullColumn new: 3
+	minCorner := StMFullColumn new: 3.
+	maxCorner := StMFullColumn new: 3
 ]
 
 { #category : #accessing }

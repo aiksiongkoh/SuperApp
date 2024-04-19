@@ -41,7 +41,7 @@ MbDParallelGearConstraintIqcJc >> addToJointTorqueI: jointTorque [
 	rIpIeIp := frmI rpep.
 	pAOIppEI := frmI pAOppE.
 	aBOIp := frmI aBOp.
-	fpAOIppEIrIpIeIp := (FullColumn zero: 4).
+	fpAOIppEIrIpIeIp := (StMFullColumn zero: 4).
 	1 to: 4 do:  [:i | 
 			dum := cForceT timesFullColumn: ((pAOIppEI at: i) timesFullColumn: rIpIeIp).
 			fpAOIppEIrIpIeIp at: i put: dum].

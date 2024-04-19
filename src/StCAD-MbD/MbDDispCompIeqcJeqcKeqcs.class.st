@@ -55,13 +55,13 @@ MbDDispCompIeqcJeqcKeqcs >> calcPostDynCorrectorIteration [
 				dot: rIeJeO)].
 	1 to: 3 do: [:i | 
 			ppriIeJeKepXIipsK := ppriIeJeKepXIpsK at: i.
-			1 to: sSizeK do: [:j | ppriIeJeKepXIipsK at: j put: 0.0d - (pAjOKepsKT at: j and: i)]].
+			1 to: sSizeK do: [:j | ppriIeJeKepXIipsK at: j put: 0.0 - (pAjOKepsKT at: j and: i)]].
 	1 to: 3 do: [:i | 
 			ppriIeJeKepXJipsK := ppriIeJeKepXJpsK at: i.
 			1 to: sSizeK do: [:j | ppriIeJeKepXJipsK at: j put: (pAjOKepsKT at: j and: i)]].
 	1 to: 4 do: [:i | 
 			ppriIeJeKepEIipsK := ppriIeJeKepEIpsK at: i.
-			1 to: sSizeK do: [:j | ppriIeJeKepEIipsK at: j put: 0.0d - ((pAjOKepsKT at: j) dot: (mprIeJeOpEIT at: i))]].
+			1 to: sSizeK do: [:j | ppriIeJeKepEIipsK at: j put: 0.0 - ((pAjOKepsKT at: j) dot: (mprIeJeOpEIT at: i))]].
 	1 to: 4 do: [:i | 
 			ppriIeJeKepEJipsK := ppriIeJeKepEJpsK at: i.
 			1 to: sSizeK do: [:j | ppriIeJeKepEJipsK at: j put: ((pAjOKepsKT at: j) dot: (prIeJeOpEJT at: i))]].
@@ -88,13 +88,13 @@ MbDDispCompIeqcJeqcKeqcs >> initializeGlobally [
 MbDDispCompIeqcJeqcKeqcs >> initializeLocally [
 	super initializeLocally.
 	sSizeK := efrmK sSize.
-	priIeJeKepsK := FullRow new: sSizeK.
-	ppriIeJeKepXIpsK := FullMatrix new: 3 by: sSizeK.
-	ppriIeJeKepEIpsK := FullMatrix new: 4 by: sSizeK.
-	ppriIeJeKepXJpsK := FullMatrix new: 3 by: sSizeK.
-	ppriIeJeKepEJpsK := FullMatrix new: 4 by: sSizeK.
-	ppriIeJeKepEKpsK := FullMatrix new: 4 by: sSizeK.
-	ppriIeJeKepsKpsK := FullMatrix new: sSizeK by: sSizeK
+	priIeJeKepsK := StMFullRow new: sSizeK.
+	ppriIeJeKepXIpsK := StMFullMatrix new: 3 by: sSizeK.
+	ppriIeJeKepEIpsK := StMFullMatrix new: 4 by: sSizeK.
+	ppriIeJeKepXJpsK := StMFullMatrix new: 3 by: sSizeK.
+	ppriIeJeKepEJpsK := StMFullMatrix new: 4 by: sSizeK.
+	ppriIeJeKepEKpsK := StMFullMatrix new: 4 by: sSizeK.
+	ppriIeJeKepsKpsK := StMFullMatrix new: sSizeK by: sSizeK
 ]
 
 { #category : #accessing }

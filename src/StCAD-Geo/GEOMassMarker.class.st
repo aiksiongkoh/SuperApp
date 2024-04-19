@@ -29,7 +29,7 @@ GEOMassMarker >> aAPp [
 { #category : #accessing }
 GEOMassMarker >> aJppx [
 	^aJppx == nil
-		ifTrue: [0.0d]
+		ifTrue: [0.0]
 		ifFalse: [aJppx]
 ]
 
@@ -41,7 +41,7 @@ GEOMassMarker >> aJppx: double [
 { #category : #accessing }
 GEOMassMarker >> aJppy [
 	^aJppy == nil
-		ifTrue: [0.0d]
+		ifTrue: [0.0]
 		ifFalse: [aJppy]
 ]
 
@@ -53,7 +53,7 @@ GEOMassMarker >> aJppy: double [
 { #category : #accessing }
 GEOMassMarker >> aJppz [
 	^aJppz == nil
-		ifTrue: [0.0d]
+		ifTrue: [0.0]
 		ifFalse: [aJppz]
 ]
 
@@ -79,8 +79,8 @@ GEOMassMarker >> dataSeriesForChart [
 	answer
 		do: 
 			[:data | 
-			data rfpf: (FullColumn zero: 3).
-			data aAfp: (FullMatrix identity: 3).
+			data rfpf: (StMFullColumn zero: 3).
+			data aAfp: (StMFullMatrix identity: 3).
 			data mass: mass.
 			data aJpp: self mJpp].
 	^answer
@@ -89,7 +89,7 @@ GEOMassMarker >> dataSeriesForChart [
 { #category : #accessing }
 GEOMassMarker >> density [
 	^density == nil
-		ifTrue: [0.0d]
+		ifTrue: [0.0]
 		ifFalse: [density]
 ]
 
@@ -115,7 +115,7 @@ GEOMassMarker >> initialize [
 
 { #category : #accessing }
 GEOMassMarker >> mJpp [
-	^DiagonalMatrix
+	^StMDiagonalMatrix
 		with: self aJppx
 		with: self aJppy
 		with: self aJppz

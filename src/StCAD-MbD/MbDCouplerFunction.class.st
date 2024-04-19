@@ -65,10 +65,10 @@ MbDCouplerFunction >> initializeLocally [
 	kineIJs := kineIJs asArray.
 	kineIJs do: [:kineIJ | kineIJ initializeLocally].
 	n := kineIJs size.
-	pfuncpkineIJs := FullColumn new: n.
-	ppfuncpkineIJpkineIJs := FullMatrix new: n by: n.
-	pfuncpkineIJBlks := FullColumn new: n.
-	ppfuncpkineIJpkineIJBlks := FullMatrix new: n by: n
+	pfuncpkineIJs := StMFullColumn new: n.
+	ppfuncpkineIJpkineIJs := StMFullMatrix new: n by: n.
+	pfuncpkineIJBlks := StMFullColumn new: n.
+	ppfuncpkineIJpkineIJBlks := StMFullMatrix new: n by: n
 ]
 
 { #category : #accessing }

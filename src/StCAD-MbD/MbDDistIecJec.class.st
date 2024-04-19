@@ -39,8 +39,8 @@ MbDDistIecJec >> calcPostDynCorrectorIteration [
 
 { #category : #calc }
 MbDDistIecJec >> calcPrivate [
-	rIeJe = 0.0d ifTrue: [^self].
-	uIeJeO := rIeJeO times: 1.0d / rIeJe.
+	rIeJe = 0.0 ifTrue: [^self].
+	uIeJeO := rIeJeO times: 1.0 / rIeJe.
 	muIeJeO := uIeJeO negated
 ]
 

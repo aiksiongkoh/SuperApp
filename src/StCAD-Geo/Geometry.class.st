@@ -64,7 +64,7 @@ Geometry >> create_glNurbs [
 		ifTrue: 
 			[aModelFrame := self aModel aRefFrame.
 			aAMf := aRefFrame aAFfforF: aModelFrame.
-			rMfM := aRefFrame rFpFfromrfpf: (FullColumn zero: 3) forF: aModelFrame]
+			rMfM := aRefFrame rFpFfromrfpf: (StMFullColumn zero: 3) forF: aModelFrame]
 		ifFalse: 
 			[aAMf := aRefFrame aAFf.
 			rMfM := aRefFrame rFfF].
@@ -101,7 +101,7 @@ Geometry >> glTrimNurbs [
 		ifTrue: 
 			[aModelFrame := self aModel aRefFrame.
 			aAMf := aRefFrame aAFfforF: aModelFrame.
-			rMfM := aRefFrame rFpFfromrfpf: (FullColumn zero: 3) forF: aModelFrame]
+			rMfM := aRefFrame rFpFfromrfpf: (StMFullColumn zero: 3) forF: aModelFrame]
 		ifFalse: 
 			[aAMf := aRefFrame aAFf.
 			rMfM := aRefFrame rFfF].

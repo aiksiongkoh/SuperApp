@@ -71,11 +71,11 @@ MbDDirectionCosineIeqcsJeqcs >> initializeGlobally [
 MbDDirectionCosineIeqcsJeqcs >> initializeLocally [
 	super initializeLocally.
 	sSizeJ := frmJ sSize.
-	pAijIeJepsJ := FullRow new: sSizeJ.
-	ppAijIeJepEIpsJ := FullMatrix new: 4 by: sSizeJ.
-	ppAijIeJepEJpsJ := FullMatrix new: 4 by: sSizeJ.
-	ppAijIeJepsIpsJ := FullMatrix new: sSizeI by: sSizeJ.
-	ppAijIeJepsJpsJ := FullMatrix new: sSizeJ by: sSizeJ
+	pAijIeJepsJ := StMFullRow new: sSizeJ.
+	ppAijIeJepEIpsJ := StMFullMatrix new: 4 by: sSizeJ.
+	ppAijIeJepEJpsJ := StMFullMatrix new: 4 by: sSizeJ.
+	ppAijIeJepsIpsJ := StMFullMatrix new: sSizeI by: sSizeJ.
+	ppAijIeJepsJpsJ := StMFullMatrix new: sSizeJ by: sSizeJ
 ]
 
 { #category : #accessing }

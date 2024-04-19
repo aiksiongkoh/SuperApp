@@ -31,7 +31,7 @@ MbDEndFrameqccq >> calcPostDynCorrectorIteration [
 	aAOp := partFrame aAOp.
 	rpep := aAOp transposeTimesFullColumn: rpeO.
 	pAOppE := partFrame pAOppE.
-	prpeppE := FullMatrix new: 3 by: 4.
+	prpeppE := StMFullMatrix new: 3 by: 4.
 	1 to: 3
 		do: 
 			[:i | 
@@ -39,7 +39,7 @@ MbDEndFrameqccq >> calcPostDynCorrectorIteration [
 			1 to: 4
 				do: 
 					[:j | 
-					prpeppEij := 0.0d.
+					prpeppEij := 0.0.
 					1 to: 3 do: [:k | prpeppEij := prpeppEij + (((pAOppE at: j)
 										at: k and: i)
 										* (rpeO at: k))].
@@ -74,7 +74,7 @@ MbDEndFrameqccq >> calcPostDynCorrectorIteration [
 { #category : #'initialize-release' }
 MbDEndFrameqccq >> initialize [
 	super initialize.
-	pprOeOpEpEtarget := FullMatrix new: 4 by: 4
+	pprOeOpEpEtarget := StMFullMatrix new: 4 by: 4
 ]
 
 { #category : #'initialize-release' }

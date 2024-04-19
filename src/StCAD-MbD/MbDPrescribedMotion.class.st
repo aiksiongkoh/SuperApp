@@ -53,19 +53,19 @@ MbDPrescribedMotion >> fillPerpenConstraints: collection [
 
 { #category : #'initialize-release' }
 MbDPrescribedMotion >> initMotions [
-	frmI rmemBlks: (FullColumn with: xBlk with: yBlk with: zBlk).
-	frmI phiThePsiBlks: (FullColumn with: phiBlk with: theBlk with: psiBlk)
+	frmI rmemBlks: (StMFullColumn with: xBlk with: yBlk with: zBlk).
+	frmI phiThePsiBlks: (StMFullColumn with: phiBlk with: theBlk with: psiBlk)
 ]
 
 { #category : #'initialize-release' }
 MbDPrescribedMotion >> initialize [
 	super initialize.
-	xBlk := Constant with: 0.
-	yBlk := Constant with: 0.
-	zBlk := Constant with: 0.
-	phiBlk := Constant with: 0.
-	theBlk := Constant with: 0.
-	psiBlk := Constant with: 0
+	xBlk := StMConstant with: 0.
+	yBlk := StMConstant with: 0.
+	zBlk := StMConstant with: 0.
+	phiBlk := StMConstant with: 0.
+	theBlk := StMConstant with: 0.
+	psiBlk := StMConstant with: 0
 ]
 
 { #category : #accessing }

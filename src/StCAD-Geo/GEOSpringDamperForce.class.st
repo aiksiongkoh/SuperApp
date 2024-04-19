@@ -32,26 +32,26 @@ GEOSpringDamperForce class >> binaryReaderBlockForVersion: oldVersion format: ol
 			k := oldObj at: oldObj size - 1.
 			c := oldObj at: oldObj size.
 			rIJ0 := rIJ0 isNil
-						ifTrue: [0.0d]
+						ifTrue: [0.0]
 						ifFalse: [rIJ0 / units length].
 			tension0 := tension0 isNil
-						ifTrue: [0.0d]
+						ifTrue: [0.0]
 						ifFalse: [tension0 / units force].
 			k := k isNil
-						ifTrue: [0.0d]
+						ifTrue: [0.0]
 						ifFalse: [k / units force * units length].
 			c := c isNil
-						ifTrue: [0.0d]
+						ifTrue: [0.0]
 						ifFalse: [c / units force * units velocity].
-			rIJ0 := Constant with: rIJ0.
-			tension0 := Constant with: tension0.
-			k := Constant with: k.
-			c := Constant with: c.
+			rIJ0 := StMConstant with: rIJ0.
+			tension0 := StMConstant with: tension0.
+			k := StMConstant with: k.
+			c := StMConstant with: c.
 			oldObj become: new.
 			oldObj changeClassToThatOf: inst.
 			rIJ := GEOrIJ with: oldObj.
 			vrIJ := GEOvrIJ with: oldObj.
-			tension := Sum
+			tension := StMSum
 						with: tension0
 						plus: k * (rIJ - rIJ0)
 						plus: c * vrIJ.

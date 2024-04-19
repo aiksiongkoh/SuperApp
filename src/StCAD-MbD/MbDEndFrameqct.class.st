@@ -179,16 +179,16 @@ MbDEndFrameqct >> evalrmem [
 { #category : #'initialize-release' }
 MbDEndFrameqct >> initialize [
 	super initialize.
-	rmem := FullColumn new: 3.
-	prmempt := FullColumn new: 3.
-	pprmemptpt := FullColumn new: 3.
-	aAme := FullMatrix new: 3 by: 3.
-	pAmept := FullMatrix new: 3 by: 3.
-	ppAmeptpt := FullMatrix new: 3 by: 3.
-	pprOeOpEpt := FullMatrix new: 3 by: 4.
-	pprOeOptpt := FullColumn new: 3.
-	ppAOepEpt := FullColumn new: 4.
-	ppAOeptpt := FullMatrix new: 3 by: 3
+	rmem := StMFullColumn new: 3.
+	prmempt := StMFullColumn new: 3.
+	pprmemptpt := StMFullColumn new: 3.
+	aAme := StMFullMatrix new: 3 by: 3.
+	pAmept := StMFullMatrix new: 3 by: 3.
+	ppAmeptpt := StMFullMatrix new: 3 by: 3.
+	pprOeOpEpt := StMFullMatrix new: 3 by: 4.
+	pprOeOptpt := StMFullColumn new: 3.
+	ppAOepEpt := StMFullColumn new: 4.
+	ppAOeptpt := StMFullMatrix new: 3 by: 3
 ]
 
 { #category : #'initialize-release' }
@@ -221,7 +221,7 @@ MbDEndFrameqct >> initializeLocally [
 MbDEndFrameqct >> initpPhiThePsiptBlks [
 	| mbdTime angle angleVel |
 	mbdTime := TheMbDSystem mbdTime.
-	pPhiThePsiptBlks := FullColumn new: 3.
+	pPhiThePsiptBlks := StMFullColumn new: 3.
 	1 to: 3
 		do: 
 			[:i | 
@@ -234,7 +234,7 @@ MbDEndFrameqct >> initpPhiThePsiptBlks [
 MbDEndFrameqct >> initppPhiThePsiptptBlks [
 	| mbdTime angleVel angleAcc |
 	mbdTime := TheMbDSystem mbdTime.
-	ppPhiThePsiptptBlks := FullColumn new: 3.
+	ppPhiThePsiptptBlks := StMFullColumn new: 3.
 	1 to: 3
 		do: 
 			[:i | 
@@ -247,7 +247,7 @@ MbDEndFrameqct >> initppPhiThePsiptptBlks [
 MbDEndFrameqct >> initpprmemptptBlks [
 	| mbdTime vel acc |
 	mbdTime := TheMbDSystem mbdTime.
-	pprmemptptBlks := FullColumn new: 3.
+	pprmemptptBlks := StMFullColumn new: 3.
 	1 to: 3
 		do: 
 			[:i | 
@@ -260,7 +260,7 @@ MbDEndFrameqct >> initpprmemptptBlks [
 MbDEndFrameqct >> initprmemptBlks [
 	| mbdTime disp vel |
 	mbdTime := TheMbDSystem mbdTime.
-	prmemptBlks := FullColumn new: 3.
+	prmemptBlks := StMFullColumn new: 3.
 	1 to: 3
 		do: 
 			[:i | 
@@ -349,7 +349,7 @@ MbDEndFrameqct >> ppAOeptpt [
 { #category : #accessing }
 MbDEndFrameqct >> ppAjOepETpt: jj [ 
 	| answer answeri ppAOepEipt answerij |
-	answer := FullMatrix new: 4 by: 3.
+	answer := StMFullMatrix new: 4 by: 3.
 	1 to: 4 do: [:i | 
 			answeri := answer at: i.
 			ppAOepEipt := ppAOepEpt at: i.

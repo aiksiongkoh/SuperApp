@@ -188,8 +188,8 @@ Surface >> rfpf_uv: uv [
 
 { #category : #accessing }
 Surface >> uvBound [
-	^BoundingRectangle origin: (FullColumn zero: 2)
-		corner: (FullColumn with: 1.0d with: 1.0d)
+	^BoundingRectangle origin: (StMFullColumn zero: 2)
+		corner: (StMFullColumn with: 1.0d with: 1.0d)
 ]
 
 { #category : #accessing }
@@ -201,8 +201,8 @@ Surface >> uvBoundTol [
 	umax := 1.0d.
 	vmax := 1.0d.
 	^BoundingRectangle 
-		origin: (FullColumn with: umin - tol with: vmin - tol)
-		corner: (FullColumn with: umax + tol with: vmax + tol)
+		origin: (StMFullColumn with: umin - tol with: vmin - tol)
+		corner: (StMFullColumn with: umax + tol with: vmax + tol)
 ]
 
 { #category : #calc }

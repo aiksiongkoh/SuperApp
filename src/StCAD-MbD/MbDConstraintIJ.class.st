@@ -68,7 +68,7 @@ MbDConstraintIJ >> addpTIeiGOpEIto: mat [
 	term1 := MbDEulerParameters pBpEtimesColumn: (term11 minusFullColumn: term12).
 	term21 := self ppGpEIpEI times: lam / 2.0d.
 	pprOIeOpEIpEI := frmI pprOeOpEpE.
-	term22 := FullMatrix new: 4 by: 4.
+	term22 := StMFullMatrix new: 4 by: 4.
 	1 to: 4
 		do: 
 			[:i | 

@@ -42,7 +42,7 @@ GEOEquationCurve >> rfpointsf [
 	| nseg ds rfpointsf s |
 	nseg := 256.
 	ds := 2.0d / nseg.
-	rfpointsf := MathArray new: nseg + 1.
+	rfpointsf := StMArray new: nseg + 1.
 	1 to: nseg
 		do: 
 			[:i | 

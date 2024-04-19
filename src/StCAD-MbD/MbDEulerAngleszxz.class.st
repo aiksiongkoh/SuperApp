@@ -1,6 +1,6 @@
 Class {
 	#name : #MbDEulerAngleszxz,
-	#superclass : #EulerArray,
+	#superclass : #StEulerArray,
 	#type : #variable,
 	#instVars : [
 		'phiA',
@@ -34,7 +34,7 @@ MbDEulerAngleszxz >> aA [
 { #category : #calc }
 MbDEulerAngleszxz >> calc [
 	| zero phi sphi cphi the sthe cthe psi spsi cpsi |
-	zero := 0.0d.
+	zero := 0.0.
 	phi := self at: 1.
 	sphi := phi sin.
 	cphi := phi cos.
@@ -59,7 +59,7 @@ MbDEulerAngleszxz >> calc [
 { #category : #calc }
 MbDEulerAngleszxz >> calcphiAtheApsiA [
 	| zero phi sphi cphi the sthe cthe psi spsi cpsi |
-	zero := 0.0d.
+	zero := 0.0.
 	phi := self at: 1.
 	sphi := phi sin.
 	cphi := phi cos.
@@ -81,9 +81,9 @@ MbDEulerAngleszxz >> calcphiAtheApsiA [
 
 { #category : #'initialize-release' }
 MbDEulerAngleszxz >> initialize [
-	phiA := (FullMatrix identity: 3).
-	theA := (FullMatrix identity: 3).
-	psiA := (FullMatrix identity: 3)
+	phiA := (StMFullMatrix identity: 3).
+	theA := (StMFullMatrix identity: 3).
+	psiA := (StMFullMatrix identity: 3)
 ]
 
 { #category : #accessing }

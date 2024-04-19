@@ -41,7 +41,7 @@ BoundingBox >> cCorner [
 						do: 
 							[:k | 
 							z := k = 1 ifTrue: [minCorner at: 3] ifFalse: [maxCorner at: 3].
-							answer add: (FullColumn 
+							answer add: (StMFullColumn 
 										with: x
 										with: y
 										with: z)]]].
@@ -136,13 +136,13 @@ BoundingBox >> inRefFrame: aFrame [
 
 { #category : #'initialize-release' }
 BoundingBox >> initialize [
-	minCorner := FullColumn new: 3.
-	maxCorner := FullColumn new: 3
+	minCorner := StMFullColumn new: 3.
+	maxCorner := StMFullColumn new: 3
 ]
 
 { #category : #testing }
 BoundingBox >> isDefined [
-	^(minCorner at: 1) isReal
+	^(minCorner at: 1) isFloat
 ]
 
 { #category : #'ops on self' }
@@ -166,7 +166,7 @@ BoundingBox >> maxx [
 { #category : #accessing }
 BoundingBox >> maxxmaxymaxz [
 	| answer |
-	answer := FullColumn new: 3.
+	answer := StMFullColumn new: 3.
 	answer at: 1 put: (maxCorner at: 1).
 	answer at: 2 put: (maxCorner at: 2).
 	answer at: 3 put: (maxCorner at: 3).
@@ -176,7 +176,7 @@ BoundingBox >> maxxmaxymaxz [
 { #category : #accessing }
 BoundingBox >> maxxmaxyminz [
 	| answer |
-	answer := FullColumn new: 3.
+	answer := StMFullColumn new: 3.
 	answer at: 1 put: (maxCorner at: 1).
 	answer at: 2 put: (maxCorner at: 2).
 	answer at: 3 put: (minCorner at: 3).
@@ -186,7 +186,7 @@ BoundingBox >> maxxmaxyminz [
 { #category : #accessing }
 BoundingBox >> maxxminymaxz [
 	| answer |
-	answer := FullColumn new: 3.
+	answer := StMFullColumn new: 3.
 	answer at: 1 put: (maxCorner at: 1).
 	answer at: 2 put: (minCorner at: 2).
 	answer at: 3 put: (maxCorner at: 3).
@@ -196,7 +196,7 @@ BoundingBox >> maxxminymaxz [
 { #category : #accessing }
 BoundingBox >> maxxminyminz [
 	| answer |
-	answer := FullColumn new: 3.
+	answer := StMFullColumn new: 3.
 	answer at: 1 put: (maxCorner at: 1).
 	answer at: 2 put: (minCorner at: 2).
 	answer at: 3 put: (minCorner at: 3).
@@ -235,7 +235,7 @@ BoundingBox >> minx [
 { #category : #accessing }
 BoundingBox >> minxmaxymaxz [
 	| answer |
-	answer := FullColumn new: 3.
+	answer := StMFullColumn new: 3.
 	answer at: 1 put: (minCorner at: 1).
 	answer at: 2 put: (maxCorner at: 2).
 	answer at: 3 put: (maxCorner at: 3).
@@ -245,7 +245,7 @@ BoundingBox >> minxmaxymaxz [
 { #category : #accessing }
 BoundingBox >> minxmaxyminz [
 	| answer |
-	answer := FullColumn new: 3.
+	answer := StMFullColumn new: 3.
 	answer at: 1 put: (minCorner at: 1).
 	answer at: 2 put: (maxCorner at: 2).
 	answer at: 3 put: (minCorner at: 3).
@@ -255,7 +255,7 @@ BoundingBox >> minxmaxyminz [
 { #category : #accessing }
 BoundingBox >> minxminymaxz [
 	| answer |
-	answer := FullColumn new: 3.
+	answer := StMFullColumn new: 3.
 	answer at: 1 put: (minCorner at: 1).
 	answer at: 2 put: (minCorner at: 2).
 	answer at: 3 put: (maxCorner at: 3).
@@ -265,7 +265,7 @@ BoundingBox >> minxminymaxz [
 { #category : #accessing }
 BoundingBox >> minxminyminz [
 	| answer |
-	answer := FullColumn new: 3.
+	answer := StMFullColumn new: 3.
 	answer at: 1 put: (minCorner at: 1).
 	answer at: 2 put: (minCorner at: 2).
 	answer at: 3 put: (minCorner at: 3).
@@ -337,7 +337,7 @@ BoundingBox >> umin [
 { #category : #accessing }
 BoundingBox >> uvwOfPoint: aPoint [ 
 	| answer min max x range u |
-	answer := FullColumn new: 3.
+	answer := StMFullColumn new: 3.
 	1 to: 3
 		do: 
 			[:i | 
@@ -355,7 +355,7 @@ BoundingBox >> uvwOfPoint: aPoint [
 { #category : #accessing }
 BoundingBox >> uvwScale [
 	| answer range scale |
-	answer := FullColumn new: 3.
+	answer := StMFullColumn new: 3.
 	1 to: 3
 		do: 
 			[:i | 

@@ -32,7 +32,7 @@ GEOGeneralTorque class >> binaryReaderBlockForVersion: oldVersion format: oldFor
 			oldObj become: new.
 			oldObj changeClassToThatOf: inst.
 			oldObj markerK: markerk.
-			oldObj aFIeKe: (FullColumn new: 3).
+			oldObj aFIeKe: (StMFullColumn new: 3).
 			oldObj aTIeKe: aTIeKe.
 			oldObj]].
 	^super binaryReaderBlockForVersion: oldVersion format: oldFormat

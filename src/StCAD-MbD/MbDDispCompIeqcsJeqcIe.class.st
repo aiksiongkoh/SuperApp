@@ -93,12 +93,12 @@ MbDDispCompIeqcsJeqcIe >> initializeGlobally [
 MbDDispCompIeqcsJeqcIe >> initializeLocally [
 	super initializeLocally.
 	sSizeI := frmI sSize.
-	priIeJeIepsI := FullRow new: sSizeI.
-	ppriIeJeIepXIpsI := FullMatrix new: 3 by: sSizeI.
-	ppriIeJeIepEIpsI := FullMatrix new: 4 by: sSizeI.
-	ppriIeJeIepXJpsI := FullMatrix new: 3 by: sSizeI.
-	ppriIeJeIepEJpsI := FullMatrix new: 4 by: sSizeI.
-	ppriIeJeIepsIpsI := FullMatrix new: sSizeI by: sSizeI
+	priIeJeIepsI := StMFullRow new: sSizeI.
+	ppriIeJeIepXIpsI := StMFullMatrix new: 3 by: sSizeI.
+	ppriIeJeIepEIpsI := StMFullMatrix new: 4 by: sSizeI.
+	ppriIeJeIepXJpsI := StMFullMatrix new: 3 by: sSizeI.
+	ppriIeJeIepEJpsI := StMFullMatrix new: 4 by: sSizeI.
+	ppriIeJeIepsIpsI := StMFullMatrix new: sSizeI by: sSizeI
 ]
 
 { #category : #accessing }

@@ -159,8 +159,8 @@ MbDFullySeparatedCVCVJoint >> discontinuityAtICAddTo2: collection [
 MbDFullySeparatedCVCVJoint >> discontinuityAtICAddTo: collection [ 
 	| sepTol velTol accTol vIeJeOIez |
 	sepTol := self separationTol.
-	velTol := 10.0d * sepTol.
-	accTol := 100.0d * sepTol.
+	velTol := 10.0 * sepTol.
+	accTol := 100.0 * sepTol.
 	separation < sepTol 
 		ifTrue: 
 			[separation > sepTol negated 
@@ -179,7 +179,7 @@ MbDFullySeparatedCVCVJoint >> discontinuityAtICAddTo: collection [
 											[self becomeStartingInContactCVCVJoint.
 											collection add: #TOUCHDOWN]]
 								ifFalse: 
-									[coeffRestitution = 0.0d 
+									[coeffRestitution = 0.0 
 										ifTrue: 
 											[self becomeStartingInContactCVCVJoint.
 											collection add: #TOUCHDOWN]

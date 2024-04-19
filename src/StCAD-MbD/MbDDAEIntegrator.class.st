@@ -16,13 +16,13 @@ MbDDAEIntegrator class >> visualWorksMetadata [
 
 { #category : #accessing }
 MbDDAEIntegrator >> correctorAbsoluteTolerance [
-	^(FullColumn new: neqn)
+	^(StMFullColumn new: neqn)
 		atAllPut: system correctorAbsoluteTolerance
 ]
 
 { #category : #accessing }
 MbDDAEIntegrator >> correctorRelativeTolerance [
-	^(FullColumn new: neqn)
+	^(StMFullColumn new: neqn)
 		atAllPut: system correctorRelativeTolerance
 ]
 
@@ -40,7 +40,7 @@ MbDDAEIntegrator >> integrationAbsoluteTolerance [
 
 	| absTol col |
 	absTol := system integrationAbsoluteTolerance.
-	col := FullColumn new: neqn.
+	col := StMFullColumn new: neqn.
 	1 to: neqn - ncon do: [:i | col at: i put: absTol].
 	^col
 ]
@@ -52,7 +52,7 @@ MbDDAEIntegrator >> integrationRelativeTolerance [
 
 	| absTol col |
 	absTol := system integrationRelativeTolerance.
-	col := FullColumn new: neqn.
+	col := StMFullColumn new: neqn.
 	1 to: neqn - ncon do: [:i | col at: i put: absTol].
 	^col
 ]

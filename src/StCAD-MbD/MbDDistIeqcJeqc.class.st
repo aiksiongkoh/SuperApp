@@ -38,7 +38,7 @@ MbDDistIeqcJeqc class >> withFrmI: afrmI frmJ: afrmJ [
 MbDDistIeqcJeqc >> calcPrivate [
 	| prIeJeOpEJ pprIeJeOpEJpEJ pprIeJepXIipXJ prIeJepXIi element pprIeJepEIipXJ prIeJepEIi mprIeJeOpEIiT pprIeJepXJipXJ prIeJepXJi pprIeJepXIipEJ prIeJeOipEJ pprIeJepEIipEJ pprIeJepXJipEJ pprIeJepEJipEJ prIeJepEJi pprIeJeOpEJipEJ prIeJeOpEJiT uIeJeOT |
 	super calcPrivate.
-	rIeJe = 0.0d ifTrue: [^self].
+	rIeJe = 0.0 ifTrue: [^self].
 	prIeJeOpEJ := frmJ prOeOpE.
 	prIeJeOpEJT := prIeJeOpEJ transpose.
 	pprIeJeOpEJpEJ := frmJ pprOeOpEpE.
@@ -54,8 +54,8 @@ MbDDistIeqcJeqc >> calcPrivate [
 				do: 
 					[:j | 
 					element := i == j
-								ifTrue: [-1.0d]
-								ifFalse: [0.0d].
+								ifTrue: [-1.0]
+								ifFalse: [0.0].
 					element := element - (prIeJepXIi * (prIeJepXJ at: j)).
 					pprIeJepXIipXJ at: j put: element / rIeJe]].
 	1 to: 4
@@ -67,7 +67,7 @@ MbDDistIeqcJeqc >> calcPrivate [
 			1 to: 3
 				do: 
 					[:j | 
-					element := 0.0d - (mprIeJeOpEIiT at: j) - (prIeJepEIi * (prIeJepXJ at: j)).
+					element := 0.0 - (mprIeJeOpEIiT at: j) - (prIeJepEIi * (prIeJepXJ at: j)).
 					pprIeJepEIipXJ at: j put: element / rIeJe]].
 	1 to: 3
 		do: 
@@ -78,8 +78,8 @@ MbDDistIeqcJeqc >> calcPrivate [
 				do: 
 					[:j | 
 					element := i == j
-								ifTrue: [1.0d]
-								ifFalse: [0.0d].
+								ifTrue: [1.0]
+								ifFalse: [0.0].
 					element := element - (prIeJepXJi * (prIeJepXJ at: j)).
 					pprIeJepXJipXJ at: j put: element / rIeJe]].
 	1 to: 3
@@ -91,7 +91,7 @@ MbDDistIeqcJeqc >> calcPrivate [
 			1 to: 4
 				do: 
 					[:j | 
-					element := 0.0d - (prIeJeOipEJ at: j) - (prIeJepXIi * (prIeJepEJ at: j)).
+					element := 0.0 - (prIeJeOipEJ at: j) - (prIeJepXIi * (prIeJepEJ at: j)).
 					pprIeJepXIipEJ at: j put: element / rIeJe]].
 	1 to: 4
 		do: 
@@ -102,7 +102,7 @@ MbDDistIeqcJeqc >> calcPrivate [
 			1 to: 4
 				do: 
 					[:j | 
-					element := 0.0d - (mprIeJeOpEIiT dot: (prIeJeOpEJT at: j)) - (prIeJepEIi * (prIeJepEJ at: j)).
+					element := 0.0 - (mprIeJeOpEIiT dot: (prIeJeOpEJT at: j)) - (prIeJepEIi * (prIeJepEJ at: j)).
 					pprIeJepEIipEJ at: j put: element / rIeJe]].
 	1 to: 3
 		do: 
@@ -135,15 +135,15 @@ MbDDistIeqcJeqc >> calcPrivate [
 { #category : #'initialize-release' }
 MbDDistIeqcJeqc >> initialize [
 	super initialize.
-	prIeJepXJ := FullRow new: 3.
-	prIeJepEJ := FullRow new: 4.
-	pprIeJepXIpXJ := FullMatrix new: 3 by: 3.
-	pprIeJepEIpXJ := FullMatrix new: 4 by: 3.
-	pprIeJepXJpXJ := FullMatrix new: 3 by: 3.
-	pprIeJepXIpEJ := FullMatrix new: 3 by: 4.
-	pprIeJepEIpEJ := FullMatrix new: 4 by: 4.
-	pprIeJepXJpEJ := FullMatrix new: 3 by: 4.
-	pprIeJepEJpEJ := FullMatrix new: 4 by: 4
+	prIeJepXJ := StMFullRow new: 3.
+	prIeJepEJ := StMFullRow new: 4.
+	pprIeJepXIpXJ := StMFullMatrix new: 3 by: 3.
+	pprIeJepEIpXJ := StMFullMatrix new: 4 by: 3.
+	pprIeJepXJpXJ := StMFullMatrix new: 3 by: 3.
+	pprIeJepXIpEJ := StMFullMatrix new: 3 by: 4.
+	pprIeJepEIpEJ := StMFullMatrix new: 4 by: 4.
+	pprIeJepXJpEJ := StMFullMatrix new: 3 by: 4.
+	pprIeJepEJpEJ := StMFullMatrix new: 4 by: 4
 ]
 
 { #category : #accessing }
@@ -199,7 +199,7 @@ MbDDistIeqcJeqc >> prIeJepXJ [
 { #category : #accessing }
 MbDDistIeqcJeqc >> puIeJeOpEJ [
 	| answer prIeJeOpEJ oneOverrIeJe oneOverrIeJeSq answeri prIeJeOpEJi rIeJeOi aij |
-	answer := FullMatrix new: 3 by: 4.
+	answer := StMFullMatrix new: 3 by: 4.
 	prIeJeOpEJ := frmJ prOeOpE.
 	oneOverrIeJe := 1.0d / rIeJe.
 	oneOverrIeJeSq := oneOverrIeJe / rIeJe.
@@ -216,7 +216,7 @@ MbDDistIeqcJeqc >> puIeJeOpEJ [
 { #category : #accessing }
 MbDDistIeqcJeqc >> puIeJeOpXJ [
 	| answer m1OverrIeJe m1OverrIeJeSq answeri rIeJeOi aij |
-	answer := FullMatrix new: 3 by: 3.
+	answer := StMFullMatrix new: 3 by: 3.
 	m1OverrIeJe := -1.0d / rIeJe.
 	m1OverrIeJeSq := m1OverrIeJe / rIeJe.
 	1 to: 3 do: [:i | 

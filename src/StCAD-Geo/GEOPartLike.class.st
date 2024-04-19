@@ -74,8 +74,8 @@ GEOPartLike >> buildSolidModel [
 { #category : #accessing }
 GEOPartLike >> center [
 	| sumDiagonal sumMoment block rPcenterP |
-	sumDiagonal := 0.0d.
-	sumMoment := FullColumn zero: 3.
+	sumDiagonal := 0.0.
+	sumMoment := StMFullColumn zero: 3.
 	block := 
 			[:object | 
 			| aBBox diagonal |
@@ -158,7 +158,7 @@ GEOPartLike >> omeOpO [
 	omeOpO := refFrame omeOfO.
 	^omeOpO notNil
 		ifTrue: [omeOpO]
-		ifFalse: [(FullColumn zero: 3)]
+		ifFalse: [(StMFullColumn zero: 3)]
 ]
 
 { #category : #modeling }
@@ -232,7 +232,7 @@ GEOPartLike >> qEp [
 GEOPartLike >> rOcenterO [
 	| sumDiagonal sumMoment block rPcenterP |
 	sumDiagonal := 0.0d.
-	sumMoment := FullColumn zero: 3.
+	sumMoment := StMFullColumn zero: 3.
 	block := 
 			[:object | 
 			| aBBox diagonal |
@@ -314,8 +314,8 @@ GEOPartLike >> vOcmO [
 	| vOPO omeOPO rPcmO |
 	vOPO := refFrame vOfO.
 	omeOPO := refFrame omeOfO.
-	vOPO isNil ifTrue: [vOPO := (FullColumn zero: 3)].
-	omeOPO isNil ifTrue: [omeOPO := (FullColumn zero: 3)].
+	vOPO isNil ifTrue: [vOPO := (StMFullColumn zero: 3)].
+	omeOPO isNil ifTrue: [omeOPO := (StMFullColumn zero: 3)].
 	rPcmO := self massMarker rOcmO - refFrame rOfO.
 	^vOPO + (omeOPO cross: rPcmO)
 ]

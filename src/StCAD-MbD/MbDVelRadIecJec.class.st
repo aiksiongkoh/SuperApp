@@ -38,8 +38,8 @@ MbDVelRadIecJec class >> withFrmI: afrmI frmJ: afrmJ [
 MbDVelRadIecJec >> calcPostDynCorrectorIteration [
 	rIeJeO := frmJ rOeO - frmI rOeO.
 	rIeJe := rIeJeO length.
-	rIeJe = 0.0d ifTrue: [^self].
-	uIeJeO := rIeJeO times: 1.0d / rIeJe.
+	rIeJe = 0.0 ifTrue: [^self].
+	uIeJeO := rIeJeO times: 1.0 / rIeJe.
 	vIeJeO := frmJ vOeO - frmI vOeO.
 	vIeJe := vIeJeO dot: uIeJeO
 ]

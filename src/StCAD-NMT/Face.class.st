@@ -46,7 +46,7 @@ Face class >> binaryReaderBlockForVersion: oldVersion format: oldFormat [
 				startingAt: 1.
 			oldObj become: new.
 			oldObj changeClassToThatOf: inst.
-			oldObj offset: 0.0d.
+			oldObj offset: 0.0.
 			oldObj]].
 	^super binaryReaderBlockForVersion: oldVersion format: oldFormat
 ]

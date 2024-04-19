@@ -51,7 +51,7 @@ GEOFunctionIJ >> createPOVRay [
 	times := self timeSeries.
 	dataSeries := self dataSeries.
 	geoTime := self geoTime.
-	spline := GeneralSpline
+	spline := StMGeneralSplineX
 				with: geoTime
 				order: 0
 				xs: times

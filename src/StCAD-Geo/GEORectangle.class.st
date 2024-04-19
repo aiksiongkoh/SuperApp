@@ -37,7 +37,7 @@ GEORectangle >> magnifySelf: aDouble [
 
 { #category : #accessing }
 GEORectangle >> maxCorner [
-	^refFrame rFfF + (refFrame aAFf timesFullColumn: (FullColumn
+	^refFrame rFfF + (refFrame aAFf timesFullColumn: (StMFullColumn
 				with: xLength
 				with: yLength
 				with: 0.0d))
@@ -75,7 +75,7 @@ GEORectangle >> minCorner: min maxCorner: max [
 	refFrame rFfF: min.
 	rMinMaxF := max - min.
 	rMinMaxf := refFrame aAFf transposeTimesFullColumn: rMinMaxF.
-	rMinMaxf := rMinMaxf max: (FullColumn zero: 3).
+	rMinMaxf := rMinMaxf max: (StMFullColumn zero: 3).
 	xLength := rMinMaxf at: 1.
 	yLength := rMinMaxf at: 2.
 	self changed
@@ -84,17 +84,17 @@ GEORectangle >> minCorner: min maxCorner: max [
 { #category : #accessing }
 GEORectangle >> rfpointsf [
 	| rfpointsf |
-	rfpointsf := MathArray new: 5.
-	rfpointsf at: 1 put: (FullColumn zero: 3).
-	rfpointsf at: 2 put: (FullColumn
+	rfpointsf := StMArray new: 5.
+	rfpointsf at: 1 put: (StMFullColumn zero: 3).
+	rfpointsf at: 2 put: (StMFullColumn
 			with: xLength
 			with: 0.0d
 			with: 0.0d).
-	rfpointsf at: 3 put: (FullColumn
+	rfpointsf at: 3 put: (StMFullColumn
 			with: xLength
 			with: yLength
 			with: 0.0d).
-	rfpointsf at: 4 put: (FullColumn
+	rfpointsf at: 4 put: (StMFullColumn
 			with: 0.0d
 			with: yLength
 			with: 0.0d).
@@ -119,7 +119,7 @@ GEORectangle >> storeOn: aStream level: level [
 { #category : #accessing }
 GEORectangle >> theta: angle [ 
 	| aA cosAngle sinAngle |
-	aA := (FullMatrix zero: 3 by: 3).
+	aA := (StMFullMatrix zero: 3 by: 3).
 	cosAngle := angle cos.
 	sinAngle := angle sin.
 	aA at: 1 and: 1 put: cosAngle.

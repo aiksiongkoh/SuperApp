@@ -41,7 +41,7 @@ MbDVelCompIecJecKeqc >> calcPostDynCorrectorIteration [
 
 { #category : #'initialize-release' }
 MbDVelCompIecJecKeqc >> initialize [
-	pvIeJeKeipEK := FullRow new: 4
+	pvIeJeKeipEK := StMFullRow new: 4
 ]
 
 { #category : #accessing }

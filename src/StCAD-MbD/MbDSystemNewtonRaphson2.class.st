@@ -27,9 +27,9 @@ MbDSystemNewtonRaphson2 >> calcdxNorm [
 
 { #category : #'initialize-release' }
 MbDSystemNewtonRaphson2 >> createVectorsAndMatrices [
-	x := FullColumn new: n.
-	y := FullColumn new: n.
-	pypx := SparseMatrix new: n by: n
+	x := StMFullColumn new: n.
+	y := StMFullColumn new: n.
+	pypx := StMSparseMatrix new: n by: n
 ]
 
 { #category : #solving }

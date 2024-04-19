@@ -77,9 +77,9 @@ MinSepMaxPenIeJeNewtonRaphson2 >> initializeGlobally [
 	lamSize := 1.
 	lamConstraint := 0.0d.
 	n := sSizeI + sSizeJ + lamSize.
-	x := FullColumn new: n.
-	y := FullColumn new: n.
-	pypx := FullMatrix new: n by: n.
+	x := StMFullColumn new: n.
+	y := StMFullColumn new: n.
+	pypx := StMFullMatrix new: n by: n.
 	x at: 1 putFullColumn: system frmI s.
 	x at: sSizeI + 1 putFullColumn: system frmJ s.
 	x at: sSizeI + sSizeJ + 1 put: lamConstraint.

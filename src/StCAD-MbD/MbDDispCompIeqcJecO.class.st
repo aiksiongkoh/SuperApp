@@ -39,7 +39,7 @@ MbDDispCompIeqcJecO >> calcPostDynCorrectorIteration [
 { #category : #'initialize-release' }
 MbDDispCompIeqcJecO >> initializeGlobally [
 	super initializeGlobally.
-	priIeJeOpXI := (FullRow zero: 3).
+	priIeJeOpXI := (StMFullRow zero: 3).
 	priIeJeOpXI at: axis put: -1.0d.
 	ppriIeJeOpEIpEI := (frmI ppriOeOpEpE: axis) negated
 ]

@@ -112,22 +112,22 @@ GEOCartesianFrame2 >> aMFf [
 		setA: (aAFf1 at: 1);
 		setB: (aAFf2 at: 1);
 		setC: (aAFf3 at: 1);
-		setP: 0.0d.
+		setP: 0.0.
 	answer
 		setD: (aAFf1 at: 2);
 		setE: (aAFf2 at: 2);
 		setF: (aAFf3 at: 2);
-		setQ: 0.0d.
+		setQ: 0.0.
 	answer
 		setG: (aAFf1 at: 3);
 		setH: (aAFf2 at: 3);
 		setI: (aAFf3 at: 3);
-		setR: 0.0d.
+		setR: 0.0.
 	answer
 		setL: (rFfF at: 1);
 		setM: (rFfF at: 2);
 		setN: (rFfF at: 3);
-		setS: 1.0d.
+		setS: 1.0.
 	^answer
 ]
 
@@ -142,22 +142,22 @@ GEOCartesianFrame2 >> aMFfT [
 		setA: (aAFf1 at: 1);
 		setB: (aAFf1 at: 2);
 		setC: (aAFf1 at: 3);
-		setP: 0.0d.
+		setP: 0.0.
 	answer
 		setD: (aAFf2 at: 1);
 		setE: (aAFf2 at: 2);
 		setF: (aAFf2 at: 3);
-		setQ: 0.0d.
+		setQ: 0.0.
 	answer
 		setG: (aAFf3 at: 1);
 		setH: (aAFf3 at: 2);
 		setI: (aAFf3 at: 3);
-		setR: 0.0d.
+		setR: 0.0.
 	answer
 		setL: (rFfF at: 1);
 		setM: (rFfF at: 2);
 		setN: (rFfF at: 3);
-		setS: 1.0d.
+		setS: 1.0.
 	^answer
 ]
 
@@ -167,7 +167,7 @@ GEOCartesianFrame2 >> aOfO [
 	answer := self triggerEvent: #getaOfO.
 	answer == nil
 		ifTrue: 
-			[answer := FullColumn zero: 3.
+			[answer := StMFullColumn zero: 3.
 			self aOfO: answer].
 	^answer
 ]
@@ -218,7 +218,7 @@ GEOCartesianFrame2 >> alpOfO [
 	answer := self triggerEvent: #getalpOfO.
 	answer == nil
 		ifTrue: 
-			[answer := FullColumn zero: 3.
+			[answer := StMFullColumn zero: 3.
 			self alpOfO: answer].
 	^answer
 ]
@@ -286,13 +286,13 @@ GEOCartesianFrame2 >> changed [
 
 { #category : #'initialize-release' }
 GEOCartesianFrame2 >> coincideWithRefFrame [
-	self rFfF: (FullColumn zero: 3) aAFf: (FullMatrix identity: 3)
+	self rFfF: (StMFullColumn zero: 3) aAFf: (StMFullMatrix identity: 3)
 ]
 
 { #category : #change }
 GEOCartesianFrame2 >> conditionA [
-	aAFf := FullMatrix 
-				rotationMatrixFromOrigin: (FullColumn  zero: 3)
+	aAFf := StMFullMatrix 
+				rotationMatrixFromOrigin: (StMFullColumn  zero: 3)
 				zPoint: (aAFf column: 3)
 				xPoint: (aAFf column: 1).
 	dependentFrames do: [:dependentFrame | dependentFrame conditionA]
@@ -410,7 +410,7 @@ GEOCartesianFrame2 >> dataXYPlaneIntersectLine: geoLine [
 	rfstartf := self rfpffromrOpO: geoLine rOstartO.
 	rfendf := self rfpffromrOpO: geoLine rOendO.
 	lineVector := rfendf - rfstartf.
-	parameter := 0.0d - (rfstartf at: 3) / (lineVector at: 3).
+	parameter := 0.0 - (rfstartf at: 3) / (lineVector at: 3).
 	rfIntsecf := rfstartf plus: lineVector times: parameter.
 	distStartIntsec := parameter * lineVector length.
 	^Array
@@ -428,8 +428,8 @@ GEOCartesianFrame2 >> distXYPlaneIntersectLine: geoLine [
 
 { #category : #accessing }
 GEOCartesianFrame2 >> fixedAtRef [
-	rFfF := (FullColumn zero: 3).
-	aAFf := (FullMatrix identity: 3).
+	rFfF := (StMFullColumn zero: 3).
+	aAFf := (StMFullMatrix identity: 3).
 	self changed
 ]
 
@@ -498,7 +498,7 @@ GEOCartesianFrame2 >> omeOfO [
 	answer := self triggerEvent: #getomeOfO.
 	answer == nil
 		ifTrue: 
-			[answer := FullColumn zero: 3.
+			[answer := StMFullColumn zero: 3.
 			self omeOfO: answer].
 	^answer
 ]
@@ -678,7 +678,7 @@ GEOCartesianFrame2 >> refFrame: aFrame rFfF: r aAFf: aA [
 { #category : #accessing }
 GEOCartesianFrame2 >> refFrame: aFrame rFfF: origin xPoint: xPoint yPoint: yPoint [ 
 	| aA |
-	aA := FullMatrix
+	aA := StMFullMatrix
 				rotationMatrixFromOrigin: origin
 				xPoint: xPoint
 				yPoint: yPoint.
@@ -691,7 +691,7 @@ GEOCartesianFrame2 >> refFrame: aFrame rFfF: origin xPoint: xPoint yPoint: yPoin
 { #category : #accessing }
 GEOCartesianFrame2 >> refFrame: aFrame rFfF: origin xPoint: xPoint zPoint: zPoint [ 
 	| aA |
-	aA := FullMatrix
+	aA := StMFullMatrix
 				rotationMatrixFromOrigin: origin
 				xPoint: xPoint
 				zPoint: zPoint.
@@ -704,7 +704,7 @@ GEOCartesianFrame2 >> refFrame: aFrame rFfF: origin xPoint: xPoint zPoint: zPoin
 { #category : #accessing }
 GEOCartesianFrame2 >> refFrame: aFrame rFfF: origin zPoint: zPoint xPoint: xPoint [ 
 	| aA |
-	aA := FullMatrix
+	aA := StMFullMatrix
 				rotationMatrixFromOrigin: origin
 				zPoint: zPoint
 				xPoint: xPoint.
@@ -811,7 +811,7 @@ GEOCartesianFrame2 >> rotateAt: rFpvF axisf: axisf theta: theta [
 { #category : #calc }
 GEOCartesianFrame2 >> rotateAxisF: i theta: theta [ 
 	| axisF |
-	axisF := (FullColumn zero: 3).
+	axisF := (StMFullColumn zero: 3).
 	axisF at: i put: 1.0d.
 	self
 		rotateAt: rFfF
@@ -822,7 +822,7 @@ GEOCartesianFrame2 >> rotateAxisF: i theta: theta [
 { #category : #calc }
 GEOCartesianFrame2 >> rotateAxisf: i theta: theta [ 
 	| axisf |
-	axisf := (FullColumn zero: 3).
+	axisf := (StMFullColumn zero: 3).
 	axisf at: i put: 1.0d.
 	self
 		rotateAt: rFfF
@@ -884,13 +884,13 @@ GEOCartesianFrame2 >> storeVelocityOn: aStream level: level [
 		title: 'Velocity3D'
 		object: (self vOfO notNil
 				ifTrue: [self vOfO]
-				ifFalse: [(FullColumn zero: 3)]).
+				ifFalse: [(StMFullColumn zero: 3)]).
 	aStream
 		storeLevel: level
 		title: 'Omega3D'
 		object: (self omeOfO notNil
 				ifTrue: [self omeOfO]
-				ifFalse: [(FullColumn zero: 3)])
+				ifFalse: [(StMFullColumn zero: 3)])
 ]
 
 { #category : #accessing }
@@ -910,7 +910,7 @@ GEOCartesianFrame2 >> uncut [
 
 { #category : #accessing }
 GEOCartesianFrame2 >> unitx [
-	^FullColumn
+	^StMFullColumn
 		with: 1.0d
 		with: 0.0d
 		with: 0.0d
@@ -918,7 +918,7 @@ GEOCartesianFrame2 >> unitx [
 
 { #category : #accessing }
 GEOCartesianFrame2 >> unity [
-	^FullColumn
+	^StMFullColumn
 		with: 0.0d
 		with: 1.0d
 		with: 0.0d
@@ -926,7 +926,7 @@ GEOCartesianFrame2 >> unity [
 
 { #category : #accessing }
 GEOCartesianFrame2 >> unitz [
-	^FullColumn
+	^StMFullColumn
 		with: 0.0d
 		with: 0.0d
 		with: 1.0d
@@ -938,7 +938,7 @@ GEOCartesianFrame2 >> vOfO [
 	answer := self triggerEvent: #getvOfO.
 	answer == nil
 		ifTrue: 
-			[answer := FullColumn zero: 3.
+			[answer := StMFullColumn zero: 3.
 			self vOfO: answer].
 	^answer
 ]

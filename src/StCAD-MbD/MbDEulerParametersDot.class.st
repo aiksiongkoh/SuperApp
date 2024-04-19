@@ -1,6 +1,6 @@
 Class {
 	#name : #MbDEulerParametersDot,
-	#superclass : #EulerParametersDot,
+	#superclass : #StEulerParametersDot,
 	#type : #variable,
 	#instVars : [
 		'pAdotpE'
@@ -78,9 +78,9 @@ MbDEulerParametersDot >> calcAdotBdotCdot [
 	aE2dot := self at: 2.
 	aE3dot := self at: 3.
 	aE4dot := self at: 4.
-	mE1dot := 0.0d - aE1dot.
-	mE2dot := 0.0d - aE2dot.
-	mE3dot := 0.0d - aE3dot.
+	mE1dot := 0.0 - aE1dot.
+	mE2dot := 0.0 - aE2dot.
+	mE3dot := 0.0 - aE3dot.
 	(aBdot at: 1)
 		at: 1 put: aE4dot;
 		at: 2 put: mE3dot;
@@ -111,7 +111,7 @@ MbDEulerParametersDot >> calcAdotBdotCdot [
 		at: 2 put: mE1dot;
 		at: 3 put: aE4dot;
 		at: 4 put: mE3dot.
-	aAdot := (self aB timesTransposeFullMatrix: aCdot) times: 2.0d
+	aAdot := (self aB timesTransposeFullMatrix: aCdot) times: 2.0
 ]
 
 { #category : #calc }
@@ -120,14 +120,14 @@ MbDEulerParametersDot >> calcpAdotpE [
 	"All aE's are actually aEdot's."
 
 	| a2E1 a2E2 a2E3 a2E4 m2E1 m2E2 m2E3 m2E4 mat |
-	a2E1 := 2.0d * (self at: 1).
-	a2E2 := 2.0d * (self at: 2).
-	a2E3 := 2.0d * (self at: 3).
-	a2E4 := 2.0d * (self at: 4).
-	m2E1 := 0.0d - a2E1.
-	m2E2 := 0.0d - a2E2.
-	m2E3 := 0.0d - a2E3.
-	m2E4 := 0.0d - a2E4.
+	a2E1 := 2.0 * (self at: 1).
+	a2E2 := 2.0 * (self at: 2).
+	a2E3 := 2.0 * (self at: 3).
+	a2E4 := 2.0 * (self at: 4).
+	m2E1 := 0.0 - a2E1.
+	m2E2 := 0.0 - a2E2.
+	m2E3 := 0.0 - a2E3.
+	m2E4 := 0.0 - a2E4.
 	mat := pAdotpE at: 1.
 	(mat at: 1) at: 1 put: a2E1; at: 2 put: a2E2; at: 3 put: a2E3.
 	(mat at: 2) at: 1 put: a2E2; at: 2 put: m2E1; at: 3 put: m2E4.
@@ -174,8 +174,8 @@ MbDEulerParametersDot >> fromqEOp: qEOp andOmegaOpp: omeOpp [
 { #category : #'initialize-release' }
 MbDEulerParametersDot >> initialize [
 	super initialize.
-	pAdotpE := FullColumn new: 4.
-	1 to: 4 do: [:i | pAdotpE at: i put: (FullMatrix new: 3 by: 3)]
+	pAdotpE := StMFullColumn new: 4.
+	1 to: 4 do: [:i | pAdotpE at: i put: (StMFullMatrix new: 3 by: 3)]
 ]
 
 { #category : #accessing }

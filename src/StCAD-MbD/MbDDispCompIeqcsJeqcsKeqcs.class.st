@@ -66,11 +66,11 @@ MbDDispCompIeqcsJeqcsKeqcs >> calcPostDynCorrectorIteration [
 MbDDispCompIeqcsJeqcsKeqcs >> initializeLocally [
 	super initializeLocally.
 	sSizeJ := frmJ sSize.
-	priIeJeKepsJ := FullRow new: sSizeJ.
-	ppriIeJeKepEJpsJ := FullMatrix new: 4 by: sSizeJ.
-	ppriIeJeKepsJpsJ := FullMatrix new: sSizeJ by: sSizeJ.
-	ppriIeJeKepsJpEK := FullMatrix new: sSizeJ by: 4.
-	ppriIeJeKepsJpsK := FullMatrix new: sSizeJ by: sSizeK
+	priIeJeKepsJ := StMFullRow new: sSizeJ.
+	ppriIeJeKepEJpsJ := StMFullMatrix new: 4 by: sSizeJ.
+	ppriIeJeKepsJpsJ := StMFullMatrix new: sSizeJ by: sSizeJ.
+	ppriIeJeKepsJpEK := StMFullMatrix new: sSizeJ by: 4.
+	ppriIeJeKepsJpsK := StMFullMatrix new: sSizeJ by: sSizeK
 ]
 
 { #category : #accessing }

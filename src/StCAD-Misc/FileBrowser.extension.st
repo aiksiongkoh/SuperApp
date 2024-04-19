@@ -1,7 +1,7 @@
 Extension { #name : #FileBrowser }
 
 { #category : #'*StCAD-Misc-StCAD-DEV' }
-FileBrowser classSide >> renameFilesInDir [
+FileBrowser class >> renameFilesInDir [
 	"FileBrowser renameFilesInDir"
 
 	| dirName cFile tail newFilename aFilename |

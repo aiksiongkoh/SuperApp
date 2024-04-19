@@ -31,7 +31,7 @@ GEORelPosVelAccData class >> visualWorksMetadata [
 
 { #category : #accessing }
 GEORelPosVelAccData >> aAFf [
-	aAFf == nil ifTrue: [self aAFf: (FullMatrix identity: 3)].
+	aAFf == nil ifTrue: [self aAFf: (StMFullMatrix identity: 3)].
 	^aAFf
 ]
 
@@ -42,7 +42,7 @@ GEORelPosVelAccData >> aAFf: mat [
 
 { #category : #accessing }
 GEORelPosVelAccData >> aAOf [
-	aAOf == nil ifTrue: [self aAOf: (FullMatrix identity: 3)].
+	aAOf == nil ifTrue: [self aAOf: (StMFullMatrix identity: 3)].
 	^aAOf
 ]
 
@@ -58,7 +58,7 @@ GEORelPosVelAccData >> aFf [
 
 { #category : #accessing }
 GEORelPosVelAccData >> aFfF [
-	aFfF == nil ifTrue: [self aFfF: (FullColumn zero: 3)].
+	aFfF == nil ifTrue: [self aFfF: (StMFullColumn zero: 3)].
 	^aFfF
 ]
 
@@ -89,7 +89,7 @@ GEORelPosVelAccData >> aOf [
 
 { #category : #accessing }
 GEORelPosVelAccData >> aOfO [
-	aOfO == nil ifTrue: [self aOfO: (FullColumn zero: 3)].
+	aOfO == nil ifTrue: [self aOfO: (StMFullColumn zero: 3)].
 	^aOfO
 ]
 
@@ -120,7 +120,7 @@ GEORelPosVelAccData >> alpFf [
 
 { #category : #accessing }
 GEORelPosVelAccData >> alpFfF [
-	alpFfF == nil ifTrue: [self alpFfF: (FullColumn zero: 3)].
+	alpFfF == nil ifTrue: [self alpFfF: (StMFullColumn zero: 3)].
 	^alpFfF
 ]
 
@@ -151,7 +151,7 @@ GEORelPosVelAccData >> alpOf [
 
 { #category : #accessing }
 GEORelPosVelAccData >> alpOfO [
-	alpOfO == nil ifTrue: [self alpOfO: (FullColumn zero: 3)].
+	alpOfO == nil ifTrue: [self alpOfO: (StMFullColumn zero: 3)].
 	^alpOfO
 ]
 
@@ -273,7 +273,7 @@ GEORelPosVelAccData >> omeFf [
 
 { #category : #accessing }
 GEORelPosVelAccData >> omeFfF [
-	omeFfF == nil ifTrue: [self omeFfF: (FullColumn zero: 3)].
+	omeFfF == nil ifTrue: [self omeFfF: (StMFullColumn zero: 3)].
 	^omeFfF
 ]
 
@@ -304,7 +304,7 @@ GEORelPosVelAccData >> omeOf [
 
 { #category : #accessing }
 GEORelPosVelAccData >> omeOfO [
-	omeOfO == nil ifTrue: [self omeOfO: (FullColumn zero: 3)].
+	omeOfO == nil ifTrue: [self omeOfO: (StMFullColumn zero: 3)].
 	^omeOfO
 ]
 
@@ -335,7 +335,7 @@ GEORelPosVelAccData >> rFf [
 
 { #category : #accessing }
 GEORelPosVelAccData >> rFfF [
-	rFfF == nil ifTrue: [self rFfF: (FullColumn zero: 3)].
+	rFfF == nil ifTrue: [self rFfF: (StMFullColumn zero: 3)].
 	^rFfF
 ]
 
@@ -366,7 +366,7 @@ GEORelPosVelAccData >> rOf [
 
 { #category : #accessing }
 GEORelPosVelAccData >> rOfO [
-	rOfO == nil ifTrue: [self rOfO: (FullColumn zero: 3)].
+	rOfO == nil ifTrue: [self rOfO: (StMFullColumn zero: 3)].
 	^rOfO
 ]
 
@@ -412,7 +412,7 @@ GEORelPosVelAccData >> vFf [
 
 { #category : #accessing }
 GEORelPosVelAccData >> vFfF [
-	vFfF == nil ifTrue: [self vFfF: (FullColumn zero: 3)].
+	vFfF == nil ifTrue: [self vFfF: (StMFullColumn zero: 3)].
 	^vFfF
 ]
 
@@ -453,7 +453,7 @@ GEORelPosVelAccData >> vOf [
 
 { #category : #accessing }
 GEORelPosVelAccData >> vOfO [
-	vOfO == nil ifTrue: [self vOfO: (FullColumn zero: 3)].
+	vOfO == nil ifTrue: [self vOfO: (StMFullColumn zero: 3)].
 	^vOfO
 ]
 
@@ -489,17 +489,17 @@ GEORelPosVelAccData >> vOfRadial [
 
 { #category : #'ops on self' }
 GEORelPosVelAccData >> zeroSelf [
-	rFfF := (FullColumn zero: 3).
-	aAFf := (FullMatrix identity: 3).
-	vFfF := (FullColumn zero: 3).
-	omeFfF := (FullColumn zero: 3).
-	aFfF := (FullColumn zero: 3).
-	alpFfF := (FullColumn zero: 3).
-	rOfO := (FullColumn zero: 3).
-	aAOf := (FullMatrix identity: 3).
-	vOfO := (FullColumn zero: 3).
-	omeOfO := (FullColumn zero: 3).
-	aOfO := (FullColumn zero: 3).
-	alpOfO := (FullColumn zero: 3).
+	rFfF := (StMFullColumn zero: 3).
+	aAFf := (StMFullMatrix identity: 3).
+	vFfF := (StMFullColumn zero: 3).
+	omeFfF := (StMFullColumn zero: 3).
+	aFfF := (StMFullColumn zero: 3).
+	alpFfF := (StMFullColumn zero: 3).
+	rOfO := (StMFullColumn zero: 3).
+	aAOf := (StMFullMatrix identity: 3).
+	vOfO := (StMFullColumn zero: 3).
+	omeOfO := (StMFullColumn zero: 3).
+	aOfO := (StMFullColumn zero: 3).
+	alpOfO := (StMFullColumn zero: 3).
 	time := 0.0d
 ]

@@ -65,10 +65,10 @@ MbDVelICSolver2 >> runBasic [
 	system partsJointsMotionsDo: [:item | item preVelIC].
 	self assignEquationNumbers.
 	system partsJointsMotionsDo: [:item | item useEquationNumbers].
-	qsudotOld := FullColumn new: nqsu.
-	qsudotWeights := DiagonalMatrix new: nqsu.
-	errorVector := FullColumn new: n.
-	jacobian := SparseMatrix new: n by: n.
+	qsudotOld := StMFullColumn new: nqsu.
+	qsudotWeights := StMDiagonalMatrix new: nqsu.
+	errorVector := StMFullColumn new: n.
+	jacobian := StMSparseMatrix new: n by: n.
 	system partsJointsMotionsDo: [:item | item fillqsudot: qsudotOld].
 	system 
 		partsJointsMotionsDo: [:item | item fillqsudotWeights: qsudotWeights].

@@ -649,10 +649,10 @@ MbDNonlinearCoupler >> initializeLocally [
 	pGpXJs := Array new: n.
 	pGpEJs := Array new: n.
 	1 to: n do: [:i | 
-			pGpXIs at: i put: (FullRow zero: 3).
-			pGpEIs at: i put: (FullRow zero: 4).
-			pGpXJs at: i put: (FullRow zero: 3).
-			pGpEJs at: i put: (FullRow zero: 4)]
+			pGpXIs at: i put: (StMFullRow zero: 3).
+			pGpEIs at: i put: (StMFullRow zero: 4).
+			pGpXJs at: i put: (StMFullRow zero: 3).
+			pGpEJs at: i put: (StMFullRow zero: 4)]
 ]
 
 { #category : #accessing }

@@ -114,7 +114,7 @@ MbDEulerConstraint >> fillpFpydot: mat [
 { #category : #'initialize-release' }
 MbDEulerConstraint >> initialize [
 	super initialize.
-	pGpE := FullRow new: 4
+	pGpE := StMFullRow new: 4
 ]
 
 { #category : #accessing }

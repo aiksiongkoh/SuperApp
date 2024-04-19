@@ -29,8 +29,8 @@ MbDInContactCVCVJoint >> calcLSScoeffs [
 
 	| n xs ys t tpast |
 	n := interpolator nStep + 1.
-	xs := FullRow new: n.
-	ys := FullRow new: n.
+	xs := StMFullRow new: n.
+	ys := StMFullRow new: n.
 	t := interpolator time.
 	tpast := interpolator timeNodes.
 	xs at: 1 put: t.
@@ -41,7 +41,7 @@ MbDInContactCVCVJoint >> calcLSScoeffs [
 			xs at: i put: (tpast at: i - 1).
 			ys at: i put: (contactForcePast at: i - 1)].
 	leastSquaresFit
-		x: IndependentVariable new
+		x: StMIndependentVariable new
 		order: 2
 		xs: xs
 		ys: ys

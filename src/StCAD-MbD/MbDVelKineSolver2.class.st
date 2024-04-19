@@ -59,8 +59,8 @@ MbDVelKineSolver2 >> run [
 	system partsJointsMotionsDo: [:item | item preVelIC].
 	self assignEquationNumbers.
 	system partsJointsMotionsDo: [:item | item useEquationNumbers].
-	errorVector := FullColumn new: n.
-	jacobian := SparseMatrix new: n by: n.
+	errorVector := StMFullColumn new: n.
+	jacobian := StMSparseMatrix new: n by: n.
 	errorVector zeroSelf.
 	system partsJointsMotionsDo: [:item | item fillVelICError: errorVector].
 	jacobian zeroSelf.

@@ -50,7 +50,7 @@ BasicLine >> cPoint [
 { #category : #accessing }
 BasicLine >> cPoint_n1: n [ 
 	| answer delta |
-	answer := FullColumn new: n.
+	answer := StMFullColumn new: n.
 	delta := (rfEndPointf - rfStartPointf) / (n - 1).
 	0 to: n - 1
 		do: 
@@ -74,7 +74,7 @@ BasicLine >> calc [
 
 { #category : #'As yet unclassified' }
 BasicLine >> csguess [
-	^Array with: (0.0d to: 1.0d nStep: 2)
+	^Array with: (0.0 to: 1.0 nStep: 2)
 ]
 
 { #category : #'As yet unclassified' }
@@ -92,8 +92,8 @@ BasicLine >> gluvCurveOnSurface: aSurface [
 
 { #category : #'initialize-release' }
 BasicLine >> initStartAndEnd [
-	rfStartPointf := FullColumn zero: 3.
-	rfEndPointf := FullColumn zero: 3.
+	rfStartPointf := StMFullColumn zero: 3.
+	rfEndPointf := StMFullColumn zero: 3.
 ]
 
 { #category : #testing }
@@ -123,7 +123,7 @@ BasicLine >> magnifySelf: aDouble [
 
 { #category : #'As yet unclassified' }
 BasicLine >> pprfpfpupu_u: u [ 
-	^FullColumn zero: rfStartPointf size
+	^StMFullColumn zero: rfStartPointf size
 ]
 
 { #category : #'As yet unclassified' }

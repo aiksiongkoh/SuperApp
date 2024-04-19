@@ -58,8 +58,8 @@ MbDDispCompIecJecKeqc >> calcPostDynCorrectorIteration [
 
 { #category : #'initialize-release' }
 MbDDispCompIecJecKeqc >> initialize [
-	priIeJeKepEK := FullRow new: 4.
-	ppriIeJeKepEKpEK := FullMatrix new: 4 by: 4
+	priIeJeKepEK := StMFullRow new: 4.
+	ppriIeJeKepEKpEK := StMFullMatrix new: 4 by: 4
 ]
 
 { #category : #'initialize-release' }

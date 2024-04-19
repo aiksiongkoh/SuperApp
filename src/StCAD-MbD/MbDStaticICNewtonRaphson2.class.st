@@ -62,8 +62,8 @@ MbDStaticICNewtonRaphson2 >> assignEquationNumbers [
 
 { #category : #'initialize-release' }
 MbDStaticICNewtonRaphson2 >> createVectorsAndMatrices [
-	qsuOld := FullColumn new: nqsu.
-	qsuWeights := DiagonalMatrix new: nqsu.
+	qsuOld := StMFullColumn new: nqsu.
+	qsuWeights := StMDiagonalMatrix new: nqsu.
 	super createVectorsAndMatrices
 ]
 

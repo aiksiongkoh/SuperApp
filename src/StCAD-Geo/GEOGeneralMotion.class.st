@@ -29,7 +29,7 @@ GEOGeneralMotion class >> visualWorksMetadata [
 
 { #category : #accessing }
 GEOGeneralMotion >> angleIJJ [
-	^FullColumn 
+	^StMFullColumn 
 		with: phiIJ
 		with: theIJ
 		with: psiIJ
@@ -50,7 +50,7 @@ GEOGeneralMotion >> createMbD [
 			[:ufunc :mbdUnit | 
 			| func parser stack |
 			func := ufunc isNil 
-						ifTrue: [Constant with: 0]
+						ifTrue: [StMConstant with: 0]
 						ifFalse: 
 							[parser := self functionParser.
 							stack := parser 
@@ -61,7 +61,7 @@ GEOGeneralMotion >> createMbD [
 			(func / mbdUnit) createMbD simplified].
 	mbdFullMotion := self mbdObject.
 	length := self mbdUnits length.
-	frIJI := FullColumn 
+	frIJI := StMFullColumn 
 				with: (block value: xIJ value: length)
 				with: (block value: yIJ value: length)
 				with: (block value: zIJ value: length).
@@ -77,7 +77,7 @@ GEOGeneralMotion >> createMbD [
 
 { #category : #accessing }
 GEOGeneralMotion >> rIJI [
-	^FullColumn 
+	^StMFullColumn 
 		with: xIJ
 		with: yIJ
 		with: zIJ

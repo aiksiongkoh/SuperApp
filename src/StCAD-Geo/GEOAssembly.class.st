@@ -39,7 +39,7 @@ GEOAssembly class >> visualWorksMetadata [
 
 { #category : #accessing }
 GEOAssembly >> aAPp [
-	^(FullMatrix identity: 3)
+	^(StMFullMatrix identity: 3)
 ]
 
 { #category : #accessing }
@@ -357,9 +357,9 @@ GEOAssembly >> calcCharacteristicLength [
 			[:geoIJ | 
 			lengths add: geoIJ aMarkerI rpmp length.
 			lengths add: geoIJ aMarkerJ rpmp length].
-	sumOfSquares := lengths inject: 0.0d into: [:subtotal :length | subtotal + (length * length)].
+	sumOfSquares := lengths inject: 0.0 into: [:subtotal :length | subtotal + (length * length)].
 	unitLength := (sumOfSquares / (lengths size max: 1)) sqrt.
-	unitLength <= 0 ifTrue: [unitLength := 1.0d].
+	unitLength <= 0 ifTrue: [unitLength := 1.0].
 	^unitLength
 ]
 
@@ -367,9 +367,9 @@ GEOAssembly >> calcCharacteristicLength [
 GEOAssembly >> calcCharacteristicMass [
 	| masses sumOfSquares unitMass |
 	masses := self interface partList collect: [:part | part mass].
-	sumOfSquares := masses inject: 0.0d into: [:subtotal :mass | subtotal + (mass * mass)].
+	sumOfSquares := masses inject: 0.0 into: [:subtotal :mass | subtotal + (mass * mass)].
 	unitMass := (sumOfSquares / masses size) sqrt.
-	unitMass <= 0 ifTrue: [unitMass := 1.0d].
+	unitMass <= 0 ifTrue: [unitMass := 1.0].
 	^unitMass
 ]
 
@@ -550,7 +550,7 @@ GEOAssembly >> cutTorque: geoTorque [
 
 { #category : #accessing }
 GEOAssembly >> defaultGravity [
-	^GEOGravity new gX: 0.0d gY: 0.0d gZ: 0.0d.
+	^GEOGravity new gX: 0.0 gY: 0.0 gZ: 0.0.
 ]
 
 { #category : #DYN }
@@ -723,7 +723,7 @@ GEOAssembly >> initialize [
 { #category : #accessing }
 GEOAssembly >> insertAssembly: aAssembly [
 	| shiftXYZ block cNameMarker cNameAnyPart cNameConstraintSet cNameForceTorque nameBlock |
-	shiftXYZ := FullColumn zero: 3.
+	shiftXYZ := StMFullColumn zero: 3.
 	CADXYZDialog openOn: shiftXYZ.
 	aAssembly translateBy: shiftXYZ.
 	block :=
@@ -877,7 +877,7 @@ GEOAssembly >> preSave [
 { #category : #accessing }
 GEOAssembly >> rOMarkerCenterO [
 	| zeroColumn sumOfrOfOs nmarker |
-	zeroColumn := (FullColumn zero: 3).
+	zeroColumn := (StMFullColumn zero: 3).
 	sumOfrOfOs := markers inject: zeroColumn
 				into: [:sum :marker | sum + marker rOfO].
 	nmarker := markers size.
@@ -888,7 +888,7 @@ GEOAssembly >> rOMarkerCenterO [
 GEOAssembly >> rOcenterO [
 	| sumDiagonal sumMoment block |
 	sumDiagonal := 0.0d.
-	sumMoment := FullColumn zero: 3.
+	sumMoment := StMFullColumn zero: 3.
 	block := 
 			[:aBBox | 
 			| diagonal |
@@ -908,7 +908,7 @@ GEOAssembly >> rOcenterO [
 { #category : #accessing }
 GEOAssembly >> rOcenterO1 [
 	| zeroColumn sumOfrOcenterOs nAnyPart |
-	zeroColumn := FullColumn zero: 3.
+	zeroColumn := StMFullColumn zero: 3.
 	sumOfrOcenterOs := anyParts inject: zeroColumn
 				into: [:sum :anyPart | sum + anyPart rOcenterO].
 	nAnyPart := anyParts size.
@@ -925,7 +925,7 @@ GEOAssembly >> rOcenterO2 [
 		ifTrue: 
 			[| sumDiagonal sumMoment block |
 			sumDiagonal := 0.0d.
-			sumMoment := FullColumn zero: 3.
+			sumMoment := StMFullColumn zero: 3.
 			block := 
 					[:aAnyPart | 
 					| aBBox diagonal |
@@ -940,7 +940,7 @@ GEOAssembly >> rOcenterO2 [
 
 { #category : #accessing }
 GEOAssembly >> rPcmP [
-	^FullColumn zero: 3
+	^StMFullColumn zero: 3
 ]
 
 { #category : #'initialize-release' }
@@ -1142,7 +1142,7 @@ GEOAssembly >> storePOVdatCurrentOn: aStream [
 GEOAssembly >> storeRobotAxesOn: writeStream [
 	| nAxisLimit cAxisSeries timeSeries nrec cRobotAxis nRobotAxis dataSeries eulerAngleszyxIJSeries titleBlock recordBlock nExtra |
 	nAxisLimit := 6.
-	cAxisSeries := (MathArray new: nAxisLimit) writeStream.
+	cAxisSeries := (StMArray new: nAxisLimit) writeStream.
 	timeSeries := self timeSeries.
 	nrec := timeSeries size.
 	cRobotAxis := self cRobotAxis.

@@ -41,7 +41,7 @@ MbDIntermittentCVCVJoint >> aIeJeOIez [
 { #category : #accessing }
 MbDIntermittentCVCVJoint >> coeffRestitution: aDouble [ 
 	coeffRestitution := [aDouble asDouble]
-				on: MessageNotUnderstood do: [:ex | 0.0d]
+				on: MessageNotUnderstood do: [:ex | 0.0]
 ]
 
 { #category : #'initialize-release' }
@@ -98,7 +98,7 @@ MbDIntermittentCVCVJoint >> postDynStep [
 MbDIntermittentCVCVJoint >> preDyn [
 	super preDyn.
 	interpolator := TheMbDSystem mbdSystemSolver opBDF.
-	leastSquaresFit := LeastSquaresFitPolynomial new
+	leastSquaresFit := StMLeastSquaresFitPolynomial new
 ]
 
 { #category : #dynamic }

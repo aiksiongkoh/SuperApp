@@ -622,13 +622,6 @@ Editor >> initialize [
 	self cadView aCamera: (aMediator aUniverse cCamera at: 1)
 ]
 
-{ #category : #'*StCAD-UI-initialize-release' }
-Editor >> initialize [
-	super initialize.
-	adButton := AdButton new.
-	filename := ''
-]
-
 { #category : #'menubar items' }
 Editor >> menuFileOpenAssembly [
 	self changeRequest ifTrue: [aMediator menuFileOpenAssembly]

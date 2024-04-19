@@ -51,10 +51,10 @@ GEOAnyPart >> aDXFBLOCK: aDXFBLOCK [
 
 { #category : #accessing }
 GEOAnyPart >> aJpp [
-	^DiagonalMatrix
-		with: 0.0d
-		with: 0.0d
-		with: 0.0d
+	^StMDiagonalMatrix
+		with: 0.0
+		with: 0.0
+		with: 0.0
 ]
 
 { #category : #accessing }
@@ -66,8 +66,8 @@ GEOAnyPart >> aMassMarker: aMassMarker [
 			aMassMarker refFrame refFrame: self refFrame.
 			guideFrame := GEOCartesianFrame2 
 						refFrame: refFrame
-						rFfF: (FullColumn zero: 3)
-						aAFf: (FullMatrix identity: 3).
+						rFfF: (StMFullColumn zero: 3)
+						aAFf: (StMFullMatrix identity: 3).
 			aMassMarker guideFrame: guideFrame.
 			self 
 				when: #getMassMarker
@@ -156,8 +156,8 @@ GEOAnyPart >> addMarker: geoMarker [
 	newGuideFrame := (guideFrame := geoMarker guideFrame) ifNil: 
 					[GEOCartesianFrame2 
 						refFrame: refFrame
-						rFfF: (FullColumn zero: 3)
-						aAFf: (FullMatrix identity: 3)]
+						rFfF: (StMFullColumn zero: 3)
+						aAFf: (StMFullMatrix identity: 3)]
 				ifNotNil: 
 					[GEOCartesianFrame2 
 						refFrame: refFrame
@@ -282,8 +282,8 @@ GEOAnyPart >> createMbD [
 	part qE: self qEp.
 	part qXdot: self vOcmO / mbdUnits velocity.
 	part omeOpO: self omeOpO / mbdUnits omega.
-	part qXddot: (FullColumn zero: 3).
-	part qEddot: (FullColumn zero: 4).
+	part qXddot: (StMFullColumn zero: 3).
+	part qEddot: (StMFullColumn zero: 4).
 	part submitToSystem
 ]
 
@@ -410,7 +410,7 @@ GEOAnyPart >> initialize [
 
 { #category : #accessing }
 GEOAnyPart >> mJpp [
-	^DiagonalMatrix
+	^StMDiagonalMatrix
 		with: 0.0d
 		with: 0.0d
 		with: 0.0d
@@ -445,7 +445,7 @@ GEOAnyPart >> mosesFrame [
 
 { #category : #accessing }
 GEOAnyPart >> omeOpO [
-	^FullColumn zero: 3
+	^StMFullColumn zero: 3
 ]
 
 { #category : #PDMS }
@@ -795,5 +795,5 @@ GEOAnyPart >> updateFromMbD [
 
 { #category : #accessing }
 GEOAnyPart >> vOcmO [
-	^FullColumn zero: 3
+	^StMFullColumn zero: 3
 ]

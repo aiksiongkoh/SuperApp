@@ -20,7 +20,7 @@ GEOForceTorqueData class >> visualWorksMetadata [
 
 { #category : #accessing }
 GEOForceTorqueData >> aFIO [
-	aFIO == nil ifTrue: [self aFIO: (FullColumn zero: 3)].
+	aFIO == nil ifTrue: [self aFIO: (StMFullColumn zero: 3)].
 	^aFIO
 ]
 
@@ -31,7 +31,7 @@ GEOForceTorqueData >> aFIO: col [
 
 { #category : #accessing }
 GEOForceTorqueData >> aTIO [
-	aTIO == nil ifTrue: [self aTIO: (FullColumn zero: 3)].
+	aTIO == nil ifTrue: [self aTIO: (StMFullColumn zero: 3)].
 	^aTIO
 ]
 

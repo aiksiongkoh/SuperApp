@@ -70,10 +70,10 @@ MbDDirectionCosineIeqcsJeqc >> initializeGlobally [
 { #category : #'initialize-release' }
 MbDDirectionCosineIeqcsJeqc >> initializeLocally [
 	sSizeI := frmI sSize.
-	pAijIeJepsI := FullRow new: sSizeI.
-	ppAijIeJepEIpsI := FullMatrix new: 4 by: sSizeI.
-	ppAijIeJepEJpsI := FullMatrix new: 4 by: sSizeI.
-	ppAijIeJepsIpsI := FullMatrix new: sSizeI by: sSizeI
+	pAijIeJepsI := StMFullRow new: sSizeI.
+	ppAijIeJepEIpsI := StMFullMatrix new: 4 by: sSizeI.
+	ppAijIeJepEJpsI := StMFullMatrix new: 4 by: sSizeI.
+	ppAijIeJepsIpsI := StMFullMatrix new: sSizeI by: sSizeI
 ]
 
 { #category : #accessing }

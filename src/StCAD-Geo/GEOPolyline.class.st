@@ -151,7 +151,7 @@ GEOPolyline >> refFrame: refFrm rFpointsF: rFptsF [
 		ifFalse: 
 			["Closed polyline."
 			rfptsF := rFptsF collect: [:rFpF | rFpF - rForiginF].
-			area := (FullColumn zero: 3).
+			area := (StMFullColumn zero: 3).
 			2 to: n - 2
 				do: 
 					[:i | 

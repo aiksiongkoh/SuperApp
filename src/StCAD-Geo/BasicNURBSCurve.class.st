@@ -32,7 +32,7 @@ BasicNURBSCurve class >> aMatrixNu_cu: cu cuKnot: cuKnot uDegree: uDegree [
 
 	| nPoint aMatrixNu |
 	nPoint := cu size.
-	aMatrixNu := SparseMatrix new: nPoint by: nPoint.
+	aMatrixNu := StMSparseMatrix new: nPoint by: nPoint.
 	0 to: nPoint - 1
 		do: 
 			[:i | 
@@ -89,18 +89,18 @@ BasicNURBSCurve class >> cNu_at: u uSpan: uSpan cuKnot: cuKnot uDegree: uDegree 
 	"
 
 	| cN left right uSpan1 |
-	cN := MathArray new: uDegree + 1.
-	left := MathArray new: uDegree.
-	right := MathArray new: uDegree.
+	cN := StMArray new: uDegree + 1.
+	left := StMArray new: uDegree.
+	right := StMArray new: uDegree.
 	uSpan1 := uSpan + 1.
-	cN at: 1 put: 1.0d.
+	cN at: 1 put: 1.0.
 	1 to: uDegree
 		do: 
 			[:i | 
 			| saved |
 			left at: i put: u - (cuKnot at: uSpan1 - i).
 			right at: i put: (cuKnot at: uSpan + i) - u.
-			saved := 0.0d.
+			saved := 0.0.
 			0 to: i - 1
 				do: 
 					[:j | 
@@ -124,23 +124,23 @@ BasicNURBSCurve class >> ccDerivNu_at: u uDeriv: uDeriv uSpan: uSpan cuKnot: cuK
 
 	| uDegree1 ccDerivN ccNdu ccA left right uSpan1 product |
 	uDegree1 := uDegree + 1.
-	ccDerivN := FullMatrix new: uDeriv + 1 by: uDegree1.
-	ccNdu := FullMatrix new: uDegree1 by: uDegree1.
-	ccA := FullMatrix new: 2 by: uDegree1.
-	left := MathArray new: uDegree.
-	right := MathArray new: uDegree.
+	ccDerivN := StMFullMatrix new: uDeriv + 1 by: uDegree1.
+	ccNdu := StMFullMatrix new: uDegree1 by: uDegree1.
+	ccA := StMFullMatrix new: 2 by: uDegree1.
+	left := StMArray new: uDegree.
+	right := StMArray new: uDegree.
 	uSpan1 := uSpan + 1.
 	ccNdu 
 		at: 1
 		and: 1
-		put: 1.0d.
+		put: 1.0.
 	1 to: uDegree
 		do: 
 			[:i | 
 			| ii saved |
 			left at: i put: u - (cuKnot at: uSpan1 - i).
 			right at: i put: (cuKnot at: uSpan + i) - u.
-			saved := 0.0d.
+			saved := 0.0.
 			ii := i + 1.
 			0 to: i - 1
 				do: 
@@ -183,13 +183,13 @@ BasicNURBSCurve class >> ccDerivNu_at: u uDeriv: uDeriv uSpan: uSpan cuKnot: cuK
 			ccA 
 				at: 1
 				and: 1
-				put: 1.0d.
+				put: 1.0.
 			1 to: uDeriv
 				do: 
 					[:j | 
 					| jj d ij ij1 pj pj1 k1 k2 tmp |
 					jj := j + 1.
-					d := 0.0d.
+					d := 0.0.
 					ij := i - j.
 					ij1 := ij + 1.
 					pj := uDegree - j.
@@ -259,17 +259,17 @@ BasicNURBSCurve class >> cuKnot_cu: cu uDegree: uDegree [
 	nPoint := cu size.
 	uDegree1 := uDegree + 1.
 	nKnot := nPoint + uDegree1.
-	cKnot := FullColumn new: nKnot.
+	cKnot := StMFullColumn new: nKnot.
 	0 to: uDegree
 		do: 
 			[:i | 
-			cKnot at: i + 1 put: 0.0d.
-			cKnot at: nKnot - i put: 1.0d].
+			cKnot at: i + 1 put: 0.0.
+			cKnot at: nKnot - i put: 1.0].
 	1 to: nPoint - 1 - uDegree
 		do: 
 			[:i | 
 			| sum |
-			sum := 0.0d.
+			sum := 0.0.
 			i to: i + uDegree - 1 do: [:j | sum := sum + (cu at: j + 1)].
 			cKnot at: i + uDegree1 put: sum / uDegree].
 	^cKnot
@@ -280,7 +280,7 @@ BasicNURBSCurve class >> cu_cDataPoint: cDataPoint [
 	| n cdelta d cu u |
 	n := cDataPoint size.
 	cdelta := cDataPoint shallowCopy.
-	d := 0.0d.
+	d := 0.0.
 	2 to: n
 		do: 
 			[:i | 
@@ -289,9 +289,9 @@ BasicNURBSCurve class >> cu_cDataPoint: cDataPoint [
 			cdelta at: i put: delta.
 			d := d + delta].
 	cu := cDataPoint shallowCopy.
-	cu at: 1 put: 0.0d.
-	cu at: n put: 1.0d.
-	u := 0.0d.
+	cu at: 1 put: 0.0.
+	cu at: n put: 1.0.
+	u := 0.0.
 	2 to: n - 1
 		do: 
 			[:i | 
@@ -303,10 +303,10 @@ BasicNURBSCurve class >> cu_cDataPoint: cDataPoint [
 { #category : #'initialize-release' }
 BasicNURBSCurve class >> fromLine: aLine [ 
 	| cPoint cWeight cuKnot |
-	cPoint := MathArray with: aLine rfStartPointf copy
+	cPoint := StMArray with: aLine rfStartPointf copy
 				with: aLine rfEndPointf copy.
-	cWeight := MathArray with: 1.0d with: 1.0d.
-	cuKnot := MathArray 
+	cWeight := StMArray with: 1.0d with: 1.0d.
+	cuKnot := StMArray 
 				with: 0.0d
 				with: 0.0d
 				with: 1.0d
@@ -350,15 +350,15 @@ BasicNURBSCurve class >> initializeX [
 
 	| n aRow previousRow |
 	n := 10.
-	CcBinomial := MathArray new: n.
-	aRow := FullRow new: 1.
+	CcBinomial := StMArray new: n.
+	aRow := StMFullRow new: 1.
 	aRow at: 1 put: 1.
 	CcBinomial at: 1 put: aRow.
 	previousRow := aRow.
 	2 to: n
 		do: 
 			[:i | 
-			aRow := FullRow new: i.
+			aRow := StMFullRow new: i.
 			aRow at: 1 put: 1.
 			2 to: i - 1
 				do: [:j | aRow at: j put: (previousRow at: j - 1) + (previousRow at: j)].
@@ -433,8 +433,8 @@ BasicNURBSCurve >> atU: u [
 	| uSpan cN numerator denominator ii nw |
 	uSpan := self uspan_at: u.
 	cN := self cNu_at: u uSpan: uSpan.
-	numerator := FullColumn zero: self nDimension.
-	denominator := 0.0d.
+	numerator := StMFullColumn zero: self nDimension.
+	denominator := 0.0.
 	0 to: uDegree
 		do: 
 			[:i | 
@@ -464,17 +464,17 @@ BasicNURBSCurve >> cDeriv: iDeriv u: u [
 	iDeriv1 := iDeriv + 1.
 	nDimension := self nDimension.
 	iDerivu := iDeriv min: uDegree.
-	cDeriv := FullColumn new: iDeriv1.
-	cDerivP := FullColumn new: iDeriv1.
-	cDerivW := FullColumn new: iDeriv1.
+	cDeriv := StMFullColumn new: iDeriv1.
+	cDerivP := StMFullColumn new: iDeriv1.
+	cDerivW := StMFullColumn new: iDeriv1.
 	uDegree + 1 to: iDeriv
 		do: 
 			[:i | 
 			| i1 |
 			i1 := i + 1.
-			cDeriv at: i1 put: (FullColumn zero: nDimension).
-			cDerivP at: i1 put: (FullColumn zero: nDimension).
-			cDerivW at: i1 put: 0.0d].
+			cDeriv at: i1 put: (StMFullColumn zero: nDimension).
+			cDerivP at: i1 put: (StMFullColumn zero: nDimension).
+			cDerivW at: i1 put: 0.0].
 	uSpan := self uspan_at: u.
 	ccDerivNu := self class 
 				ccDerivNu_at: u
@@ -487,8 +487,8 @@ BasicNURBSCurve >> cDeriv: iDeriv u: u [
 			[:i | 
 			| i1 numerator denominator |
 			i1 := i + 1.
-			numerator := FullColumn zero: nDimension.
-			denominator := 0.0d.
+			numerator := StMFullColumn zero: nDimension.
+			denominator := 0.0.
 			0 to: uDegree
 				do: 
 					[:j | 
@@ -579,7 +579,7 @@ BasicNURBSCurve >> extremeValueAxis: axis uguess: uguess [
 	uextreme := (CurveExtremum new)
 				x: uguess;
 				system: self;
-				dir: (FullColumn zero: self nDimension unitAt: axis);
+				dir: (StMFullColumn zero: self nDimension unitAt: axis);
 				run;
 				x.
 	uextreme < 0.0d 
@@ -674,7 +674,7 @@ BasicNURBSCurve >> rfpf_u: u [
 	| uSpan cN numerator denominator ii nw |
 	uSpan := self uspan_at: u.
 	cN := self cNu_at: u uSpan: uSpan.
-	numerator := FullColumn zero: self nDimension.
+	numerator := StMFullColumn zero: self nDimension.
 	denominator := 0.0d.
 	0 to: uDegree
 		do: 

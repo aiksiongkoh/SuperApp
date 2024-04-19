@@ -27,15 +27,15 @@ MbDReactionTorqueMagIp >> calcPostDynCorrectorIteration [
 	| aTIeJtO uTIeJtO |
 	aTIeJtO := joint aTIeJtO.
 	aTIp := aTIeJtO length.
-	aTIp = 0.0d
+	aTIp = 0.0
 		ifTrue: 
-			[pTIppXI := FullRow new: 3.
-			pTIppEI := FullRow new: 4.
-			pTIppXJ := FullRow new: 3.
-			pTIppEJ := FullRow new: 4.
-			pTIpplam := SparseRow new]
+			[pTIppXI := StMFullRow new: 3.
+			pTIppEI := StMFullRow new: 4.
+			pTIppXJ := StMFullRow new: 3.
+			pTIppEJ := StMFullRow new: 4.
+			pTIpplam := StMSparseRow new]
 		ifFalse: 
-			[uTIeJtO := aTIeJtO times: 1.0d / aTIp.
+			[uTIeJtO := aTIeJtO times: 1.0 / aTIp.
 			pTIppXI := uTIeJtO dot: joint pTIeJtOpXI.
 			pTIppEI := uTIeJtO dot: joint pTIeJtOpEI.
 			pTIppXJ := uTIeJtO dot: joint pTIeJtOpXJ.

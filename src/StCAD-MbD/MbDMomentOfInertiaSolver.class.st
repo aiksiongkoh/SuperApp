@@ -81,24 +81,24 @@ MbDMomentOfInertiaSolver >> calcAPp [
 	lam3 := aJp at: 3.
 	lam1 = lam2
 		ifTrue: [lam2 = lam3
-				ifTrue: [^aAPp := (FullMatrix identity: 3)]
+				ifTrue: [^aAPp := (StMFullMatrix identity: 3)]
 				ifFalse: 
 					[eigenvector2 := self eigenvectorFor: lam2.
 					eigenvector3 := self eigenvectorFor: lam3.
 					eigenvector2 normalizeSelf.
 					eigenvector3 normalizeSelf.
-					(eigenvector2 at: 2) < 0.0d ifTrue: [eigenvector2 negateSelf].
-					(eigenvector3 at: 3) < 0.0d ifTrue: [eigenvector3 negateSelf].
+					(eigenvector2 at: 2) < 0.0 ifTrue: [eigenvector2 negateSelf].
+					(eigenvector3 at: 3) < 0.0 ifTrue: [eigenvector3 negateSelf].
 					eigenvector1 := eigenvector2 cross: eigenvector3]]
 		ifFalse: 
 			[eigenvector1 := self eigenvectorFor: lam1.
 			eigenvector2 := self eigenvectorFor: lam2.
 			eigenvector1 normalizeSelf.
 			eigenvector2 normalizeSelf.
-			(eigenvector1 at: 1) < 0.0d ifTrue: [eigenvector1 negateSelf].
-			(eigenvector2 at: 2) < 0.0d ifTrue: [eigenvector2 negateSelf].
+			(eigenvector1 at: 1) < 0.0 ifTrue: [eigenvector1 negateSelf].
+			(eigenvector2 at: 2) < 0.0 ifTrue: [eigenvector2 negateSelf].
 			eigenvector3 := eigenvector1 cross: eigenvector2].
-	aAPp := FullMatrix new: 3.
+	aAPp := StMFullMatrix new: 3.
 	aAPp at: 1 put: eigenvector1 asFullRow.
 	aAPp at: 2 put: eigenvector2 asFullRow.
 	aAPp at: 3 put: eigenvector3 asFullRow
@@ -157,7 +157,7 @@ MbDMomentOfInertiaSolver >> calcJpFromDiagJP [
 					average := lam2 + lam3 / 2.0d.
 					lam2 := average.
 					lam3 := average]].
-	aJp := DiagonalMatrix
+	aJp := StMDiagonalMatrix
 				with: lam1
 				with: lam2
 				with: lam3
@@ -167,7 +167,7 @@ MbDMomentOfInertiaSolver >> calcJpFromDiagJP [
 MbDMomentOfInertiaSolver >> calcJpFromFullJP [
 	"Eigenvalues are orders from smallest to largest."
 	"Rounding error can be significant."
-	"e.g. (diag 100.0d 100.0d 1.0d) gives only 8 digit accuracy."
+	"e.g. (diag 100.0 100.0 1.0) gives only 8 digit accuracy."
 
 	| a11 a12 a13 a22 a23 a33 a b c aDiv3 p q phiDiv3 twoSqrtMinusp piDiv3 sortedJ lam1 lam2 lam3 average |
 	a11 := aJP at: 1 and: 1.
@@ -178,13 +178,13 @@ MbDMomentOfInertiaSolver >> calcJpFromFullJP [
 	a33 := aJP at: 3 and: 3.
 	a := (a11 + a22 + a33) negated.
 	b := a11 * a22 + (a11 * a33) + (a22 * a33) - (a12 * a12) - (a13 * a13) - (a23 * a23).
-	c := a11 * a23 * a23 + (a22 * a13 * a13) + (a33 * a12 * a12) - (a11 * a22 * a33) - (2.0d * a12 * a13 * a23).
-	aDiv3 := a / 3.0d.
-	p := b / 3.0d - (aDiv3 * aDiv3).
-	q := c + (2.0d * aDiv3 * aDiv3 * aDiv3) - (aDiv3 * b) / 2.0d.
-	phiDiv3 := (q negated / (p * p * p) negated sqrt) modifiedArcCos / 3.0d.
-	twoSqrtMinusp := 2.0d * p negated sqrt.
-	piDiv3 := Double pi / 3.0d.
+	c := a11 * a23 * a23 + (a22 * a13 * a13) + (a33 * a12 * a12) - (a11 * a22 * a33) - (2.0 * a12 * a13 * a23).
+	aDiv3 := a / 3.0.
+	p := b / 3.0 - (aDiv3 * aDiv3).
+	q := c + (2.0 * aDiv3 * aDiv3 * aDiv3) - (aDiv3 * b) / 2.0.
+	phiDiv3 := (q negated / (p * p * p) negated sqrt) modifiedArcCos / 3.0.
+	twoSqrtMinusp := 2.0 * p negated sqrt.
+	piDiv3 := Double pi / 3.0.
 	sortedJ := SortedCollection new.
 	sortedJ add: twoSqrtMinusp * phiDiv3 cos.
 	sortedJ add: twoSqrtMinusp * (phiDiv3 + piDiv3) cos negated.
@@ -192,26 +192,26 @@ MbDMomentOfInertiaSolver >> calcJpFromFullJP [
 	lam1 := (sortedJ at: 1) - aDiv3.
 	lam2 := (sortedJ at: 2) - aDiv3.
 	lam3 := (sortedJ at: 3) - aDiv3.
-	(lam2 = 0 or: [(lam1 / lam2 - 1.0d) abs < 1.0d-6])
-		ifTrue: [(lam3 = 0 or: [(lam2 / lam3 - 1.0d) abs < 1.0d-6])
+	(lam2 = 0 or: [(lam1 / lam2 - 1.0) abs < 1.0e-6])
+		ifTrue: [(lam3 = 0 or: [(lam2 / lam3 - 1.0) abs < 1.0e-6])
 				ifTrue: 
 					["All are equal."
-					average := lam1 + lam2 + lam3 / 3.0d.
+					average := lam1 + lam2 + lam3 / 3.0.
 					lam1 := average.
 					lam2 := average.
 					lam3 := average]
 				ifFalse: 
 					["lam1 = lam2"
-					average := lam1 + lam2 / 2.0d.
+					average := lam1 + lam2 / 2.0.
 					lam1 := average.
 					lam2 := average]]
-		ifFalse: [(lam2 / lam3 - 1.0d) abs < 1.0d-6
+		ifFalse: [(lam2 / lam3 - 1.0) abs < 1.0e-6
 				ifTrue: 
 					["lam2 = lam3"
-					average := lam2 + lam3 / 2.0d.
+					average := lam2 + lam3 / 2.0.
 					lam2 := average.
 					lam3 := average]].
-	aJp := DiagonalMatrix
+	aJp := StMDiagonalMatrix
 				with: lam1
 				with: lam2
 				with: lam3
@@ -249,7 +249,7 @@ MbDMomentOfInertiaSolver >> dummy [
 	lam1 := aJP at: 1 and: 1.
 	lam2 := aJP at: 2 and: 2.
 	lam3 := aJP at: 3 and: 3.
-	aJp := DiagonalMatrix new: 3.
+	aJp := StMDiagonalMatrix new: 3.
 	aJp at: 1 put: lam1.
 	aJp at: 2 put: lam2.
 	aJp at: 3 put: lam3
@@ -261,8 +261,8 @@ MbDMomentOfInertiaSolver >> eigenvectorFor: lam [
 
 	| eigenvector row1 row2 row3 norm1 e3 e2 e1 dum |
 	aJPcopy := aJP copy.
-	colOrder := FullColumn new: 3.
-	eigenvector := FullColumn new: 3.
+	colOrder := StMFullColumn new: 3.
+	eigenvector := StMFullColumn new: 3.
 	1 to: 3 do: [:i | 
 			colOrder at: i put: i.
 			aJPcopy at: i and: i minusNumber: lam].
@@ -273,18 +273,18 @@ MbDMomentOfInertiaSolver >> eigenvectorFor: lam [
 	row2 := aJPcopy at: 2.
 	row3 := aJPcopy at: 3.
 	norm1 := row1 length.
-	row3 length / norm1 > 1.0d-6 ifTrue: [self error: '3rd row should be very small.'].
-	row2 length / norm1 > 1.0d-6
+	row3 length / norm1 > 1.0e-6 ifTrue: [self error: '3rd row should be very small.'].
+	row2 length / norm1 > 1.0e-6
 		ifTrue: 
-			[e3 := 1.0d.
+			[e3 := 1.0.
 			e2 := e3 * (row2 at: 3) negated / (row2 at: 2).
 			e1 := (e2 * (row1 at: 2) + (e3 * (row1 at: 3))) negated / (row1 at: 1)]
 		ifFalse: 
 			["Repeated roots."
-			e3 := 1.0d.
-			e2 := 0.0d.
+			e3 := 1.0.
+			e2 := 0.0.
 			e1 := (e2 * (row1 at: 2) + (e3 * (row1 at: 3))) negated / (row1 at: 1)].
-	dum := FullColumn with: e1 with: e2 with: e3.
+	dum := StMFullColumn with: e1 with: e2 with: e3.
 	1 to: 3 do: [:i | eigenvector at: (colOrder at: i) put: (dum at: i)].
 	^eigenvector
 ]
@@ -346,7 +346,7 @@ MbDMomentOfInertiaSolver >> momentsFrom: array [
 	Ixy := x1mx2 * (5.0d * d * x1expy22 + (2.0d * (a * x12expy22 + (b * x1expy23)))) / (120.0d * c).
 	Ixz := 0.0d - (x1mx2 * (10.0d * d2 * x1expy2 + (3.0d * a2 * x13expy2) + (2.0d * a * b * x12expy22) + (b2 * x1expy23) + (5.0d * d * (2.0d * a * n2dexpy2 + (b * x1expy22))))) / (120.0d * c2).
 	Iyz := 0.0d - (x1mx2 * (10.0d * d2 * y12expy22 + 3.0d * b2 * y14expy24 + (a2 * x12expy22) + (2.0d * a * b * x1expy23) + (5.0d * d * (2.0d * b * y13expy23 + (a * x1expy22))))) / (120.0d * c2).
-	answer := FullColumn new: 10.
+	answer := StMFullColumn new: 10.
 	answer at: 1 put: I1.
 	answer at: 2 put: Ix.
 	answer at: 3 put: Iy.

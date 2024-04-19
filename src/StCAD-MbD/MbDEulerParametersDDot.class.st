@@ -1,6 +1,6 @@
 Class {
 	#name : #MbDEulerParametersDDot,
-	#superclass : #EulerParametersDDot,
+	#superclass : #StEulerParametersDDot,
 	#type : #variable,
 	#category : #'StCAD-MbD-MbDBasic'
 }
@@ -98,9 +98,9 @@ MbDEulerParametersDDot >> calcAddotBddotCddot [
 	aE2ddot := self at: 2.
 	aE3ddot := self at: 3.
 	aE4ddot := self at: 4.
-	mE1ddot := 0.0d - aE1ddot.
-	mE2ddot := 0.0d - aE2ddot.
-	mE3ddot := 0.0d - aE3ddot.
+	mE1ddot := 0.0 - aE1ddot.
+	mE2ddot := 0.0 - aE2ddot.
+	mE3ddot := 0.0 - aE3ddot.
 	(aBddot at: 1)
 		at: 1 put: aE4ddot;
 		at: 2 put: mE3ddot;
@@ -132,7 +132,7 @@ MbDEulerParametersDDot >> calcAddotBddotCddot [
 		at: 3 put: aE4ddot;
 		at: 4 put: mE3ddot.
 	aAddot := (self aBdot timesTransposeFullMatrix: self aCdot) 
-				+ (self aB timesTransposeFullMatrix: aCddot) times: 2.0d
+				+ (self aB timesTransposeFullMatrix: aCddot) times: 2.0
 ]
 
 { #category : #accessing }
@@ -143,9 +143,9 @@ MbDEulerParametersDDot >> fromqEdot: aqEdot qEddot: qEddot [
 
 { #category : #'initialize-release' }
 MbDEulerParametersDDot >> initialize [
-	aAddot := FullMatrix new: 3 by: 3.
-	aBddot := FullMatrix new: 3 by: 4.
-	aCddot := FullMatrix new: 3 by: 4
+	aAddot := StMFullMatrix new: 3 by: 3.
+	aBddot := StMFullMatrix new: 3 by: 4.
+	aCddot := StMFullMatrix new: 3 by: 4
 ]
 
 { #category : #accessing }

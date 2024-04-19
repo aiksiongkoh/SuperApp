@@ -54,7 +54,7 @@ MbDDistIeqcsJeqc >> calcLocalSeparationDistance [
 				[:ex | 
 				"Solution not found."
 
-				sepDist := 0.0d.
+				sepDist := 0.0.
 				ex return]
 ]
 
@@ -71,7 +71,7 @@ MbDDistIeqcsJeqc >> calcPostLocalSepDistIteration [
 MbDDistIeqcsJeqc >> calcPrivate [
 	| mprIeJeOpsI mpprIeJeOpEIpsI mpprIeJeOpsIpsI pprIeJepXIipsI prIeJepXIi mprIeJeOipsI element pprIeJepEIipsI prIeJepEIi mpprIeJeOpEIipsI mprIeJeOpEIiT pprIeJepsIipsI prIeJepsIi mpprIeJeOpsIipsI mprIeJeOpsIiT pprIeJepXJipsI prIeJepXJi pprIeJepEJipsI prIeJepEJi prIeJeOpEJiT |
 	super calcPrivate.
-	rIeJe = 0.0d ifTrue: [^self].
+	rIeJe = 0.0 ifTrue: [^self].
 	mprIeJeOpsI := frmI prOeOps.
 	mprIeJeOpsIT := mprIeJeOpsI transpose.
 	mpprIeJeOpEIpsI := frmI pprOeOpEps.
@@ -124,7 +124,7 @@ MbDDistIeqcsJeqc >> calcPrivate [
 			1 to: sSizeI
 				do: 
 					[:j | 
-					element := 0.0d - (prIeJeOpEJiT dot: (mprIeJeOpsIT at: j)) - (prIeJepEJi * (prIeJepsI at: j)).
+					element := 0.0 - (prIeJeOpEJiT dot: (mprIeJeOpsIT at: j)) - (prIeJepEJi * (prIeJepsI at: j)).
 					pprIeJepEJipsI at: j put: element / rIeJe]].
 	1 to: sSizeI
 		do: 
@@ -175,20 +175,20 @@ MbDDistIeqcsJeqc >> initialize [
 MbDDistIeqcsJeqc >> initializeGlobally [
 	| sSize |
 	sSize := sSizeI.
-	s := FullColumn new: sSize.
-	prIeJeps := FullColumn new: sSize.
-	pprIeJepsps := FullMatrix new: sSize by: sSize
+	s := StMFullColumn new: sSize.
+	prIeJeps := StMFullColumn new: sSize.
+	pprIeJepsps := StMFullMatrix new: sSize by: sSize
 ]
 
 { #category : #'initialize-release' }
 MbDDistIeqcsJeqc >> initializeLocally [
 	sSizeI := frmI sSize.
-	prIeJepsI := FullRow new: sSizeI.
-	pprIeJepXIpsI := FullMatrix new: 3 by: sSizeI.
-	pprIeJepEIpsI := FullMatrix new: 4 by: sSizeI.
-	pprIeJepXJpsI := FullMatrix new: 3 by: sSizeI.
-	pprIeJepEJpsI := FullMatrix new: 4 by: sSizeI.
-	pprIeJepsIpsI := FullMatrix new: sSizeI by: sSizeI
+	prIeJepsI := StMFullRow new: sSizeI.
+	pprIeJepXIpsI := StMFullMatrix new: 3 by: sSizeI.
+	pprIeJepEIpsI := StMFullMatrix new: 4 by: sSizeI.
+	pprIeJepXJpsI := StMFullMatrix new: 3 by: sSizeI.
+	pprIeJepEJpsI := StMFullMatrix new: 4 by: sSizeI.
+	pprIeJepsIpsI := StMFullMatrix new: sSizeI by: sSizeI
 ]
 
 { #category : #calc }

@@ -43,7 +43,7 @@ MbDScrewConstraintIqcJqc >> addToJointTorqueJ: col [
 	rJpJeJp := frmJ rpep.
 	pAOJppEJ := frmJ pAOppE.
 	aBOJp := frmJ aBOp.
-	fpAOJppEJrJpJeJp := (FullColumn zero: 4).
+	fpAOJppEJrJpJeJp := (StMFullColumn zero: 4).
 	1 to: 4 do:  [:i | 
 			dum := cForceT timesFullColumn: ((pAOJppEJ at: i) timesFullColumn: rJpJeJp).
 			fpAOJppEJrJpJeJp at: i put: dum].
@@ -171,11 +171,11 @@ MbDScrewConstraintIqcJqc >> fillpFpydot: mat [
 { #category : #'initialize-release' }
 MbDScrewConstraintIqcJqc >> initialize [
 	super initialize.
-	pGpXJ := FullRow new: 3.
-	pGpEJ := FullRow new: 4.
-	ppGpEIpXJ := FullMatrix new: 4 by: 3.
-	ppGpEIpEJ := FullMatrix new: 4 by: 4.
-	ppGpEJpEJ := FullMatrix new: 4 by: 4
+	pGpXJ := StMFullRow new: 3.
+	pGpEJ := StMFullRow new: 4.
+	ppGpEIpXJ := StMFullMatrix new: 4 by: 3.
+	ppGpEIpEJ := StMFullMatrix new: 4 by: 4.
+	ppGpEJpEJ := StMFullMatrix new: 4 by: 4
 ]
 
 { #category : #'initialize-release' }

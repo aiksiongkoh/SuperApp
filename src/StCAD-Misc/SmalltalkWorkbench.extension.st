@@ -1,7 +1,7 @@
 Extension { #name : #SmalltalkWorkbench }
 
 { #category : #'*StCAD-Misc-StCAD-DEV' }
-SmalltalkWorkbench classSide >> cMethodOfCADSM [
+SmalltalkWorkbench class >> cMethodOfCADSM [
 	"SmalltalkWorkbench cMethodOfStCAD."
 
 	| cMethod |
@@ -11,14 +11,14 @@ SmalltalkWorkbench classSide >> cMethodOfCADSM [
 ]
 
 { #category : #'*StCAD-Misc-StCAD-DEV' }
-SmalltalkWorkbench classSide >> cPackageModelOfCADSM [
+SmalltalkWorkbench class >> cPackageModelOfCADSM [
 	"SmalltalkWorkbench cPackageModelOfStCAD."
 
 	^PackageModel allInstances select: [:a | '*CADSM*' match: a name]
 ]
 
 { #category : #'*StCAD-Misc-StCAD-DEV' }
-SmalltalkWorkbench classSide >> cProtocolOfCADSM [
+SmalltalkWorkbench class >> cProtocolOfCADSM [
 	"SmalltalkWorkbench cProtocolOfStCAD."
 
 	| cProtocol |
@@ -28,7 +28,7 @@ SmalltalkWorkbench classSide >> cProtocolOfCADSM [
 ]
 
 { #category : #'*StCAD-Misc-StCAD-DEV' }
-SmalltalkWorkbench classSide >> exampleChangeProtocol [
+SmalltalkWorkbench class >> exampleChangeProtocol [
 
 	"SmalltalkWorkbench exampleChangeProtocol."
 
@@ -41,7 +41,7 @@ SmalltalkWorkbench classSide >> exampleChangeProtocol [
 ]
 
 { #category : #'*StCAD-Misc-StCAD-DEV' }
-SmalltalkWorkbench classSide >> exampleMisc [
+SmalltalkWorkbench class >> exampleMisc [
 	"self exampleMisc."
 
 	SmalltalkWorkbench promptThenBrowseMethodsInProtocolFrom: nil
@@ -49,7 +49,7 @@ SmalltalkWorkbench classSide >> exampleMisc [
 ]
 
 { #category : #'*StCAD-Misc-StCAD-DEV' }
-SmalltalkWorkbench classSide >> renameEveryProtocol: old to: new [
+SmalltalkWorkbench class >> renameEveryProtocol: old to: new [
 	"SmalltalkWorkbench renameEveryProtocol: 'CAD' to: 'CADSM-UI'"
 
 	| filter mc cMethodWithProtocol cImplementingClass |
@@ -65,7 +65,7 @@ SmalltalkWorkbench classSide >> renameEveryProtocol: old to: new [
 ]
 
 { #category : #'*StCAD-Misc-StCAD-DEV' }
-SmalltalkWorkbench classSide >> renameEveryProtocol: old to: new in: classString [
+SmalltalkWorkbench class >> renameEveryProtocol: old to: new in: classString [
 	"SmalltalkWorkbench renameEveryProtocol: 'As yet unclassified' to: 'accessing' in: 'StCAD.NMT.*'"
 
 	| filter mc cMethodWithProtocol cImplementingClass result |
@@ -92,7 +92,7 @@ SmalltalkWorkbench classSide >> renameEveryProtocol: old to: new in: classString
 ]
 
 { #category : #'*StCAD-Misc-StCAD-DEV' }
-SmalltalkWorkbench classSide >> renameProtocol: old to: new in: class [
+SmalltalkWorkbench class >> renameProtocol: old to: new in: class [
 
 	"SmalltalkWorkbench renameProtocol: 'CAD' to: 'CADSM-UI' in: Core.Collection."
 

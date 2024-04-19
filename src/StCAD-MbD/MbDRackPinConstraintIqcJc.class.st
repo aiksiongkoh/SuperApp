@@ -42,7 +42,7 @@ MbDRackPinConstraintIqcJc >> addToJointTorqueI: jointTorque [
 	rIpIeIp := frmI rpep.
 	pAOIppEI := frmI pAOppE.
 	aBOIp := frmI aBOp.
-	fpAOIppEIrIpIeIp := (FullColumn zero: 4).
+	fpAOIppEIrIpIeIp := (StMFullColumn zero: 4).
 	1 to: 4 do:  [:i | 
 			dum := cForceT timesFullColumn: ((pAOIppEI at: i) timesFullColumn: rIpIeIp).
 			fpAOIppEIrIpIeIp at: i put: dum].
@@ -159,10 +159,10 @@ MbDRackPinConstraintIqcJc >> fillpFpydot: mat [
 { #category : #'initialize-release' }
 MbDRackPinConstraintIqcJc >> initialize [
 	super initialize.
-	pGpXI := FullRow new: 3.
-	pGpEI := FullRow new: 4.
-	ppGpXIpEI := FullMatrix new: 3 by: 4.
-	ppGpEIpEI := FullMatrix new: 4 by: 4
+	pGpXI := StMFullRow new: 3.
+	pGpEI := StMFullRow new: 4.
+	ppGpXIpEI := StMFullMatrix new: 3 by: 4.
+	ppGpEIpEI := StMFullMatrix new: 4 by: 4
 ]
 
 { #category : #'initialize-release' }

@@ -42,7 +42,7 @@ BasicCurveOnSurface >> aSurface: anObject [
 
 { #category : #'As yet unclassified' }
 BasicCurveOnSurface >> asJunOpenGL3dObject [
-	^(self aJun3dPolylineu: (0.0d to: 1.0d nStep: 100)) asJunOpenGL3dObject
+	^(self aJun3dPolylineu: (0.0 to: 1.0 nStep: 100)) asJunOpenGL3dObject
 ]
 
 { #category : #'As yet unclassified' }
@@ -51,7 +51,7 @@ BasicCurveOnSurface >> csguess [
 	n := 2.
 	aSurface csguess do: [:acs | n := n max: acs size - 1].
 	uvCurve csguess do: [:acs | n := n max: acs size - 1].
-	^Array with: (0.0d to: 1.0d nStep: n)
+	^Array with: (0.0 to: 1.0 nStep: n)
 ]
 
 { #category : #'As yet unclassified' }
@@ -68,7 +68,7 @@ BasicCurveOnSurface >> pprfpfpupu_u: t [
 	uv := uvCurve rfpf_u: t.
 	prfpfps := aSurface prFpFps_s: uv.
 	pprfpfpsps := aSurface pprFpFpsps_s: uv.
-	pprpsps_pspt := FullMatrix new: 2 by: 1.
+	pprpsps_pspt := StMFullMatrix new: 2 by: 1.
 	1 to: 2
 		do: 
 			[:i | 
@@ -80,12 +80,12 @@ BasicCurveOnSurface >> pprfpfpupu_u: t [
 				at: i
 				and: 1
 				put: ai1].
-	psptT_pprpsps_pspt := FullMatrix new: 1 by: 1.
+	psptT_pprpsps_pspt := StMFullMatrix new: 1 by: 1.
 	psptT_pprpsps_pspt := (pprpsps_pspt at: 1 and: 1) 
 				times: (pspt at: 1)
 				plusFullColumn: (pprpsps_pspt at: 2 and: 1)
 				times: (pspt at: 2).
-	prps_ppsptpt := FullMatrix new: 1 by: 1.
+	prps_ppsptpt := StMFullMatrix new: 1 by: 1.
 	prps_ppsptpt := prfpfps timesFullColumn: ppsptpt.
 	^psptT_pprpsps_pspt plusFullColumn: prps_ppsptpt
 ]

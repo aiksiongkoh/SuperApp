@@ -32,7 +32,7 @@ MbDVelRadIeqcJeqc class >> withFrmI: afrmI frmJ: afrmJ [
 MbDVelRadIeqcJeqc >> calcPostDynCorrectorIteration [
 	| prIeJeOpEJT pvIeJeOpEJT prIeJepXJ prIeJepEJ uIeJeOT prIeJeOpEJ |
 	super calcPostDynCorrectorIteration.
-	rIeJe = 0.0d ifTrue: [^self].
+	rIeJe = 0.0 ifTrue: [^self].
 	prIeJeOpEJ := frmJ prOeOpE.
 	prIeJeOpEJT := prIeJeOpEJ transpose.
 	pvIeJeOpEJT := frmJ pvOeOpE transpose.
@@ -52,10 +52,10 @@ MbDVelRadIeqcJeqc >> calcPostDynCorrectorIteration [
 { #category : #'initialize-release' }
 MbDVelRadIeqcJeqc >> initialize [
 	super initialize.
-	pvIeJepXJ := FullRow new: 3.
-	pvIeJepEJ := FullRow new: 4.
-	pvIeJepXdotJ := FullRow new: 3.
-	pvIeJepEdotJ := FullRow new: 4
+	pvIeJepXJ := StMFullRow new: 3.
+	pvIeJepEJ := StMFullRow new: 4.
+	pvIeJepXdotJ := StMFullRow new: 3.
+	pvIeJepEdotJ := StMFullRow new: 4
 ]
 
 { #category : #accessing }

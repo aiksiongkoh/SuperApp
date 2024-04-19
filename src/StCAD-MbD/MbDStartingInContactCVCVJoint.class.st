@@ -37,7 +37,7 @@ MbDStartingInContactCVCVJoint >> contactForceDerivative: n at: tout [
 
 { #category : #accIC }
 MbDStartingInContactCVCVJoint >> discontinuityAtICAddTo1: collection [ 
-	contactForce < 0.0d ifTrue: [collection add: #LIFTOFF]
+	contactForce < 0.0 ifTrue: [collection add: #LIFTOFF]
 ]
 
 { #category : #accIC }

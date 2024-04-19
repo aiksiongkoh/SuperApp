@@ -54,18 +54,18 @@ GEOInertiaMatrixSolver class >> example1 [
 	"GEOInertiaMatrixSolver example1."
 	| aJpp rpPp axis aApP solver aJPP |
 	self halt.
-	aJpp := FullMatrix
-				newWithElements: #(#(1.0d 0.0d 0.0d) #(0.0d 2.0d 0.0d) #(0.0d 0.0d 3.0d)).
-	rpPp := FullColumn newWithElements: #(0.0d 0.0d 1.0d).
-	axis := FullColumn newWithElements: #(0.0d 0.0d 1.0d).
+	aJpp := StMFullMatrix
+				newWithElements: #(#(1.0 0.0 0.0) #(0.0 2.0 0.0) #(0.0 0.0 3.0)).
+	rpPp := StMFullColumn newWithElements: #(0.0 0.0 1.0).
+	axis := StMFullColumn newWithElements: #(0.0 0.0 1.0).
 	aApP := (GEOEulerParameters withAxis: axis normalizeSelf
-				theta: 10.0d degreesToRadians) aA.
+				theta: 10.0 degreesToRadians) aA.
 	solver := self new.
-	solver m: 4.0d.
+	solver m: 4.0.
 	solver aJPP: aJpp.
 	solver rPoP: rpPp.
 	solver aAPo: aApP.
-	solver rPcmP: (FullColumn newWithElements: #(0.0d 0.0d 0.0d)).
+	solver rPcmP: (StMFullColumn newWithElements: #(0.0 0.0 0.0)).
 	solver calc.
 	aJPP := solver aJoo.
 	Transcript
@@ -80,7 +80,7 @@ GEOInertiaMatrixSolver class >> example1 [
 	Transcript
 		cr;
 		cr.
-	solver m: 4.0d.
+	solver m: 4.0.
 	solver aJPP: aJPP.
 	solver rPoP: (aApP transpose timesFullColumn: rpPp negated).
 	solver aAPo: aApP transpose.
@@ -105,11 +105,11 @@ GEOInertiaMatrixSolver class >> example2 [
 	"GEOInertiaMatrixSolver example2."
 	| aJpp axis aAPp aJPP solver |
 	self halt.
-	aJpp := FullMatrix
-				newWithElements: #(#(1.0d 0.0d 0.0d) #(0.0d 1.0d 0.0d) #(0.0d 0.0d 3.0d)).
-	axis := FullColumn newWithElements: #(0.0d 1.0d 1.0d).
+	aJpp := StMFullMatrix
+				newWithElements: #(#(1.0 0.0 0.0) #(0.0 1.0 0.0) #(0.0 0.0 3.0)).
+	axis := StMFullColumn newWithElements: #(0.0 1.0 1.0).
 	aAPp := (GEOEulerParameters withAxis: axis normalizeSelf
-				theta: 10.0d degreesToRadians) aA.
+				theta: 10.0 degreesToRadians) aA.
 	aJPP := aAPp timesFullMatrix: (aJpp timesTransposeFullMatrix: aAPp).
 	Transcript
 		cr;
@@ -124,9 +124,9 @@ GEOInertiaMatrixSolver class >> example2 [
 		cr;
 		cr.
 	solver := self new.
-	solver m: 4.0d.
+	solver m: 4.0.
 	solver aJPP: aJPP.
-	solver rPcmP: (FullColumn newWithElements: #(0.0d 0.0d 0.0d)).
+	solver rPcmP: (StMFullColumn newWithElements: #(0.0 0.0 0.0)).
 	solver calc.
 	Transcript
 		cr;
@@ -147,11 +147,11 @@ GEOInertiaMatrixSolver class >> example3 [
 	"GEOInertiaMatrixSolver example3."
 	| aJpp axis aAPp aJPP solver |
 	self halt.
-	aJpp := FullMatrix
-				newWithElements: #(#(1.0d 0.0d 0.0d) #(0.0d 2.0d 0.0d) #(0.0d 0.0d 3.0d)).
-	axis := FullColumn newWithElements: #(1.0d 1.0d 1.0d).
+	aJpp := StMFullMatrix
+				newWithElements: #(#(1.0 0.0 0.0) #(0.0 2.0 0.0) #(0.0 0.0 3.0)).
+	axis := StMFullColumn newWithElements: #(1.0 1.0 1.0).
 	aAPp := (GEOEulerParameters withAxis: axis normalizeSelf
-				theta: 10.0d degreesToRadians) aA.
+				theta: 10.0 degreesToRadians) aA.
 	aJPP := aAPp timesFullMatrix: (aJpp timesTransposeFullMatrix: aAPp).
 	Transcript
 		cr;
@@ -166,9 +166,9 @@ GEOInertiaMatrixSolver class >> example3 [
 		cr;
 		cr.
 	solver := self new.
-	solver m: 4.0d.
+	solver m: 4.0.
 	solver aJPP: aJPP.
-	solver rPcmP: (FullColumn newWithElements: #(0.0d 0.0d 0.0d)).
+	solver rPcmP: (StMFullColumn newWithElements: #(0.0 0.0 0.0)).
 	solver calc.
 	Transcript
 		cr;
@@ -189,15 +189,15 @@ GEOInertiaMatrixSolver class >> example4 [
 	"GEOInertiaMatrixSolver example4."
 
 	| m rPcmP aJPP11 aJPP22 aJPP33 aJPP12 aJPP13 aJPP23 aJPP solver |
-	m := 2713.531d.
-	rPcmP := FullColumn newWithElements: #(0.0d 0.0d 0.0d).
-	aJPP11 := 1389797.0d.
-	aJPP22 := 1490705.0d.
-	aJPP33 := 619300.5d.
-	aJPP12 := -4.260535d negated.
-	aJPP13 := 13373.71d negated.
-	aJPP23 := -1702.788d negated.
-	aJPP := FullMatrix new: 3 by: 3.
+	m := 2713.531.
+	rPcmP := StMFullColumn newWithElements: #(0.0 0.0 0.0).
+	aJPP11 := 1389797.0.
+	aJPP22 := 1490705.0.
+	aJPP33 := 619300.5.
+	aJPP12 := -4.260535 negated.
+	aJPP13 := 13373.71 negated.
+	aJPP23 := -1702.788 negated.
+	aJPP := StMFullMatrix new: 3 by: 3.
 	aJPP at: 1 and: 1 put: aJPP11.
 	aJPP at: 2 and: 2 put: aJPP22.
 	aJPP at: 3 and: 3 put: aJPP33.
@@ -221,10 +221,10 @@ GEOInertiaMatrixSolver class >> example5 [
 	"GEOInertiaMatrixSolver example5."
 
 	| m rPcmP aJPP solver |
-	m := 457.05379d.
-	rPcmP := FullColumn newWithElements: #(0.0d 0.0d 0.0d).
-	aJPP := FullMatrix 
-				newWithElements: #(#(1128329.43969d 16882.44555d -158980.98945d) #(16882.44555d 734228.30079d 29890.07784d) #(-158980.98945d 29890.07784d 1077924.0558d)).
+	m := 457.05379.
+	rPcmP := StMFullColumn newWithElements: #(0.0 0.0 0.0).
+	aJPP := StMFullMatrix 
+				newWithElements: #(#(1128329.43969 16882.44555 -158980.98945) #(16882.44555 734228.30079 29890.07784) #(-158980.98945 29890.07784 1077924.0558)).
 	solver := self new.
 	solver m: m.
 	solver aJPP: aJPP.
@@ -249,10 +249,10 @@ GEOInertiaMatrixSolver class >> example6 [
 	"
 
 	| m rPcmP aJPP solver |
-	m := 2.0d.
-	rPcmP := FullColumn newWithElements: #(0.0d 0.0d 0.0d).
-	aJPP := FullMatrix 
-				newWithElements: #(#(2.0d -4.0d 0.0d) #(-4.0d 8.0d 0.0d) #(0.0d 0.0d 10.0d)).
+	m := 2.0.
+	rPcmP := StMFullColumn newWithElements: #(0.0 0.0 0.0).
+	aJPP := StMFullMatrix 
+				newWithElements: #(#(2.0 -4.0 0.0) #(-4.0 8.0 0.0) #(0.0 0.0 10.0)).
 	solver := self new.
 	solver m: m.
 	solver aJPP: aJPP.
@@ -319,16 +319,16 @@ GEOInertiaMatrixSolver >> calcAPp [
 	lam3 := aJpp at: 3.
 	lam1 = lam2
 		ifTrue: [lam2 = lam3
-				ifTrue: [^aAPp := (FullMatrix identity: 3)]
+				ifTrue: [^aAPp := (StMFullMatrix identity: 3)]
 				ifFalse: 
 					[eigenvector2 := self eigenvectorFor: lam2.
 					eigenvector3 := self eigenvectorFor: lam3.
 					eigenvector2 normalizeSelf.
 					eigenvector3 normalizeSelf.
 					(eigenvector2 at: 2)
-						< 0.0d ifTrue: [eigenvector2 negateSelf].
+						< 0.0 ifTrue: [eigenvector2 negateSelf].
 					(eigenvector3 at: 3)
-						< 0.0d ifTrue: [eigenvector3 negateSelf].
+						< 0.0 ifTrue: [eigenvector3 negateSelf].
 					eigenvector1 := eigenvector2 cross: eigenvector3]]
 		ifFalse: 
 			[eigenvector1 := self eigenvectorFor: lam1.
@@ -336,11 +336,11 @@ GEOInertiaMatrixSolver >> calcAPp [
 			eigenvector1 normalizeSelf.
 			eigenvector2 normalizeSelf.
 			(eigenvector1 at: 1)
-				< 0.0d ifTrue: [eigenvector1 negateSelf].
+				< 0.0 ifTrue: [eigenvector1 negateSelf].
 			(eigenvector2 at: 2)
-				< 0.0d ifTrue: [eigenvector2 negateSelf].
+				< 0.0 ifTrue: [eigenvector2 negateSelf].
 			eigenvector3 := eigenvector1 cross: eigenvector2].
-	aAPp := FullMatrix new: 3 by: 3.
+	aAPp := StMFullMatrix new: 3 by: 3.
 	aAPp
 		at: 1
 		and: 1
@@ -364,7 +364,7 @@ GEOInertiaMatrixSolver >> calcJoo [
 	rPoP isNil
 		ifTrue: 
 			[rPoP := rPcmP.
-			aAPo := (FullMatrix identity: 3)].
+			aAPo := (StMFullMatrix identity: 3)].
 	rocmPtilde := (rPcmP - rPoP) tildeMatrix.
 	rPoPtilde := rPoP tildeMatrix.
 	term1 := aJPP.
@@ -424,7 +424,7 @@ GEOInertiaMatrixSolver >> calcJppFromDiagJcmP [
 					average := lam2 + lam3 / 2.0d.
 					lam2 := average.
 					lam3 := average]].
-	aJpp := DiagonalMatrix
+	aJpp := StMDiagonalMatrix
 				with: lam1
 				with: lam2
 				with: lam3
@@ -434,7 +434,7 @@ GEOInertiaMatrixSolver >> calcJppFromDiagJcmP [
 GEOInertiaMatrixSolver >> calcJppFromFullJcmP [
 	"Eigenvalues are orders from smallest to largest."
 	"Rounding error can be significant."
-	"e.g. (diag 100.0d 100.0d 1.0d) gives only 8 digit accuracy."
+	"e.g. (diag 100.0 100.0 1.0) gives only 8 digit accuracy."
 
 	| a11 a12 a13 a22 a23 a33 a b c aDiv3 p q phiDiv3 twoSqrtMinusp piDiv3 sortedJ lam1 lam2 lam3 average |
 	a11 := aJcmP at: 1 and: 1.
@@ -445,13 +445,13 @@ GEOInertiaMatrixSolver >> calcJppFromFullJcmP [
 	a33 := aJcmP at: 3 and: 3.
 	a := (a11 + a22 + a33) negated.
 	b := a11 * a22 + (a11 * a33) + (a22 * a33) - (a12 * a12) - (a13 * a13) - (a23 * a23).
-	c := a11 * a23 * a23 + (a22 * a13 * a13) + (a33 * a12 * a12) - (a11 * a22 * a33) - (2.0d * a12 * a13 * a23).
-	aDiv3 := a / 3.0d.
-	p := b / 3.0d - (aDiv3 * aDiv3).
-	q := c + (2.0d * aDiv3 * aDiv3 * aDiv3) - (aDiv3 * b) / 2.0d.
-	phiDiv3 := (q negated / (p * p * p) negated sqrt) modifiedArcCos / 3.0d.
-	twoSqrtMinusp := 2.0d * p negated sqrt.
-	piDiv3 := Double pi / 3.0d.
+	c := a11 * a23 * a23 + (a22 * a13 * a13) + (a33 * a12 * a12) - (a11 * a22 * a33) - (2.0 * a12 * a13 * a23).
+	aDiv3 := a / 3.0.
+	p := b / 3.0 - (aDiv3 * aDiv3).
+	q := c + (2.0 * aDiv3 * aDiv3 * aDiv3) - (aDiv3 * b) / 2.0.
+	phiDiv3 := (q negated / (p * p * p) negated sqrt) modifiedArcCos / 3.0.
+	twoSqrtMinusp := 2.0 * p negated sqrt.
+	piDiv3 := Double pi / 3.0.
 	sortedJ := SortedCollection new.
 	sortedJ add: twoSqrtMinusp * phiDiv3 cos.
 	sortedJ add: twoSqrtMinusp * (phiDiv3 + piDiv3) cos negated.
@@ -462,26 +462,26 @@ GEOInertiaMatrixSolver >> calcJppFromFullJcmP [
 				- aDiv3.
 	lam3 := (sortedJ at: 3)
 				- aDiv3.
-	(lam2 = 0 or: [(lam1 / lam2 - 1.0d) abs < 1.0d-6])
-		ifTrue: [(lam3 = 0 or: [(lam2 / lam3 - 1.0d) abs < 1.0d-6])
+	(lam2 = 0 or: [(lam1 / lam2 - 1.0) abs < 1.0e-6])
+		ifTrue: [(lam3 = 0 or: [(lam2 / lam3 - 1.0) abs < 1.0e-6])
 				ifTrue: 
 					["All are equal."
-					average := lam1 + lam2 + lam3 / 3.0d.
+					average := lam1 + lam2 + lam3 / 3.0.
 					lam1 := average.
 					lam2 := average.
 					lam3 := average]
 				ifFalse: 
 					["lam1 = lam2"
-					average := lam1 + lam2 / 2.0d.
+					average := lam1 + lam2 / 2.0.
 					lam1 := average.
 					lam2 := average]]
-		ifFalse: [(lam2 / lam3 - 1.0d) abs < 1.0d-6
+		ifFalse: [(lam2 / lam3 - 1.0) abs < 1.0e-6
 				ifTrue: 
 					["lam2 = lam3"
-					average := lam2 + lam3 / 2.0d.
+					average := lam2 + lam3 / 2.0.
 					lam2 := average.
 					lam3 := average]].
-	aJpp := DiagonalMatrix
+	aJpp := StMDiagonalMatrix
 				with: lam1
 				with: lam2
 				with: lam3
@@ -523,8 +523,8 @@ GEOInertiaMatrixSolver >> eigenvectorFor: lam [
 
 	| eigenvector row1 row2 row3 norm1 e3 e2 e1 dum |
 	aJcmPcopy := aJcmP copy.
-	colOrder := FullColumn new: 3.
-	eigenvector := FullColumn new: 3.
+	colOrder := StMFullColumn new: 3.
+	eigenvector := StMFullColumn new: 3.
 	1 to: 3
 		do: 
 			[:i | 
@@ -542,18 +542,18 @@ GEOInertiaMatrixSolver >> eigenvectorFor: lam [
 	row2 := aJcmPcopy at: 2.
 	row3 := aJcmPcopy at: 3.
 	norm1 := row1 length.
-	row3 length / norm1 > 1.0d-5 ifTrue: [self error: '3rd row should be very small.'].
-	row2 length / norm1 > 1.0d-5
+	row3 length / norm1 > 1.0e-5 ifTrue: [self error: '3rd row should be very small.'].
+	row2 length / norm1 > 1.0e-5
 		ifTrue: 
-			[e3 := 1.0d.
+			[e3 := 1.0.
 			e2 := e3 * (row2 at: 3) negated / (row2 at: 2).
 			e1 := (e2 * (row1 at: 2) + (e3 * (row1 at: 3))) negated / (row1 at: 1)]
 		ifFalse: 
 			["Repeated roots."
-			e3 := 1.0d.
-			e2 := 0.0d.
+			e3 := 1.0.
+			e2 := 0.0.
 			e1 := (e2 * (row1 at: 2) + (e3 * (row1 at: 3))) negated / (row1 at: 1)].
-	dum := FullColumn
+	dum := StMFullColumn
 				with: e1
 				with: e2
 				with: e3.
@@ -626,7 +626,7 @@ GEOInertiaMatrixSolver >> momentsFrom: array [
 	Ixy := x1mx2 * (5.0d * d * x1expy22 + (2.0d * (a * x12expy22 + (b * x1expy23)))) / (120.0d * c).
 	Ixz := 0.0d - (x1mx2 * (10.0d * d2 * x1expy2 + (3.0d * a2 * x13expy2) + (2.0d * a * b * x12expy22) + (b2 * x1expy23) + (5.0d * d * (2.0d * a * n2dexpy2 + (b * x1expy22))))) / (120.0d * c2).
 	Iyz := 0.0d - (x1mx2 * (10.0d * d2 * y12expy22 + (3.0d * b2 * y14expy24) + (a2 * x12expy22) + (2.0d * a * b * x1expy23) + (5.0d * d * (2.0d * b * y13expy23 + (a * x1expy22))))) / (120.0d * c2).
-	answer := FullColumn new: 10.
+	answer := StMFullColumn new: 10.
 	answer at: 1 put: I1.
 	answer at: 2 put: Ix.
 	answer at: 3 put: Iy.
@@ -643,7 +643,7 @@ GEOInertiaMatrixSolver >> momentsFrom: array [
 { #category : #calc }
 GEOInertiaMatrixSolver >> momentsOfVolume: solid [ 
 	| momentsOfVolume answer |
-	momentsOfVolume := (FullColumn zero: 10).
+	momentsOfVolume := (StMFullColumn zero: 10).
 	solid faces do: [:face | momentsOfVolume equalSelfPlus: (self momentsOfVolumeUnderFace: face)].
 	answer := GEOMomentsOfVolume newWithMoments: momentsOfVolume.
 	^answer
@@ -668,7 +668,7 @@ GEOInertiaMatrixSolver >> momentsOfVolumeUnderFace: face [
 	"The right hand rule gives negative volumes for the integrals, hence the negation."
 
 	| answer startPoint nvertex rPpointsP a b c d endPoint x1 y1 x2 y2 a2 a3 b2 b3 c2 c3 d2 d3 x12 x13 x22 x23 y12 y13 y14 y22 y23 y24 x1mx2 y1y2 x1expy22 y13expy23 n2dexpy2 a2x1expy2 y12expy22 x12expy22 x13expy2 x1expy23 y14expy24 x1expy2 dataArray y1py2 abcd |
-	answer := (FullColumn zero: 10).
+	answer := (StMFullColumn zero: 10).
 	nvertex := face nvertex.
 	rPpointsP := face rPpointsP.
 	abcd := face eqnOfPlaneInPart.

@@ -40,14 +40,14 @@ MbDVelCompIeqcJecO >> calcPostDynCorrectorIteration [
 { #category : #'initialize-release' }
 MbDVelCompIeqcJecO >> initialize [
 	super initialize.
-	pvIeJeOipEI := FullRow new: 4.
-	pvIeJeOipXdotI := FullRow new: 3.
-	pvIeJeOipEdotI := FullRow new: 4
+	pvIeJeOipEI := StMFullRow new: 4.
+	pvIeJeOipXdotI := StMFullRow new: 3.
+	pvIeJeOipEdotI := StMFullRow new: 4
 ]
 
 { #category : #'initialize-release' }
 MbDVelCompIeqcJecO >> initializeLocally [
-	pvIeJeOipXdotI := (FullRow zero: 3).
+	pvIeJeOipXdotI := (StMFullRow zero: 3).
 	pvIeJeOipXdotI at: axis put: -1.0d
 ]
 

@@ -296,6 +296,6 @@ GEOPart >> uncut [
 { #category : #DYN }
 GEOPart >> zeroVelocities [
 	| zero |
-	zero := (FullColumn zero: 3).
+	zero := (StMFullColumn zero: 3).
 	refFrame quietlyvOfO: zero omeOfO: zero
 ]

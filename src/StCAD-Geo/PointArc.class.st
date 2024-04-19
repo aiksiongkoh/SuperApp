@@ -89,5 +89,5 @@ PointArc >> calc [
 	aClosestPoint := aCenter + (CoordinateFrame 
 						xyz_r: aRadius
 						theta: bAngle
-						z: 0.0d)
+						z: 0.0)
 ]

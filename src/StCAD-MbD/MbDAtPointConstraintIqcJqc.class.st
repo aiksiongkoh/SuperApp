@@ -39,12 +39,12 @@ MbDAtPointConstraintIqcJqc >> addToJointForceJ: col [
 { #category : #accessing }
 MbDAtPointConstraintIqcJqc >> addToJointTorqueJ: col [ 
 	| cForceT rJpJeJp pAOJppEJ aBOJp fpAOJppEJrJpJeJp dum lampGpE c2Torque |
-	cForceT := (FullRow zero: 3).
+	cForceT := (StMFullRow zero: 3).
 	cForceT at: axis put: lam.
 	rJpJeJp := frmJ rpep.
 	pAOJppEJ := frmJ pAOppE.
 	aBOJp := frmJ aBOp.
-	fpAOJppEJrJpJeJp := (FullColumn zero: 4).
+	fpAOJppEJrJpJeJp := (StMFullColumn zero: 4).
 	1 to: 4 do: [:i | 
 			dum := cForceT timesFullColumn: ((pAOJppEJ at: i) timesFullColumn: rJpJeJp).
 			fpAOJppEJrJpJeJp at: i put: dum].

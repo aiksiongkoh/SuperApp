@@ -65,8 +65,8 @@ GEOWorldFrame2 >> cut [
 { #category : #accessing }
 GEOWorldFrame2 >> fixedAtRef [
 	super fixedAtRef.
-	rOfO := (FullColumn zero: 3).
-	aAOf := (FullMatrix identity: 3)
+	rOfO := (StMFullColumn zero: 3).
+	aAOf := (StMFullMatrix identity: 3)
 ]
 
 { #category : #testing }

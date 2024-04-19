@@ -45,7 +45,7 @@ TorqueBasicComp >> fillDynError: col aFTOi: aFTOi [
 { #category : #dynamic }
 TorqueBasicComp >> fillpFpy: mat aFTOi: aFTOi [ 
 	| aFTO |
-	aFTO := (FullColumn zero: 3).
+	aFTO := (StMFullColumn zero: 3).
 	aFTO at: parent axis put: aFTOi.
 	mat
 		at: iqE

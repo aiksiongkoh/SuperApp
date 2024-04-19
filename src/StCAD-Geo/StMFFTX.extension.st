@@ -1,12 +1,12 @@
-Extension { #name : #FourierTransform }
+Extension { #name : #StMFFTX }
 
 { #category : #'*StCAD-Geo-accessing' }
-FourierTransform >> transformSeriesPosFreqOnly [
+StMFFTX >> transformSeriesPosFreqOnly [
 	| n fmin answer data nOver2 |
 	n := xs size.
 	nOver2 := n / 2.
 	fmin := 1.0d / (n * delta).
-	answer := MathArray new: nOver2 - 1.
+	answer := StMArray new: nOver2 - 1.
 	1 to: nOver2 - 1
 		do: 
 			[:i |

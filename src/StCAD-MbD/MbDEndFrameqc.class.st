@@ -72,10 +72,10 @@ MbDEndFrameqc >> followEndFrame: aEndFrame [
 
 { #category : #'initialize-release' }
 MbDEndFrameqc >> initialize [
-	prOeOpE := FullMatrix new: 3 by: 4.
-	pprOeOpEpE := FullMatrix new: 4 by: 4.
-	pAOepE := FullColumn new: 4.
-	ppAOepEpE := FullMatrix new: 4 by: 4
+	prOeOpE := StMFullMatrix new: 3 by: 4.
+	pprOeOpEpE := StMFullMatrix new: 4 by: 4.
+	pAOepE := StMFullColumn new: 4.
+	ppAOepEpE := StMFullMatrix new: 4 by: 4
 ]
 
 { #category : #'initialize-release' }
@@ -136,7 +136,7 @@ MbDEndFrameqc >> pAdotjOepET: axis [
 { #category : #accessing }
 MbDEndFrameqc >> pAeOpE [
 	| pAeOpE |
-	pAeOpE := FullColumn new: 4.
+	pAeOpE := StMFullColumn new: 4.
 	1 to: 4 do: [:i | pAeOpE at: i put: (pAOepE at: i) transpose].
 	^pAeOpE
 ]
@@ -144,7 +144,7 @@ MbDEndFrameqc >> pAeOpE [
 { #category : #accessing }
 MbDEndFrameqc >> pAjOepE: jj [ 
 	| answer answeri pAOepEj answerij |
-	answer := FullMatrix new: 3 by: 4.
+	answer := StMFullMatrix new: 3 by: 4.
 	1 to: 3 do: [:i | 
 			answeri := answer at: i.
 			1 to: 4 do: [:j | 
@@ -157,7 +157,7 @@ MbDEndFrameqc >> pAjOepE: jj [
 { #category : #accessing }
 MbDEndFrameqc >> pAjOepET: jj [ 
 	| answer answeri pAOepEi answerij |
-	answer := FullMatrix new: 4 by: 3.
+	answer := StMFullMatrix new: 4 by: 3.
 	1 to: 4 do: [:i | 
 			answeri := answer at: i.
 			pAOepEi := pAOepE at: i.
@@ -190,7 +190,7 @@ MbDEndFrameqc >> ppAOepEpE [
 { #category : #accessing }
 MbDEndFrameqc >> ppAjOepEpE: jj [ 
 	| answer answeri ppAOepEipE |
-	answer := FullMatrix new: 4 by: 4.
+	answer := StMFullMatrix new: 4 by: 4.
 	1 to: 4 do: [:i | 
 			answeri := answer at: i.
 			ppAOepEipE := ppAOepEpE at: i.
@@ -206,7 +206,7 @@ MbDEndFrameqc >> pprOeOpEpE [
 { #category : #accessing }
 MbDEndFrameqc >> ppriOeOpEpE: ii [ 
 	| answer answeri pprOeOpEipE |
-	answer := FullMatrix new: 4 by: 4.
+	answer := StMFullMatrix new: 4 by: 4.
 	1 to: 4 do: [:i | 
 			answeri := answer at: i.
 			pprOeOpEipE := pprOeOpEpE at: i.

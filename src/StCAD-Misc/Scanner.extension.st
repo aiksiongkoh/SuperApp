@@ -1,7 +1,7 @@
 Extension { #name : #Scanner }
 
 { #category : #'*StCAD-Misc-StCAD-DEV' }
-Scanner classSide >> example1 [
+Scanner class >> example1 [
 	"Scanner example1"
 
 	| aScanner |

@@ -1,6 +1,6 @@
 Class {
 	#name : #CADFunction,
-	#superclass : #ExpressionX,
+	#superclass : #StMExpressionX,
 	#instVars : [
 		'container'
 	],

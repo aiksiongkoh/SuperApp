@@ -275,15 +275,15 @@ MbDOrbitAnglezIeqcJeqc >> calc_pthezpXJ [
 { #category : #'initialize-release' }
 MbDOrbitAnglezIeqcJeqc >> initialize [
 	super initialize.
-	pthezpXJ := FullRow new: 3.
-	pthezpEJ := FullRow new: 4.
-	ppthezpXIpXJ := FullMatrix new: 3 by: 3.
-	ppthezpXIpEJ := FullMatrix new: 3 by: 4.
-	ppthezpEIpXJ := FullMatrix new: 4 by: 3.
-	ppthezpEIpEJ := FullMatrix new: 4 by: 4.
-	ppthezpXJpXJ := FullMatrix new: 3 by: 3.
-	ppthezpXJpEJ := FullMatrix new: 3 by: 4.
-	ppthezpEJpEJ := FullMatrix new: 4 by: 4
+	pthezpXJ := StMFullRow new: 3.
+	pthezpEJ := StMFullRow new: 4.
+	ppthezpXIpXJ := StMFullMatrix new: 3 by: 3.
+	ppthezpXIpEJ := StMFullMatrix new: 3 by: 4.
+	ppthezpEIpXJ := StMFullMatrix new: 4 by: 3.
+	ppthezpEIpEJ := StMFullMatrix new: 4 by: 4.
+	ppthezpXJpXJ := StMFullMatrix new: 3 by: 3.
+	ppthezpXJpEJ := StMFullMatrix new: 3 by: 4.
+	ppthezpEJpEJ := StMFullMatrix new: 4 by: 4
 ]
 
 { #category : #accessing }

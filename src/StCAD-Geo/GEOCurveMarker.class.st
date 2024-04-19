@@ -34,13 +34,13 @@ GEOCurveMarker >> aAeqnfat: col [
 	prmemps := rFfFCurve rfpfEqn pvalueps: col.
 	tem1 := prmemps column: 1.
 	te1 := tem1 length.
-	iem := tem1 times: 1.0d / te1.
+	iem := tem1 times: 1.0 / te1.
 	iem1 := iem at: 1.
 	iem2 := iem at: 2.
-	aAme := FullMatrix new: 3 by: 3.
-	(aAme at: 1) at: 1 put: iem1; at: 2 put: 0.0d; at: 3 put: iem2.
-	(aAme at: 2) at: 1 put: iem2; at: 2 put: 0.0d; at: 3 put: iem1 negated.
-	(aAme at: 3) at: 1 put: 0.0d; at: 2 put: 1.0d; at: 3 put: 0.0d.
+	aAme := StMFullMatrix new: 3 by: 3.
+	(aAme at: 1) at: 1 put: iem1; at: 2 put: 0.0; at: 3 put: iem2.
+	(aAme at: 2) at: 1 put: iem2; at: 2 put: 0.0; at: 3 put: iem1 negated.
+	(aAme at: 3) at: 1 put: 0.0; at: 2 put: 1.0; at: 3 put: 0.0.
 	^aAme
 ]
 
@@ -77,8 +77,8 @@ GEOCurveMarker >> createMbD [
 	eFrm isOn: mkr.
 	eFrm rmemBlk: rFfFCurve rfpfEqn / self mbdUnits length.
 	eFrm sSize: 1.
-	eFrm s: (FullColumn with: 0.0d).
-	eFrm sdot: (FullColumn with: 0.0d).
+	eFrm s: (StMFullColumn with: 0.0).
+	eFrm sdot: (StMFullColumn with: 0.0).
 	eFrm submitToSystem.
 	self mbdObject: eFrm
 ]
@@ -100,8 +100,8 @@ GEOCurveMarker >> dataFromCurrentState [
 	| answer |
 	answer := GEOSSdotSddotData new.
 	answer s: (Array with: s).
-	answer sdot: (Array with: 0.0d).
-	answer sddot: (Array with: 0.0d).
+	answer sdot: (Array with: 0.0).
+	answer sddot: (Array with: 0.0).
 	^answer
 ]
 
@@ -131,7 +131,7 @@ GEOCurveMarker >> dataFromCurrentStatePOV [
 	omeOPO := partData omeOfO.
 	aOPO := partData aOfO.
 	alpOPO := partData alpOfO.
-	scol := FullColumn with: s.
+	scol := StMFullColumn with: s.
 	reqnfeqn := self rFfFat: scol.
 	aAeqnf := self aAeqnfat: scol.
 	rPfP := rPeqnP + (aAPeqn timesFullColumn: reqnfeqn).
@@ -200,7 +200,7 @@ GEOCurveMarker >> dataSeriesForChart [
 					rPfO := aAOP timesFullColumn: rPfP.
 					markerData rFfF: reqnfeqn.
 					markerData aAFf: aAeqnf.
-					zero := (FullColumn zero: 3).
+					zero := (StMFullColumn zero: 3).
 					markerData vFfF: zero.
 					markerData omeFfF: zero.
 					markerData aFfF: zero.
@@ -227,8 +227,8 @@ GEOCurveMarker >> face: face [
 				from: -1.0d
 				to: 1.0d
 				by: 2.0d / (rFpointsF size - 1).
-	rFfFCurve rfpfEqn: (GeneralSpline
-			with: IndependentVariable new
+	rFfFCurve rfpfEqn: (StMGeneralSplineX
+			with: StMIndependentVariable new
 			order: 5
 			xs: sSeries
 			ys: rFpointsF).
@@ -292,12 +292,12 @@ GEOCurveMarker >> s: double [
 	rFfFEqn := rFfFCurve rfpfEqn.
 	rFfF := rFfFEqn y: s.
 	aAFf1 := (rFfFEqn dydx: s) normalizeSelf.
-	aAFf2 := FullColumn
+	aAFf2 := StMFullColumn
 				with: 0.0d
 				with: 0.0d
 				with: 1.0d.
 	aAFf3 := aAFf1 cross: aAFf2.
-	aAFf := FullMatrix new: 3 by: 3.
+	aAFf := StMFullMatrix new: 3 by: 3.
 	aAFf
 		at: 1
 		and: 1

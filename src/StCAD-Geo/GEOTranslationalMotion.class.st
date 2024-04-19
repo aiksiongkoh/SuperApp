@@ -29,7 +29,7 @@ GEOTranslationalMotion >> createMbD [
 	| zFunc parser stack func mbdZTranslation |
 	super createMbD.
 	zFunc := zIJ isNil
-				ifTrue: [Constant with: 0]
+				ifTrue: [StMConstant with: 0]
 				ifFalse: [zIJ isUserFunction
 						ifTrue: 
 							[parser := self functionParser.
@@ -86,7 +86,7 @@ GEOTranslationalMotion >> validateFormulas [
 GEOTranslationalMotion >> zFunc [
 	| parser stack func |
 	^zIJ isNil
-		ifTrue: [Constant with: 0]
+		ifTrue: [StMConstant with: 0]
 		ifFalse: [zIJ isUserFunction
 				ifTrue: 
 					[parser := self functionParser.

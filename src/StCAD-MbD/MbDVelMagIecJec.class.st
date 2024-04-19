@@ -34,7 +34,7 @@ MbDVelMagIecJec >> calcPostDynCorrectorIteration [
 	vIeJeO := frmJ vOeO - frmI vOeO.
 	vIeJe := vIeJeO length.
 	uvIeJeO := vIeJe = 0
-				ifTrue: [(FullColumn zero: 3)]
+				ifTrue: [(StMFullColumn zero: 3)]
 				ifFalse: [vIeJeO times: 1.0d / vIeJe]
 ]
 

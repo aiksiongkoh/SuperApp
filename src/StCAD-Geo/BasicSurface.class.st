@@ -17,7 +17,7 @@ BasicSurface class >> visualWorksMetadata [
 { #category : #accessing }
 BasicSurface >> pprfpfpsps_s: s [ 
 	| answer u v pprfpfpupu pprfpfpupv pprfpfpvpv |
-	answer := FullMatrix new: 2 by: 2.
+	answer := StMFullMatrix new: 2 by: 2.
 	u := s at: 1.
 	v := s at: 2.
 	pprfpfpupu := self pprfpfpupu_u: u v: v.

@@ -81,9 +81,9 @@ MbDAnglezIeqcJeqc >> initDirectionCosines [
 { #category : #'initialize-release' }
 MbDAnglezIeqcJeqc >> initialize [
 	super initialize.
-	pthezpEJ := FullRow new: 4.
-	ppthezpEIpEJ := FullMatrix new: 4 by: 4.
-	ppthezpEJpEJ := FullMatrix new: 4 by: 4
+	pthezpEJ := StMFullRow new: 4.
+	ppthezpEIpEJ := StMFullMatrix new: 4 by: 4.
+	ppthezpEJpEJ := StMFullMatrix new: 4 by: 4
 ]
 
 { #category : #accessing }

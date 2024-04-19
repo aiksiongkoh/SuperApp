@@ -32,21 +32,21 @@ GEOSpringDamperTorque class >> binaryReaderBlockForVersion: oldVersion format: o
 			k := oldObj at: oldObj size - 1.
 			c := oldObj at: oldObj size.
 			angleIJz0 := angleIJz0 isNil
-						ifTrue: [0.0d]
+						ifTrue: [0.0]
 						ifFalse: [angleIJz0 / units angle].
 			tor0 := tor0 isNil
-						ifTrue: [0.0d]
+						ifTrue: [0.0]
 						ifFalse: [tor0 / units torque].
 			k := k isNil
-						ifTrue: [0.0d]
+						ifTrue: [0.0]
 						ifFalse: [k / units torque * units angle].
 			c := c isNil
-						ifTrue: [0.0d]
+						ifTrue: [0.0]
 						ifFalse: [c / units torque * units omega].
-			angleIJz0 := Constant with: angleIJz0.
-			tor0 := Constant with: tor0.
-			k := Constant with: k.
-			c := Constant with: c.
+			angleIJz0 := StMConstant with: angleIJz0.
+			tor0 := StMConstant with: tor0.
+			k := StMConstant with: k.
+			c := StMConstant with: c.
 			oldObj become: new.
 			oldObj changeClassToThatOf: inst.
 			angleIJz := GEOAngleIJz with: oldObj.
@@ -54,7 +54,7 @@ GEOSpringDamperTorque class >> binaryReaderBlockForVersion: oldVersion format: o
 						with: oldObj
 						with: #I
 						with: 3.
-			tor := Sum
+			tor := StMSum
 						with: tor0
 						plus: k * (angleIJz - angleIJz0)
 						plus: c * omeIJz.
@@ -72,8 +72,8 @@ GEOSpringDamperTorque class >> binaryReaderBlockForVersion: oldVersion format: o
 								with: 'self'.
 					stop := start + 3].
 			oldObj markerK: #I.
-			oldObj aFIeKe: (FullColumn new: 3).
-			oldObj aTIeKe: (FullColumn
+			oldObj aFIeKe: (StMFullColumn new: 3).
+			oldObj aTIeKe: (StMFullColumn
 					with: nil
 					with: nil
 					with: (BasicUserFunction

@@ -48,8 +48,8 @@ MbDDirectionCosineIeqcJec >> calcPostDynCorrectorIteration [
 { #category : #'initialize-release' }
 MbDDirectionCosineIeqcJec >> initialize [
 	super initialize.
-	pAijIeJepEI := FullRow new: 4.
-	ppAijIeJepEIpEI := FullMatrix new: 4 by: 4
+	pAijIeJepEI := StMFullRow new: 4.
+	ppAijIeJepEIpEI := StMFullMatrix new: 4 by: 4
 ]
 
 { #category : #'initialize-release' }

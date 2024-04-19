@@ -28,8 +28,8 @@ Class {
 MbDPart class >> initializeX [
 	"MbDPart initialize."
 
-	Identity3by3 := DiagonalMatrix new: 3 withAll: 1.0d.
-	Identity4by4 := DiagonalMatrix new: 4 withAll: 1.0d
+	Identity3by3 := StMDiagonalMatrix new: 3 withAll: 1.0d.
+	Identity4by4 := StMDiagonalMatrix new: 4 withAll: 1.0d
 ]
 
 { #category : #'VisualWorks metadata' }
@@ -348,8 +348,8 @@ MbDPart >> fillqsuWeights: col [
 	aJiMax := TheMbDSystem maximumMomentOfInertia.
 	minw := 1000.0d.
 	maxw := 1.0d6.
-	wqX := DiagonalMatrix new: 3.
-	wqE := DiagonalMatrix new: 4.
+	wqX := StMDiagonalMatrix new: 3.
+	wqE := StMDiagonalMatrix new: 4.
 	mMax = 0 ifTrue: [mMax := 1.0d].
 	1 to: 3 do: [:i | wqX at: i put: maxw * m / mMax + minw].
 	aJiMax = 0 ifTrue: [aJiMax := 1.0d].
@@ -369,8 +369,8 @@ MbDPart >> fillqsuWeightsBig: col [
 	| minw maxw wqX wqE |
 	minw := 1000.0d.
 	maxw := 1.0d6.
-	wqX := DiagonalMatrix new: 3.
-	wqE := DiagonalMatrix new: 4.
+	wqX := StMDiagonalMatrix new: 3.
+	wqE := StMDiagonalMatrix new: 4.
 	1 to: 3 do: [:i | wqX at: i put: maxw].
 	1 to: 3 do: [:i | wqE at: i put: maxw].
 	wqE at: 4 put: minw.
@@ -383,8 +383,8 @@ MbDPart >> fillqsuWeightsBig: col [
 MbDPart >> fillqsuWeightsSmall: col [ 
 	| minw wqX wqE |
 	minw := 1000.0d.
-	wqX := DiagonalMatrix new: 3.
-	wqE := DiagonalMatrix new: 4.
+	wqX := StMDiagonalMatrix new: 3.
+	wqE := StMDiagonalMatrix new: 4.
 	1 to: 3 do: [:i | wqX at: i put: minw].
 	1 to: 4 do: [:i | wqE at: i put: minw].
 	col at: partFrame iqX putDiagonalMatrix: wqX.
@@ -426,8 +426,8 @@ MbDPart >> fillqsudotWeights: col [
 	maxInertia = 0 ifTrue: [maxInertia := 1.0d].
 	minw := 1.0d-12 * maxInertia.
 	maxw := maxInertia.
-	wqXdot := DiagonalMatrix new: 3.
-	wqEdot := DiagonalMatrix new: 4.
+	wqXdot := StMDiagonalMatrix new: 3.
+	wqEdot := StMDiagonalMatrix new: 4.
 	1 to: 3
 		do: 
 			[:i | 
@@ -459,9 +459,9 @@ MbDPart >> iGeu: count [
 MbDPart >> initialize [
 	partFrame := MbDPartFrame new.
 	partFrame part: self.
-	pTpE := FullColumn new: 4.
-	ppTpEpE := FullMatrix new: 4 by: 4.
-	ppTpEpEdot := FullMatrix new: 4 by: 4
+	pTpE := StMFullColumn new: 4.
+	ppTpEpE := StMFullMatrix new: 4 by: 4.
+	ppTpEpEdot := StMFullMatrix new: 4 by: 4
 ]
 
 { #category : #'initialize-release' }
@@ -473,8 +473,8 @@ MbDPart >> initializeGlobally [
 MbDPart >> initializeLocally [
 	partFrame initializeLocally.
 	mX := m > 0
-				ifTrue: [DiagonalMatrix new: 3 withAll: m]
-				ifFalse: [DiagonalMatrix new: 3 withAll: 0.0d]
+				ifTrue: [StMDiagonalMatrix new: 3 withAll: m]
+				ifFalse: [StMDiagonalMatrix new: 3 withAll: 0.0d]
 ]
 
 { #category : #accessing }

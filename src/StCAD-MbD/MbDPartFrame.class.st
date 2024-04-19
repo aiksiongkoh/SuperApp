@@ -538,8 +538,8 @@ MbDPartFrame >> postDynStep [
 
 { #category : #'input-output' }
 MbDPartFrame >> postInput [
-	qXddot := (FullColumn zero: 3).
-	qEddot := (FullColumn zero: 4).
+	qXddot := (StMFullColumn zero: 3).
+	qEddot := (StMFullColumn zero: 4).
 	super postInput.
 	markerFrames do: [:mkr | mkr postInput].
 	aGeu postInput.
@@ -580,8 +580,8 @@ MbDPartFrame >> postVelIC [
 
 { #category : #accIC }
 MbDPartFrame >> preAccIC [
-	qXddot := (FullColumn zero: 3).
-	qEddot := (FullColumn zero: 4).
+	qXddot := (StMFullColumn zero: 3).
+	qEddot := (StMFullColumn zero: 4).
 	super preAccIC.
 	markerFrames do: [:mkr | mkr preAccIC].
 	aGeu preAccIC.

@@ -68,8 +68,8 @@ GEOForceTorqueItem >> dataClass [
 GEOForceTorqueItem >> dataFromCurrentState [
 	| answer |
 	answer := GEOForceTorqueData new.
-	answer aFIO: (FullColumn zero: 3).
-	answer aTIO: (FullColumn zero: 3).
+	answer aFIO: (StMFullColumn zero: 3).
+	answer aTIO: (StMFullColumn zero: 3).
 	^answer
 ]
 

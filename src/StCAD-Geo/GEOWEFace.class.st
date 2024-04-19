@@ -74,7 +74,7 @@ GEOWEFace >> eqnOfPlaneInPart [
 	abc := partRefFrameAOfT timesFullColumn: (planeRefFrame aAOf column: 3).
 	rPtPlPt := partRefFrameAOfT timesFullColumn: planeRefFrame rOfO - partRefFrame rOfO.
 	d := (abc dot: rPtPlPt) negated.
-	answer := FullColumn new: 4.
+	answer := StMFullColumn new: 4.
 	answer at: 1 putFullColumn: abc.
 	answer at: 4 put: d.
 	^answer

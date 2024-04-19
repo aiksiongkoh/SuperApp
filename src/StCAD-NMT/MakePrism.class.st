@@ -80,20 +80,20 @@ MakePrism >> addSideFaceGeometry1 [
 						rFfF: rSkoriginSk
 						xPoint: rSkxPointSk
 						yPoint: rSkyPointSk.
-					origin := FullColumn zero: 3.
-					corner := FullColumn 
+					origin := StMFullColumn zero: 3.
+					corner := StMFullColumn 
 								with: (rSkxPointSk - rSkoriginSk) length
 								with: zEnd - zStart
-								with: 0.0d.
+								with: 0.0.
 					aRectSurface aBoundingBox: (BoundingBox origin: origin corner: corner).
 					outsideNewSideFaceUse addPositiveSurface: aRectSurface.
 					"Code below applies to face with single loop only."
 					"Multiple loop face is not yet inplemented."
 					uvOFt := Line new.
 					aSketchRefFrame addSub: uvOFt aRefFrame.
-					uvOFt rfstartf: (FullColumn zero: 2).
+					uvOFt rfstartf: (StMFullColumn zero: 2).
 					uvOFt 
-						rfendf: (FullColumn with: (rSkxPointSk - rSkoriginSk) length with: 0.0d).
+						rfendf: (StMFullColumn with: (rSkxPointSk - rSkoriginSk) length with: 0.0).
 					uvOFt calc.
 					uvOFt privateCalcBoundingBox.
 					firstEdgeUse addPositiveCurve: uvOFt]
@@ -133,11 +133,11 @@ MakePrism >> addSideRectSurfaceWithEdgeUse: aEdgeUse [
 		rFfF: rSkoriginSk
 		xPoint: rSkxPointSk
 		yPoint: rSkyPointSk.
-	origin := FullColumn zero: 3.
-	corner := FullColumn 
+	origin := StMFullColumn zero: 3.
+	corner := StMFullColumn 
 				with: (rSkxPointSk - rSkoriginSk) length
 				with: zEnd - zStart
-				with: 0.0d.
+				with: 0.0.
 	aRectSurface aBoundingBox: (BoundingBox origin: origin corner: corner).
 	aEdgeUse aFaceUse addPositiveSurface: aRectSurface
 ]
@@ -150,13 +150,13 @@ MakePrism >> addSweepWithEdgeUse: aEdgeUse [
 	aSketch addSurface: aSweep.
 	aSweep _aCurve: aEdgeUse aCurve copy.
 	trajectory := (Line new)
-				rfstartf: (FullColumn 
-							with: 0.0d
-							with: 0.0d
+				rfstartf: (StMFullColumn 
+							with: 0.0
+							with: 0.0
 							with: zStart);
-				rfendf: (FullColumn 
-							with: 0.0d
-							with: 0.0d
+				rfendf: (StMFullColumn 
+							with: 0.0
+							with: 0.0
 							with: zEnd);
 				calc;
 				privateCalcBoundingBox;

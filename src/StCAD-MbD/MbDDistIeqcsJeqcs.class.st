@@ -48,7 +48,7 @@ MbDDistIeqcsJeqcs >> calcLocalSeparationDistance1 [
 		do: 
 			[:ex | 
 			"Solution not found."
-			sepDist := 0.0d.
+			sepDist := 0.0.
 			ex return]
 ]
 
@@ -61,12 +61,12 @@ MbDDistIeqcsJeqcs >> calcLocalSeparationDistance2 [
 	newtonRaphson run.
 	sepDist := rIeJeO dot: frmI keO.
 	sepDist2 := (rIeJeO sumOfSquares - (rIeJeO dot: frmI jeO) squared) sqrt.
-	((sepDist / sepDist2) abs - 1.0d) abs > 0.01 ifTrue: [self halt]]
+	((sepDist / sepDist2) abs - 1.0) abs > 0.01 ifTrue: [self halt]]
 		on: MaximumIterationError
 		do: 
 			[:ex | 
 			"Solution not found."
-			sepDist := 0.0d.
+			sepDist := 0.0.
 			ex return]
 ]
 
@@ -74,7 +74,7 @@ MbDDistIeqcsJeqcs >> calcLocalSeparationDistance2 [
 MbDDistIeqcsJeqcs >> calcPrivate [
 	| prIeJeOpsJ prIeJeOpsJT pprIeJeOpEJpsJ pprIeJeOpsJpsJ pprIeJepXIipsJ prIeJepXIi prIeJeOipsJ element pprIeJepEIipsJ prIeJepEIi mprIeJeOpEIiT pprIeJepsIipsJ prIeJepsIi mprIeJeOpsIiT pprIeJepXJipsJ prIeJepXJi pprIeJepEJipsJ prIeJepEJi pprIeJeOpEJipsJ prIeJeOpEJiT pprIeJepsJipsJ prIeJepsJi pprIeJeOpsJipsJ prIeJeOpsJiT |
 	super calcPrivate.
-	rIeJe = 0.0d ifTrue: [^self].
+	rIeJe = 0.0 ifTrue: [^self].
 	prIeJeOpsJ := frmJ prOeOps.
 	prIeJeOpsJT := prIeJeOpsJ transpose.
 	pprIeJeOpEJpsJ := frmJ pprOeOpEps.
@@ -89,7 +89,7 @@ MbDDistIeqcsJeqcs >> calcPrivate [
 			1 to: sSizeJ
 				do: 
 					[:j | 
-					element := 0.0d - (prIeJeOipsJ at: j) - (prIeJepXIi * (prIeJepsJ at: j)).
+					element := 0.0 - (prIeJeOipsJ at: j) - (prIeJepXIi * (prIeJepsJ at: j)).
 					pprIeJepXIipsJ at: j put: element / rIeJe]].
 	1 to: 4
 		do: 
@@ -100,7 +100,7 @@ MbDDistIeqcsJeqcs >> calcPrivate [
 			1 to: sSizeJ
 				do: 
 					[:j | 
-					element := 0.0d - (mprIeJeOpEIiT dot: (prIeJeOpsJT at: j)) - (prIeJepEIi * (prIeJepsJ at: j)).
+					element := 0.0 - (mprIeJeOpEIiT dot: (prIeJeOpsJT at: j)) - (prIeJepEIi * (prIeJepsJ at: j)).
 					pprIeJepEIipsJ at: j put: element / rIeJe]].
 	1 to: sSizeI
 		do: 
@@ -111,7 +111,7 @@ MbDDistIeqcsJeqcs >> calcPrivate [
 			1 to: sSizeJ
 				do: 
 					[:j | 
-					element := 0.0d - (mprIeJeOpsIiT dot: (prIeJeOpsJT at: j)) - (prIeJepsIi * (prIeJepsJ at: j)).
+					element := 0.0 - (mprIeJeOpsIiT dot: (prIeJeOpsJT at: j)) - (prIeJepsIi * (prIeJepsJ at: j)).
 					pprIeJepsIipsJ at: j put: element / rIeJe]].
 	1 to: 3
 		do: 
@@ -173,7 +173,7 @@ MbDDistIeqcsJeqcs >> calcSeparationDistance [
 	indicesI := OrderedCollection new.
 	indicesJ := OrderedCollection new.
 	penetrations := OrderedCollection new.
-	minSep := 1.0d300.
+	minSep := 1.0e300.
 	onExterior := frmI onExterior.
 	1 to: rJmJeJms size
 		do: 
@@ -207,7 +207,7 @@ MbDDistIeqcsJeqcs >> calcSeparationDistance [
 				dsI: ((sIs last - sIs first) / sIs size) abs
 				dsJ: ((sJs last - sJs first) / sJs size) abs]
 		ifFalse: 
-			[maxDepth := 0.0d.
+			[maxDepth := 0.0.
 			1 to: penetrations size
 				do: 
 					[:i | 
@@ -239,7 +239,7 @@ MbDDistIeqcsJeqcs >> calcSeparationDistance1 [
 	indicesI := OrderedCollection new.
 	indicesJ := OrderedCollection new.
 	penetrations := OrderedCollection new.
-	minSep := 1.0d300.
+	minSep := 1.0e300.
 	onExterior := frmI onExterior.
 	1 to: rJmJeJms size
 		do: 
@@ -273,7 +273,7 @@ MbDDistIeqcsJeqcs >> calcSeparationDistance1 [
 				dsI: (sIs last - sIs first / sIs size) abs
 				dsJ: (sJs last - sJs first / sJs size) abs]
 		ifFalse: 
-			[maxDepth := 0.0d.
+			[maxDepth := 0.0.
 			1 to: penetrations size do: [:i | maxDepth < (penetrations at: i)
 					ifTrue: 
 						[maxDepth := penetrations at: i.
@@ -303,23 +303,23 @@ MbDDistIeqcsJeqcs >> depth: depth sI: sI sJ: sJ dsI: dsI dsJ: dsJ [
 MbDDistIeqcsJeqcs >> initializeGlobally [
 	| sSize |
 	sSize := sSizeI + sSizeJ.
-	s := FullColumn new: sSize.
-	prIeJeps := FullColumn new: sSize.
-	pprIeJepsps := FullMatrix new: sSize by: sSize
+	s := StMFullColumn new: sSize.
+	prIeJeps := StMFullColumn new: sSize.
+	pprIeJepsps := StMFullMatrix new: sSize by: sSize
 ]
 
 { #category : #'initialize-release' }
 MbDDistIeqcsJeqcs >> initializeLocally [
 	super initializeLocally.
 	sSizeJ := frmJ sSize.
-	s := FullColumn new: sSizeI + sSizeJ.
-	prIeJepsJ := FullRow new: sSizeJ.
-	pprIeJepXIpsJ := FullMatrix new: 3 by: sSizeJ.
-	pprIeJepEIpsJ := FullMatrix new: 4 by: sSizeJ.
-	pprIeJepXJpsJ := FullMatrix new: 3 by: sSizeJ.
-	pprIeJepEJpsJ := FullMatrix new: 4 by: sSizeJ.
-	pprIeJepsIpsJ := FullMatrix new: sSizeI by: sSizeJ.
-	pprIeJepsJpsJ := FullMatrix new: sSizeJ by: sSizeJ
+	s := StMFullColumn new: sSizeI + sSizeJ.
+	prIeJepsJ := StMFullRow new: sSizeJ.
+	pprIeJepXIpsJ := StMFullMatrix new: 3 by: sSizeJ.
+	pprIeJepEIpsJ := StMFullMatrix new: 4 by: sSizeJ.
+	pprIeJepXJpsJ := StMFullMatrix new: 3 by: sSizeJ.
+	pprIeJepEJpsJ := StMFullMatrix new: 4 by: sSizeJ.
+	pprIeJepsIpsJ := StMFullMatrix new: sSizeI by: sSizeJ.
+	pprIeJepsJpsJ := StMFullMatrix new: sSizeJ by: sSizeJ
 ]
 
 { #category : #calc }

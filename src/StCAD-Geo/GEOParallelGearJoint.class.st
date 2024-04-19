@@ -31,7 +31,7 @@ GEOParallelGearJoint class >> binaryReaderBlockForVersion: oldVersion format: ol
 				startingAt: 1.
 			oldObj become: new.
 			oldObj changeClassToThatOf: inst.
-			oldObj aConstant: 0.0d.
+			oldObj aConstant: 0.0.
 			oldObj]].
 	^super binaryReaderBlockForVersion: oldVersion format: oldFormat
 ]

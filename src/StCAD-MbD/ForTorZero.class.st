@@ -16,7 +16,7 @@ ForTorZero class >> visualWorksMetadata [
 
 { #category : #'input-output' }
 ForTorZero >> aFTIeO [
-	^(FullColumn zero: 3)
+	^(StMFullColumn zero: 3)
 ]
 
 { #category : #'input-output' }

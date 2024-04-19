@@ -38,7 +38,7 @@ MbDContactEndFrameqcs >> initialize [
 { #category : #'initialize-release' }
 MbDContactEndFrameqcs >> initializeLocally [
 	super initializeLocally.
-	sPresent := FullColumn new: sSize
+	sPresent := StMFullColumn new: sSize
 ]
 
 { #category : #dynamic }

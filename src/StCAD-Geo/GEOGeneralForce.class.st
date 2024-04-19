@@ -33,7 +33,7 @@ GEOGeneralForce class >> binaryReaderBlockForVersion: oldVersion format: oldForm
 			oldObj changeClassToThatOf: inst.
 			oldObj markerK: markerk.
 			oldObj aFIeKe: aFIeKe.
-			oldObj aTIeKe: (FullColumn new: 3).
+			oldObj aTIeKe: (StMFullColumn new: 3).
 			oldObj]].
 	^super binaryReaderBlockForVersion: oldVersion format: oldFormat
 ]

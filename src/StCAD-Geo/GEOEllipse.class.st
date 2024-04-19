@@ -61,14 +61,14 @@ GEOEllipse >> rfpointsf [
 	| nseg rfpointsf angle xi yi dangle |
 	nseg := 16.
 	dangle := 2 * Double pi / nseg.
-	rfpointsf := MathArray new: nseg + 1.
+	rfpointsf := StMArray new: nseg + 1.
 	1 to: nseg
 		do: 
 			[:i | 
 			angle := i - 1 * dangle.
 			xi := xRadius * angle cos.
 			yi := yRadius * angle sin.
-			rfpointsf at: i put: (FullColumn
+			rfpointsf at: i put: (StMFullColumn
 					with: xi
 					with: yi
 					with: 0.0d)].

@@ -116,35 +116,35 @@ MbDEndFrameqcs >> calcAme2D [
 	| iem1 iem2 pAmeps1 ptem1ps1 pte1ps1 piemps1 piem1ps1 piem2ps1 ppAmeps1ps1 pptem1ps1ps1 ppte1ps1ps1 ppiemps1ps1 ppiem1ps1ps1 ppiem2ps1ps1 |
 	tem1 := prmemps column: 1.
 	te1 := tem1 length.
-	iem := tem1 times: 1.0d / te1.
+	iem := tem1 times: 1.0 / te1.
 	iem1 := iem at: 1.
 	iem2 := iem at: 2.
-	kem at: 1 put: iem2; at: 2 put: iem1 negated; at: 3 put: 0.0d.
-	(aAme at: 1) at: 1 put: iem1; at: 2 put: 0.0d; at: 3 put: iem2.
-	(aAme at: 2) at: 1 put: iem2; at: 2 put: 0.0d; at: 3 put: iem1 negated.
-	(aAme at: 3) at: 1 put: 0.0d; at: 2 put: 1.0d; at: 3 put: 0.0d.
+	kem at: 1 put: iem2; at: 2 put: iem1 negated; at: 3 put: 0.0.
+	(aAme at: 1) at: 1 put: iem1; at: 2 put: 0.0; at: 3 put: iem2.
+	(aAme at: 2) at: 1 put: iem2; at: 2 put: 0.0; at: 3 put: iem1 negated.
+	(aAme at: 3) at: 1 put: 0.0; at: 2 put: 1.0; at: 3 put: 0.0.
 	pAmeps1 := pAmeps at: 1.
 	ptem1ps1 := pprmempsps at: 1 and: 1.
 	pte1ps1 := ptem1ps1 dot: iem.
-	piemps1 := ptem1ps1 - (iem times: pte1ps1) times: 1.0d / te1.
+	piemps1 := ptem1ps1 - (iem times: pte1ps1) times: 1.0 / te1.
 	piem1ps1 := piemps1 at: 1.
 	piem2ps1 := piemps1 at: 2.
-	(pAmeps1 at: 1) at: 1 put: piem1ps1; at: 2 put: 0.0d; at: 3 put: piem2ps1.
-	(pAmeps1 at: 2) at: 1 put: piem2ps1; at: 2 put: 0.0d; at: 3 put: piem1ps1 negated.
-	(pAmeps1 at: 3) at: 1 put: 0.0d; at: 2 put: 0.0d; at: 3 put: 0.0d.
+	(pAmeps1 at: 1) at: 1 put: piem1ps1; at: 2 put: 0.0; at: 3 put: piem2ps1.
+	(pAmeps1 at: 2) at: 1 put: piem2ps1; at: 2 put: 0.0; at: 3 put: piem1ps1 negated.
+	(pAmeps1 at: 3) at: 1 put: 0.0; at: 2 put: 0.0; at: 3 put: 0.0.
 	ppAmeps1ps1 := ppAmepsps at: 1 and: 1.
 	pptem1ps1ps1 := ((ppprmempspsps at: 1) at: 1) at: 1.
 	ppte1ps1ps1 := (pptem1ps1ps1 dot: tem1) + (ptem1ps1 dot: ptem1ps1) - (pte1ps1 * pte1ps1) / te1.
-	ppiemps1ps1 := pptem1ps1ps1 times: 1.0d / te1.
-	ppiemps1ps1 equalSelfPlusFullColumn: (tem1 times: 2.0d * pte1ps1 * pte1ps1 / (te1 * te1 * te1)).
+	ppiemps1ps1 := pptem1ps1ps1 times: 1.0 / te1.
+	ppiemps1ps1 equalSelfPlusFullColumn: (tem1 times: 2.0 * pte1ps1 * pte1ps1 / (te1 * te1 * te1)).
 	ppiemps1ps1 equalSelfMinusFullColumn: (ptem1ps1 times: pte1ps1 / (te1 * te1)).
 	ppiemps1ps1 equalSelfMinusFullColumn: (ptem1ps1 times: pte1ps1 / (te1 * te1)).
 	ppiemps1ps1 equalSelfMinusFullColumn: (tem1 times: ppte1ps1ps1 / (te1 * te1)).
 	ppiem1ps1ps1 := ppiemps1ps1 at: 1.
 	ppiem2ps1ps1 := ppiemps1ps1 at: 2.
-	(ppAmeps1ps1 at: 1) at: 1 put: ppiem1ps1ps1; at: 2 put: 0.0d; at: 3 put: ppiem2ps1ps1.
-	(ppAmeps1ps1 at: 2) at: 1 put: ppiem2ps1ps1; at: 2 put: 0.0d; at: 3 put: ppiem1ps1ps1 negated.
-	(ppAmeps1ps1 at: 3) at: 1 put: 0.0d; at: 2 put: 0.0d; at: 3 put: 0.0d
+	(ppAmeps1ps1 at: 1) at: 1 put: ppiem1ps1ps1; at: 2 put: 0.0; at: 3 put: ppiem2ps1ps1.
+	(ppAmeps1ps1 at: 2) at: 1 put: ppiem2ps1ps1; at: 2 put: 0.0; at: 3 put: ppiem1ps1ps1 negated.
+	(ppAmeps1ps1 at: 3) at: 1 put: 0.0; at: 2 put: 0.0; at: 3 put: 0.0
 ]
 
 { #category : #calc }
@@ -421,21 +421,21 @@ MbDEndFrameqcs >> initializeGlobally [
 MbDEndFrameqcs >> initializeLocally [
 	"jem is constant for constant cross section solid."
 
-	pprOeOpEps := FullMatrix new: 4 by: sSize.
-	pprOeOpsps := FullMatrix new: sSize by: sSize.
-	pAOeps := FullColumn new: sSize.
-	ppAOepEps := FullMatrix new: 4 by: sSize.
-	ppAOepsps := FullMatrix new: sSize by: sSize.
-	sSize == 1 ifTrue: [jem := FullColumn
+	pprOeOpEps := StMFullMatrix new: 4 by: sSize.
+	pprOeOpsps := StMFullMatrix new: sSize by: sSize.
+	pAOeps := StMFullColumn new: sSize.
+	ppAOepEps := StMFullMatrix new: 4 by: sSize.
+	ppAOepsps := StMFullMatrix new: sSize by: sSize.
+	sSize == 1 ifTrue: [jem := StMFullColumn
 					with: 0.0d
 					with: 0.0d
 					with: 1.0d].
-	kem := FullColumn new: 3.
-	aAme := FullMatrix new: 3 by: 3.
-	pAmeps := FullColumn new: sSize.
-	1 to: sSize do: [:i | pAmeps at: i put: (FullMatrix new: 3 by: 3)].
-	ppAmepsps := FullMatrix new: sSize by: sSize.
-	1 to: sSize do: [:i | 1 to: sSize do: [:j | ppAmepsps at: i and: j put: (FullMatrix new: 3 by: 3)]]
+	kem := StMFullColumn new: 3.
+	aAme := StMFullMatrix new: 3 by: 3.
+	pAmeps := StMFullColumn new: sSize.
+	1 to: sSize do: [:i | pAmeps at: i put: (StMFullMatrix new: 3 by: 3)].
+	ppAmepsps := StMFullMatrix new: sSize by: sSize.
+	1 to: sSize do: [:i | 1 to: sSize do: [:j | ppAmepsps at: i and: j put: (StMFullMatrix new: 3 by: 3)]]
 ]
 
 { #category : #accessing }
@@ -465,7 +465,7 @@ MbDEndFrameqcs >> onExterior [
 MbDEndFrameqcs >> pAdotjOeps: jj [ 
 	| aAdotOm answer pAmepsj pAdotOejjpsj |
 	aAdotOm := self partFrame aAdotOp timesFullMatrix: markerFrame aApm.
-	answer := FullMatrix new: 3 by: sSize.
+	answer := StMFullMatrix new: 3 by: sSize.
 	1 to: sSize
 		do: 
 			[:j | 
@@ -481,7 +481,7 @@ MbDEndFrameqcs >> pAdotjOeps: jj [
 { #category : #accessing }
 MbDEndFrameqcs >> pAjOeps: jj [ 
 	| answer pAOepsj col |
-	answer := FullMatrix new: 3 by: sSize.
+	answer := StMFullMatrix new: 3 by: sSize.
 	1 to: sSize
 		do: 
 			[:j | 
@@ -497,7 +497,7 @@ MbDEndFrameqcs >> pAjOeps: jj [
 { #category : #accessing }
 MbDEndFrameqcs >> pAjOepsT: jj [ 
 	| answer answeri pAOepsi answerij |
-	answer := FullMatrix new: sSize by: 3.
+	answer := StMFullMatrix new: sSize by: 3.
 	1 to: sSize do: [:i | 
 			answeri := answer at: i.
 			pAOepsi := pAOeps at: i.
@@ -510,7 +510,7 @@ MbDEndFrameqcs >> pAjOepsT: jj [
 { #category : #accessing }
 MbDEndFrameqcs >> ppAjOepEps: jj [ 
 	| answer answeri ppAOepEips |
-	answer := FullMatrix new: 4 by: sSize.
+	answer := StMFullMatrix new: 4 by: sSize.
 	1 to: 4 do: [:i | 
 			answeri := answer at: i.
 			ppAOepEips := ppAOepEps at: i.
@@ -521,7 +521,7 @@ MbDEndFrameqcs >> ppAjOepEps: jj [
 { #category : #accessing }
 MbDEndFrameqcs >> ppAjOepsps: jj [ 
 	| answer answeri ppAOepsips |
-	answer := FullMatrix new: sSize by: sSize.
+	answer := StMFullMatrix new: sSize by: sSize.
 	1 to: sSize do: [:i | 
 			answeri := answer at: i.
 			ppAOepsips := ppAOepsps at: i.
@@ -542,7 +542,7 @@ MbDEndFrameqcs >> pprOeOpsps [
 { #category : #accessing }
 MbDEndFrameqcs >> ppriOeOpEps: ii [ 
 	| answer answeri pprOeOpEips |
-	answer := FullMatrix new: 4 by: sSize.
+	answer := StMFullMatrix new: 4 by: sSize.
 	1 to: 4 do: [:i | 
 			answeri := answer at: i.
 			pprOeOpEips := pprOeOpEps at: i.
@@ -553,7 +553,7 @@ MbDEndFrameqcs >> ppriOeOpEps: ii [
 { #category : #accessing }
 MbDEndFrameqcs >> ppriOeOpsps: ii [ 
 	| answer answeri pprOeOpsips |
-	answer := FullMatrix new: sSize by: sSize.
+	answer := StMFullMatrix new: sSize by: sSize.
 	1 to: sSize do: [:i | 
 			answeri := answer at: i.
 			pprOeOpsips := pprOeOpsps at: i.
@@ -569,7 +569,7 @@ MbDEndFrameqcs >> prOeOps [
 { #category : #accIC }
 MbDEndFrameqcs >> preAccIC [
 	super preAccIC.
-	sddot := (FullColumn zero: sSize)
+	sddot := (StMFullColumn zero: sSize)
 ]
 
 { #category : #posIC }
@@ -593,7 +593,7 @@ MbDEndFrameqcs >> priOeOps: i [
 { #category : #accessing }
 MbDEndFrameqcs >> pvOeOpE [
 	| answer pAdotOppE |
-	answer := FullMatrix new: 3 by: 4.
+	answer := StMFullMatrix new: 3 by: 4.
 	pAdotOppE := self partFrame pAdotOppE.
 	1 to: 4 do: [:j | answer
 			at: 1
@@ -606,7 +606,7 @@ MbDEndFrameqcs >> pvOeOpE [
 { #category : #accessing }
 MbDEndFrameqcs >> pvOeOps [
 	| answer aAdotOm |
-	answer := FullMatrix new: 3 by: sSize.
+	answer := StMFullMatrix new: 3 by: sSize.
 	aAdotOm := self partFrame aAdotOp timesFullMatrix: markerFrame aApm.
 	1 to: sSize do: [:j | answer
 			at: 1

@@ -1,6 +1,6 @@
 Class {
 	#name : #MbDTime,
-	#superclass : #MathTime,
+	#superclass : #StMTime,
 	#category : #'StCAD-MbD-MbDBasic'
 }
 

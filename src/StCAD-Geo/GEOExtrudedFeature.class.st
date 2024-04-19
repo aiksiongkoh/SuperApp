@@ -84,7 +84,7 @@ GEOExtrudedFeature >> facesEdgesVertexs [
 					edge vertex1: (mzfaceVertexs at: (mblock value: i)).
 					edge vertex2: (zfaceVertexs at: i).
 					sideEdges add: edge.
-					points := MathArray new: 5.
+					points := StMArray new: 5.
 					points at: 1 put: (mzfaceVertexs at: (mblock value: i)) point.
 					points at: 2 put: (zfaceVertexs at: i) point.
 					points at: 3 put: (zfaceVertexs at: (block value: i - 1)) point.
@@ -251,7 +251,7 @@ GEOExtrudedFeature >> zFaceDataFrom: graphicPolyline sign: sign [
 	zFacePolyline := graphicPolyline copy.
 	zGvalueG := sign positive ifTrue: [zEnd.] ifFalse: [zStart.].
 	zFacePolyline refFrame
-		translateSelfBy: (FullColumn with: 0.0d with: 0.0d with: zGvalueG).
+		translateSelfBy: (StMFullColumn with: 0.0d with: 0.0d with: zGvalueG).
 	sign positive ifFalse: [zFacePolyline makeOppositeFacePositive.].
 	rPpointsP := zFacePolyline rPpointsP.
 	nvertex := rPpointsP size - 1.

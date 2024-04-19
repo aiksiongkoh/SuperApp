@@ -70,8 +70,8 @@ MbDKinematicIeJe class >> visualWorksMetadata [
 { #category : #calc }
 MbDKinematicIeJe >> differentiateWRT: variable [ 
 	^self == variable
-		ifTrue: [Constant with: 1]
-		ifFalse: [Constant with: 0]
+		ifTrue: [StMConstant with: 1]
+		ifFalse: [StMConstant with: 0]
 ]
 
 { #category : #accessing }

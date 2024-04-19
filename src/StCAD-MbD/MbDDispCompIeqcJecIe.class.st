@@ -60,10 +60,10 @@ MbDDispCompIeqcJecIe >> calcPostDynCorrectorIteration [
 { #category : #'initialize-release' }
 MbDDispCompIeqcJecIe >> initialize [
 	super initialize.
-	priIeJeIepXI := FullRow new: 3.
-	priIeJeIepEI := FullRow new: 4.
-	ppriIeJeIepXIpEI := FullMatrix new: 3 by: 4.
-	ppriIeJeIepEIpEI := FullMatrix new: 4 by: 4
+	priIeJeIepXI := StMFullRow new: 3.
+	priIeJeIepEI := StMFullRow new: 4.
+	ppriIeJeIepXIpEI := StMFullMatrix new: 3 by: 4.
+	ppriIeJeIepEIpEI := StMFullMatrix new: 4 by: 4
 ]
 
 { #category : #'initialize-release' }

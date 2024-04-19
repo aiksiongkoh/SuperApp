@@ -32,7 +32,7 @@ MbDJoint >> aFIeJtO [
 	"aFIeJtO is joint force on end frame Ie expresses in O components."
 
 	| aFIeJtO |
-	aFIeJtO := (FullColumn zero: 3).
+	aFIeJtO := (StMFullColumn zero: 3).
 	constraints do: [:con | con addToJointForceI: aFIeJtO].
 	^aFIeJtO
 ]
@@ -42,7 +42,7 @@ MbDJoint >> aFJeJtO [
 	"aFJeJtO is joint force on end frame Je expresses in O components."
 
 	| aFJeJtO |
-	aFJeJtO := (FullColumn zero: 3).
+	aFJeJtO := (StMFullColumn zero: 3).
 	constraints do: [:con | con addToJointForceJ: aFJeJtO].
 	^aFJeJtO
 ]
@@ -66,7 +66,7 @@ MbDJoint >> aTIeJtO [
 	"aTIeJtO is torque on part containing end frame Ie expressed in O components."
 
 	| aTIeJtO |
-	aTIeJtO := (FullColumn zero: 3).
+	aTIeJtO := (StMFullColumn zero: 3).
 	constraints do: [:con | con addToJointTorqueI: aTIeJtO].
 	^aTIeJtO
 ]
@@ -76,7 +76,7 @@ MbDJoint >> aTJeJtO [
 	"aTJeJtO is torque on part containing end frame Je expressed in O components."
 
 	| aTJeJtO |
-	aTJeJtO := (FullColumn zero: 3).
+	aTJeJtO := (StMFullColumn zero: 3).
 	constraints do: [:con | con addToJointTorqueJ: aTJeJtO].
 	^aTJeJtO
 ]
@@ -345,7 +345,7 @@ MbDJoint >> jointForceI [
 	"jointForceI is force on MbD marker I."
 
 	| jointForce |
-	jointForce := (FullColumn zero: 3).
+	jointForce := (StMFullColumn zero: 3).
 	constraints do: [:con | con addToJointForceI: jointForce].
 	^jointForce
 ]
@@ -355,7 +355,7 @@ MbDJoint >> jointForceJ [
 	"jointForceJ is force on MbD marker J."
 
 	| jointForce |
-	jointForce := (FullColumn zero: 3).
+	jointForce := (StMFullColumn zero: 3).
 	constraints do: [:con | con addToJointForceJ: jointForce].
 	^jointForce
 ]
@@ -365,7 +365,7 @@ MbDJoint >> jointTorqueI [
 	"jointTorqueI is torque on MbD marker I."
 
 	| jointTorque |
-	jointTorque := (FullColumn zero: 3).
+	jointTorque := (StMFullColumn zero: 3).
 	constraints do: [:con | con addToJointTorqueI: jointTorque].
 	^jointTorque
 ]
@@ -375,7 +375,7 @@ MbDJoint >> jointTorqueJ [
 	"jointTorqueJ is torque on MbD marker J."
 
 	| jointTorque |
-	jointTorque := (FullColumn zero: 3).
+	jointTorque := (StMFullColumn zero: 3).
 	constraints do: [:con | con addToJointTorqueJ: jointTorque].
 	^jointTorque
 ]
@@ -393,7 +393,7 @@ MbDJoint >> pFIeJtIepEI [
 	pAIeOpEI := frmI pAeOpE.
 	aFIeJtO := self aFIeJtO.
 	pFIeJtOpEI := self pFIeJtOpEI.
-	pFIeJtIepEI := FullMatrix new: 3 by: 4.
+	pFIeJtIepEI := StMFullMatrix new: 3 by: 4.
 	1 to: 4 do: [:j | 
 			colj := (pAIeOpEI at: j) timesFullColumn: aFIeJtO.
 			pFIeJtIepEI at: 1 and: j fillWithFullColumn: colj].
@@ -430,7 +430,7 @@ MbDJoint >> pFIeJtIeplam [
 { #category : #calc }
 MbDJoint >> pFIeJtOpEI [
 	| pFIeJtOpEI |
-	pFIeJtOpEI := (FullMatrix zero: 3 by: 4).
+	pFIeJtOpEI := (StMFullMatrix zero: 3 by: 4).
 	constraints do: [:con | con addpFIeiGOpEIto: pFIeJtOpEI].
 	^pFIeJtOpEI
 ]
@@ -438,7 +438,7 @@ MbDJoint >> pFIeJtOpEI [
 { #category : #calc }
 MbDJoint >> pFIeJtOpEJ [
 	| pFIeJtOpEJ |
-	pFIeJtOpEJ := (FullMatrix zero: 3 by: 4).
+	pFIeJtOpEJ := (StMFullMatrix zero: 3 by: 4).
 	constraints do: [:con | con addpFIeiGOpEJto: pFIeJtOpEJ].
 	^pFIeJtOpEJ
 ]
@@ -446,7 +446,7 @@ MbDJoint >> pFIeJtOpEJ [
 { #category : #calc }
 MbDJoint >> pFIeJtOpXI [
 	| pFIeJtOpXI |
-	pFIeJtOpXI := (FullMatrix zero: 3 by: 3).
+	pFIeJtOpXI := (StMFullMatrix zero: 3 by: 3).
 	constraints do: [:con | con addpFIeiGOpXIto: pFIeJtOpXI].
 	^pFIeJtOpXI
 ]
@@ -454,7 +454,7 @@ MbDJoint >> pFIeJtOpXI [
 { #category : #calc }
 MbDJoint >> pFIeJtOpXJ [
 	| pFIeJtOpXJ |
-	pFIeJtOpXJ := (FullMatrix zero: 3 by: 3).
+	pFIeJtOpXJ := (StMFullMatrix zero: 3 by: 3).
 	constraints do: [:con | con addpFIeiGOpXJto: pFIeJtOpXJ].
 	^pFIeJtOpXJ
 ]
@@ -465,7 +465,7 @@ MbDJoint >> pFIeJtOplam [
 	"7 is a good size to avoid reallocating for the SparseRows."
 
 	| pFIeJtOplam |
-	pFIeJtOplam := (SparseMatrix zero: 3 by: 7).
+	pFIeJtOplam := (StMSparseMatrix zero: 3 by: 7).
 	constraints do: [:con | con addpFIeiGOplamto: pFIeJtOplam].
 	^pFIeJtOplam
 ]
@@ -477,7 +477,7 @@ MbDJoint >> pTIeJtIepEI [
 	pAIeOpEI := frmI pAeOpE.
 	aTIeJtO := self aTIeJtO.
 	pTIeJtOpEI := self pTIeJtOpEI.
-	pTIeJtIepEI := FullMatrix new: 3 by: 4.
+	pTIeJtIepEI := StMFullMatrix new: 3 by: 4.
 	1 to: 4 do: [:j | 
 			colj := (pAIeOpEI at: j) timesFullColumn: aTIeJtO.
 			pTIeJtIepEI at: 1 and: j fillWithFullColumn: colj].
@@ -508,7 +508,7 @@ MbDJoint >> pTIeJtIeplam [
 { #category : #calc }
 MbDJoint >> pTIeJtOpEI [
 	| pTIeJtOpEI |
-	pTIeJtOpEI := (FullMatrix zero: 3 by: 4).
+	pTIeJtOpEI := (StMFullMatrix zero: 3 by: 4).
 	constraints do: [:con | con addpTIeiGOpEIto: pTIeJtOpEI].
 	^pTIeJtOpEI
 ]
@@ -516,7 +516,7 @@ MbDJoint >> pTIeJtOpEI [
 { #category : #calc }
 MbDJoint >> pTIeJtOpEJ [
 	| pTIeJtOpEJ |
-	pTIeJtOpEJ := (FullMatrix zero: 3 by: 4).
+	pTIeJtOpEJ := (StMFullMatrix zero: 3 by: 4).
 	constraints do: [:con | con addpTIeiGOpEJto: pTIeJtOpEJ].
 	^pTIeJtOpEJ
 ]
@@ -524,7 +524,7 @@ MbDJoint >> pTIeJtOpEJ [
 { #category : #calc }
 MbDJoint >> pTIeJtOpXI [
 	| pTIeJtOpXI |
-	pTIeJtOpXI := (FullMatrix zero: 3 by: 3).
+	pTIeJtOpXI := (StMFullMatrix zero: 3 by: 3).
 	constraints do: [:con | con addpTIeiGOpXIto: pTIeJtOpXI].
 	^pTIeJtOpXI
 ]
@@ -532,7 +532,7 @@ MbDJoint >> pTIeJtOpXI [
 { #category : #calc }
 MbDJoint >> pTIeJtOpXJ [
 	| pTIeJtOpXJ |
-	pTIeJtOpXJ := (FullMatrix zero: 3 by: 3).
+	pTIeJtOpXJ := (StMFullMatrix zero: 3 by: 3).
 	constraints do: [:con | con addpTIeiGOpXJto: pTIeJtOpXJ].
 	^pTIeJtOpXJ
 ]
@@ -543,7 +543,7 @@ MbDJoint >> pTIeJtOplam [
 	"7 is a good size to avoid reallocating for the SparseRows."
 
 	| pTIeJtOplam |
-	pTIeJtOplam := (SparseMatrix zero: 3 by: 7).
+	pTIeJtOplam := (StMSparseMatrix zero: 3 by: 7).
 	constraints do: [:con | con addpTIeiGOplamto: pTIeJtOplam].
 	^pTIeJtOplam
 ]

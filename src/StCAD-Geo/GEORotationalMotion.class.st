@@ -29,7 +29,7 @@ GEORotationalMotion >> createMbD [
 	| phiFunc parser stack func mbdZRotation |
 	super createMbD.
 	phiFunc := phiIJ isNil
-				ifTrue: [Constant with: 0]
+				ifTrue: [StMConstant with: 0]
 				ifFalse: [phiIJ isUserFunction
 						ifTrue: 
 							[parser := self functionParser.
@@ -91,7 +91,7 @@ GEORotationalMotion >> joint [
 GEORotationalMotion >> phiFunc [
 	| parser stack func |
 	^phiIJ isNil
-		ifTrue: [Constant with: 0]
+		ifTrue: [StMConstant with: 0]
 		ifFalse: [phiIJ isUserFunction
 				ifTrue: 
 					[parser := self functionParser.

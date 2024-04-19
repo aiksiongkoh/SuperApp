@@ -76,7 +76,7 @@ MakeFU >> execute [
 					[:a |
 					| rFcurveF |
 					rFcurveF := a aNMTItem aCurve.
-					MathArray with: rFcurveF with: rFcurveF reverse].
+					StMArray with: rFcurveF with: rFcurveF reverse].
 	bccCurve := bccCurve reject: [:cCurve | cCurve first isNil].
 	bccCurveReverse := bccCurve reverse.
 	n := cEdgeUse size.

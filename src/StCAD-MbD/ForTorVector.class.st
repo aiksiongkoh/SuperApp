@@ -32,7 +32,7 @@ ForTorVector class >> visualWorksMetadata [
 
 { #category : #accessing }
 ForTorVector >> aFTIeO [
-	^components inject: (FullColumn zero: 3) into: [:aFTIeO :comp | aFTIeO + comp aFTIeO]
+	^components inject: (StMFullColumn zero: 3) into: [:aFTIeO :comp | aFTIeO + comp aFTIeO]
 ]
 
 { #category : #accIC }

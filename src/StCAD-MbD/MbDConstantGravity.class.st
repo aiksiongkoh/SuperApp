@@ -39,7 +39,7 @@ MbDConstantGravity >> fillStaticError: col [
 MbDConstantGravity >> gX: gX gY: gY gZ: gZ [ 
 	""
 
-	gXYZ := FullColumn new: 3.
+	gXYZ := StMFullColumn new: 3.
 	gXYZ at: 1 put: gX.
 	gXYZ at: 2 put: gY.
 	gXYZ at: 3 put: gZ

@@ -42,7 +42,7 @@ MbDGearConstraintIqcJc >> addToJointTorqueI: jointTorque [
 	rIpIeIp := frmI rpep.
 	pAOIppEI := frmI pAOppE.
 	aBOIp := frmI aBOp.
-	fpAOIppEIrIpIeIp := (FullColumn zero: 4).
+	fpAOIppEIrIpIeIp := (StMFullColumn zero: 4).
 	1 to: 4 do:  [:i | 
 			dum := cForceT timesFullColumn: ((pAOIppEI at: i) timesFullColumn: rIpIeIp).
 			fpAOIppEIrIpIeIp at: i put: dum].
@@ -76,7 +76,7 @@ MbDGearConstraintIqcJc >> addpTIeiGOpEIto: mat [
 	term1 := MbDEulerParameters pBpEtimesColumn: (term11 minusFullColumn: term12).
 	term21 := ppGpEIpEI times: lam / 2.0d.
 	pprOIeOpEIpEI := frmI pprOeOpEpE.
-	term22 := FullMatrix new: 4 by: 4.
+	term22 := StMFullMatrix new: 4 by: 4.
 	1 to: 4
 		do: 
 			[:i | 

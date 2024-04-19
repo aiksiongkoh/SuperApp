@@ -1,10 +1,10 @@
-Extension { #name : #FFT }
+Extension { #name : #StMFFT }
 
 { #category : #'*StCAD-Geo-accessing' }
-FFT >> cyclicSeries [
+StMFFT >> cyclicSeries [
 	| n answer data |
 	n := xs size.
-	answer := MathArray new: n + 1.
+	answer := StMArray new: n + 1.
 	1 to: n
 		do: 
 			[:i |
@@ -20,10 +20,10 @@ FFT >> cyclicSeries [
 ]
 
 { #category : #'*StCAD-Geo-accessing' }
-FFT >> series [
+StMFFT >> series [
 	| n answer |
 	n := xs size.
-	answer := MathArray new: n.
+	answer := StMArray new: n.
 	1 to: n
 		do: 
 			[:i |

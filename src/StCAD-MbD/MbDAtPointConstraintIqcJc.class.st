@@ -39,12 +39,12 @@ MbDAtPointConstraintIqcJc >> addToJointForceI: col [
 { #category : #accessing }
 MbDAtPointConstraintIqcJc >> addToJointTorqueI: jointTorque [ 
 	| cForceT rIpIeIp pAOIppEI aBOIp fpAOIppEIrIpIeIp dum lampGpE c2Torque |
-	cForceT := (FullRow zero: 3).
+	cForceT := (StMFullRow zero: 3).
 	cForceT at: axis put: lam negated.
 	rIpIeIp := frmI rpep.
 	pAOIppEI := frmI pAOppE.
 	aBOIp := frmI aBOp.
-	fpAOIppEIrIpIeIp := (FullColumn zero: 4).
+	fpAOIppEIrIpIeIp := (StMFullColumn zero: 4).
 	1 to: 4 do:  [:i | 
 			dum := cForceT timesFullColumn: ((pAOIppEI at: i) timesFullColumn: rIpIeIp).
 			fpAOIppEIrIpIeIp at: i put: dum].
@@ -68,13 +68,13 @@ MbDAtPointConstraintIqcJc >> addpTIeiGOpEIto: mat [
 	| term11 prOIeOpEIT aFIeiGOover2 term12 term1 term21 pprOIeOpEIpEI term22 pprOIeOpEIipEI term22rowi aB term2 pTIeiGOpEI |
 	term11 := pGpEI transpose times: lam / 2.0d.
 	prOIeOpEIT := frmI prOeOpE transpose.
-	aFIeiGOover2 := (FullColumn zero: 3).
+	aFIeiGOover2 := (StMFullColumn zero: 3).
 	aFIeiGOover2 at: axis put: lam / -2.0d.
 	term12 := prOIeOpEIT timesFullColumn: aFIeiGOover2.
 	term1 := MbDEulerParameters pBpEtimesColumn: (term11 minusFullColumn: term12).
 	term21 := ppGpEIpEI times: lam / 2.0d.
 	pprOIeOpEIpEI := frmI pprOeOpEpE.
-	term22 := FullMatrix new: 4 by: 4.
+	term22 := StMFullMatrix new: 4 by: 4.
 	1 to: 4 do: [:i | 
 			pprOIeOpEIipEI := pprOIeOpEIpEI at: i.
 			term22rowi := term22 at: i.
@@ -91,7 +91,7 @@ MbDAtPointConstraintIqcJc >> addpTIeiGOplamto: mat [
 	halfB := frmI aBOp times: 0.5d.
 	term1 := pGpEI transpose.
 	prOIeOpEIT := frmI prOeOpE transpose.
-	pFIeiGOplam := (FullColumn zero: 3).
+	pFIeiGOplam := (StMFullColumn zero: 3).
 	pFIeiGOplam at: axis put: -1.0d.
 	term2 := prOIeOpEIT timesFullColumn: pFIeiGOplam.
 	pTIeiGOplam := halfB timesFullColumn: (term1 minusFullColumn: term2).

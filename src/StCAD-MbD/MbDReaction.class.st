@@ -20,8 +20,8 @@ MbDReaction class >> visualWorksMetadata [
 { #category : #evaluating }
 MbDReaction >> differentiateWRT: variable [ 
 	^self == variable
-		ifTrue: [Constant with: 1]
-		ifFalse: [Constant with: 0]
+		ifTrue: [StMConstant with: 1]
+		ifFalse: [StMConstant with: 0]
 ]
 
 { #category : #accessing }

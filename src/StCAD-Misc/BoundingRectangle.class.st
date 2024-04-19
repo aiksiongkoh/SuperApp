@@ -16,8 +16,8 @@ BoundingRectangle class >> visualWorksMetadata [
 
 { #category : #'initialize-release' }
 BoundingRectangle >> initialize [
-	minCorner := FullColumn new: 2.
-	maxCorner := FullColumn new: 2
+	minCorner := StMFullColumn new: 2.
+	maxCorner := StMFullColumn new: 2
 ]
 
 { #category : #'ops on self' }

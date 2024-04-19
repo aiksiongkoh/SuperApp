@@ -147,8 +147,8 @@ MbDConVelConstraintIqcJc >> initA21IeJe [
 { #category : #'initialize-release' }
 MbDConVelConstraintIqcJc >> initialize [
 	super initialize.
-	pGpEI := FullRow new: 4.
-	ppGpEIpEI := FullMatrix new: 4 by: 4
+	pGpEI := StMFullRow new: 4.
+	ppGpEIpEI := StMFullMatrix new: 4 by: 4
 ]
 
 { #category : #'initialize-release' }

@@ -124,16 +124,16 @@ MbD2EndFrameqct >> evalrmem [
 { #category : #'initialize-release' }
 MbD2EndFrameqct >> initialize [
 	super initialize.
-	rmem := FullColumn new: 3.
-	prmempt := FullColumn new: 3.
-	pprmemptpt := FullColumn new: 3.
-	aAme := FullMatrix new: 3 by: 3.
-	pAmept := FullMatrix new: 3 by: 3.
-	ppAmeptpt := FullMatrix new: 3 by: 3.
-	pprOeOpEpt := FullMatrix new: 3 by: 4.
-	pprOeOptpt := FullColumn new: 3.
-	ppAOepEpt := FullColumn new: 4.
-	ppAOeptpt := FullMatrix new: 3 by: 3
+	rmem := StMFullColumn new: 3.
+	prmempt := StMFullColumn new: 3.
+	pprmemptpt := StMFullColumn new: 3.
+	aAme := StMFullMatrix new: 3 by: 3.
+	pAmept := StMFullMatrix new: 3 by: 3.
+	ppAmeptpt := StMFullMatrix new: 3 by: 3.
+	pprOeOpEpt := StMFullMatrix new: 3 by: 4.
+	pprOeOptpt := StMFullColumn new: 3.
+	ppAOepEpt := StMFullColumn new: 4.
+	ppAOeptpt := StMFullMatrix new: 3 by: 3
 ]
 
 { #category : #'initialize-release' }
@@ -180,7 +180,7 @@ MbD2EndFrameqct >> initppPhiThePsiptptBlks [
 MbD2EndFrameqct >> initpprmemptptBlks [
 	| mbdTime vel acc |
 	mbdTime := TheMbDSystem mbdTime.
-	pprmemptptBlks := FullColumn new: 3.
+	pprmemptptBlks := StMFullColumn new: 3.
 	1 to: 3
 		do: 
 			[:i | 
@@ -193,7 +193,7 @@ MbD2EndFrameqct >> initpprmemptptBlks [
 MbD2EndFrameqct >> initprmemptBlks [
 	| mbdTime disp vel |
 	mbdTime := TheMbDSystem mbdTime.
-	prmemptBlks := FullColumn new: 3.
+	prmemptBlks := StMFullColumn new: 3.
 	1 to: 3
 		do: 
 			[:i | 
@@ -270,7 +270,7 @@ MbD2EndFrameqct >> ppAOeptpt [
 { #category : #accessing }
 MbD2EndFrameqct >> ppAjOepETpt: jj [ 
 	| answer answeri ppAOepEipt answerij |
-	answer := FullMatrix new: 4 by: 3.
+	answer := StMFullMatrix new: 4 by: 3.
 	1 to: 4 do: [:i | 
 			answeri := answer at: i.
 			ppAOepEipt := ppAOepEpt at: i.

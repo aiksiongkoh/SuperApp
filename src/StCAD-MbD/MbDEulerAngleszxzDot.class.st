@@ -1,6 +1,6 @@
 Class {
 	#name : #MbDEulerAngleszxzDot,
-	#superclass : #EulerArray,
+	#superclass : #StEulerArray,
 	#type : #variable,
 	#instVars : [
 		'phiThePsi',
@@ -35,7 +35,7 @@ MbDEulerAngleszxzDot >> aAdot [
 { #category : #calc }
 MbDEulerAngleszxzDot >> calc [
 	| zero phi sphi cphi phidot minussphiTimesphidot cphiTimesphidot the sthe cthe thedot minusstheTimesthedot ctheTimesthedot psi spsi cpsi psidot minusspsiTimespsidot cpsiTimespsidot phiA theA psiA |
-	zero := 0.0d.
+	zero := 0.0.
 	phi := phiThePsi at: 1.
 	sphi := phi sin.
 	cphi := phi cos.
@@ -70,9 +70,9 @@ MbDEulerAngleszxzDot >> calc [
 
 { #category : #'initialize-release' }
 MbDEulerAngleszxzDot >> initialize [
-	phiAdot := (FullMatrix zero: 3 by: 3).
-	theAdot := (FullMatrix zero: 3 by: 3).
-	psiAdot := (FullMatrix zero: 3 by: 3)
+	phiAdot := (StMFullMatrix zero: 3 by: 3).
+	theAdot := (StMFullMatrix zero: 3 by: 3).
+	psiAdot := (StMFullMatrix zero: 3 by: 3)
 ]
 
 { #category : #accessing }

@@ -27,15 +27,15 @@ MbDReactionForceMagIe >> calcPostDynCorrectorIteration [
 	| aFIeJtO uFIeJtO |
 	aFIeJtO := joint aFIeJtO.
 	aFIe := aFIeJtO length.
-	aFIe = 0.0d
+	aFIe = 0.0
 		ifTrue: 
-			[pFIepXI := FullRow new: 3.
-			pFIepEI := FullRow new: 4.
-			pFIepXJ := FullRow new: 3.
-			pFIepEJ := FullRow new: 4.
-			pFIeplam := SparseRow new]
+			[pFIepXI := StMFullRow new: 3.
+			pFIepEI := StMFullRow new: 4.
+			pFIepXJ := StMFullRow new: 3.
+			pFIepEJ := StMFullRow new: 4.
+			pFIeplam := StMSparseRow new]
 		ifFalse: 
-			[uFIeJtO := aFIeJtO times: 1.0d / aFIe.
+			[uFIeJtO := aFIeJtO times: 1.0 / aFIe.
 			pFIepXI := uFIeJtO dot: joint pFIeJtOpXI.
 			pFIepEI := uFIeJtO dot: joint pFIeJtOpEI.
 			pFIepXJ := uFIeJtO dot: joint pFIeJtOpXJ.

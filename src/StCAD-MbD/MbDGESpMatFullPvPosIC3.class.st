@@ -54,7 +54,7 @@ MbDGESpMatFullPvPosIC3 >> doPivoting: p [
 								add: i.
 							aij := rowiValues at: index.
 							mag := aij.
-							mag < 0.0d ifTrue: [mag := 0.0d - mag].
+							mag < 0.0 ifTrue: [mag := 0.0 - mag].
 							mag > max
 								ifTrue: 
 									[max := mag.

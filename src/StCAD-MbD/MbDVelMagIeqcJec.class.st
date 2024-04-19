@@ -50,9 +50,9 @@ MbDVelMagIeqcJec >> calcPostDynCorrectorIteration [
 { #category : #'initialize-release' }
 MbDVelMagIeqcJec >> initialize [
 	super initialize.
-	pvIeJepEI := FullRow new: 4.
-	pvIeJepXdotI := FullRow new: 3.
-	pvIeJepEdotI := FullRow new: 4
+	pvIeJepEI := StMFullRow new: 4.
+	pvIeJepXdotI := StMFullRow new: 3.
+	pvIeJepEdotI := StMFullRow new: 4
 ]
 
 { #category : #accessing }

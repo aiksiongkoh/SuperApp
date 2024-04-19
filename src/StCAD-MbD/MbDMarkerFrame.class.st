@@ -132,8 +132,8 @@ MbDMarkerFrame >> fillqsulam: col [
 
 { #category : #'initialize-release' }
 MbDMarkerFrame >> initialize [
-	prOmOpE := FullMatrix new: 3 by: 4.
-	pAOmpE := FullColumn new: 4.
+	prOmOpE := StMFullMatrix new: 3 by: 4.
+	pAOmpE := StMFullColumn new: 4.
 	endFrames := OrderedCollection new
 ]
 
@@ -185,7 +185,7 @@ MbDMarkerFrame >> pAdotjOmpE: jj [
 	| pAdotOppE aAjjpm answer pAdotOppEj pAdotjjpmpEj |
 	pAdotOppE := partFrame pAdotOppE.
 	aAjjpm := aApm column: jj.
-	answer := FullMatrix new: 3 by: 4.
+	answer := StMFullMatrix new: 3 by: 4.
 	1 to: 4
 		do: 
 			[:j | 
@@ -203,7 +203,7 @@ MbDMarkerFrame >> pAdotjOmpET: jj [
 	| pAdotOppE aAjjpm answer answeri pAdotOppEi pAdotjjpmpEi |
 	pAdotOppE := partFrame pAdotOppE.
 	aAjjpm := aApm column: jj.
-	answer := FullMatrix new: 4 by: 3.
+	answer := StMFullMatrix new: 4 by: 3.
 	1 to: 4 do: [:i | 
 			answeri := answer at: i.
 			pAdotOppEi := pAdotOppE at: i.
@@ -336,7 +336,7 @@ MbDMarkerFrame >> preVelIC [
 { #category : #accessing }
 MbDMarkerFrame >> pvOmOpE [
 	| answer pAdotOppE answeri pAdotOpipEj |
-	answer := FullMatrix new: 3 by: 4.
+	answer := StMFullMatrix new: 3 by: 4.
 	pAdotOppE := partFrame pAdotOppE.
 	1 to: 3 do: [:i | 
 			answeri := answer at: i.

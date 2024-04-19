@@ -46,11 +46,11 @@ MbDDispCompIeqcJeqcKeqct >> calcPostDynCorrectorIteration [
 { #category : #'initialize-release' }
 MbDDispCompIeqcJeqcKeqct >> initialize [
 	super initialize.
-	ppriIeJeKepXIpt := FullRow new: 3.
-	ppriIeJeKepEIpt := FullRow new: 4.
-	ppriIeJeKepXJpt := FullRow new: 3.
-	ppriIeJeKepEJpt := FullRow new: 4.
-	ppriIeJeKepEKpt := FullRow new: 4
+	ppriIeJeKepXIpt := StMFullRow new: 3.
+	ppriIeJeKepEIpt := StMFullRow new: 4.
+	ppriIeJeKepXJpt := StMFullRow new: 3.
+	ppriIeJeKepEJpt := StMFullRow new: 4.
+	ppriIeJeKepEKpt := StMFullRow new: 4
 ]
 
 { #category : #'initialize-release' }

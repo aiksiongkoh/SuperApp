@@ -323,7 +323,7 @@ ADVANCED_FACE >> showWithSurface: withSurface WithAxes: withAxes [
 	compoundObject := JunOpenGL3dCompoundObject new.
 	withSurface
 		ifTrue: [compoundObject add: self aSurface asJunOpenGL3dObject].
-	cColorValue := MathArray
+	cColorValue := StMArray
 				with: ColorValue red
 				with: ColorValue green
 				with: ColorValue blue.

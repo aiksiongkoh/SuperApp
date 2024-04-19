@@ -43,17 +43,17 @@ GEOProjectionFrame2 >> aParallelCameraWithBounds: aRect [
 	aCamera := ParallelCamera new.
 	aCameraRefFrame := aCamera aRefFrame.
 	aCameraRefFrame rFfF: rFfF copy.
-	openglAFf := FullMatrix rotationMatrixFromxDir: (aAFf column: 1)
+	openglAFf := StMFullMatrix rotationMatrixFromxDir: (aAFf column: 1)
 				yDir: (aAFf column: 2) negated.
 	aCameraRefFrame aAFf: openglAFf.
-	rDoriginPx := FullColumn 
+	rDoriginPx := StMFullColumn 
 				with: aRect origin x asDouble
 				with: aRect origin y asDouble
-				with: 0.0d.
-	rDcornerPx := FullColumn 
+				with: 0.0.
+	rDcornerPx := StMFullColumn 
 				with: aRect corner x asDouble
 				with: aRect corner y asDouble
-				with: 0.0d.
+				with: 0.0.
 	rPoriginP := self rPpPfromrDpPx: rDoriginPx.
 	rPcornerP := self rPpPfromrDpPx: rDcornerPx.
 	rCoriginC := rPoriginP
@@ -67,12 +67,12 @@ GEOProjectionFrame2 >> aParallelCameraWithBounds: aRect [
 	aCamera bottom: (rCoriginC y min: rCcornerC y).
 	aCamera top: (rCoriginC y max: rCcornerC y).
 	height := (rCcornerC y - rCoriginC y) abs.
-	aCamera near: 1.0d * height.
-	aCamera far: 100.0d * height.
-	aCamerarFfF := aCameraRefFrame rFpFfromrfpf: (FullColumn 
-						with: 0.0d
-						with: 0.0d
-						with: 10.0d * height).
+	aCamera near: 1.0 * height.
+	aCamera far: 100.0 * height.
+	aCamerarFfF := aCameraRefFrame rFpFfromrfpf: (StMFullColumn 
+						with: 0.0
+						with: 0.0
+						with: 10.0 * height).
 	aCameraRefFrame rFfF: aCamerarFfF.
 	^aCamera
 ]
@@ -88,17 +88,17 @@ GEOProjectionFrame2 >> aParallelCameraWithBounds: aRect inPreferredRect: aDrawin
 	aCamera := ParallelCamera new.
 	aCameraRefFrame := aCamera aRefFrame.
 	aCameraRefFrame rFfF: rFfF copy.
-	openglAFf := FullMatrix rotationMatrixFromxDir: (aAFf column: 1)
+	openglAFf := StMFullMatrix rotationMatrixFromxDir: (aAFf column: 1)
 				yDir: (aAFf column: 2) negated.
 	aCameraRefFrame aAFf: openglAFf.
-	rDoriginPx := FullColumn 
+	rDoriginPx := StMFullColumn 
 				with: aRect origin x asDouble
 				with: aRect origin y asDouble
-				with: 0.0d.
-	rDcornerPx := FullColumn 
+				with: 0.0.
+	rDcornerPx := StMFullColumn 
 				with: aRect corner x asDouble
 				with: aRect corner y asDouble
-				with: 0.0d.
+				with: 0.0.
 	rPoriginP := self rPpPfromrDpPx: rDoriginPx.
 	rPcornerP := self rPpPfromrDpPx: rDcornerPx.
 	rCoriginC := rPoriginP
@@ -112,12 +112,12 @@ GEOProjectionFrame2 >> aParallelCameraWithBounds: aRect inPreferredRect: aDrawin
 	aCamera bottom: (rCoriginC y min: rCcornerC y).
 	aCamera top: (rCoriginC y max: rCcornerC y).
 	height := aDrawingRect extent y / pixelPerMetre.
-	aCamera near: 1.0d * height.
-	aCamera far: 100.0d * height.
-	aCamerarFfF := aCameraRefFrame rFpFfromrfpf: (FullColumn 
-						with: 0.0d
-						with: 0.0d
-						with: 10.0d * height).
+	aCamera near: 1.0 * height.
+	aCamera far: 100.0 * height.
+	aCamerarFfF := aCameraRefFrame rFpFfromrfpf: (StMFullColumn 
+						with: 0.0
+						with: 0.0
+						with: 10.0 * height).
 	aCameraRefFrame rFfF: aCamerarFfF.
 	^aCamera
 ]
@@ -133,17 +133,17 @@ GEOProjectionFrame2 >> aPerspectiveCameraWithBounds: aRect [
 	aCamera := PerspectiveCamera new.
 	aCameraRefFrame := aCamera aRefFrame.
 	aCameraRefFrame rFfF: rFfF copy.
-	openglAFf := FullMatrix rotationMatrixFromxDir: (aAFf column: 1)
+	openglAFf := StMFullMatrix rotationMatrixFromxDir: (aAFf column: 1)
 				yDir: (aAFf column: 2) negated.
 	aCameraRefFrame aAFf: openglAFf.
-	rDoriginPx := FullColumn 
+	rDoriginPx := StMFullColumn 
 				with: aRect origin x asDouble
 				with: aRect origin y asDouble
-				with: 0.0d.
-	rDcornerPx := FullColumn 
+				with: 0.0.
+	rDcornerPx := StMFullColumn 
 				with: aRect corner x asDouble
 				with: aRect corner y asDouble
-				with: 0.0d.
+				with: 0.0.
 	rPoriginP := self rPpPfromrDpPx: rDoriginPx.
 	rPcornerP := self rPpPfromrDpPx: rDcornerPx.
 	rCoriginC := rPoriginP
@@ -157,11 +157,11 @@ GEOProjectionFrame2 >> aPerspectiveCameraWithBounds: aRect [
 	bottom := rCoriginC y min: rCcornerC y.
 	top := rCoriginC y max: rCcornerC y.
 	height := (rCcornerC y - rCoriginC y) abs.
-	ratio := 5.0d.
+	ratio := 5.0.
 	distance := ratio * height.
 	aCamera height: height.
 	aCamera distance: distance.
-	aCamerarFfF := aCameraRefFrame rFpFfromrfpf: (FullColumn 
+	aCamerarFfF := aCameraRefFrame rFpFfromrfpf: (StMFullColumn 
 						with: (left + right) / 2
 						with: (bottom + top) / 2
 						with: distance).
@@ -192,14 +192,14 @@ GEOProjectionFrame2 >> fixedAtRef [
 	"Fix at world origin."
 	"Convert y axis from pointing up to pointing down."
 
-	rFfF := (FullColumn zero: 3).
-	aAFf := FullMatrix
-				rotationMatrixFromOrigin: (FullColumn zero: 3)
-				zPoint: (FullColumn
+	rFfF := (StMFullColumn zero: 3).
+	aAFf := StMFullMatrix
+				rotationMatrixFromOrigin: (StMFullColumn zero: 3)
+				zPoint: (StMFullColumn
 						with: 1.0d
 						with: 1.0d
 						with: -1.0d)
-				xPoint: (FullColumn
+				xPoint: (StMFullColumn
 						with: 1.0d
 						with: -1.0d
 						with: 0.0d).
@@ -286,7 +286,7 @@ GEOProjectionFrame2 >> rOpOfromrPpP: rPpP [
 
 { #category : #accessing }
 GEOProjectionFrame2 >> rPpPfromrDpPx: rDpPx [ 
-	^FullColumn
+	^StMFullColumn
 		with: rDpPx x / pixelPerMetre
 		with: rDpPx y / pixelPerMetre
 		with: 0.0d

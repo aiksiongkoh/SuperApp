@@ -1,6 +1,6 @@
 Class {
 	#name : #MbDEulerAnglesDDot,
-	#superclass : #EulerAnglesDDot,
+	#superclass : #StEulerAnglesDDot,
 	#type : #variable,
 	#category : #'StCAD-MbD-MbDBasic'
 }

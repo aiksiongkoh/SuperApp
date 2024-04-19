@@ -31,8 +31,8 @@ MbDDirectionCosineIeqctJeqc >> calcPostDynCorrectorIteration [
 { #category : #'initialize-release' }
 MbDDirectionCosineIeqctJeqc >> initialize [
 	super initialize.
-	ppAijIeJepEIpt := FullRow new: 4.
-	ppAijIeJepEJpt := FullRow new: 4
+	ppAijIeJepEIpt := StMFullRow new: 4.
+	ppAijIeJepEJpt := StMFullRow new: 4
 ]
 
 { #category : #'initialize-release' }

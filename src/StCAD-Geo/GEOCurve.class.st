@@ -241,7 +241,7 @@ GEOCurve >> stipplePattern: stipplePattern [
 { #category : #accessing }
 GEOCurve >> theta: angle [ 
 	| aA cosAngle sinAngle |
-	aA := (FullMatrix zero: 3 by: 3).
+	aA := (StMFullMatrix zero: 3 by: 3).
 	cosAngle := angle cos.
 	sinAngle := angle sin.
 	aA at: 1 and: 1 put: cosAngle.

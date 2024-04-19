@@ -37,7 +37,7 @@ GEOForceTorqueGeneral >> aFIeKe: col [
 { #category : #DYN }
 GEOForceTorqueGeneral >> aFIeKeFunc [
 	| aFIeKeFunc aFIeKei aFIeKeiFunc parser stack func |
-	aFIeKeFunc := FullColumn new: 3.
+	aFIeKeFunc := StMFullColumn new: 3.
 	1 to: 3
 		do: 
 			[:i | 
@@ -81,7 +81,7 @@ GEOForceTorqueGeneral >> aTIeKe: col [
 { #category : #DYN }
 GEOForceTorqueGeneral >> aTIeKeFunc [
 	| aTIeKeFunc aTIeKei aTIeKeiFunc parser stack func |
-	aTIeKeFunc := FullColumn new: 3.
+	aTIeKeFunc := StMFullColumn new: 3.
 	1 to: 3
 		do: 
 			[:i | 
@@ -123,7 +123,7 @@ GEOForceTorqueGeneral >> createMbD [
 				            andFrmJ: eFrmJ
 				            wrtFrmK: efrmK ].
 	mbdForce name: self fullName.
-	aFIeKeFunc := FullColumn new: 3.
+	aFIeKeFunc := StMFullColumn new: 3.
 	1 to: 3 do: [ :i | 
 		aFIeKei := aFIeKe at: i.
 		aFIeKei notNil ifTrue: [ 
@@ -141,7 +141,7 @@ GEOForceTorqueGeneral >> createMbD [
 				               simplified.
 			aFIeKeFunc at: i put: aFIeKeiFunc ] ].
 	mbdForce forceFunctions: aFIeKeFunc.
-	aTIeKeFunc := FullColumn new: 3.
+	aTIeKeFunc := StMFullColumn new: 3.
 	1 to: 3 do: [ :i | 
 		aTIeKei := aTIeKe at: i.
 		aTIeKei notNil ifTrue: [ 
@@ -184,8 +184,8 @@ GEOForceTorqueGeneral >> cut [
 { #category : #'initialize-release' }
 GEOForceTorqueGeneral >> initialize [
 	markerK := #I.
-	aFIeKe := FullColumn new: 3.
-	aTIeKe := FullColumn new: 3
+	aFIeKe := StMFullColumn new: 3.
+	aTIeKe := StMFullColumn new: 3
 ]
 
 { #category : #testing }

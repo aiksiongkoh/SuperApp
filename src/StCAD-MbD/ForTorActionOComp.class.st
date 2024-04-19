@@ -20,7 +20,7 @@ ForTorActionOComp class >> visualWorksMetadata [
 { #category : #accessing }
 ForTorActionOComp >> aFTIeO [
 	| answer |
-	answer := (FullColumn zero: 3).
+	answer := (StMFullColumn zero: 3).
 	answer at: axis put: aFTIeOi.
 	^answer
 ]

@@ -76,21 +76,21 @@ ThreePoint >> center_r_angleS_angleE [
 	e := a * (x1 + x2) + (b * (y1 + y2)).
 	f := c * (x1 + x3) + (d * (y1 + y3)).
 	g := 2 * (a * (y3 - y2) - (b * (x3 - x2))).
-	g abs > 0.0d 
+	g abs > 0.0 
 		ifTrue: 
 			[cx := (d * e - (b * f)) / g.
 			cy := (a * f - (c * e)) / g.
 			r := ((x1 - cx raisedTo: 2) + (y1 - cy raisedTo: 2)) sqrt]
 		ifFalse: 
-			[inf := 1.0d100.
+			[inf := 1.0100.
 			cx := cy := r := inf].
 	angleS := Double arcTan0to2piY: y1 - cy overX: x1 - cx.
 	angleE := Double arcTan0to2piY: y3 - cy overX: x3 - cx.
 	posDir := (a2Point - a1Point) normalizeSelf.
-	aStartTangent := FullColumn 
+	aStartTangent := StMFullColumn 
 				with: angleS negated sin
 				with: angleS cos
-				with: 0.0d.
+				with: 0.0.
 	(posDir dot: aStartTangent) positive 
 		ifFalse: 
 			[temp := angleS.
@@ -98,10 +98,10 @@ ThreePoint >> center_r_angleS_angleE [
 			angleE := temp].
 	angleE > angleS ifFalse: [angleE := angleE + Double twoPi].
 	^Array 
-		with: (FullColumn 
+		with: (StMFullColumn 
 				with: cx
 				with: cy
-				with: 0.0d)
+				with: 0.0)
 		with: r
 		with: angleS
 		with: angleE

@@ -37,7 +37,7 @@ GEOSurfaceMarker >> aAeqnfat: col [
 	iem := tem1 normalizeSelf.
 	kem := (iem cross: tem2) normalizeSelf.
 	jem := kem cross: iem.
-	aAme := FullMatrix new: 3 by: 3.
+	aAme := StMFullMatrix new: 3 by: 3.
 	(aAme at: 1) at: 1 put: (iem at: 1); at: 2 put: (jem at: 1); at: 3 put: (kem at: 1).
 	(aAme at: 2) at: 1 put: (iem at: 2); at: 2 put: (jem at: 2); at: 3 put: (kem at: 2).
 	(aAme at: 3) at: 1 put: (iem at: 3); at: 2 put: (jem at: 3); at: 3 put: (kem at: 3).
@@ -78,8 +78,8 @@ GEOSurfaceMarker >> createMbD [
 	eFrm isOn: mkr.
 	eFrm rmemBlk: rFfFSurface / self mbdUnits length.
 	eFrm sSize: sSize.
-	eFrm s: (FullColumn zero: sSize).
-	eFrm sdot: (FullColumn zero: sSize).
+	eFrm s: (StMFullColumn zero: sSize).
+	eFrm sdot: (StMFullColumn zero: sSize).
 	eFrm submitToSystem.
 	self mbdObject: eFrm
 ]
@@ -101,8 +101,8 @@ GEOSurfaceMarker >> dataFromCurrentState [
 	| answer |
 	answer := GEOSSdotSddotData new.
 	answer s: s.
-	answer sdot: (MathArray zero: 2).
-	answer sddot: (MathArray zero: 2).
+	answer sdot: (StMArray zero: 2).
+	answer sddot: (StMArray zero: 2).
 	^answer
 ]
 
@@ -132,7 +132,7 @@ GEOSurfaceMarker >> dataFromCurrentStatePOV [
 	omeOPO := partData omeOfO.
 	aOPO := partData aOfO.
 	alpOPO := partData alpOfO.
-	scol := FullColumn with: s.
+	scol := StMFullColumn with: s.
 	reqnfeqn := self rFfFat: scol.
 	aAeqnf := self aAeqnfat: scol.
 	rPfP := rPeqnP + (aAPeqn timesFullColumn: reqnfeqn).
@@ -201,7 +201,7 @@ GEOSurfaceMarker >> dataSeriesForChart [
 					rPfO := aAOP timesFullColumn: rPfP.
 					markerData rFfF: reqnfeqn.
 					markerData aAFf: aAeqnf.
-					zero := (FullColumn zero: 3).
+					zero := (StMFullColumn zero: 3).
 					markerData vFfF: zero.
 					markerData omeFfF: zero.
 					markerData aFfF: zero.
@@ -228,8 +228,8 @@ GEOSurfaceMarker >> face: face [
 				from: -1.0d
 				to: 1.0d
 				by: 2.0d / (rFpointsF size - 1).
-	rFfFSurface rfpfEqn: (GeneralSpline
-			with: IndependentVariable new
+	rFfFSurface rfpfEqn: (StMGeneralSplineX
+			with: StMIndependentVariable new
 			order: 5
 			xs: sSeries
 			ys: rFpointsF).
@@ -290,7 +290,7 @@ GEOSurfaceMarker >> s: col [
 	iem := tem1 normalizeSelf.
 	kem := (iem cross: tem2) normalizeSelf.
 	jem := kem cross: iem.
-	aAFf := FullMatrix new: 3 by: 3.
+	aAFf := StMFullMatrix new: 3 by: 3.
 	(aAFf at: 1) at: 1 put: (iem at: 1); at: 2 put: (jem at: 1); at: 3 put: (kem at: 1).
 	(aAFf at: 2) at: 1 put: (iem at: 2); at: 2 put: (jem at: 2); at: 3 put: (kem at: 2).
 	(aAFf at: 3) at: 1 put: (iem at: 3); at: 2 put: (jem at: 3); at: 3 put: (kem at: 3).

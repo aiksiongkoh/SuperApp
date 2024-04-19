@@ -155,11 +155,11 @@ MbDOrbitAnglezIeqcJec >> calc_pthezpXI [
 { #category : #'initialize-release' }
 MbDOrbitAnglezIeqcJec >> initialize [
 	super initialize.
-	pthezpXI := FullRow new: 3.
-	pthezpEI := FullRow new: 4.
-	ppthezpXIpXI := FullMatrix new: 3 by: 3.
-	ppthezpXIpEI := FullMatrix new: 3 by: 4.
-	ppthezpEIpEI := FullMatrix new: 4 by: 4
+	pthezpXI := StMFullRow new: 3.
+	pthezpEI := StMFullRow new: 4.
+	ppthezpXIpXI := StMFullMatrix new: 3 by: 3.
+	ppthezpXIpEI := StMFullMatrix new: 3 by: 4.
+	ppthezpEIpEI := StMFullMatrix new: 4 by: 4
 ]
 
 { #category : #accessing }

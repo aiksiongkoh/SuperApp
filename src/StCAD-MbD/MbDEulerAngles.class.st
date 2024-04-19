@@ -1,6 +1,6 @@
 Class {
 	#name : #MbDEulerAngles,
-	#superclass : #EulerAngles,
+	#superclass : #StEulerAngles,
 	#type : #variable,
 	#category : #'StCAD-MbD-MbDBasic'
 }

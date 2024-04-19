@@ -20,7 +20,7 @@ MbDCouplerJoint >> aFXIjoint: n [
 
 	| con pGpXI |
 	con := constraints first.
-	n > con n ifTrue: [^(FullColumn zero: 3)].
+	n > con n ifTrue: [^(StMFullColumn zero: 3)].
 	pGpXI := con pGpXIs at: n.
 	^pGpXI asFullColumn times: con lam
 ]
@@ -31,7 +31,7 @@ MbDCouplerJoint >> aFXJjoint: n [
 
 	| con pGpXJ |
 	con := constraints first.
-	n > con n ifTrue: [^(FullColumn zero: 3)].
+	n > con n ifTrue: [^(StMFullColumn zero: 3)].
 	pGpXJ := con pGpXJs at: n.
 	^pGpXJ asFullColumn times: con lam
 ]
@@ -42,7 +42,7 @@ MbDCouplerJoint >> aTXIjoint: n [
 
 	| con lam pGpXI pGpEI cForceT efrmI prOIeOpEIT aBOIp col term11 term12 |
 	con := constraints first.
-	n > con n ifTrue: [^(FullColumn zero: 3)].
+	n > con n ifTrue: [^(StMFullColumn zero: 3)].
 	lam := con lam.
 	pGpXI := con pGpXIs at: n.
 	pGpEI := con pGpEIs at: n.
@@ -50,7 +50,7 @@ MbDCouplerJoint >> aTXIjoint: n [
 	efrmI := (con kineIJs at: n) frmI.
 	prOIeOpEIT := efrmI prOeOpE transpose.
 	aBOIp := efrmI aBOp.
-	col := FullColumn new: 4.
+	col := StMFullColumn new: 4.
 	1 to: 4 do: [:i | 
 			term11 := (pGpEI at: i) * lam.
 			term12 := cForceT dot: (prOIeOpEIT at: i).
@@ -64,7 +64,7 @@ MbDCouplerJoint >> aTXJjoint: n [
 
 	| con lam pGpXJ pGpEJ cForceT efrmJ prOJeOpEJT aBOJp col term11 term12 |
 	con := constraints first.
-	n > con n ifTrue: [^(FullColumn zero: 3)].
+	n > con n ifTrue: [^(StMFullColumn zero: 3)].
 	lam := con lam.
 	pGpXJ := con pGpXJs at: n.
 	pGpEJ := con pGpEJs at: n.
@@ -72,7 +72,7 @@ MbDCouplerJoint >> aTXJjoint: n [
 	efrmJ := (con kineIJs at: n) frmJ.
 	prOJeOpEJT := efrmJ prOeOpE transpose.
 	aBOJp := efrmJ aBOp.
-	col := FullColumn new: 4.
+	col := StMFullColumn new: 4.
 	1 to: 4 do: [:i | 
 			term11 := (pGpEJ at: i) * lam.
 			term12 := cForceT dot: (prOJeOpEJT at: i).
