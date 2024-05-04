@@ -35,7 +35,7 @@ MbDOmeMagIecJec >> calcPostDynCorrectorIteration [
 	omeIeJe := omeIeJeO length.
 	uomeIeJeO := omeIeJe = 0
 				ifTrue: [(StMFullColumn zero: 3)]
-				ifFalse: [omeIeJeO times: 1.0d / omeIeJe]
+				ifFalse: [omeIeJeO times: 1.0 / omeIeJe]
 ]
 
 { #category : #accessing }

@@ -812,7 +812,7 @@ GEOCartesianFrame2 >> rotateAt: rFpvF axisf: axisf theta: theta [
 GEOCartesianFrame2 >> rotateAxisF: i theta: theta [ 
 	| axisF |
 	axisF := (StMFullColumn zero: 3).
-	axisF at: i put: 1.0d.
+	axisF at: i put: 1.0.
 	self
 		rotateAt: rFfF
 		axisF: axisF
@@ -823,7 +823,7 @@ GEOCartesianFrame2 >> rotateAxisF: i theta: theta [
 GEOCartesianFrame2 >> rotateAxisf: i theta: theta [ 
 	| axisf |
 	axisf := (StMFullColumn zero: 3).
-	axisf at: i put: 1.0d.
+	axisf at: i put: 1.0.
 	self
 		rotateAt: rFfF
 		axisf: axisf
@@ -911,25 +911,25 @@ GEOCartesianFrame2 >> uncut [
 { #category : #accessing }
 GEOCartesianFrame2 >> unitx [
 	^StMFullColumn
-		with: 1.0d
-		with: 0.0d
-		with: 0.0d
+		with: 1.0
+		with: 0.0
+		with: 0.0
 ]
 
 { #category : #accessing }
 GEOCartesianFrame2 >> unity [
 	^StMFullColumn
-		with: 0.0d
-		with: 1.0d
-		with: 0.0d
+		with: 0.0
+		with: 1.0
+		with: 0.0
 ]
 
 { #category : #accessing }
 GEOCartesianFrame2 >> unitz [
 	^StMFullColumn
-		with: 0.0d
-		with: 0.0d
-		with: 1.0d
+		with: 0.0
+		with: 0.0
+		with: 1.0
 ]
 
 { #category : #accessing }
@@ -973,7 +973,7 @@ GEOCartesianFrame2 >> xyPlaneIntersectLine: geoLine [
 	rfendf := self rfpffromrOpO: geoLine rOendO.
 	lineVector := rfendf - rfstartf.
 	denominator := lineVector at: 3.
-	denominator abs > 0.1d
+	denominator abs > 0.1
 		ifTrue: [^rfstartf minus: lineVector times: (rfstartf at: 3)
 					/ denominator]
 		ifFalse: 

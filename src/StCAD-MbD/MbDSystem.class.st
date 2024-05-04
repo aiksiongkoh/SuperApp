@@ -172,7 +172,7 @@ MbDSystem >> fillStaticWeights: col [
 	"self fillqsuWeights: col."
 	"col magnifySelf: 1.0d-9 / TheMbDSystem gSubC"
 
-	col atAllPut: 0.001d
+	col atAllPut: 0.001
 ]
 
 { #category : #dynamic }
@@ -338,7 +338,7 @@ MbDSystem >> maxStepSize [
 { #category : #accessing }
 MbDSystem >> maximumMass [
 	| max |
-	max := 0.0d.
+	max := 0.0.
 	parts do: [:part | max := max max: part m].
 	^max
 ]
@@ -346,7 +346,7 @@ MbDSystem >> maximumMass [
 { #category : #accessing }
 MbDSystem >> maximumMomentOfInertia [
 	| max |
-	max := 0.0d.
+	max := 0.0.
 	parts do: [:part | part aJ do: [:aJii | max := max max: aJii]].
 	^max
 ]

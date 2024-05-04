@@ -47,7 +47,7 @@ MbDParallelGearConstraintIqcJc >> addToJointTorqueI: jointTorque [
 			fpAOIppEIrIpIeIp at: i put: dum].
 	lampGpE := pGpEI transpose times: lam.
 	c2Torque := aBOIp timesFullColumn: lampGpE - fpAOIppEIrIpIeIp.
-	jointTorque equalSelfPlusFullColumn: c2Torque times: 0.5d
+	jointTorque equalSelfPlusFullColumn: c2Torque times: 0.5
 ]
 
 { #category : #accessing }
@@ -101,10 +101,10 @@ MbDParallelGearConstraintIqcJc >> fillAccICIterError: col [
 	col at: iqEI plusFullColumn: pGpEI times: lam.
 	qXdotI := frmI qXdot.
 	qEdotI := frmI qEdot.
-	sum := 0.0d.
+	sum := 0.0.
 	sum := sum + (pGpXI timesFullColumn: frmI qXddot).
 	sum := sum + (pGpEI timesFullColumn: frmI qEddot).
-	sum := sum + (2.0d 	* (qXdotI transposeTimesFullColumn: (ppGpXIpEI timesFullColumn: qEdotI))).
+	sum := sum + (2.0 	* (qXdotI transposeTimesFullColumn: (ppGpXIpEI timesFullColumn: qEdotI))).
 	sum := sum + (qEdotI transposeTimesFullColumn: (ppGpEIpEI timesFullColumn: qEdotI)).
 	col at: iG plusNumber: sum
 ]

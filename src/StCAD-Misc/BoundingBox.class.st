@@ -50,7 +50,7 @@ BoundingBox >> cCorner [
 
 { #category : #'initialize-release' }
 BoundingBox >> center [
-	^minCorner + maxCorner / 2.0d
+	^minCorner + maxCorner / 2.0
 ]
 
 { #category : #testing }
@@ -346,7 +346,7 @@ BoundingBox >> uvwOfPoint: aPoint [
 			x := aPoint at: i.
 			range := max - min.
 			u := range < MachineAccuracy OfDoubleTimesFour 
-						ifTrue: [0.0d]
+						ifTrue: [0.0]
 						ifFalse: [(x - min) / range].
 			answer at: i put: u].
 	^answer
@@ -361,8 +361,8 @@ BoundingBox >> uvwScale [
 			[:i | 
 			range := (maxCorner at: i) - (minCorner at: i).
 			scale := range < MachineAccuracy OfDoubleTimesFour 
-						ifTrue: [0.0d]
-						ifFalse: [1.0d / range].
+						ifTrue: [0.0]
+						ifFalse: [1.0 / range].
 			answer at: i put: scale].
 	^answer
 ]
@@ -395,6 +395,6 @@ BoundingBox >> zeroSelf [
 
 { #category : #'ops on self' }
 BoundingBox >> zeroZcoord [
-	minCorner at: 3 put: 0.0d.
-	maxCorner at: 3 put: 0.0d
+	minCorner at: 3 put: 0.0.
+	maxCorner at: 3 put: 0.0
 ]

@@ -32,7 +32,7 @@ B_SPLINE_CURVE_WITH_KNOTS >> cWeight [
 
 	^ StCAD_Math_FullColumn
 		  fromCollection: control_points_list
-		  aBlock: [ :a | 1.0 d ] "VW_TRANSLATION:StCAD.Math.FullColumn:StCAD_Math_FullColumn"
+		  aBlock: [ :a | 1.0 ] "VW_TRANSLATION:StCAD.Math.FullColumn:StCAD_Math_FullColumn"
 ]
 
 { #category : #accessing }

@@ -64,7 +64,7 @@ ForTorActReactInLine >> fillpFpy1: mat [
 	pFTpkineIJs := tension pFTpkineIJs.
 	pFTpkinedotIJs := tension pFTpkinedotIJs.
 	pFTpJtActs := tension pFTpJtActs.
-	mforTor := 0.0d - forTor.
+	mforTor := 0.0 - forTor.
 	forTorBasicJ fillpFpy: mat aFTO: aFTJeO.
 	forTorBasicJ
 		fillpFpy: mat
@@ -80,7 +80,7 @@ ForTorActReactInLine >> fillpFpy1: mat [
 		do: 
 			[:i | 
 			kineIJ := kineIJs at: i.
-			mpFTpkineIJ := 0.0d - (pFTpkineIJs at: i).
+			mpFTpkineIJ := 0.0 - (pFTpkineIJs at: i).
 			forTorBasicJ
 				fillpFpy: mat
 				pFTOpXj: (uIeJeO timesFullRow: kineIJ pvaluepXI times: mpFTpkineIJ)
@@ -95,7 +95,7 @@ ForTorActReactInLine >> fillpFpy1: mat [
 		do: 
 			[:i | 
 			kinedotIJ := kinedotIJs at: i.
-			mpFTpkinedotIJ := 0.0d - (pFTpkinedotIJs at: i).
+			mpFTpkinedotIJ := 0.0 - (pFTpkinedotIJs at: i).
 			forTorBasicJ
 				fillpFpy: mat
 				pFTOpXj: (uIeJeO timesFullRow: kinedotIJ pvaluepXI times: mpFTpkinedotIJ)
@@ -110,7 +110,7 @@ ForTorActReactInLine >> fillpFpy1: mat [
 		do: 
 			[:i | 
 			jointAction := jointActions at: i.
-			mpFTpJtAct := 0.0d - (pFTpJtActs at: i).
+			mpFTpJtAct := 0.0 - (pFTpJtActs at: i).
 			forTorBasicJ
 				fillpFpy: mat
 				pFTOpXj: (uIeJeO timesFullRow: jointAction pvaluepXI times: mpFTpJtAct)
@@ -129,7 +129,7 @@ ForTorActReactInLine >> fillpFpy: mat [
 	forTorAction fillpFpy: mat.
 	distIeJe := forTorAction distIeJe.
 	tension := forTorAction tension.
-	mforTor := 0.0d - tension forTor.
+	mforTor := 0.0 - tension forTor.
 	forTorBasicJ fillpFpy: mat aFTO: aFTJeO.
 	block := [:puIeJeOpXi :puIeJeOpEi :partFramei | forTorBasicJ
 				fillpFpy: mat
@@ -201,7 +201,7 @@ ForTorActReactInLine >> fillpFpydot1: mat [
 		do: 
 			[:i | 
 			kinedotIJ := kinedotIJs at: i.
-			mpFTpkinedotIJ := 0.0d - (pFTpkinedotIJs at: i).
+			mpFTpkinedotIJ := 0.0 - (pFTpkinedotIJs at: i).
 			forTorBasicJ
 				fillpFpydot: mat
 				pFTOpXdotj: (uIeJeO timesFullRow: kinedotIJ pvaluepXdotI times: mpFTpkinedotIJ)
@@ -216,7 +216,7 @@ ForTorActReactInLine >> fillpFpydot1: mat [
 		do: 
 			[:i | 
 			jointAction := jointActions at: i.
-			mpFTpJtAct := 0.0d - (pFTpJtActs at: i).
+			mpFTpJtAct := 0.0 - (pFTpJtActs at: i).
 			forTorBasicJ fillpFpydot: mat pFTOpmudot: (uIeJeO timesSparseRow: jointAction pvalueplam times: mpFTpJtAct)]
 ]
 

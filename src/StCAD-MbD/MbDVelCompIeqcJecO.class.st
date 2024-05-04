@@ -48,7 +48,7 @@ MbDVelCompIeqcJecO >> initialize [
 { #category : #'initialize-release' }
 MbDVelCompIeqcJecO >> initializeLocally [
 	pvIeJeOipXdotI := (StMFullRow zero: 3).
-	pvIeJeOipXdotI at: axis put: -1.0d
+	pvIeJeOipXdotI at: axis put: -1.0
 ]
 
 { #category : #accessing }

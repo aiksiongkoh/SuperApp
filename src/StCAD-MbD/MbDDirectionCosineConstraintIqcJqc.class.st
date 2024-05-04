@@ -38,7 +38,7 @@ MbDDirectionCosineConstraintIqcJqc >> addToJointTorqueJ: col [
 	aBOJp := frmJ aBOp.
 	lampGpE := pGpEJ transpose times: lam.
 	c2Torque := aBOJp timesFullColumn: lampGpE.
-	col equalSelfPlusFullColumn: c2Torque times: 0.5d
+	col equalSelfPlusFullColumn: c2Torque times: 0.5
 ]
 
 { #category : #accessing }
@@ -48,7 +48,7 @@ MbDDirectionCosineConstraintIqcJqc >> addpTIeiGOpEJto: mat [
 
 	| aB term1 pTIeiGOpEJ |
 	aB := frmI aBOp.
-	term1 := ppGpEIpEJ times: lam / 2.0d.
+	term1 := ppGpEIpEJ times: lam / 2.0.
 	pTIeiGOpEJ := aB timesFullMatrix: term1.
 	mat equalSelfPlusFullMatrix: pTIeiGOpEJ
 ]
@@ -73,9 +73,9 @@ MbDDirectionCosineConstraintIqcJqc >> fillAccICIterError: col [
 	col at: iqEJ plusFullColumn: pGpEJ times: lam.
 	qEdotI := frmI qEdot.
 	qEdotJ := frmJ qEdot.
-	sum := 0.0d.
+	sum := 0.0.
 	sum := sum + (pGpEJ timesFullColumn: frmJ qEddot).
-	sum := sum + (2.0d * (qEdotI transposeTimesFullColumn: (ppGpEIpEJ timesFullColumn: qEdotJ))).
+	sum := sum + (2.0 * (qEdotI transposeTimesFullColumn: (ppGpEIpEJ timesFullColumn: qEdotJ))).
 	sum := sum + (qEdotJ transposeTimesFullColumn: (ppGpEJpEJ timesFullColumn: qEdotJ)).
 	col at: iG plusNumber: sum
 ]
@@ -88,7 +88,7 @@ MbDDirectionCosineConstraintIqcJqc >> fillCollisionError: col [
 	| sum |
 	super fillCollisionError: col.
 	col at: iqEJ plusFullColumn: pGpEJ times: lamDeriv.
-	sum := 0.0d.
+	sum := 0.0.
 	sum := sum + (pGpEJ timesFullColumn: frmJ qEddot).
 	col at: iG plusNumber: sum
 ]

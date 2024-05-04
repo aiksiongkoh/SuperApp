@@ -335,7 +335,7 @@ GEOAssembly >> calcCharacteristicDimensions [
 	unitTime := self calcCharacteristicTime.
 	unitMass := self calcCharacteristicMass.
 	unitLength := self calcCharacteristicLength.
-	unitAngle := 1.0d.
+	unitAngle := 1.0.
 "	self halt: 'For debug only'.
 	unitTime := 1.0d.
 	unitMass := 1.0d.
@@ -887,7 +887,7 @@ GEOAssembly >> rOMarkerCenterO [
 { #category : #accessing }
 GEOAssembly >> rOcenterO [
 	| sumDiagonal sumMoment block |
-	sumDiagonal := 0.0d.
+	sumDiagonal := 0.0.
 	sumMoment := StMFullColumn zero: 3.
 	block := 
 			[:aBBox | 
@@ -924,7 +924,7 @@ GEOAssembly >> rOcenterO2 [
 	^nAnyPart > 0 
 		ifTrue: 
 			[| sumDiagonal sumMoment block |
-			sumDiagonal := 0.0d.
+			sumDiagonal := 0.0.
 			sumMoment := StMFullColumn zero: 3.
 			block := 
 					[:aAnyPart | 
@@ -1197,7 +1197,7 @@ GEOAssembly >> storeRobotAxesOn: writeStream [
 					nExtra timesRepeat: 
 							[writeStream
 								tab;
-								nextPutAll: 0.0d printForExport.].
+								nextPutAll: 0.0 printForExport.].
 					writeStream cr.].].
 ]
 

@@ -42,10 +42,10 @@ MbDAnglezIecJec >> calcPostDynCorrectorIteration [
 	diffOfSquares := sthez * sthez - (cthez * cthez).
 	sumOfSquaresSquared := sumOfSquares * sumOfSquares.
 	thez0to2pi := Double arcTan0to2piY: sthez overX: cthez.
-	thez := (thez - thez0to2pi / (2.0d * Double pi)) rounded * (2.0d * Double pi) + thez0to2pi.
+	thez := (thez - thez0to2pi / (2.0 * Double pi)) rounded * (2.0 * Double pi) + thez0to2pi.
 	cosOverSSq := cthez / sumOfSquares.
 	sinOverSSq := sthez / sumOfSquares.
-	twoCosSinOverSSqSq := 2.0d * cthez * sthez / sumOfSquaresSquared.
+	twoCosSinOverSSqSq := 2.0 * cthez * sthez / sumOfSquaresSquared.
 	dSqOverSSqSq := diffOfSquares / sumOfSquaresSquared
 ]
 
@@ -96,7 +96,7 @@ MbDAnglezIecJec >> postInput [
 		ifTrue: 
 			[cthez := aA11IeJe value.
 			sthez := aA21IeJe value.
-			thez := cthez > 0.0d
+			thez := cthez > 0.0
 						ifTrue: [Double arcTanMpiTOpiY: sthez overX: cthez]
 						ifFalse: [Double arcTan0to2piY: sthez overX: cthez]].
 	super postInput
@@ -140,7 +140,7 @@ MbDAnglezIecJec >> prePosIC [
 		ifTrue: 
 			[cthez := aA11IeJe value.
 			sthez := aA21IeJe value.
-			thez := cthez > 0.0d
+			thez := cthez > 0.0
 						ifTrue: [Double arcTanMpiTOpiY: sthez overX: cthez]
 						ifFalse: [Double arcTan0to2piY: sthez overX: cthez]].
 	super prePosIC

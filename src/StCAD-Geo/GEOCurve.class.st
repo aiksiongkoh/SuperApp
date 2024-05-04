@@ -51,7 +51,7 @@ GEOCurve >> alpha [
 	answer := self triggerEvent: #getalpha.
 	answer == nil 
 		ifTrue: 
-			[answer := 1.0d.
+			[answer := 1.0.
 			self alpha: answer].
 	^answer
 ]
@@ -109,7 +109,7 @@ GEOCurve >> lineWidth [
 	answer := self triggerEvent: #getlineWidth.
 	answer == nil 
 		ifTrue: 
-			[answer := 1.0d.
+			[answer := 1.0.
 			self lineWidth: answer].
 	^answer
 ]
@@ -248,7 +248,7 @@ GEOCurve >> theta: angle [
 	aA at: 1 and: 2 put: sinAngle negated.
 	aA at: 2 and: 1 put: sinAngle.
 	aA at: 2 and: 2 put: cosAngle.
-	aA at: 3 and: 3 put: 1.0d.
+	aA at: 3 and: 3 put: 1.0.
 	refFrame aAFf: aA.
 	self changed
 ]

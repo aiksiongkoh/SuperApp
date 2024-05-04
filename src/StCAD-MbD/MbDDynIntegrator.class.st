@@ -91,7 +91,7 @@ MbDDynIntegrator >> checkForOutputThrough: t [
 	direction * tend <= (direction * tlimit)
 		ifTrue: 
 			[integrator continue: false.
-			tlimit := tend + (0.1d * direction * hout)].
+			tlimit := tend + (0.1 * direction * hout)].
 	[direction * tout <= (direction * tlimit)]
 		whileTrue: 
 			[thereIsOutput := true.

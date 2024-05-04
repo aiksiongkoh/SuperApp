@@ -19,7 +19,7 @@ TorqueBasicComp class >> visualWorksMetadata [
 
 { #category : #calc }
 TorqueBasicComp >> calcPostDynCorrectorIteration [
-	twoBaxisT := (endFrame partFrame aB at: parent axis) transpose times: 2.0d
+	twoBaxisT := (endFrame partFrame aB at: parent axis) transpose times: 2.0
 ]
 
 { #category : #accIC }
@@ -50,7 +50,7 @@ TorqueBasicComp >> fillpFpy: mat aFTOi: aFTOi [
 	mat
 		at: iqE
 		and: iqE
-		plusFullMatrix: (MbDEulerParameters pBTpEtimesColumn: (aFTO times: 2.0d))
+		plusFullMatrix: (MbDEulerParameters pBTpEtimesColumn: (aFTO times: 2.0))
 ]
 
 { #category : #dynamic }

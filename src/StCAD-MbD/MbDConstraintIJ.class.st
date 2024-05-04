@@ -61,12 +61,12 @@ MbDConstraintIJ >> addpFIeiGOplamto: mat [
 { #category : #accessing }
 MbDConstraintIJ >> addpTIeiGOpEIto: mat [ 
 	| term11 prOIeOpEIT aFIeiGOover2 term12 term1 term21 pprOIeOpEIpEI term22 pprOIeOpEIipEI term22rowi pFIeiGOpEIover2 term23 aB term2 pTIeiGOpEI |
-	term11 := self pGpEI transpose times: lam / 2.0d.
+	term11 := self pGpEI transpose times: lam / 2.0.
 	prOIeOpEIT := frmI prOeOpE transpose.
-	aFIeiGOover2 := self pGpXI transpose times: lam / 2.0d.
+	aFIeiGOover2 := self pGpXI transpose times: lam / 2.0.
 	term12 := prOIeOpEIT timesFullColumn: aFIeiGOover2.
 	term1 := MbDEulerParameters pBpEtimesColumn: (term11 minusFullColumn: term12).
-	term21 := self ppGpEIpEI times: lam / 2.0d.
+	term21 := self ppGpEIpEI times: lam / 2.0.
 	pprOIeOpEIpEI := frmI pprOeOpEpE.
 	term22 := StMFullMatrix new: 4 by: 4.
 	1 to: 4
@@ -76,7 +76,7 @@ MbDConstraintIJ >> addpTIeiGOpEIto: mat [
 			term22rowi := term22 at: i.
 			1 to: 4 do: [:j | term22rowi at: j put: ((pprOIeOpEIipEI at: j)
 						dot: aFIeiGOover2)]].
-	pFIeiGOpEIover2 := self ppGpXIpEI times: lam / 2.0d.
+	pFIeiGOpEIover2 := self ppGpXIpEI times: lam / 2.0.
 	term23 := prOIeOpEIT timesFullMatrix: pFIeiGOpEIover2.
 	aB := frmI aBOp.
 	term2 := aB timesFullMatrix: ((term21 minusFullMatrix: term22)
@@ -89,9 +89,9 @@ MbDConstraintIJ >> addpTIeiGOpEIto: mat [
 MbDConstraintIJ >> addpTIeiGOpEJto: mat [ 
 	| aB term1 prOIeOpEIT pFIeiGOpEJover2 term2 pTIeiGOpEJ |
 	aB := frmI aBOp.
-	term1 := self ppGpEIpEJ times: lam / 2.0d.
+	term1 := self ppGpEIpEJ times: lam / 2.0.
 	prOIeOpEIT := frmI prOeOpE transpose.
-	pFIeiGOpEJover2 := self ppGpXIpEJ times: lam / 2.0d.
+	pFIeiGOpEJover2 := self ppGpXIpEJ times: lam / 2.0.
 	term2 := prOIeOpEIT timesFullMatrix: pFIeiGOpEJover2.
 	pTIeiGOpEJ := aB timesFullMatrix: (term1 minusFullMatrix: term2).
 	mat equalSelfPlusFullMatrix: pTIeiGOpEJ
@@ -114,7 +114,7 @@ MbDConstraintIJ >> addpTIeiGOpXJto: mat [
 { #category : #accessing }
 MbDConstraintIJ >> addpTIeiGOplamto: mat [ 
 	| halfB term1 prOIeOpEIT pFIeiGOplam term2 pTIeiGOplam |
-	halfB := frmI aBOp times: 0.5d.
+	halfB := frmI aBOp times: 0.5.
 	term1 := self pGpEI transpose.
 	prOIeOpEIT := frmI prOeOpE transpose.
 	pFIeiGOplam := self pGpXI transpose.
@@ -136,5 +136,5 @@ MbDConstraintIJ >> frmJ [
 { #category : #'initialize-release' }
 MbDConstraintIJ >> initialize [
 	super initialize.
-	aConstant := 0.0d
+	aConstant := 0.0
 ]

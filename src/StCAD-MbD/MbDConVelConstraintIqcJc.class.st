@@ -33,7 +33,7 @@ MbDConVelConstraintIqcJc >> addToJointTorqueI: jointTorque [
 	aBOIp := frmI aBOp.
 	lampGpE := pGpEI transpose times: lam.
 	c2Torque := aBOIp timesFullColumn: lampGpE.
-	jointTorque equalSelfPlusFullColumn: c2Torque times: 0.5d
+	jointTorque equalSelfPlusFullColumn: c2Torque times: 0.5
 ]
 
 { #category : #accessing }
@@ -47,9 +47,9 @@ MbDConVelConstraintIqcJc >> addpTIeiGOpEIto: mat [
 	term23 := zero"
 
 	| term11 term1 term21 aB term2 pTIeiGOpEI |
-	term11 := pGpEI transpose times: lam / 2.0d.
+	term11 := pGpEI transpose times: lam / 2.0.
 	term1 := MbDEulerParameters pBpEtimesColumn: term11.
-	term21 := ppGpEIpEI times: lam / 2.0d.
+	term21 := ppGpEIpEI times: lam / 2.0.
 	aB := frmI aBOp.
 	term2 := aB timesFullMatrix: term21.
 	pTIeiGOpEI := term1 plusFullMatrix: term2.
@@ -62,7 +62,7 @@ MbDConVelConstraintIqcJc >> addpTIeiGOplamto: mat [
 	"term2 is zero."
 
 	| halfB term1 pTIeiGOplam |
-	halfB := frmI aBOp times: 0.5d.
+	halfB := frmI aBOp times: 0.5.
 	term1 := pGpEI transpose.
 	pTIeiGOplam := halfB timesFullColumn: term1.
 	mat at: 1 and: iG plusFullColumn: pTIeiGOplam
@@ -93,7 +93,7 @@ MbDConVelConstraintIqcJc >> fillAccICIterError: col [
 	| qEdotI sum |
 	col at: iqEI plusFullColumn: pGpEI times: lam.
 	qEdotI := frmI qEdot.
-	sum := 0.0d.
+	sum := 0.0.
 	sum := sum + (pGpEI timesFullColumn: frmI qEddot).
 	sum := sum + (qEdotI transposeTimesFullColumn: (ppGpEIpEI timesFullColumn: qEdotI)).
 	col at: iG plusNumber: sum

@@ -51,7 +51,7 @@ MbDNonlinearCoupler >> calcPostDynCorrectorIteration [
 MbDNonlinearCoupler >> fillAccICIterError: col [ 
 	| kineIJs sum kineIJi pFrmIi pFrmJi pGpXIi pGpEIi pGpXJi pGpEJi |
 	kineIJs := couplerFunction kineIJs.
-	sum := 0.0d.
+	sum := 0.0.
 	1 to: n
 		do: 
 			[:i | 
@@ -108,7 +108,7 @@ MbDNonlinearCoupler >> fillAccICIterErrorppGpqpq: col kineIJ: kineIJ pfuncpkineI
 	| sum qXdotI qEdotI qXdotJ qEdotJ ppvaluepXIpXI term ppvaluepXIpEI ppvaluepXIpXJ ppvaluepXIpEJ ppvaluepEIpEI ppvaluepEIpXJ ppvaluepEIpEJ ppvaluepXJpXJ ppvaluepXJpEJ ppvaluepEJpEJ pfrmI pfrmJ |
 	pfuncpkineIJ == 0
 		ifFalse: 
-			[sum := 0.0d.
+			[sum := 0.0.
 			pfrmI := kineIJ partFrameI.
 			pfrmJ := kineIJ partFrameJ.
 			qXdotI := pfrmI qXdot.
@@ -121,15 +121,15 @@ MbDNonlinearCoupler >> fillAccICIterErrorppGpqpq: col kineIJ: kineIJ pfuncpkineI
 					sum := sum + term].
 			(ppvaluepXIpEI := kineIJ ppvaluepXIpEI) == nil
 				ifFalse: 
-					[term := 2.0d * pfuncpkineIJ * (qXdotI dot: (ppvaluepXIpEI timesFullColumn: qEdotI)).
+					[term := 2.0 * pfuncpkineIJ * (qXdotI dot: (ppvaluepXIpEI timesFullColumn: qEdotI)).
 					sum := sum + term].
 			(ppvaluepXIpXJ := kineIJ ppvaluepXIpXJ) == nil
 				ifFalse: 
-					[term := 2.0d * pfuncpkineIJ * (qXdotI dot: (ppvaluepXIpXJ timesFullColumn: qXdotJ)).
+					[term := 2.0 * pfuncpkineIJ * (qXdotI dot: (ppvaluepXIpXJ timesFullColumn: qXdotJ)).
 					sum := sum + term].
 			(ppvaluepXIpEJ := kineIJ ppvaluepXIpEJ) == nil
 				ifFalse: 
-					[term := 2.0d * pfuncpkineIJ * (qXdotI dot: (ppvaluepXIpEJ timesFullColumn: qEdotJ)).
+					[term := 2.0 * pfuncpkineIJ * (qXdotI dot: (ppvaluepXIpEJ timesFullColumn: qEdotJ)).
 					sum := sum + term].
 			(ppvaluepEIpEI := kineIJ ppvaluepEIpEI) == nil
 				ifFalse: 
@@ -137,11 +137,11 @@ MbDNonlinearCoupler >> fillAccICIterErrorppGpqpq: col kineIJ: kineIJ pfuncpkineI
 					sum := sum + term].
 			(ppvaluepEIpXJ := kineIJ ppvaluepEIpXJ) == nil
 				ifFalse: 
-					[term := 2.0d * pfuncpkineIJ * (qEdotI dot: (ppvaluepEIpXJ timesFullColumn: qXdotJ)).
+					[term := 2.0 * pfuncpkineIJ * (qEdotI dot: (ppvaluepEIpXJ timesFullColumn: qXdotJ)).
 					sum := sum + term].
 			(ppvaluepEIpEJ := kineIJ ppvaluepEIpEJ) == nil
 				ifFalse: 
-					[term := 2.0d * pfuncpkineIJ * (qEdotI dot: (ppvaluepEIpEJ timesFullColumn: qEdotJ)).
+					[term := 2.0 * pfuncpkineIJ * (qEdotI dot: (ppvaluepEIpEJ timesFullColumn: qEdotJ)).
 					sum := sum + term].
 			(ppvaluepXJpXJ := kineIJ ppvaluepXJpXJ) == nil
 				ifFalse: 
@@ -149,7 +149,7 @@ MbDNonlinearCoupler >> fillAccICIterErrorppGpqpq: col kineIJ: kineIJ pfuncpkineI
 					sum := sum + term].
 			(ppvaluepXJpEJ := kineIJ ppvaluepXJpEJ) == nil
 				ifFalse: 
-					[term := 2.0d * pfuncpkineIJ * (qXdotJ dot: (ppvaluepXJpEJ timesFullColumn: qEdotJ)).
+					[term := 2.0 * pfuncpkineIJ * (qXdotJ dot: (ppvaluepXJpEJ timesFullColumn: qEdotJ)).
 					sum := sum + term].
 			(ppvaluepEJpEJ := kineIJ ppvaluepEJpEJ) == nil
 				ifFalse: 
@@ -163,7 +163,7 @@ MbDNonlinearCoupler >> fillAccICIterErrorppGpqpq: col kineIJ: kineIJ ppfuncpkine
 	| sum pvaluepXI pvaluepEI pvaluepXJ pvaluepEJ pvaluepXIqXdotI pvaluepEIqEdotI pvaluepXJqXdotJ pvaluepEJqEdotJ term |
 	ppfuncpkineIJpkineIJ == 0
 		ifFalse: 
-			[sum := 0.0d.
+			[sum := 0.0.
 			pvaluepXI := kineIJ pvaluepXI.
 			pvaluepEI := kineIJ pvaluepEI.
 			pvaluepXJ := kineIJ pvaluepXJ.
@@ -178,15 +178,15 @@ MbDNonlinearCoupler >> fillAccICIterErrorppGpqpq: col kineIJ: kineIJ ppfuncpkine
 					sum := sum + term.
 					pvaluepEI == nil
 						ifFalse: 
-							[term := 2.0d * ppfuncpkineIJpkineIJ * pvaluepXIqXdotI * pvaluepEIqEdotI.
+							[term := 2.0 * ppfuncpkineIJpkineIJ * pvaluepXIqXdotI * pvaluepEIqEdotI.
 							sum := sum + term].
 					pvaluepXJ == nil
 						ifFalse: 
-							[term := 2.0d * ppfuncpkineIJpkineIJ * pvaluepXIqXdotI * pvaluepXJqXdotJ.
+							[term := 2.0 * ppfuncpkineIJpkineIJ * pvaluepXIqXdotI * pvaluepXJqXdotJ.
 							sum := sum + term].
 					pvaluepEJ == nil
 						ifFalse: 
-							[term := 2.0d * ppfuncpkineIJpkineIJ * pvaluepXIqXdotI * pvaluepEJqEdotJ.
+							[term := 2.0 * ppfuncpkineIJpkineIJ * pvaluepXIqXdotI * pvaluepEJqEdotJ.
 							sum := sum + term]].
 			pvaluepEI == nil
 				ifFalse: 
@@ -194,11 +194,11 @@ MbDNonlinearCoupler >> fillAccICIterErrorppGpqpq: col kineIJ: kineIJ ppfuncpkine
 					sum := sum + term.
 					pvaluepXJ == nil
 						ifFalse: 
-							[term := 2.0d * ppfuncpkineIJpkineIJ * pvaluepEIqEdotI * pvaluepXJqXdotJ.
+							[term := 2.0 * ppfuncpkineIJpkineIJ * pvaluepEIqEdotI * pvaluepXJqXdotJ.
 							sum := sum + term].
 					pvaluepEJ == nil
 						ifFalse: 
-							[term := 2.0d * ppfuncpkineIJpkineIJ * pvaluepEIqEdotI * pvaluepEJqEdotJ.
+							[term := 2.0 * ppfuncpkineIJpkineIJ * pvaluepEIqEdotI * pvaluepEJqEdotJ.
 							sum := sum + term]].
 			pvaluepXJ == nil
 				ifFalse: 
@@ -206,7 +206,7 @@ MbDNonlinearCoupler >> fillAccICIterErrorppGpqpq: col kineIJ: kineIJ ppfuncpkine
 					sum := sum + term.
 					pvaluepEJ == nil
 						ifFalse: 
-							[term := 2.0d * ppfuncpkineIJpkineIJ * pvaluepXJqXdotJ * pvaluepEJqEdotJ.
+							[term := 2.0 * ppfuncpkineIJpkineIJ * pvaluepXJqXdotJ * pvaluepEJqEdotJ.
 							sum := sum + term]].
 			pvaluepEJ == nil
 				ifFalse: 
@@ -220,7 +220,7 @@ MbDNonlinearCoupler >> fillAccICIterErrorppGpqpq: col kineIJi: kineIJi kineIJj: 
 	| sum pvaluepXIi pvaluepEIi pvaluepXJi pvaluepEJi pvaluepXIqXdotIi pvaluepEIqEdotIi pvaluepXJqXdotJi pvaluepEJqEdotJi pvaluepXIj pvaluepEIj pvaluepXJj pvaluepEJj pvaluepXIqXdotIj pvaluepEIqEdotIj pvaluepXJqXdotJj pvaluepEJqEdotJj term |
 	ppfuncpkineIJpkineIJ == 0
 		ifFalse: 
-			[sum := 0.0d.
+			[sum := 0.0.
 			pvaluepXIi := kineIJi pvaluepXI.
 			pvaluepEIi := kineIJi pvaluepEI.
 			pvaluepXJi := kineIJi pvaluepXJ.
@@ -239,55 +239,55 @@ MbDNonlinearCoupler >> fillAccICIterErrorppGpqpq: col kineIJi: kineIJi kineIJj: 
 			pvaluepEJqEdotJj := pvaluepEJj == nil ifFalse: [pvaluepEJj dot: kineIJj qEdotJ].
 			pvaluepXIi == nil ifFalse: 
 					[pvaluepXIj == nil ifFalse: 
-							[term := 2.0d * ppfuncpkineIJpkineIJ * pvaluepXIqXdotIi * pvaluepXIqXdotIj.
+							[term := 2.0 * ppfuncpkineIJpkineIJ * pvaluepXIqXdotIi * pvaluepXIqXdotIj.
 							sum := sum + term].
 					pvaluepEIj == nil ifFalse: 
-							[term := 2.0d * ppfuncpkineIJpkineIJ * pvaluepXIqXdotIi * pvaluepEIqEdotIj.
+							[term := 2.0 * ppfuncpkineIJpkineIJ * pvaluepXIqXdotIi * pvaluepEIqEdotIj.
 							sum := sum + term].
 					pvaluepXJj == nil ifFalse: 
-							[term := 2.0d * ppfuncpkineIJpkineIJ * pvaluepXIqXdotIi * pvaluepXJqXdotJj.
+							[term := 2.0 * ppfuncpkineIJpkineIJ * pvaluepXIqXdotIi * pvaluepXJqXdotJj.
 							sum := sum + term].
 					pvaluepEJj == nil ifFalse: 
-							[term := 2.0d * ppfuncpkineIJpkineIJ * pvaluepXIqXdotIi * pvaluepEJqEdotJj.
+							[term := 2.0 * ppfuncpkineIJpkineIJ * pvaluepXIqXdotIi * pvaluepEJqEdotJj.
 							sum := sum + term]].
 			pvaluepEIi == nil ifFalse: 
 					[pvaluepXIj == nil ifFalse: 
-							[term := 2.0d * ppfuncpkineIJpkineIJ * pvaluepEIqEdotIi * pvaluepXIqXdotIj.
+							[term := 2.0 * ppfuncpkineIJpkineIJ * pvaluepEIqEdotIi * pvaluepXIqXdotIj.
 							sum := sum + term].
 					pvaluepEIj == nil ifFalse: 
-							[term := 2.0d * ppfuncpkineIJpkineIJ * pvaluepEIqEdotIi * pvaluepEIqEdotIj.
+							[term := 2.0 * ppfuncpkineIJpkineIJ * pvaluepEIqEdotIi * pvaluepEIqEdotIj.
 							sum := sum + term].
 					pvaluepXJj == nil ifFalse: 
-							[term := 2.0d * ppfuncpkineIJpkineIJ * pvaluepEIqEdotIi * pvaluepXJqXdotJj.
+							[term := 2.0 * ppfuncpkineIJpkineIJ * pvaluepEIqEdotIi * pvaluepXJqXdotJj.
 							sum := sum + term].
 					pvaluepEJj == nil ifFalse: 
-							[term := 2.0d * ppfuncpkineIJpkineIJ * pvaluepEIqEdotIi * pvaluepEJqEdotJj.
+							[term := 2.0 * ppfuncpkineIJpkineIJ * pvaluepEIqEdotIi * pvaluepEJqEdotJj.
 							sum := sum + term]].
 			pvaluepXJi == nil ifFalse: 
 					[pvaluepXIj == nil ifFalse: 
-							[term := 2.0d * ppfuncpkineIJpkineIJ * pvaluepXJqXdotJi * pvaluepXIqXdotIj.
+							[term := 2.0 * ppfuncpkineIJpkineIJ * pvaluepXJqXdotJi * pvaluepXIqXdotIj.
 							sum := sum + term].
 					pvaluepEIj == nil ifFalse: 
-							[term := 2.0d * ppfuncpkineIJpkineIJ * pvaluepXJqXdotJi * pvaluepEIqEdotIj.
+							[term := 2.0 * ppfuncpkineIJpkineIJ * pvaluepXJqXdotJi * pvaluepEIqEdotIj.
 							sum := sum + term].
 					pvaluepXJj == nil ifFalse: 
-							[term := 2.0d * ppfuncpkineIJpkineIJ * pvaluepXJqXdotJi * pvaluepXJqXdotJj.
+							[term := 2.0 * ppfuncpkineIJpkineIJ * pvaluepXJqXdotJi * pvaluepXJqXdotJj.
 							sum := sum + term].
 					pvaluepEJj == nil ifFalse: 
-							[term := 2.0d * ppfuncpkineIJpkineIJ * pvaluepXJqXdotJi * pvaluepEJqEdotJj.
+							[term := 2.0 * ppfuncpkineIJpkineIJ * pvaluepXJqXdotJi * pvaluepEJqEdotJj.
 							sum := sum + term]].
 			pvaluepEJi == nil ifFalse: 
 					[pvaluepXIj == nil ifFalse: 
-							[term := 2.0d * ppfuncpkineIJpkineIJ * pvaluepEJqEdotJi * pvaluepXIqXdotIj.
+							[term := 2.0 * ppfuncpkineIJpkineIJ * pvaluepEJqEdotJi * pvaluepXIqXdotIj.
 							sum := sum + term].
 					pvaluepEIj == nil ifFalse: 
-							[term := 2.0d * ppfuncpkineIJpkineIJ * pvaluepEJqEdotJi * pvaluepEIqEdotIj.
+							[term := 2.0 * ppfuncpkineIJpkineIJ * pvaluepEJqEdotJi * pvaluepEIqEdotIj.
 							sum := sum + term].
 					pvaluepXJj == nil ifFalse: 
-							[term := 2.0d * ppfuncpkineIJpkineIJ * pvaluepEJqEdotJi * pvaluepXJqXdotJj.
+							[term := 2.0 * ppfuncpkineIJpkineIJ * pvaluepEJqEdotJi * pvaluepXJqXdotJj.
 							sum := sum + term].
 					pvaluepEJj == nil ifFalse: 
-							[term := 2.0d * ppfuncpkineIJpkineIJ * pvaluepEJqEdotJi * pvaluepEJqEdotJj.
+							[term := 2.0 * ppfuncpkineIJpkineIJ * pvaluepEJqEdotJi * pvaluepEJqEdotJj.
 							sum := sum + term]]].
 	col at: iG plusNumber: sum
 ]

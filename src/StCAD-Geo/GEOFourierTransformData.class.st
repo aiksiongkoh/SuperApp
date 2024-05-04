@@ -79,7 +79,7 @@ GEOFourierTransformData >> phase1 [
 { #category : #accessing }
 GEOFourierTransformData >> phaseDegrees [
 	^[(Double arcTan0to2piY: aFy overX: aFx) radiansToDegrees] on: Error
-		do: [:ex | 0.0d]
+		do: [:ex | 0.0]
 ]
 
 { #category : #accessing }

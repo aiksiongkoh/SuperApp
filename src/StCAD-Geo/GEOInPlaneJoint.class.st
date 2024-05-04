@@ -63,7 +63,7 @@ GEOInPlaneJoint >> createMbD [
 
 { #category : #'initialize-release' }
 GEOInPlaneJoint >> initialize [
-	offset := 0.0d.
+	offset := 0.0.
 	super initialize
 ]
 

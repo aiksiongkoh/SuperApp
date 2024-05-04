@@ -77,11 +77,11 @@ CoordinateFrame >> isAxis: axisi coaxialWith: aFrame axis: axisj [
 	distTol := 1.0d-9.
 	axesParallel := ((self aAOf column: axisi)
 				dot: (aFrame aAOf column: axisj)) abs
-				equal: 1.0d
+				equal: 1.0
 				tol: angleTol.
 	rfpf := self rfpffromrOpO: aFrame rOfO.
 	rfpfperpendicular := rfpf
-				at: axisi put: 0.0d;
+				at: axisi put: 0.0;
 				yourself.
 	originjIsOnAxisi := rfpfperpendicular length < distTol.
 	^axesParallel & originjIsOnAxisi

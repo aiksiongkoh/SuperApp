@@ -191,7 +191,7 @@ MbDConstraint >> owner: object [
 
 { #category : #'input-output' }
 MbDConstraint >> postInput [
-	lam := 0.0d.
+	lam := 0.0.
 	super postInput
 ]
 
@@ -199,7 +199,7 @@ MbDConstraint >> postInput [
 MbDConstraint >> preAccIC [
 	"Set any friction to zero to start iteration."
 
-	lam := 0.0d.
+	lam := 0.0.
 	super preAccIC
 ]
 
@@ -207,30 +207,30 @@ MbDConstraint >> preAccIC [
 MbDConstraint >> preCollision [
 	"lam is now Plam."
 
-	lam := 0.0d
+	lam := 0.0
 ]
 
 { #category : #collision }
 MbDConstraint >> preCollisionDerivativeIC [
 	"lam is now impulse Plam."
 
-	lam := 0.0d
+	lam := 0.0
 ]
 
 { #category : #dynamic }
 MbDConstraint >> preDyn [
-	mu := 0.0d
+	mu := 0.0
 ]
 
 { #category : #posIC }
 MbDConstraint >> preICRestart [
-	mu := 0.0d.
-	lam := 0.0d
+	mu := 0.0.
+	lam := 0.0
 ]
 
 { #category : #posIC }
 MbDConstraint >> prePosIC [
-	lam := 0.0d.
+	lam := 0.0.
 	iG := nil.
 	super prePosIC
 ]

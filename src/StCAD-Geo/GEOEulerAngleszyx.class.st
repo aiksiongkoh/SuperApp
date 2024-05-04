@@ -10,16 +10,16 @@ GEOEulerAngleszyx class >> fromA: aA [
 	| answer msthe2y the1z the2y the3x cthe1z sthe1z y x |
 	answer := self new.
 	msthe2y := aA at: 3 and: 1.
-	msthe2y abs > 0.999999d
+	msthe2y abs > 0.999999
 		ifTrue: [msthe2y strictlyPositive
 				ifTrue: 
 					[the1z := Double arcTanMpiTOpiY: (aA at: 1 and: 2) negated overX: (aA at: 2 and: 2).
-					the2y := Double pi / -2.0d.
-					the3x := 0.0d]
+					the2y := Double pi / -2.0.
+					the3x := 0.0]
 				ifFalse: 
 					[the1z := Double arcTanMpiTOpiY: (aA at: 1 and: 2) negated overX: (aA at: 2 and: 2).
-					the2y := Double pi / 2.0d.
-					the3x := 0.0d]]
+					the2y := Double pi / 2.0.
+					the3x := 0.0]]
 		ifFalse: 
 			[the1z := Double arcTanMpiTOpiY: (aA at: 2 and: 1)
 						overX: (aA at: 1 and: 1).

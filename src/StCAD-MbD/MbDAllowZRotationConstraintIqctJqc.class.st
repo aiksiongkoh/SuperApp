@@ -22,7 +22,7 @@ MbDAllowZRotationConstraintIqctJqc >> postInput [
 	aEulerAngleszxz := StCAD_StGeo_GEOEulerAngleszxz fromA: aAImJe. "VW_TRANSLATION:StCAD.StGeo.GEOEulerAngleszxz:StCAD_StGeo_GEOEulerAngleszxz"
 	the1z := aEulerAngleszxz at: 1.
 	the2x := aEulerAngleszxz at: 2.
-	the2x abs < (Double pi / 2.0 d)
+	the2x abs < (Double pi / 2.0)
 		ifTrue: [ (frmI phiThePsiBlks at: 1) value: the1z ]
 		ifFalse: [ (frmI phiThePsiBlks at: 1) value: Double pi + the1z ].
 	frmI postInput.
@@ -37,7 +37,7 @@ MbDAllowZRotationConstraintIqctJqc >> postInput1 [
 	aEulerAngleszxz := StCAD_StGeo_GEOEulerAngleszxz fromA: aAImJe. "VW_TRANSLATION:StCAD.StGeo.GEOEulerAngleszxz:StCAD_StGeo_GEOEulerAngleszxz"
 	the1z := aEulerAngleszxz at: 1.
 	the2x := aEulerAngleszxz at: 2.
-	the2x abs < (Double pi / 2.0 d)
+	the2x abs < (Double pi / 2.0)
 		ifTrue: [ (frmI phiThePsiBlks at: 1) value: the1z ]
 		ifFalse: [ (frmI phiThePsiBlks at: 1) value: Double pi + the1z ].
 	frmI postInput.
@@ -52,9 +52,9 @@ MbDAllowZRotationConstraintIqctJqc >> postInput2 [
 	aEulerAngleszxz := StCAD_StGeo_GEOEulerAngleszxz fromA: aAImJe. "VW_TRANSLATION:StCAD.StGeo.GEOEulerAngleszxz:StCAD_StGeo_GEOEulerAngleszxz"
 	the1z := aEulerAngleszxz at: 1.
 	the2x := aEulerAngleszxz at: 2.
-	the2x abs < (Double pi / 2.0 d)
+	the2x abs < (Double pi / 2.0)
 		ifTrue: [ (frmI phiThePsiBlks at: 1) value: the1z ]
-		ifFalse: [ (frmI phiThePsiBlks at: 1) value: 0.45437913892377 d ].
+		ifFalse: [ (frmI phiThePsiBlks at: 1) value: 0.45437913892377 ].
 	frmI postInput.
 	super postInput
 ]

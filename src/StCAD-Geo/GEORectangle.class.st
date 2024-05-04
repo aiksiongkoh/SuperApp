@@ -40,7 +40,7 @@ GEORectangle >> maxCorner [
 	^refFrame rFfF + (refFrame aAFf timesFullColumn: (StMFullColumn
 				with: xLength
 				with: yLength
-				with: 0.0d))
+				with: 0.0))
 ]
 
 { #category : #accessing }
@@ -88,16 +88,16 @@ GEORectangle >> rfpointsf [
 	rfpointsf at: 1 put: (StMFullColumn zero: 3).
 	rfpointsf at: 2 put: (StMFullColumn
 			with: xLength
-			with: 0.0d
-			with: 0.0d).
+			with: 0.0
+			with: 0.0).
 	rfpointsf at: 3 put: (StMFullColumn
 			with: xLength
 			with: yLength
-			with: 0.0d).
+			with: 0.0).
 	rfpointsf at: 4 put: (StMFullColumn
-			with: 0.0d
+			with: 0.0
 			with: yLength
-			with: 0.0d).
+			with: 0.0).
 	rfpointsf at: 5 put: (rfpointsf at: 1).
 	^rfpointsf
 ]
@@ -126,7 +126,7 @@ GEORectangle >> theta: angle [
 	aA at: 1 and: 2 put: sinAngle negated.
 	aA at: 2 and: 1 put: sinAngle.
 	aA at: 2 and: 2 put: cosAngle.
-	aA at: 3 and: 3 put: 1.0d.
+	aA at: 3 and: 3 put: 1.0.
 	refFrame aAFf: aA.
 	self changed
 ]

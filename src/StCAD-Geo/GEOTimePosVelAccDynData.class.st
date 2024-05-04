@@ -35,7 +35,7 @@ GEOTimePosVelAccDynData >> angularKineticEnergy [
 	| omeOpp |
 	omeOpp := aAOf transpose timesFullColumn: omeOfO.
 	^(omeOpp dot: (aJpp timesFullColumn: omeOpp))
-		/ 2.0d
+		/ 2.0
 ]
 
 { #category : #accessing }
@@ -151,7 +151,7 @@ GEOTimePosVelAccDynData >> inertialTorquep [
 
 { #category : #accessing }
 GEOTimePosVelAccDynData >> linearKineticEnergy [
-	^vOfO sumOfSquares * mass / 2.0d
+	^vOfO sumOfSquares * mass / 2.0
 ]
 
 { #category : #accessing }

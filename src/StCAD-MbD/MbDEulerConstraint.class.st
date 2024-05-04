@@ -22,8 +22,8 @@ MbDEulerConstraint class >> visualWorksMetadata [
 MbDEulerConstraint >> calcPostDynCorrectorIteration [
 	| qE |
 	qE := owner qE.
-	aG := qE sumOfSquares - 1.0d.
-	1 to: 4 do: [:i | pGpE at: i put: 2.0d * (qE at: i)]
+	aG := qE sumOfSquares - 1.0.
+	1 to: 4 do: [:i | pGpE at: i put: 2.0 * (qE at: i)]
 ]
 
 { #category : #accessing }
@@ -41,9 +41,9 @@ MbDEulerConstraint >> fillAccICIterError: col [
 
 	| sum |
 	col at: iqE plusFullColumn: pGpE times: lam.
-	sum := 0.0d.
+	sum := 0.0.
 	sum := sum + (pGpE timesFullColumn: owner qEddot).
-	sum := sum + (2.0d * owner qEdot sumOfSquares).
+	sum := sum + (2.0 * owner qEdot sumOfSquares).
 	col at: iG plusNumber: sum
 ]
 
@@ -54,7 +54,7 @@ MbDEulerConstraint >> fillCollisionError: col [
 
 	| sum |
 	col at: iqE plusFullColumn: pGpE times: lamDeriv.
-	sum := 0.0d.
+	sum := 0.0.
 	sum := sum + (pGpE timesFullColumn: owner qEddot).
 	col at: iG plusNumber: sum
 ]
@@ -73,7 +73,7 @@ MbDEulerConstraint >> fillPosICJacob: mat [
 	mat at: iG and: iqE plusFullRow: pGpE.
 	mat at: iqE and: iG plusFullColumn: pGpE transpose.
 	ioffset := iqE - 1.
-	twolam := 2.0d * lam.
+	twolam := 2.0 * lam.
 	1 to: 4 do: [:ii | 
 			i := ioffset + ii.
 			mat at: i and: i plusNumber: twolam]
@@ -100,7 +100,7 @@ MbDEulerConstraint >> fillpFpy: mat [
 	| ioffset twolam i |
 	mat at: iG and: iqE plusFullRow: pGpE.
 	ioffset := iqE - 1.
-	twolam := 2.0d * lam.
+	twolam := 2.0 * lam.
 	1 to: 4 do: [:ii | 
 			i := ioffset + ii.
 			mat at: i and: i plusNumber: twolam]

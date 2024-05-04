@@ -52,7 +52,7 @@ MbDGearConstraintIqcJqc >> addToJointTorqueJ: col [
 			fpAOJppEJrJpJeJp at: i put: dum].
 	lampGpE := pGpEJ transpose times: lam.
 	c2Torque := aBOJp timesFullColumn: lampGpE - fpAOJppEJrJpJeJp.
-	col equalSelfPlusFullColumn: c2Torque times: 0.5d
+	col equalSelfPlusFullColumn: c2Torque times: 0.5
 ]
 
 { #category : #accessing }
@@ -69,9 +69,9 @@ MbDGearConstraintIqcJqc >> addpFIeiGOpXJto: mat [
 MbDGearConstraintIqcJqc >> addpTIeiGOpEJto: mat [ 
 	| aB term1 prOIeOpEIT pFIeiGOpEJover2 term2 pTIeiGOpEJ |
 	aB := frmI aBOp.
-	term1 := ppGpEIpEJ times: lam / 2.0d.
+	term1 := ppGpEIpEJ times: lam / 2.0.
 	prOIeOpEIT := frmI prOeOpE transpose.
-	pFIeiGOpEJover2 := ppGpXIpEJ times: lam / 2.0d.
+	pFIeiGOpEJover2 := ppGpXIpEJ times: lam / 2.0.
 	term2 := prOIeOpEIT timesFullMatrix: pFIeiGOpEJover2.
 	pTIeiGOpEJ := aB timesFullMatrix: (term1 minusFullMatrix: term2).
 	mat equalSelfPlusFullMatrix: pTIeiGOpEJ
@@ -81,9 +81,9 @@ MbDGearConstraintIqcJqc >> addpTIeiGOpEJto: mat [
 MbDGearConstraintIqcJqc >> addpTIeiGOpXJto: mat [ 
 	| aB term1 prOIeOpEIT pFIeiGOpXJover2 term2 pTIeiGOpXJ |
 	aB := frmI aBOp.
-	term1 := ppGpEIpXJ times: lam / 2.0d.
+	term1 := ppGpEIpXJ times: lam / 2.0.
 	prOIeOpEIT := frmI prOeOpE transpose.
-	pFIeiGOpXJover2 := ppGpXIpXJ times: lam / 2.0d.
+	pFIeiGOpXJover2 := ppGpXIpXJ times: lam / 2.0.
 	term2 := prOIeOpEIT timesFullMatrix: pFIeiGOpXJover2.
 	pTIeiGOpXJ := aB timesFullMatrix: (term1 minusFullMatrix: term2).
 	mat equalSelfPlusFullMatrix: pTIeiGOpXJ
@@ -165,15 +165,15 @@ MbDGearConstraintIqcJqc >> fillAccICIterError: col [
 	qEdotI := frmI qEdot.
 	qXdotJ := frmJ qXdot.
 	qEdotJ := frmJ qEdot.
-	sum := 0.0d.
+	sum := 0.0.
 	sum := sum + (pGpXJ timesFullColumn: frmJ qXddot).
 	sum := sum + (pGpEJ timesFullColumn: frmJ qEddot).
-	sum := sum + (2.0d * (qXdotI transposeTimesFullColumn: (ppGpXIpXJ timesFullColumn: qXdotJ))).
-	sum := sum + (2.0d * (qXdotI transposeTimesFullColumn: (ppGpXIpEJ timesFullColumn: qEdotJ))).
-	sum := sum + (2.0d * (qEdotI transposeTimesFullColumn: (ppGpEIpXJ timesFullColumn: qXdotJ))).
-	sum := sum + (2.0d * (qEdotI transposeTimesFullColumn: (ppGpEIpEJ timesFullColumn: qEdotJ))).
+	sum := sum + (2.0 * (qXdotI transposeTimesFullColumn: (ppGpXIpXJ timesFullColumn: qXdotJ))).
+	sum := sum + (2.0 * (qXdotI transposeTimesFullColumn: (ppGpXIpEJ timesFullColumn: qEdotJ))).
+	sum := sum + (2.0 * (qEdotI transposeTimesFullColumn: (ppGpEIpXJ timesFullColumn: qXdotJ))).
+	sum := sum + (2.0 * (qEdotI transposeTimesFullColumn: (ppGpEIpEJ timesFullColumn: qEdotJ))).
 	sum := sum + (qXdotJ transposeTimesFullColumn: (ppGpXJpXJ timesFullColumn: qXdotJ)).
-	sum := sum + (2.0d * (qXdotJ transposeTimesFullColumn: (ppGpXJpEJ timesFullColumn: qEdotJ))).
+	sum := sum + (2.0 * (qXdotJ transposeTimesFullColumn: (ppGpXJpEJ timesFullColumn: qEdotJ))).
 	sum := sum + (qEdotJ transposeTimesFullColumn: (ppGpEJpEJ timesFullColumn: qEdotJ)).
 	col at: iG plusNumber: sum
 ]

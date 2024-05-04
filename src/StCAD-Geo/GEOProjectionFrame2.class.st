@@ -196,13 +196,13 @@ GEOProjectionFrame2 >> fixedAtRef [
 	aAFf := StMFullMatrix
 				rotationMatrixFromOrigin: (StMFullColumn zero: 3)
 				zPoint: (StMFullColumn
-						with: 1.0d
-						with: 1.0d
-						with: -1.0d)
+						with: 1.0
+						with: 1.0
+						with: -1.0)
 				xPoint: (StMFullColumn
-						with: 1.0d
-						with: -1.0d
-						with: 0.0d).
+						with: 1.0
+						with: -1.0
+						with: 0.0).
 	self changed
 ]
 
@@ -289,7 +289,7 @@ GEOProjectionFrame2 >> rPpPfromrDpPx: rDpPx [
 	^StMFullColumn
 		with: rDpPx x / pixelPerMetre
 		with: rDpPx y / pixelPerMetre
-		with: 0.0d
+		with: 0.0
 ]
 
 { #category : #accessing }

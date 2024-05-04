@@ -192,7 +192,7 @@ MbDSystemSolver2 >> gSubC [
 { #category : #accessing }
 MbDSystemSolver2 >> hmax [
 	^hmax == nil
-		ifTrue: [1.0d]
+		ifTrue: [1.0]
 		ifFalse: [hmax]
 ]
 
@@ -216,7 +216,7 @@ MbDSystemSolver2 >> hmin: double [
 { #category : #accessing }
 MbDSystemSolver2 >> hout [
 	^hout == nil
-		ifTrue: [direction * 0.1d]
+		ifTrue: [direction * 0.1]
 		ifFalse: [hout]
 ]
 
@@ -245,8 +245,8 @@ MbDSystemSolver2 >> initializeLocally [
 
 	setsOfRedundantConstraints := OrderedCollection new.
 	direction := tstart < tend
-				ifTrue: [1.0d]
-				ifFalse: [-1.0d].
+				ifTrue: [1.0]
+				ifFalse: [-1.0].
 	toutFirst == nil ifTrue: [toutFirst := tstart + (direction * hout)]
 ]
 
@@ -338,7 +338,7 @@ MbDSystemSolver2 >> logString: string withArguments: arrayOfStrings [
 { #category : #accessing }
 MbDSystemSolver2 >> maxStepSize [
 	^hmax == nil
-		ifTrue: [1.0d]
+		ifTrue: [1.0]
 		ifFalse: [hmax]
 ]
 
@@ -408,7 +408,7 @@ MbDSystemSolver2 >> output [
 { #category : #accessing }
 MbDSystemSolver2 >> outputStepSize [
 	^hout == nil
-		ifTrue: [direction * 0.1d]
+		ifTrue: [direction * 0.1]
 		ifFalse: [hout]
 ]
 
@@ -466,7 +466,7 @@ MbDSystemSolver2 >> preCollision [
 { #category : #accessing }
 MbDSystemSolver2 >> rotationLimit [
 	^rotationLimit == nil
-		ifTrue: [0.5d]
+		ifTrue: [0.5]
 		ifFalse: [rotationLimit]
 ]
 
@@ -793,7 +793,7 @@ MbDSystemSolver2 >> runVelKine [
 { #category : #accessing }
 MbDSystemSolver2 >> startTime [
 	^tstart == nil
-		ifTrue: [0.0d]
+		ifTrue: [0.0]
 		ifFalse: [tstart]
 ]
 
@@ -805,7 +805,7 @@ MbDSystemSolver2 >> system: object [
 { #category : #accessing }
 MbDSystemSolver2 >> tend [
 	^tend == nil
-		ifTrue: [1.0d]
+		ifTrue: [1.0]
 		ifFalse: [tend]
 ]
 
@@ -844,7 +844,7 @@ MbDSystemSolver2 >> translationLimit: double [
 { #category : #accessing }
 MbDSystemSolver2 >> tstart [
 	^tstart == nil
-		ifTrue: [0.0d]
+		ifTrue: [0.0]
 		ifFalse: [tstart]
 ]
 

@@ -50,7 +50,7 @@ GEOKineIKineJ >> aIJI [
 	omeOII := self omeOII.
 	^(self aAOIT timesFullColumn: self aOJO - self aOIO)
 		- ((self alpOII cross: rIJI)
-				+ (omeOII cross: (omeOII cross: rIJI)) + (2.0d * (omeOII cross: self vIJI)))
+				+ (omeOII cross: (omeOII cross: rIJI)) + (2.0 * (omeOII cross: self vIJI)))
 ]
 
 { #category : #accessing }
@@ -173,7 +173,7 @@ GEOKineIKineJ >> coriollisAccIJ [
 
 { #category : #accessing }
 GEOKineIKineJ >> coriollisAccIJI [
-	^2.0d * (self omeOII cross: self vIJI)
+	^2.0 * (self omeOII cross: self vIJI)
 ]
 
 { #category : #accessing }

@@ -36,7 +36,7 @@ MbDDispCompIeqctJeqcKeqct >> preAccIC [
 	mpprIeJeOptpt := frmI pprOeOptpt.
 	1 to: 4 do: [:i | ppriIeJeKepEIpt at: i minusNumber: (aAjOKe dot: (mpprIeJeOpEITpt at: i))].
 	1 to: 4 do: [:i | ppriIeJeKepEKpt at: i minusNumber: ((pAjOKepEKT at: i) dot: mprIeJeOpt)].
-	ppriIeJeKeptpt := ppriIeJeKeptpt - (2.0d * (pAjOKept dot: mprIeJeOpt)) - (aAjOKe dot: mpprIeJeOptpt)
+	ppriIeJeKeptpt := ppriIeJeKeptpt - (2.0 * (pAjOKept dot: mprIeJeOpt)) - (aAjOKe dot: mpprIeJeOptpt)
 ]
 
 { #category : #velIC }

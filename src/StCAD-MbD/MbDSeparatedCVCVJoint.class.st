@@ -59,6 +59,6 @@ MbDSeparatedCVCVJoint >> prePosIC [
 
 { #category : #accIC }
 MbDSeparatedCVCVJoint >> recordContactForceAndSeparationDistance [
-	contactForce := 0.0d.
+	contactForce := 0.0.
 	separation := rIeJe calcSeparationDistance; separationDistance
 ]

@@ -224,15 +224,15 @@ GEOCurveMarker >> face: face [
 	polyline := face polyline.
 	rFpointsF := polyline rfpointsf.
 	sSeries := Interval
-				from: -1.0d
-				to: 1.0d
-				by: 2.0d / (rFpointsF size - 1).
+				from: -1.0
+				to: 1.0
+				by: 2.0 / (rFpointsF size - 1).
 	rFfFCurve rfpfEqn: (StMGeneralSplineX
 			with: StMIndependentVariable new
 			order: 5
 			xs: sSeries
 			ys: rFpointsF).
-	self s: -1.0d.
+	self s: -1.0.
 	face addCurveMarker: self.
 	interface createUpdateSelectGOfor: self
 ]
@@ -293,9 +293,9 @@ GEOCurveMarker >> s: double [
 	rFfF := rFfFEqn y: s.
 	aAFf1 := (rFfFEqn dydx: s) normalizeSelf.
 	aAFf2 := StMFullColumn
-				with: 0.0d
-				with: 0.0d
-				with: 1.0d.
+				with: 0.0
+				with: 0.0
+				with: 1.0.
 	aAFf3 := aAFf1 cross: aAFf2.
 	aAFf := StMFullMatrix new: 3 by: 3.
 	aAFf

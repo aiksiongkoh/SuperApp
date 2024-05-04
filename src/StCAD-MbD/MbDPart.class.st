@@ -28,8 +28,8 @@ Class {
 MbDPart class >> initializeX [
 	"MbDPart initialize."
 
-	Identity3by3 := StMDiagonalMatrix new: 3 withAll: 1.0d.
-	Identity4by4 := StMDiagonalMatrix new: 4 withAll: 1.0d
+	Identity3by3 := StMDiagonalMatrix new: 3 withAll: 1.0.
+	Identity4by4 := StMDiagonalMatrix new: 4 withAll: 1.0
 ]
 
 { #category : #'VisualWorks metadata' }
@@ -101,7 +101,7 @@ MbDPart >> calcmE [
 	| aC |
 	aC := partFrame aC.
 	mE := (aC transposeTimesFullMatrix: (aJ timesFullMatrix: aC))
-				times: 4.0d
+				times: 4.0
 ]
 
 { #category : #calc }
@@ -109,7 +109,7 @@ MbDPart >> calcmEdot [
 	| aC aCdot a4J term1 term2 |
 	aC := partFrame aC.
 	aCdot := partFrame aCdot.
-	a4J := aJ times: 4.0d.
+	a4J := aJ times: 4.0.
 	term1 := aC transposeTimesFullMatrix: (a4J timesFullMatrix: aCdot).
 	term2 := term1 transpose.
 	mEdot := term1 plusFullMatrix: term2
@@ -130,7 +130,7 @@ MbDPart >> calcpTpE [
 	aC := partFrame aC.
 	pCpEtimesqEdot := MbDEulerParameters pCpEtimesColumn: qEdot.
 	pTpE := (pCpEtimesqEdot transposeTimesFullColumn: (aJ timesFullColumn: (aC timesFullColumn: qEdot)))
-				times: 4.0d
+				times: 4.0
 ]
 
 { #category : #calc }
@@ -145,7 +145,7 @@ MbDPart >> calcppTpEpE [
 	| qEdot pCpEtimesqEdot a4J |
 	qEdot := partFrame qEdot.
 	pCpEtimesqEdot := MbDEulerParameters pCpEtimesColumn: qEdot.
-	a4J := aJ times: 4.0d.
+	a4J := aJ times: 4.0.
 	ppTpEpE := pCpEtimesqEdot transposeTimesFullMatrix: (a4J timesFullMatrix: pCpEtimesqEdot)
 ]
 
@@ -154,7 +154,7 @@ MbDPart >> calcppTpEpEdot [
 	| qEdot aC a4J term1 pCpEtimesqEdot term2 |
 	qEdot := partFrame qEdot.
 	aC := partFrame aC.
-	a4J := aJ times: 4.0d.
+	a4J := aJ times: 4.0.
 	term1 := MbDEulerParameters pCTpEtimesColumn: (a4J timesFullColumn: (aC timesFullColumn: qEdot)).
 	pCpEtimesqEdot := MbDEulerParameters pCpEtimesColumn: qEdot.
 	term2 := aC transposeTimesFullMatrix: (a4J timesFullMatrix: pCpEtimesqEdot).
@@ -346,13 +346,13 @@ MbDPart >> fillqsuWeights: col [
 	| mMax aJiMax minw maxw wqX wqE aJi |
 	mMax := TheMbDSystem maximumMass.
 	aJiMax := TheMbDSystem maximumMomentOfInertia.
-	minw := 1000.0d.
+	minw := 1000.0.
 	maxw := 1.0d6.
 	wqX := StMDiagonalMatrix new: 3.
 	wqE := StMDiagonalMatrix new: 4.
-	mMax = 0 ifTrue: [mMax := 1.0d].
+	mMax = 0 ifTrue: [mMax := 1.0].
 	1 to: 3 do: [:i | wqX at: i put: maxw * m / mMax + minw].
-	aJiMax = 0 ifTrue: [aJiMax := 1.0d].
+	aJiMax = 0 ifTrue: [aJiMax := 1.0].
 	1 to: 3
 		do: 
 			[:i | 
@@ -367,7 +367,7 @@ MbDPart >> fillqsuWeights: col [
 { #category : #accessing }
 MbDPart >> fillqsuWeightsBig: col [ 
 	| minw maxw wqX wqE |
-	minw := 1000.0d.
+	minw := 1000.0.
 	maxw := 1.0d6.
 	wqX := StMDiagonalMatrix new: 3.
 	wqE := StMDiagonalMatrix new: 4.
@@ -382,7 +382,7 @@ MbDPart >> fillqsuWeightsBig: col [
 { #category : #accessing }
 MbDPart >> fillqsuWeightsSmall: col [ 
 	| minw wqX wqE |
-	minw := 1000.0d.
+	minw := 1000.0.
 	wqX := StMDiagonalMatrix new: 3.
 	wqE := StMDiagonalMatrix new: 4.
 	1 to: 3 do: [:i | wqX at: i put: minw].
@@ -423,7 +423,7 @@ MbDPart >> fillqsudotWeights: col [
 	mMax := TheMbDSystem maximumMass.
 	aJiMax := TheMbDSystem maximumMomentOfInertia.
 	maxInertia := mMax max: aJiMax.
-	maxInertia = 0 ifTrue: [maxInertia := 1.0d].
+	maxInertia = 0 ifTrue: [maxInertia := 1.0].
 	minw := 1.0d-12 * maxInertia.
 	maxw := maxInertia.
 	wqXdot := StMDiagonalMatrix new: 3.
@@ -474,7 +474,7 @@ MbDPart >> initializeLocally [
 	partFrame initializeLocally.
 	mX := m > 0
 				ifTrue: [StMDiagonalMatrix new: 3 withAll: m]
-				ifFalse: [StMDiagonalMatrix new: 3 withAll: 0.0d]
+				ifFalse: [StMDiagonalMatrix new: 3 withAll: 0.0]
 ]
 
 { #category : #accessing }

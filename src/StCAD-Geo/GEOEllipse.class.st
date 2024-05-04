@@ -71,7 +71,7 @@ GEOEllipse >> rfpointsf [
 			rfpointsf at: i put: (StMFullColumn
 					with: xi
 					with: yi
-					with: 0.0d)].
+					with: 0.0)].
 	rfpointsf at: nseg + 1 put: (rfpointsf at: 1).
 	^rfpointsf
 ]
@@ -97,8 +97,8 @@ GEOEllipse >> xRadius [
 
 { #category : #accessing }
 GEOEllipse >> xRadius: xr yRadius: yr [ 
-	xRadius := xr max: 0.0d.
-	yRadius := yr max: 0.0d.
+	xRadius := xr max: 0.0.
+	yRadius := yr max: 0.0.
 	self changed
 ]
 

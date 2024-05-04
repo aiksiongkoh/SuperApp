@@ -33,7 +33,7 @@ GEOAnyMarker >> axisLength [
 	answer := self triggerEvent: #getaxisLength.
 	answer == nil 
 		ifTrue: 
-			[answer := 0.2d.
+			[answer := 0.2.
 			self axisLength: answer].
 	^answer
 ]
@@ -104,10 +104,10 @@ GEOAnyMarker >> renderOn: aRenderingContext [
 	self cadObject notNil ifTrue: [ 
 		aRenderingContext pushTransformation: refFrame aMFf while: [ 
 			length := self cadObject axisLength.
-			pt000 := 0.0 d yd: 0.0 d zd: 0.0 d.
-			pt100 := length yd: 0.0 d zd: 0.0 d.
-			pt010 := 0.0 d yd: length zd: 0.0 d.
-			pt001 := 0.0 d yd: 0.0 d zd: length.
+			pt000 := 0.0 yd: 0.0 zd: 0.0.
+			pt100 := length yd: 0.0 zd: 0.0.
+			pt010 := 0.0 yd: length zd: 0.0.
+			pt001 := 0.0 yd: 0.0 zd: length.
 			aRenderingContext lineWidth: self lineWidth.
 			aRenderingContext paint: Polymorphic_Color red. "VW_TRANSLATION:Polymorphic.Color:Polymorphic_Color"
 			aRenderingContext displayLine: (Array with: pt000 with: pt100).

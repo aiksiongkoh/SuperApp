@@ -89,7 +89,7 @@ MbDPartFrame >> alpOpO [
 	aBdot := qEdot aBdot.
 	^((aBdot timesFullColumn: qEdot)
 		plusFullColumn: (aB timesFullColumn: qEddot))
-		times: 2.0d
+		times: 2.0
 ]
 
 { #category : #'initialize-release' }

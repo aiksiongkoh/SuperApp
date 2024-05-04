@@ -202,7 +202,7 @@ MakePrism >> addcSideLineWithcEdgeUse: cEdgeUse [
 	"Multiple loop face is not yet inplemented."
 
 	| aRectangle crfpointf |
-	aRectangle := StCAD_Geo_Rectangle xLength: 1.0 d yLength: 1.0 d. "VW_TRANSLATION:StCAD.Geo.Rectangle:StCAD_Geo_Rectangle"
+	aRectangle := StCAD_Geo_Rectangle xLength: 1.0 yLength: 1.0. "VW_TRANSLATION:StCAD.Geo.Rectangle:StCAD_Geo_Rectangle"
 	crfpointf := aRectangle rfpointsf.
 	1 to: 4 do: [ :i | 
 		| uvOFt |

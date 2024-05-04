@@ -42,6 +42,6 @@ AXIS1_PLACEMENT >> zDir [
 
 	^ axis
 		  ifNil: [ 
-			  StCAD_Math_FullColumn with: 0.0 d with: 0.0 d with: 1.0 d "VW_TRANSLATION:StCAD.Math.FullColumn:StCAD_Math_FullColumn" ]
+			  StCAD_Math_FullColumn with: 0.0 with: 0.0 with: 1.0 "VW_TRANSLATION:StCAD.Math.FullColumn:StCAD_Math_FullColumn" ]
 		  ifNotNil: [ axis aDir ]
 ]

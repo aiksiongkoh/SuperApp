@@ -192,5 +192,5 @@ GEOTimePosVelAccData >> vOfRadial [
 { #category : #'ops on self' }
 GEOTimePosVelAccData >> zeroSelf [
 	super zeroSelf.
-	time := 0.0d
+	time := 0.0
 ]

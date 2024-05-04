@@ -52,7 +52,7 @@ B_SPLINE_SURFACE_WITH_KNOTS >> ccWeight [
 
 	^ StCAD_Math_FullMatrix
 		  fromCollection: control_points_list
-		  aBlock: [ :a | 1.0 d ] "VW_TRANSLATION:StCAD.Math.FullMatrix:StCAD_Math_FullMatrix"
+		  aBlock: [ :a | 1.0 ] "VW_TRANSLATION:StCAD.Math.FullMatrix:StCAD_Math_FullMatrix"
 ]
 
 { #category : #accessing }

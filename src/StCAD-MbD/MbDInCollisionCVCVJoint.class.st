@@ -31,8 +31,8 @@ MbDInCollisionCVCVJoint >> checkForCollisionDiscontinuityBetween: impulsePreviou
 
 	| direction |
 	direction := impulsePrevious < impulse
-				ifTrue: [1.0d]
-				ifFalse: [-1.0d].
+				ifTrue: [1.0]
+				ifFalse: [-1.0].
 	direction * impulseStart <= (direction * impulsePrevious)
 		ifTrue: ["End of collision is unknown."
 			direction * impactVelocity > 0
@@ -42,7 +42,7 @@ MbDInCollisionCVCVJoint >> checkForCollisionDiscontinuityBetween: impulsePreviou
 					newtonRaphson := MbDZeroImpactVelocityNewtonRaphson2 new.
 					newtonRaphson system: self.
 					newtonRaphson run.
-					impulseStart := 1.0d + (coeffRestitution raisedTo: direction) * impulseStart.
+					impulseStart := 1.0 + (coeffRestitution raisedTo: direction) * impulseStart.
 					direction * impulseStart <= (direction * impulsePrevious)
 						ifTrue: 
 							["End of collision should be in interval."
@@ -93,7 +93,7 @@ MbDInCollisionCVCVJoint >> fillCollisionDerivativeICError: col [
 
 	| iqXI aAOIemuv iqEI prOIeOpEI prOIeOpEITaAOIemuv iqXJ iqEJ prOJeOpEJ prOJeOpEJTaAOIemuv |
 	iqXI := frmI iqX.
-	aAOIemuv := frmI aAOe timesFullColumn: #(0.0d 0.0d -1.0d).
+	aAOIemuv := frmI aAOe timesFullColumn: #(0.0 0.0 -1.0).
 	col at: iqXI plusFullColumn: aAOIemuv.
 	iqEI := frmI iqE.
 	prOIeOpEI := frmI prOeOpE.
@@ -115,7 +115,7 @@ MbDInCollisionCVCVJoint >> fillCollisionError: col [
 	| iqXI aAOIemuv iqEI prOIeOpEI prOIeOpEITaAOIemuv iqXJ iqEJ prOJeOpEJ prOJeOpEJTaAOIemuv |
 	super fillCollisionError: col.
 	iqXI := frmI iqX.
-	aAOIemuv := frmI aAOe timesFullColumn: #(0.0d 0.0d -1.0d).
+	aAOIemuv := frmI aAOe timesFullColumn: #(0.0 0.0 -1.0).
 	col at: iqXI plusFullColumn: aAOIemuv.
 	iqEI := frmI iqE.
 	prOIeOpEI := frmI prOeOpE.
@@ -186,7 +186,7 @@ MbDInCollisionCVCVJoint >> preCollision [
 	interpolator := TheMbDSystem mbdSystemSolver opBDF.
 	leastSquaresFit := nil.
 	impactVelocity := self vIeJeOIez.
-	impulseStart := 0.0d
+	impulseStart := 0.0
 ]
 
 { #category : #collision }

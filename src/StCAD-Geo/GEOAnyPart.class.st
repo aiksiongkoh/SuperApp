@@ -411,9 +411,9 @@ GEOAnyPart >> initialize [
 { #category : #accessing }
 GEOAnyPart >> mJpp [
 	^StMDiagonalMatrix
-		with: 0.0d
-		with: 0.0d
-		with: 0.0d
+		with: 0.0
+		with: 0.0
+		with: 0.0
 ]
 
 { #category : #accessing }
@@ -433,7 +433,7 @@ GEOAnyPart >> markers [
 
 { #category : #accessing }
 GEOAnyPart >> mass [
-	^0.0d
+	^0.0
 ]
 
 { #category : #PDMS }

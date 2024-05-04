@@ -106,11 +106,11 @@ GEOMassMarker >> hasCentroid [
 { #category : #'initialize-release' }
 GEOMassMarker >> initialize [
 	super initialize.
-	mass := 0.0d.
-	aJppx := 0.0d.
-	aJppy := 0.0d.
-	aJppz := 0.0d.
-	density := 0.0d
+	mass := 0.0.
+	aJppx := 0.0.
+	aJppy := 0.0.
+	aJppz := 0.0.
+	density := 0.0
 ]
 
 { #category : #accessing }
@@ -134,7 +134,7 @@ GEOMassMarker >> magnifySelf: aDouble [
 { #category : #accessing }
 GEOMassMarker >> mass [
 	^mass == nil
-		ifTrue: [0.0d]
+		ifTrue: [0.0]
 		ifFalse: [mass]
 ]
 

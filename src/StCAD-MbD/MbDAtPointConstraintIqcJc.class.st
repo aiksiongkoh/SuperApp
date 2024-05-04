@@ -50,13 +50,13 @@ MbDAtPointConstraintIqcJc >> addToJointTorqueI: jointTorque [
 			fpAOIppEIrIpIeIp at: i put: dum].
 	lampGpE := pGpEI transpose times: lam.
 	c2Torque := aBOIp timesFullColumn: lampGpE - fpAOIppEIrIpIeIp.
-	jointTorque equalSelfPlusFullColumn: c2Torque times: 0.5d
+	jointTorque equalSelfPlusFullColumn: c2Torque times: 0.5
 ]
 
 { #category : #accessing }
 MbDAtPointConstraintIqcJc >> addpFIeiGOplamto: mat [ 
 	(mat at: axis)
-		at: iG plusNumber: -1.0d
+		at: iG plusNumber: -1.0
 ]
 
 { #category : #accessing }
@@ -66,13 +66,13 @@ MbDAtPointConstraintIqcJc >> addpTIeiGOpEIto: mat [
 	term23 := zero"
 
 	| term11 prOIeOpEIT aFIeiGOover2 term12 term1 term21 pprOIeOpEIpEI term22 pprOIeOpEIipEI term22rowi aB term2 pTIeiGOpEI |
-	term11 := pGpEI transpose times: lam / 2.0d.
+	term11 := pGpEI transpose times: lam / 2.0.
 	prOIeOpEIT := frmI prOeOpE transpose.
 	aFIeiGOover2 := (StMFullColumn zero: 3).
-	aFIeiGOover2 at: axis put: lam / -2.0d.
+	aFIeiGOover2 at: axis put: lam / -2.0.
 	term12 := prOIeOpEIT timesFullColumn: aFIeiGOover2.
 	term1 := MbDEulerParameters pBpEtimesColumn: (term11 minusFullColumn: term12).
-	term21 := ppGpEIpEI times: lam / 2.0d.
+	term21 := ppGpEIpEI times: lam / 2.0.
 	pprOIeOpEIpEI := frmI pprOeOpEpE.
 	term22 := StMFullMatrix new: 4 by: 4.
 	1 to: 4 do: [:i | 
@@ -88,11 +88,11 @@ MbDAtPointConstraintIqcJc >> addpTIeiGOpEIto: mat [
 { #category : #accessing }
 MbDAtPointConstraintIqcJc >> addpTIeiGOplamto: mat [ 
 	| halfB term1 prOIeOpEIT pFIeiGOplam term2 pTIeiGOplam |
-	halfB := frmI aBOp times: 0.5d.
+	halfB := frmI aBOp times: 0.5.
 	term1 := pGpEI transpose.
 	prOIeOpEIT := frmI prOeOpE transpose.
 	pFIeiGOplam := (StMFullColumn zero: 3).
-	pFIeiGOplam at: axis put: -1.0d.
+	pFIeiGOplam at: axis put: -1.0.
 	term2 := prOIeOpEIT timesFullColumn: pFIeiGOplam.
 	pTIeiGOplam := halfB timesFullColumn: (term1 minusFullColumn: term2).
 	mat at: 1 and: iG plusFullColumn: pTIeiGOplam
@@ -115,7 +115,7 @@ MbDAtPointConstraintIqcJc >> fillAccICIterError: col [
 	col at: iqXIminusOnePlusAxis minusNumber: lam.
 	col at: iqEI plusFullColumn: pGpEI times: lam.
 	qEdotI := frmI qEdot.
-	sum := 0.0d.
+	sum := 0.0.
 	sum := sum - (frmI qXddot at: axis).
 	sum := sum + (pGpEI timesFullColumn: frmI qEddot).
 	sum := sum + (qEdotI transposeTimesFullColumn: (ppGpEIpEI timesFullColumn: qEdotI)).
@@ -130,7 +130,7 @@ MbDAtPointConstraintIqcJc >> fillCollisionError: col [
 	| sum |
 	col at: iqXIminusOnePlusAxis minusNumber: lamDeriv.
 	col at: iqEI plusFullColumn: pGpEI times: lamDeriv.
-	sum := 0.0d.
+	sum := 0.0.
 	sum := sum - (frmI qXddot at: axis).
 	sum := sum + (pGpEI timesFullColumn: frmI qEddot).
 	col at: iG plusNumber: sum
@@ -145,8 +145,8 @@ MbDAtPointConstraintIqcJc >> fillPosICError: col [
 
 { #category : #posIC }
 MbDAtPointConstraintIqcJc >> fillPosICJacob: mat [ 
-	mat at: iG and: iqXIminusOnePlusAxis plusNumber: -1.0d.
-	mat at: iqXIminusOnePlusAxis and: iG plusNumber: -1.0d.
+	mat at: iG and: iqXIminusOnePlusAxis plusNumber: -1.0.
+	mat at: iqXIminusOnePlusAxis and: iG plusNumber: -1.0.
 	mat at: iG and: iqEI plusFullRow: pGpEI.
 	mat at: iqEI and: iG plusFullColumn: pGpEI transpose.
 	mat at: iqEI and: iqEI plusFullMatrix: ppGpEIpEI times: lam
@@ -154,28 +154,28 @@ MbDAtPointConstraintIqcJc >> fillPosICJacob: mat [
 
 { #category : #posIC }
 MbDAtPointConstraintIqcJc >> fillPosKineJacob: mat [ 
-	mat at: iG and: iqXIminusOnePlusAxis plusNumber: -1.0d.
+	mat at: iG and: iqXIminusOnePlusAxis plusNumber: -1.0.
 	mat at: iG and: iqEI plusFullRow: pGpEI
 ]
 
 { #category : #velIC }
 MbDAtPointConstraintIqcJc >> fillVelICJacob: mat [ 
-	mat at: iG and: iqXIminusOnePlusAxis plusNumber: -1.0d.
-	mat at: iqXIminusOnePlusAxis and: iG plusNumber: -1.0d.
+	mat at: iG and: iqXIminusOnePlusAxis plusNumber: -1.0.
+	mat at: iqXIminusOnePlusAxis and: iG plusNumber: -1.0.
 	mat at: iG and: iqEI plusFullRow: pGpEI.
 	mat at: iqEI and: iG plusFullColumn: pGpEI transpose
 ]
 
 { #category : #dynamic }
 MbDAtPointConstraintIqcJc >> fillpFpy: mat [ 
-	mat at: iG and: iqXIminusOnePlusAxis plusNumber: -1.0d.
+	mat at: iG and: iqXIminusOnePlusAxis plusNumber: -1.0.
 	mat at: iG and: iqEI plusFullRow: pGpEI.
 	mat at: iqEI and: iqEI plusFullMatrix: ppGpEIpEI times: lam
 ]
 
 { #category : #dynamic }
 MbDAtPointConstraintIqcJc >> fillpFpydot: mat [ 
-	mat at: iqXIminusOnePlusAxis and: iG plusNumber: -1.0d.
+	mat at: iqXIminusOnePlusAxis and: iG plusNumber: -1.0.
 	mat at: iqEI and: iG plusFullColumn: pGpEI transpose
 ]
 

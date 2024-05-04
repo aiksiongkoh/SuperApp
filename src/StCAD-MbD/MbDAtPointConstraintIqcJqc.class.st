@@ -50,7 +50,7 @@ MbDAtPointConstraintIqcJqc >> addToJointTorqueJ: col [
 			fpAOJppEJrJpJeJp at: i put: dum].
 	lampGpE := pGpEJ transpose times: lam.
 	c2Torque := aBOJp timesFullColumn: lampGpE - fpAOJppEJrJpJeJp.
-	col equalSelfPlusFullColumn: c2Torque times: 0.5d
+	col equalSelfPlusFullColumn: c2Torque times: 0.5
 ]
 
 { #category : #accessing }
@@ -79,7 +79,7 @@ MbDAtPointConstraintIqcJqc >> fillAccICIterError: col [
 	col at: iqXJminusOnePlusAxis plusNumber: lam.
 	col at: iqEJ plusFullColumn: pGpEJ times: lam.
 	qEdotJ := frmJ qEdot.
-	sum := 0.0d.
+	sum := 0.0.
 	sum := sum + (frmJ qXddot at: axis).
 	sum := sum + (pGpEJ timesFullColumn: frmJ qEddot).
 	sum := sum + (qEdotJ transposeTimesFullColumn: (ppGpEJpEJ timesFullColumn: qEdotJ)).
@@ -95,7 +95,7 @@ MbDAtPointConstraintIqcJqc >> fillCollisionError: col [
 	super fillCollisionError: col.
 	col at: iqXJminusOnePlusAxis plusNumber: lamDeriv.
 	col at: iqEJ plusFullColumn: pGpEJ times: lamDeriv.
-	sum := 0.0d.
+	sum := 0.0.
 	sum := sum + (frmJ qXddot at: axis).
 	sum := sum + (pGpEJ timesFullColumn: frmJ qEddot).
 	col at: iG plusNumber: sum
@@ -111,8 +111,8 @@ MbDAtPointConstraintIqcJqc >> fillPosICError: col [
 { #category : #posIC }
 MbDAtPointConstraintIqcJqc >> fillPosICJacob: mat [ 
 	super fillPosICJacob: mat.
-	mat at: iG and: iqXJminusOnePlusAxis plusNumber: 1.0d.
-	mat at: iqXJminusOnePlusAxis and: iG plusNumber: 1.0d.
+	mat at: iG and: iqXJminusOnePlusAxis plusNumber: 1.0.
+	mat at: iqXJminusOnePlusAxis and: iG plusNumber: 1.0.
 	mat at: iG and: iqEJ plusFullRow: pGpEJ.
 	mat at: iqEJ and: iG plusFullColumn: pGpEJ transpose.
 	mat at: iqEJ and: iqEJ plusFullMatrix: ppGpEJpEJ times: lam
@@ -121,15 +121,15 @@ MbDAtPointConstraintIqcJqc >> fillPosICJacob: mat [
 { #category : #posIC }
 MbDAtPointConstraintIqcJqc >> fillPosKineJacob: mat [ 
 	super fillPosKineJacob: mat.
-	mat at: iG and: iqXJminusOnePlusAxis plusNumber: 1.0d.
+	mat at: iG and: iqXJminusOnePlusAxis plusNumber: 1.0.
 	mat at: iG and: iqEJ plusFullRow: pGpEJ
 ]
 
 { #category : #velIC }
 MbDAtPointConstraintIqcJqc >> fillVelICJacob: mat [ 
 	super fillVelICJacob: mat.
-	mat at: iG and: iqXJminusOnePlusAxis plusNumber: 1.0d.
-	mat at: iqXJminusOnePlusAxis and: iG plusNumber: 1.0d.
+	mat at: iG and: iqXJminusOnePlusAxis plusNumber: 1.0.
+	mat at: iqXJminusOnePlusAxis and: iG plusNumber: 1.0.
 	mat at: iG and: iqEJ plusFullRow: pGpEJ.
 	mat at: iqEJ and: iG plusFullColumn: pGpEJ transpose
 ]
@@ -137,7 +137,7 @@ MbDAtPointConstraintIqcJqc >> fillVelICJacob: mat [
 { #category : #dynamic }
 MbDAtPointConstraintIqcJqc >> fillpFpy: mat [ 
 	super fillpFpy: mat.
-	mat at: iG and: iqXJminusOnePlusAxis plusNumber: 1.0d.
+	mat at: iG and: iqXJminusOnePlusAxis plusNumber: 1.0.
 	mat at: iG and: iqEJ plusFullRow: pGpEJ.
 	mat at: iqEJ and: iqEJ plusFullMatrix: ppGpEJpEJ times: lam
 ]
@@ -145,7 +145,7 @@ MbDAtPointConstraintIqcJqc >> fillpFpy: mat [
 { #category : #dynamic }
 MbDAtPointConstraintIqcJqc >> fillpFpydot: mat [ 
 	super fillpFpydot: mat.
-	mat at: iqXJminusOnePlusAxis and: iG plusNumber: 1.0d.
+	mat at: iqXJminusOnePlusAxis and: iG plusNumber: 1.0.
 	mat at: iqEJ and: iG plusFullColumn: pGpEJ transpose
 ]
 

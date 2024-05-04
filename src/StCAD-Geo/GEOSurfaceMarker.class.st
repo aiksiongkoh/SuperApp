@@ -225,15 +225,15 @@ GEOSurfaceMarker >> face: face [
 	polyline := face polyline.
 	rFpointsF := polyline rfpointsf.
 	sSeries := Interval
-				from: -1.0d
-				to: 1.0d
-				by: 2.0d / (rFpointsF size - 1).
+				from: -1.0
+				to: 1.0
+				by: 2.0 / (rFpointsF size - 1).
 	rFfFSurface rfpfEqn: (StMGeneralSplineX
 			with: StMIndependentVariable new
 			order: 5
 			xs: sSeries
 			ys: rFpointsF).
-	self s: -1.0d.
+	self s: -1.0.
 	face addSurfaceMarker: self.
 	interface createUpdateSelectGOfor: self
 ]

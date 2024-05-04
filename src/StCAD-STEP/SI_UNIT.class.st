@@ -33,7 +33,7 @@ SI_UNIT class >> initializeX [
 	CPrefix at: #ATTO put: 1.0d-18.
 	""
 	CName := IdentityDictionary new: 20.
-	CName at: #METRE put: 1.0d
+	CName at: #METRE put: 1.0
 ]
 
 { #category : #'VisualWorks metadata' }
@@ -52,7 +52,7 @@ SI_UNIT >> angleFactor [
 			[name = 'RADIAN' 
 				ifTrue: 
 					[(prefix isNil or: [prefix = $$]) 
-						ifTrue: [1.0d]
+						ifTrue: [1.0]
 						ifFalse: [CPrefix at: prefix asUppercase asSymbol]]
 				ifFalse: [nil]]
 ]
@@ -63,7 +63,7 @@ SI_UNIT >> lengthFactor [
 			[name = 'METRE' 
 				ifTrue: 
 					[(prefix isNil or: [prefix = $$]) 
-						ifTrue: [1.0d]
+						ifTrue: [1.0]
 						ifFalse: [CPrefix at: prefix asUppercase asSymbol]]
 				ifFalse: [nil]]
 ]

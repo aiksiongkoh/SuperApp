@@ -1,6 +1,6 @@
 Class {
 	#name : #MbDEulerParametersDot,
-	#superclass : #StEulerParametersDot,
+	#superclass : #SymEulerParametersDot,
 	#type : #variable,
 	#instVars : [
 		'pAdotpE'
@@ -156,7 +156,7 @@ MbDEulerParametersDot >> fromqEOp: qEOp andOmegaOpO: omeOpO [
 	| aB |
 	qEOp calcABC.
 	aB := qEOp aB.
-	self equalFullColumn: (aB transposeTimesFullColumn: (omeOpO times: 0.5d)).
+	self equalFullColumn: (aB transposeTimesFullColumn: (omeOpO times: 0.5)).
 	self qE: qEOp.
 	self calc
 ]
@@ -166,7 +166,7 @@ MbDEulerParametersDot >> fromqEOp: qEOp andOmegaOpp: omeOpp [
 	| aC |
 	qEOp calcABC.
 	aC := qEOp aC.
-	self equalFullColumn: (aC transposeTimesFullColumn: (omeOpp times: 0.5d)).
+	self equalFullColumn: (aC transposeTimesFullColumn: (omeOpp times: 0.5)).
 	self qE: qEOp.
 	self calc
 ]
@@ -181,7 +181,7 @@ MbDEulerParametersDot >> initialize [
 { #category : #accessing }
 MbDEulerParametersDot >> omeOpO [
 	^(self aB timesFullColumn: self)
-		times: 2.0d
+		times: 2.0
 ]
 
 { #category : #accessing }
@@ -192,12 +192,12 @@ MbDEulerParametersDot >> pAdotpE [
 { #category : #accessing }
 MbDEulerParametersDot >> pomeOpOpE [
 	^(MbDEulerParameters pBpEtimesColumn: self)
-		times: 2.0d
+		times: 2.0
 ]
 
 { #category : #accessing }
 MbDEulerParametersDot >> pomeOpOpEdot [
-	^self aB times: 2.0d
+	^self aB times: 2.0
 ]
 
 { #category : #accessing }

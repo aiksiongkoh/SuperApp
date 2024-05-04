@@ -81,7 +81,7 @@ PointArc >> calc [
 	bAngle := Double arcTan0to2piY: (delta at: 2) overX: (delta at: 1).
 	a1Par := (bAngle - aStartAngle) / (aEndAngle - aStartAngle).
 	a2Par := (bAngle + TwoPi - aStartAngle) / (aEndAngle - aStartAngle).
-	aPar := (a1Par - 0.5d) abs < (a2Par - 0.5d) abs 
+	aPar := (a1Par - 0.5) abs < (a2Par - 0.5) abs 
 				ifTrue: [a1Par]
 				ifFalse: [a2Par].
 	aRightDist := dist - aRadius.

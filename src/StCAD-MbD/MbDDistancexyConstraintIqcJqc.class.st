@@ -53,7 +53,7 @@ MbDDistancexyConstraintIqcJqc >> addToJointTorqueJ: col [
 			fpAOJppEJrJpJeJp at: i put: dum].
 	lampGpE := pGpEJ transpose times: lam.
 	c2Torque := aBOJp timesFullColumn: lampGpE - fpAOJppEJrJpJeJp.
-	col equalSelfPlusFullColumn: c2Torque times: 0.5d
+	col equalSelfPlusFullColumn: c2Torque times: 0.5
 ]
 
 { #category : #accessing }
@@ -70,9 +70,9 @@ MbDDistancexyConstraintIqcJqc >> addpFIeiGOpXJto: mat [
 MbDDistancexyConstraintIqcJqc >> addpTIeiGOpEJto: mat [ 
 	| aB term1 prOIeOpEIT pFIeiGOpEJover2 term2 pTIeiGOpEJ |
 	aB := frmI aBOp.
-	term1 := ppGpEIpEJ times: lam / 2.0d.
+	term1 := ppGpEIpEJ times: lam / 2.0.
 	prOIeOpEIT := frmI prOeOpE transpose.
-	pFIeiGOpEJover2 := ppGpXIpEJ times: lam / 2.0d.
+	pFIeiGOpEJover2 := ppGpXIpEJ times: lam / 2.0.
 	term2 := prOIeOpEIT timesFullMatrix: pFIeiGOpEJover2.
 	pTIeiGOpEJ := aB timesFullMatrix: (term1 minusFullMatrix: term2).
 	mat equalSelfPlusFullMatrix: pTIeiGOpEJ
@@ -82,9 +82,9 @@ MbDDistancexyConstraintIqcJqc >> addpTIeiGOpEJto: mat [
 MbDDistancexyConstraintIqcJqc >> addpTIeiGOpXJto: mat [ 
 	| aB term1 prOIeOpEIT pFIeiGOpXJover2 term2 pTIeiGOpXJ |
 	aB := frmI aBOp.
-	term1 := ppGpEIpXJ times: lam / 2.0d.
+	term1 := ppGpEIpXJ times: lam / 2.0.
 	prOIeOpEIT := frmI prOeOpE transpose.
-	pFIeiGOpXJover2 := ppGpXIpXJ times: lam / 2.0d.
+	pFIeiGOpXJover2 := ppGpXIpXJ times: lam / 2.0.
 	term2 := prOIeOpEIT timesFullMatrix: pFIeiGOpXJover2.
 	pTIeiGOpXJ := aB timesFullMatrix: (term1 minusFullMatrix: term2).
 	mat equalSelfPlusFullMatrix: pTIeiGOpXJ
@@ -107,13 +107,13 @@ MbDDistancexyConstraintIqcJqc >> calcPostDynCorrectorIteration [
 { #category : #calc }
 MbDDistancexyConstraintIqcJqc >> calc_pGpEJ [
 	pGpEJ := (xIeJeIe pvaluepEJ times: xIeJeIe value) 
-				+ (yIeJeIe pvaluepEJ times: yIeJeIe value) magnifySelf: 2.0d
+				+ (yIeJeIe pvaluepEJ times: yIeJeIe value) magnifySelf: 2.0
 ]
 
 { #category : #calc }
 MbDDistancexyConstraintIqcJqc >> calc_pGpXJ [
 	pGpXJ := (xIeJeIe pvaluepXJ times: xIeJeIe value) 
-				+ (yIeJeIe pvaluepXJ times: yIeJeIe value) magnifySelf: 2.0d
+				+ (yIeJeIe pvaluepXJ times: yIeJeIe value) magnifySelf: 2.0
 ]
 
 { #category : #calc }
@@ -121,7 +121,7 @@ MbDDistancexyConstraintIqcJqc >> calc_ppGpEIpEJ [
 	ppGpEIpEJ := (xIeJeIe pvaluepEI transposeTimesFullRow: xIeJeIe pvaluepEJ) 
 				+ (xIeJeIe ppvaluepEIpEJ times: xIeJeIe value) 
 					+ (yIeJeIe pvaluepEI transposeTimesFullRow: yIeJeIe pvaluepEJ) 
-					+ (yIeJeIe ppvaluepEIpEJ times: yIeJeIe value) magnifySelf: 2.0d
+					+ (yIeJeIe ppvaluepEIpEJ times: yIeJeIe value) magnifySelf: 2.0
 ]
 
 { #category : #calc }
@@ -129,7 +129,7 @@ MbDDistancexyConstraintIqcJqc >> calc_ppGpEIpXJ [
 	ppGpEIpXJ := (xIeJeIe pvaluepEI transposeTimesFullRow: xIeJeIe pvaluepXJ) 
 				+ (xIeJeIe ppvaluepEIpXJ times: xIeJeIe value) 
 					+ (yIeJeIe pvaluepEI transposeTimesFullRow: yIeJeIe pvaluepXJ) 
-					+ (yIeJeIe ppvaluepEIpXJ times: yIeJeIe value) magnifySelf: 2.0d
+					+ (yIeJeIe ppvaluepEIpXJ times: yIeJeIe value) magnifySelf: 2.0
 ]
 
 { #category : #calc }
@@ -137,7 +137,7 @@ MbDDistancexyConstraintIqcJqc >> calc_ppGpEJpEJ [
 	ppGpEJpEJ := (xIeJeIe pvaluepEJ transposeTimesFullRow: xIeJeIe pvaluepEJ) 
 				+ (xIeJeIe ppvaluepEJpEJ times: xIeJeIe value) 
 					+ (yIeJeIe pvaluepEJ transposeTimesFullRow: yIeJeIe pvaluepEJ) 
-					+ (yIeJeIe ppvaluepEJpEJ times: yIeJeIe value) magnifySelf: 2.0d
+					+ (yIeJeIe ppvaluepEJpEJ times: yIeJeIe value) magnifySelf: 2.0
 ]
 
 { #category : #calc }
@@ -147,7 +147,7 @@ MbDDistancexyConstraintIqcJqc >> calc_ppGpXIpEJ [
 
 	ppGpXIpEJ := (xIeJeIe pvaluepXI transposeTimesFullRow: xIeJeIe pvaluepEJ) 
 				+ (yIeJeIe pvaluepXI transposeTimesFullRow: yIeJeIe pvaluepEJ) 
-					magnifySelf: 2.0d
+					magnifySelf: 2.0
 ]
 
 { #category : #calc }
@@ -157,7 +157,7 @@ MbDDistancexyConstraintIqcJqc >> calc_ppGpXIpXJ [
 
 	ppGpXIpXJ := (xIeJeIe pvaluepXI transposeTimesFullRow: xIeJeIe pvaluepXJ) 
 				+ (yIeJeIe pvaluepXI transposeTimesFullRow: yIeJeIe pvaluepXJ) 
-					magnifySelf: 2.0d
+					magnifySelf: 2.0
 ]
 
 { #category : #calc }
@@ -167,7 +167,7 @@ MbDDistancexyConstraintIqcJqc >> calc_ppGpXJpEJ [
 
 	ppGpXJpEJ := (xIeJeIe pvaluepXJ transposeTimesFullRow: xIeJeIe pvaluepEJ) 
 				+ (yIeJeIe pvaluepXJ transposeTimesFullRow: yIeJeIe pvaluepEJ) 
-					magnifySelf: 2.0d
+					magnifySelf: 2.0
 ]
 
 { #category : #calc }
@@ -177,7 +177,7 @@ MbDDistancexyConstraintIqcJqc >> calc_ppGpXJpXJ [
 
 	ppGpXJpXJ := (xIeJeIe pvaluepXJ transposeTimesFullRow: xIeJeIe pvaluepXJ) 
 				+ (yIeJeIe pvaluepXJ transposeTimesFullRow: yIeJeIe pvaluepXJ) 
-					magnifySelf: 2.0d
+					magnifySelf: 2.0
 ]
 
 { #category : #accIC }
@@ -190,15 +190,15 @@ MbDDistancexyConstraintIqcJqc >> fillAccICIterError: col [
 	qEdotI := frmI qEdot.
 	qXdotJ := frmJ qXdot.
 	qEdotJ := frmJ qEdot.
-	sum := 0.0d.
+	sum := 0.0.
 	sum := sum + (pGpXJ timesFullColumn: frmJ qXddot).
 	sum := sum + (pGpEJ timesFullColumn: frmJ qEddot).
-	sum := sum + (2.0d * (qXdotI transposeTimesFullColumn: (ppGpXIpXJ timesFullColumn: qXdotJ))).
-	sum := sum + (2.0d * (qEdotI transposeTimesFullColumn: (ppGpEIpXJ timesFullColumn: qXdotJ))).
+	sum := sum + (2.0 * (qXdotI transposeTimesFullColumn: (ppGpXIpXJ timesFullColumn: qXdotJ))).
+	sum := sum + (2.0 * (qEdotI transposeTimesFullColumn: (ppGpEIpXJ timesFullColumn: qXdotJ))).
 	sum := sum + (qXdotJ transposeTimesFullColumn: (ppGpXJpXJ timesFullColumn: qXdotJ)).
-	sum := sum + (2.0d * (qXdotI transposeTimesFullColumn: (ppGpXIpEJ timesFullColumn: qEdotJ))).
-	sum := sum + (2.0d * (qEdotI transposeTimesFullColumn: (ppGpEIpEJ timesFullColumn: qEdotJ))).
-	sum := sum + (2.0d * (qXdotJ transposeTimesFullColumn: (ppGpXJpEJ timesFullColumn: qEdotJ))).
+	sum := sum + (2.0 * (qXdotI transposeTimesFullColumn: (ppGpXIpEJ timesFullColumn: qEdotJ))).
+	sum := sum + (2.0 * (qEdotI transposeTimesFullColumn: (ppGpEIpEJ timesFullColumn: qEdotJ))).
+	sum := sum + (2.0 * (qXdotJ transposeTimesFullColumn: (ppGpXJpEJ timesFullColumn: qEdotJ))).
 	sum := sum + (qEdotJ transposeTimesFullColumn: (ppGpEJpEJ timesFullColumn: qEdotJ)).
 	col at: iG plusNumber: sum
 ]

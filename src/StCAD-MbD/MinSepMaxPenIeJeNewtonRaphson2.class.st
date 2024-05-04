@@ -52,7 +52,7 @@ MinSepMaxPenIeJeNewtonRaphson2 >> fillPyPx [
 	pypx
 		at: sSizeI + sSizeJ + 1
 		and: sSizeI + sSizeJ + 1
-		put: 0.0d.
+		put: 0.0.
 	pypx symLowerWithUpper
 ]
 
@@ -75,7 +75,7 @@ MinSepMaxPenIeJeNewtonRaphson2 >> initializeGlobally [
 	aAIe3Je1 initializeGlobally.
 	aAIe3Je1 calcPostDynCorrectorIteration.
 	lamSize := 1.
-	lamConstraint := 0.0d.
+	lamConstraint := 0.0.
 	n := sSizeI + sSizeJ + lamSize.
 	x := StMFullColumn new: n.
 	y := StMFullColumn new: n.

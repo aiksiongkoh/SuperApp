@@ -25,7 +25,7 @@ MbDUnits class >> binaryReaderBlockForVersion: oldVersion format: oldFormat [
 			new at: 2 put: (oldObj at: 2).
 			new at: 3 put: (oldObj at: 5).
 			new at: 4 put: (oldObj at: 3).
-			new at: 5 put: 1.0d.
+			new at: 5 put: 1.0.
 			new
 				replaceFrom: 6
 				to: new size

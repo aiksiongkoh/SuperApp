@@ -154,8 +154,8 @@ MbDEndFrameqcs >> calcAme3D [
 	tem2 := prmemps column: 2.
 	te1 := tem1 length.
 	te2 := tem2 length.
-	utem1 := tem1 times: 1.0d / te1.
-	utem2 := tem2 times: 1.0d / te2.
+	utem1 := tem1 times: 1.0 / te1.
+	utem2 := tem2 times: 1.0 / te2.
 	iem := utem1.
 	kem := (utem1 cross: utem2) normalizeSelf.
 self halt: 'Check kem and its derivatives.'.
@@ -170,8 +170,8 @@ self halt: 'Check kem and its derivatives.'.
 			ptem2psj := pprmempsps at: 2 and: j.
 			pte1psj := utem1 dot: ptem1psj.
 			pte2psj := utem2 dot: ptem2psj.
-			putem1psj := (ptem1psj minusFullMatrix: (utem1 timesFullRow: pte1psj)) magnifySelf: 1.0d / te1.
-			putem2psj := (ptem2psj minusFullMatrix: (utem2 timesFullRow: pte2psj)) magnifySelf: 1.0d / te2.
+			putem1psj := (ptem1psj minusFullMatrix: (utem1 timesFullRow: pte1psj)) magnifySelf: 1.0 / te1.
+			putem2psj := (ptem2psj minusFullMatrix: (utem2 timesFullRow: pte2psj)) magnifySelf: 1.0 / te2.
 			piempsj := putem1psj.
 			pkempsj := (putem1psj cross: utem2) equalSelfPlusFullColumn: (utem1 cross: putem2psj).
 			pjempsj := (pkempsj cross: iem) equalSelfPlusFullColumn: (kem cross: piempsj).
@@ -234,17 +234,17 @@ self halt: 'Check kem and its derivatives.'.
 					ppte2psipsj := (ptem2psi dot: ptem2psj)
 								+ (pptem2psipsj dot: tem2) - (pte2psi * pte2psj) / te2.
 					pputem1psipsj := pptem1psipsj times: te1.
-					pputem1psipsj equalSelfPlusFullColumn: (tem1 times: 2.0d * pte1psi * pte1psj / te1).
+					pputem1psipsj equalSelfPlusFullColumn: (tem1 times: 2.0 * pte1psi * pte1psj / te1).
 					pputem1psipsj equalSelfMinusFullColumn: (ptem1psi times: pte1psj).
 					pputem1psipsj equalSelfMinusFullColumn: (ptem1psj times: pte1psi).
 					pputem1psipsj equalSelfMinusFullColumn: (tem1 times: ppte1psipsj).
-					pputem1psipsj magnifySelf: 1.0d / (te1 * te1).
+					pputem1psipsj magnifySelf: 1.0 / (te1 * te1).
 					pputem2psipsj := pptem2psipsj times: te2.
-					pputem2psipsj equalSelfPlusFullColumn: (tem2 times: 2.0d * pte2psi * pte2psj / te2).
+					pputem2psipsj equalSelfPlusFullColumn: (tem2 times: 2.0 * pte2psi * pte2psj / te2).
 					pputem2psipsj equalSelfMinusFullColumn: (ptem2psi times: pte2psj).
 					pputem2psipsj equalSelfMinusFullColumn: (ptem2psj times: pte2psi).
 					pputem2psipsj equalSelfMinusFullColumn: (tem2 times: ppte2psipsj).
-					pputem2psipsj magnifySelf: 1.0d / (te2 * te2).
+					pputem2psipsj magnifySelf: 1.0 / (te2 * te2).
 					ppiempsipsj := pputem1psipsj.
 					ppkempsipsj := pputem1psipsj cross: utem2.
 					ppkempsipsj equalSelfPlusFullColumn: (putem1psi cross: putem2psj).
@@ -384,7 +384,7 @@ MbDEndFrameqcs >> fillqsudotPlamDeriv: col [
 MbDEndFrameqcs >> fillqsudotWeights: col [ 
 	| iOffset |
 	iOffset := is - 1.
-	1 to: sSize do: [:ii | col at: iOffset + ii put: 0.0d]
+	1 to: sSize do: [:ii | col at: iOffset + ii put: 0.0]
 ]
 
 { #category : #accessing }
@@ -401,7 +401,7 @@ MbDEndFrameqcs >> initDefineSolid [
 	rmems := self rmems.
 	point1 := rmems at: 1.
 	point2 := rmems at: 2.
-	nonMaterialPoint := point1 + (point2 - point1 cross: jem * 0.001d).
+	nonMaterialPoint := point1 + (point2 - point1 cross: jem * 0.001).
 	answerArray := self roughSepDistFromrmem: nonMaterialPoint.
 	angleSwept := answerArray at: 3.
 	nPI := (angleSwept / Double pi) rounded.
@@ -427,9 +427,9 @@ MbDEndFrameqcs >> initializeLocally [
 	ppAOepEps := StMFullMatrix new: 4 by: sSize.
 	ppAOepsps := StMFullMatrix new: sSize by: sSize.
 	sSize == 1 ifTrue: [jem := StMFullColumn
-					with: 0.0d
-					with: 0.0d
-					with: 1.0d].
+					with: 0.0
+					with: 0.0
+					with: 1.0].
 	kem := StMFullColumn new: 3.
 	aAme := StMFullMatrix new: 3 by: 3.
 	pAmeps := StMFullColumn new: sSize.
@@ -650,7 +650,7 @@ MbDEndFrameqcs >> roughSepDistFromrmem1: col [
 	minDistSq := minusrmPtm sumOfSquares.
 	indexI := 1.
 	minusrmPtm normalizeSelf.
-	angleSwept := 0.0d.
+	angleSwept := 0.0.
 	2 to: size do: [:i | 
 			minusrmPtmNext := (rmems at: i) minusFullColumn: col.
 			distSq := minusrmPtmNext sumOfSquares.
@@ -690,7 +690,7 @@ MbDEndFrameqcs >> roughSepDistFromrmem: col [
 	minusrmPtm2 := minusrmPtm at: 2.
 	minDistSq := minusrmPtm1 squared + minusrmPtm2 squared.
 	indexI := 1.
-	angleSwept := 0.0d.
+	angleSwept := 0.0.
 	2 to: size
 		do: 
 			[:i | 

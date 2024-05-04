@@ -231,7 +231,7 @@ GEOPartLike >> qEp [
 { #category : #accessing }
 GEOPartLike >> rOcenterO [
 	| sumDiagonal sumMoment block rPcenterP |
-	sumDiagonal := 0.0d.
+	sumDiagonal := 0.0.
 	sumMoment := StMFullColumn zero: 3.
 	block := 
 			[:object | 

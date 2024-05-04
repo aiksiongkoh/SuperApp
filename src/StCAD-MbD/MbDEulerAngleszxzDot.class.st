@@ -1,6 +1,6 @@
 Class {
 	#name : #MbDEulerAngleszxzDot,
-	#superclass : #StEulerArray,
+	#superclass : #SymEulerArray,
 	#type : #variable,
 	#instVars : [
 		'phiThePsi',

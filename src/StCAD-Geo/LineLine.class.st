@@ -134,7 +134,7 @@ LineLine >> calc [
 	ada0mb0 := aDir dot: a0mb0.
 	bda0mb0 := bDir dot: a0mb0.
 	denominator := adsq * bdsq - (adbd * adbd).
-	1.0d - ((aDir normalized dot: bDir normalized) raisedTo: 2) > tolParallel 
+	1.0 - ((aDir normalized dot: bDir normalized) raisedTo: 2) > tolParallel 
 		ifTrue: 
 			[aPar := (bda0mb0 * adbd - (ada0mb0 * bdsq)) / denominator.
 			bPar := (bda0mb0 * adsq - (ada0mb0 * adbd)) / denominator.
@@ -142,7 +142,7 @@ LineLine >> calc [
 			bClosestPoint := b0 plus: bDir times: bPar.
 			aMinDist := (aClosestPoint minusFullColumn: bClosestPoint) length.
 			aCrossPoint := aMinDist < tolDist 
-						ifTrue: [(aClosestPoint plusFullColumn: bClosestPoint) times: 0.5d]]
+						ifTrue: [(aClosestPoint plusFullColumn: bClosestPoint) times: 0.5]]
 		ifFalse: ['Lines are parallel.']
 ]
 

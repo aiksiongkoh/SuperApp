@@ -501,5 +501,5 @@ GEORelPosVelAccData >> zeroSelf [
 	omeOfO := (StMFullColumn zero: 3).
 	aOfO := (StMFullColumn zero: 3).
 	alpOfO := (StMFullColumn zero: 3).
-	time := 0.0d
+	time := 0.0
 ]

@@ -64,12 +64,12 @@ MbDTranslationConstraintIqcsJqc >> fillAccICIterError: col [
 	qXdotJ := frmJ qXdot.
 	qEdotJ := frmJ qEdot.
 	sdotI := frmI sdot.
-	sum := 0.0d.
+	sum := 0.0.
 	sum := sum + (pGpsI timesFullColumn: frmI sddot).
-	sum := sum + (2.0d * (qXdotI transposeTimesFullColumn: (ppGpXIpsI timesFullColumn: sdotI))).
-	sum := sum + (2.0d * (qEdotI transposeTimesFullColumn: (ppGpEIpsI timesFullColumn: sdotI))).
-	sum := sum + (2.0d * (qXdotJ transposeTimesFullColumn: (ppGpXJpsI timesFullColumn: sdotI))).
-	sum := sum + (2.0d * (qEdotJ transposeTimesFullColumn: (ppGpEJpsI timesFullColumn: sdotI))).
+	sum := sum + (2.0 * (qXdotI transposeTimesFullColumn: (ppGpXIpsI timesFullColumn: sdotI))).
+	sum := sum + (2.0 * (qEdotI transposeTimesFullColumn: (ppGpEIpsI timesFullColumn: sdotI))).
+	sum := sum + (2.0 * (qXdotJ transposeTimesFullColumn: (ppGpXJpsI timesFullColumn: sdotI))).
+	sum := sum + (2.0 * (qEdotJ transposeTimesFullColumn: (ppGpEJpsI timesFullColumn: sdotI))).
 	sum := sum + (sdotI transposeTimesFullColumn: (ppGpsIpsI timesFullColumn: sdotI)).
 	col at: iG plusNumber: sum
 ]
@@ -82,7 +82,7 @@ MbDTranslationConstraintIqcsJqc >> fillCollisionError: col [
 	| sum |
 	super fillCollisionError: col.
 	col at: isI plusFullColumn: pGpsI times: lamDeriv.
-	sum := 0.0d.
+	sum := 0.0.
 	sum := sum + (pGpsI timesFullColumn: frmI sddot).
 	col at: iG plusNumber: sum
 ]

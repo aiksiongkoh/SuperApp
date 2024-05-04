@@ -69,13 +69,13 @@ MbDAbsConstraint >> fillPosICError: col [
 
 { #category : #posIC }
 MbDAbsConstraint >> fillPosICJacob: mat [ 
-	mat at: iG and: iqXminusOnePlusAxis plusNumber: 1.0d.
-	mat at: iqXminusOnePlusAxis and: iG plusNumber: 1.0d
+	mat at: iG and: iqXminusOnePlusAxis plusNumber: 1.0.
+	mat at: iqXminusOnePlusAxis and: iG plusNumber: 1.0
 ]
 
 { #category : #posIC }
 MbDAbsConstraint >> fillPosKineJacob: mat [ 
-	mat at: iG and: iqXminusOnePlusAxis plusNumber: 1.0d
+	mat at: iG and: iqXminusOnePlusAxis plusNumber: 1.0
 ]
 
 { #category : #velIC }
@@ -93,7 +93,7 @@ MbDAbsConstraint >> fillpFpy: mat [
 	mat
 		at: iG
 		and: iqXminusOnePlusAxis
-		plusNumber: 1.0d
+		plusNumber: 1.0
 ]
 
 { #category : #dynamic }
@@ -101,7 +101,7 @@ MbDAbsConstraint >> fillpFpydot: mat [
 	mat
 		at: iqXminusOnePlusAxis
 		and: iG
-		plusNumber: 1.0d
+		plusNumber: 1.0
 ]
 
 { #category : #'initialize-release' }

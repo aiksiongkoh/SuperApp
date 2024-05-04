@@ -1,6 +1,6 @@
 Class {
 	#name : #MbDEulerParameters,
-	#superclass : #StEulerParameters,
+	#superclass : #SymEulerParameters,
 	#type : #variable,
 	#instVars : [
 		'pApE'
@@ -17,10 +17,10 @@ MbDEulerParameters class >> from: vector [
 MbDEulerParameters class >> fromA: anObject [ 
 	^anObject isIdentity
 		ifTrue: [self
-				with: 0.0d
-				with: 0.0d
-				with: 0.0d
-				with: 1.0d]
+				with: 0.0
+				with: 0.0
+				with: 0.0
+				with: 1.0]
 		ifFalse: 
 			[| aA |
 			aA := self rotationMatrixClass from: anObject.
@@ -40,18 +40,18 @@ MbDEulerParameters class >> pBTpEtimesColumn: col [
 	c1 := (col at: 1).
 	c2 := (col at: 2).
 	c3 := (col at: 3).
-	mc1 := 0.0d - c1.
-	mc2 := 0.0d - c2.
-	mc3 := 0.0d - c3.
+	mc1 := 0.0 - c1.
+	mc2 := 0.0 - c2.
+	mc3 := 0.0 - c3.
 	answer := StMFullMatrix new: 4 by: 4.
 	row1 := answer at: 1.
 	row2 := answer at: 2.
 	row3 := answer at: 3.
 	row4 := answer at: 4.
-	row1 at: 1 put: 0.0d; at: 2 put: mc3; at: 3 put: c2; at: 4 put: c1.
-	row2 at: 1 put: c3; at: 2 put: 0.0d; at: 3 put: mc1; at: 4 put: c2.
-	row3 at: 1 put: mc2; at: 2 put: c1; at: 3 put: 0.0d; at: 4 put: c3.
-	row4 at: 1 put: mc1; at: 2 put: mc2; at: 3 put: mc3; at: 4 put: 0.0d.
+	row1 at: 1 put: 0.0; at: 2 put: mc3; at: 3 put: c2; at: 4 put: c1.
+	row2 at: 1 put: c3; at: 2 put: 0.0; at: 3 put: mc1; at: 4 put: c2.
+	row3 at: 1 put: mc2; at: 2 put: c1; at: 3 put: 0.0; at: 4 put: c3.
+	row4 at: 1 put: mc1; at: 2 put: mc2; at: 3 put: mc3; at: 4 put: 0.0.
 	^answer
 ]
 
@@ -63,10 +63,10 @@ MbDEulerParameters class >> pBpEtimesColumn: col [
 	c1 := col at: 1.
 	c2 := col at: 2.
 	c3 := col at: 3.
-	mc1 := 0.0d - c1.
-	mc2 := 0.0d - c2.
-	mc3 := 0.0d - c3.
-	mc4 := 0.0d - (col at: 4).
+	mc1 := 0.0 - c1.
+	mc2 := 0.0 - c2.
+	mc3 := 0.0 - c3.
+	mc4 := 0.0 - (col at: 4).
 	answer := StMFullMatrix new: 3 by: 4.
 	row1 := answer at: 1.
 	row2 := answer at: 2.
@@ -85,18 +85,18 @@ MbDEulerParameters class >> pCTpEtimesColumn: col [
 	c1 := col at: 1.
 	c2 := col at: 2.
 	c3 := col at: 3.
-	mc1 := 0.0d - c1.
-	mc2 := 0.0d - c2.
-	mc3 := 0.0d - c3.
+	mc1 := 0.0 - c1.
+	mc2 := 0.0 - c2.
+	mc3 := 0.0 - c3.
 	answer := StMFullMatrix new: 4 by: 4.
 	row1 := answer at: 1.
 	row2 := answer at: 2.
 	row3 := answer at: 3.
 	row4 := answer at: 4.
-	row1 at: 1 put: 0.0d; at: 2 put: c3; at: 3 put: mc2; at: 4 put: c1.
-	row2 at: 1 put: mc3; at: 2 put: 0.0d; at: 3 put: c1; at: 4 put: c2.
-	row3 at: 1 put: c2; at: 2 put: mc1; at: 3 put: 0.0d; at: 4 put: c3.
-	row4 at: 1 put: mc1; at: 2 put: mc2; at: 3 put: mc3; at: 4 put: 0.0d.
+	row1 at: 1 put: 0.0; at: 2 put: c3; at: 3 put: mc2; at: 4 put: c1.
+	row2 at: 1 put: mc3; at: 2 put: 0.0; at: 3 put: c1; at: 4 put: c2.
+	row3 at: 1 put: c2; at: 2 put: mc1; at: 3 put: 0.0; at: 4 put: c3.
+	row4 at: 1 put: mc1; at: 2 put: mc2; at: 3 put: mc3; at: 4 put: 0.0.
 	^answer
 ]
 
@@ -108,10 +108,10 @@ MbDEulerParameters class >> pCpEtimesColumn: col [
 	c1 := col at: 1.
 	c2 := col at: 2.
 	c3 := col at: 3.
-	mc1 := 0.0d - c1.
-	mc2 := 0.0d - c2.
-	mc3 := 0.0d - c3.
-	mc4 := 0.0d - (col at: 4).
+	mc1 := 0.0 - c1.
+	mc2 := 0.0 - c2.
+	mc3 := 0.0 - c3.
+	mc4 := 0.0 - (col at: 4).
 	answer := StMFullMatrix new: 3 by: 4.
 	row1 := answer at: 1.
 	row2 := answer at: 2.
@@ -125,22 +125,22 @@ MbDEulerParameters class >> pCpEtimesColumn: col [
 { #category : #calc }
 MbDEulerParameters class >> ppApEpEtimesColumn: col [ 
 	| a2c1 a2c2 a2c3 m2c1 m2c2 m2c3 answer col11 col12 col13 col14 col22 col23 col24 col33 col34 col44 |
-	a2c1 := 2.0d * (col at: 1).
-	a2c2 := 2.0d * (col at: 2).
-	a2c3 := 2.0d * (col at: 3).
-	m2c1 := 0.0d - a2c1.
-	m2c2 := 0.0d - a2c2.
-	m2c3 := 0.0d - a2c3.
+	a2c1 := 2.0 * (col at: 1).
+	a2c2 := 2.0 * (col at: 2).
+	a2c3 := 2.0 * (col at: 3).
+	m2c1 := 0.0 - a2c1.
+	m2c2 := 0.0 - a2c2.
+	m2c3 := 0.0 - a2c3.
 	answer := StMFullMatrix new: 4 by: 4.
 	col11 := StMFullColumn with: a2c1 with: m2c2 with: m2c3.
-	col12 := StMFullColumn with: a2c2 with: a2c1 with: 0.0d.
-	col13 := StMFullColumn with: a2c3 with: 0.0d with: a2c1.
-	col14 := StMFullColumn with: 0.0d with: m2c3 with: a2c2.
+	col12 := StMFullColumn with: a2c2 with: a2c1 with: 0.0.
+	col13 := StMFullColumn with: a2c3 with: 0.0 with: a2c1.
+	col14 := StMFullColumn with: 0.0 with: m2c3 with: a2c2.
 	col22 := StMFullColumn with: m2c1 with: a2c2 with: m2c3.
-	col23 := StMFullColumn with: 0.0d with: a2c3 with: a2c2.
-	col24 := StMFullColumn with: a2c3 with: 0.0d with: m2c1.
+	col23 := StMFullColumn with: 0.0 with: a2c3 with: a2c2.
+	col24 := StMFullColumn with: a2c3 with: 0.0 with: m2c1.
 	col33 := StMFullColumn with: m2c1 with: m2c2 with: a2c3.
-	col34 := StMFullColumn with: m2c2 with: a2c1 with: 0.0d.
+	col34 := StMFullColumn with: m2c2 with: a2c1 with: 0.0.
 	col44 := StMFullColumn with: a2c1 with: a2c2 with: a2c3.
 	(answer at: 1) at: 1 put: col11; at: 2 put: col12; at: 3 put: col13; at: 4 put: col14.
 	(answer at: 2) at: 1 put: col12; at: 2 put: col22; at: 3 put: col23; at: 4 put: col24.
@@ -152,9 +152,9 @@ MbDEulerParameters class >> ppApEpEtimesColumn: col [
 { #category : #calc }
 MbDEulerParameters class >> ppApEpEtimesMatrix: mat [ 
 	| a2m1 a2m2 a2m3 m2m1 m2m2 m2m3 answer mat11 mat12 mat13 mat14 mat22 mat23 mat24 mat33 mat34 mat44 zero |
-	a2m1 := (mat at: 1) times: 2.0d.
-	a2m2 := (mat at: 2) times: 2.0d.
-	a2m3 := (mat at: 3) times: 2.0d.
+	a2m1 := (mat at: 1) times: 2.0.
+	a2m2 := (mat at: 2) times: 2.0.
+	a2m3 := (mat at: 3) times: 2.0.
 	m2m1 := a2m1 negated.
 	m2m2 := a2m2 negated.
 	m2m3 := a2m3 negated.
@@ -180,48 +180,48 @@ MbDEulerParameters class >> ppApEpEtimesMatrix: mat [
 { #category : #calc }
 MbDEulerParameters class >> ppArow1pEpEtimesColumn: col [ 
 	| a2c1 a2c2 a2c3 m2c1 m2c2 answer |
-	a2c1 := 2.0d * (col at: 1).
-	a2c2 := 2.0d * (col at: 2).
-	a2c3 := 2.0d * (col at: 3).
-	m2c1 := 0.0d - a2c1.
-	m2c2 := 0.0d - a2c2.
+	a2c1 := 2.0 * (col at: 1).
+	a2c2 := 2.0 * (col at: 2).
+	a2c3 := 2.0 * (col at: 3).
+	m2c1 := 0.0 - a2c1.
+	m2c2 := 0.0 - a2c2.
 	answer := StMFullMatrix new: 4 by: 4.
-	(answer at: 1) at: 1 put: a2c1; at: 2 put: a2c2; at: 3 put: a2c3; at: 4 put: 0.0d.
-	(answer at: 2) at: 1 put: a2c2; at: 2 put: m2c1; at: 3 put: 0.0d; at: 4 put: a2c3.
-	(answer at: 3) at: 1 put: a2c3; at: 2 put: 0.0d; at: 3 put: m2c1; at: 4 put: m2c2.
-	(answer at: 4) at: 1 put: 0.0d; at: 2 put: a2c3; at: 3 put: m2c2; at: 4 put: a2c1.
+	(answer at: 1) at: 1 put: a2c1; at: 2 put: a2c2; at: 3 put: a2c3; at: 4 put: 0.0.
+	(answer at: 2) at: 1 put: a2c2; at: 2 put: m2c1; at: 3 put: 0.0; at: 4 put: a2c3.
+	(answer at: 3) at: 1 put: a2c3; at: 2 put: 0.0; at: 3 put: m2c1; at: 4 put: m2c2.
+	(answer at: 4) at: 1 put: 0.0; at: 2 put: a2c3; at: 3 put: m2c2; at: 4 put: a2c1.
 	^answer
 ]
 
 { #category : #calc }
 MbDEulerParameters class >> ppArow2pEpEtimesColumn: col [ 
 	| a2c1 a2c2 a2c3 m2c2 m2c3 answer |
-	a2c1 := 2.0d * (col at: 1).
-	a2c2 := 2.0d * (col at: 2).
-	a2c3 := 2.0d * (col at: 3).
-	m2c2 := 0.0d - a2c2.
-	m2c3 := 0.0d - a2c3.
+	a2c1 := 2.0 * (col at: 1).
+	a2c2 := 2.0 * (col at: 2).
+	a2c3 := 2.0 * (col at: 3).
+	m2c2 := 0.0 - a2c2.
+	m2c3 := 0.0 - a2c3.
 	answer := StMFullMatrix new: 4 by: 4.
-	(answer at: 1) at: 1 put: m2c2; at: 2 put: a2c1; at: 3 put: 0.0d; at: 4 put: m2c3.
-	(answer at: 2) at: 1 put: a2c1; at: 2 put: a2c2; at: 3 put: a2c3; at: 4 put: 0.0d.
-	(answer at: 3) at: 1 put: 0.0d; at: 2 put: a2c3; at: 3 put: m2c2; at: 4 put: a2c1.
-	(answer at: 4) at: 1 put: m2c3; at: 2 put: 0.0d; at: 3 put: a2c1; at: 4 put: a2c2.
+	(answer at: 1) at: 1 put: m2c2; at: 2 put: a2c1; at: 3 put: 0.0; at: 4 put: m2c3.
+	(answer at: 2) at: 1 put: a2c1; at: 2 put: a2c2; at: 3 put: a2c3; at: 4 put: 0.0.
+	(answer at: 3) at: 1 put: 0.0; at: 2 put: a2c3; at: 3 put: m2c2; at: 4 put: a2c1.
+	(answer at: 4) at: 1 put: m2c3; at: 2 put: 0.0; at: 3 put: a2c1; at: 4 put: a2c2.
 	^answer
 ]
 
 { #category : #calc }
 MbDEulerParameters class >> ppArow3pEpEtimesColumn: col [ 
 	| a2c1 a2c2 a2c3 m2c1 m2c3 answer |
-	a2c1 := 2.0d * (col at: 1).
-	a2c2 := 2.0d * (col at: 2).
-	a2c3 := 2.0d * (col at: 3).
-	m2c1 := 0.0d - a2c1.
-	m2c3 := 0.0d - a2c3.
+	a2c1 := 2.0 * (col at: 1).
+	a2c2 := 2.0 * (col at: 2).
+	a2c3 := 2.0 * (col at: 3).
+	m2c1 := 0.0 - a2c1.
+	m2c3 := 0.0 - a2c3.
 	answer := StMFullMatrix new: 4 by: 4.
-	(answer at: 1) at: 1 put: m2c3; at: 2 put: 0.0d; at: 3 put: a2c1; at: 4 put: a2c2.
-	(answer at: 2) at: 1 put: 0.0d; at: 2 put: m2c3; at: 3 put: a2c2; at: 4 put: m2c1.
+	(answer at: 1) at: 1 put: m2c3; at: 2 put: 0.0; at: 3 put: a2c1; at: 4 put: a2c2.
+	(answer at: 2) at: 1 put: 0.0; at: 2 put: m2c3; at: 3 put: a2c2; at: 4 put: m2c1.
 	(answer at: 3) at: 1 put: a2c1; at: 2 put: a2c2; at: 3 put: a2c3; at: 4 put: 0.0.
-	(answer at: 4) at: 1 put: a2c2; at: 2 put: m2c1; at: 3 put: 0.0d; at: 4 put: a2c3.
+	(answer at: 4) at: 1 put: a2c2; at: 2 put: m2c1; at: 3 put: 0.0; at: 4 put: a2c3.
 	^answer
 ]
 

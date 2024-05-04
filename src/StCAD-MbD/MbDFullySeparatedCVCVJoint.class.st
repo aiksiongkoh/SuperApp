@@ -34,7 +34,7 @@ MbDFullySeparatedCVCVJoint >> checkForDynDiscontinuityBetween: tprevious and: t 
 			newtonRaphson := MbDZeroSeparationNewtonRaphson2 new.
 			newtonRaphson system: self.
 			newtonRaphson run.
-			direction := tprevious < t ifTrue: [1.0d] ifFalse: [-1.0d].
+			direction := tprevious < t ifTrue: [1.0] ifFalse: [-1.0].
 			direction * tstart <= (direction * tprevious) 
 				ifTrue: 
 					["
@@ -66,7 +66,7 @@ MbDFullySeparatedCVCVJoint >> discontinuityAt: tstartNew addTypeTo2: collection 
 	tstartPast1 := TheMbDSystem pastStartTimes at: 1.
 	hout := TheMbDSystem outputStepSize.
 	dtstart := (tstart - tstartPast1) abs.
-	dtstartTol := 0.1d * hout.
+	dtstartTol := 0.1 * hout.
 	dtstart < dtstartTol 
 		ifTrue: 
 			["Rapid collisions"
@@ -87,7 +87,7 @@ MbDFullySeparatedCVCVJoint >> discontinuityAt: tstartNew addTypeTo3: collection 
 	TheMbDSystem logSeparationDistance: separation.
 	pastStartTimes := TheMbDSystem pastStartTimes.
 	hout := TheMbDSystem outputStepSize.
-	dstartTol := 0.1d * hout.
+	dstartTol := 0.1 * hout.
 	(pastStartTimes size >= 3 
 		and: [((pastStartTimes at: 3) - tstartNew) abs < dstartTol]) 
 			ifTrue: 
@@ -110,7 +110,7 @@ MbDFullySeparatedCVCVJoint >> discontinuityAt: tstartNew addTypeTo: collection [
 	TheMbDSystem logSeparationDistance: separation.
 	pastStartTimes := TheMbDSystem pastStartTimes.
 	hout := TheMbDSystem outputStepSize.
-	dstartTol := 0.1d * hout.
+	dstartTol := 0.1 * hout.
 	(pastStartTimes size >= 3 
 		and: [((pastStartTimes at: 3) - tstartNew) abs < dstartTol]) 
 			ifTrue: 

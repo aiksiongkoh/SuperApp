@@ -54,7 +54,7 @@ MbDCouplerJoint >> aTXIjoint: n [
 	1 to: 4 do: [:i | 
 			term11 := (pGpEI at: i) * lam.
 			term12 := cForceT dot: (prOIeOpEIT at: i).
-			col at: i put: term11 - term12 / 2.0d].
+			col at: i put: term11 - term12 / 2.0].
 	^aBOIp timesFullColumn: col
 ]
 
@@ -76,7 +76,7 @@ MbDCouplerJoint >> aTXJjoint: n [
 	1 to: 4 do: [:i | 
 			term11 := (pGpEJ at: i) * lam.
 			term12 := cForceT dot: (prOJeOpEJT at: i).
-			col at: i put: term11 - term12 / 2.0d].
+			col at: i put: term11 - term12 / 2.0].
 	^aBOJp timesFullColumn: col
 ]
 

@@ -44,9 +44,9 @@ MbDDirectionCosineConstraintIqctJqc >> fillAccICIterError: col [
 	super fillAccICIterError: col.
 	qEdotI := frmI qEdot.
 	qEdotJ := frmJ qEdot.
-	sum := 0.0d.
-	sum := sum + (2.0d * (ppGpEIpt timesFullColumn: qEdotI)).
-	sum := sum + (2.0d * (ppGpEJpt timesFullColumn: qEdotJ)).
+	sum := 0.0.
+	sum := sum + (2.0 * (ppGpEIpt timesFullColumn: qEdotI)).
+	sum := sum + (2.0 * (ppGpEJpt timesFullColumn: qEdotJ)).
 	sum := sum + ppGptpt.
 	col at: iG plusNumber: sum
 ]

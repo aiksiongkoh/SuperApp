@@ -1,6 +1,6 @@
 Class {
 	#name : #GEOEulerAngles,
-	#superclass : #StEulerArray,
+	#superclass : #SymEulerArray,
 	#type : #variable,
 	#instVars : [
 		'aA'
@@ -89,15 +89,15 @@ GEOEulerAngles >> rotatex: the [
 	cthe := the cos.
 	answer := StMFullMatrix new: 3 by: 3.
 	(answer at: 1)
-		at: 1 put: 1.0d;
-		at: 2 put: 0.0d;
-		at: 3 put: 0.0d.
+		at: 1 put: 1.0;
+		at: 2 put: 0.0;
+		at: 3 put: 0.0.
 	(answer at: 2)
-		at: 1 put: 0.0d;
+		at: 1 put: 0.0;
 		at: 2 put: cthe;
-		at: 3 put: 0.0d - sthe.
+		at: 3 put: 0.0 - sthe.
 	(answer at: 3)
-		at: 1 put: 0.0d;
+		at: 1 put: 0.0;
 		at: 2 put: sthe;
 		at: 3 put: cthe.
 	^answer
@@ -111,15 +111,15 @@ GEOEulerAngles >> rotatey: the [
 	answer := StMFullMatrix new: 3 by: 3.
 	(answer at: 1)
 		at: 1 put: cthe;
-		at: 2 put: 0.0d;
+		at: 2 put: 0.0;
 		at: 3 put: sthe.
 	(answer at: 2)
-		at: 1 put: 0.0d;
-		at: 2 put: 1.0d;
-		at: 3 put: 0.0d.
+		at: 1 put: 0.0;
+		at: 2 put: 1.0;
+		at: 3 put: 0.0.
 	(answer at: 3)
-		at: 1 put: 0.0d - sthe;
-		at: 2 put: 0.0d;
+		at: 1 put: 0.0 - sthe;
+		at: 2 put: 0.0;
 		at: 3 put: cthe.
 	^answer
 ]
@@ -132,15 +132,15 @@ GEOEulerAngles >> rotatez: the [
 	answer := StMFullMatrix new: 3 by: 3.
 	(answer at: 1)
 		at: 1 put: cthe;
-		at: 2 put: 0.0d - sthe;
-		at: 3 put: 0.0d.
+		at: 2 put: 0.0 - sthe;
+		at: 3 put: 0.0.
 	(answer at: 2)
 		at: 1 put: sthe;
 		at: 2 put: cthe;
-		at: 3 put: 0.0d.
+		at: 3 put: 0.0.
 	(answer at: 3)
-		at: 1 put: 0.0d;
-		at: 2 put: 0.0d;
-		at: 3 put: 1.0d.
+		at: 1 put: 0.0;
+		at: 2 put: 0.0;
+		at: 3 put: 1.0.
 	^answer
 ]

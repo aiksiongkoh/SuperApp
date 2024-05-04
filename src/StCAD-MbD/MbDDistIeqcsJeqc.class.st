@@ -63,7 +63,7 @@ MbDDistIeqcsJeqc >> calcPostLocalSepDistIteration [
 	"rIeJeO has a unit fourth dimension added to avoid singularity when actual rIeJe = 0."
 
 	rIeJeO := frmJ rOeO - frmI rOeO.
-	rIeJe := (rIeJeO sumOfSquares + 1.0d) sqrt.
+	rIeJe := (rIeJeO sumOfSquares + 1.0) sqrt.
 	self calcPrivate
 ]
 

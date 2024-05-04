@@ -1,6 +1,6 @@
 Class {
 	#name : #MbDEulerParametersDDot,
-	#superclass : #StEulerParametersDDot,
+	#superclass : #SymEulerParametersDDot,
 	#type : #variable,
 	#category : #'StCAD-MbD-MbDBasic'
 }
@@ -73,7 +73,7 @@ MbDEulerParametersDDot >> aCdot [
 { #category : #accessing }
 MbDEulerParametersDDot >> alpOpO [
 	^(self aBdot timesFullColumn: qEdot) + (self aB timesFullColumn: self) 
-		times: 2.0d
+		times: 2.0
 ]
 
 { #category : #calc }

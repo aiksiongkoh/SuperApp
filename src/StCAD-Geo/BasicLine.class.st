@@ -107,7 +107,7 @@ BasicLine >> intersectPoint: aaPoint lTol: tol [
 	^ aLinePoint aMinDist < tol and: [ 
 		  | parameter |
 		  parameter := aLinePoint aPar.
-		  parameter > 0.0 d and: [ parameter < 1.0 d ] ]
+		  parameter > 0.0 and: [ parameter < 1.0 ] ]
 ]
 
 { #category : #'As yet unclassified' }
@@ -209,14 +209,14 @@ BasicLine >> rfpfNurbs [
 
 { #category : #'As yet unclassified' }
 BasicLine >> rfpf_u: u [ 
-	^u = 0.0d 
+	^u = 0.0 
 		ifTrue: [rfStartPointf shallowCopy]
 		ifFalse: 
-			[u = 1.0d 
+			[u = 1.0 
 				ifTrue: [rfEndPointf shallowCopy]
 				ifFalse: 
 					[rfStartPointf 
-						times: 1.0d - u
+						times: 1.0 - u
 						plusFullColumn: rfEndPointf
 						times: u]]
 ]

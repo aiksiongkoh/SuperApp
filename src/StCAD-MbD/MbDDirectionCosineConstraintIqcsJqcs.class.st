@@ -58,11 +58,11 @@ MbDDirectionCosineConstraintIqcsJqcs >> fillAccICIterError: col [
 	sdotI := frmI sdot.
 	qEdotJ := frmJ qEdot.
 	sdotJ := frmJ sdot.
-	sum := 0.0d.
+	sum := 0.0.
 	sum := sum + (pGpsJ timesFullColumn: frmJ sddot).
-	sum := sum + (2.0d * (qEdotI transposeTimesFullColumn: (ppGpEIpsJ timesFullColumn: sdotJ))).
-	sum := sum + (2.0d * (sdotI transposeTimesFullColumn: (ppGpsIpsJ timesFullColumn: sdotJ))).
-	sum := sum + (2.0d * (qEdotJ transposeTimesFullColumn: (ppGpEJpsJ timesFullColumn: sdotJ))).
+	sum := sum + (2.0 * (qEdotI transposeTimesFullColumn: (ppGpEIpsJ timesFullColumn: sdotJ))).
+	sum := sum + (2.0 * (sdotI transposeTimesFullColumn: (ppGpsIpsJ timesFullColumn: sdotJ))).
+	sum := sum + (2.0 * (qEdotJ transposeTimesFullColumn: (ppGpEJpsJ timesFullColumn: sdotJ))).
 	sum := sum + (sdotJ transposeTimesFullColumn: (ppGpsJpsJ timesFullColumn: sdotJ)).
 	col at: iG plusNumber: sum
 ]
@@ -75,7 +75,7 @@ MbDDirectionCosineConstraintIqcsJqcs >> fillCollisionError: col [
 	| sum |
 	super fillCollisionError: col.
 	col at: isJ plusFullColumn: pGpsJ times: lamDeriv.
-	sum := 0.0d.
+	sum := 0.0.
 	sum := sum + (pGpsJ timesFullColumn: frmJ sddot).
 	col at: iG plusNumber: sum
 ]

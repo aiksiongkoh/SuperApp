@@ -4,5 +4,6 @@ Extension { #name : #ClyFullBrowserMorph }
 ClyFullBrowserMorph >> open [
 
 	super open.
-	self switchToFullClassHierarchy
+	self switchToFullClassHierarchy.
+	self window maximize
 ]

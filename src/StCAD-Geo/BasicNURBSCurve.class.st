@@ -305,12 +305,12 @@ BasicNURBSCurve class >> fromLine: aLine [
 	| cPoint cWeight cuKnot |
 	cPoint := StMArray with: aLine rfStartPointf copy
 				with: aLine rfEndPointf copy.
-	cWeight := StMArray with: 1.0d with: 1.0d.
+	cWeight := StMArray with: 1.0 with: 1.0.
 	cuKnot := StMArray 
-				with: 0.0d
-				with: 0.0d
-				with: 1.0d
-				with: 1.0d.
+				with: 0.0
+				with: 0.0
+				with: 1.0
+				with: 1.0.
 	^self 
 		cControlPoint: cPoint
 		cWeight: cWeight
@@ -336,7 +336,7 @@ BasicNURBSCurve class >> fromcDataPoint: cDataPoint uDegree: uDegree [
 				with: cDataPoint asFullColumn
 				saveOriginal: false.
 	cWeight := (cPoint shallowCopy)
-				atAllPut: 1.0d;
+				atAllPut: 1.0;
 				yourself.
 	^self 
 		cControlPoint: cPoint
@@ -552,7 +552,7 @@ BasicNURBSCurve >> calcAll [
 	self normalizeKnots.
 	aBoundingBox := StCAD_Misc_BoundingBox new. "VW_TRANSLATION:StCAD.Misc.BoundingBox:StCAD_Misc_BoundingBox"
 	cSamplePoint := StCAD_Math_SparseVector new. "VW_TRANSLATION:StCAD.Math.SparseVector:StCAD_Math_SparseVector"
-	(0.0 d to: 1.0 d nCenter: cControlPoint size) keysAndValuesDo: [ :i :u | 
+	(0.0 to: 1.0 nCenter: cControlPoint size) keysAndValuesDo: [ :i :u | 
 		| aPoint |
 		aPoint := self atU: u.
 		cSamplePoint at: u put: aPoint.
@@ -582,9 +582,9 @@ BasicNURBSCurve >> extremeValueAxis: axis uguess: uguess [
 				dir: (StMFullColumn zero: self nDimension unitAt: axis);
 				run;
 				x.
-	uextreme < 0.0d 
-		ifTrue: [uextreme := 0.0d]
-		ifFalse: [uextreme > 1.0d ifTrue: [uextreme := 1.0d]].
+	uextreme < 0.0 
+		ifTrue: [uextreme := 0.0]
+		ifFalse: [uextreme > 1.0 ifTrue: [uextreme := 1.0]].
 	^uextreme
 ]
 
@@ -597,10 +597,10 @@ BasicNURBSCurve >> minmaxAxis: axis [
 	min := minmax first.
 	max := minmax last.
 	((min equal: max lTol: tol) 
-		and: [(min equal: 0.0d lTol: tol) or: [min equal: 1.0d lTol: tol]]) 
+		and: [(min equal: 0.0 lTol: tol) or: [min equal: 1.0 lTol: tol]]) 
 			ifTrue: 
-				[minmax at: 1 put: 0.0d.
-				minmax at: 2 put: 1.0d].
+				[minmax at: 1 put: 0.0.
+				minmax at: 2 put: 1.0].
 	^minmax
 ]
 
@@ -635,7 +635,7 @@ BasicNURBSCurve >> normalizeKnots [
 	| magnification |
 	umin := cuKnot first.
 	umax := cuKnot last.
-	magnification := 1.0d / (umax - umin).
+	magnification := 1.0 / (umax - umin).
 	cuKnot := cuKnot collect: [:u | (u - umin) * magnification.].
 ]
 
@@ -675,7 +675,7 @@ BasicNURBSCurve >> rfpf_u: u [
 	uSpan := self uspan_at: u.
 	cN := self cNu_at: u uSpan: uSpan.
 	numerator := StMFullColumn zero: self nDimension.
-	denominator := 0.0d.
+	denominator := 0.0.
 	0 to: uDegree
 		do: 
 			[:i | 
@@ -696,10 +696,10 @@ BasicNURBSCurve >> uspan_at: u [
 
 { #category : #'As yet unclassified' }
 BasicNURBSCurve >> uvEnd [
-	^self atU: 1.0d
+	^self atU: 1.0
 ]
 
 { #category : #'As yet unclassified' }
 BasicNURBSCurve >> uvStart [
-	^self atU: 0.0d
+	^self atU: 0.0
 ]

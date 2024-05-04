@@ -35,7 +35,7 @@ MbDVelMagIecJec >> calcPostDynCorrectorIteration [
 	vIeJe := vIeJeO length.
 	uvIeJeO := vIeJe = 0
 				ifTrue: [(StMFullColumn zero: 3)]
-				ifFalse: [vIeJeO times: 1.0d / vIeJe]
+				ifFalse: [vIeJeO times: 1.0 / vIeJe]
 ]
 
 { #category : #accessing }

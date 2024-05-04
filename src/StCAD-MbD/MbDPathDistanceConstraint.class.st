@@ -79,7 +79,7 @@ MbDPathDistanceConstraint >> fillAccICIterError: col [
 	col at: is plusNumber: pGps * lam.
 	sdot := efrm sdot at: 1.
 	sddot := efrm sddot at: 1.
-	sum := 0.0d.
+	sum := 0.0.
 	sum := sum + (pGps * sddot).
 	sum := sum + (sdot * ppGpsps * sdot).
 	sum := sum + ppGptpt.

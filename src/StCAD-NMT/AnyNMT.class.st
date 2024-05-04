@@ -43,7 +43,7 @@ AnyNMT >> aShellUse [
 AnyNMT >> alpha [
 	^(self triggerEvent: #getalpha) ifNil: 
 			[| answer |
-			answer := 1.0d.
+			answer := 1.0.
 			self alpha: answer.
 			answer]
 ]
@@ -142,7 +142,7 @@ AnyNMT >> isVertexUse [
 AnyNMT >> lineWidth [
 	^(self triggerEvent: #getlineWidth) ifNil: 
 			[| answer |
-			answer := 1.0d.
+			answer := 1.0.
 			self lineWidth: answer.
 			answer]
 ]

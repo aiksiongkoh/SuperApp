@@ -61,7 +61,7 @@ MbDInContactCVCVJoint >> checkForDynDiscontinuityBetween: tprevious and: t [
 				newtonRaphson := MbDZeroContactForceNewtonRaphson2 new.
 				newtonRaphson system: self.
 				newtonRaphson run.
-				direction := tprevious < t ifTrue: [1.0d] ifFalse: [-1.0d].
+				direction := tprevious < t ifTrue: [1.0] ifFalse: [-1.0].
 				direction * tstart <= (direction * tprevious) 
 					ifTrue: 
 						["
@@ -97,7 +97,7 @@ MbDInContactCVCVJoint >> preDynStep [
 
 { #category : #posIC }
 MbDInContactCVCVJoint >> preICRestart [
-	contactForce < 0.0d
+	contactForce < 0.0
 		ifTrue: 
 			[unusedConstraints become: constraints.
 			self becomeSeparatedCVCVJoint]
@@ -106,7 +106,7 @@ MbDInContactCVCVJoint >> preICRestart [
 { #category : #accIC }
 MbDInContactCVCVJoint >> recordContactForceAndSeparationDistance [
 	contactForce := self contactForce.
-	separation := 0.0d
+	separation := 0.0
 ]
 
 { #category : #dynamic }
@@ -114,7 +114,7 @@ MbDInContactCVCVJoint >> suggestSmallerOrAcceptDynStepSize: hnew [
 	| timeNew contactForceNew h |
 	timeNew := interpolator time + (interpolator direction * hnew).
 	contactForceNew := self contactForceAt: timeNew.
-	^(contactForceNew < 0.0d and: [contactForceNew < contactForce])
+	^(contactForceNew < 0.0 and: [contactForceNew < contactForce])
 		ifTrue: 
 			["Lift off. Take a conservative step."
 			h := interpolator currentStepSize abs.

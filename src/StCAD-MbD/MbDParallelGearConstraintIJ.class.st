@@ -145,12 +145,12 @@ MbDParallelGearConstraintIJ >> preVelIC [
 
 { #category : #accessing }
 MbDParallelGearConstraintIJ >> ratio [
-	^ratioPlusOne - 1.0d
+	^ratioPlusOne - 1.0
 ]
 
 { #category : #accessing }
 MbDParallelGearConstraintIJ >> ratio: aDouble [ 
-	ratioPlusOne := aDouble + 1.0d
+	ratioPlusOne := aDouble + 1.0
 ]
 
 { #category : #dynamic }

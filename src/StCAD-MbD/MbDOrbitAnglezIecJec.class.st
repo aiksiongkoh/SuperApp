@@ -42,11 +42,11 @@ MbDOrbitAnglezIecJec >> calcPostDynCorrectorIteration [
 	diffOfSquares := y * y - (x * x).
 	sumOfSquaresSquared := sumOfSquares * sumOfSquares.
 	thez0to2pi := Double arcTan0to2piY: y overX: x.
-	thez := ((thez - thez0to2pi) / (2.0d * Double pi)) rounded 
-				* (2.0d * Double pi) + thez0to2pi.
+	thez := ((thez - thez0to2pi) / (2.0 * Double pi)) rounded 
+				* (2.0 * Double pi) + thez0to2pi.
 	cosOverSSq := x / sumOfSquares.
 	sinOverSSq := y / sumOfSquares.
-	twoCosSinOverSSqSq := 2.0d * x * y / sumOfSquaresSquared.
+	twoCosSinOverSSqSq := 2.0 * x * y / sumOfSquaresSquared.
 	dSqOverSSqSq := diffOfSquares / sumOfSquaresSquared
 ]
 
@@ -92,7 +92,7 @@ MbDOrbitAnglezIecJec >> postInput [
 		ifTrue: 
 			[x := xIeJeIe value.
 			y := yIeJeIe value.
-			thez := x > 0.0d 
+			thez := x > 0.0 
 						ifTrue: [Double arcTanMpiTOpiY: y overX: x]
 						ifFalse: [Double arcTan0to2piY: y overX: x]].
 	super postInput
@@ -136,7 +136,7 @@ MbDOrbitAnglezIecJec >> prePosIC [
 		ifTrue: 
 			[x := xIeJeIe value.
 			y := yIeJeIe value.
-			thez := x > 0.0d 
+			thez := x > 0.0 
 						ifTrue: [Double arcTanMpiTOpiY: y overX: x]
 						ifFalse: [Double arcTan0to2piY: y overX: x]].
 	super prePosIC

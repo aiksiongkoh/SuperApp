@@ -213,7 +213,7 @@ GEOExtrudedFeature >> storePOVOn: aStream level: level [
 { #category : #accessing }
 GEOExtrudedFeature >> zEnd [
 	^zEnd == nil
-		ifTrue: [1.0d]
+		ifTrue: [1.0]
 		ifFalse: [zEnd]
 ]
 
@@ -251,7 +251,7 @@ GEOExtrudedFeature >> zFaceDataFrom: graphicPolyline sign: sign [
 	zFacePolyline := graphicPolyline copy.
 	zGvalueG := sign positive ifTrue: [zEnd.] ifFalse: [zStart.].
 	zFacePolyline refFrame
-		translateSelfBy: (StMFullColumn with: 0.0d with: 0.0d with: zGvalueG).
+		translateSelfBy: (StMFullColumn with: 0.0 with: 0.0 with: zGvalueG).
 	sign positive ifFalse: [zFacePolyline makeOppositeFacePositive.].
 	rPpointsP := zFacePolyline rPpointsP.
 	nvertex := rPpointsP size - 1.
@@ -291,7 +291,7 @@ GEOExtrudedFeature >> zFaceDataFrom: graphicPolyline sign: sign [
 { #category : #accessing }
 GEOExtrudedFeature >> zStart [
 	^zStart == nil
-		ifTrue: [0.0d]
+		ifTrue: [0.0]
 		ifFalse: [zStart]
 ]
 

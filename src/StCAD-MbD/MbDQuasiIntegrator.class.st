@@ -53,7 +53,7 @@ MbDQuasiIntegrator >> checkForOutputThrough1: t [
 MbDQuasiIntegrator >> checkForOutputThrough2: t [ 
 	"Kinematic analysis is done at every tout."
 
-	tend - (0.1d * hout) <= t ifTrue: [integrator continue: false].
+	tend - (0.1 * hout) <= t ifTrue: [integrator continue: false].
 	(tout - t) abs < 1.0d-12
 		ifTrue: 
 			[system output.
@@ -64,7 +64,7 @@ MbDQuasiIntegrator >> checkForOutputThrough2: t [
 MbDQuasiIntegrator >> checkForOutputThrough: t [ 
 	"Kinematic analysis is done at every tout."
 
-	direction * t <= (direction * (tend + (0.1d * direction * hout)))
+	direction * t <= (direction * (tend + (0.1 * direction * hout)))
 		ifTrue: [(tout - t) abs < 1.0d-12
 				ifTrue: 
 					[system output.

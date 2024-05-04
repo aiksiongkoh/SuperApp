@@ -18,7 +18,7 @@ MbDPerturbedPosICNewtonRaphson2 class >> visualWorksMetadata [
 MbDPerturbedPosICNewtonRaphson2 >> initializeGlobally [
 	| delta |
 	super initializeGlobally.
-	delta := 0.01d.
+	delta := 0.01.
 	system partsJointsMotionsDo: [:item | item bePerturbed: delta fillqsulam: x].
 	system partsJointsMotionsDo: [:item | item postPosICIteration]
 ]

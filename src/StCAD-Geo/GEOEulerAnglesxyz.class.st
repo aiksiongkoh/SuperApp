@@ -10,18 +10,18 @@ GEOEulerAnglesxyz class >> fromA: aA [
 	| answer sthe2y the1x the2y the3z cthe1x sthe1x y x |
 	answer := self new.
 	sthe2y := aA at: 1 and: 3.
-	sthe2y abs > 0.999999d
+	sthe2y abs > 0.999999
 		ifTrue: [sthe2y strictlyPositive
 				ifTrue: 
 					[the1x := Double arcTanMpiTOpiY: (aA at: 3 and: 2)
 								overX: (aA at: 2 and: 2).
-					the2y := Double pi / 2.0d.
-					the3z := 0.0d]
+					the2y := Double pi / 2.0.
+					the3z := 0.0]
 				ifFalse: 
 					[the1x := Double arcTanMpiTOpiY: (aA at: 3 and: 2)
 								overX: (aA at: 2 and: 2).
-					the2y := Double pi / -2.0d.
-					the3z := 0.0d]]
+					the2y := Double pi / -2.0.
+					the3z := 0.0]]
 		ifFalse: 
 			[the1x := Double arcTanMpiTOpiY: (aA at: 2 and: 3) negated overX: (aA at: 3 and: 3).
 			cthe1x := the1x cos.

@@ -48,7 +48,7 @@ MbDDistancexyConstraintIqcJc >> addToJointTorqueI: jointTorque [
 			fpAOIppEIrIpIeIp at: i put: dum].
 	lampGpE := pGpEI transpose times: lam.
 	c2Torque := aBOIp timesFullColumn: lampGpE - fpAOIppEIrIpIeIp.
-	jointTorque equalSelfPlusFullColumn: c2Torque times: 0.5d
+	jointTorque equalSelfPlusFullColumn: c2Torque times: 0.5
 ]
 
 { #category : #accessing }
@@ -69,12 +69,12 @@ MbDDistancexyConstraintIqcJc >> addpFIeiGOplamto: mat [
 { #category : #accessing }
 MbDDistancexyConstraintIqcJc >> addpTIeiGOpEIto: mat [ 
 	| term11 prOIeOpEIT aFIeiGOover2 term12 term1 term21 pprOIeOpEIpEI term22 pprOIeOpEIipEI term22rowi pFIeiGOpEIover2 term23 aB term2 pTIeiGOpEI |
-	term11 := pGpEI transpose times: lam / 2.0d.
+	term11 := pGpEI transpose times: lam / 2.0.
 	prOIeOpEIT := frmI prOeOpE transpose.
-	aFIeiGOover2 := pGpXI transpose times: lam / 2.0d.
+	aFIeiGOover2 := pGpXI transpose times: lam / 2.0.
 	term12 := prOIeOpEIT timesFullColumn: aFIeiGOover2.
 	term1 := MbDEulerParameters pBpEtimesColumn: (term11 minusFullColumn: term12).
-	term21 := ppGpEIpEI times: lam / 2.0d.
+	term21 := ppGpEIpEI times: lam / 2.0.
 	pprOIeOpEIpEI := frmI pprOeOpEpE.
 	term22 := StMFullMatrix new: 4 by: 4.
 	1 to: 4
@@ -84,7 +84,7 @@ MbDDistancexyConstraintIqcJc >> addpTIeiGOpEIto: mat [
 			term22rowi := term22 at: i.
 			1 to: 4 do: [:j | term22rowi at: j put: ((pprOIeOpEIipEI at: j)
 						dot: aFIeiGOover2)]].
-	pFIeiGOpEIover2 := ppGpXIpEI times: lam / 2.0d.
+	pFIeiGOpEIover2 := ppGpXIpEI times: lam / 2.0.
 	term23 := prOIeOpEIT timesFullMatrix: pFIeiGOpEIover2.
 	aB := frmI aBOp.
 	term2 := aB timesFullMatrix: ((term21 minusFullMatrix: term22)
@@ -97,9 +97,9 @@ MbDDistancexyConstraintIqcJc >> addpTIeiGOpEIto: mat [
 MbDDistancexyConstraintIqcJc >> addpTIeiGOpXIto: mat [ 
 	| aB term1 prOIeOpEIT pFIeiGOpXIover2 term2 pTIeiGOpXI |
 	aB := frmI aBOp.
-	term1 := ppGpXIpEI transposeTimes: lam / 2.0d.
+	term1 := ppGpXIpEI transposeTimes: lam / 2.0.
 	prOIeOpEIT := frmI prOeOpE transpose.
-	pFIeiGOpXIover2 := ppGpXIpXI times: lam / 2.0d.
+	pFIeiGOpXIover2 := ppGpXIpXI times: lam / 2.0.
 	term2 := prOIeOpEIT timesFullMatrix: pFIeiGOpXIover2.
 	pTIeiGOpXI := aB timesFullMatrix: (term1 minusFullMatrix: term2).
 	mat equalSelfPlusFullMatrix: pTIeiGOpXI
@@ -108,7 +108,7 @@ MbDDistancexyConstraintIqcJc >> addpTIeiGOpXIto: mat [
 { #category : #accessing }
 MbDDistancexyConstraintIqcJc >> addpTIeiGOplamto: mat [ 
 	| halfB term1 prOIeOpEIT pFIeiGOplam term2 pTIeiGOplam |
-	halfB := frmI aBOp times: 0.5d.
+	halfB := frmI aBOp times: 0.5.
 	term1 := pGpEI transpose.
 	prOIeOpEIT := frmI prOeOpE transpose.
 	pFIeiGOplam := pGpXI transpose.
@@ -130,13 +130,13 @@ MbDDistancexyConstraintIqcJc >> calcPostDynCorrectorIteration [
 { #category : #calc }
 MbDDistancexyConstraintIqcJc >> calc_pGpEI [
 	pGpEI := (xIeJeIe pvaluepEI times: xIeJeIe value) 
-				+ (yIeJeIe pvaluepEI times: yIeJeIe value) magnifySelf: 2.0d
+				+ (yIeJeIe pvaluepEI times: yIeJeIe value) magnifySelf: 2.0
 ]
 
 { #category : #calc }
 MbDDistancexyConstraintIqcJc >> calc_pGpXI [
 	pGpXI := (xIeJeIe pvaluepXI times: xIeJeIe value) 
-				+ (yIeJeIe pvaluepXI times: yIeJeIe value) magnifySelf: 2.0d
+				+ (yIeJeIe pvaluepXI times: yIeJeIe value) magnifySelf: 2.0
 ]
 
 { #category : #calc }
@@ -144,7 +144,7 @@ MbDDistancexyConstraintIqcJc >> calc_ppGpEIpEI [
 	ppGpEIpEI := (xIeJeIe pvaluepEI transposeTimesFullRow: xIeJeIe pvaluepEI) 
 				+ (xIeJeIe ppvaluepEIpEI times: xIeJeIe value) 
 					+ (yIeJeIe pvaluepEI transposeTimesFullRow: yIeJeIe pvaluepEI) 
-					+ (yIeJeIe ppvaluepEIpEI times: yIeJeIe value) magnifySelf: 2.0d
+					+ (yIeJeIe ppvaluepEIpEI times: yIeJeIe value) magnifySelf: 2.0
 ]
 
 { #category : #calc }
@@ -152,7 +152,7 @@ MbDDistancexyConstraintIqcJc >> calc_ppGpXIpEI [
 	ppGpXIpEI := (xIeJeIe pvaluepXI transposeTimesFullRow: xIeJeIe pvaluepEI) 
 				+ (xIeJeIe ppvaluepXIpEI times: xIeJeIe value) 
 					+ (yIeJeIe pvaluepXI transposeTimesFullRow: yIeJeIe pvaluepEI) 
-					+ (yIeJeIe ppvaluepXIpEI times: yIeJeIe value) magnifySelf: 2.0d
+					+ (yIeJeIe ppvaluepXIpEI times: yIeJeIe value) magnifySelf: 2.0
 ]
 
 { #category : #calc }
@@ -162,7 +162,7 @@ MbDDistancexyConstraintIqcJc >> calc_ppGpXIpXI [
 
 	ppGpXIpXI := (xIeJeIe pvaluepXI transposeTimesFullRow: xIeJeIe pvaluepXI) 
 				+ (yIeJeIe pvaluepXI transposeTimesFullRow: yIeJeIe pvaluepXI) 
-					magnifySelf: 2.0d
+					magnifySelf: 2.0
 ]
 
 { #category : #accIC }
@@ -172,11 +172,11 @@ MbDDistancexyConstraintIqcJc >> fillAccICIterError: col [
 	col at: iqEI plusFullColumn: pGpEI times: lam.
 	qXdotI := frmI qXdot.
 	qEdotI := frmI qEdot.
-	sum := 0.0d.
+	sum := 0.0.
 	sum := sum + (pGpXI timesFullColumn: frmI qXddot).
 	sum := sum + (pGpEI timesFullColumn: frmI qEddot).
 	sum := sum + (qXdotI transposeTimesFullColumn: (ppGpXIpXI timesFullColumn: qXdotI)).
-	sum := sum + (2.0d 	* (qXdotI transposeTimesFullColumn: (ppGpXIpEI timesFullColumn: qEdotI))).
+	sum := sum + (2.0 	* (qXdotI transposeTimesFullColumn: (ppGpXIpEI timesFullColumn: qEdotI))).
 	sum := sum + (qEdotI transposeTimesFullColumn: (ppGpEIpEI timesFullColumn: qEdotI)).
 	col at: iG plusNumber: sum
 ]

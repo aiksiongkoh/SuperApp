@@ -41,12 +41,12 @@ GEOEquationCurve >> rfpfEqn: eqn [
 GEOEquationCurve >> rfpointsf [
 	| nseg ds rfpointsf s |
 	nseg := 256.
-	ds := 2.0d / nseg.
+	ds := 2.0 / nseg.
 	rfpointsf := StMArray new: nseg + 1.
 	1 to: nseg
 		do: 
 			[:i | 
-			s := -1.0d + (i - 1 * ds).
+			s := -1.0 + (i - 1 * ds).
 			rfpointsf at: i put: (rfpfEqn y: s)].
 	rfpointsf at: nseg + 1 put: (rfpointsf at: 1).
 	^rfpointsf

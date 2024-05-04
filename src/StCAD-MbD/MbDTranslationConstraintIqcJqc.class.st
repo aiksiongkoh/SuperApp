@@ -52,7 +52,7 @@ MbDTranslationConstraintIqcJqc >> addToJointTorqueJ: col [
 			fpAOJppEJrJpJeJp at: i put: dum].
 	lampGpE := pGpEJ transpose times: lam.
 	c2Torque := aBOJp timesFullColumn: lampGpE - fpAOJppEJrJpJeJp.
-	col equalSelfPlusFullColumn: c2Torque times: 0.5d
+	col equalSelfPlusFullColumn: c2Torque times: 0.5
 ]
 
 { #category : #accessing }
@@ -62,7 +62,7 @@ MbDTranslationConstraintIqcJqc >> addpTIeiGOpEJto: mat [
 
 	| aB term1 pTIeiGOpEJ |
 	aB := frmI aBOp.
-	term1 := ppGpEIpEJ times: lam / 2.0d.
+	term1 := ppGpEIpEJ times: lam / 2.0.
 	pTIeiGOpEJ := aB timesFullMatrix: term1.
 	mat equalSelfPlusFullMatrix: pTIeiGOpEJ
 ]
@@ -74,7 +74,7 @@ MbDTranslationConstraintIqcJqc >> addpTIeiGOpXJto: mat [
 
 	| aB term1 pTIeiGOpXJ |
 	aB := frmI aBOp.
-	term1 := ppGpEIpXJ times: lam / 2.0d.
+	term1 := ppGpEIpXJ times: lam / 2.0.
 	pTIeiGOpXJ := aB timesFullMatrix: term1.
 	mat equalSelfPlusFullMatrix: pTIeiGOpXJ
 ]
@@ -103,11 +103,11 @@ MbDTranslationConstraintIqcJqc >> fillAccICIterError: col [
 	qEdotI := frmI qEdot.
 	qXdotJ := frmJ qXdot.
 	qEdotJ := frmJ qEdot.
-	sum := 0.0d.
+	sum := 0.0.
 	sum := sum + (pGpXJ timesFullColumn: frmJ qXddot).
 	sum := sum + (pGpEJ timesFullColumn: frmJ qEddot).
-	sum := sum + (2.0d * (qEdotI transposeTimesFullColumn: (ppGpEIpXJ timesFullColumn: qXdotJ))).
-	sum := sum + (2.0d * (qEdotI transposeTimesFullColumn: (ppGpEIpEJ timesFullColumn: qEdotJ))).
+	sum := sum + (2.0 * (qEdotI transposeTimesFullColumn: (ppGpEIpXJ timesFullColumn: qXdotJ))).
+	sum := sum + (2.0 * (qEdotI transposeTimesFullColumn: (ppGpEIpEJ timesFullColumn: qEdotJ))).
 	sum := sum + (qEdotJ transposeTimesFullColumn: (ppGpEJpEJ timesFullColumn: qEdotJ)).
 	col at: iG plusNumber: sum
 ]
@@ -121,7 +121,7 @@ MbDTranslationConstraintIqcJqc >> fillCollisionError: col [
 	super fillCollisionError: col.
 	col at: iqXJ plusFullColumn: pGpXJ times: lamDeriv.
 	col at: iqEJ plusFullColumn: pGpEJ times: lamDeriv.
-	sum := 0.0d.
+	sum := 0.0.
 	sum := sum + (pGpXJ timesFullColumn: frmJ qXddot).
 	sum := sum + (pGpEJ timesFullColumn: frmJ qEddot).
 	col at: iG plusNumber: sum

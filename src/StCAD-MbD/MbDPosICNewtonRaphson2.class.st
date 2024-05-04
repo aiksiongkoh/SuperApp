@@ -184,7 +184,7 @@ MbDPosICNewtonRaphson2 >> solveEquations1 [
 	
 	[iterNo > 2 
 		ifTrue: 
-			[(dxNorms at: iterNo - 1) > (30.0d * (dxNorms at: iterNo - 2)) 
+			[(dxNorms at: iterNo - 1) > (30.0 * (dxNorms at: iterNo - 2)) 
 				ifTrue: 
 					["Diverging solution."
 
@@ -193,7 +193,7 @@ MbDPosICNewtonRaphson2 >> solveEquations1 [
 		ifFalse: 
 			["Make it more likely to run redundant constraint checking in the first two iterations."
 
-			matrixSolver singularPivotTolerance: 1.0d-12.
+			matrixSolver singularPivotTolerance: 1.0e-12.
 			super solveEquations.
 			matrixSolver singularPivotTolerance: MachineAccuracy OfDoubleTimesFour]] 
 			on: SingularMatrixError

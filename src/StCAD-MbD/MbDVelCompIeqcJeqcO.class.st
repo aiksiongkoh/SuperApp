@@ -49,7 +49,7 @@ MbDVelCompIeqcJeqcO >> initialize [
 MbDVelCompIeqcJeqcO >> initializeLocally [
 	super initializeLocally.
 	pvIeJeOipXdotJ := (StMFullRow zero: 3).
-	pvIeJeOipXdotJ at: axis put: 1.0d
+	pvIeJeOipXdotJ at: axis put: 1.0
 ]
 
 { #category : #accessing }

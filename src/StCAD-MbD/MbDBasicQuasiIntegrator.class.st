@@ -88,7 +88,7 @@ MbDBasicQuasiIntegrator >> runInitialConditionTypeSolution [
 MbDBasicQuasiIntegrator >> selectFirstStepSize [
 	iTry == 1
 		ifTrue: [hnew := direction * (system tout - t)]
-		ifFalse: [hnew := 0.25d * h].
+		ifFalse: [hnew := 0.25 * h].
 	hnew := system suggestSmallerOrAcceptFirstStepSize: hnew
 ]
 
@@ -96,6 +96,6 @@ MbDBasicQuasiIntegrator >> selectFirstStepSize [
 MbDBasicQuasiIntegrator >> selectStepSize [
 	iTry == 1
 		ifTrue: [hnew := direction * (system tout - t)]
-		ifFalse: [hnew := 0.25d * h].
+		ifFalse: [hnew := 0.25 * h].
 	hnew := system suggestSmallerOrAcceptStepSize: hnew
 ]

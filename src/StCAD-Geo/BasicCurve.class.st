@@ -17,7 +17,7 @@ BasicCurve class >> visualWorksMetadata [
 { #category : #accessing }
 BasicCurve >> cPoint_n: n [ 
 	| delta answer |
-	delta := 1.0d / (n - 1).
+	delta := 1.0 / (n - 1).
 	answer := OrderedCollection new: n.
 	0 to: n - 1 do: [:i | answer add: (self rfpf_u: i * delta)].
 	^answer asArray
@@ -28,7 +28,7 @@ BasicCurve >> crOpO_nStep: nStep withFirst: withFirst withLast: withLast [
 	| iFirst iLast delta answer |
 	iFirst := withFirst ifTrue: [0] ifFalse: [1].
 	iLast := withLast ifTrue: [nStep] ifFalse: [nStep - 1].
-	delta := 1.0d / nStep.
+	delta := 1.0 / nStep.
 	answer := StMArray new: iLast - iFirst + 1.
 	iFirst to: iLast
 		do: [:i | answer at: i - iFirst + 1 put: (self rfpf_u: i * delta)].

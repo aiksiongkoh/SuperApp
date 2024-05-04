@@ -400,7 +400,7 @@ MbDDistIeqcsJeqcs >> sepDist: minDist sI: sI sJ: sJ dsI: dsI dsJ1: dsJ [
 				system: self;
 				run.
 			rIeJeIe := self rIeJeIe.
-			sepDist := ((rIeJeIe at: 1) / (rIeJeIe at: 3)) abs < 0.01d 
+			sepDist := ((rIeJeIe at: 1) / (rIeJeIe at: 3)) abs < 0.01 
 						ifTrue: [rIeJeIe at: 3]
 						ifFalse: [((rIeJeIe at: 1) squared + (rIeJeIe at: 3) squared) sqrt]].
 	sepDist abs > minDist 
@@ -493,8 +493,8 @@ MbDDistIeqcsJeqcs >> sepDistsI1: sI sJ: sJ dsI: dsI dsJ: dsJ [
 										penetration should 
 										be midpoint of the 
 										intersection points."
-										frmI sNumber: sIintersect1 + sIintersect2 / 2.0d.
-										frmJ sNumber: sJintersect1 + sJintersect2 / 2.0d.
+										frmI sNumber: sIintersect1 + sIintersect2 / 2.0.
+										frmJ sNumber: sJintersect1 + sJintersect2 / 2.0.
 										self calcLocalSeparationDistance.
 										^sepDist]]]]].
 	^sepDist
@@ -588,7 +588,7 @@ MbDDistIeqcsJeqcs >> sepDistsI5: sI sJ: sJ dsI: dsI dsJ: dsJ [
 	sepDist := rIeJeO dot: frmI keO.
 sepDist < 0 ifTrue: [self halt].
 	sepDist2 := (rIeJeO sumOfSquares - (rIeJeO dot: frmI jeO) squared) sqrt.
-	((sepDist / sepDist2) abs - 1.0d) abs > 0.01d
+	((sepDist / sepDist2) abs - 1.0) abs > 0.01
 		ifTrue: 
 			[self halt.
 			frmI sNumber: sI.

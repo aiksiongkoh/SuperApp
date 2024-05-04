@@ -110,7 +110,7 @@ MbDDistIeqcJec >> puIeJeOpEI [
 	| answer m1OverrIeJe m1OverrIeJeSq answeri rIeJeOi aij mprIeJeOpEI mprIeJeOpEIi |
 	answer := StMFullMatrix new: 3 by: 4.
 	mprIeJeOpEI := frmI prOeOpE.
-	m1OverrIeJe := -1.0d / rIeJe.
+	m1OverrIeJe := -1.0 / rIeJe.
 	m1OverrIeJeSq := m1OverrIeJe / rIeJe.
 	1 to: 3 do: [:i | 
 			answeri := answer at: i.
@@ -126,7 +126,7 @@ MbDDistIeqcJec >> puIeJeOpEI [
 MbDDistIeqcJec >> puIeJeOpXI [
 	| answer m1OverrIeJe m1OverrIeJeSq answeri rIeJeOi aij |
 	answer := StMFullMatrix new: 3 by: 3.
-	m1OverrIeJe := -1.0d / rIeJe.
+	m1OverrIeJe := -1.0 / rIeJe.
 	m1OverrIeJeSq := m1OverrIeJe / rIeJe.
 	1 to: 3 do: [:i | 
 			answeri := answer at: i.

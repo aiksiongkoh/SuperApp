@@ -1,6 +1,6 @@
 Class {
 	#name : #MbDEulerAngleszxz,
-	#superclass : #StEulerArray,
+	#superclass : #SymEulerArray,
 	#type : #variable,
 	#instVars : [
 		'phiA',

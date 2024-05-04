@@ -1,6 +1,6 @@
 Class {
 	#name : #GEOEulerParameters,
-	#superclass : #StEulerParameters,
+	#superclass : #SymEulerParameters,
 	#type : #variable,
 	#category : #'StCAD-Geo-GEO'
 }

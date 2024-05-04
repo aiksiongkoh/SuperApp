@@ -42,11 +42,11 @@ MbDDistanceConstraintIqctJqc >> fillAccICIterError: col [
 	qEdotI := frmI qEdot.
 	qXdotJ := frmJ qXdot.
 	qEdotJ := frmJ qEdot.
-	sum := 0.0d.
-	sum := sum + (2.0d * (ppGpXIpt timesFullColumn: qXdotI)).
-	sum := sum + (2.0d * (ppGpEIpt timesFullColumn: qEdotI)).
-	sum := sum + (2.0d * (ppGpXJpt timesFullColumn: qXdotJ)).
-	sum := sum + (2.0d * (ppGpEJpt timesFullColumn: qEdotJ)).
+	sum := 0.0.
+	sum := sum + (2.0 * (ppGpXIpt timesFullColumn: qXdotI)).
+	sum := sum + (2.0 * (ppGpEIpt timesFullColumn: qEdotI)).
+	sum := sum + (2.0 * (ppGpXJpt timesFullColumn: qXdotJ)).
+	sum := sum + (2.0 * (ppGpEJpt timesFullColumn: qEdotJ)).
 	sum := sum + ppGptpt.
 	col at: iG plusNumber: sum
 ]

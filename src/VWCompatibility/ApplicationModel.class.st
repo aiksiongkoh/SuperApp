@@ -258,7 +258,7 @@ ApplicationModel >> validateDouble: aController [
 { #category : #validation }
 ApplicationModel >> validateDoubleGreaterThanZero: aController [ 
 	| array |
-	array := #(0.0d #< #double #< 1.0d100) copy.
+	array := #(0.0 #< #double #< 1.0e100) copy.
 	array at: 3 put: aController.
 	^self validateDoubleWithArguments: array
 ]
@@ -294,7 +294,7 @@ ApplicationModel >> validateDoubleWithArguments: array [
 { #category : #validation }
 ApplicationModel >> validateDoubleZeroAndGreater: aController [ 
 	| array |
-	array := #(0.0d #<= #double #< 1.0d100) copy.
+	array := #(0.0 #<= #double #< 1.0e100) copy.
 	array at: 3 put: aController.
 	^self validateDoubleWithArguments: array
 ]

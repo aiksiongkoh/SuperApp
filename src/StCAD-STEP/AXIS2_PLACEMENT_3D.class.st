@@ -75,11 +75,11 @@ AXIS2_PLACEMENT_3D >> xDir [
 	| rootOneThird zDir xDir |
 	^ ref_direction
 		  ifNil: [ 
-			  rootOneThird := (1.0 d / 3.0 d) sqrt.
+			  rootOneThird := (1.0 / 3.0) sqrt.
 			  zDir := self zDir normalizeSelf.
 			  1 to: 3 do: [ :i | 
 				  xDir := StCAD_Math_FullColumn zero: 3. "VW_TRANSLATION:StCAD.Math.FullColumn:StCAD_Math_FullColumn"
-				  xDir at: i put: 1.0 d.
+				  xDir at: i put: 1.0.
 				  (xDir dot: zDir) abs < rootOneThird ifTrue: [ ^ xDir ] ] ]
 		  ifNotNil: [ ref_direction aDir ]
 ]
@@ -89,6 +89,6 @@ AXIS2_PLACEMENT_3D >> zDir [
 
 	^ axis
 		  ifNil: [ 
-			  StCAD_Math_FullColumn with: 0.0 d with: 0.0 d with: 1.0 d "VW_TRANSLATION:StCAD.Math.FullColumn:StCAD_Math_FullColumn" ]
+			  StCAD_Math_FullColumn with: 0.0 with: 0.0 with: 1.0 "VW_TRANSLATION:StCAD.Math.FullColumn:StCAD_Math_FullColumn" ]
 		  ifNotNil: [ axis aDir ]
 ]

@@ -116,7 +116,7 @@ MbDMomentOfInertiaSolver >> calcJP [
 	term2 := term21 + term22 + term23 times: m.
 	aJP := term1 minusFullMatrix: term2.
 	aJP symLowerWithUpper.
-	aJP conditionSelfWithTol: aJP maxElement * 1.0d-6
+	aJP conditionSelfWithTol: aJP maxElement * 1.0e-6
 ]
 
 { #category : #calc }
@@ -138,23 +138,23 @@ MbDMomentOfInertiaSolver >> calcJpFromDiagJP [
 	lam1 := sortedJ at: 1.
 	lam2 := sortedJ at: 2.
 	lam3 := sortedJ at: 3.
-	(lam2 = 0 or: [(lam1 / lam2 - 1.0d) abs < 1.0d-6])
-		ifTrue: [(lam3 = 0 or: [(lam2 / lam3 - 1.0d) abs < 1.0d-6])
+	(lam2 = 0 or: [(lam1 / lam2 - 1.0) abs < 1.0e-6])
+		ifTrue: [(lam3 = 0 or: [(lam2 / lam3 - 1.0) abs < 1.0e-6])
 				ifTrue: 
 					["All are equal."
-					average := lam1 + lam2 + lam3 / 3.0d.
+					average := lam1 + lam2 + lam3 / 3.0.
 					lam1 := average.
 					lam2 := average.
 					lam3 := average]
 				ifFalse: 
 					["lam1 = lam2"
-					average := lam1 + lam2 / 2.0d.
+					average := lam1 + lam2 / 2.0.
 					lam1 := average.
 					lam2 := average]]
-		ifFalse: [(lam2 / lam3 - 1.0d) abs < 1.0d-6
+		ifFalse: [(lam2 / lam3 - 1.0) abs < 1.0e-6
 				ifTrue: 
 					["lam2 = lam3"
-					average := lam2 + lam3 / 2.0d.
+					average := lam2 + lam3 / 2.0.
 					lam2 := average.
 					lam3 := average]].
 	aJp := StMDiagonalMatrix
@@ -299,7 +299,7 @@ MbDMomentOfInertiaSolver >> forwardEliminateWithPivot: p [
 			aip := rowi at: p.
 			aip = 0
 				ifFalse: 
-					[rowi at: p put: 0.0d.
+					[rowi at: p put: 0.0.
 					factor := aip / app.
 					p + 1 to: 3 do: [:j | rowi at: j minusNumber: factor * (rowp at: j)]]]
 ]
@@ -336,16 +336,16 @@ MbDMomentOfInertiaSolver >> momentsFrom: array [
 	x1expy23 := array at: 22.
 	y14expy24 := array at: 23.
 	x13expy2 := array at: 24.
-	I1 := x1mx2 * (3.0d * d * y1py2 + a2x1expy2 + (b * y12expy22)) / (6.0d * c).
-	Ix := x1mx2 * (4.0d * d * x1expy2 + (2.0d * a * n2dexpy2) + (b * x1expy22)) / (24.0d * c).
-	Iy := x1mx2 * (4.0d * d * y12expy22 + (2.0d * b * y13expy23) + (a * x1expy22)) / (24.0d * c).
-	Iz := 0.0d - (x1mx2 * (6.0d * d2 * y1py2 + (b2 * y13expy23) + (a2 * n2dexpy2) + (4.0d * d * (a2x1expy2 + (b * y12expy22))) + (a * b * x1expy22))) / (24.0d * c2).
-	Ixx := x1mx2 * (5.0d * d * n2dexpy2 + (3.0d * a * x13expy2) + (b * x12expy22)) / (60.0d * c).
-	Iyy := x1mx2 * (5.0d * d * y13expy23 + (3.0d * b * y14expy24) + (a * x1expy23)) / (60.0d * c).
-	Izz := x1mx2 * (10.0d * d3 * y1py2 + (b3 * y14expy24) + (a3 * x13expy2) + (10.0d * d2 * (a2x1expy2 + (b * y12expy22))) + (a2 * b * x12expy22) + (a * b2 * x1expy23) + (5.0d * d * (b2 * y13expy23 + (a2 * n2dexpy2) + (a * b * x1expy22)))) / (60.0d * c3).
-	Ixy := x1mx2 * (5.0d * d * x1expy22 + (2.0d * (a * x12expy22 + (b * x1expy23)))) / (120.0d * c).
-	Ixz := 0.0d - (x1mx2 * (10.0d * d2 * x1expy2 + (3.0d * a2 * x13expy2) + (2.0d * a * b * x12expy22) + (b2 * x1expy23) + (5.0d * d * (2.0d * a * n2dexpy2 + (b * x1expy22))))) / (120.0d * c2).
-	Iyz := 0.0d - (x1mx2 * (10.0d * d2 * y12expy22 + 3.0d * b2 * y14expy24 + (a2 * x12expy22) + (2.0d * a * b * x1expy23) + (5.0d * d * (2.0d * b * y13expy23 + (a * x1expy22))))) / (120.0d * c2).
+	I1 := x1mx2 * (3.0 * d * y1py2 + a2x1expy2 + (b * y12expy22)) / (6.0 * c).
+	Ix := x1mx2 * (4.0 * d * x1expy2 + (2.0 * a * n2dexpy2) + (b * x1expy22)) / (24.0 * c).
+	Iy := x1mx2 * (4.0 * d * y12expy22 + (2.0 * b * y13expy23) + (a * x1expy22)) / (24.0 * c).
+	Iz := 0.0 - (x1mx2 * (6.0 * d2 * y1py2 + (b2 * y13expy23) + (a2 * n2dexpy2) + (4.0 * d * (a2x1expy2 + (b * y12expy22))) + (a * b * x1expy22))) / (24.0 * c2).
+	Ixx := x1mx2 * (5.0 * d * n2dexpy2 + (3.0 * a * x13expy2) + (b * x12expy22)) / (60.0 * c).
+	Iyy := x1mx2 * (5.0 * d * y13expy23 + (3.0 * b * y14expy24) + (a * x1expy23)) / (60.0 * c).
+	Izz := x1mx2 * (10.0 * d3 * y1py2 + (b3 * y14expy24) + (a3 * x13expy2) + (10.0 * d2 * (a2x1expy2 + (b * y12expy22))) + (a2 * b * x12expy22) + (a * b2 * x1expy23) + (5.0 * d * (b2 * y13expy23 + (a2 * n2dexpy2) + (a * b * x1expy22)))) / (60.0 * c3).
+	Ixy := x1mx2 * (5.0 * d * x1expy22 + (2.0 * (a * x12expy22 + (b * x1expy23)))) / (120.0 * c).
+	Ixz := 0.0 - (x1mx2 * (10.0 * d2 * x1expy2 + (3.0 * a2 * x13expy2) + (2.0 * a * b * x12expy22) + (b2 * x1expy23) + (5.0 * d * (2.0 * a * n2dexpy2 + (b * x1expy22))))) / (120.0 * c2).
+	Iyz := 0.0 - (x1mx2 * (10.0 * d2 * y12expy22 + 3.0 * b2 * y14expy24 + (a2 * x12expy22) + (2.0 * a * b * x1expy23) + (5.0 * d * (2.0 * b * y13expy23 + (a * x1expy22))))) / (120.0 * c2).
 	answer := StMFullColumn new: 10.
 	answer at: 1 put: I1.
 	answer at: 2 put: Ix.
@@ -381,7 +381,7 @@ MbDMomentOfInertiaSolver >> momentsOfAreaUnderLine: aLine [
 	x2mx1 := x2 - x1.
 	y2my1 := y2 - y1.
 	x2mx1 < MachineAccuracy OfDoubleTimesFour		ifTrue: 
-			[answer atAllPut: 0.0d.
+			[answer atAllPut: 0.0.
 			^answer].
 	x22 := x2 * x2.
 	x12 := x1 * x1.
@@ -405,18 +405,18 @@ MbDMomentOfInertiaSolver >> momentsOfAreaUnderLine: aLine [
 	y2my1 < MachineAccuracy OfDoubleTimesFour
 		ifTrue: 
 			[I1 := x2mx1 * y1.
-			Ix := x22mx12 * y1 / 2.0d.
-			Iy := x2mx1 * y12 / 2.0d.
-			Ixx := x23mx13 * y1 / 3.0d.
-			Iyy := x2mx1 * y13 / 3.0d.
-			Ixy := x22mx12 * y12 / 4.0d]
+			Ix := x22mx12 * y1 / 2.0.
+			Iy := x2mx1 * y12 / 2.0.
+			Ixx := x23mx13 * y1 / 3.0.
+			Iyy := x2mx1 * y13 / 3.0.
+			Ixy := x22mx12 * y12 / 4.0]
 		ifFalse: 
-			[I1 := y2py1 * x2mx1 / 2.0d.
-			Ix := y1 - (slope * x1) * x22mx12 / 2.0d + (slope * x23mx13 / 3.0d).
-			Iy := y23my13 / (6.0d * slope).
-			Ixx := y1 - (slope * x1) * x23mx13 / 3.0d + (slope * x24mx14 / 4.0d).
-			Iyy := y24my14 / (12.0d * slope).
-			Ixy := x2 * y23 - (x1 * y13) / (6.0d * slope) - (y24my14 / (24.0d * slope * slope))].
+			[I1 := y2py1 * x2mx1 / 2.0.
+			Ix := y1 - (slope * x1) * x22mx12 / 2.0 + (slope * x23mx13 / 3.0).
+			Iy := y23my13 / (6.0 * slope).
+			Ixx := y1 - (slope * x1) * x23mx13 / 3.0 + (slope * x24mx14 / 4.0).
+			Iyy := y24my14 / (12.0 * slope).
+			Ixy := x2 * y23 - (x1 * y13) / (6.0 * slope) - (y24my14 / (24.0 * slope * slope))].
 	answer at: 1 put: I1.
 	answer at: 2 put: Ix.
 	answer at: 3 put: Iy.

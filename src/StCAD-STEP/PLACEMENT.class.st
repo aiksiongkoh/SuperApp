@@ -32,6 +32,6 @@ PLACEMENT >> rFfF [
 
 	^ location
 		  ifNil: [ 
-			  StCAD_Math_FullColumn with: 0.0 d with: 0.0 d with: 0.0 d "VW_TRANSLATION:StCAD.Math.FullColumn:StCAD_Math_FullColumn" ]
+			  StCAD_Math_FullColumn with: 0.0 with: 0.0 with: 0.0 "VW_TRANSLATION:StCAD.Math.FullColumn:StCAD_Math_FullColumn" ]
 		  ifNotNil: [ location aPoint ]
 ]

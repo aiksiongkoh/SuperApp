@@ -119,7 +119,7 @@ MbDCollisionIntegrator >> initializeGlobally [
 	"t is now normalImpulse."
 
 	super initializeGlobally.
-	tstart := 0.0d.
+	tstart := 0.0.
 	self hout: 1.0d100.
 	hmax := 1.0d100.
 	hmin := MachineAccuracy OfDoubleTimesFour.
@@ -248,7 +248,7 @@ MbDCollisionIntegrator >> suggestSmallerOrAcceptFirstStepSize: hnew [
 	| hnew2 |
 	hnew2 := hnew.
 	system partsJointsMotionsForcesTorquesDo: [:item | hnew2 := item suggestSmallerOrAcceptCollisionFirstStepSize: hnew2].
-	^hnew2 min: 1.0d
+	^hnew2 min: 1.0
 ]
 
 { #category : #run }

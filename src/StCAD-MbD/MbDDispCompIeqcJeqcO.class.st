@@ -40,7 +40,7 @@ MbDDispCompIeqcJeqcO >> calcPostDynCorrectorIteration [
 MbDDispCompIeqcJeqcO >> initializeGlobally [
 	super initializeGlobally.
 	priIeJeOpXJ := (StMFullRow zero: 3).
-	priIeJeOpXJ at: axis put: 1.0d.
+	priIeJeOpXJ at: axis put: 1.0.
 	ppriIeJeOpEJpEJ := frmJ ppriOeOpEpE: axis
 ]
 

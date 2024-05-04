@@ -45,8 +45,8 @@ MbDAtPointConstraintIqctJqc >> fillAccICIterError: col [
 	| sum qEdotI |
 	super fillAccICIterError: col.
 	qEdotI := frmI qEdot.
-	sum := 0.0d.
-	sum := sum + (2.0d * (ppGpEIpt timesFullColumn: qEdotI)).
+	sum := 0.0.
+	sum := sum + (2.0 * (ppGpEIpt timesFullColumn: qEdotI)).
 	sum := sum + ppGptpt.
 	col at: iG plusNumber: sum
 ]

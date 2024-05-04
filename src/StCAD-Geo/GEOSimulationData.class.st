@@ -95,7 +95,7 @@ GEOSimulationData >> errorTolPosKine: double [
 
 { #category : #accessing }
 GEOSimulationData >> hmax [
-	hmax == nil ifTrue: [hmax := 1.0d].
+	hmax == nil ifTrue: [hmax := 1.0].
 	^hmax
 ]
 
@@ -117,7 +117,7 @@ GEOSimulationData >> hmin: double [
 
 { #category : #accessing }
 GEOSimulationData >> hout [
-	hout == nil ifTrue: [hout := 0.1d].
+	hout == nil ifTrue: [hout := 0.1].
 	^hout
 ]
 
@@ -199,7 +199,7 @@ GEOSimulationData >> orderMax: integer [
 
 { #category : #accessing }
 GEOSimulationData >> rotationLimit [
-	rotationLimit == nil ifTrue: [rotationLimit := 0.5d].
+	rotationLimit == nil ifTrue: [rotationLimit := 0.5].
 	^rotationLimit
 ]
 
@@ -244,7 +244,7 @@ GEOSimulationData >> storePOVOn: aStream level: level [
 
 { #category : #accessing }
 GEOSimulationData >> tend [
-	tend == nil ifTrue: [tend := 1.0d].
+	tend == nil ifTrue: [tend := 1.0].
 	^tend
 ]
 
@@ -266,7 +266,7 @@ GEOSimulationData >> translationLimit: double [
 
 { #category : #accessing }
 GEOSimulationData >> tstart [
-	tstart == nil ifTrue: [tstart := 0.0d].
+	tstart == nil ifTrue: [tstart := 0.0].
 	^tstart
 ]
 

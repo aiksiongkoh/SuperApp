@@ -52,7 +52,7 @@ GEOBoundingBox class >> visualWorksMetadata [
 
 { #category : #'initialize-release' }
 GEOBoundingBox >> center [
-	^minCorner + maxCorner / 2.0d
+	^minCorner + maxCorner / 2.0
 ]
 
 { #category : #accessing }

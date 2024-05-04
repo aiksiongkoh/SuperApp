@@ -40,7 +40,7 @@ GEOCircle >> storeOn: aStream level: level [
 
 { #category : #accessing }
 GEOCircle >> xRadius: xr yRadius: yr [ 
-	xRadius := xr max: 0.0d.
+	xRadius := xr max: 0.0.
 	yRadius := xRadius.
 	self changed
 ]

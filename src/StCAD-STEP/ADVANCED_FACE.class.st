@@ -167,10 +167,10 @@ ADVANCED_FACE >> debug [
 
 	| aVERTEX_POINT tol |
 	aVERTEX_POINT := StCAD_Math_FullColumn
-		                 with: 1127.13 d
-		                 with: 377.67 d
-		                 with: 120.0 d. "VW_TRANSLATION:StCAD.Math.FullColumn:StCAD_Math_FullColumn"
-	tol := 1.0d-2.
+		                 with: 1127.13
+		                 with: 377.67
+		                 with: 120.0. "VW_TRANSLATION:StCAD.Math.FullColumn:StCAD_Math_FullColumn"
+	tol := 1.0e-2.
 	^ self hasVERTEX_POINT: aVERTEX_POINT tol: tol
 ]
 

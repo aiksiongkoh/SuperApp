@@ -20,13 +20,13 @@ GLOBAL_UNIT_ASSIGNED_CONTEXT class >> visualWorksMetadata [
 { #category : #'As yet unclassified' }
 GLOBAL_UNIT_ASSIGNED_CONTEXT >> angleFactor [
 	units do: [:a | a do: [:aa | aa angleFactor ifNotNil: [:aaa | ^aaa]]].
-	^1.0d
+	^1.0
 ]
 
 { #category : #accessing }
 GLOBAL_UNIT_ASSIGNED_CONTEXT >> lengthFactor [
 	units do: [:a | a do: [:aa | aa lengthFactor ifNotNil: [:aaa | ^aaa]]].
-	^1.0d
+	^1.0
 ]
 
 { #category : #accessing }
