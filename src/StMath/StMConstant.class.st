@@ -1,0 +1,131 @@
+Class {
+	#name : #StMConstant,
+	#superclass : #StMSymbolic,
+	#instVars : [
+		'name',
+		'value'
+	],
+	#category : #'StMath-Symbolic'
+}
+
+{ #category : #'binary storage' }
+StMConstant class >> binaryReaderBlockForVersion: oldVersion format: oldFormat [ 
+	"Remove the instance variable 'value dependents x name'."
+
+	"Remove the instance variable 'name value'."
+
+	oldVersion == nil 
+		ifTrue: 
+			[| inst |
+			inst := self basicNew.
+			^
+			[:oldObj | 
+			| new |
+			new := Array new: 2.
+			new at: 2 put: (oldObj at: 1).
+			oldObj become: new.
+			oldObj changeClassToThatOf: inst]].
+	^super binaryReaderBlockForVersion: oldVersion format: oldFormat
+]
+
+{ #category : #accessing }
+StMConstant class >> name: symbol [ 
+	^super new name: symbol
+]
+
+{ #category : #'VisualWorks metadata' }
+StMConstant class >> visualWorksMetadata [
+
+	^ #(
+		'namespace' 'StCAD.Math'
+		'superclassNamespace' 'StCAD.Math'
+	)
+
+]
+
+{ #category : #'instance creation' }
+StMConstant class >> with: arg [ 
+	^self basicNew value: arg
+]
+
+{ #category : #comparing }
+StMConstant >> = anObject [ 
+	"Answer whether the receiver and the argument represent the same shape"
+
+	^self class == anObject class and: [value = anObject value]
+]
+
+{ #category : #'message handling' }
+StMConstant >> argsPerform: selector withArguments: anArray [ 
+	"Do nothing."
+]
+
+{ #category : #copying }
+StMConstant >> copy [
+	"A Constant is immutable so it is ok to reuse."
+	"Do nothing."
+]
+
+{ #category : #evaluating }
+StMConstant >> differentiateWRT: variable [ 
+	^StMConstant with: 0
+]
+
+{ #category : #evaluating }
+StMConstant >> expandUntil: set [ 
+	"Do nothing."
+]
+
+{ #category : #testing }
+StMConstant >> isConstant [
+	^true
+]
+
+{ #category : #testing }
+StMConstant >> isOne [
+	^value = 1
+]
+
+{ #category : #testing }
+StMConstant >> isZero [
+	^value = 0
+]
+
+{ #category : #accessing }
+StMConstant >> name: symbol [ 
+	name := symbol asSymbol
+]
+
+{ #category : #evaluating }
+StMConstant >> partialDifferentiateWRT: variable [ 
+	^StMConstant with: 0
+]
+
+{ #category : #printing }
+StMConstant >> printOn: aStream [ 
+	aStream print: value
+]
+
+{ #category : #evaluating }
+StMConstant >> simplifyUntil: set [ 
+	"Do nothing."
+]
+
+{ #category : #changing }
+StMConstant >> substitute: var1 with: var2 [ 
+	^self == var1
+		ifTrue: [var2]
+		ifFalse: [self]
+]
+
+{ #category : #accessing }
+StMConstant >> value [
+	^value
+]
+
+{ #category : #private }
+StMConstant >> value: arg [ 
+	value := arg isNumber
+				ifTrue: [arg]
+				ifFalse: [self error: 'Argument must be a constant.']
+]
