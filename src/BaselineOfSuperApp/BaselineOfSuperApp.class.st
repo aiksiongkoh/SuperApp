@@ -17,7 +17,7 @@ BaselineOfSuperApp >> baseline: spec [
 						#( 'StCAD-UI' 'Jun-Geometry-Boundaries' 'Jun-OpenGL-Trim' 'Magnitude-Numbers'
 						   'StCAD-Basic' 'StCAD-Math' 'StCAD-MbD' 'StCAD-Misc'
 						   'VWCompatibility' ) ];
-			package: 'StCAD-Math'
+			package: 'StMath'
 			with: [ spec requires: #( 'Magnitude-Numbers' 'VWCompatibility' ) ];
 			package: 'StCAD-MbD' with: [
 				spec requires:
