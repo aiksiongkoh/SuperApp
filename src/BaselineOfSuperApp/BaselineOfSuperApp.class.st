@@ -15,24 +15,24 @@ BaselineOfSuperApp >> baseline: spec [
 			package: 'StCAD-Geo' with: [
 				spec requires:
 						#( 'StCAD-UI' 'Jun-Geometry-Boundaries' 'Jun-OpenGL-Trim' 'Magnitude-Numbers'
-						   'StCAD-Basic' 'StCAD-Math' 'StCAD-MbD' 'StCAD-Misc'
+						   'StCAD-Basic' 'StMath' 'StCAD-MbD' 'StCAD-Misc'
 						   'VWCompatibility' ) ];
 			package: 'StMath'
 			with: [ spec requires: #( 'Magnitude-Numbers' 'VWCompatibility' ) ];
 			package: 'StCAD-MbD' with: [
 				spec requires:
-						#('StCAD-UI' 'Magnitude-Numbers' 'StCAD-Math' 'VWCompatibility' ) ];
+						#('StCAD-UI' 'Magnitude-Numbers' 'StMath' 'VWCompatibility' ) ];
 			package: 'StCAD-Misc'
-			with: [ spec requires: #( 'StCAD-Math' 'VWCompatibility' ) ];
+			with: [ spec requires: #( 'StMath' 'VWCompatibility' ) ];
 			package: 'StCAD-NMT' with: [
 				spec requires:
-						#( 'StCAD-Basic' 'StCAD-Geo' 'StCAD-Math' 'StCAD-Misc'
+						#( 'StCAD-Basic' 'StCAD-Geo' 'StMath' 'StCAD-Misc'
 						   'VWCompatibility' ) ];
 			package: 'StCAD-STEP'
-			with: [ spec requires: #( 'StCAD-Math' 'VWCompatibility' ) ];
+			with: [ spec requires: #( 'StMath' 'VWCompatibility' ) ];
 			package: 'StCAD-UI'
 			with: [
-				spec requires: #( 'StCAD-Math' 'VWCompatibility' ) ];
+				spec requires: #( 'StMath' 'VWCompatibility' ) ];
 			package: 'GFST' with: [ spec requires: #( 'VWCompatibility' ) ];
 			package: 'Jun-DXF-Support';
 			package: 'Jun-Geometry-Basic'
