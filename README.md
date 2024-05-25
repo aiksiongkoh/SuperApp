@@ -27,23 +27,11 @@ In PharoLauncher
 &emsp;Select/Pharo11SuperApp  
 &emsp;Click/Launch  
 In Pharo  
-&emsp;Click/Sources/Git Repositories Browser  
-&emsp;&emsp;Click/Add  
-&emsp;&emsp;&emsp;Click/Clone from github.com  
-&emsp;&emsp;&emsp;&emsp;Enter Owner name/aiksiongkoh  
-&emsp;&emsp;&emsp;&emsp;Enter Project name/SuperApp  
-&emsp;&emsp;&emsp;&emsp;Select Protocol/HTTPS  
-&emsp;&emsp;&emsp;&emsp;Click/OK  
-&emsp;&emsp;DoubleClick/SuperApp  
-&emsp;&emsp;&emsp;Select/VWCompatibility  
-&emsp;&emsp;&emsp;RightClick/Load  
-&emsp;&emsp;&emsp;Repeat in alphabatical order until StCAD-Basic  
-&emsp;&emsp;&emsp;Then StCAD-Math  
-&emsp;&emsp;&emsp;StCAD-UI  
-&emsp;&emsp;&emsp;StCAD-Geo  
-&emsp;&emsp;&emsp;StCAD-MbD  
-&emsp;&emsp;&emsp;StCAD-Misc  
-&emsp;&emsp;&emsp;StCAD-NMT  
-&emsp;&emsp;&emsp;StCAD-STEP  
-&emsp;Click/Browse/System Browser  
-&emsp;&emsp;to view loaded code  
+&emsp;Click/Browse/Playground/  
+&emsp;Enter text below:  
+&emsp;Metacello new  
+&emsp;&emsp;repository: 'github://aiksiongkoh/SuperApp';  
+&emsp;&emsp;baseline: 'SuperApp';  
+&emsp;&emsp;load  
+&emsp;Select text above and RightClick/Do it/  
+&emsp;If debugger complains of missing classes, Click/Proceed/  
