@@ -1,15 +1,17 @@
 Class {
-	#name : #StMTan,
-	#superclass : #StMIntrinsicFunctionX,
-	#category : #'StMath-Symbolic'
+	#name : 'StMTan',
+	#superclass : 'StMIntrinsicFunctionX',
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMTan class >> functionSymbol [
 	^'tan'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMTan class >> visualWorksMetadata [
 
 	^ #(
@@ -19,18 +21,18 @@ StMTan class >> visualWorksMetadata [
 
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMTan >> differentiateWRTx [
-	^StMPower with: (StMCos with: x copy)
-		raisedTo: (StMConstant with: -2)
+
+	^ (StMCos with: x copy) raisedTo: -2
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 StMTan >> printFuntionNameOn: aStream [
 	aStream nextPutAll: 'tan'
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMTan >> value [
 	^x value tan
 ]

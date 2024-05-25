@@ -1,20 +1,22 @@
 Class {
-	#name : #MbDGESpMatFullPvPosIC3,
-	#superclass : #GESpMatFullPv,
+	#name : 'MbDGESpMatFullPvPosIC3',
+	#superclass : 'GESpMatFullPv',
 	#instVars : [
 		'system',
 		'pivotRowLimits',
 		'pivotRowLimit'
 	],
-	#category : #'StCAD-MbD-MbDSolver'
+	#category : 'StCAD-MbD-MbDSolver',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDSolver'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 MbDGESpMatFullPvPosIC3 class >> isAbstractClass [
 	^false
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDGESpMatFullPvPosIC3 class >> visualWorksMetadata [
 
 	^ #(
@@ -24,7 +26,7 @@ MbDGESpMatFullPvPosIC3 class >> visualWorksMetadata [
 
 ]
 
-{ #category : #pivoting }
+{ #category : 'pivoting' }
 MbDGESpMatFullPvPosIC3 >> doPivoting: p [ 
 	"Used by Gauss Elimination only."
 	"Swap rows but keep columns in place."
@@ -92,12 +94,12 @@ MbDGESpMatFullPvPosIC3 >> doPivoting: p [
 	markowitzPivotColCount := rowPositionsOfNonZerosInPivotColumn size
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDGESpMatFullPvPosIC3 >> pivotRowLimits: array [ 
 	pivotRowLimits := array
 ]
 
-{ #category : #solution }
+{ #category : 'solution' }
 MbDGESpMatFullPvPosIC3 >> preSolve: aMatrix with: aVector saveOriginal: saveOriginal [ 
 	super
 		preSolve: aMatrix
@@ -109,7 +111,7 @@ MbDGESpMatFullPvPosIC3 >> preSolve: aMatrix with: aVector saveOriginal: saveOrig
 	pivotRowLimit := 0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDGESpMatFullPvPosIC3 >> system: object [ 
 	system := object
 ]

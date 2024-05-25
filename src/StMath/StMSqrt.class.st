@@ -1,15 +1,17 @@
 Class {
-	#name : #StMSqrt,
-	#superclass : #StMIntrinsicFunctionX,
-	#category : #'StMath-Symbolic'
+	#name : 'StMSqrt',
+	#superclass : 'StMIntrinsicFunctionX',
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMSqrt class >> functionSymbol [
 	^'sqrt'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMSqrt class >> visualWorksMetadata [
 
 	^ #(
@@ -19,18 +21,19 @@ StMSqrt class >> visualWorksMetadata [
 
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMSqrt >> differentiateWRTx [
-	^StMProduct with: (StMConstant with: 0.5)
-		times: (StMPower with: x copy raisedTo: (StMConstant with: -0.5))
+
+	^ StMReciprocal with:
+		  (StMProduct with: 2 with: (StMSqrt with: x copy))
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 StMSqrt >> printFuntionNameOn: aStream [
 	aStream nextPutAll: 'sqrt'
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMSqrt >> value [
 	^x value sqrt
 ]

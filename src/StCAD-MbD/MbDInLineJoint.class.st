@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDInLineJoint,
-	#superclass : #MbDJoint,
-	#category : #'StCAD-MbD-MbDJoint'
+	#name : 'MbDInLineJoint',
+	#superclass : 'MbDJoint',
+	#category : 'StCAD-MbD-MbDJoint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDJoint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDInLineJoint class >> visualWorksMetadata [
 
 	^ #(

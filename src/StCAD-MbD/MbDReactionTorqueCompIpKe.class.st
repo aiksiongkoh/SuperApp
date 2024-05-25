@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDReactionTorqueCompIpKe,
-	#superclass : #MbDReactionComp,
+	#name : 'MbDReactionTorqueCompIpKe',
+	#superclass : 'MbDReactionComp',
 	#instVars : [
 		'aTiIpKe',
 		'pTiIpKepXI',
@@ -10,10 +10,12 @@ Class {
 		'pTiIpKepEK',
 		'pTiIpKeplam'
 	],
-	#category : #'StCAD-MbD-MbDReaction'
+	#category : 'StCAD-MbD-MbDReaction',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDReaction'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDReactionTorqueCompIpKe class >> visualWorksMetadata [
 
 	^ #(
@@ -23,7 +25,7 @@ MbDReactionTorqueCompIpKe class >> visualWorksMetadata [
 
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDReactionTorqueCompIpKe >> calcPostDynCorrectorIteration [
 	| aAjOKe pAjOKepEK |
 	aAjOKe := efrmK aAjOe: axis.
@@ -37,54 +39,54 @@ MbDReactionTorqueCompIpKe >> calcPostDynCorrectorIteration [
 	pTiIpKeplam := aAjOKe transpose timesSparseMatrix: joint pTIeJtOplam
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReactionTorqueCompIpKe >> isJointTorque [
 	^true
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDReactionTorqueCompIpKe >> postInput [
 	| aAjOKe |
 	aAjOKe := efrmK aAjOe: axis.
 	aTiIpKe := aAjOKe dot: joint aTIeJtO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReactionTorqueCompIpKe >> pvaluepEI [
 	^pTiIpKepEI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReactionTorqueCompIpKe >> pvaluepEJ [
 	^pTiIpKepEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReactionTorqueCompIpKe >> pvaluepEK [
 	^pTiIpKepEK
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReactionTorqueCompIpKe >> pvaluepXI [
 	^pTiIpKepXI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReactionTorqueCompIpKe >> pvaluepXJ [
 	^pTiIpKepXJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReactionTorqueCompIpKe >> pvaluepXK [
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReactionTorqueCompIpKe >> pvalueplam [
 	^pTiIpKeplam
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReactionTorqueCompIpKe >> value [
 	^aTiIpKe
 ]

@@ -5,7 +5,8 @@ second
 Newton
 "
 Class {
-	#name : #SymUnits,
-	#superclass : #SymItem,
-	#category : #'StCAD-Basic'
+	#name : 'SymUnits',
+	#superclass : 'SymItem',
+	#category : 'StCAD-Basic',
+	#package : 'StCAD-Basic'
 }

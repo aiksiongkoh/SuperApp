@@ -1,10 +1,12 @@
 Class {
-	#name : #GEOSpringDamperForce,
-	#superclass : #Obsolete,
-	#category : #'StCAD-Geo-Obsolete classes'
+	#name : 'GEOSpringDamperForce',
+	#superclass : 'Obsolete',
+	#category : 'StCAD-Geo-Obsolete classes',
+	#package : 'StCAD-Geo',
+	#tag : 'Obsolete classes'
 }
 
-{ #category : #'binary storage' }
+{ #category : 'binary storage' }
 GEOSpringDamperForce class >> binaryReaderBlockForVersion: oldVersion format: oldFormat [ 
 	"Change 
 	StCAD.StGeo.GEOSpringDamperForce 
@@ -77,12 +79,12 @@ GEOSpringDamperForce class >> binaryReaderBlockForVersion: oldVersion format: ol
 	^super binaryReaderBlockForVersion: oldVersion format: oldFormat
 ]
 
-{ #category : #'binary storage' }
+{ #category : 'binary storage' }
 GEOSpringDamperForce class >> binaryRepresentationVersion [
 	^40
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOSpringDamperForce class >> visualWorksMetadata [
 
 	^ #(

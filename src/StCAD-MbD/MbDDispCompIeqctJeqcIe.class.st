@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDDispCompIeqctJeqcIe,
-	#superclass : #MbDDispCompIeqcJeqcIe,
+	#name : 'MbDDispCompIeqctJeqcIe',
+	#superclass : 'MbDDispCompIeqcJeqcIe',
 	#instVars : [
 		'priIeJeIept',
 		'ppriIeJeIepXIpt',
@@ -9,10 +9,12 @@ Class {
 		'ppriIeJeIepEJpt',
 		'ppriIeJeIeptpt'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDDispCompIeqctJeqcIe class >> visualWorksMetadata [
 
 	^ #(
@@ -22,7 +24,7 @@ MbDDispCompIeqctJeqcIe class >> visualWorksMetadata [
 
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDispCompIeqctJeqcIe >> calcPostDynCorrectorIteration [
 	"ppAjOIepEIpEI is not longer constant and must be set before any calculation."
 
@@ -30,7 +32,7 @@ MbDDispCompIeqctJeqcIe >> calcPostDynCorrectorIteration [
 	super calcPostDynCorrectorIteration
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDispCompIeqctJeqcIe >> initialize [
 	super initialize.
 	ppriIeJeIepXIpt := StMFullRow new: 3.
@@ -39,37 +41,37 @@ MbDDispCompIeqctJeqcIe >> initialize [
 	ppriIeJeIepEJpt := StMFullRow new: 4
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDispCompIeqctJeqcIe >> initializeGlobally [
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqctJeqcIe >> ppriIeJeIepEIpt [
 	^ppriIeJeIepEIpt
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqctJeqcIe >> ppriIeJeIepEJpt [
 	^ppriIeJeIepEJpt
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqctJeqcIe >> ppriIeJeIepXIpt [
 	^ppriIeJeIepXIpt
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqctJeqcIe >> ppriIeJeIepXJpt [
 	^ppriIeJeIepXJpt
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqctJeqcIe >> ppriIeJeIeptpt [
 	^ppriIeJeIeptpt
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDDispCompIeqctJeqcIe >> preAccIC [
 	| pAjOIept ppAjOIepEITpt ppAjOIeptpt mprIeJeOpEIT mprIeJeOpt mpprIeJeOpEITpt mpprIeJeOptpt ppAjOIepEITpti pAjOIepEITi mprIeJeOpEITi mpprIeJeOpEITpti ppriIeJeIepEIpti prIeJeOpEJT |
 	super preAccIC.
@@ -96,7 +98,7 @@ MbDDispCompIeqctJeqcIe >> preAccIC [
 				- (pAjOIept dot: mprIeJeOpt) - (pAjOIept dot: mprIeJeOpt) - (aAjOIe dot: mpprIeJeOptpt)
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDDispCompIeqctJeqcIe >> preVelIC [
 	| pAjOIept mprIeJeOpt |
 	super preVelIC.
@@ -105,7 +107,7 @@ MbDDispCompIeqctJeqcIe >> preVelIC [
 	priIeJeIept := (pAjOIept dot: rIeJeO) - (aAjOIe dot: mprIeJeOpt)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqctJeqcIe >> priIeJeIept [
 	^priIeJeIept
 ]

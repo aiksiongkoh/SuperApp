@@ -1,13 +1,15 @@
 Class {
-	#name : #NotesEditor,
-	#superclass : #Editor,
+	#name : 'NotesEditor',
+	#superclass : 'Editor',
 	#instVars : [
 		'geoItem'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #resources }
+{ #category : 'resources' }
 NotesEditor class >> menuBar [
 
 	"MenuEditor new openOnClass: self andSelector: #menuBar"
@@ -44,12 +46,12 @@ NotesEditor class >> menuBar [
 	     #( 2 1 3 3 1 ) nil ) decodeAsLiteralArray
 ]
 
-{ #category : #'interface opening' }
+{ #category : 'interface opening' }
 NotesEditor class >> openOn: geoItem [ 
 	^(self new geoItem: geoItem) open
 ]
 
-{ #category : #resources }
+{ #category : 'resources' }
 NotesEditor class >> textMenu [
 
 	"MenuEditor new openOnClass: self andSelector: #textMenu"
@@ -84,7 +86,7 @@ NotesEditor class >> textMenu [
 	     #( 2 1 3 3 ) nil ) decodeAsLiteralArray
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 NotesEditor class >> visualWorksMetadata [
 
 	^ #(
@@ -94,7 +96,7 @@ NotesEditor class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NotesEditor >> geoItem: object [ 
 	| notes |
 	geoItem := object.
@@ -102,7 +104,7 @@ NotesEditor >> geoItem: object [
 	notes notNil ifTrue: [self textHolder value: notes]
 ]
 
-{ #category : #'menu items' }
+{ #category : 'menu items' }
 NotesEditor >> menuFileSaveNotes [
 	geoItem interface notNil
 		ifTrue: [(textEditorController textHasChanged and: [Dialog confirm: 'Override previous Notes?' expandMacros])
@@ -114,7 +116,7 @@ NotesEditor >> menuFileSaveNotes [
 		ifFalse: [Dialog warn: 'The original owner of these notes no longer exists in the system. <n>You can still copy the contents and paste elsewhere.' expandMacros]
 ]
 
-{ #category : #'menu items' }
+{ #category : 'menu items' }
 NotesEditor >> menuSaveNotes [
 	self menuFileSaveNotes
 ]

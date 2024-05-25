@@ -2,8 +2,8 @@
 Radial velocity of Je wrt Ie.
 "
 Class {
-	#name : #MbDVelRadIecJec,
-	#superclass : #MbDKinematicDotIeJe,
+	#name : 'MbDVelRadIecJec',
+	#superclass : 'MbDKinematicDotIeJe',
 	#instVars : [
 		'rIeJe',
 		'rIeJeO',
@@ -11,10 +11,12 @@ Class {
 		'vIeJe',
 		'vIeJeO'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDVelRadIecJec class >> visualWorksMetadata [
 
 	^ #(
@@ -24,7 +26,7 @@ MbDVelRadIecJec class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDVelRadIecJec class >> withFrmI: afrmI frmJ: afrmJ [ 
 	| instance |
 	self allSubclasses
@@ -34,7 +36,7 @@ MbDVelRadIecJec class >> withFrmI: afrmI frmJ: afrmJ [
 			instance notNil ifTrue: [^instance]]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDVelRadIecJec >> calcPostDynCorrectorIteration [
 	rIeJeO := frmJ rOeO - frmI rOeO.
 	rIeJe := rIeJeO length.
@@ -44,7 +46,7 @@ MbDVelRadIecJec >> calcPostDynCorrectorIteration [
 	vIeJe := vIeJeO dot: uIeJeO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDVelRadIecJec >> value [
 	^vIeJe
 ]

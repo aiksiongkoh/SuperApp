@@ -1,13 +1,15 @@
 Class {
-	#name : #DXFPolyline,
-	#superclass : #GEOPolyline,
+	#name : 'DXFPolyline',
+	#superclass : 'GEOPolyline',
 	#instVars : [
 		'cFlag'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'binary storage' }
+{ #category : 'binary storage' }
 DXFPolyline class >> binaryReaderBlockForVersion: oldVersion format: oldFormat [ 
 	"
 	Change order from 
@@ -34,12 +36,12 @@ DXFPolyline class >> binaryReaderBlockForVersion: oldVersion format: oldFormat [
 	^super binaryReaderBlockForVersion: oldVersion format: oldFormat
 ]
 
-{ #category : #'binary storage' }
+{ #category : 'binary storage' }
 DXFPolyline class >> binaryRepresentationVersion [
 	^30
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 DXFPolyline class >> visualWorksMetadata [
 
 	^ #(
@@ -49,17 +51,17 @@ DXFPolyline class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DXFPolyline >> cFlag [
 	^cFlag
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DXFPolyline >> cFlag: anObject [
 	cFlag := anObject
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 DXFPolyline >> renderOn: aRenderingContext [ 
 	self cadObject notNil 
 		ifTrue: 

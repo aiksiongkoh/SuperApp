@@ -1,22 +1,23 @@
 Class {
-	#name : #SymEndFrame,
-	#superclass : #SymCartesianFrame,
-	#category : #'StCAD-Basic'
+	#name : 'SymEndFrame',
+	#superclass : 'SymCartesianFrame',
+	#category : 'StCAD-Basic',
+	#package : 'StCAD-Basic'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEndFrame >> aAOe [
 
 	^ aAOf
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEndFrame >> aAme [
 
 	^ aAFf
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 SymEndFrame >> calcAll [
 
 	rOfO := self calcrOeO.
@@ -24,25 +25,25 @@ SymEndFrame >> calcAll [
 	subs do: [ :sub | sub calcAll ]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 SymEndFrame >> calcaAOe [
 
 	^ sup aAOm timesFullMatrix: self aAme
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 SymEndFrame >> calcrOeO [
 
 	^ sup rOmO + (sup aAOm timesFullColumn: self rmem)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEndFrame >> rOeO [
 
 	^ rOfO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEndFrame >> rmem [
 
 	^ rFfF

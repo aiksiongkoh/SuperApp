@@ -1,13 +1,15 @@
 Class {
-	#name : #GEOSketchedFeature,
-	#superclass : #GEOFeature,
+	#name : 'GEOSketchedFeature',
+	#superclass : 'GEOFeature',
 	#instVars : [
 		'sketch'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOSketchedFeature class >> visualWorksMetadata [
 
 	^ #(
@@ -17,7 +19,7 @@ GEOSketchedFeature class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSketchedFeature >> asTreeNode [
 	| answer |
 	answer := super asTreeNode.
@@ -25,61 +27,61 @@ GEOSketchedFeature >> asTreeNode [
 	^answer
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOSketchedFeature >> hasSketch [
 	^true
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 GEOSketchedFeature >> postCopy [
 	super postCopy.
 	self sketch: sketch copy
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 GEOSketchedFeature >> preSave [
 	super preSave.
 	sketch preSave
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSketchedFeature >> refFrame [
 	^sketch refFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSketchedFeature >> refFrame: aFrame [ 
 	sketch refFrame: aFrame
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOSketchedFeature >> release [
 	sketch release.
 	super release
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOSketchedFeature >> removeGEO: aGEO [ 
 	sketch removeGEO: aGEO
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 GEOSketchedFeature >> renderOn: aRenderingContext [ 
 	sketch renderOn: aRenderingContext
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSketchedFeature >> sketch [
 	^sketch
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSketchedFeature >> sketch: aSketch [ 
 	sketch := aSketch.
 	sketch container: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSketchedFeature >> sketchList: collection [ 
 	collection add: sketch
 ]

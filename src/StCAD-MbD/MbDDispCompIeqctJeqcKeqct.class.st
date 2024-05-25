@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDDispCompIeqctJeqcKeqct,
-	#superclass : #MbDDispCompIeqcJeqcKeqct,
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#name : 'MbDDispCompIeqctJeqcKeqct',
+	#superclass : 'MbDDispCompIeqcJeqcKeqct',
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDDispCompIeqctJeqcKeqct class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ MbDDispCompIeqctJeqcKeqct class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDDispCompIeqctJeqcKeqct class >> withFrmI: afrmI frmJ: afrmJ frmK: afrmK axisK: integer [ 
 	^(afrmI isMemberOf: MbDEndFrameqct)
 		& (afrmJ isMemberOf: MbDEndFrameqc) & (afrmK isMemberOf: MbDEndFrameqct)
@@ -26,7 +28,7 @@ MbDDispCompIeqctJeqcKeqct class >> withFrmI: afrmI frmJ: afrmJ frmK: afrmK axisK
 		ifFalse: [nil]
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDDispCompIeqctJeqcKeqct >> preAccIC [
 	| pAjOKept mprIeJeOpt mpprIeJeOpEITpt mpprIeJeOptpt |
 	super preAccIC.
@@ -39,7 +41,7 @@ MbDDispCompIeqctJeqcKeqct >> preAccIC [
 	ppriIeJeKeptpt := ppriIeJeKeptpt - (2.0 * (pAjOKept dot: mprIeJeOpt)) - (aAjOKe dot: mpprIeJeOptpt)
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDDispCompIeqctJeqcKeqct >> preVelIC [
 	| mprIeJeOpt |
 	super preVelIC.

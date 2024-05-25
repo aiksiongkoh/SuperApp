@@ -1,10 +1,12 @@
 Class {
-	#name : #TooSmallStepSizeError,
-	#superclass : #IntegratorError,
-	#category : #'StMath-StMathIntegrator'
+	#name : 'TooSmallStepSizeError',
+	#superclass : 'IntegratorError',
+	#category : 'StMath-StMathIntegrator',
+	#package : 'StMath',
+	#tag : 'StMathIntegrator'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 TooSmallStepSizeError class >> visualWorksMetadata [
 
 	^ #(

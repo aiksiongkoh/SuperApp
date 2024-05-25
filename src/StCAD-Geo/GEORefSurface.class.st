@@ -1,13 +1,15 @@
 Class {
-	#name : #GEORefSurface,
-	#superclass : #GEORefPoint,
+	#name : 'GEORefSurface',
+	#superclass : 'GEORefPoint',
 	#instVars : [
 		'rfSurfacef'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEORefSurface class >> visualWorksMetadata [
 
 	^ #(

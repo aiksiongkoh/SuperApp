@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDScalarNewtonRaphson2,
-	#superclass : #ScalarNewtonRaphson,
-	#category : #'StCAD-MbD-MbDSolver'
+	#name : 'MbDScalarNewtonRaphson2',
+	#superclass : 'ScalarNewtonRaphson',
+	#category : 'StCAD-MbD-MbDSolver',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDScalarNewtonRaphson2 class >> visualWorksMetadata [
 
 	^ #(
@@ -14,12 +16,12 @@ MbDScalarNewtonRaphson2 class >> visualWorksMetadata [
 
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDScalarNewtonRaphson2 >> askSystemToUpdate [
 	"Do nothing."
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDScalarNewtonRaphson2 >> run [
 	self preRun.
 	self initializeLocally.

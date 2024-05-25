@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDDynIntegrator,
-	#superclass : #MbDDAEIntegrator,
-	#category : #'StCAD-MbD-MbDSolver'
+	#name : 'MbDDynIntegrator',
+	#superclass : 'MbDDAEIntegrator',
+	#category : 'StCAD-MbD-MbDSolver',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDDynIntegrator class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ MbDDynIntegrator class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDynIntegrator >> assignEquationNumbers [
 	"Equation order is p,q,s,u,w,mubar,mu."
 
@@ -57,7 +59,7 @@ MbDDynIntegrator >> assignEquationNumbers [
 	neqn := eqnNo - 1
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDDynIntegrator >> checkForDiscontinuity [
 	"Check for discontinuity in (tpast,t] or [t,tpast) if integrating 
 	backward."
@@ -81,7 +83,7 @@ MbDDynIntegrator >> checkForDiscontinuity [
 			DiscontinuityError signalWith: discontinuityTypes]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDDynIntegrator >> checkForOutputThrough: t [ 
 	"Inclusive of t."
 
@@ -122,38 +124,38 @@ MbDDynIntegrator >> checkForOutputThrough: t [
 			self postDAEOutput]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDDynIntegrator >> fillF: col [ 
 	system partsJointsMotionsForcesTorquesDo: [:item | item fillDynError: col]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDDynIntegrator >> fillY: aColumn [ 
 	system partsJointsMotionsDo: [:item | item fillpqsumu: aColumn]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDDynIntegrator >> fillYdot: aColumn [ 
 	system partsJointsMotionsDo: [:item | item fillpqsumudot: aColumn]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDDynIntegrator >> fillpFpy: matrix [ 
 	system partsJointsMotionsForcesTorquesDo: [:item | item fillpFpy: matrix]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDDynIntegrator >> fillpFpydot: mat [ 
 	system partsJointsMotionsForcesTorquesDo: [:item | item fillpFpydot: mat]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDDynIntegrator >> incrementTime: aDouble [ 
 	system partsJointsMotionsForcesTorquesDo: [:item | item storeDynState].
 	system time: aDouble
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDDynIntegrator >> interpolateAt: tArg [ 
 	"Interpolate for system state at tArg and leave system in that state."
 
@@ -171,22 +173,22 @@ MbDDynIntegrator >> interpolateAt: tArg [
 	system partsJointsMotionsForcesTorquesDo: [:item | item simUpdateAll]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDynIntegrator >> iterMax [
 	^system iterMaxDyn
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDDynIntegrator >> postDAECorrector [
 	system partsJointsMotionsForcesTorquesDo: [:item | item postDynCorrector]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDDynIntegrator >> postDAECorrectorIteration [
 	system partsJointsMotionsForcesTorquesDo: [:item | item postDynCorrectorIteration]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDDynIntegrator >> postDAEFirstStep [
 	system partsJointsMotionsForcesTorquesDo: [:item | item postDynFirstStep].
 	integrator istep > 0 ifTrue: ["Noise make checking at the start unreliable."
@@ -194,17 +196,17 @@ MbDDynIntegrator >> postDAEFirstStep [
 	self checkForOutputThrough: integrator t
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDDynIntegrator >> postDAEOutput [
 	system partsJointsMotionsForcesTorquesDo: [:item | item postDynOutput]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDDynIntegrator >> postDAEPredictor [
 	system partsJointsMotionsForcesTorquesDo: [:item | item postDynPredictor]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDDynIntegrator >> postDAEStep [
 	system partsJointsMotionsForcesTorquesDo: [:item | item postDynStep].
 	integrator istep > 0 ifTrue: ["Noise make checking at the start unreliable."
@@ -212,53 +214,53 @@ MbDDynIntegrator >> postDAEStep [
 	self checkForOutputThrough: integrator t
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDDynIntegrator >> postRun [
 	system partsJointsMotionsForcesTorquesDo: [:item | item postDyn]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDDynIntegrator >> preDAECorrector [
 	system partsJointsMotionsForcesTorquesDo: [:item | item preDynCorrector]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDDynIntegrator >> preDAECorrectorIteration [
 	system partsJointsMotionsForcesTorquesDo: [:item | item preDynCorrectorIteration]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDDynIntegrator >> preDAEFirstStep [
 	system partsJointsMotionsForcesTorquesDo: [:item | item preDynFirstStep]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDDynIntegrator >> preDAEOutput [
 	system partsJointsMotionsForcesTorquesDo: [:item | item preDynOutput]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDDynIntegrator >> preDAEPredictor [
 	system partsJointsMotionsForcesTorquesDo: [:item | item preDynPredictor]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDDynIntegrator >> preDAEStep [
 	system partsJointsMotionsForcesTorquesDo: [:item | item preDynStep]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDDynIntegrator >> preRun [
 	system logString: #'MbD: \Starting dynamic analysis.'.
 	system partsJointsMotionsForcesTorquesDo: [:item | item preDyn]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDDynIntegrator >> reportStats [
 	"Do nothing."
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDDynIntegrator >> run [
 	
 	[
@@ -295,7 +297,7 @@ MbDDynIntegrator >> run [
 				SimulationStoppingError raiseSignal]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDDynIntegrator >> suggestSmallerOrAcceptFirstStepSize: hnew [ 
 	| hnew2 |
 	hnew2 := hnew.
@@ -313,7 +315,7 @@ MbDDynIntegrator >> suggestSmallerOrAcceptFirstStepSize: hnew [
 	^hnew2
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDDynIntegrator >> suggestSmallerOrAcceptStepSize: hnew [ 
 	| hnew2 |
 	hnew2 := hnew.
@@ -329,27 +331,27 @@ MbDDynIntegrator >> suggestSmallerOrAcceptStepSize: hnew [
 	^hnew2
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDDynIntegrator >> updateForDAECorrector [
 	system partsJointsMotionsForcesTorquesDo: [:item | item postDynCorrectorIteration]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDDynIntegrator >> useDAEStepStats: stats [ 
 	"Do nothing for now."
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDDynIntegrator >> useTrialStepStats: stats [ 
 	system useDynTrialStepStats: stats
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDynIntegrator >> y: aColumn [ 
 	system partsJointsMotionsDo: [:item | item setpqsumu: aColumn]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDynIntegrator >> ydot: aColumn [ 
 	system partsJointsMotionsDo: [:item | item setpqsumudot: aColumn]
 ]

@@ -1,14 +1,16 @@
 Class {
-	#name : #GEOPartLike,
-	#superclass : #GEOAnyPart,
+	#name : 'GEOPartLike',
+	#superclass : 'GEOAnyPart',
 	#instVars : [
 		'featureOrder',
 		'solidModel'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'triggering events' }
+{ #category : 'triggering events' }
 GEOPartLike class >> constructEventsTriggered [
 	^(super constructEventsTriggered)
 		add: #preBuildSolidModel;
@@ -18,7 +20,7 @@ GEOPartLike class >> constructEventsTriggered [
 		yourself
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOPartLike class >> visualWorksMetadata [
 
 	^ #(
@@ -28,17 +30,17 @@ GEOPartLike class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPartLike >> aAPp [
 	^self massMarker aAPp
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPartLike >> aAPpv [
 	^solidModel momentsOfVolume aAPp
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPartLike >> aBoundingBox [
 	| aBoundingBox block |
 	aBoundingBox := BoundingBox new.
@@ -49,29 +51,29 @@ GEOPartLike >> aBoundingBox [
 	^aBoundingBox
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPartLike >> addFeature: aFeature [ 
 	featureOrder add: aFeature
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPartLike >> addFeatureOrder: array [ 
 	array do: [:feature | self addFeature: feature]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPartLike >> boundingBox [
 	^solidModel boundingBox
 ]
 
-{ #category : #modeling }
+{ #category : 'modeling' }
 GEOPartLike >> buildSolidModel [
 	self preBuildSolidModel.
 	self privateBuildSolidModel.
 	self postBuildSolidModel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPartLike >> center [
 	| sumDiagonal sumMoment block rPcenterP |
 	sumDiagonal := 0.0.
@@ -94,12 +96,12 @@ GEOPartLike >> center [
 	^rPcenterP
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPartLike >> featureOrder [
 	^featureOrder
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPartLike >> findMarkerNamed: nameComponents [ 
 	| answer massMarker |
 	answer := super findMarkerNamed: nameComponents.
@@ -108,19 +110,19 @@ GEOPartLike >> findMarkerNamed: nameComponents [
 	^answer
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOPartLike >> hasVolume [
 	^solidModel notNil and: [solidModel momentsOfVolume notNil and: [solidModel momentsOfVolume volume notNil]]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOPartLike >> initialize [
 	super initialize.
 	featureOrder := GEOFeatureOrder for: self.
 	solidModel := GEOSolidModel for: self.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOPartLike >> isCMtheCentriod [
 	| block |
 	^solidModel hasCentroid 
@@ -142,17 +144,17 @@ GEOPartLike >> isCMtheCentriod [
 		ifFalse: [false]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPartLike >> mJpp [
 	^self massMarker mJpp
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPartLike >> mass [
 	^self massMarker mass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPartLike >> omeOpO [
 	| omeOpO |
 	omeOpO := refFrame omeOfO.
@@ -161,7 +163,7 @@ GEOPartLike >> omeOpO [
 		ifFalse: [(StMFullColumn zero: 3)]
 ]
 
-{ #category : #modeling }
+{ #category : 'modeling' }
 GEOPartLike >> postBuildSolidModel [
 	self interface createUpdateSelectGOfor: solidModel.
 	solidModel removeDisplayList.
@@ -169,7 +171,7 @@ GEOPartLike >> postBuildSolidModel [
 	container postBuildSolidModelFrom: self
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 GEOPartLike >> postCopy1 [
 	| originalFeatureOrder |
 	super postCopy.
@@ -180,14 +182,14 @@ GEOPartLike >> postCopy1 [
 	self privateBuildSolidModel.
 ]
 
-{ #category : #modeling }
+{ #category : 'modeling' }
 GEOPartLike >> preBuildSolidModel [
 	self triggerEvent: #preBuildSolidModel.
 	self clearSolidModel.
 	container preBuildSolidModelFrom: self
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 GEOPartLike >> preSave [
 	| block |
 	super preSave.
@@ -201,7 +203,7 @@ GEOPartLike >> preSave [
 	self removeActionsForEvent: #postBuildSolidModel
 ]
 
-{ #category : #modeling }
+{ #category : 'modeling' }
 GEOPartLike >> privateBuildSolidModel [
 	| massMarker |
 	solidModel releaseFacesEdgesVertexs.
@@ -223,12 +225,12 @@ GEOPartLike >> privateBuildSolidModel [
 			self interface createUpdateSelectGOfor: massMarker.].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPartLike >> qEp [
 	^self massMarker qEp
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPartLike >> rOcenterO [
 	| sumDiagonal sumMoment block rPcenterP |
 	sumDiagonal := 0.0.
@@ -251,22 +253,22 @@ GEOPartLike >> rOcenterO [
 	^refFrame rOpOfromrfpf: rPcenterP
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPartLike >> rOcmO [
 	^self massMarker rOcmO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPartLike >> rPcP [
 	^solidModel momentsOfVolume rPcP
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPartLike >> rPcmP [
 	^self massMarker rPcmP
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOPartLike >> release [
 	| block |
 	block := [:item | item release].
@@ -277,39 +279,39 @@ GEOPartLike >> release [
 	super release
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOPartLike >> removeGEO: aGEO [ 
 	featureOrder removeGEO: aGEO.
 	solidModel removeGEO: aGEO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPartLike >> sketchList [
 	^featureOrder sketchList
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPartLike >> sketchList: collection [ 
 	featureOrder sketchList: collection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPartLike >> solidModel [
 	^solidModel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPartLike >> solidModel: solid [ 
 	solid container: self.
 	solidModel := solid
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPartLike >> vJpp [
 	^solidModel momentsOfVolume vJpp
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPartLike >> vOcmO [
 	| vOPO omeOPO rPcmO |
 	vOPO := refFrame vOfO.
@@ -320,7 +322,7 @@ GEOPartLike >> vOcmO [
 	^vOPO + (omeOPO cross: rPcmO)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPartLike >> volume [
 	^solidModel momentsOfVolume volume
 ]

@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDInContactCVCVJoint,
-	#superclass : #MbDIntermittentCVCVJoint,
-	#category : #'StCAD-MbD-MbDJoint'
+	#name : 'MbDInContactCVCVJoint',
+	#superclass : 'MbDIntermittentCVCVJoint',
+	#category : 'StCAD-MbD-MbDJoint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDJoint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDInContactCVCVJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ MbDInContactCVCVJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDInContactCVCVJoint >> becomeSeparatedCVCVJoint [
 	self changeClassToThatOf: MbDFullySeparatedCVCVJoint basicNew.
 	frmI becomeNoContactEndFrame.
@@ -22,7 +24,7 @@ MbDInContactCVCVJoint >> becomeSeparatedCVCVJoint [
 	constraints become: unusedConstraints
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDInContactCVCVJoint >> calcLSScoeffs [
 	"Least squares fit with quadratic equation."
 	"y(tout) = a0 + a1*tout + a2*tout*tout."
@@ -47,7 +49,7 @@ MbDInContactCVCVJoint >> calcLSScoeffs [
 		ys: ys
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDInContactCVCVJoint >> checkForDynDiscontinuityBetween: tprevious and: t [ 
 	"Check contactForce less than zero and decreasing."
 
@@ -72,14 +74,14 @@ MbDInContactCVCVJoint >> checkForDynDiscontinuityBetween: tprevious and: t [
 			ifFalse: [t]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDInContactCVCVJoint >> connectsI: mkrII toJ: mkrJJ [ 
 	super connectsI: mkrII toJ: mkrJJ.
 	frmI becomeContactEndFrame.
 	frmJ becomeContactEndFrame
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDInContactCVCVJoint >> discontinuityAt: tstartNew addTypeTo: collection [ 
 	tstart = tstartNew 
 		ifTrue: 
@@ -90,12 +92,12 @@ MbDInContactCVCVJoint >> discontinuityAt: tstartNew addTypeTo: collection [
 		ifFalse: [self becomeStartingInContactCVCVJoint]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDInContactCVCVJoint >> preDynStep [
 	TheMbDSystem logContactForce: contactForce
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDInContactCVCVJoint >> preICRestart [
 	contactForce < 0.0
 		ifTrue: 
@@ -103,13 +105,13 @@ MbDInContactCVCVJoint >> preICRestart [
 			self becomeSeparatedCVCVJoint]
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDInContactCVCVJoint >> recordContactForceAndSeparationDistance [
 	contactForce := self contactForce.
 	separation := 0.0
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDInContactCVCVJoint >> suggestSmallerOrAcceptDynStepSize: hnew [ 
 	| timeNew contactForceNew h |
 	timeNew := interpolator time + (interpolator direction * hnew).

@@ -1,14 +1,16 @@
 Class {
-	#name : #MbDDistancexyConstraintIJ,
-	#superclass : #MbDConstraintIJ,
+	#name : 'MbDDistancexyConstraintIJ',
+	#superclass : 'MbDConstraintIJ',
 	#instVars : [
 		'xIeJeIe',
 		'yIeJeIe'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDDistancexyConstraintIJ class >> visualWorksMetadata [
 
 	^ #(
@@ -18,7 +20,7 @@ MbDDistancexyConstraintIJ class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDDistancexyConstraintIJ class >> withFrmI: afrmI frmJ: afrmJ [ 
 	| instance |
 	self allSubclasses do: 
@@ -27,7 +29,7 @@ MbDDistancexyConstraintIJ class >> withFrmI: afrmI frmJ: afrmJ [
 			instance notNil ifTrue: [^instance]]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDistancexyConstraintIJ >> calcPostDynCorrectorIteration [
 	| x y |
 	x := xIeJeIe value.
@@ -35,7 +37,7 @@ MbDDistancexyConstraintIJ >> calcPostDynCorrectorIteration [
 	aG := x * x + (y * y) - (aConstant * aConstant)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistancexyConstraintIJ >> classString [
 	"Used to access the descriptive name of the constraint."
 	"Needed for multi-language."
@@ -43,108 +45,108 @@ MbDDistancexyConstraintIJ >> classString [
 	^TheMbDSystem getString: #'MbD: one distance_xy constraint '
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDistancexyConstraintIJ >> initializeGlobally [
 	xIeJeIe initializeGlobally.
 	yIeJeIe initializeGlobally.
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDistancexyConstraintIJ >> initializeLocally [
 	xIeJeIe initializeLocally.
 	yIeJeIe initializeLocally.
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDDistancexyConstraintIJ >> postDynCorrectorIteration [
 	xIeJeIe postDynCorrectorIteration.
 	yIeJeIe postDynCorrectorIteration.
 	super postDynCorrectorIteration
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDDistancexyConstraintIJ >> postDynOutput [
 	xIeJeIe postDynOutput.
 	yIeJeIe postDynOutput.
 	super postDynOutput
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDDistancexyConstraintIJ >> postDynPredictor [
 	xIeJeIe postDynPredictor.
 	yIeJeIe postDynPredictor.
 	super postDynPredictor
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDDistancexyConstraintIJ >> postInput [
 	xIeJeIe postInput.
 	yIeJeIe postInput.
 	super postInput
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDDistancexyConstraintIJ >> postPosICIteration [
 	xIeJeIe postPosICIteration.
 	yIeJeIe postPosICIteration.
 	super postPosICIteration
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDDistancexyConstraintIJ >> postStaticIteration [
 	xIeJeIe postStaticIteration.
 	yIeJeIe postStaticIteration.
 	super postStaticIteration
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDDistancexyConstraintIJ >> preAccIC [
 	xIeJeIe preAccIC.
 	yIeJeIe preAccIC.
 	super preAccIC
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDDistancexyConstraintIJ >> preDynOutput [
 	xIeJeIe preDynOutput.
 	yIeJeIe preDynOutput.
 	super preDynOutput
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDDistancexyConstraintIJ >> prePosIC [
 	xIeJeIe prePosIC.
 	yIeJeIe prePosIC.
 	super prePosIC
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDDistancexyConstraintIJ >> preStatic [
 	xIeJeIe preStatic.
 	yIeJeIe preStatic.
 	super preStatic
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDDistancexyConstraintIJ >> preVelIC [
 	xIeJeIe preVelIC.
 	yIeJeIe preVelIC.
 	super preVelIC
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDDistancexyConstraintIJ >> simUpdateAll [
 	xIeJeIe simUpdateAll.
 	yIeJeIe simUpdateAll.
 	super simUpdateAll
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistancexyConstraintIJ >> type [
 	^#displacement
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDistancexyConstraintIJ >> withFrmI: afrmI frmJ: afrmJ [ 
 	frmI := afrmI.
 	frmJ := afrmJ.

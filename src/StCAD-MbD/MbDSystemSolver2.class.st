@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDSystemSolver2,
-	#superclass : #MbDSolver,
+	#name : 'MbDSystemSolver2',
+	#superclass : 'MbDSolver',
 	#instVars : [
 		'system',
 		'parts',
@@ -32,10 +32,12 @@ Class {
 		'translationLimit',
 		'rotationLimit'
 	],
-	#category : #'StCAD-MbD-MbDSolver'
+	#category : 'StCAD-MbD-MbDSolver',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDSystemSolver2 class >> visualWorksMetadata [
 
 	^ #(
@@ -45,46 +47,46 @@ MbDSystemSolver2 class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> allConstraints [
 	^system allConstraints
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> allRedundantConstraints [
 	^system allRedundantConstraints
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> contactEndFrames [
 	^system contactEndFrames
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> corAbsTol: double [ 
 	corAbsTol := double
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> corRelTol: double [ 
 	corRelTol := double
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> correctorAbsoluteTolerance [
 	^corAbsTol == nil
 		ifTrue: [1.0d-6]
 		ifFalse: [corAbsTol]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> correctorRelativeTolerance [
 	^corRelTol == nil
 		ifTrue: [1.0d-6]
 		ifFalse: [corRelTol]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystemSolver2 >> discontinuityBlock [
 	^
 	[:ex | 
@@ -113,24 +115,24 @@ MbDSystemSolver2 >> discontinuityBlock [
 								ifFalse: [self error: 'An unknown discontinuity has been found.']]]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> displacementConstraints [
 	^system displacementConstraints
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> endTime [
 	^tend
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> errorTol [
 	^intRelTol == nil
 		ifTrue: [1.0d-6]
 		ifFalse: [intRelTol]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> errorTol: double [ 
 	errorTolPosKine := double.
 	errorTolAccKine := double.
@@ -140,41 +142,41 @@ MbDSystemSolver2 >> errorTol: double [
 	intRelTol := double
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> errorTolAccKine [
 	^errorTolAccKine == nil
 		ifTrue: [1.0d-6]
 		ifFalse: [errorTolAccKine]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> errorTolAccKine: double [ 
 	errorTolAccKine := double
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> errorTolPosKine [
 	^errorTolPosKine == nil
 		ifTrue: [1.0d-6]
 		ifFalse: [errorTolPosKine]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> errorTolPosKine: double [ 
 	errorTolPosKine := double
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> essentialConstraints2 [
 	^system essentialConstraints2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> firstOutputTime [
 	^toutFirst
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystemSolver2 >> followPart: aPart [ 
 	self initializeLocally.
 	self initializeGlobally.
@@ -184,53 +186,53 @@ MbDSystemSolver2 >> followPart: aPart [
 	icTypeSolver run
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> gSubC [
 	^system gSubC
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> hmax [
 	^hmax == nil
 		ifTrue: [1.0]
 		ifFalse: [hmax]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> hmax: double [ 
 	hmax := double
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> hmin [
 	^hmin == nil
 		ifTrue: [1.0d-9]
 		ifFalse: [hmin]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> hmin: double [ 
 	hmin := double
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> hout [
 	^hout == nil
 		ifTrue: [direction * 0.1]
 		ifFalse: [hout]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> hout: double [ 
 	hout := double
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDSystemSolver2 >> initialize [
 	tstartPasts := OrderedCollection new
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDSystemSolver2 >> initializeGlobally [
 	parts := system parts.
 	jointsMotions := system jointsMotions.
@@ -239,7 +241,7 @@ MbDSystemSolver2 >> initializeGlobally [
 	variables := system variables
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDSystemSolver2 >> initializeLocally [
 	"Prepare for a new set of sets of redundant constraints."
 
@@ -250,106 +252,106 @@ MbDSystemSolver2 >> initializeLocally [
 	toutFirst == nil ifTrue: [toutFirst := tstart + (direction * hout)]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> intAbsTol: double [ 
 	intAbsTol := double
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> intRelTol: double [ 
 	intRelTol := double
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> integrationAbsoluteTolerance [
 	^intAbsTol == nil
 		ifTrue: [1.0d-6]
 		ifFalse: [intAbsTol]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> integrationRelativeTolerance [
 	^intRelTol == nil
 		ifTrue: [1.0d-6]
 		ifFalse: [intRelTol]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> istep [
 	^basicIntegrator istep
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> iterMaxAccKine [
 	^iterMaxAccKine == nil
 		ifTrue: [25]
 		ifFalse: [iterMaxAccKine]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> iterMaxAccKine: integer [ 
 	iterMaxAccKine := integer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> iterMaxDyn [
 	^iterMaxDyn == nil
 		ifTrue: [4]
 		ifFalse: [iterMaxDyn]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> iterMaxDyn: integer [ 
 	iterMaxDyn := integer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> iterMaxPosKine [
 	^iterMaxPosKine == nil
 		ifTrue: [25]
 		ifFalse: [iterMaxPosKine]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> iterMaxPosKine: integer [ 
 	iterMaxPosKine := integer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> jointsMotions [
 	^jointsMotions
 ]
 
-{ #category : #output }
+{ #category : 'output' }
 MbDSystemSolver2 >> logString: string [ 
 	system logString: string
 ]
 
-{ #category : #output }
+{ #category : 'output' }
 MbDSystemSolver2 >> logString: string withArgument: string1 [ 
 	system logString: string withArgument: string1
 ]
 
-{ #category : #output }
+{ #category : 'output' }
 MbDSystemSolver2 >> logString: string withArguments: arrayOfStrings [ 
 	system logString: string withArguments: arrayOfStrings
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> maxStepSize [
 	^hmax == nil
 		ifTrue: [1.0]
 		ifFalse: [hmax]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> minStepSize [
 	^hmin == nil
 		ifTrue: [1.0d-9]
 		ifFalse: [hmin]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystemSolver2 >> needToRedoPosIC [
 	| allRedunCons newSet |
 	allRedunCons := self allRedundantConstraints.
@@ -376,43 +378,43 @@ MbDSystemSolver2 >> needToRedoPosIC [
 	^true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> neqn [
 	"Let MbDDAEIntegrator subclasses calculate with assignEquationNumbers."
 
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> opBDF [
 	^basicIntegrator opBDF
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> orderMax [
 	^orderMax == nil
 		ifTrue: [5]
 		ifFalse: [orderMax]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> orderMax: integer [ 
 	orderMax := integer
 ]
 
-{ #category : #output }
+{ #category : 'output' }
 MbDSystemSolver2 >> output [
 	system outputFor: #DYNAMIC
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> outputStepSize [
 	^hout == nil
 		ifTrue: [direction * 0.1]
 		ifFalse: [hout]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> parJoiMotForTorSenVarDo: aBlock [ 
 	parts do: aBlock.
 	jointsMotions do: aBlock.
@@ -421,25 +423,25 @@ MbDSystemSolver2 >> parJoiMotForTorSenVarDo: aBlock [
 	variables do: aBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> parts [
 	^parts
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> partsJointsMotionsDo: aBlock [ 
 	parts do: aBlock.
 	jointsMotions do: aBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> partsJointsMotionsForcesTorquesDo: aBlock [ 
 	parts do: aBlock.
 	jointsMotions do: aBlock.
 	forcesTorques do: aBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> partsJointsMotionsForcesTorquesSensorsDo: aBlock [ 
 	parts do: aBlock.
 	jointsMotions do: aBlock.
@@ -447,12 +449,12 @@ MbDSystemSolver2 >> partsJointsMotionsForcesTorquesSensorsDo: aBlock [
 	sensors do: aBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> perpendicularConstraints2 [
 	^system perpendicularConstraints2
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystemSolver2 >> preCollision [
 	"There should only be one MbDInCollisionCVCVJoint"
 
@@ -463,40 +465,40 @@ MbDSystemSolver2 >> preCollision [
 		do: [:a | a == aMbDInCollisionCVCVJoint ifFalse: [a becomeSeparatedCVCVJoint]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> rotationLimit [
 	^rotationLimit == nil
 		ifTrue: [0.5]
 		ifFalse: [rotationLimit]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> rotationLimit: double [ 
 	rotationLimit := double
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystemSolver2 >> runAccIC [
 	icTypeSolver := MbDAccICNewtonRaphson2 new.
 	icTypeSolver system: self.
 	icTypeSolver run
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystemSolver2 >> runAccICKine [
 	icTypeSolver := MbDAccICKineNewtonRaphson2 new.
 	icTypeSolver system: self.
 	icTypeSolver run
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystemSolver2 >> runAccKine [
 	icTypeSolver := MbDAccKineNewtonRaphson2 new.
 	icTypeSolver system: self.
 	icTypeSolver run
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystemSolver2 >> runAllIC [
 	"Redundant constraint removal is best when the system is assembled."
 
@@ -519,7 +521,7 @@ MbDSystemSolver2 >> runAllIC [
 						self runBasicCollision]]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystemSolver2 >> runBasicCollision [
 	
 	["Use a new StMDAEIntegrator each time to wipe out past history."
@@ -551,7 +553,7 @@ MbDSystemSolver2 >> runBasicCollision [
 							SimulationStoppingError raiseSignal]]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystemSolver2 >> runBasicDynamic [
 	
 	[basicIntegrator := MbDDynIntegrator new.
@@ -561,7 +563,7 @@ MbDSystemSolver2 >> runBasicDynamic [
 			do: self discontinuityBlock
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystemSolver2 >> runBasicKinematic [
 	
 	[basicIntegrator := MbDKineIntegrator new.
@@ -571,7 +573,7 @@ MbDSystemSolver2 >> runBasicKinematic [
 			do: [:ex | self runQuasiKinematic]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystemSolver2 >> runBasicTransient [
 	system logString: #'MbD: \Starting transient simulation.'.
 	
@@ -589,7 +591,7 @@ MbDSystemSolver2 >> runBasicTransient [
 			do: self discontinuityBlock
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystemSolver2 >> runBasicTransient1 [
 	| discontinuityTypes |
 	system logString: #'MbD: \Starting transient simulation.'.
@@ -626,35 +628,35 @@ MbDSystemSolver2 >> runBasicTransient1 [
 								ifFalse: [self error: 'An unknown discontinuity has been found.']]]]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystemSolver2 >> runCollisionDerivativeIC [
 	icTypeSolver := MbDCollisionDerivativeICNewtonRaphson2 new.
 	icTypeSolver system: self.
 	icTypeSolver run
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystemSolver2 >> runPerturbedPosIC [
 	icTypeSolver := MbDPerturbedPosICNewtonRaphson2 new.
 	icTypeSolver system: self.
 	icTypeSolver run
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystemSolver2 >> runPosIC [
 	icTypeSolver := MbDPosICNewtonRaphson2 new.
 	icTypeSolver system: self.
 	icTypeSolver run
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystemSolver2 >> runPosICKine [
 	icTypeSolver := MbDPosICKineNewtonRaphson2 new.
 	icTypeSolver system: self.
 	icTypeSolver run
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystemSolver2 >> runPosICTwiceVelICAccIC [
 	"Redundant constraint removal is best when the system is assembled."
 
@@ -668,7 +670,7 @@ MbDSystemSolver2 >> runPosICTwiceVelICAccIC [
 	self runAccIC
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystemSolver2 >> runPosICTwiceVelICAccICCheckDiscontinuity [
 	
 	[self runPosICTwiceVelICAccIC.
@@ -676,7 +678,7 @@ MbDSystemSolver2 >> runPosICTwiceVelICAccICCheckDiscontinuity [
 		whileTrue: [system partsJointsMotionsDo: [:item | item preICRestart]]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystemSolver2 >> runPosICVelICAccIC [
 	"Redundant constraint removal is best when the system is assembled."
 
@@ -687,7 +689,7 @@ MbDSystemSolver2 >> runPosICVelICAccIC [
 	self runAccIC
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystemSolver2 >> runPosICVelICCollisionDerivativeIC [
 	"Redundant constraint removal is best when the system is assembled."
 
@@ -698,14 +700,14 @@ MbDSystemSolver2 >> runPosICVelICCollisionDerivativeIC [
 	self runCollisionDerivativeIC
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystemSolver2 >> runPosKine [
 	icTypeSolver := MbDPosKineNewtonRaphson2 new.
 	icTypeSolver system: self.
 	icTypeSolver run
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystemSolver2 >> runQuasiKinematic [
 	
 	[basicIntegrator := MbD_ICKineIntegrator new.
@@ -715,7 +717,7 @@ MbDSystemSolver2 >> runQuasiKinematic [
 			do: self discontinuityBlock
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystemSolver2 >> runQuasiStatic [
 	
 	[basicIntegrator := MbDQuasiStaticIntegrator new.
@@ -725,7 +727,7 @@ MbDSystemSolver2 >> runQuasiStatic [
 			do: self discontinuityBlock
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystemSolver2 >> runQuasiStatic1 [
 	| discontinuityTypes |
 	system logString: #'MbD: \Starting quasi static analysis.'.
@@ -762,123 +764,123 @@ MbDSystemSolver2 >> runQuasiStatic1 [
 								ifFalse: [self error: 'An unknown discontinuity has been found.']]]]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystemSolver2 >> runStaticIC [
 	icTypeSolver := MbDStaticICNewtonRaphson2 new.
 	icTypeSolver system: self.
 	icTypeSolver run
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystemSolver2 >> runVelIC [
 	icTypeSolver := MbDVelICSolver2 new.
 	icTypeSolver system: self.
 	icTypeSolver run
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystemSolver2 >> runVelICKine [
 	icTypeSolver := MbDVelICKineSolver2 new.
 	icTypeSolver system: self.
 	icTypeSolver run
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystemSolver2 >> runVelKine [
 	icTypeSolver := MbDVelKineSolver2 new.
 	icTypeSolver system: self.
 	icTypeSolver run
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> startTime [
 	^tstart == nil
 		ifTrue: [0.0]
 		ifFalse: [tstart]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> system: object [ 
 	system := object
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> tend [
 	^tend == nil
 		ifTrue: [1.0]
 		ifFalse: [tend]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> tend: double [ 
 	tend := double
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> time [
 	^basicIntegrator time
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> time: aDouble [ 
 	^system mbdTimeValue: aDouble
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> toutFirst: tout [ 
 	toutFirst := tout
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> translationLimit [
 	^translationLimit == nil
 		ifTrue: [1.0d10]
 		ifFalse: [translationLimit]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> translationLimit: double [ 
 	translationLimit := double
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> tstart [
 	^tstart == nil
 		ifTrue: [0.0]
 		ifFalse: [tstart]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> tstart: double [ 
 	tstart := double
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> tstartPasts [
 	^tstartPasts
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> tstartPastsAddFirst: tstartPast [ 
 	tstartPasts addFirst: tstartPast
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystemSolver2 >> uHolders [
 	^system uHolders
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystemSolver2 >> useCollisionTrialStepStats: stats [ 
 	system useCollisionTrialStepStats: stats
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystemSolver2 >> useDynTrialStepStats: stats [ 
 	system useDynTrialStepStats: stats
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystemSolver2 >> useKineTrialStepStats: stats [ 
 	system useKineTrialStepStats: stats
 ]

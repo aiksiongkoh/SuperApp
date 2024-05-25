@@ -1,13 +1,15 @@
 Class {
-	#name : #MbDSurfaceSurfaceJoint,
-	#superclass : #MbDJoint,
+	#name : 'MbDSurfaceSurfaceJoint',
+	#superclass : 'MbDJoint',
 	#instVars : [
 		'rIeJe'
 	],
-	#category : #'StCAD-MbD-MbDJoint'
+	#category : 'StCAD-MbD-MbDJoint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDJoint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDSurfaceSurfaceJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -17,7 +19,7 @@ MbDSurfaceSurfaceJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSurfaceSurfaceJoint >> classString [
 	"Used to access the descriptive name of the constraint."
 
@@ -26,14 +28,14 @@ MbDSurfaceSurfaceJoint >> classString [
 	^TheMbDSystem getString: #'MbD: Surface-Surface contact '
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSurfaceSurfaceJoint >> contactForce [
 	"Compression is positive."
 
 	^(self aFIeJtO dot: frmI keO) negated
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDSurfaceSurfaceJoint >> initializeGlobally [
 	"Contact with parallel normals."
 
@@ -51,7 +53,7 @@ MbDSurfaceSurfaceJoint >> initializeGlobally [
 			super initializeGlobally]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDSurfaceSurfaceJoint >> initializeLocally [
 	constraints isEmpty
 		ifFalse: 
@@ -59,7 +61,7 @@ MbDSurfaceSurfaceJoint >> initializeLocally [
 			super initializeLocally]
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDSurfaceSurfaceJoint >> prePosIC [
 	frmI prePosIC.
 	frmJ prePosIC.

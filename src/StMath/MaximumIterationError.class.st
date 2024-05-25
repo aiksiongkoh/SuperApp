@@ -1,10 +1,12 @@
 Class {
-	#name : #MaximumIterationError,
-	#superclass : #NewtonRaphsonError,
-	#category : #'StMath-Exception'
+	#name : 'MaximumIterationError',
+	#superclass : 'NewtonRaphsonError',
+	#category : 'StMath-Exception',
+	#package : 'StMath',
+	#tag : 'Exception'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MaximumIterationError class >> visualWorksMetadata [
 
 	^ #(

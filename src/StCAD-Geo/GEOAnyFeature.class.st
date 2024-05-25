@@ -1,10 +1,12 @@
 Class {
-	#name : #GEOAnyFeature,
-	#superclass : #GEOContainedItem,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEOAnyFeature',
+	#superclass : 'GEOContainedItem',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOAnyFeature class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ GEOAnyFeature class >> visualWorksMetadata [
 
 ]
 
-{ #category : #ops }
+{ #category : 'ops' }
 GEOAnyFeature >> becomeDormantFeature [
 	| newSelf |
 	newSelf := GEODormantFeature new.
@@ -22,17 +24,17 @@ GEOAnyFeature >> becomeDormantFeature [
 	self feature: newSelf
 ]
 
-{ #category : #ops }
+{ #category : 'ops' }
 GEOAnyFeature >> buildIn: solidModel [ 
 	self subclassResponsibility
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOAnyFeature >> hasSketch [
 	^false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOAnyFeature >> isDone [
 	^container isDone
 ]

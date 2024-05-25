@@ -1,13 +1,15 @@
 Class {
-	#name : #StMExpressionXY,
-	#superclass : #StMFunctionXY,
+	#name : 'StMExpressionXY',
+	#superclass : 'StMFunctionXY',
 	#instVars : [
 		'expression'
 	],
-	#category : #'StMath-Symbolic'
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMExpressionXY class >> visualWorksMetadata [
 
 	^ #(
@@ -17,7 +19,7 @@ StMExpressionXY class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMExpressionXY class >> with: argx and: argy expression: func [ 
 	^super new
 		x: argx
@@ -25,41 +27,41 @@ StMExpressionXY class >> with: argx and: argy expression: func [
 		expression: func
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 StMExpressionXY >> = anObject [ 
 	^super = anObject and: [expression = anObject expression]
 ]
 
-{ #category : #'message handling' }
+{ #category : 'message handling' }
 StMExpressionXY >> argsPerform: selector withArguments: anArray [ 
 	super argsPerform: selector withArguments: anArray.
 	expression perform: selector withArguments: anArray
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMExpressionXY >> differentiateWRT: variable [ 
 	^expression differentiateWRT: variable
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMExpressionXY >> expandUntil: set [ 
 	^(set includes: self)
 		ifTrue: [self]
 		ifFalse: [expression expandUntil: set]
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMExpressionXY >> partialDifferentiateWRT: variable [ 
 	^expression partialDifferentiateWRT: variable
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 StMExpressionXY >> postCopy [
 	super postCopy.
 	expression := expression copy
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 StMExpressionXY >> printOn: aStream [ 
 	aStream print: self class.
 	aStream nextPut: $(.
@@ -67,14 +69,14 @@ StMExpressionXY >> printOn: aStream [
 	aStream nextPut: $)
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMExpressionXY >> simplifyUntil: set [ 
 	^(set includes: self)
 		ifTrue: [self]
 		ifFalse: [expression simplifyUntil: set]
 ]
 
-{ #category : #changing }
+{ #category : 'changing' }
 StMExpressionXY >> substitute: var1 with: var2 [ 
 	| xx yy expr |
 	^self = var1
@@ -89,12 +91,12 @@ StMExpressionXY >> substitute: var1 with: var2 [
 				expression: expr]
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMExpressionXY >> value [
 	^expression value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMExpressionXY >> x: arg [ 
 	| xold |
 	xold := x.
@@ -102,14 +104,14 @@ StMExpressionXY >> x: arg [
 	expression notNil ifTrue: [expression := expression substitute: xold with: x]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 StMExpressionXY >> x: argx y: argy expression: func [ 
 	x := self conditionArgument: argx.
 	y := self conditionArgument: argy.
 	expression := self conditionArgument: func
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMExpressionXY >> y: arg [ 
 	| yold |
 	yold := y.

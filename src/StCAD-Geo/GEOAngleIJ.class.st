@@ -1,10 +1,12 @@
 Class {
-	#name : #GEOAngleIJ,
-	#superclass : #GEOFunctionIJ,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEOAngleIJ',
+	#superclass : 'GEOFunctionIJ',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOAngleIJ class >> visualWorksMetadata [
 
 	^ #(
@@ -14,12 +16,12 @@ GEOAngleIJ class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAngleIJ >> dimension [
 	^'angle'
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOAngleIJ >> mbdUnit [
 	^self mbdUnits angle
 ]

@@ -1,13 +1,15 @@
 Class {
-	#name : #StMSymbolicParser,
-	#superclass : #ExternalLanguageParser,
+	#name : 'StMSymbolicParser',
+	#superclass : 'ExternalLanguageParser',
 	#instVars : [
 		'variables'
 	],
-	#category : #'StMath-Symbolic'
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMSymbolicParser class >> visualWorksMetadata [
 
 	^ #(
@@ -17,25 +19,25 @@ StMSymbolicParser class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'error handling' }
+{ #category : 'error handling' }
 StMSymbolicParser >> expected: aString [ 
 	"Notify a problem at token 'here'"
 
 	^self notify: aString , ' expected ->' at: mark
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMSymbolicParser >> functions [
 	^self intrinsicFunctions
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 StMSymbolicParser >> initVariables [
 	variables := IdentityDictionary new.
 	self variablesSet do: [:item | variables at: item name asSymbol put: item]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMSymbolicParser >> intrinsicFunctions [
 	"The methods 'intrinsic' and 'intrinsicFunctions' must have the same functions."
 
@@ -55,14 +57,14 @@ StMSymbolicParser >> intrinsicFunctions [
 	^functions
 ]
 
-{ #category : #'error handling' }
+{ #category : 'error handling' }
 StMSymbolicParser >> notify: aString [ 
 	"Notify problem at token before 'here'"
 
 	^self notify: aString at: mark
 ]
 
-{ #category : #scanning }
+{ #category : 'scanning' }
 StMSymbolicParser >> signedNumber [
 	"Recognize a possibly signed number."
 
@@ -88,19 +90,19 @@ StMSymbolicParser >> signedNumber [
 	^false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMSymbolicParser >> variables [
 	^variables
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 StMSymbolicParser >> variablesSet [
 	| set |
 	set := Set new.
 	^set
 ]
 
-{ #category : #scanning }
+{ #category : 'scanning' }
 StMSymbolicParser >> xDigit [
 	"form a number"
 

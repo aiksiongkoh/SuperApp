@@ -1,15 +1,17 @@
 Class {
-	#name : #StMSin,
-	#superclass : #StMIntrinsicFunctionX,
-	#category : #'StMath-Symbolic'
+	#name : 'StMSin',
+	#superclass : 'StMIntrinsicFunctionX',
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMSin class >> functionSymbol [
 	^'sin'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMSin class >> visualWorksMetadata [
 
 	^ #(
@@ -19,17 +21,17 @@ StMSin class >> visualWorksMetadata [
 
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMSin >> differentiateWRTx [
 	^StMCos with: x copy
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 StMSin >> printFuntionNameOn: aStream [
 	aStream nextPutAll: 'sin'
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMSin >> value [
 	^x value sin
 ]

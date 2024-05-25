@@ -1,16 +1,18 @@
 Class {
-	#name : #MbDJoint,
-	#superclass : #MbDItem,
+	#name : 'MbDJoint',
+	#superclass : 'MbDItem',
 	#instVars : [
 		'frmI',
 		'frmJ',
 		'constraints',
 		'friction'
 	],
-	#category : #'StCAD-MbD-MbDJoint'
+	#category : 'StCAD-MbD-MbDJoint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDJoint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -20,14 +22,14 @@ MbDJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDJoint >> aFIeJtIe [
 	"aFIeJtIe is joint force on end frame Ie expresses in Ie components."
 
 	^frmI aAeO timesFullColumn: self aFIeJtO
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDJoint >> aFIeJtO [
 	"aFIeJtO is joint force on end frame Ie expresses in O components."
 
@@ -37,7 +39,7 @@ MbDJoint >> aFIeJtO [
 	^aFIeJtO
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDJoint >> aFJeJtO [
 	"aFJeJtO is joint force on end frame Je expresses in O components."
 
@@ -47,21 +49,21 @@ MbDJoint >> aFJeJtO [
 	^aFJeJtO
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDJoint >> aFX [
 	"aFX is force on ADAMS marker I."
 
 	^self jointForceI
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDJoint >> aTIeJtIe [
 	"aTIeJtIe is torque on part containing end frame Ie expressed in Ie components."
 
 	^frmI aAeO timesFullColumn: self aTIeJtO
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDJoint >> aTIeJtO [
 	"aTIeJtO is torque on part containing end frame Ie expressed in O components."
 
@@ -71,7 +73,7 @@ MbDJoint >> aTIeJtO [
 	^aTIeJtO
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDJoint >> aTJeJtO [
 	"aTJeJtO is torque on part containing end frame Je expressed in O components."
 
@@ -81,40 +83,40 @@ MbDJoint >> aTJeJtO [
 	^aTJeJtO
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDJoint >> aTX [
 	"aTX is torque on ADAMS marker I."
 
 	^self jointTorqueI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> bePerturbed: delta fillqsulam: col [ 
 	constraints do: [:con | con bePerturbed: delta fillqsulam: col]
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDJoint >> becomeSeparatedCVCVJoint [
 	"Do nothing."
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDJoint >> connectsI: mkrII toJ: mkrJJ [ 
 	frmI := mkrII.
 	frmJ := mkrJJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> constraint [
 	^constraints at: 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> constraints [
 	^constraints
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDJoint >> constraintsReport [
 	| dummy |
 	dummy := constraints select: [:con | con isRedundant].
@@ -124,223 +126,223 @@ MbDJoint >> constraintsReport [
 			dummy do: [:con | con logString: #'MbD: \    %1' withArgument: con classString]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> endFrameI [
 	^frmI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> endFrameJ [
 	^frmJ
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDJoint >> fillAccICIterError: col [ 
 	constraints do: [:con | con fillAccICIterError: col]
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDJoint >> fillAccICIterJacob: mat [ 
 	constraints do: [:con | con fillAccICIterJacob: mat]
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDJoint >> fillCollisionDerivativeICJacob: mat [ 
 	constraints do: [:con | con fillCollisionDerivativeICJacob: mat]
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDJoint >> fillCollisionError: col [ 
 	constraints do: [:con | con fillCollisionError: col]
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDJoint >> fillCollisionpFpydot: mat [ 
 	constraints do: [:con | con fillCollisionpFpydot: mat]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> fillConstraints: collection [ 
 	constraints do: [:con | con fillConstraints: collection]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> fillContactEndFrames: set [ 
 	frmI fillContactEndFrames: set.
 	frmJ fillContactEndFrames: set
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> fillDispConstraints: collection [ 
 	constraints do: [:con | con fillDispConstraints: collection]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDJoint >> fillDynError: col [ 
 	constraints do: [:con | con fillDynError: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> fillEssenConstraints: collection [ 
 	constraints do: [:con | con fillEssenConstraints: collection]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> fillPerpenConstraints: collection [ 
 	constraints do: [:con | con fillPerpenConstraints: collection]
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDJoint >> fillPosICError: col [ 
 	constraints do: [:con | con fillPosICError: col]
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDJoint >> fillPosICJacob: mat [ 
 	constraints do: [:con | con fillPosICJacob: mat]
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDJoint >> fillPosKineError: col [ 
 	constraints do: [:con | con fillPosKineError: col]
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDJoint >> fillPosKineJacob: mat [ 
 	constraints do: [:con | con fillPosKineJacob: mat]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> fillRedundantConstraints: collection [ 
 	constraints do: [:con | con fillRedundantConstraints: collection]
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDJoint >> fillStaticError: col [ 
 	constraints do: [:con | con fillStaticError: col]
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDJoint >> fillStaticJacob: mat [ 
 	constraints do: [:con | con fillStaticJacob: mat]
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDJoint >> fillVelICError: col [ 
 	constraints do: [:con | con fillVelICError: col]
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDJoint >> fillVelICJacob: mat [ 
 	constraints do: [:con | con fillVelICJacob: mat]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDJoint >> fillpFpy: mat [ 
 	constraints do: [:con | con fillpFpy: mat]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDJoint >> fillpFpydot: mat [ 
 	constraints do: [:con | con fillpFpydot: mat]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> fillpqsumu: col [ 
 	constraints do: [:con | con fillpqsumu: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> fillpqsumudot: col [ 
 	constraints do: [:con | con fillpqsumudot: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> fillqsu: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> fillqsuWeights: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> fillqsuddotlam: col [ 
 	constraints do: [:con | con fillqsuddotlam: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> fillqsudot: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> fillqsudotPlam: col [ 
 	constraints do: [:con | con fillqsudotPlam: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> fillqsudotPlamDeriv: col [ 
 	constraints do: [:con | con fillqsudotPlamDeriv: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> fillqsudotWeights: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> fillqsulam: col [ 
 	constraints do: [:con | con fillqsulam: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> fillu: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> filluHolders: set [ 
 	"Default is do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> filludot: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> fillumu: col [ 
 	constraints do: [:con | con fillmu: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> frmI [
 	^frmI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> frmJ [
 	^frmJ
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDJoint >> initialize [
 	constraints := OrderedCollection new
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDJoint >> initializeGlobally [
 	constraints do: [:con | con initializeGlobally]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDJoint >> initializeLocally [
 	constraints do: [:con | con initializeLocally]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDJoint >> jointForceI [
 	"jointForceI is force on MbD marker I."
 
@@ -350,7 +352,7 @@ MbDJoint >> jointForceI [
 	^jointForce
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDJoint >> jointForceJ [
 	"jointForceJ is force on MbD marker J."
 
@@ -360,7 +362,7 @@ MbDJoint >> jointForceJ [
 	^jointForce
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDJoint >> jointTorqueI [
 	"jointTorqueI is torque on MbD marker I."
 
@@ -370,7 +372,7 @@ MbDJoint >> jointTorqueI [
 	^jointTorque
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDJoint >> jointTorqueJ [
 	"jointTorqueJ is torque on MbD marker J."
 
@@ -380,13 +382,13 @@ MbDJoint >> jointTorqueJ [
 	^jointTorque
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDJoint >> owns: aConstraint [ 
 	constraints add: aConstraint.
 	aConstraint owner: self
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDJoint >> pFIeJtIepEI [
 	| aAIeO pAIeOpEI aFIeJtO pFIeJtOpEI pFIeJtIepEI colj |
 	aAIeO := frmI aAeO.
@@ -401,33 +403,33 @@ MbDJoint >> pFIeJtIepEI [
 	^pFIeJtIepEI
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDJoint >> pFIeJtIepEJ [
 	"This may be always zero because ppGpXIpEJ is zero."
 
 	^frmI aAeO timesFullMatrix: self pFIeJtOpEJ
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDJoint >> pFIeJtIepXI [
 	"This may be always zero because ppGpXIpXI is zero."
 
 	^frmI aAeO timesFullMatrix: self pFIeJtOpXI
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDJoint >> pFIeJtIepXJ [
 	"This may be always zero because ppGpXIpXJ is zero."
 
 	^frmI aAeO timesFullMatrix: self pFIeJtOpXJ
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDJoint >> pFIeJtIeplam [
 	^frmI aAeO timesSparseMatrix: self pFIeJtOplam
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDJoint >> pFIeJtOpEI [
 	| pFIeJtOpEI |
 	pFIeJtOpEI := (StMFullMatrix zero: 3 by: 4).
@@ -435,7 +437,7 @@ MbDJoint >> pFIeJtOpEI [
 	^pFIeJtOpEI
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDJoint >> pFIeJtOpEJ [
 	| pFIeJtOpEJ |
 	pFIeJtOpEJ := (StMFullMatrix zero: 3 by: 4).
@@ -443,7 +445,7 @@ MbDJoint >> pFIeJtOpEJ [
 	^pFIeJtOpEJ
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDJoint >> pFIeJtOpXI [
 	| pFIeJtOpXI |
 	pFIeJtOpXI := (StMFullMatrix zero: 3 by: 3).
@@ -451,7 +453,7 @@ MbDJoint >> pFIeJtOpXI [
 	^pFIeJtOpXI
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDJoint >> pFIeJtOpXJ [
 	| pFIeJtOpXJ |
 	pFIeJtOpXJ := (StMFullMatrix zero: 3 by: 3).
@@ -459,7 +461,7 @@ MbDJoint >> pFIeJtOpXJ [
 	^pFIeJtOpXJ
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDJoint >> pFIeJtOplam [
 	"The second dimension is not relevant."
 	"7 is a good size to avoid reallocating for the SparseRows."
@@ -470,7 +472,7 @@ MbDJoint >> pFIeJtOplam [
 	^pFIeJtOplam
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDJoint >> pTIeJtIepEI [
 	| aAIeO pAIeOpEI aTIeJtO pTIeJtOpEI pTIeJtIepEI colj |
 	aAIeO := frmI aAeO.
@@ -485,27 +487,27 @@ MbDJoint >> pTIeJtIepEI [
 	^pTIeJtIepEI
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDJoint >> pTIeJtIepEJ [
 	^frmI aAeO timesFullMatrix: self pTIeJtOpEJ
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDJoint >> pTIeJtIepXI [
 	^frmI aAeO timesFullMatrix: self pTIeJtOpXI
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDJoint >> pTIeJtIepXJ [
 	^frmI aAeO timesFullMatrix: self pTIeJtOpXJ
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDJoint >> pTIeJtIeplam [
 	^frmI aAeO timesSparseMatrix: self pTIeJtOplam
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDJoint >> pTIeJtOpEI [
 	| pTIeJtOpEI |
 	pTIeJtOpEI := (StMFullMatrix zero: 3 by: 4).
@@ -513,7 +515,7 @@ MbDJoint >> pTIeJtOpEI [
 	^pTIeJtOpEI
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDJoint >> pTIeJtOpEJ [
 	| pTIeJtOpEJ |
 	pTIeJtOpEJ := (StMFullMatrix zero: 3 by: 4).
@@ -521,7 +523,7 @@ MbDJoint >> pTIeJtOpEJ [
 	^pTIeJtOpEJ
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDJoint >> pTIeJtOpXI [
 	| pTIeJtOpXI |
 	pTIeJtOpXI := (StMFullMatrix zero: 3 by: 3).
@@ -529,7 +531,7 @@ MbDJoint >> pTIeJtOpXI [
 	^pTIeJtOpXI
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDJoint >> pTIeJtOpXJ [
 	| pTIeJtOpXJ |
 	pTIeJtOpXJ := (StMFullMatrix zero: 3 by: 3).
@@ -537,7 +539,7 @@ MbDJoint >> pTIeJtOpXJ [
 	^pTIeJtOpXJ
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDJoint >> pTIeJtOplam [
 	"The second dimension is not relevant."
 	"7 is a good size to avoid reallocating for the SparseRows."
@@ -548,188 +550,188 @@ MbDJoint >> pTIeJtOplam [
 	^pTIeJtOplam
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> partFrameI [
 	^frmI partFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> partFrameJ [
 	^frmJ partFrame
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDJoint >> postDynCorrectorIteration [
 	constraints do: [:con | con postDynCorrectorIteration]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDJoint >> postDynOutput [
 	constraints do: [:con | con postDynOutput]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDJoint >> postDynPredictor [
 	constraints do: [:con | con postDynPredictor]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDJoint >> postDynStep [
 	constraints do: [:con | con postDynStep]
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDJoint >> postInput [
 	constraints do: [:con | con postInput]
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDJoint >> postPosIC [
 	constraints do: [:con | con postPosIC]
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDJoint >> postPosICIteration [
 	constraints do: [:con | con postPosICIteration]
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDJoint >> postStaticIteration [
 	constraints do: [:con | con postStaticIteration]
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDJoint >> preAccIC [
 	constraints do: [:con | con preAccIC]
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDJoint >> preCollision [
 	constraints do: [:con | con preCollision]
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDJoint >> preCollisionDerivativeIC [
 	constraints do: [:con | con preCollisionDerivativeIC]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDJoint >> preDyn [
 	constraints do: [:con | con preDyn]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDJoint >> preDynOutput [
 	constraints do: [:con | con preDynOutput]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDJoint >> preICRestart [
 	constraints do: [:con | con preICRestart]
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDJoint >> prePosIC [
 	constraints do: [:con | con prePosIC]
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDJoint >> prePosKine [
 	constraints do: [:con | con prePosKine]
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDJoint >> preStatic [
 	constraints do: [:con | con preStatic]
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDJoint >> preVelIC [
 	constraints do: [:con | con preVelIC]
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDJoint >> removeRedundantConstraints: redundantEqns [ 
 	constraints do: [:con | con removeRedundantConstraints: redundantEqns]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> setpqsumu: col [ 
 	constraints do: [:con | con setpqsumu: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> setpqsumuddot: col [ 
 	constraints do: [:con | con setpqsumuddot: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> setpqsumudot: col [ 
 	constraints do: [:con | con setpqsumudot: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> setqsu: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> setqsuddotlam: col [ 
 	constraints do: [:con | con setqsuddotlam: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> setqsudot: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> setqsudotPlam: col [ 
 	constraints do: [:con | con setqsudotPlam: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> setqsudotPlamDeriv: col [ 
 	constraints do: [:con | con setqsudotPlamDeriv: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> setqsudotlam: col [ 
 	constraints do: [:con | con setqsudotlam: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> setqsulam: col [ 
 	constraints do: [:con | con setqsulam: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> setu: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> setumu: col [ 
 	constraints do: [:con | con setmu: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDJoint >> setumuddot: col [ 
 	constraints do: [:con | con setmuddot: col]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDJoint >> simUpdateAll [
 	constraints do: [:con | con simUpdateAll]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDJoint >> submitToSystem [
 	self registerName.
 	TheMbDSystem jointsMotions add: self
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDJoint >> useEquationNumbers [
 	constraints do: [:con | con useEquationNumbers]
 ]

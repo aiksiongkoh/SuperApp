@@ -1,15 +1,17 @@
 Class {
-	#name : #StMArcTan,
-	#superclass : #StMIntrinsicFunctionX,
-	#category : #'StMath-Symbolic'
+	#name : 'StMArcTan',
+	#superclass : 'StMIntrinsicFunctionX',
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMArcTan class >> functionSymbol [
 	^'arctan'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMArcTan class >> visualWorksMetadata [
 
 	^ #(
@@ -19,13 +21,19 @@ StMArcTan class >> visualWorksMetadata [
 
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMArcTan >> differentiateWRTx [
-	^((x copy raisedTo: 2)
-		plus: 1) reciprocal
+
+	^ StMReciprocal with: (StMSum with: 1 with: (x copy raisedTo: 2))
 ]
 
-{ #category : #evaluating }
+{ #category : 'printing' }
+StMArcTan >> printFuntionNameOn: aStream [
+
+	aStream nextPutAll: 'arctan'
+]
+
+{ #category : 'evaluating' }
 StMArcTan >> value [
 	^x value arcTan
 ]

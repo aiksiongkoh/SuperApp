@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDVelSolver2,
-	#superclass : #MbDSolver,
+	#name : 'MbDVelSolver2',
+	#superclass : 'MbDSolver',
 	#instVars : [
 		'system',
 		'n',
@@ -8,10 +8,12 @@ Class {
 		'jacobian',
 		'matrixSolver'
 	],
-	#category : #'StCAD-MbD-MbDSolver'
+	#category : 'StCAD-MbD-MbDSolver',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDVelSolver2 class >> visualWorksMetadata [
 
 	^ #(
@@ -21,7 +23,7 @@ MbDVelSolver2 class >> visualWorksMetadata [
 
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDVelSolver2 >> basicSolveEquations [
 	^matrixSolver 
 		solve: jacobian
@@ -29,7 +31,7 @@ MbDVelSolver2 >> basicSolveEquations [
 		saveOriginal: true
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDVelSolver2 >> handleSingularMatrix [
 	^(matrixSolver isMemberOf: GESpMatParPvMarkoFast) 
 		ifTrue: 
@@ -43,26 +45,26 @@ MbDVelSolver2 >> handleSingularMatrix [
 				ifFalse: [self halt: 'Check this.']]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDVelSolver2 >> logSingularMatrixMessage [
 	system 
 		logString: #'MbD: \Velocity solver has encountered a singular matrix.'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDVelSolver2 >> matrixSolverClass [
 	"It is not safe to use StMGESpMatParPvMarkoFast3 because unstable answer can result when the matrix is large. Since velocity calculation is not iterative, the time cost is low."
 
 	^GESpMatParPvPrecise
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDVelSolver2 >> solveEquations [
 	^[self basicSolveEquations] on: SingularMatrixError
 		do: [:ex | ex return: self handleSingularMatrix]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDVelSolver2 >> system: object [ 
 	system := object
 ]

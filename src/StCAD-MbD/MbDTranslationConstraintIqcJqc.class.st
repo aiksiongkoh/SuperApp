@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDTranslationConstraintIqcJqc,
-	#superclass : #MbDTranslationConstraintIqcJc,
+	#name : 'MbDTranslationConstraintIqcJqc',
+	#superclass : 'MbDTranslationConstraintIqcJc',
 	#instVars : [
 		'pGpXJ',
 		'pGpEJ',
@@ -10,10 +10,12 @@ Class {
 		'iqXJ',
 		'iqEJ'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDTranslationConstraintIqcJqc class >> visualWorksMetadata [
 
 	^ #(
@@ -23,7 +25,7 @@ MbDTranslationConstraintIqcJqc class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDTranslationConstraintIqcJqc class >> withFrmI: afrmI frmJ: afrmJ axis: aaxis [ 
 	^(afrmI isMemberOf: MbDEndFrameqc)
 		& (afrmJ isMemberOf: MbDEndFrameqc)
@@ -34,12 +36,12 @@ MbDTranslationConstraintIqcJqc class >> withFrmI: afrmI frmJ: afrmJ axis: aaxis 
 		ifFalse: [nil]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDTranslationConstraintIqcJqc >> addToJointForceJ: col [ 
 	col equalSelfPlusFullColumn: pGpXJ times: lam
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDTranslationConstraintIqcJqc >> addToJointTorqueJ: col [ 
 	| cForceT rJpJeJp pAOJppEJ aBOJp fpAOJppEJrJpJeJp dum lampGpE c2Torque |
 	cForceT := pGpXJ times: lam.
@@ -55,7 +57,7 @@ MbDTranslationConstraintIqcJqc >> addToJointTorqueJ: col [
 	col equalSelfPlusFullColumn: c2Torque times: 0.5
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDTranslationConstraintIqcJqc >> addpTIeiGOpEJto: mat [ 
 	"ppGpXIpEJ := zero. 
 	term2 := zero."
@@ -67,7 +69,7 @@ MbDTranslationConstraintIqcJqc >> addpTIeiGOpEJto: mat [
 	mat equalSelfPlusFullMatrix: pTIeiGOpEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDTranslationConstraintIqcJqc >> addpTIeiGOpXJto: mat [ 
 	"ppGpXIpXJ := zero. 
 	term2 := zero."
@@ -79,7 +81,7 @@ MbDTranslationConstraintIqcJqc >> addpTIeiGOpXJto: mat [
 	mat equalSelfPlusFullMatrix: pTIeiGOpXJ
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDTranslationConstraintIqcJqc >> calcPostDynCorrectorIteration [
 	super calcPostDynCorrectorIteration.
 	pGpXJ := riIeJeIe pvaluepXJ.
@@ -89,12 +91,12 @@ MbDTranslationConstraintIqcJqc >> calcPostDynCorrectorIteration [
 	ppGpEJpEJ := riIeJeIe ppvaluepEJpEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDTranslationConstraintIqcJqc >> dispCompClass [
 	^MbDDispCompIeqcJeqcKeqc
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDTranslationConstraintIqcJqc >> fillAccICIterError: col [ 
 	| qEdotI qXdotJ qEdotJ sum |
 	super fillAccICIterError: col.
@@ -112,7 +114,7 @@ MbDTranslationConstraintIqcJqc >> fillAccICIterError: col [
 	col at: iG plusNumber: sum
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDTranslationConstraintIqcJqc >> fillCollisionError: col [ 
 	"lamDeriv is now PlamDeriv."
 	"qEddot is now qEdotDeriv."
@@ -127,14 +129,14 @@ MbDTranslationConstraintIqcJqc >> fillCollisionError: col [
 	col at: iG plusNumber: sum
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDTranslationConstraintIqcJqc >> fillPosICError: col [ 
 	super fillPosICError: col.
 	col at: iqXJ plusFullColumn: pGpXJ times: lam.
 	col at: iqEJ plusFullColumn: pGpEJ times: lam
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDTranslationConstraintIqcJqc >> fillPosICJacob: mat [ 
 	| ppGpEIpXJlam ppGpEIpEJlam |
 	super fillPosICJacob: mat.
@@ -149,7 +151,7 @@ MbDTranslationConstraintIqcJqc >> fillPosICJacob: mat [
 	mat at: iqEJ and: iqEJ plusFullMatrix: ppGpEJpEJ times: lam
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDTranslationConstraintIqcJqc >> fillPosKineJacob: mat [ 
 	super fillPosKineJacob: mat.
 	mat
@@ -162,7 +164,7 @@ MbDTranslationConstraintIqcJqc >> fillPosKineJacob: mat [
 		plusFullRow: pGpEJ
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDTranslationConstraintIqcJqc >> fillVelICJacob: mat [ 
 	super fillVelICJacob: mat.
 	mat at: iG and: iqXJ plusFullRow: pGpXJ.
@@ -171,7 +173,7 @@ MbDTranslationConstraintIqcJqc >> fillVelICJacob: mat [
 	mat at: iqEJ and: iG plusFullColumn: pGpEJ transpose
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDTranslationConstraintIqcJqc >> fillpFpy: mat [ 
 	| ppGpEIpXJlam ppGpEIpEJlam |
 	super fillpFpy: mat.
@@ -184,14 +186,14 @@ MbDTranslationConstraintIqcJqc >> fillpFpy: mat [
 	mat at: iqEJ and: iqEJ plusFullMatrix: ppGpEJpEJ times: lam
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDTranslationConstraintIqcJqc >> fillpFpydot: mat [ 
 	super fillpFpydot: mat.
 	mat at: iqXJ and: iG plusFullColumn: pGpXJ transpose.
 	mat at: iqEJ and: iG plusFullColumn: pGpEJ transpose
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDTranslationConstraintIqcJqc >> useEquationNumbers [
 	super useEquationNumbers.
 	iqXJ := frmJ iqX.

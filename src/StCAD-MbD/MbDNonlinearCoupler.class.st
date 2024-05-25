@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDNonlinearCoupler,
-	#superclass : #MbDCouplerConstraint,
+	#name : 'MbDNonlinearCoupler',
+	#superclass : 'MbDCouplerConstraint',
 	#instVars : [
 		'couplerFunction',
 		'n',
@@ -13,10 +13,12 @@ Class {
 		'pGpXJs',
 		'pGpEJs'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDNonlinearCoupler class >> visualWorksMetadata [
 
 	^ #(
@@ -26,7 +28,7 @@ MbDNonlinearCoupler class >> visualWorksMetadata [
 
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDNonlinearCoupler >> calcPostDynCorrectorIteration [
 	"ppGpqpq is too complicated to store and will be computed on the fly."
 
@@ -47,7 +49,7 @@ MbDNonlinearCoupler >> calcPostDynCorrectorIteration [
 			pvaluepEJ == nil ifFalse: [(pGpEJs at: i) equalFullRow: pvaluepEJ times: pfuncpkineIJi]]
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDNonlinearCoupler >> fillAccICIterError: col [ 
 	| kineIJs sum kineIJi pFrmIi pFrmJi pGpXIi pGpEIi pGpXJi pGpEJi |
 	kineIJs := couplerFunction kineIJs.
@@ -70,7 +72,7 @@ MbDNonlinearCoupler >> fillAccICIterError: col [
 	self fillAccICIterErrorppGpqpq: col
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDNonlinearCoupler >> fillAccICIterErrorppGpqpq: col [ 
 	| kineIJs pfuncpkineIJs ppfuncpkineIJpkineIJs kineIJi pfuncpkineIJi ppfuncpkineIJpkineIJi ppfuncpkineIJpkineIJii kineIJj ppfuncpkineIJpkineIJij |
 	kineIJs := couplerFunction kineIJs.
@@ -103,7 +105,7 @@ MbDNonlinearCoupler >> fillAccICIterErrorppGpqpq: col [
 							ppfuncpkineIJpkineIJ: ppfuncpkineIJpkineIJij]]]
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDNonlinearCoupler >> fillAccICIterErrorppGpqpq: col kineIJ: kineIJ pfuncpkineIJ: pfuncpkineIJ [ 
 	| sum qXdotI qEdotI qXdotJ qEdotJ ppvaluepXIpXI term ppvaluepXIpEI ppvaluepXIpXJ ppvaluepXIpEJ ppvaluepEIpEI ppvaluepEIpXJ ppvaluepEIpEJ ppvaluepXJpXJ ppvaluepXJpEJ ppvaluepEJpEJ pfrmI pfrmJ |
 	pfuncpkineIJ == 0
@@ -158,7 +160,7 @@ MbDNonlinearCoupler >> fillAccICIterErrorppGpqpq: col kineIJ: kineIJ pfuncpkineI
 	col at: iG plusNumber: sum
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDNonlinearCoupler >> fillAccICIterErrorppGpqpq: col kineIJ: kineIJ ppfuncpkineIJpkineIJ: ppfuncpkineIJpkineIJ [ 
 	| sum pvaluepXI pvaluepEI pvaluepXJ pvaluepEJ pvaluepXIqXdotI pvaluepEIqEdotI pvaluepXJqXdotJ pvaluepEJqEdotJ term |
 	ppfuncpkineIJpkineIJ == 0
@@ -215,7 +217,7 @@ MbDNonlinearCoupler >> fillAccICIterErrorppGpqpq: col kineIJ: kineIJ ppfuncpkine
 	col at: iG plusNumber: sum
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDNonlinearCoupler >> fillAccICIterErrorppGpqpq: col kineIJi: kineIJi kineIJj: kineIJj ppfuncpkineIJpkineIJ: ppfuncpkineIJpkineIJ [ 
 	| sum pvaluepXIi pvaluepEIi pvaluepXJi pvaluepEJi pvaluepXIqXdotIi pvaluepEIqEdotIi pvaluepXJqXdotJi pvaluepEJqEdotJi pvaluepXIj pvaluepEIj pvaluepXJj pvaluepEJj pvaluepXIqXdotIj pvaluepEIqEdotIj pvaluepXJqXdotJj pvaluepEJqEdotJj term |
 	ppfuncpkineIJpkineIJ == 0
@@ -292,7 +294,7 @@ MbDNonlinearCoupler >> fillAccICIterErrorppGpqpq: col kineIJi: kineIJi kineIJj: 
 	col at: iG plusNumber: sum
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDNonlinearCoupler >> fillPosICError: col [ 
 	super fillPosICError: col.
 	1 to: n do: [:i | 
@@ -302,7 +304,7 @@ MbDNonlinearCoupler >> fillPosICError: col [
 			col at: (iqEJs at: i) plusFullColumn: (pGpEJs at: i) times: lam]
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDNonlinearCoupler >> fillPosICJacob: mat [ 
 	| iqXIi pGpXIi iqXJi pGpXJi iqEIi pGpEIi iqEJi pGpEJi |
 	1 to: n do: [:i | 
@@ -317,7 +319,7 @@ MbDNonlinearCoupler >> fillPosICJacob: mat [
 	self fillPosICJacobppGpqpq: mat
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDNonlinearCoupler >> fillPosICJacobppGpqpq: mat [ 
 	| kineIJs pfuncpkineIJs ppfuncpkineIJpkineIJs kineIJi pfuncpkineIJi ppfuncpkineIJpkineIJi ppfuncpkineIJpkineIJii kineIJj ppfuncpkineIJpkineIJij |
 	kineIJs := couplerFunction kineIJs.
@@ -350,7 +352,7 @@ MbDNonlinearCoupler >> fillPosICJacobppGpqpq: mat [
 							ppfuncpkineIJpkineIJ: ppfuncpkineIJpkineIJij]]]
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDNonlinearCoupler >> fillPosICJacobppGpqpq: mat kineIJ: kineIJ pfuncpkineIJ: pfuncpkineIJ [ 
 	| pfrmI pfrmJ iqXI iqEI iqXJ iqEJ factor ppvaluepXIpXI ppvaluepXIpEI ppGpXIpEIlam ppvaluepXIpXJ ppGpXIpXJlam ppvaluepXIpEJ ppGpXIpEJlam ppvaluepEIpEI ppvaluepEIpXJ ppGpEIpXJlam ppvaluepEIpEJ ppGpEIpEJlam ppvaluepXJpXJ ppvaluepXJpEJ ppGpXJpEJlam ppvaluepEJpEJ |
 	pfuncpkineIJ == 0
@@ -400,7 +402,7 @@ MbDNonlinearCoupler >> fillPosICJacobppGpqpq: mat kineIJ: kineIJ pfuncpkineIJ: p
 					[mat at: iqEJ and: iqEJ plusFullMatrix: ppvaluepEJpEJ times: factor]]
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDNonlinearCoupler >> fillPosICJacobppGpqpq: mat kineIJ: kineIJ ppfuncpkineIJpkineIJ: ppfuncpkineIJpkineIJ [ 
 	| pfrmI pfrmJ iqXI iqEI iqXJ iqEJ pvaluepXI pvaluepEI pvaluepXJ pvaluepEJ factor ppGpXIpEIlam ppGpXIpXJlam ppGpXIpEJlam ppGpEIpXJlam ppGpEIpEJlam ppGpXJpEJlam |
 	ppfuncpkineIJpkineIJ == 0
@@ -460,7 +462,7 @@ MbDNonlinearCoupler >> fillPosICJacobppGpqpq: mat kineIJ: kineIJ ppfuncpkineIJpk
 					[mat at: iqEJ and: iqEJ plusFullMatrix: (pvaluepEJ transposeTimesFullRow: pvaluepEJ) times: factor]]
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDNonlinearCoupler >> fillPosICJacobppGpqpq: mat kineIJi: kineIJi kineIJj: kineIJj ppfuncpkineIJpkineIJ: ppfuncpkineIJpkineIJ [ 
 	| pfrmIi pfrmJi iqXIi iqEIi iqXJi iqEJi pvaluepXIi pvaluepEIi pvaluepXJi pvaluepEJi iqXIj pfrmIj pfrmJj iqEIj iqXJj iqEJj pvaluepXIj pvaluepEIj pvaluepXJj pvaluepEJj factor ppGpXIpXIijlam ppGpXIpEIijlam ppGpXIpXJijlam ppGpXIpEJijlam ppGpEIpXIijlam ppGpEIpEIijlam ppGpEIpXJijlam ppGpEIpEJijlam ppGpXJpXIijlam ppGpXJpEIijlam ppGpXJpXJijlam ppGpXJpEJijlam ppGpEJpXIijlam ppGpEJpEIijlam ppGpEJpXJijlam ppGpEJpEJijlam |
 	ppfuncpkineIJpkineIJ == 0
@@ -576,7 +578,7 @@ MbDNonlinearCoupler >> fillPosICJacobppGpqpq: mat kineIJi: kineIJi kineIJj: kine
 							mat at: iqEJj and: iqEJi plusTransposeFullMatrix: ppGpEJpEJijlam]]]
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDNonlinearCoupler >> fillPosKineJacob: mat [ 
 	1 to: n
 		do: 
@@ -587,7 +589,7 @@ MbDNonlinearCoupler >> fillPosKineJacob: mat [
 			mat at: iG and: (iqEJs at: i) plusFullRow: (pGpEJs at: i)]
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDNonlinearCoupler >> fillVelICJacob: mat [ 
 	| iqXIi pGpXIi iqXJi pGpXJi iqEIi pGpEIi iqEJi pGpEJi |
 	1 to: n do: [:i | 
@@ -601,7 +603,7 @@ MbDNonlinearCoupler >> fillVelICJacob: mat [
 			mat at: iqEJi and: iG plusFullColumn: pGpEJi transpose]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDNonlinearCoupler >> fillpFpy: mat [ 
 	1 to: n do: [:i | 
 			mat at: iG and: (iqXIs at: i) plusFullRow: (pGpXIs at: i).
@@ -611,7 +613,7 @@ MbDNonlinearCoupler >> fillpFpy: mat [
 	self fillPosICJacobppGpqpq: mat
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDNonlinearCoupler >> fillpFpydot: mat [ 
 	1 to: n do: [:i | 
 			mat at: (iqXIs at: i) and: iG plusFullColumn: (pGpXIs at: i) transpose.
@@ -620,23 +622,23 @@ MbDNonlinearCoupler >> fillpFpydot: mat [
 			mat at: (iqEJs at: i) and: iG plusFullColumn: (pGpEJs at: i) transpose]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDNonlinearCoupler >> funcBlk: funcBlk [ 
 	couplerFunction funcBlk: funcBlk
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDNonlinearCoupler >> initialize [
 	super initialize.
 	couplerFunction := MbDCouplerFunction new
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDNonlinearCoupler >> initializeGlobally [
 	couplerFunction initializeGlobally
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDNonlinearCoupler >> initializeLocally [
 	couplerFunction initializeLocally.
 	n := couplerFunction n.
@@ -655,109 +657,109 @@ MbDNonlinearCoupler >> initializeLocally [
 			pGpEJs at: i put: (StMFullRow zero: 4)]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDNonlinearCoupler >> kineIJs [
 	^couplerFunction kineIJs
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDNonlinearCoupler >> n [
 	^n
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDNonlinearCoupler >> pGpEIs [
 	^pGpEIs
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDNonlinearCoupler >> pGpEJs [
 	^pGpEJs
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDNonlinearCoupler >> pGpXIs [
 	^pGpXIs
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDNonlinearCoupler >> pGpXJs [
 	^pGpXJs
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDNonlinearCoupler >> postDynCorrectorIteration [
 	couplerFunction postDynCorrectorIteration.
 	super postDynCorrectorIteration
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDNonlinearCoupler >> postDynOutput [
 	couplerFunction postDynOutput.
 	super postDynOutput
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDNonlinearCoupler >> postDynPredictor [
 	couplerFunction postDynPredictor.
 	super postDynPredictor
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDNonlinearCoupler >> postInput [
 	couplerFunction postInput.
 	super postInput
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDNonlinearCoupler >> postPosICIteration [
 	couplerFunction postPosICIteration.
 	super postPosICIteration
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDNonlinearCoupler >> postStaticIteration [
 	couplerFunction postStaticIteration.
 	super postStaticIteration
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDNonlinearCoupler >> preAccIC [
 	couplerFunction preAccIC.
 	super preAccIC
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDNonlinearCoupler >> preDynOutput [
 	couplerFunction preDynOutput.
 	super preDynOutput
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDNonlinearCoupler >> prePosIC [
 	couplerFunction prePosIC.
 	super prePosIC
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDNonlinearCoupler >> preStatic [
 	couplerFunction preStatic.
 	super preStatic
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDNonlinearCoupler >> preVelIC [
 	couplerFunction preVelIC.
 	super preVelIC
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDNonlinearCoupler >> simUpdateAll [
 	couplerFunction simUpdateAll.
 	super simUpdateAll
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDNonlinearCoupler >> useEquationNumbers [
 	| kineIJs kineIJi pfrmIi pfrmJi |
 	couplerFunction useEquationNumbers.

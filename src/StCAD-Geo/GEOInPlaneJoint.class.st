@@ -1,13 +1,15 @@
 Class {
-	#name : #GEOInPlaneJoint,
-	#superclass : #GEOJoint,
+	#name : 'GEOInPlaneJoint',
+	#superclass : 'GEOJoint',
 	#instVars : [
 		'offset'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'binary storage' }
+{ #category : 'binary storage' }
 GEOInPlaneJoint class >> binaryReaderBlockForVersion: oldVersion format: oldFormat [ 
 	"
 	Change 
@@ -38,12 +40,12 @@ GEOInPlaneJoint class >> binaryReaderBlockForVersion: oldVersion format: oldForm
 	^super binaryReaderBlockForVersion: oldVersion format: oldFormat
 ]
 
-{ #category : #'binary storage' }
+{ #category : 'binary storage' }
 GEOInPlaneJoint class >> binaryRepresentationVersion [
 	^40
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOInPlaneJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -53,7 +55,7 @@ GEOInPlaneJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOInPlaneJoint >> createMbD [
 	| mbdInPlaneJoint |
 	super createMbD.
@@ -61,23 +63,23 @@ GEOInPlaneJoint >> createMbD [
 	mbdInPlaneJoint offset: offset / self mbdUnits length
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOInPlaneJoint >> initialize [
 	offset := 0.0.
 	super initialize
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOInPlaneJoint >> offset [
 	^offset
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOInPlaneJoint >> offset: anObject [
 	offset := anObject
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOInPlaneJoint >> storeOn: aStream level: level [ 
 	super storeOn: aStream level: level.
 	aStream 

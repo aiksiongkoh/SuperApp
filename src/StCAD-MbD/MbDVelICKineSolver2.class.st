@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDVelICKineSolver2,
-	#superclass : #MbDVelICSolver2,
-	#category : #'StCAD-MbD-MbDSolver'
+	#name : 'MbDVelICKineSolver2',
+	#superclass : 'MbDVelICSolver2',
+	#category : 'StCAD-MbD-MbDSolver',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDVelICKineSolver2 class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ MbDVelICKineSolver2 class >> visualWorksMetadata [
 
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDVelICKineSolver2 >> run [
 	system logString: #'MbD: \Solving for quasi kinematic velocity.'.
 	self runBasic

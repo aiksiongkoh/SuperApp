@@ -1,20 +1,22 @@
 Class {
-	#name : #GEOUniversalJoint,
-	#superclass : #GEOJoint,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEOUniversalJoint',
+	#superclass : 'GEOJoint',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOUniversalJoint class >> mbdClass [
 	^MbDUniversalJoint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOUniversalJoint class >> nameString [
 	^'UniversalJoint'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOUniversalJoint class >> visualWorksMetadata [
 
 	^ #(

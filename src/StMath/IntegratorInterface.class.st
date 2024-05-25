@@ -1,6 +1,6 @@
 Class {
-	#name : #IntegratorInterface,
-	#superclass : #Integrator,
+	#name : 'IntegratorInterface',
+	#superclass : 'Integrator',
 	#instVars : [
 		'tout',
 		'hout',
@@ -10,10 +10,12 @@ Class {
 		'tend',
 		'integrator'
 	],
-	#category : #'StMath-StMathIntegrator'
+	#category : 'StMath-StMathIntegrator',
+	#package : 'StMath',
+	#tag : 'StMathIntegrator'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 IntegratorInterface class >> visualWorksMetadata [
 
 	^ #(
@@ -23,67 +25,67 @@ IntegratorInterface class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 IntegratorInterface >> changeTime: aDouble [ 
 	system time: aDouble
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 IntegratorInterface >> checkForDiscontinuity [
 	self subclassResponsibility
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 IntegratorInterface >> checkForOutputThrough: t [ 
 	self subclassResponsibility
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 IntegratorInterface >> correctorAbsoluteTolerance [
 	^system correctorAbsoluteTolerance
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 IntegratorInterface >> correctorRelativeTolerance [
 	^system correctorRelativeTolerance
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 IntegratorInterface >> hmax [
 	^hmax
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 IntegratorInterface >> hmax: aDouble [ 
 	hmax := aDouble
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 IntegratorInterface >> hmin [
 	^hmin
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 IntegratorInterface >> hmin: aDouble [ 
 	hmin := aDouble
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 IntegratorInterface >> hout [
 	^hout
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 IntegratorInterface >> hout: aDouble [ 
 	hout := aDouble
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 IntegratorInterface >> incrementTime: aDouble [ 
 	system time: aDouble
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 IntegratorInterface >> initializeGlobally [
 	tstart := system startTime.
 	self hout: system outputStepSize.
@@ -96,17 +98,17 @@ IntegratorInterface >> initializeGlobally [
 				ifFalse: [-1.0]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 IntegratorInterface >> integrationAbsoluteTolerance [
 	^system integrationAbsoluteTolerance
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 IntegratorInterface >> integrationRelativeTolerance [
 	^system integrationRelativeTolerance
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 IntegratorInterface >> interpolateAt: tArg [ 
 	"Interpolate for system state at tArg and leave system in that state."
 
@@ -121,22 +123,22 @@ IntegratorInterface >> interpolateAt: tArg [
 	system simUpdateAll
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 IntegratorInterface >> istep [
 	^integrator istep
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 IntegratorInterface >> opBDF [
 	^integrator opBDF
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 IntegratorInterface >> orderMax [
 	^system orderMax
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 IntegratorInterface >> postFirstStep [
 	system postFirstStep.
 	integrator istep > 0 ifTrue: ["Noise make checking at the start unreliable."
@@ -144,14 +146,14 @@ IntegratorInterface >> postFirstStep [
 	self checkForOutputThrough: integrator t
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 IntegratorInterface >> postRun [
 	"system postRun"
 
 	self subclassResponsibility
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 IntegratorInterface >> postStep [
 	system postStep.
 	integrator istep > 0 ifTrue: ["Noise make checking at the start unreliable."
@@ -159,19 +161,19 @@ IntegratorInterface >> postStep [
 	self checkForOutputThrough: integrator t
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 IntegratorInterface >> preRun [
 	"system preRun"
 
 	self subclassResponsibility
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 IntegratorInterface >> reportStats [
 	self subclassResponsibility
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 IntegratorInterface >> run [
 	self preRun.
 	self initializeLocally.
@@ -183,27 +185,27 @@ IntegratorInterface >> run [
 	self postRun
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 IntegratorInterface >> suggestSmallerOrAcceptFirstStepSize: hnew [ 
 	self subclassResponsibility
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 IntegratorInterface >> suggestSmallerOrAcceptStepSize: hnew [ 
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 IntegratorInterface >> time [
 	^integrator t
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 IntegratorInterface >> tout [
 	^tout
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 IntegratorInterface >> tstart [
 	^tstart
 ]

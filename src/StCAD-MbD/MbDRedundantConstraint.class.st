@@ -1,13 +1,15 @@
 Class {
-	#name : #MbDRedundantConstraint,
-	#superclass : #MbDItem,
+	#name : 'MbDRedundantConstraint',
+	#superclass : 'MbDItem',
 	#instVars : [
 		'constraint'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDRedundantConstraint class >> visualWorksMetadata [
 
 	^ #(
@@ -17,7 +19,7 @@ MbDRedundantConstraint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDRedundantConstraint >> activateConstraint [
 	| newSelf |
 	newSelf := self constraint.
@@ -25,47 +27,47 @@ MbDRedundantConstraint >> activateConstraint [
 	^true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRedundantConstraint >> addToJointForceI: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRedundantConstraint >> addToJointForceJ: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRedundantConstraint >> addToJointTorqueI: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRedundantConstraint >> addToJointTorqueJ: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRedundantConstraint >> bePerturbed: delta fillqsulam: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRedundantConstraint >> classString [
 	^constraint classString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRedundantConstraint >> constraint [
 	^constraint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRedundantConstraint >> constraint: con [ 
 	constraint := con
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDRedundantConstraint >> discontinuityAt: tstartNew addTypeTo: collection [ 
 	"Reactivate all contraints."
 
@@ -75,157 +77,157 @@ MbDRedundantConstraint >> discontinuityAt: tstartNew addTypeTo: collection [
 	self become: newSelf
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDRedundantConstraint >> fillAccICIterError: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRedundantConstraint >> fillConstraints: collection [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRedundantConstraint >> fillDispConstraints: collection [ 
 	"Do nothing."
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDRedundantConstraint >> fillDynError: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRedundantConstraint >> fillEssenConstraints: collection [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRedundantConstraint >> fillPerpenConstraints: collection [ 
 	"Do nothing."
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDRedundantConstraint >> fillPosICError: col [ 
 	"Do nothing."
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDRedundantConstraint >> fillPosICJacob: mat [ 
 	"Do nothing."
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDRedundantConstraint >> fillPosKineError: col [ 
 	"Do nothing."
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDRedundantConstraint >> fillPosKineJacob: mat [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRedundantConstraint >> fillRedundantConstraints: collection [ 
 	collection add: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRedundantConstraint >> fillmu: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRedundantConstraint >> fillmudot: col [ 
 	"Do nothing."
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDRedundantConstraint >> fillpFpy: mat [ 
 	"Do nothing."
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDRedundantConstraint >> fillpFpydot: mat [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRedundantConstraint >> fillpqsumu: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRedundantConstraint >> fillpqsumudot: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRedundantConstraint >> fillqsuddotlam: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRedundantConstraint >> fillqsudotPlam: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRedundantConstraint >> fillqsudotPlamDeriv: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRedundantConstraint >> fillqsulam: col [ 
 	"Do nothing."
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDRedundantConstraint >> isRedundant [
 	^true
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDRedundantConstraint >> postDynCorrectorIteration [
 	"Do nothing."
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDRedundantConstraint >> postDynOutput [
 	"Do nothing."
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDRedundantConstraint >> postDynPredictor [
 	"Do nothing."
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDRedundantConstraint >> postInput [
 	"Do nothing."
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDRedundantConstraint >> postPosICIteration [
 	"Do nothing."
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDRedundantConstraint >> postStaticIteration [
 	"Do nothing."
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDRedundantConstraint >> preAccIC [
 	"Do nothing."
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDRedundantConstraint >> preDynOutput [
 	"Do nothing."
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDRedundantConstraint >> preICRestart [
 	"Reactivate all contraints."
 
@@ -235,82 +237,82 @@ MbDRedundantConstraint >> preICRestart [
 	self become: newSelf
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDRedundantConstraint >> prePosIC [
 	"Do nothing."
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDRedundantConstraint >> preStatic [
 	"Do nothing."
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDRedundantConstraint >> preVelIC [
 	"Do nothing."
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDRedundantConstraint >> removeRedundantConstraints: redundantEqns [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRedundantConstraint >> setmu: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRedundantConstraint >> setmuddot: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRedundantConstraint >> setpqsumu: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRedundantConstraint >> setpqsumuddot: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRedundantConstraint >> setpqsumudot: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRedundantConstraint >> setqsuddotlam: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRedundantConstraint >> setqsudotPlam: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRedundantConstraint >> setqsudotPlamDeriv: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRedundantConstraint >> setqsudotlam: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRedundantConstraint >> setqsulam: col [ 
 	"Do nothing."
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDRedundantConstraint >> simUpdateAll [
 	"Do nothing."
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDRedundantConstraint >> useEquationNumbers [
 	"Do nothing."
 ]

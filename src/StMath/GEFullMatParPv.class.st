@@ -1,15 +1,17 @@
 Class {
-	#name : #GEFullMatParPv,
-	#superclass : #GEFullMat,
-	#category : #'StMath-StMathMatrixSolver'
+	#name : 'GEFullMatParPv',
+	#superclass : 'GEFullMat',
+	#category : 'StMath-StMathMatrixSolver',
+	#package : 'StMath',
+	#tag : 'StMathMatrixSolver'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEFullMatParPv class >> isAbstractClass [
 	^false
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEFullMatParPv class >> visualWorksMetadata [
 
 	^ #(
@@ -19,7 +21,7 @@ GEFullMatParPv class >> visualWorksMetadata [
 
 ]
 
-{ #category : #pivoting }
+{ #category : 'pivoting' }
 GEFullMatParPv >> doPivoting: p [ 
 	"Use scalings. Do row pivoting."
 
@@ -50,12 +52,12 @@ GEFullMatParPv >> doPivoting: p [
 	max < singularPivotTolerance ifTrue: [SingularMatrixError raiseSignal]
 ]
 
-{ #category : #solution }
+{ #category : 'solution' }
 GEFullMatParPv >> postSolve [
 	"Do nothing."
 ]
 
-{ #category : #solution }
+{ #category : 'solution' }
 GEFullMatParPv >> preSolve: aMatrix with: aVector saveOriginal: saveOriginal [ 
 	super
 		preSolve: aMatrix

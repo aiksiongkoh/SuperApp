@@ -31,8 +31,8 @@ aJpp is the aJ about the cm and the principal axes.
 
 "
 Class {
-	#name : #GEOInertiaMatrixSolver,
-	#superclass : #GEOItem,
+	#name : 'GEOInertiaMatrixSolver',
+	#superclass : 'GEOItem',
 	#instVars : [
 		'm',
 		'aJPP',
@@ -46,10 +46,12 @@ Class {
 		'aAPp',
 		'colOrder'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 GEOInertiaMatrixSolver class >> example1 [
 	"GEOInertiaMatrixSolver example1."
 	| aJpp rpPp axis aApP solver aJPP |
@@ -100,7 +102,7 @@ GEOInertiaMatrixSolver class >> example1 [
 		cr.
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 GEOInertiaMatrixSolver class >> example2 [
 	"GEOInertiaMatrixSolver example2."
 	| aJpp axis aAPp aJPP solver |
@@ -142,7 +144,7 @@ GEOInertiaMatrixSolver class >> example2 [
 		cr.
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 GEOInertiaMatrixSolver class >> example3 [
 	"GEOInertiaMatrixSolver example3."
 	| aJpp axis aAPp aJPP solver |
@@ -184,7 +186,7 @@ GEOInertiaMatrixSolver class >> example3 [
 		cr.
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 GEOInertiaMatrixSolver class >> example4 [
 	"GEOInertiaMatrixSolver example4."
 
@@ -216,7 +218,7 @@ GEOInertiaMatrixSolver class >> example4 [
 	Transcript cr; show: solver aAPp printString
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 GEOInertiaMatrixSolver class >> example5 [
 	"GEOInertiaMatrixSolver example5."
 
@@ -235,7 +237,7 @@ GEOInertiaMatrixSolver class >> example5 [
 	Transcript cr; show: solver aAPp printString.
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 GEOInertiaMatrixSolver class >> example6 [
 	"GEOInertiaMatrixSolver example6."
 
@@ -269,7 +271,7 @@ GEOInertiaMatrixSolver class >> example6 [
 		show: solver aAPp printString
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOInertiaMatrixSolver class >> visualWorksMetadata [
 
 	^ #(
@@ -279,39 +281,39 @@ GEOInertiaMatrixSolver class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOInertiaMatrixSolver >> aAPo: mat [ 
 	aAPo := mat
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOInertiaMatrixSolver >> aAPp [
 	^aAPp
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOInertiaMatrixSolver >> aJPP: mat [ 
 	aJPP := mat
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOInertiaMatrixSolver >> aJoo [
 	^aJoo
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOInertiaMatrixSolver >> aJpp [
 	^aJpp
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOInertiaMatrixSolver >> calc [
 	self calcJoo.
 	self calcJpp.
 	self calcAPp
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOInertiaMatrixSolver >> calcAPp [
 	| lam1 lam2 lam3 eigenvector2 eigenvector3 eigenvector1 |
 	lam1 := aJpp at: 1.
@@ -355,7 +357,7 @@ GEOInertiaMatrixSolver >> calcAPp [
 		putFullColumn: eigenvector3
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOInertiaMatrixSolver >> calcJoo [
 	"aJoo := aAPoT*[aJPP + mass*(rPoPTilde*rPoPTilde + rPoPTilde*rocmPTilde + 
 	rocmPTilde*rPoPTilde)]*aAPo"
@@ -378,7 +380,7 @@ GEOInertiaMatrixSolver >> calcJoo [
 	aJoo conditionSelfWithTol: aJoo maxElement * 1.0e-6
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOInertiaMatrixSolver >> calcJpp [
 	"aJcmP := aJPP + mass*(rPcmPTilde*rPcmPTilde)"
 
@@ -393,7 +395,7 @@ GEOInertiaMatrixSolver >> calcJpp [
 		ifFalse: [self calcJppFromFullJcmP]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOInertiaMatrixSolver >> calcJppFromDiagJcmP [
 	"Eigenvalues are orders from smallest to largest."
 
@@ -430,7 +432,7 @@ GEOInertiaMatrixSolver >> calcJppFromDiagJcmP [
 				with: lam3
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOInertiaMatrixSolver >> calcJppFromFullJcmP [
 	"Eigenvalues are orders from smallest to largest."
 	"Rounding error can be significant."
@@ -487,7 +489,7 @@ GEOInertiaMatrixSolver >> calcJppFromFullJcmP [
 				with: lam3
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOInertiaMatrixSolver >> doFullPivoting: p [ 
 	| max pivotRow pivotCol rowi aij mag |
 	max := 0.
@@ -517,7 +519,7 @@ GEOInertiaMatrixSolver >> doFullPivoting: p [
 			colOrder swap: p with: pivotCol]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOInertiaMatrixSolver >> eigenvectorFor: lam [ 
 	"[aJcmP] - lam[I]."
 
@@ -562,7 +564,7 @@ GEOInertiaMatrixSolver >> eigenvectorFor: lam [
 	^eigenvector
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOInertiaMatrixSolver >> forwardEliminateWithPivot: p [ 
 	| rowp app rowi aip factor |
 	rowp := aJcmPcopy at: p.
@@ -579,17 +581,17 @@ GEOInertiaMatrixSolver >> forwardEliminateWithPivot: p [
 					p + 1 to: 3 do: [:j | rowi at: j minusNumber: factor * (rowp at: j)]]]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOInertiaMatrixSolver >> initialize [
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOInertiaMatrixSolver >> m: double [ 
 	m := double
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOInertiaMatrixSolver >> momentsFrom: array [ 
 	| I1 x1mx2 d a2x1expy2 b y12expy22 c Ix x1expy2 a n2dexpy2 x1expy22 Iy y13expy23 Iz d2 b2 a2 c2 Ixx x13expy2 x12expy22 Iyy y14expy24 x1expy23 Izz d3 b3 a3 c3 Ixy Ixz Iyz y1py2 answer |
 	a := array at: 1.
@@ -640,7 +642,7 @@ GEOInertiaMatrixSolver >> momentsFrom: array [
 	^answer
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOInertiaMatrixSolver >> momentsOfVolume: solid [ 
 	| momentsOfVolume answer |
 	momentsOfVolume := (StMFullColumn zero: 10).
@@ -649,7 +651,7 @@ GEOInertiaMatrixSolver >> momentsOfVolume: solid [
 	^answer
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOInertiaMatrixSolver >> momentsOfVolumeUnderFace: face [ 
 	"
 	Face Plane is ax + by +cz + d = 0. 
@@ -751,12 +753,12 @@ GEOInertiaMatrixSolver >> momentsOfVolumeUnderFace: face [
 	^answer negated
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOInertiaMatrixSolver >> rPcmP: col [ 
 	rPcmP := col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOInertiaMatrixSolver >> rPoP: col [ 
 	rPoP := col
 ]

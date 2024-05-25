@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDDistIeqctJeqc,
-	#superclass : #MbDDistIeqcJeqc,
+	#name : 'MbDDistIeqctJeqc',
+	#superclass : 'MbDDistIeqcJeqc',
 	#instVars : [
 		'prIeJept',
 		'pprIeJepXIpt',
@@ -9,10 +9,12 @@ Class {
 		'pprIeJepEJpt',
 		'pprIeJeptpt'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDDistIeqctJeqc class >> visualWorksMetadata [
 
 	^ #(

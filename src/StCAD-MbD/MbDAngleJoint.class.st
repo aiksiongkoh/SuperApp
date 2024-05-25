@@ -1,13 +1,15 @@
 Class {
-	#name : #MbDAngleJoint,
-	#superclass : #MbDJoint,
+	#name : 'MbDAngleJoint',
+	#superclass : 'MbDJoint',
 	#instVars : [
 		'theIzJz'
 	],
-	#category : #'StCAD-MbD-MbDJoint'
+	#category : 'StCAD-MbD-MbDJoint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDJoint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDAngleJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -17,7 +19,7 @@ MbDAngleJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDAngleJoint >> classString [
 	"Used to access the descriptive name of the joint."
 
@@ -26,7 +28,7 @@ MbDAngleJoint >> classString [
 	^TheMbDSystem getString: #'MbD: Angle Joint '
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDAngleJoint >> initializeGlobally [
 	| constraint |
 	constraints isEmpty 
@@ -42,12 +44,12 @@ MbDAngleJoint >> initializeGlobally [
 		ifFalse: [super initializeGlobally]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDAngleJoint >> theIzJz [
 	^theIzJz
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDAngleJoint >> theIzJz: double [
 	theIzJz := double
 ]

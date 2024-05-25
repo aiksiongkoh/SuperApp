@@ -1,16 +1,18 @@
 Class {
-	#name : #MbDConVelConstraintIqcJqc,
-	#superclass : #MbDConVelConstraintIqcJc,
+	#name : 'MbDConVelConstraintIqcJqc',
+	#superclass : 'MbDConVelConstraintIqcJc',
 	#instVars : [
 		'pGpEJ',
 		'ppGpEIpEJ',
 		'ppGpEJpEJ',
 		'iqEJ'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDConVelConstraintIqcJqc class >> visualWorksMetadata [
 
 	^ #(
@@ -20,7 +22,7 @@ MbDConVelConstraintIqcJqc class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDConVelConstraintIqcJqc class >> withFrmI: afrmI frmJ: afrmJ [ 
 	^(afrmI isMemberOf: MbDEndFrameqc)
 		& (afrmJ isMemberOf: MbDEndFrameqc)
@@ -28,7 +30,7 @@ MbDConVelConstraintIqcJqc class >> withFrmI: afrmI frmJ: afrmJ [
 		ifFalse: [nil]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConVelConstraintIqcJqc >> addToJointTorqueJ: col [ 
 	| aBOJp lampGpE c2Torque |
 	aBOJp := frmJ aBOp.
@@ -37,7 +39,7 @@ MbDConVelConstraintIqcJqc >> addToJointTorqueJ: col [
 	col equalSelfPlusFullColumn: c2Torque times: 0.5
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDConVelConstraintIqcJqc >> calcPostDynCorrectorIteration [
 	| pA12IeJepEJ ppA12IeJepEIpEJ ppA12IeJepEJpEJ pA21IeJepEJ ppA21IeJepEIpEJ ppA21IeJepEJpEJ ppGpEIpEJi ppA12IeJepEIpEJi ppA21IeJepEIpEJi ppGpEIpEJij ppGpEJpEJi ppA12IeJepEJpEJi ppA21IeJepEJpEJi ppGpEJpEJij |
 	super calcPostDynCorrectorIteration.
@@ -66,7 +68,7 @@ MbDConVelConstraintIqcJqc >> calcPostDynCorrectorIteration [
 					ppGpEJpEJ at: j and: i put: ppGpEJpEJij]]
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDConVelConstraintIqcJqc >> fillAccICIterError: col [ 
 	| qEdotI qEdotJ sum |
 	super fillAccICIterError: col.
@@ -80,13 +82,13 @@ MbDConVelConstraintIqcJqc >> fillAccICIterError: col [
 	col at: iG plusNumber: sum
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDConVelConstraintIqcJqc >> fillPosICError: col [ 
 	super fillPosICError: col.
 	col at: iqEJ plusFullColumn: pGpEJ times: lam
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDConVelConstraintIqcJqc >> fillPosICJacob: mat [ 
 	| ppGpEIpEJlam |
 	super fillPosICJacob: mat.
@@ -97,20 +99,20 @@ MbDConVelConstraintIqcJqc >> fillPosICJacob: mat [
 	mat at: iqEJ and: iqEJ plusFullMatrix: ppGpEJpEJ times: lam
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDConVelConstraintIqcJqc >> fillPosKineJacob: mat [ 
 	super fillPosKineJacob: mat.
 	mat at: iG and: iqEJ plusFullRow: pGpEJ
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDConVelConstraintIqcJqc >> fillVelICJacob: mat [ 
 	super fillVelICJacob: mat.
 	mat at: iG and: iqEJ plusFullRow: pGpEJ.
 	mat at: iqEJ and: iG plusFullColumn: pGpEJ transpose
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDConVelConstraintIqcJqc >> fillpFpy: mat [ 
 	| ppGpEIpEJlam |
 	super fillpFpy: mat.
@@ -120,23 +122,23 @@ MbDConVelConstraintIqcJqc >> fillpFpy: mat [
 	mat at: iqEJ and: iqEJ plusFullMatrix: ppGpEJpEJ times: lam
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDConVelConstraintIqcJqc >> fillpFpydot: mat [ 
 	super fillpFpydot: mat.
 	mat at: iqEJ and: iG plusFullColumn: pGpEJ transpose
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDConVelConstraintIqcJqc >> initA12IeJe [
 	aA12IeJe := MbDDirectionCosineIeqcJeqc new
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDConVelConstraintIqcJqc >> initA21IeJe [
 	aA21IeJe := MbDDirectionCosineIeqcJeqc new
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDConVelConstraintIqcJqc >> initialize [
 	super initialize.
 	pGpEJ := StMFullRow new: 4.
@@ -144,7 +146,7 @@ MbDConVelConstraintIqcJqc >> initialize [
 	ppGpEJpEJ := StMFullMatrix new: 4 by: 4
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDConVelConstraintIqcJqc >> useEquationNumbers [
 	super useEquationNumbers.
 	iqEJ := frmJ iqE

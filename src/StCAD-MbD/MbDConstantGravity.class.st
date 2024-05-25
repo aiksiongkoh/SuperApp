@@ -1,13 +1,15 @@
 Class {
-	#name : #MbDConstantGravity,
-	#superclass : #MbDItem,
+	#name : 'MbDConstantGravity',
+	#superclass : 'MbDItem',
 	#instVars : [
 		'gXYZ'
 	],
-	#category : #'StCAD-MbD-MbDForce'
+	#category : 'StCAD-MbD-MbDForce',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDForce'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDConstantGravity class >> visualWorksMetadata [
 
 	^ #(
@@ -17,12 +19,12 @@ MbDConstantGravity class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDConstantGravity >> fillAccICIterError: col [ 
 	TheMbDSystem parts do: [:part | col at: part iqX plusFullColumn: (gXYZ times: part m)]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDConstantGravity >> fillDynError: col [ 
 	TheMbDSystem parts do: [:part | col
 			at: part iqX
@@ -30,12 +32,12 @@ MbDConstantGravity >> fillDynError: col [
 			times: part m]
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDConstantGravity >> fillStaticError: col [ 
 	self fillDynError: col
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDConstantGravity >> gX: gX gY: gY gZ: gZ [ 
 	""
 
@@ -45,62 +47,62 @@ MbDConstantGravity >> gX: gX gY: gY gZ: gZ [
 	gXYZ at: 3 put: gZ
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDConstantGravity >> gXYZ [
 	^gXYZ
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDConstantGravity >> gXYZ: col [ 
 	gXYZ := col
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDConstantGravity >> postDynCorrectorIteration [
 	"Do nothing."
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDConstantGravity >> postDynOutput [
 	"Do nothing."
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDConstantGravity >> postDynPredictor [
 	"Do nothing."
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDConstantGravity >> postInput [
 	"Do nothing."
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDConstantGravity >> postStaticIteration [
 	"Do nothing."
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDConstantGravity >> preAccIC [
 	"Do nothing."
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDConstantGravity >> preDynOutput [
 	"Do nothing."
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDConstantGravity >> preStatic [
 	"Do nothing."
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDConstantGravity >> simUpdateAll [
 	"Do nothing."
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDConstantGravity >> submitToSystem [
 	TheMbDSystem forcesTorques add: self
 ]

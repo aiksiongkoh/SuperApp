@@ -6,8 +6,8 @@ aIJ, aIeJe, aAiIejJe or aAIeJeij
 Axes axisI and axisJ
 "
 Class {
-	#name : #MbDDirectionCosineIecJec,
-	#superclass : #MbDKinematicIeJe,
+	#name : 'MbDDirectionCosineIecJec',
+	#superclass : 'MbDKinematicIeJe',
 	#instVars : [
 		'aAijIeJe',
 		'axisI',
@@ -15,10 +15,12 @@ Class {
 		'aAjOIe',
 		'aAjOJe'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDDirectionCosineIecJec class >> visualWorksMetadata [
 
 	^ #(
@@ -28,7 +30,7 @@ MbDDirectionCosineIecJec class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDDirectionCosineIecJec class >> withFrmI: afrmI frmJ: afrmJ axisI: aaxisI axisJ: aaxisJ [ 
 	| instance |
 	self allSubclasses
@@ -42,44 +44,44 @@ MbDDirectionCosineIecJec class >> withFrmI: afrmI frmJ: afrmJ axisI: aaxisI axis
 			instance notNil ifTrue: [^instance]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineIecJec >> aAijIeJe [
 	^aAijIeJe
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineIecJec >> axisI [
 	^axisI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineIecJec >> axisI: integer [ 
 	axisI := integer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineIecJec >> axisJ [
 	^axisJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineIecJec >> axisJ: integer [ 
 	axisJ := integer
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDirectionCosineIecJec >> calcPostDynCorrectorIteration [
 	aAjOIe := frmI aAjOe: axisI.
 	aAjOJe := frmJ aAjOe: axisJ.
 	aAijIeJe := aAjOIe dot: aAjOJe
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineIecJec >> value [
 	^aAijIeJe
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDirectionCosineIecJec >> withFrmI: afrmI frmJ: afrmJ axisI: aaxisI axisJ: aaxisJ [ 
 	frmI := afrmI.
 	frmJ := afrmJ.

@@ -2,12 +2,14 @@
 See BasisColumn.
 "
 Class {
-	#name : #BasisRow,
-	#superclass : #BasisVector,
-	#category : #'StMath-StMathArraySpecial'
+	#name : 'BasisRow',
+	#superclass : 'BasisVector',
+	#category : 'StMath-StMathArraySpecial',
+	#package : 'StMath',
+	#tag : 'StMathArraySpecial'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 BasisRow class >> visualWorksMetadata [
 
 	^ #(

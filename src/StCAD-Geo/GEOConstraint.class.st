@@ -1,10 +1,12 @@
 Class {
-	#name : #GEOConstraint,
-	#superclass : #GEOContainedItem,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEOConstraint',
+	#superclass : 'GEOContainedItem',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOConstraint class >> visualWorksMetadata [
 
 	^ #(
@@ -14,12 +16,12 @@ GEOConstraint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOConstraint >> canUpdateForFrame: integer [ 
 	^true
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOConstraint >> dataFromCurrentState [
 	| answer |
 	answer := GEOForceTorqueData new.
@@ -28,7 +30,7 @@ GEOConstraint >> dataFromCurrentState [
 	^answer
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOConstraint >> dataFromMbD [
 	"
 	MbD returns aFIeO and aTIeO.
@@ -50,44 +52,44 @@ GEOConstraint >> dataFromMbD [
 	^answer
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOConstraint >> storeInputFromMbD [
 	"Do nothing."
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOConstraint >> storeInputState [
 	"Do nothing."
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOConstraint >> updateForFrame1: integer [ 
 	"Do nothing."
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOConstraint >> updateForFrame: integer [ 
 	"Do nothing."
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOConstraint >> updateFromInitiallyAssembledState [
 	"Do nothing."
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOConstraint >> updateFromInputState [
 	"Do nothing."
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOConstraint >> updateFromMbD [
 	| data |
 	data := self dataFromMbD.
 	self dataSeries add: data
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOConstraint >> validateFormulas [
 	"Do nothing."
 ]

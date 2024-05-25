@@ -1,14 +1,16 @@
 Class {
-	#name : #MbDSmallAngleyIecJec,
-	#superclass : #MbDAngleIeJe,
+	#name : 'MbDSmallAngleyIecJec',
+	#superclass : 'MbDAngleIeJe',
 	#instVars : [
 		'they',
 		'aA13IeJe'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDSmallAngleyIecJec class >> visualWorksMetadata [
 
 	^ #(
@@ -18,7 +20,7 @@ MbDSmallAngleyIecJec class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDSmallAngleyIecJec class >> withFrmI: afrmI frmJ: afrmJ [ 
 	| instance |
 	self allSubclasses
@@ -28,109 +30,109 @@ MbDSmallAngleyIecJec class >> withFrmI: afrmI frmJ: afrmJ [
 			instance notNil ifTrue: [^instance]]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDSmallAngleyIecJec >> calcPostDynCorrectorIteration [
 	they := aA13IeJe value
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDSmallAngleyIecJec >> initialize [
 	self subclassResponsibility
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDSmallAngleyIecJec >> initializeGlobally [
 	aA13IeJe initializeGlobally
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDSmallAngleyIecJec >> initializeLocally [
 	aA13IeJe initializeLocally
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDSmallAngleyIecJec >> postDynCorrectorIteration [
 	aA13IeJe postDynCorrectorIteration.
 	super postDynCorrectorIteration
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDSmallAngleyIecJec >> postDynOutput [
 	aA13IeJe postDynOutput.
 	super postDynOutput
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDSmallAngleyIecJec >> postDynPredictor [
 	aA13IeJe postDynPredictor.
 	super postDynPredictor
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDSmallAngleyIecJec >> postInput [
 	aA13IeJe postInput.
 	super postInput
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDSmallAngleyIecJec >> postPosICIteration [
 	aA13IeJe postPosICIteration.
 	super postPosICIteration
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDSmallAngleyIecJec >> postStaticIteration [
 	aA13IeJe postStaticIteration.
 	super postStaticIteration
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDSmallAngleyIecJec >> preAccIC [
 	aA13IeJe preAccIC.
 	super preAccIC
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDSmallAngleyIecJec >> preDynOutput [
 	aA13IeJe preDynOutput.
 	super preDynOutput
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDSmallAngleyIecJec >> prePosIC [
 	aA13IeJe prePosIC.
 	super prePosIC
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDSmallAngleyIecJec >> preStatic [
 	aA13IeJe preStatic.
 	super preStatic
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDSmallAngleyIecJec >> preVelIC [
 	aA13IeJe preVelIC.
 	super preVelIC
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDSmallAngleyIecJec >> simUpdateAll [
 	aA13IeJe simUpdateAll.
 	super simUpdateAll
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSmallAngleyIecJec >> they [
 	^they
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSmallAngleyIecJec >> value [
 	^they
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDSmallAngleyIecJec >> withFrmI: afrmI frmJ: afrmJ [ 
 	frmI := afrmI.
 	frmJ := afrmJ.

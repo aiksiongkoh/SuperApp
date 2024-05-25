@@ -1,13 +1,15 @@
 Class {
-	#name : #ForTorActionComp,
-	#superclass : #ForTorAction,
+	#name : 'ForTorActionComp',
+	#superclass : 'ForTorAction',
 	#instVars : [
 		'axis'
 	],
-	#category : #'StCAD-MbD-MbDForce'
+	#category : 'StCAD-MbD-MbDForce',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDForce'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 ForTorActionComp class >> visualWorksMetadata [
 
 	^ #(
@@ -17,7 +19,7 @@ ForTorActionComp class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ForTorActionComp >> axis [
 	^axis
 ]

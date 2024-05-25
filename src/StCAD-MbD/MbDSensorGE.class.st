@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDSensorGE,
-	#superclass : #MbDSensor,
-	#category : #'StCAD-MbD-MbDBasic'
+	#name : 'MbDSensorGE',
+	#superclass : 'MbDSensor',
+	#category : 'StCAD-MbD-MbDBasic',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDBasic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDSensorGE class >> visualWorksMetadata [
 
 	^ #(

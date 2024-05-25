@@ -1,10 +1,12 @@
 Class {
-	#name : #StMSymbolic,
-	#superclass : #Object,
-	#category : #'StMath-Symbolic'
+	#name : 'StMSymbolic',
+	#superclass : 'StMath',
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMSymbolic class >> visualWorksMetadata [
 
 	^ #(
@@ -13,45 +15,47 @@ StMSymbolic class >> visualWorksMetadata [
 
 ]
 
-{ #category : #ops }
+{ #category : 'ops' }
 StMSymbolic >> * arg [ 
 	| func |
 	func := self conditionArgument: arg.
 	^StMProduct with: self copy times: func copy
 ]
 
-{ #category : #ops }
+{ #category : 'ops' }
 StMSymbolic >> + arg [ 
 	| func |
 	func := self conditionArgument: arg.
 	^StMSum with: self copy plus: func copy
 ]
 
-{ #category : #ops }
-StMSymbolic >> - arg [ 
+{ #category : 'ops' }
+StMSymbolic >> - arg [
+
 	| func |
 	func := self conditionArgument: arg.
-	^StMSum with: self copy plus: func negated
+	^ StMSum with: self copy minus: func
 ]
 
-{ #category : #ops }
-StMSymbolic >> / arg [ 
+{ #category : 'ops' }
+StMSymbolic >> / arg [
+
 	| func |
 	func := self conditionArgument: arg.
-	^StMProduct with: self copy times: func reciprocal
+	^ StMProduct with: self copy over: func
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 StMSymbolic >> = anObject [ 
 	self subclassResponsibility
 ]
 
-{ #category : #ops }
+{ #category : 'ops' }
 StMSymbolic >> abs [
 	^StMAbs with: self copy
 ]
 
-{ #category : #'message handling' }
+{ #category : 'message handling' }
 StMSymbolic >> adaptToNumber: rcvr andSend: selector [
 
 	| aConstant |
@@ -59,28 +63,28 @@ StMSymbolic >> adaptToNumber: rcvr andSend: selector [
 	^ aConstant perform: selector with: self
 ]
 
-{ #category : #ops }
+{ #category : 'ops' }
 StMSymbolic >> arcTan [
 	^StMArcTan with: self copy
 ]
 
-{ #category : #'message handling' }
+{ #category : 'message handling' }
 StMSymbolic >> argsPerform: selector withArguments: anArray [ 
 	self subclassResponsibility
 ]
 
-{ #category : #changing }
+{ #category : 'changing' }
 StMSymbolic >> asFloat [
 
 	^ self
 ]
 
-{ #category : #changing }
+{ #category : 'changing' }
 StMSymbolic >> asFunctionOf: xarg [ 
 	^StMExpressionX with: xarg expression: self
 ]
 
-{ #category : #changing }
+{ #category : 'changing' }
 StMSymbolic >> asFunctionOf: xarg and: yarg [ 
 	^StMExpressionXY
 		with: xarg
@@ -88,7 +92,7 @@ StMSymbolic >> asFunctionOf: xarg and: yarg [
 		expression: self
 ]
 
-{ #category : #'StCAD-UI' }
+{ #category : 'StCAD-UI' }
 StMSymbolic >> cadString [
 	"Answer a math expression for the StCAD interface."
 
@@ -98,12 +102,12 @@ StMSymbolic >> cadString [
 	^aStream contents
 ]
 
-{ #category : #'StCAD-UI' }
+{ #category : 'StCAD-UI' }
 StMSymbolic >> cadStringOn: aStream [ 
 	self printOn: aStream
 ]
 
-{ #category : #ops }
+{ #category : 'ops' }
 StMSymbolic >> conditionArgument: arg [ 
 	| answer |
 	answer := arg isNumber
@@ -112,180 +116,181 @@ StMSymbolic >> conditionArgument: arg [
 	^answer
 ]
 
-{ #category : #ops }
+{ #category : 'ops' }
 StMSymbolic >> cos [
 	^StMCos with: self copy
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMSymbolic >> differentiateWRT: variable [ 
 	self subclassResponsibility
 ]
 
-{ #category : #'message handling' }
+{ #category : 'message handling' }
 StMSymbolic >> doesNotUnderstand: aMessage [ 
 	^self argsPerform: aMessage selector withArguments: aMessage arguments
 ]
 
-{ #category : #ops }
+{ #category : 'ops' }
 StMSymbolic >> exp [
 	^StMExp with: self copy
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 StMSymbolic >> initialize [
 	"Do nothing"
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMSymbolic >> isConstant [
 	^false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMSymbolic >> isOne [
 	^false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMSymbolic >> isProduct [
 	^false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMSymbolic >> isReciprocal [
 
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMSymbolic >> isSequenceable [
 
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMSymbolic >> isSum [
 	^false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMSymbolic >> isSymbolic [
 	^true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMSymbolic >> isUserFunction [
 	^false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMSymbolic >> isZero [
 	^false
 ]
 
-{ #category : #ops }
+{ #category : 'ops' }
 StMSymbolic >> lg [
 	^StMLg with: self copy
 ]
 
-{ #category : #ops }
+{ #category : 'ops' }
 StMSymbolic >> ln [
 	^StMLn with: self copy
 ]
 
-{ #category : #ops }
+{ #category : 'ops' }
 StMSymbolic >> minus: arg [ 
 	| func |
 	func := self conditionArgument: arg.
 	^StMSum with: self copy plus: func negated
 ]
 
-{ #category : #ops }
+{ #category : 'ops' }
 StMSymbolic >> negated [
 	^StMNegative with: self copy
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMSymbolic >> negative [
 
 	^ false
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMSymbolic >> partialDifferentiateWRT: variable [ 
 	self subclassResponsibility
 ]
 
-{ #category : #ops }
+{ #category : 'ops' }
 StMSymbolic >> plus: arg [ 
 	| func |
 	func := self conditionArgument: arg.
 	^StMSum with: self copy plus: func copy
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 StMSymbolic >> postCopy [
 	self subclassResponsibility
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 StMSymbolic >> printOn: aStream [ 
 	self subclassResponsibility
 ]
 
-{ #category : #ops }
+{ #category : 'ops' }
 StMSymbolic >> raisedTo: arg [ 
 	| exponent |
 	exponent := self conditionArgument: arg.
 	^StMPower with: self copy raisedTo: exponent copy
 ]
 
-{ #category : #ops }
+{ #category : 'ops' }
 StMSymbolic >> reciprocal [
-	^StMPower with: self copy raisedTo: -1
+
+	^ StMReciprocal with: self copy
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMSymbolic >> simplified [
 	| answer |
 	answer := self expandUntil: Set new.
 	^answer simplifyUntil: Set new
 ]
 
-{ #category : #ops }
+{ #category : 'ops' }
 StMSymbolic >> sin [
 	^StMSin with: self copy
 ]
 
-{ #category : #ops }
+{ #category : 'ops' }
 StMSymbolic >> sqrt [
 	^StMSqrt with: self copy
 ]
 
-{ #category : #changing }
+{ #category : 'changing' }
 StMSymbolic >> substitute: var1 with: var2 [ 
 	self subclassResponsibility
 ]
 
-{ #category : #ops }
+{ #category : 'ops' }
 StMSymbolic >> tan [
 	^StMTan with: self copy
 ]
 
-{ #category : #ops }
+{ #category : 'ops' }
 StMSymbolic >> times: arg [ 
 	| func |
 	func := self conditionArgument: arg.
 	^StMProduct with: self copy times: func copy
 ]
 
-{ #category : #ops }
+{ #category : 'ops' }
 StMSymbolic >> timesFunction: aFunction [ 
 	^self * aFunction
 ]
 
-{ #category : #ops }
+{ #category : 'ops' }
 StMSymbolic >> timesProduct: aProduct [ 
 	| answer |
 	answer := aProduct copy.
@@ -293,14 +298,14 @@ StMSymbolic >> timesProduct: aProduct [
 	^answer
 ]
 
-{ #category : #ops }
+{ #category : 'ops' }
 StMSymbolic >> timesSum: aSum [ 
 	| product |
 	product := StMProduct with: self.
 	^product timesSum: aSum
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMSymbolic >> value [
 	self subclassResponsibility
 ]

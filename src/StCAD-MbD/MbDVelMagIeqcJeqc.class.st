@@ -1,15 +1,17 @@
 Class {
-	#name : #MbDVelMagIeqcJeqc,
-	#superclass : #MbDVelMagIeqcJec,
+	#name : 'MbDVelMagIeqcJeqc',
+	#superclass : 'MbDVelMagIeqcJec',
 	#instVars : [
 		'pvIeJepEJ',
 		'pvIeJepXdotJ',
 		'pvIeJepEdotJ'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDVelMagIeqcJeqc class >> visualWorksMetadata [
 
 	^ #(
@@ -19,7 +21,7 @@ MbDVelMagIeqcJeqc class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDVelMagIeqcJeqc class >> withFrmI: afrmI frmJ: afrmJ [ 
 	^(afrmI isMemberOf: MbDEndFrameqc)
 		& (afrmJ isMemberOf: MbDEndFrameqc)
@@ -27,7 +29,7 @@ MbDVelMagIeqcJeqc class >> withFrmI: afrmI frmJ: afrmJ [
 		ifFalse: [nil]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDVelMagIeqcJeqc >> calcPostDynCorrectorIteration [
 	| pvIeJeOpEJ pvIeJeOpEdotJ zeroRow |
 	super calcPostDynCorrectorIteration.
@@ -46,7 +48,7 @@ MbDVelMagIeqcJeqc >> calcPostDynCorrectorIteration [
 			pvIeJepEdotJ := uvIeJeO dot: pvIeJeOpEdotJ]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDVelMagIeqcJeqc >> initialize [
 	super initialize.
 	pvIeJepEJ := StMFullRow new: 4.
@@ -54,17 +56,17 @@ MbDVelMagIeqcJeqc >> initialize [
 	pvIeJepEdotJ := StMFullRow new: 4
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDVelMagIeqcJeqc >> pvaluepEJ [
 	^pvIeJepEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDVelMagIeqcJeqc >> pvaluepEdotJ [
 	^pvIeJepEdotJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDVelMagIeqcJeqc >> pvaluepXdotJ [
 	^pvIeJepXdotJ
 ]

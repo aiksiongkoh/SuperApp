@@ -1,10 +1,12 @@
 Class {
-	#name : #MatrixDecomposition,
-	#superclass : #MatrixSolver,
-	#category : #'StMath-StMathMatrixSolver'
+	#name : 'MatrixDecomposition',
+	#superclass : 'MatrixSolver',
+	#category : 'StMath-StMathMatrixSolver',
+	#package : 'StMath',
+	#tag : 'StMathMatrixSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MatrixDecomposition class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ MatrixDecomposition class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'back substitution' }
+{ #category : 'back substitution' }
 MatrixDecomposition >> applyRowOrderOnRightHandSideB [
 	| answer |
 	answer := rightHandSideB class new: m.
@@ -22,7 +24,7 @@ MatrixDecomposition >> applyRowOrderOnRightHandSideB [
 	rightHandSideB := answer
 ]
 
-{ #category : #'back substitution' }
+{ #category : 'back substitution' }
 MatrixDecomposition >> backSubstituteIntoDU [
 	"aD is a diagonal matrix."
 	"aU is upper triangular with the ones in the diagonal omitted."
@@ -30,39 +32,39 @@ MatrixDecomposition >> backSubstituteIntoDU [
 	self subclassResponsibility
 ]
 
-{ #category : #'back substitution' }
+{ #category : 'back substitution' }
 MatrixDecomposition >> backSubstituteIntoU [
 	"U is upper triangular with ones in the diagonal."
 
 	self subclassResponsibility
 ]
 
-{ #category : #solution }
+{ #category : 'solution' }
 MatrixDecomposition >> basicSolve: aMatrix with: aVector saveOriginal: saveOriginal [ 
 	self decompose: aMatrix saveOriginal: saveOriginal.
 	^self forAndBackSub: aVector saveOriginal: saveOriginal
 ]
 
-{ #category : #'forward substitution' }
+{ #category : 'forward substitution' }
 MatrixDecomposition >> forwardSubstituteIntoL [
 	"aL is lower triangular with the ones in the diagonal omitted."
 
 	self subclassResponsibility
 ]
 
-{ #category : #'forward substitution' }
+{ #category : 'forward substitution' }
 MatrixDecomposition >> forwardSubstituteIntoLD [
 	"LD is lower triangular with nonzero and arbitrary diagonals."
 
 	self subclassResponsibility
 ]
 
-{ #category : #solution }
+{ #category : 'solution' }
 MatrixDecomposition >> postSolve [
 	"Do nothing."
 ]
 
-{ #category : #solution }
+{ #category : 'solution' }
 MatrixDecomposition >> preSolve: aMatrix saveOriginal: saveOriginal [ 
 	matrixA := saveOriginal 
 				ifTrue: [aMatrix copy asFullMatrix]

@@ -1,13 +1,15 @@
 Class {
-	#name : #GEORefCurve,
-	#superclass : #GEORefPoint,
+	#name : 'GEORefCurve',
+	#superclass : 'GEORefPoint',
 	#instVars : [
 		'rfCurvef'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEORefCurve class >> visualWorksMetadata [
 
 	^ #(
@@ -17,17 +19,17 @@ GEORefCurve class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORefCurve >> addCurveMarkers: array [ 
 	array do: [:marker | self addMarker: marker]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORefCurve >> rfCurvef [
 	^rfCurvef
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORefCurve >> rfCurvef: spline [ 
 	rfCurvef := spline
 ]

@@ -1,13 +1,15 @@
 Class {
-	#name : #StMPolynomialX,
-	#superclass : #StMFunctionX,
+	#name : 'StMPolynomialX',
+	#superclass : 'StMFunctionX',
 	#instVars : [
 		'coeffs'
 	],
-	#category : #'StMath-Symbolic'
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMPolynomialX class >> visualWorksMetadata [
 
 	^ #(
@@ -17,23 +19,23 @@ StMPolynomialX class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMPolynomialX class >> with: var coeffs: funcs [ 
 	^super new x: var coeffs: funcs
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 StMPolynomialX >> = anObject [ 
 	^super = anObject and: [coeffs = anObject coeffs]
 ]
 
-{ #category : #'message handling' }
+{ #category : 'message handling' }
 StMPolynomialX >> argsPerform: selector withArguments: anArray [ 
 	super argsPerform: selector withArguments: anArray.
 	coeffs do: [:coeff | coeff perform: selector withArguments: anArray]
 ]
 
-{ #category : #changing }
+{ #category : 'changing' }
 StMPolynomialX >> asExpression [
 	| answer terms |
 	answer := StMSum new.
@@ -52,7 +54,7 @@ StMPolynomialX >> asExpression [
 	^answer
 ]
 
-{ #category : #'StCAD-UI' }
+{ #category : 'StCAD-UI' }
 StMPolynomialX >> cadStringOn: aStream [ 
 	| coeffSize |
 	coeffSize := coeffs size.
@@ -74,17 +76,17 @@ StMPolynomialX >> cadStringOn: aStream [
 	coeffSize > 1 ifTrue: [aStream nextPut: $)]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMPolynomialX >> coeffs [
 	^coeffs
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMPolynomialX >> coeffs: collection [ 
 	coeffs := collection collect: [:coeff | self conditionArgument: coeff]
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMPolynomialX >> derivative: n at: xx [ 
 	| newCoeffSize xpower answer |
 	newCoeffSize := coeffs size - n.
@@ -104,7 +106,7 @@ StMPolynomialX >> derivative: n at: xx [
 	^answer
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMPolynomialX >> differentiateWRT: variable [ 
 	| dfuncdx dxdvar dcoeffsdvar |
 	self == variable ifTrue: [^StMConstant with: 1].
@@ -115,7 +117,7 @@ StMPolynomialX >> differentiateWRT: variable [
 		plus: dcoeffsdvar
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMPolynomialX >> differentiateWRTx [
 	| n newCoeffs |
 	n := coeffs size.
@@ -127,25 +129,25 @@ StMPolynomialX >> differentiateWRTx [
 	^StMPolynomialX with: x copy coeffs: newCoeffs
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMPolynomialX >> expandUntil: set [ 
 	^(set includes: self)
 		ifTrue: [self]
 		ifFalse: [self asExpression expandUntil: set]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMPolynomialX >> isZero [
 	coeffs do: [:coeff | coeff isZero ifFalse: [^false]].
 	^true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMPolynomialX >> order [
 	^coeffs size - 1
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMPolynomialX >> partialDifferentiateWRT: variable [ 
 	| dfuncdx dxdvar dcoeffsdvar |
 	self == variable ifTrue: [^StMConstant with: 1].
@@ -156,13 +158,13 @@ StMPolynomialX >> partialDifferentiateWRT: variable [
 		plus: dcoeffsdvar
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 StMPolynomialX >> postCopy [
 	super postCopy.
 	coeffs := coeffs collect: [:coeff | coeff copy]
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 StMPolynomialX >> printOn1: aStream [ 
 	| coeffSize |
 	coeffSize := coeffs size.
@@ -183,7 +185,7 @@ StMPolynomialX >> printOn1: aStream [
 	coeffSize > 1 ifTrue: [aStream nextPut: $)]
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 StMPolynomialX >> printOn: aStream [ 
 	aStream print: self class.
 	aStream nextPutAll: '('.
@@ -194,7 +196,7 @@ StMPolynomialX >> printOn: aStream [
 	aStream nextPut: $)
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMPolynomialX >> simplifyUntil: set [ 
 	| xx copy newCoeffs |
 	^(set includes: self)
@@ -210,7 +212,7 @@ StMPolynomialX >> simplifyUntil: set [
 				ifFalse: [copy]]
 ]
 
-{ #category : #changing }
+{ #category : 'changing' }
 StMPolynomialX >> substitute: var1 with: var2 [ 
 	| xx newCoeffs |
 	^self = var1
@@ -221,7 +223,7 @@ StMPolynomialX >> substitute: var1 with: var2 [
 			self class with: xx coeffs: newCoeffs]
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMPolynomialX >> value [
 	| xvalue xpower answer |
 	xvalue := x value.
@@ -235,7 +237,7 @@ StMPolynomialX >> value [
 	^answer
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 StMPolynomialX >> x: arg coeffs: funcs [ 
 	x := self conditionArgument: arg.
 	coeffs := funcs collect: [:func | self conditionArgument: func]

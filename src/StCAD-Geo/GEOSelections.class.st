@@ -5,13 +5,15 @@ Instance Variables: *Indexed*
 
 "
 Class {
-	#name : #GEOSelections,
-	#superclass : #OrderedCollection,
-	#type : #variable,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEOSelections',
+	#superclass : 'OrderedCollection',
+	#type : 'variable',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOSelections class >> visualWorksMetadata [
 
 	^ #(
@@ -20,25 +22,25 @@ GEOSelections class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSelections >> emptySelf [
 	self setIndices
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSelections >> sketch [
 	^self detect: [:selection | selection sketch notNil]
 		ifNone: nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSelections >> soleSelection [
 	self size == 1
 		ifTrue: [^self first]
 		ifFalse: [^nil]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSelections >> soleSelection: aGEO [ 
 	self setIndices.
 	self add: aGEO

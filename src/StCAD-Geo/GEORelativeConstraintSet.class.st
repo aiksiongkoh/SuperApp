@@ -1,19 +1,21 @@
 Class {
-	#name : #GEORelativeConstraintSet,
-	#superclass : #GEOConstraintSet,
+	#name : 'GEORelativeConstraintSet',
+	#superclass : 'GEOConstraintSet',
 	#instVars : [
 		'markerI',
 		'markerJ'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GEORelativeConstraintSet class >> markerI: markeri markerJ: markerj [ 
 	^super new markerI: markeri markerJ: markerj
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEORelativeConstraintSet class >> visualWorksMetadata [
 
 	^ #(
@@ -23,39 +25,39 @@ GEORelativeConstraintSet class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORelativeConstraintSet >> aMarkerI [
 	^markerI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORelativeConstraintSet >> aMarkerI: markeri [ 
 	markerI := markeri
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORelativeConstraintSet >> aMarkerJ [
 	^markerJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORelativeConstraintSet >> aMarkerJ: markerj [ 
 	markerJ := markerj
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORelativeConstraintSet >> addCurrentStateToDataSeries [
 	super addCurrentStateToDataSeries.
 	markerI addCurrentStateToDataSeries.
 	markerJ addCurrentStateToDataSeries
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORelativeConstraintSet >> connectorList: collection [ 
 	collection add: self
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEORelativeConstraintSet >> createMbD [
 	| oodsJt |
 	self dataSeries: OrderedCollection new.
@@ -67,12 +69,12 @@ GEORelativeConstraintSet >> createMbD [
 	self mbdObject: oodsJt
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORelativeConstraintSet >> dataClass [
 	^GEOKineIForceIKineJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORelativeConstraintSet >> dataIntersectLine: geoLine tolerance: tol [ 
 	| jointLine answer |
 	jointLine := GEOLine start: markerI refFrame rOfO end: markerJ refFrame rOfO.
@@ -82,7 +84,7 @@ GEORelativeConstraintSet >> dataIntersectLine: geoLine tolerance: tol [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORelativeConstraintSet >> dataSeriesForChart [
 	| kineIs kineJs forceIs index kineIforceIkineJ |
 	kineIs := markerI dataSeriesForChart.
@@ -105,38 +107,38 @@ GEORelativeConstraintSet >> dataSeriesForChart [
 			Array new]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORelativeConstraintSet >> dataTypes [
 	^self dataClass new dataTypes
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEORelativeConstraintSet >> deleteMbD [
 	self mbdObject: nil.
 	markerI deleteMbD.
 	markerJ deleteMbD
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEORelativeConstraintSet >> isConnectedTo: markerList [ 
 	^(markerList includes: markerI)
 		or: [markerList includes: markerJ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORelativeConstraintSet >> markerI: markeri markerJ: markerj [ 
 	markerI := markeri.
 	markerJ := markerj
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORelativeConstraintSet >> newDataSeries [
 	super newDataSeries.
 	markerI newDataSeries.
 	markerJ newDataSeries
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORelativeConstraintSet >> positionMemento [
 
 	| aMemento |
@@ -145,7 +147,7 @@ GEORelativeConstraintSet >> positionMemento [
 	^ aMemento
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 GEORelativeConstraintSet >> renderOn: aRenderingContext [
 
 	aRenderingContext lineWidth: 1.
@@ -154,13 +156,13 @@ GEORelativeConstraintSet >> renderOn: aRenderingContext [
 		(Array with: markerI rOfO with: markerJ rOfO)
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEORelativeConstraintSet >> storeInputState [
 	markerI storeInputState.
 	markerJ storeInputState
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEORelativeConstraintSet >> storeOn: aStream level: level [ 
 	aStream storeLevel: level title: self nameString.
 	aStream
@@ -177,13 +179,13 @@ GEORelativeConstraintSet >> storeOn: aStream level: level [
 		object: markerJ fullName
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEORelativeConstraintSet >> storePOVOn: aStream level: level [ 
 	aStream storePOVLevel: level
 		title: ('// <1s>' expandMacrosWith: self fullNamePOV)
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEORelativeConstraintSet >> storePOVTimeSeriesOn: aStream [ 
 	| dataSeries fullNamePOV series |
 	dataSeries := self dataSeries.
@@ -204,7 +206,7 @@ GEORelativeConstraintSet >> storePOVTimeSeriesOn: aStream [
 		series: (series collect: [:data | data at: 3])
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEORelativeConstraintSet >> storePOVdatCurrentOn: aStream [ 
 	| dataSeries fullNamePOV series |
 	dataSeries := Array with: self dataFromCurrentState.
@@ -225,7 +227,7 @@ GEORelativeConstraintSet >> storePOVdatCurrentOn: aStream [
 		series: (series collect: [:data | data at: 3])
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEORelativeConstraintSet >> storeTimeSeriesOn: aStream [ 
 	| dataSeries series |
 	aStream nextPutAll: self nameString; nextPutAll: 'Series'; space; nextPutAll: self fullName; cr.

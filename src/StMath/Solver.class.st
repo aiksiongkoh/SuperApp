@@ -3,20 +3,22 @@ messages	<IdentityDictionary> Stores messages to be passed out for various condi
 	statistics	<IdentityDictionary> Stores statistics of the solution process.
 "
 Class {
-	#name : #Solver,
-	#superclass : #Object,
+	#name : 'Solver',
+	#superclass : 'StMNumeric',
 	#instVars : [
 		'statistics'
 	],
-	#category : #'StMath-StMathMatrixSolver'
+	#category : 'StMath-StMathMatrixSolver',
+	#package : 'StMath',
+	#tag : 'StMathMatrixSolver'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 Solver class >> new [
 	^super new initialize
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 Solver class >> visualWorksMetadata [
 
 	^ #(
@@ -25,17 +27,17 @@ Solver class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 Solver >> initialize [
 	"Do nothing."
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 Solver >> initializeGlobally [
 	self subclassResponsibility
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 Solver >> initializeLocally [
 	"Default is do nothing."
 ]

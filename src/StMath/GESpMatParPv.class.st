@@ -1,10 +1,12 @@
 Class {
-	#name : #GESpMatParPv,
-	#superclass : #GESpMat,
-	#category : #'StMath-StMathMatrixSolver'
+	#name : 'GESpMatParPv',
+	#superclass : 'GESpMat',
+	#category : 'StMath-StMathMatrixSolver',
+	#package : 'StMath',
+	#tag : 'StMathMatrixSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GESpMatParPv class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ GESpMatParPv class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'back substitution' }
+{ #category : 'back substitution' }
 GESpMatParPv >> backSubstituteIntoDU [
 	"DU is upper triangular with nonzero diagonals."
 
@@ -64,7 +66,7 @@ GESpMatParPv >> backSubstituteIntoDU [
 					- sum / duii]
 ]
 
-{ #category : #'forward elimination' }
+{ #category : 'forward elimination' }
 GESpMatParPv >> forwardEliminateWithPivot: p [ 
 	"rightHandSideB may be multidimensional."
 
@@ -92,7 +94,7 @@ GESpMatParPv >> forwardEliminateWithPivot: p [
 					- (bp * factor)]
 ]
 
-{ #category : #solution }
+{ #category : 'solution' }
 GESpMatParPv >> postSolve [
 	"Do nothing."
 ]

@@ -1,10 +1,12 @@
 Class {
-	#name : #ForceBasicqccqComp,
-	#superclass : #ForceBasicqcComp,
-	#category : #'StCAD-MbD-MbDForce'
+	#name : 'ForceBasicqccqComp',
+	#superclass : 'ForceBasicqcComp',
+	#category : 'StCAD-MbD-MbDForce',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDForce'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 ForceBasicqccqComp class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ ForceBasicqccqComp class >> visualWorksMetadata [
 
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForceBasicqccqComp >> fillpFpy: mat aFTOi: aFTOi [ 
 	| axis pprOeOpEpEaction iqEm1 iqEactionm1 pprOeOpEpEactioni mati pprOeOpEpEactionij |
 	super fillpFpy: mat aFTOi: aFTOi.

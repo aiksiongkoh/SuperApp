@@ -1,10 +1,12 @@
 Class {
-	#name : #DAECorrector,
-	#superclass : #VectorNewtonRaphson,
-	#category : #'StMath-StMathNewtonRaphson'
+	#name : 'DAECorrector',
+	#superclass : 'VectorNewtonRaphson',
+	#category : 'StMath-StMathNewtonRaphson',
+	#package : 'StMath',
+	#tag : 'StMathNewtonRaphson'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 DAECorrector class >> visualWorksMetadata [
 
 	^ #(
@@ -14,29 +16,29 @@ DAECorrector class >> visualWorksMetadata [
 
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DAECorrector >> askSystemToUpdate [
 	system updateForDAECorrector
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DAECorrector >> calcdxNorm [
 	"Subclasses can modify calculation of dxNorm."
 
 	dxNorm := system corErrorNormFrom: dx wrt: x
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DAECorrector >> fillPyPx [
 	pypx := system calcG
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DAECorrector >> fillY [
 	y := system fillF
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DAECorrector >> handleSingularMatrix [
 	(matrixSolver isMemberOf: GESpMatParPvMarkoFast) 
 		ifTrue: 
@@ -48,30 +50,30 @@ DAECorrector >> handleSingularMatrix [
 				ifFalse: [self halt: 'Check this.']]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 DAECorrector >> initialize [
 	super initialize.
 	statistics := IdentityDictionary new
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 DAECorrector >> initializeGlobally [
 	iterMax := system iterMax.
 	x := system y.
 	matrixSolver := self matrixSolverClass new
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DAECorrector >> isConverged [
 	^system isConvergedFor: iterNo and: dxNorms
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DAECorrector >> logSingularMatrixMessage [
 	self logString: #'MbD: \Singular matrix encountered.'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DAECorrector >> matrixSolverClass [
 	"	^OldFasterSpMatGEParPv2"
 
@@ -80,22 +82,22 @@ DAECorrector >> matrixSolverClass [
 	^GESpMatParPvMarkoFast
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DAECorrector >> passRootToSystem [
 	system y: x
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DAECorrector >> postRun [
 	system postDAECorrector
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DAECorrector >> preRun [
 	system preDAECorrector
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DAECorrector >> reportStats [
 	statistics at: #iterNo put: iterNo.
 	system useDAECorrectorStats: statistics

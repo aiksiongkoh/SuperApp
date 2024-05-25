@@ -1,15 +1,17 @@
 Class {
-	#name : #MbDEndFrameqccq,
-	#superclass : #MbDEndFrameqc,
+	#name : 'MbDEndFrameqccq',
+	#superclass : 'MbDEndFrameqc',
 	#instVars : [
 		'targetFrame',
 		'rpep',
 		'pprOeOpEpEtarget'
 	],
-	#category : #'StCAD-MbD-MbDBasic'
+	#category : 'StCAD-MbD-MbDBasic',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDBasic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDEndFrameqccq class >> visualWorksMetadata [
 
 	^ #(
@@ -19,7 +21,7 @@ MbDEndFrameqccq class >> visualWorksMetadata [
 
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDEndFrameqccq >> calcPostDynCorrectorIteration [
 	| partFrame aAOp rpeO pAOppE prOeOpEi prOeOpEij prpeppEi prpeppEij pprOeOpEipE pAOppEi pprOeOpEipEj prpeppE prpeppEtarget pprOeOpEipEtarget |
 	targetFrame partFrame calcPostDynCorrectorIteration.
@@ -71,43 +73,43 @@ MbDEndFrameqccq >> calcPostDynCorrectorIteration [
 					pprOeOpEipEtarget at: j put: (pAOppEi timesFullColumn: (prpeppEtarget column: j))]]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDEndFrameqccq >> initialize [
 	super initialize.
 	pprOeOpEpEtarget := StMFullMatrix new: 4 by: 4
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDEndFrameqccq >> initializeGlobally [
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqccq >> iqEtarget [
 	^targetFrame iqE
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqccq >> pprOeOpEpEtarget [
 	^pprOeOpEpEtarget
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqccq >> qEOe [
 	^targetFrame qEOe
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqccq >> rOeO [
 	^targetFrame rOeO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqccq >> rpep [
 	^rpep
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqccq >> targetFrame: aMarker [ 
 	targetFrame := aMarker
 ]

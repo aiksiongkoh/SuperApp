@@ -1,15 +1,17 @@
 Class {
-	#name : #MbDPrescribedPathMotion,
-	#superclass : #MbDJoint,
+	#name : 'MbDPrescribedPathMotion',
+	#superclass : 'MbDJoint',
 	#instVars : [
 		'efrm',
 		'pathDistBlks',
 		'pathDistBlkt'
 	],
-	#category : #'StCAD-MbD-MbDMotion'
+	#category : 'StCAD-MbD-MbDMotion',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDMotion'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDPrescribedPathMotion class >> visualWorksMetadata [
 
 	^ #(
@@ -19,7 +21,7 @@ MbDPrescribedPathMotion class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPrescribedPathMotion >> classString [
 	"Used to access the descriptive name of the joint."
 	"Needed for multi-language."
@@ -27,24 +29,24 @@ MbDPrescribedPathMotion >> classString [
 	^TheMbDSystem getString: #'MbD: Prescribed Path Motion '
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPrescribedPathMotion >> fillDispConstraints: collection [ 
 	"Prescribed constraints are essential."
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPrescribedPathMotion >> fillEssenConstraints: collection [ 
 	constraints do: [:con | con fillEssenConstraints: collection]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPrescribedPathMotion >> fillPerpenConstraints: collection [ 
 	"Prescribed constraints are essential."
 	"Do nothing."
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDPrescribedPathMotion >> initializeGlobally [
 	constraints isEmpty
 		ifTrue: 
@@ -53,18 +55,18 @@ MbDPrescribedPathMotion >> initializeGlobally [
 		ifFalse: [super initializeGlobally]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDPrescribedPathMotion >> initializeLocally [
 	efrm := frmI.
 	super initializeLocally
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPrescribedPathMotion >> pathDistBlks: block [ 
 	pathDistBlks := block
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPrescribedPathMotion >> pathDistBlkt: block [ 
 	pathDistBlkt := block
 ]

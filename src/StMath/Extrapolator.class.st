@@ -1,10 +1,12 @@
 Class {
-	#name : #Extrapolator,
-	#superclass : #DifferenceOperator,
-	#category : #'StMath-StMathDifferenceOperator'
+	#name : 'Extrapolator',
+	#superclass : 'DifferenceOperator',
+	#category : 'StMath-StMathDifferenceOperator',
+	#package : 'StMath',
+	#tag : 'StMathDifferenceOperator'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 Extrapolator class >> visualWorksMetadata [
 
 	^ #(
@@ -14,39 +16,39 @@ Extrapolator class >> visualWorksMetadata [
 
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 Extrapolator class >> with: x1 [
     ^x1
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 Extrapolator class >> with: x1 and: x2 [
     "Extrapolate to present with past values."
 
     ^2.0 * x1 - x2
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 Extrapolator class >> with: x1 and: x2 and: x3 [
     ^3.0 * x1 - (3.0 * x2) + x3
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 Extrapolator class >> with: x1 and: x2 and: x3 and: x4 [
     ^4.0 * x1 - (6.0 * x2) + (4.0 * x3) - x4
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 Extrapolator class >> with: x1 and: x2 and: x3 and: x4 and: x5 [
     ^5.0 * x1 - (10.0 * x2) + (10.0 * x3) - (5.0 * x4) + x5
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 Extrapolator class >> with: x1 and: x2 and: x3 and: x4 and: x5 and: x6 [
     ^6.0 * x1 - (15.0 * x2) + (20.0 * x3) - (15.0 * x4) + (6.0 * x5) - x6
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 Extrapolator >> formTaylorMatrix [
 	"
 	For method order 3: 

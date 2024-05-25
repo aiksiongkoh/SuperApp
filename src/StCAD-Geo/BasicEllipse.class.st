@@ -1,14 +1,15 @@
 Class {
-	#name : #BasicEllipse,
-	#superclass : #BasicCurve2D,
+	#name : 'BasicEllipse',
+	#superclass : 'BasicCurve2D',
 	#instVars : [
 		'xRadius',
 		'yRadius'
 	],
-	#category : #'StCAD-Geo'
+	#category : 'StCAD-Geo',
+	#package : 'StCAD-Geo'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 BasicEllipse class >> visualWorksMetadata [
 
 	^ #(

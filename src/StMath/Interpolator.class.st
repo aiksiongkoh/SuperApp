@@ -5,12 +5,14 @@ Extrapolation evaluates at a time outside the intervals of the timeNodes.
 Interpolation evaluates at a time inside the intervals of the timeNodes.
 "
 Class {
-	#name : #Interpolator,
-	#superclass : #Extrapolator,
-	#category : #'StMath-StMathDifferenceOperator'
+	#name : 'Interpolator',
+	#superclass : 'Extrapolator',
+	#category : 'StMath-StMathDifferenceOperator',
+	#package : 'StMath',
+	#tag : 'StMathDifferenceOperator'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 Interpolator class >> visualWorksMetadata [
 
 	^ #(

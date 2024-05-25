@@ -1,20 +1,22 @@
 Class {
-	#name : #GEORotationalMotion,
-	#superclass : #GEOMotion,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEORotationalMotion',
+	#superclass : 'GEOMotion',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORotationalMotion class >> mbdClass [
 	^MbDZRotation
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORotationalMotion class >> nameString [
 	^'RotationalMotion'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEORotationalMotion class >> visualWorksMetadata [
 
 	^ #(
@@ -24,7 +26,7 @@ GEORotationalMotion class >> visualWorksMetadata [
 
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEORotationalMotion >> createMbD [
 	| phiFunc parser stack func mbdZRotation |
 	super createMbD.
@@ -45,12 +47,12 @@ GEORotationalMotion >> createMbD [
 	mbdZRotation phiBlk: phiFunc
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORotationalMotion >> eqnLabel [
 	^'Rotation Motion Function'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORotationalMotion >> explainText [
 	^#'The motion constraint takes a prescribed function of time. It can accept a smooth expression created with the following operators or functions: +, -, *, /, ^ (raised to), pi, (-pi/2 <= arctan(x) <= pi/2), (-pi <= arctan2(x,y) <= pi), cos(x), exp(x), lg(x) (log base 10), ln(x) (natural log), sin(x), sqrt(x), tan(x).
 
@@ -75,19 +77,19 @@ CAD: Copyright (C) 2001, Aik-Siong Koh, All Rights Reserved.
 '
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORotationalMotion >> explainTitle [
 	^'Rotation Motion Function'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORotationalMotion >> joint [
 	^self interface jointList detect: [:joint | ((joint isMemberOf: GEORevoluteJoint)
 			or: [joint isMemberOf: GEOCylindricalJoint])
 			and: [joint aMarkerI == markerI and: [joint aMarkerJ == markerJ]]]
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEORotationalMotion >> phiFunc [
 	| parser stack func |
 	^phiIJ isNil
@@ -104,7 +106,7 @@ GEORotationalMotion >> phiFunc [
 				ifFalse: [phiIJ]]
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEORotationalMotion >> storeOn: aStream level: level [ 
 	aStream storeLevel: level title: self nameString.
 	aStream
@@ -121,7 +123,7 @@ GEORotationalMotion >> storeOn: aStream level: level [
 		object: phiIJ
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEORotationalMotion >> validateFormulas [
 	self phiFunc
 ]

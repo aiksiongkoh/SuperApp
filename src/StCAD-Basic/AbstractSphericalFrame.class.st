@@ -1,5 +1,6 @@
 Class {
-	#name : #AbstractSphericalFrame,
-	#superclass : #CoordinateFrame,
-	#category : #'StCAD-Basic'
+	#name : 'AbstractSphericalFrame',
+	#superclass : 'CoordinateFrame',
+	#category : 'StCAD-Basic',
+	#package : 'StCAD-Basic'
 }

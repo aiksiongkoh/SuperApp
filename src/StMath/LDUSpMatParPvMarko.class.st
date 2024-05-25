@@ -1,15 +1,17 @@
 Class {
-	#name : #LDUSpMatParPvMarko,
-	#superclass : #LDUSpMatParPv,
-	#category : #'StMath-StMathMatrixSolver'
+	#name : 'LDUSpMatParPvMarko',
+	#superclass : 'LDUSpMatParPv',
+	#category : 'StMath-StMathMatrixSolver',
+	#package : 'StMath',
+	#tag : 'StMathMatrixSolver'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 LDUSpMatParPvMarko class >> isAbstractClass [
 	^false
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 LDUSpMatParPvMarko class >> visualWorksMetadata [
 
 	^ #(
@@ -19,7 +21,7 @@ LDUSpMatParPvMarko class >> visualWorksMetadata [
 
 ]
 
-{ #category : #pivoting }
+{ #category : 'pivoting' }
 LDUSpMatParPvMarko >> doPivoting: p [ 
 	"Search from bottom to top."
 	"Check for singular pivot."

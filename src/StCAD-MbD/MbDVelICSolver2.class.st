@@ -1,13 +1,15 @@
 Class {
-	#name : #MbDVelICSolver2,
-	#superclass : #MbDVelSolver2,
+	#name : 'MbDVelICSolver2',
+	#superclass : 'MbDVelSolver2',
 	#instVars : [
 		'nqsu'
 	],
-	#category : #'StCAD-MbD-MbDSolver'
+	#category : 'StCAD-MbD-MbDSolver',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDVelICSolver2 class >> visualWorksMetadata [
 
 	^ #(
@@ -17,7 +19,7 @@ MbDVelICSolver2 class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDVelICSolver2 >> assignEquationNumbers [
 	"Equation order is q,s,u,lamb,lam."
 
@@ -53,13 +55,13 @@ MbDVelICSolver2 >> assignEquationNumbers [
 	n := eqnNo - 1
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDVelICSolver2 >> run [
 	system logString: #'MbD: \Solving for velocity initial conditions.'.
 	self runBasic
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDVelICSolver2 >> runBasic [
 	| qsudotOld qsudotWeights qsudotlam |
 	system partsJointsMotionsDo: [:item | item preVelIC].

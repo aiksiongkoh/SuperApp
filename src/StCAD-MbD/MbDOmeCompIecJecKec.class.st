@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDOmeCompIecJecKec,
-	#superclass : #MbDKinematicDotIeJe,
+	#name : 'MbDOmeCompIecJecKec',
+	#superclass : 'MbDKinematicDotIeJe',
 	#instVars : [
 		'efrmK',
 		'axisK',
@@ -8,10 +8,12 @@ Class {
 		'aAjOKe',
 		'omeIeJeO'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDOmeCompIecJecKec class >> visualWorksMetadata [
 
 	^ #(
@@ -21,7 +23,7 @@ MbDOmeCompIecJecKec class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDOmeCompIecJecKec class >> withFrmI: afrmI frmJ: afrmJ frmK: afrmK axisK: integer [ 
 	| instance |
 	self allSubclasses

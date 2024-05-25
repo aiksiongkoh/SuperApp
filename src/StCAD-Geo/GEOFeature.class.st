@@ -1,13 +1,15 @@
 Class {
-	#name : #GEOFeature,
-	#superclass : #GEOAnyFeature,
+	#name : 'GEOFeature',
+	#superclass : 'GEOAnyFeature',
 	#instVars : [
 		'isCut'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOFeature class >> visualWorksMetadata [
 
 	^ #(
@@ -17,12 +19,12 @@ GEOFeature class >> visualWorksMetadata [
 
 ]
 
-{ #category : #become }
+{ #category : 'become' }
 GEOFeature >> becomeFeature [
 	^self
 ]
 
-{ #category : #become }
+{ #category : 'become' }
 GEOFeature >> becomeNotDoneFeature [
 	| newSelf |
 	newSelf := GEONotDoneFeature new.
@@ -30,7 +32,7 @@ GEOFeature >> becomeNotDoneFeature [
 	self feature: newSelf
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOFeature >> isCut: boolean [ 
 	isCut := boolean
 ]

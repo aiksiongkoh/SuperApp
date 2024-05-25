@@ -1,1 +1,1 @@
-Package { #name : #StMath }
+Package { #name : 'StMath' }

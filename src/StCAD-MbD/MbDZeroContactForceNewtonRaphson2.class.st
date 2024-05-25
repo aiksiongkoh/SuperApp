@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDZeroContactForceNewtonRaphson2,
-	#superclass : #MbDTimeNewtonRaphson2,
-	#category : #'StCAD-MbD-MbDSolver'
+	#name : 'MbDZeroContactForceNewtonRaphson2',
+	#superclass : 'MbDTimeNewtonRaphson2',
+	#category : 'StCAD-MbD-MbDSolver',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDZeroContactForceNewtonRaphson2 class >> visualWorksMetadata [
 
 	^ #(
@@ -14,12 +16,12 @@ MbDZeroContactForceNewtonRaphson2 class >> visualWorksMetadata [
 
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDZeroContactForceNewtonRaphson2 >> fillPyPx [
 	pypx := system contactForceDerivative: 1 at: x
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDZeroContactForceNewtonRaphson2 >> fillY [
 	y := system contactForceAt: x
 ]

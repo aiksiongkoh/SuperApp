@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDStartingInContactCVCVJoint,
-	#superclass : #MbDInContactCVCVJoint,
-	#category : #'StCAD-MbD-MbDJoint'
+	#name : 'MbDStartingInContactCVCVJoint',
+	#superclass : 'MbDInContactCVCVJoint',
+	#category : 'StCAD-MbD-MbDJoint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDJoint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDStartingInContactCVCVJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -14,19 +16,19 @@ MbDStartingInContactCVCVJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDStartingInContactCVCVJoint >> becomeStartingInContactCVCVJoint [
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDStartingInContactCVCVJoint >> contactForceAt: tout [ 
 	| answer |
 	answer := self contactForceDerivative: 0 at: tout.	"Transcript cr; show: 'contactForceAt:'; show: answer printString."
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDStartingInContactCVCVJoint >> contactForceDerivative: n at: tout [ 
 	^interpolator
 		derivative: n
@@ -35,12 +37,12 @@ MbDStartingInContactCVCVJoint >> contactForceDerivative: n at: tout [
 		past: contactForcePast
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDStartingInContactCVCVJoint >> discontinuityAtICAddTo1: collection [ 
 	contactForce < 0.0 ifTrue: [collection add: #LIFTOFF]
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDStartingInContactCVCVJoint >> discontinuityAtICAddTo: collection [ 
 	| forTol |
 	forTol := self contactForceTol.
@@ -50,7 +52,7 @@ MbDStartingInContactCVCVJoint >> discontinuityAtICAddTo: collection [
 			collection add: #LIFTOFF]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDStartingInContactCVCVJoint >> postDynStep [
 	super postDynStep.
 	TheMbDSystem mbdSystemSolver istep >= 3

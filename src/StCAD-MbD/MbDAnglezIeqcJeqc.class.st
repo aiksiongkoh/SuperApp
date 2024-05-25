@@ -1,15 +1,17 @@
 Class {
-	#name : #MbDAnglezIeqcJeqc,
-	#superclass : #MbDAnglezIeqcJec,
+	#name : 'MbDAnglezIeqcJeqc',
+	#superclass : 'MbDAnglezIeqcJec',
 	#instVars : [
 		'pthezpEJ',
 		'ppthezpEIpEJ',
 		'ppthezpEJpEJ'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDAnglezIeqcJeqc class >> visualWorksMetadata [
 
 	^ #(
@@ -19,7 +21,7 @@ MbDAnglezIeqcJeqc class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDAnglezIeqcJeqc class >> withFrmI: afrmI frmJ: afrmJ [ 
 	^(afrmI isMemberOf: MbDEndFrameqc)
 		& (afrmJ isMemberOf: MbDEndFrameqc)
@@ -27,7 +29,7 @@ MbDAnglezIeqcJeqc class >> withFrmI: afrmI frmJ: afrmJ [
 		ifFalse: [nil]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDAnglezIeqcJeqc >> calcPostDynCorrectorIteration [
 	| pcthezpEJ psthezpEJ ppcthezpEIpEJ ppsthezpEIpEJ ppcthezpEJpEJ ppsthezpEJpEJ ppthezpEIpEJi ppcthezpEIpEJi ppsthezpEIpEJi pcthezpEIi psthezpEIi pcthezpEJj psthezpEJj term1 term2 term3 ppthezpEJpEJi ppcthezpEJpEJi ppsthezpEJpEJi pcthezpEJi psthezpEJi ppthezpEJpEJij |
 	super calcPostDynCorrectorIteration.
@@ -72,13 +74,13 @@ MbDAnglezIeqcJeqc >> calcPostDynCorrectorIteration [
 					ppthezpEJpEJ at: j and: i put: ppthezpEJpEJij]]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDAnglezIeqcJeqc >> initDirectionCosines [
 	aA11IeJe := MbDDirectionCosineIeqcJeqc new.
 	aA21IeJe := MbDDirectionCosineIeqcJeqc new
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDAnglezIeqcJeqc >> initialize [
 	super initialize.
 	pthezpEJ := StMFullRow new: 4.
@@ -86,32 +88,32 @@ MbDAnglezIeqcJeqc >> initialize [
 	ppthezpEJpEJ := StMFullMatrix new: 4 by: 4
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDAnglezIeqcJeqc >> ppthezpEIpEJ [
 	^ppthezpEIpEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDAnglezIeqcJeqc >> ppthezpEJpEJ [
 	^ppthezpEJpEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDAnglezIeqcJeqc >> ppvaluepEIpEJ [
 	^ppthezpEIpEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDAnglezIeqcJeqc >> ppvaluepEJpEJ [
 	^ppthezpEJpEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDAnglezIeqcJeqc >> pthezpEJ [
 	^pthezpEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDAnglezIeqcJeqc >> pvaluepEJ [
 	^pthezpEJ
 ]

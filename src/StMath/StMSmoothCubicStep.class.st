@@ -1,10 +1,12 @@
 Class {
-	#name : #StMSmoothCubicStep,
-	#superclass : #StMSmoothStep,
-	#category : #'StMath-Symbolic'
+	#name : 'StMSmoothCubicStep',
+	#superclass : 'StMSmoothStep',
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMSmoothCubicStep class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ StMSmoothCubicStep class >> visualWorksMetadata [
 
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 StMSmoothCubicStep >> transitionFunctionx1: x1 y1: y1 x2: x2 y2: y2 [ 
 	| x1v y1v x2v y2v b mat |
 	x1v := x1 value.

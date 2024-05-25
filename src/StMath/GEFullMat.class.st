@@ -1,10 +1,12 @@
 Class {
-	#name : #GEFullMat,
-	#superclass : #MatrixGaussElimination,
-	#category : #'StMath-StMathMatrixSolver'
+	#name : 'GEFullMat',
+	#superclass : 'MatrixGaussElimination',
+	#category : 'StMath-StMathMatrixSolver',
+	#package : 'StMath',
+	#tag : 'StMathMatrixSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEFullMat class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ GEFullMat class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'back substitution' }
+{ #category : 'back substitution' }
 GEFullMat >> backSubstituteIntoDU [
 	"DU is upper triangular with nonzero and arbitrary diagonals."
 
@@ -36,7 +38,7 @@ GEFullMat >> backSubstituteIntoDU [
 					- sum / (rowi at: i)]
 ]
 
-{ #category : #'forward elimination' }
+{ #category : 'forward elimination' }
 GEFullMat >> forwardEliminateWithPivot: p [ 
 	"Ignore elements below pivot. They should be zeros"
 	"rightHandSideB may be multidimensional."
@@ -58,12 +60,12 @@ GEFullMat >> forwardEliminateWithPivot: p [
 							- (bp * factor)]]
 ]
 
-{ #category : #solution }
+{ #category : 'solution' }
 GEFullMat >> postSolve [
 	"Do nothing."
 ]
 
-{ #category : #solution }
+{ #category : 'solution' }
 GEFullMat >> preSolve: aMatrix with: aVector saveOriginal: saveOriginal [ 
 	saveOriginal 
 		ifTrue: 

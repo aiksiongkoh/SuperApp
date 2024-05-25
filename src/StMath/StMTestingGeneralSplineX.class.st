@@ -1,10 +1,12 @@
 Class {
-	#name : #StMTestingGeneralSplineX,
-	#superclass : #StMGeneralSplineX,
-	#category : #'StMath-Symbolic'
+	#name : 'StMTestingGeneralSplineX',
+	#superclass : 'StMGeneralSplineX',
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 StMTestingGeneralSplineX class >> example2 [
 	"self example2"
 
@@ -24,7 +26,7 @@ StMTestingGeneralSplineX class >> example2 [
 		ys: ys
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 StMTestingGeneralSplineX class >> example4 [
 	"self example4"
 
@@ -46,7 +48,7 @@ StMTestingGeneralSplineX class >> example4 [
 		ys: ys
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMTestingGeneralSplineX class >> visualWorksMetadata [
 
 	^ #(
@@ -56,7 +58,7 @@ StMTestingGeneralSplineX class >> visualWorksMetadata [
 
 ]
 
-{ #category : #calculation }
+{ #category : 'calculation' }
 StMTestingGeneralSplineX >> computeDerivatives [
 	"See derivation in 9spline.doc."
 
@@ -164,7 +166,7 @@ StMTestingGeneralSplineX >> computeDerivatives [
 					1 to: p do: [:j | derivsi at: j put: (derivsi at: j) / (hmaxpowers at: j)]]]
 ]
 
-{ #category : #calculation }
+{ #category : 'calculation' }
 StMTestingGeneralSplineX >> computeDerivativesGood [
 	"See derivation in 9spline.doc."
 

@@ -1,10 +1,12 @@
 Class {
-	#name : #IntegratorError,
-	#superclass : #Error,
-	#category : #'StMath-StMathIntegrator'
+	#name : 'IntegratorError',
+	#superclass : 'Error',
+	#category : 'StMath-StMathIntegrator',
+	#package : 'StMath',
+	#tag : 'StMathIntegrator'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 IntegratorError class >> visualWorksMetadata [
 
 	^ #(

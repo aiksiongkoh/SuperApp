@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDKineIntegrator,
-	#superclass : #MbDQuasiIntegrator,
-	#category : #'StCAD-MbD-MbDSolver'
+	#name : 'MbDKineIntegrator',
+	#superclass : 'MbDQuasiIntegrator',
+	#category : 'StCAD-MbD-MbDSolver',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDKineIntegrator class >> visualWorksMetadata [
 
 	^ #(
@@ -14,20 +16,20 @@ MbDKineIntegrator class >> visualWorksMetadata [
 
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDKineIntegrator >> preRun [
 	system logString: #'MbD: \Starting kinematic analysis.'.
 	super preRun
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDKineIntegrator >> runInitialConditionTypeSolution [
 	system runPosKine.
 	system runVelKine.
 	system runAccKine
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDKineIntegrator >> useTrialStepStats: stats [ 
 	system useKineTrialStepStats: stats
 ]

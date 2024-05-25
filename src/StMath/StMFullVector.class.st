@@ -2,20 +2,32 @@
 Stores doubles only.
 "
 Class {
-	#name : #StMFullVector,
-	#superclass : #StMArray,
-	#type : #variable,
-	#category : #'StMath-StMathArray'
+	#name : 'StMFullVector',
+	#superclass : 'StMArray',
+	#type : 'variable',
+	#category : 'StMath-StMathArray',
+	#package : 'StMath',
+	#tag : 'StMathArray'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
+StMFullVector class >> fromCollection: aCollection aBlock: aBlock [ 
+	| size aFullColumn |
+	size := aCollection size.
+	aFullColumn := self new: size.
+	1 to: size
+		do: [:i | aFullColumn at: i put: (aBlock value: (aCollection at: i))].
+	^aFullColumn
+]
+
+{ #category : 'instance creation' }
 StMFullVector class >> ofOrdinalsSize: n [ 
 	"aVector filled with 1 to n in order."
 
 	^(super new: n) fillWithOrdinals
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMFullVector class >> visualWorksMetadata [
 
 	^ #(
@@ -25,7 +37,7 @@ StMFullVector class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMFullVector class >> with: firstObject with: secondObject with1: thirdObject [ 
 	"For debugging only"
 
@@ -41,7 +53,7 @@ StMFullVector class >> with: firstObject with: secondObject with1: thirdObject [
 	^newCollection
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullVector >> at: i1 minusFullVector: aFullVector [ 
 	| iOffset i |
 	iOffset := i1 - 1.
@@ -53,7 +65,7 @@ StMFullVector >> at: i1 minusFullVector: aFullVector [
 					- (aFullVector at: ii)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullVector >> at: i1 minusFullVector: aFullVector times: aNumber [ 
 	| iOffset i |
 	iOffset := i1 - 1.
@@ -66,12 +78,12 @@ StMFullVector >> at: i1 minusFullVector: aFullVector times: aNumber [
 							* aNumber)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullVector >> at: i minusNumber: aNumber [ 
 	self at: i put: (self at: i) - aNumber
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullVector >> at: i1 plusFullVector: aFullVector [ 
 	| iOffset i |
 	iOffset := i1 - 1.
@@ -83,7 +95,7 @@ StMFullVector >> at: i1 plusFullVector: aFullVector [
 					+ (aFullVector at: ii)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullVector >> at: i1 plusFullVector: aFullVector times: aNumber [ 
 	| iOffset i |
 	iOffset := i1 - 1.
@@ -96,19 +108,19 @@ StMFullVector >> at: i1 plusFullVector: aFullVector times: aNumber [
 							* aNumber)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullVector >> at: i plusNumber: aNumber [ 
 	self at: i put: (self at: i) + aNumber
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullVector >> at: i1 putFullVector: aFullVector [ 
 	| iOffset |
 	iOffset := i1 - 1.
 	1 to: aFullVector size do: [:ii | self at: iOffset + ii put: (aFullVector at: ii)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullVector >> at: i1 putFullVector: aFullVector times: number [ 
 	| iOffset |
 	iOffset := i1 - 1.
@@ -116,13 +128,13 @@ StMFullVector >> at: i1 putFullVector: aFullVector times: number [
 				* number]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullVector >> at: i times: aNumber [ 
 	^self at: i put: (self at: i)
 			* aNumber
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullVector >> cross: aVector [ 
 	| a1 a2 a3 b1 b2 b3 answer |
 	a1 := self at: 1.
@@ -138,31 +150,31 @@ StMFullVector >> cross: aVector [
 	^answer
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullVector >> equalFullVector: aFullVector [ 
 	1 to: self size do: [:i | self at: i put: (aFullVector at: i)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullVector >> equalFullVector: aFullVector at: ii1 [ 
 	| iiOffset |
 	iiOffset := ii1 - 1.
 	1 to: self size do: [:i | self at: i put: (aFullVector at: iiOffset + i)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullVector >> equalFullVector: aFullVector times: aNumber [ 
 	1 to: self size do: [:i | self at: i put: (aFullVector at: i)
 				* aNumber]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullVector >> equalSelfMinusFullVector: aFullVector [ 
 	1 to: self size do: [:i | self at: i put: (self at: i)
 				- (aFullVector at: i)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullVector >> equalSelfMinusFullVector: aFullVector at: ii1 [ 
 	| iiOffset |
 	iiOffset := ii1 - 1.
@@ -170,32 +182,32 @@ StMFullVector >> equalSelfMinusFullVector: aFullVector at: ii1 [
 				- (aFullVector at: iiOffset + i)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullVector >> equalSelfMinusFullVector: aFullVector times: aNumber [ 
 	1 to: self size do: [:i | self at: i put: (self at: i)
 				- ((aFullVector at: i)
 						* aNumber)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullVector >> equalSelfMinusSparseVector: aSparseVector [ 
 	aSparseVector keysAndValuesDo: [:i :value | self at: i put: (self at: i)
 				- value]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullVector >> equalSelfMinusSparseVector: aSparseVector times: aNumber [ 
 	aSparseVector keysAndValuesDo: [:i :value | self at: i put: (self at: i)
 				- (value * aNumber)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullVector >> equalSelfPlusFullVector: aFullVector [ 
 	1 to: self size do: [:i | self at: i put: (self at: i)
 				+ (aFullVector at: i)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullVector >> equalSelfPlusFullVector: aFullVector at: ii1 [ 
 	| iiOffset |
 	iiOffset := ii1 - 1.
@@ -203,45 +215,45 @@ StMFullVector >> equalSelfPlusFullVector: aFullVector at: ii1 [
 				+ (aFullVector at: iiOffset + i)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullVector >> equalSelfPlusFullVector: aFullVector times: aNumber [ 
 	1 to: self size do: [:i | self at: i put: (self at: i)
 				+ ((aFullVector at: i)
 						* aNumber)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullVector >> equalSelfPlusSparseVector: aSparseVector [ 
 	aSparseVector keysAndValuesDo: [:i :value | self at: i put: (self at: i)
 				+ value]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullVector >> equalSelfPlusSparseVector: aSparseVector times: aNumber [ 
 	aSparseVector keysAndValuesDo: [:i :value | self at: i put: (self at: i)
 				+ (value * aNumber)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullVector >> equalSelfTimes: alpha minusFullVector: aFullVector times: beta [ 
 	1 to: self size do: [:i | self at: i put: (self at: i)
 				* alpha - ((aFullVector at: i)
 					* beta)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullVector >> equalSelfTimes: alpha plusFullVector: aFullVector times: beta [ 
 	1 to: self size do: [:i | self at: i put: (self at: i)
 				* alpha + ((aFullVector at: i)
 					* beta)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullVector >> fillWithOrdinals [
 	1 to: self size do: [:i | self at: i put: i]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMFullVector >> iMax [
 	"Answer the index of the largest element."
 
@@ -260,7 +272,7 @@ StMFullVector >> iMax [
 	^iMax
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMFullVector >> iMin [
 	"Answer the index of the smallest element."
 
@@ -279,14 +291,14 @@ StMFullVector >> iMin [
 	^iMin
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMFullVector >> isDecreasing [
 	"Test if elements are monotonically decreasing."
 
 	^self isDecreasingIfExceptionsAreLessThan: Number zero
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMFullVector >> isDecreasingIfExceptionsAreLessThan: tol [ 
 	"Test if elements are decreasing."
 	"Ok if spoilers are less than tol."
@@ -301,14 +313,14 @@ StMFullVector >> isDecreasingIfExceptionsAreLessThan: tol [
 	^true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMFullVector >> isIncreasing [
 	"Test if elements are monotonically increasing."
 
 	^self isIncreasingIfExceptionsAreLessThan: Number zero
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMFullVector >> isIncreasingIfExceptionsAreLessThan: tol [ 
 	"Test if elements are increasing."
 	"Ok if spoilers are less than tol."
@@ -323,7 +335,7 @@ StMFullVector >> isIncreasingIfExceptionsAreLessThan: tol [
 	^true
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullVector >> minusFullVector: aFullVector [ 
 	"No checking for speed. Assumes correct dimensions and type."
 
@@ -335,7 +347,7 @@ StMFullVector >> minusFullVector: aFullVector [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullVector >> minusFullVector: aFullVector times: number [ 
 	"No checking for speed. Assumes correct dimensions and type."
 
@@ -348,7 +360,7 @@ StMFullVector >> minusFullVector: aFullVector times: number [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullVector >> minusNumber: aNumber [ 
 	"Minus aNumber from each element."
 	"Answer new vector."
@@ -361,13 +373,13 @@ StMFullVector >> minusNumber: aNumber [
 	^answer
 ]
 
-{ #category : #norms }
+{ #category : 'norms' }
 StMFullVector >> normL: number [ 
 	^(self sumOfElementsRaisedTo: number)
 		raisedTo: number reciprocal
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullVector >> normalizeSelf [
 	| length |
 	length := self length.
@@ -375,7 +387,7 @@ StMFullVector >> normalizeSelf [
 	self magnifySelf: 1.0 / length
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMFullVector >> normalized [
 	| answer |
 	answer := self copy.
@@ -383,7 +395,7 @@ StMFullVector >> normalized [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMFullVector >> numberOfElements [
 	"Borrowed from size."
 
@@ -391,7 +403,7 @@ StMFullVector >> numberOfElements [
 	^self basicSize
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 StMFullVector >> outputOnFile: aString [ 
 	| writeStream aij aijString |
 	writeStream := aString asFilename writeStream.
@@ -409,7 +421,7 @@ StMFullVector >> outputOnFile: aString [
 	writeStream flush; close
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullVector >> plusFullVector: aFullVector [ 
 	"No checking for speed. Assumes correct dimensions and type."
 
@@ -421,7 +433,7 @@ StMFullVector >> plusFullVector: aFullVector [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullVector >> plusFullVector: aFullVector times: number [ 
 	"No checking for speed. Assumes correct dimensions and type."
 
@@ -434,7 +446,7 @@ StMFullVector >> plusFullVector: aFullVector times: number [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullVector >> plusNumber: aNumber [ 
 	"Plus aNumber from each element."
 	"Answer new vector."
@@ -447,7 +459,7 @@ StMFullVector >> plusNumber: aNumber [
 	^answer
 ]
 
-{ #category : #norms }
+{ #category : 'norms' }
 StMFullVector >> rootMeanSquareWeighted: weights [ 
 	"Note that the vector is scaled by the weights before the rms."
 
@@ -459,7 +471,7 @@ StMFullVector >> rootMeanSquareWeighted: weights [
 	^vector rootMeanSquare
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullVector >> scaledWith: scalingVector forRows: i1 to: i2 [ 
 	"Return self scaled with scaling vector."
 
@@ -467,7 +479,7 @@ StMFullVector >> scaledWith: scalingVector forRows: i1 to: i2 [
 				* (scalingVector at: i)]
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullVector >> tildeMatrix [
 	"tildeMatrix is related to angular velocity and cross product."
 
@@ -491,7 +503,7 @@ StMFullVector >> tildeMatrix [
 		ifFalse: [self error: 'Column is not of dimension 3.']
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullVector >> times: aNumber [ 
 	| n answer |
 	n := self size.
@@ -501,7 +513,7 @@ StMFullVector >> times: aNumber [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullVector >> times: alpha minusFullVector: aFullVector [ 
 	"a*alpha + b."
 	"Assume all checking of validity of this operation has been done."
@@ -515,7 +527,7 @@ StMFullVector >> times: alpha minusFullVector: aFullVector [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullVector >> times: beta minusFullVector: aFullVector times: alpha [ 
 	"a*alpha + b*beta = b*beta + a*alpha."
 	"Assume all checking of validity of this operation has been done."
@@ -530,7 +542,7 @@ StMFullVector >> times: beta minusFullVector: aFullVector times: alpha [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullVector >> times: alpha plusFullVector: aFullVector [ 
 	"a*alpha + b."
 	"Assume all checking of validity of this operation has been done."
@@ -544,7 +556,7 @@ StMFullVector >> times: alpha plusFullVector: aFullVector [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullVector >> times: beta plusFullVector: aFullVector times: alpha [ 
 	"a*alpha + b*beta = b*beta + a*alpha."
 	"Assume all checking of validity of this operation has been done."
@@ -559,7 +571,7 @@ StMFullVector >> times: beta plusFullVector: aFullVector times: alpha [
 	^answer
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMFullVector >> validateElements [
 	"Check that all elements are real numbers."
 

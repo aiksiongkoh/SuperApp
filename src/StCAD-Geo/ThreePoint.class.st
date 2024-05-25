@@ -1,15 +1,16 @@
 Class {
-	#name : #ThreePoint,
-	#superclass : #Combination,
+	#name : 'ThreePoint',
+	#superclass : 'Combination',
 	#instVars : [
 		'a1Point',
 		'a2Point',
 		'a3Point'
 	],
-	#category : #'StCAD-Geo'
+	#category : 'StCAD-Geo',
+	#package : 'StCAD-Geo'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 ThreePoint class >> a1Point: a1Point a2Point: a2Point a3Point: a3Point [ 
 	^(self new)
 		a1Point: a1Point;
@@ -18,7 +19,7 @@ ThreePoint class >> a1Point: a1Point a2Point: a2Point a3Point: a3Point [
 		yourself
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 ThreePoint class >> visualWorksMetadata [
 
 	^ #(
@@ -28,37 +29,37 @@ ThreePoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ThreePoint >> a1Point [
 	^a1Point
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ThreePoint >> a1Point: anObject [
 	a1Point := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ThreePoint >> a2Point [
 	^a2Point
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ThreePoint >> a2Point: anObject [
 	a2Point := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ThreePoint >> a3Point [
 	^a3Point
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ThreePoint >> a3Point: anObject [
 	a3Point := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ThreePoint >> center_r_angleS_angleE [
 	"Answer radius and center of circle passing through three points."
 

@@ -1,15 +1,17 @@
 Class {
-	#name : #MbDGearJoint,
-	#superclass : #MbDJoint,
+	#name : 'MbDGearJoint',
+	#superclass : 'MbDJoint',
 	#instVars : [
 		'radiusI',
 		'radiusJ',
 		'aConstant'
 	],
-	#category : #'StCAD-MbD-MbDJoint'
+	#category : 'StCAD-MbD-MbDJoint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDJoint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDGearJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -19,17 +21,17 @@ MbDGearJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDGearJoint >> aConstant [
 	^aConstant
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDGearJoint >> aConstant: anObject [
 	aConstant := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDGearJoint >> classString [
 	"Used to access the descriptive name of the joint."
 
@@ -38,7 +40,7 @@ MbDGearJoint >> classString [
 	^TheMbDSystem getString: #'MbD: Gear Joint '
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDGearJoint >> initializeGlobally [
 	| constraint |
 	constraints isEmpty 
@@ -52,22 +54,22 @@ MbDGearJoint >> initializeGlobally [
 		ifFalse: [super initializeGlobally]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDGearJoint >> radiusI [
 	^radiusI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDGearJoint >> radiusI: anObject [
 	radiusI := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDGearJoint >> radiusJ [
 	^radiusJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDGearJoint >> radiusJ: anObject [
 	radiusJ := anObject
 ]

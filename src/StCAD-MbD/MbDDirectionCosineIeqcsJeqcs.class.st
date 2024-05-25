@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDDirectionCosineIeqcsJeqcs,
-	#superclass : #MbDDirectionCosineIeqcsJeqc,
+	#name : 'MbDDirectionCosineIeqcsJeqcs',
+	#superclass : 'MbDDirectionCosineIeqcsJeqc',
 	#instVars : [
 		'sSizeJ',
 		'pAijIeJepsJ',
@@ -9,10 +9,12 @@ Class {
 		'ppAijIeJepsIpsJ',
 		'ppAijIeJepsJpsJ'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDDirectionCosineIeqcsJeqcs class >> visualWorksMetadata [
 
 	^ #(
@@ -22,7 +24,7 @@ MbDDirectionCosineIeqcsJeqcs class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDDirectionCosineIeqcsJeqcs class >> withFrmI: afrmI frmJ: afrmJ axisI: aaxisI axisJ: aaxisJ [ 
 	^(afrmI isKindOf: MbDEndFrameqcs)
 		& (afrmJ isKindOf: MbDEndFrameqcs)
@@ -34,7 +36,7 @@ MbDDirectionCosineIeqcsJeqcs class >> withFrmI: afrmI frmJ: afrmJ axisI: aaxisI 
 		ifFalse: [nil]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDirectionCosineIeqcsJeqcs >> calcPostDynCorrectorIteration [
 	"ppAjOJepEJpEJ is not long constant and must be set before any calculation."
 
@@ -62,12 +64,12 @@ MbDDirectionCosineIeqcsJeqcs >> calcPostDynCorrectorIteration [
 	ppAijIeJepsJpsJ symLowerWithUpper
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDirectionCosineIeqcsJeqcs >> initializeGlobally [
 	"Do nothing."
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDirectionCosineIeqcsJeqcs >> initializeLocally [
 	super initializeLocally.
 	sSizeJ := frmJ sSize.
@@ -78,52 +80,52 @@ MbDDirectionCosineIeqcsJeqcs >> initializeLocally [
 	ppAijIeJepsJpsJ := StMFullMatrix new: sSizeJ by: sSizeJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineIeqcsJeqcs >> pAijIeJepsJ [
 	^pAijIeJepsJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineIeqcsJeqcs >> ppAijIeJepEIpsJ [
 	^ppAijIeJepEIpsJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineIeqcsJeqcs >> ppAijIeJepEJpsJ [
 	^ppAijIeJepEJpsJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineIeqcsJeqcs >> ppAijIeJepsIpsJ [
 	^ppAijIeJepsIpsJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineIeqcsJeqcs >> ppAijIeJepsJpsJ [
 	^ppAijIeJepsJpsJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineIeqcsJeqcs >> ppvaluepEIpsJ [
 	^ppAijIeJepEIpsJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineIeqcsJeqcs >> ppvaluepEJpsJ [
 	^ppAijIeJepEJpsJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineIeqcsJeqcs >> ppvaluepsIpsJ [
 	^ppAijIeJepsIpsJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineIeqcsJeqcs >> ppvaluepsJpsJ [
 	^ppAijIeJepsJpsJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineIeqcsJeqcs >> pvaluepsJ [
 	^pAijIeJepsJ
 ]

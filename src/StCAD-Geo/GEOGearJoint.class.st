@@ -1,25 +1,27 @@
 Class {
-	#name : #GEOGearJoint,
-	#superclass : #GEOJoint,
+	#name : 'GEOGearJoint',
+	#superclass : 'GEOJoint',
 	#instVars : [
 		'radiusI',
 		'radiusJ',
 		'aConstant'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOGearJoint class >> mbdClass [
 	^MbDGearJoint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOGearJoint class >> nameString [
 	^'GearJoint'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOGearJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -29,17 +31,17 @@ GEOGearJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOGearJoint >> aConstant [
 	^aConstant
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOGearJoint >> aConstant: anObject [
 	aConstant := anObject
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOGearJoint >> createMbD [
 	| mbdGearJoint |
 	super createMbD.
@@ -49,7 +51,7 @@ GEOGearJoint >> createMbD [
 	mbdGearJoint aConstant: aConstant
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOGearJoint >> driveCADSMTest: aCADSMTest [ 
 	| aJoint |
 	aJoint := super driveCADSMTest: aCADSMTest.
@@ -57,7 +59,7 @@ GEOGearJoint >> driveCADSMTest: aCADSMTest [
 	^aJoint
 ]
 
-{ #category : #COM }
+{ #category : 'COM' }
 GEOGearJoint >> driveCOMJoint: aJointCtrl [ 
 	super driveCOMJoint: aJointCtrl.
 	aJointCtrl aConstant: aConstant.
@@ -65,33 +67,33 @@ GEOGearJoint >> driveCOMJoint: aJointCtrl [
 	aJointCtrl aRadiusJ: radiusJ
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOGearJoint >> initialize [
 	super initialize.
 	aConstant := nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOGearJoint >> radiusI [
 	^radiusI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOGearJoint >> radiusI: anObject [
 	radiusI := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOGearJoint >> radiusJ [
 	^radiusJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOGearJoint >> radiusJ: anObject [
 	radiusJ := anObject
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOGearJoint >> storeOn: aStream level: level [ 
 	super storeOn: aStream level: level.
 	aStream

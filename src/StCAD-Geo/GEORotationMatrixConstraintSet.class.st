@@ -1,10 +1,12 @@
 Class {
-	#name : #GEORotationMatrixConstraintSet,
-	#superclass : #GEOConstraintSet,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEORotationMatrixConstraintSet',
+	#superclass : 'GEOConstraintSet',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEORotationMatrixConstraintSet class >> visualWorksMetadata [
 
 	^ #(

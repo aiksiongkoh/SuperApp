@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDReactionForceCompIeKe,
-	#superclass : #MbDReactionComp,
+	#name : 'MbDReactionForceCompIeKe',
+	#superclass : 'MbDReactionComp',
 	#instVars : [
 		'aFiIeKe',
 		'pFiIeKepXI',
@@ -10,10 +10,12 @@ Class {
 		'pFiIeKepEK',
 		'pFiIeKeplam'
 	],
-	#category : #'StCAD-MbD-MbDReaction'
+	#category : 'StCAD-MbD-MbDReaction',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDReaction'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDReactionForceCompIeKe class >> visualWorksMetadata [
 
 	^ #(
@@ -23,7 +25,7 @@ MbDReactionForceCompIeKe class >> visualWorksMetadata [
 
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDReactionForceCompIeKe >> calcPostDynCorrectorIteration [
 	| aAjOKe pAjOKepEK |
 	aAjOKe := efrmK aAjOe: axis.
@@ -37,54 +39,54 @@ MbDReactionForceCompIeKe >> calcPostDynCorrectorIteration [
 	pFiIeKeplam := aAjOKe transpose timesSparseMatrix: joint pFIeJtOplam
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReactionForceCompIeKe >> isJointForce [
 	^true
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDReactionForceCompIeKe >> postInput [
 	| aAjOKe |
 	aAjOKe := efrmK aAjOe: axis.
 	aFiIeKe := aAjOKe dot: joint aFIeJtO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReactionForceCompIeKe >> pvaluepEI [
 	^pFiIeKepEI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReactionForceCompIeKe >> pvaluepEJ [
 	^pFiIeKepEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReactionForceCompIeKe >> pvaluepEK [
 	^pFiIeKepEK
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReactionForceCompIeKe >> pvaluepXI [
 	^pFiIeKepXI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReactionForceCompIeKe >> pvaluepXJ [
 	^pFiIeKepXJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReactionForceCompIeKe >> pvaluepXK [
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReactionForceCompIeKe >> pvalueplam [
 	^pFiIeKeplam
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReactionForceCompIeKe >> value [
 	^aFiIeKe
 ]

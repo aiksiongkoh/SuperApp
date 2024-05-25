@@ -1,16 +1,18 @@
 Class {
-	#name : #MbDDirectionCosineIeqctJeqc,
-	#superclass : #MbDDirectionCosineIeqcJeqc,
+	#name : 'MbDDirectionCosineIeqctJeqc',
+	#superclass : 'MbDDirectionCosineIeqcJeqc',
 	#instVars : [
 		'pAijIeJept',
 		'ppAijIeJepEIpt',
 		'ppAijIeJepEJpt',
 		'ppAijIeJeptpt'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDDirectionCosineIeqctJeqc class >> visualWorksMetadata [
 
 	^ #(
@@ -20,7 +22,7 @@ MbDDirectionCosineIeqctJeqc class >> visualWorksMetadata [
 
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDirectionCosineIeqctJeqc >> calcPostDynCorrectorIteration [
 	"ppAjOIepEIpEI is not longer constant and must be set before any calculation."
 
@@ -28,54 +30,54 @@ MbDDirectionCosineIeqctJeqc >> calcPostDynCorrectorIteration [
 	super calcPostDynCorrectorIteration
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDirectionCosineIeqctJeqc >> initialize [
 	super initialize.
 	ppAijIeJepEIpt := StMFullRow new: 4.
 	ppAijIeJepEJpt := StMFullRow new: 4
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDirectionCosineIeqctJeqc >> initializeGlobally [
 	ppAjOJepEJpEJ := frmJ ppAjOepEpE: axisJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineIeqctJeqc >> pAijIeJept [
 	^pAijIeJept
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineIeqctJeqc >> ppAijIeJepEIpt [
 	^ppAijIeJepEIpt
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineIeqctJeqc >> ppAijIeJepEJpt [
 	^ppAijIeJepEJpt
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineIeqctJeqc >> ppAijIeJeptpt [
 	^ppAijIeJeptpt
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineIeqctJeqc >> ppvaluepEIpt [
 	^ppAijIeJepEIpt
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineIeqctJeqc >> ppvaluepEJpt [
 	^ppAijIeJepEJpt
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineIeqctJeqc >> ppvalueptpt [
 	^ppAijIeJeptpt
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDDirectionCosineIeqctJeqc >> preAccIC [
 	| ppAjOIepEITpt ppAjOIeptpt ppAjOIepEITpti pAjOIept |
 	super preAccIC.
@@ -89,7 +91,7 @@ MbDDirectionCosineIeqctJeqc >> preAccIC [
 	ppAijIeJeptpt := ppAjOIeptpt dot: aAjOJe
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDDirectionCosineIeqctJeqc >> preVelIC [
 	| pAjOIept |
 	super preVelIC.
@@ -97,7 +99,7 @@ MbDDirectionCosineIeqctJeqc >> preVelIC [
 	pAijIeJept := pAjOIept dot: aAjOJe
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineIeqctJeqc >> pvaluept [
 	^pAijIeJept
 ]

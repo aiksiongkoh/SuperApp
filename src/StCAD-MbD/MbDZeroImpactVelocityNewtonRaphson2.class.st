@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDZeroImpactVelocityNewtonRaphson2,
-	#superclass : #MbDScalarNewtonRaphson2,
-	#category : #'StCAD-MbD-MbDSolver'
+	#name : 'MbDZeroImpactVelocityNewtonRaphson2',
+	#superclass : 'MbDScalarNewtonRaphson2',
+	#category : 'StCAD-MbD-MbDSolver',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDZeroImpactVelocityNewtonRaphson2 class >> visualWorksMetadata [
 
 	^ #(
@@ -14,17 +16,17 @@ MbDZeroImpactVelocityNewtonRaphson2 class >> visualWorksMetadata [
 
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDZeroImpactVelocityNewtonRaphson2 >> fillPyPx [
 	pypx := system impactVelocityDerivative: 1 at: x
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDZeroImpactVelocityNewtonRaphson2 >> fillY [
 	y := system impactVelocityAt: x
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDZeroImpactVelocityNewtonRaphson2 >> incrementIterNo [
 	iterNo >= iterMax
 		ifTrue: 
@@ -33,17 +35,17 @@ MbDZeroImpactVelocityNewtonRaphson2 >> incrementIterNo [
 	iterNo := iterNo + 1
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDZeroImpactVelocityNewtonRaphson2 >> initializeGlobally [
 	x := system impulseStart
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDZeroImpactVelocityNewtonRaphson2 >> passRootToSystem [
 	system impulseStart: x
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDZeroImpactVelocityNewtonRaphson2 >> preRun [
 	| impulseGuess |
 	impulseGuess := system interpolator firstPastTimeNode.

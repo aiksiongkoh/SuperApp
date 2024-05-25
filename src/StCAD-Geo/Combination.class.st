@@ -2,15 +2,16 @@
 GeometricPair subclasses are utility objects to compute interactions between two geometrical elements.
 "
 Class {
-	#name : #Combination,
-	#superclass : #Item,
+	#name : 'Combination',
+	#superclass : 'Item',
 	#classVars : [
 		'Geo'
 	],
-	#category : #'StCAD-Geo'
+	#category : 'StCAD-Geo',
+	#package : 'StCAD-Geo'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 Combination class >> visualWorksMetadata [
 
 	^ #(

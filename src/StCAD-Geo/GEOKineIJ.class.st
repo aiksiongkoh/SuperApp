@@ -1,15 +1,17 @@
 Class {
-	#name : #GEOKineIJ,
-	#superclass : #GEORelativeConstraintSet,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEOKineIJ',
+	#superclass : 'GEORelativeConstraintSet',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIJ class >> nameString [
 	^'KinematicIJ'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOKineIJ class >> visualWorksMetadata [
 
 	^ #(
@@ -19,23 +21,23 @@ GEOKineIJ class >> visualWorksMetadata [
 
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOKineIJ >> createMbD [
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIJ >> cut [
 	container cutKineIJ: self.
 	super cut
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIJ >> dataClass [
 	^GEOKineIKineJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIJ >> dataSeriesForChart [
 	| kineIs kineJs index kineIforceIkineJ |
 	kineIs := markerI dataSeriesForChart.
@@ -56,17 +58,17 @@ GEOKineIJ >> dataSeriesForChart [
 			Array new]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOKineIJ >> isKineIJ [
 	^true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIJ >> uncut [
 	container addKineIJ: self
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOKineIJ >> updateFromMbD [
 	"Do nothing."
 ]

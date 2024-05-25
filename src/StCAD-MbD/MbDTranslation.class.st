@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDTranslation,
-	#superclass : #MbDPrescribedMotion,
-	#category : #'StCAD-MbD-MbDMotion'
+	#name : 'MbDTranslation',
+	#superclass : 'MbDPrescribedMotion',
+	#category : 'StCAD-MbD-MbDMotion',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDMotion'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDTranslation class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ MbDTranslation class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDTranslation >> classString [
 	"Used to access the descriptive name of the joint."
 	"Needed for multi-language."
@@ -22,7 +24,7 @@ MbDTranslation >> classString [
 	^TheMbDSystem getString: #'MbD: Translation '
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDTranslation >> initializeGlobally [
 	constraints isEmpty
 		ifTrue: 

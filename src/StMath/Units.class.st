@@ -1,6 +1,10 @@
+"
+asmtNum*asmtUnit = siNum*siUnit = mbdNum*mbdUnit
+
+"
 Class {
-	#name : #Units,
-	#superclass : #Object,
+	#name : 'Units',
+	#superclass : 'StMNumeric',
 	#instVars : [
 		'time',
 		'mass',
@@ -17,30 +21,32 @@ Class {
 	#classVars : [
 		'Math'
 	],
-	#category : #'StMath-StMathArraySpecial'
+	#category : 'StMath-StMathArraySpecial',
+	#package : 'StMath',
+	#tag : 'StMathArraySpecial'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Units class >> Kilograms [
 	^Kilograms
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Units class >> Meters [
 	^Meters
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Units class >> Newtons [
 	^Newtons
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Units class >> Seconds [
 	^Seconds
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 Units class >> initializeForceUnits [
 	Newtons at: #DYNE put: 1.0e-5.
 	Newtons at: #KILOGRAMFORCE put: 9.81.
@@ -52,7 +58,7 @@ Units class >> initializeForceUnits [
 	Newtons at: #POUNDAL put: 0.1383
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 Units class >> initializeLengthUnits [
 	Meters at: #CENTIMETER put: 0.01.
 	Meters at: #FOOT put: 0.3048.
@@ -63,7 +69,7 @@ Units class >> initializeLengthUnits [
 	Meters at: #MILE put: 1609.0
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 Units class >> initializeMassUnits [
 	Kilograms at: #GRAM put: 0.001.
 	Kilograms at: #KILOGRAM put: 1.0.
@@ -73,7 +79,7 @@ Units class >> initializeMassUnits [
 	Kilograms at: #SLUG put: 14.59
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 Units class >> initializeTimeUnits [
 	Seconds at: #HOUR put: 3600.0.
 	Seconds at: #MILLISECOND put: 0.001.
@@ -81,7 +87,7 @@ Units class >> initializeTimeUnits [
 	Seconds at: #SECOND put: 1.0
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 Units class >> initializeX [
 	"StMPhysicalUnits initialize."
 
@@ -95,12 +101,7 @@ Units class >> initializeX [
 	self initializeForceUnits
 ]
 
-{ #category : #'instance creation' }
-Units class >> new [
-	^super new initialize
-]
-
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 Units class >> time: unitTime mass: unitMass length: unitLength angle: unitAngle [ 
 	^super basicNew
 		time: unitTime
@@ -109,7 +110,7 @@ Units class >> time: unitTime mass: unitMass length: unitLength angle: unitAngle
 		angle: unitAngle
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 Units class >> visualWorksMetadata [
 
 	^ #(
@@ -118,27 +119,27 @@ Units class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Units >> aJ [
 	^aJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Units >> acceleration [
 	^acceleration
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Units >> alpha [
 	^alpha
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Units >> angle [
 	^angle
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 Units >> calc [
 	"Calculate derived units."
 
@@ -151,12 +152,12 @@ Units >> calc [
 	torque := force * length
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Units >> force [
 	^force
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 Units >> initialize [
 	"Default units are second, kilogram, meter, radians."
 
@@ -167,27 +168,27 @@ Units >> initialize [
 		angle: 1.0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Units >> length [
 	^length
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Units >> mass [
 	^mass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Units >> omega [
 	^omega
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Units >> time [
 	^time
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Units >> time: unitTime mass: unitMass length: unitLength angle: unitAngle [ 
 	time := unitTime.
 	mass := unitMass.
@@ -196,12 +197,12 @@ Units >> time: unitTime mass: unitMass length: unitLength angle: unitAngle [
 	self calc
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Units >> torque [
 	^torque
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Units >> velocity [
 	^velocity
 ]

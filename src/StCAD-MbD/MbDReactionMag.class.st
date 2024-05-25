@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDReactionMag,
-	#superclass : #MbDReaction,
-	#category : #'StCAD-MbD-MbDReaction'
+	#name : 'MbDReactionMag',
+	#superclass : 'MbDReaction',
+	#category : 'StCAD-MbD-MbDReaction',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDReaction'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDReactionMag class >> visualWorksMetadata [
 
 	^ #(
@@ -14,17 +16,17 @@ MbDReactionMag class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReactionMag >> partFrameK [
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReactionMag >> pvaluepEK [
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReactionMag >> pvaluepXK [
 	^nil
 ]

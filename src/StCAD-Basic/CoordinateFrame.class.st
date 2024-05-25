@@ -1,6 +1,6 @@
 Class {
-	#name : #CoordinateFrame,
-	#superclass : #SupItem,
+	#name : 'CoordinateFrame',
+	#superclass : 'SupItem',
 	#instVars : [
 		'body',
 		'rFfF',
@@ -8,10 +8,11 @@ Class {
 		'rOfO',
 		'aAOf'
 	],
-	#category : #'StCAD-Basic'
+	#category : 'StCAD-Basic',
+	#package : 'StCAD-Basic'
 }
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 CoordinateFrame class >> r_theta_z_xyz: xyz [
 
 	| x y z |
@@ -24,7 +25,7 @@ CoordinateFrame class >> r_theta_z_xyz: xyz [
 		  with: z "VW_TRANSLATION:StCAD.Math.MathArray:StCAD_Math_MathArray"
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 CoordinateFrame class >> xyz_r: r theta: theta z: z [
 
 	^ StCAD_Math_FullColumn
@@ -33,48 +34,48 @@ CoordinateFrame class >> xyz_r: r theta: theta z: z [
 		  with: z "VW_TRANSLATION:StCAD.Math.FullColumn:StCAD_Math_FullColumn"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CoordinateFrame >> aAFf [
 
 	^aAFf
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CoordinateFrame >> aAFf: anObject [
 
 	aAFf := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CoordinateFrame >> aAOf [
 	^aAOf ifNil: 
 			[aAOf := aSup ifNil: [aAFf] ifNotNil: [aSup aAOf timesFullMatrix: aAFf]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CoordinateFrame >> aAOf: aFullMatrix [
 
 	aAOf := aFullMatrix
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CoordinateFrame >> body [
 
 	^body
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CoordinateFrame >> body: anObject [
 
 	body := anObject
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 CoordinateFrame >> isAxis: axisi coaxialWith: aFrame axis: axisj [
 
 	| angleTol distTol axesParallel rfpf rfpfperpendicular originjIsOnAxisi |
-	angleTol := 1.0d-6.
-	distTol := 1.0d-9.
+	angleTol := 1.0e-6.
+	distTol := 1.0e-9.
 	axesParallel := ((self aAOf column: axisi)
 				dot: (aFrame aAOf column: axisj)) abs
 				equal: 1.0
@@ -87,20 +88,20 @@ CoordinateFrame >> isAxis: axisi coaxialWith: aFrame axis: axisj [
 	^axesParallel & originjIsOnAxisi
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CoordinateFrame >> rFfF [
 
 	^rFfF
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CoordinateFrame >> rFfF: col [
 
 	rFfF := col.
 	self changed
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CoordinateFrame >> rOfO [
 
 	^rOfO
@@ -110,13 +111,13 @@ CoordinateFrame >> rOfO [
 						ifNotNil: [aSup rOfO + (aSup aAOf timesFullColumn: rFfF)]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CoordinateFrame >> rOfO: anObject [
 
 	^rOfO := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CoordinateFrame >> rfpffromrOpO: rOpO [
 
 	^self aAOf transpose timesFullColumn: rOpO - self rOfO

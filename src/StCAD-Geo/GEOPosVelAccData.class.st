@@ -1,6 +1,6 @@
 Class {
-	#name : #GEOPosVelAccData,
-	#superclass : #GEOData,
+	#name : 'GEOPosVelAccData',
+	#superclass : 'GEOData',
 	#instVars : [
 		'rOfO',
 		'aAOf',
@@ -9,10 +9,12 @@ Class {
 		'aOfO',
 		'alpOfO'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOPosVelAccData class >> visualWorksMetadata [
 
 	^ #(
@@ -22,40 +24,40 @@ GEOPosVelAccData class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPosVelAccData >> aAOf [
 	aAOf == nil ifTrue: [self aAOf: (StMFullMatrix identity: 3)].
 	^aAOf
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPosVelAccData >> aAOf: mat [ 
 	aAOf := mat
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPosVelAccData >> aOfO [
 	aOfO == nil ifTrue: [self aOfO: (StMFullColumn zero: 3)].
 	^aOfO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPosVelAccData >> aOfO: col [ 
 	aOfO := col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPosVelAccData >> alpOfO [
 	alpOfO == nil ifTrue: [self alpOfO: (StMFullColumn zero: 3)].
 	^alpOfO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPosVelAccData >> alpOfO: col [ 
 	alpOfO := col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPosVelAccData >> asArray [
 	| aStream |
 	aStream := (Array new: 19) writeStream.
@@ -68,57 +70,57 @@ GEOPosVelAccData >> asArray [
 	^aStream contents
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOPosVelAccData >> initialize [
 	"Do nothing."
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 GEOPosVelAccData >> magnifySelf: aDouble [ 
 	rOfO ifNotNil: [rOfO magnifySelf: aDouble].
 	vOfO ifNotNil: [vOfO magnifySelf: aDouble].
 	aOfO ifNotNil: [aOfO magnifySelf: aDouble]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPosVelAccData >> omeOfO [
 	omeOfO == nil ifTrue: [self omeOfO: (StMFullColumn zero: 3)].
 	^omeOfO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPosVelAccData >> omeOfO: col [ 
 	omeOfO := col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPosVelAccData >> rOfO [
 	rOfO == nil ifTrue: [self rOfO: (StMFullColumn zero: 3)].
 	^rOfO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPosVelAccData >> rOfO: col [ 
 	rOfO := col
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 GEOPosVelAccData >> translateBy: shiftXYZ [ 
 	self rOfO: rOfO + shiftXYZ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPosVelAccData >> vOfO [
 	vOfO == nil ifTrue: [self vOfO: (StMFullColumn zero: 3)].
 	^vOfO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPosVelAccData >> vOfO: col [ 
 	vOfO := col
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 GEOPosVelAccData >> zeroSelf [
 	rOfO := (StMFullColumn zero: 3).
 	aAOf := (StMFullMatrix identity: 3).

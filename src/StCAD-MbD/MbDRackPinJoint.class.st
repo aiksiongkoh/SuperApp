@@ -1,14 +1,16 @@
 Class {
-	#name : #MbDRackPinJoint,
-	#superclass : #MbDJoint,
+	#name : 'MbDRackPinJoint',
+	#superclass : 'MbDJoint',
 	#instVars : [
 		'pitchRadius',
 		'aConstant'
 	],
-	#category : #'StCAD-MbD-MbDJoint'
+	#category : 'StCAD-MbD-MbDJoint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDJoint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDRackPinJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -18,24 +20,24 @@ MbDRackPinJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRackPinJoint >> aConstant [
 	^aConstant
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRackPinJoint >> aConstant: anObject [
 	aConstant := anObject
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDRackPinJoint >> aTX [
 	"aTX is torque on ADAMS marker I."
 
 	^self jointTorqueJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRackPinJoint >> classString [
 	"Used to access the descriptive name of the joint."
 	"Needed for multi-language."
@@ -43,7 +45,7 @@ MbDRackPinJoint >> classString [
 	^TheMbDSystem getString: #'MbD: Rack and Pinion Joint '
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDRackPinJoint >> connectsI: mkrII toJ: mkrJJ [ 
 	"OODS J is on pinion. z axis is axis of pinion."
 	"OODS I is on rack. x axis is axis of rack. z axis is parallel to axis of pinion."
@@ -54,7 +56,7 @@ MbDRackPinJoint >> connectsI: mkrII toJ: mkrJJ [
 	frmJ := mkrJJ newCopyEndFrameqc
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDRackPinJoint >> initializeGlobally [
 	| constraint |
 	constraints isEmpty 
@@ -67,7 +69,7 @@ MbDRackPinJoint >> initializeGlobally [
 		ifFalse: [super initializeGlobally]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRackPinJoint >> pitchRadius: double [ 
 	pitchRadius := double
 ]

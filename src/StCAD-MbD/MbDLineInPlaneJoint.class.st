@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDLineInPlaneJoint,
-	#superclass : #MbDInPlaneJoint,
-	#category : #'StCAD-MbD-MbDJoint'
+	#name : 'MbDLineInPlaneJoint',
+	#superclass : 'MbDInPlaneJoint',
+	#category : 'StCAD-MbD-MbDJoint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDJoint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDLineInPlaneJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ MbDLineInPlaneJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDLineInPlaneJoint >> classString [
 	"Used to access the descriptive name of the joint."
 
@@ -23,7 +25,7 @@ MbDLineInPlaneJoint >> classString [
 	^TheMbDSystem getString: #'MbD: LineInPlane Joint '
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDLineInPlaneJoint >> initializeGlobally [
 	constraints isEmpty 
 		ifTrue: 

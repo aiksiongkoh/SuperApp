@@ -1,21 +1,22 @@
 Class {
-	#name : #SymEulerAngles,
-	#superclass : #SymEulerArray,
-	#type : #variable,
+	#name : 'SymEulerAngles',
+	#superclass : 'SymEulerArray',
+	#type : 'variable',
 	#instVars : [
 		'rotOrder',
 		'cA',
 		'aA'
 	],
-	#category : #'StCAD-Basic'
+	#category : 'StCAD-Basic',
+	#package : 'StCAD-Basic'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SymEulerAngles class >> new [
 	^(super new: 3) initialize
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SymEulerAngles class >> symbolic: firstObject with: secondObject with: thirdObject [ 
 	^self 
 		with: firstObject
@@ -23,7 +24,7 @@ SymEulerAngles class >> symbolic: firstObject with: secondObject with: thirdObje
 		with: thirdObject
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 SymEulerAngles class >> visualWorksMetadata [
 
 	^ #(
@@ -33,7 +34,7 @@ SymEulerAngles class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SymEulerAngles class >> with: firstObject with: secondObject with: thirdObject [ 
 	^(super 
 		with: firstObject
@@ -43,47 +44,50 @@ SymEulerAngles class >> with: firstObject with: secondObject with: thirdObject [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerAngles >> aA [
 	^aA
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerAngles >> aTime [
 	self do: [:aAngle | aAngle aIndependentVariable ifNotNil: [:aVar | ^aVar]].
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerAngles >> cA [
 	^cA
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 SymEulerAngles >> calc [
+
+	| aaa |
 	cA := Array new: 3.
-	1 to: 3
-		do: 
-			[:i | 
-			| axis angle matA |
-			axis := rotOrder at: i.
-			angle := (self at: i) value.
-			matA := axis == 1 
-						ifTrue: [StMFullMatrix rotatex: angle]
-						ifFalse: 
-							[axis == 2 
-								ifTrue: [StMFullMatrix rotatey: angle]
-								ifFalse: 
-									[axis == 3 
-										ifTrue: [StMFullMatrix rotatez: angle]
-										ifFalse: 
-											[self 
-												error: 'Euler angle rotation order must be any permutation of 1,2,3 without consecutive repeats.']]].
-			cA at: i put: matA].
-	aA := (cA at: 1) timesFullMatrix: ((cA at: 2) timesFullMatrix: (cA at: 3))
+	1 to: 3 do: [ :i |
+		| axis angle matA |
+		axis := rotOrder at: i.
+		angle := (self at: i) value.
+		matA := axis == 1
+			        ifTrue: [ StMFullMatrix rotatex: angle ]
+			        ifFalse: [
+				        axis == 2
+					        ifTrue: [ StMFullMatrix rotatey: angle ]
+					        ifFalse: [
+						        axis == 3
+							        ifTrue: [ StMFullMatrix rotatez: angle ]
+							        ifFalse: [
+								        self error:
+									        'Euler angle rotation order must be any permutation of 1,2,3 without consecutive repeats.' ] ] ].
+		cA at: i put: matA ].
+	aaa := (cA at: 1) timesFullMatrix: (cA at: 2).
+	aaa := aaa simplified.
+	aA := (cA at: 1) timesFullMatrix:
+		      ((cA at: 2) timesFullMatrix: (cA at: 3))
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 SymEulerAngles >> calcSymbolic [
 	cA := Array new: 3.
 	1 to: 3
@@ -108,7 +112,7 @@ SymEulerAngles >> calcSymbolic [
 				timesFullMatrix: ((cA at: 2) timesFullMatrix: (cA at: 3))) simplified
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 SymEulerAngles >> differentiateWRT: var [ 
 	| answer |
 	answer := SymEulerAnglesDot with: self.
@@ -122,7 +126,7 @@ SymEulerAngles >> differentiateWRT: var [
 	^answer
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 SymEulerAngles >> initialize [
 	rotOrder := Array 
 				with: 1
@@ -130,12 +134,12 @@ SymEulerAngles >> initialize [
 				with: 3
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerAngles >> rotOrder [
 	^rotOrder
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerAngles >> rotOrder: col [ 
 	rotOrder := col
 ]

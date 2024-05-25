@@ -1,10 +1,12 @@
 Class {
-	#name : #GEORobotAxis,
-	#superclass : #GEOKineIJ,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEORobotAxis',
+	#superclass : 'GEOKineIJ',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEORobotAxis class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ GEORobotAxis class >> visualWorksMetadata [
 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEORobotAxis >> isRobotAxis [
 	^true
 ]

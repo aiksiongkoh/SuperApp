@@ -1,15 +1,17 @@
 Class {
-	#name : #UserFunctionSet,
-	#superclass : #UserFunction,
+	#name : 'UserFunctionSet',
+	#superclass : 'UserFunction',
 	#instVars : [
 		'parent',
 		'current',
 		'functions'
 	],
-	#category : #'StMath-Symbolic'
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 UserFunctionSet class >> visualWorksMetadata [
 
 	^ #(
@@ -19,7 +21,7 @@ UserFunctionSet class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 UserFunctionSet >> initialize [
 	functions := Set new
 ]

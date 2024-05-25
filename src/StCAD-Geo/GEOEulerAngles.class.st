@@ -1,14 +1,16 @@
 Class {
-	#name : #GEOEulerAngles,
-	#superclass : #SymEulerArray,
-	#type : #variable,
+	#name : 'GEOEulerAngles',
+	#superclass : 'SymEulerArray',
+	#type : 'variable',
 	#instVars : [
 		'aA'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #conditioning }
+{ #category : 'conditioning' }
 GEOEulerAngles class >> conditionSeries: series [ 
 	"-pi < Euler angles <= pi"
 
@@ -61,12 +63,12 @@ GEOEulerAngles class >> conditionSeries: series [
 							previousRemainder := currentRemainder]]]
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GEOEulerAngles class >> new [
 	^super new: 3
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOEulerAngles class >> visualWorksMetadata [
 
 	^ #(
@@ -76,13 +78,13 @@ GEOEulerAngles class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOEulerAngles >> aA [
 	aA == nil ifTrue: [self calc].
 	^aA
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOEulerAngles >> rotatex: the [ 
 	| sthe cthe answer |
 	sthe := the sin.
@@ -103,7 +105,7 @@ GEOEulerAngles >> rotatex: the [
 	^answer
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOEulerAngles >> rotatey: the [ 
 	| sthe cthe answer |
 	sthe := the sin.
@@ -124,7 +126,7 @@ GEOEulerAngles >> rotatey: the [
 	^answer
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOEulerAngles >> rotatez: the [ 
 	| sthe cthe answer |
 	sthe := the sin.

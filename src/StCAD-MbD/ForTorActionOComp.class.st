@@ -1,13 +1,15 @@
 Class {
-	#name : #ForTorActionOComp,
-	#superclass : #ForTorActionComp,
+	#name : 'ForTorActionOComp',
+	#superclass : 'ForTorActionComp',
 	#instVars : [
 		'aFTIeOi'
 	],
-	#category : #'StCAD-MbD-MbDForce'
+	#category : 'StCAD-MbD-MbDForce',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDForce'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 ForTorActionOComp class >> visualWorksMetadata [
 
 	^ #(
@@ -17,7 +19,7 @@ ForTorActionOComp class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ForTorActionOComp >> aFTIeO [
 	| answer |
 	answer := (StMFullColumn zero: 3).
@@ -25,22 +27,22 @@ ForTorActionOComp >> aFTIeO [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ForTorActionOComp >> aFTIeOi [
 	^aFTIeOi
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 ForTorActionOComp >> calcPostDynCorrectorIteration [
 	aFTIeOi := forTorFunction forTor
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 ForTorActionOComp >> fillAccICIterError: col [ 
 	forTorBasicI fillAccICIterError: col aFTOi: aFTIeOi
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 ForTorActionOComp >> fillAccICIterJacob: mat [ 
 	| jointActions pFTpJtActs jointAction pFTpJtAct |
 	jointActions := forTorFunction jointActions.
@@ -53,12 +55,12 @@ ForTorActionOComp >> fillAccICIterJacob: mat [
 			forTorBasicI fillAccICIterJacob: mat pFTOiplam: (jointAction pvalueplam times: pFTpJtAct)]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorActionOComp >> fillDynError: col [ 
 	forTorBasicI fillDynError: col aFTOi: aFTIeOi
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorActionOComp >> fillpFpy: mat [ 
 	| kineIJs kinedotIJs jointActions pFTpkineIJs pFTpkinedotIJs pFTpJtActs kineIJ pFTpkineIJ kinedotIJ pFTpkinedotIJ jointAction pFTpJtAct |
 	kineIJs := forTorFunction kineIJs.
@@ -97,7 +99,7 @@ ForTorActionOComp >> fillpFpy: mat [
 				function: jointAction]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorActionOComp >> fillpFpy: mat pFTpfunction: pFTpfunction function: function [ 
 	"function is in a user defined function. Therefore it is a function of 
 	its I,J,K which may be different 
@@ -160,7 +162,7 @@ ForTorActionOComp >> fillpFpy: mat pFTpfunction: pFTpfunction function: function
 						partj: partFrameK]]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorActionOComp >> fillpFpydot: mat [ 
 	| kinedotIJs jointActions pFTpkinedotIJs pFTpJtActs kinedotIJ pFTpkinedotIJ jointAction pFTpJtAct |
 	kinedotIJs := forTorFunction kinedotIJs.
@@ -184,7 +186,7 @@ ForTorActionOComp >> fillpFpydot: mat [
 			forTorBasicI fillpFpydot: mat pFOipmudot: (jointAction pvalueplam times: pFTpJtAct)]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorActionOComp >> fillpFpydot: mat pFTpfunction: pFTpfunction function: function [ 
 	| pvaluepXdotI pvaluepEdotI partFrameI pvaluepXdotJ pvaluepEdotJ partFrameJ |
 	pvaluepXdotI := function pvaluepXdotI.
@@ -225,7 +227,7 @@ ForTorActionOComp >> fillpFpydot: mat pFTpfunction: pFTpfunction function: funct
 						partj: partFrameJ]]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 ForTorActionOComp >> forceOnFrmI: efrm1 axis: i [ 
 	axis := i.
 	forTorBasicI := ForceBasicqcComp new.
@@ -233,7 +235,7 @@ ForTorActionOComp >> forceOnFrmI: efrm1 axis: i [
 	forTorBasicI endFrame: efrm1
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 ForTorActionOComp >> torqueOnFrmI: efrm1 axis: i [ 
 	axis := i.
 	forTorBasicI := TorqueBasicComp new.

@@ -1,14 +1,15 @@
 Class {
-	#name : #SubItem,
-	#superclass : #Item,
+	#name : 'SubItem',
+	#superclass : 'Item',
 	#instVars : [
 		'cEventHandler',
 		'aSup'
 	],
-	#category : #'StCAD-Basic'
+	#category : 'StCAD-Basic',
+	#package : 'StCAD-Basic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 SubItem class >> visualWorksMetadata [
 
 	^ #(
@@ -17,22 +18,22 @@ SubItem class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubItem >> aSup [
 	^aSup
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubItem >> aSup: anObject [
 	aSup := anObject
 ]
 
-{ #category : #change }
+{ #category : 'change' }
 SubItem >> changed [
 	self triggerEvent: #changed
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubItem >> dataSeries [
 	| answer |
 	answer := self triggerEvent: #getDataSeries.
@@ -43,7 +44,7 @@ SubItem >> dataSeries [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubItem >> dataSeries: dataSeries [ 
 	self removeActionsForEvent: #getDataSeries.
 	dataSeries notNil ifTrue: [self
@@ -52,7 +53,7 @@ SubItem >> dataSeries: dataSeries [
 			perform: #yourself]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubItem >> fullName [
 	| stream |
 	stream := WriteStream on: (String new: 256).
@@ -64,7 +65,7 @@ SubItem >> fullName [
 	^stream contents asSymbol
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubItem >> fullpath [
 	| fullpath |
 	fullpath := aSup isNil 
@@ -74,12 +75,12 @@ SubItem >> fullpath [
 	^fullpath
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubItem >> geoTime [
 	^aSup ifNotNil: [aSup geoTime]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubItem >> inputData: inputData [ 
 	self removeActionsForEvent: #getInputData.
 	inputData notNil ifTrue: [self
@@ -88,37 +89,37 @@ SubItem >> inputData: inputData [
 			perform: #yourself]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SubItem >> isAssembly [
 	^false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SubItem >> isJoint [
 	^false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SubItem >> isMotion [
 	^false
 ]
 
-{ #category : #'private event table' }
+{ #category : 'private event table' }
 SubItem >> myEventTable [
 	^cEventHandler
 ]
 
-{ #category : #'private event table' }
+{ #category : 'private event table' }
 SubItem >> myEventTable: anEventTable [ 
 	cEventHandler := anEventTable
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubItem >> name [
 	^self triggerEvent: #getName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubItem >> notes: notes [ 
 	self removeActionsForEvent: #getNotes.
 	notes notNil 
@@ -129,14 +130,14 @@ SubItem >> notes: notes [
 				perform: #yourself]
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 SubItem >> postCopy [
 	super postCopy.
 	cEventHandler := nil.
 	aSup := nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SubItem >> removeSup [
 	aSup ifNotNil: [:aaSup | aaSup removeSub: self]
 ]

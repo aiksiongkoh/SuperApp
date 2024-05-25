@@ -1,13 +1,15 @@
 Class {
-	#name : #MbDCVCVJoint,
-	#superclass : #MbDJoint,
+	#name : 'MbDCVCVJoint',
+	#superclass : 'MbDJoint',
 	#instVars : [
 		'rIeJe'
 	],
-	#category : #'StCAD-MbD-MbDJoint'
+	#category : 'StCAD-MbD-MbDJoint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDJoint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDCVCVJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -17,7 +19,7 @@ MbDCVCVJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDCVCVJoint >> classString [
 	"Used to access the descriptive name of the constraint."
 	"Needed for multi-language."
@@ -25,14 +27,14 @@ MbDCVCVJoint >> classString [
 	^TheMbDSystem getString: #'MbD: Curve-Curve contact '
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDCVCVJoint >> contactForce [
 	"Compression is positive."
 
 	^(self aFIeJtO dot: frmI keO) negated
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDCVCVJoint >> initializeGlobally [
 	"Contact with parallel normals."
 
@@ -49,7 +51,7 @@ MbDCVCVJoint >> initializeGlobally [
 			super initializeGlobally]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDCVCVJoint >> initializeLocally [
 	constraints isEmpty
 		ifFalse: 
@@ -57,7 +59,7 @@ MbDCVCVJoint >> initializeLocally [
 			super initializeLocally]
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDCVCVJoint >> prePosIC [
 	frmI prePosIC.
 	frmJ prePosIC.

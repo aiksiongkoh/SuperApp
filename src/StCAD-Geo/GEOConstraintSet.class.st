@@ -6,15 +6,17 @@ Instance Variables:
 constraints	<ClassOfVariable>	description of variable's function
 "
 Class {
-	#name : #GEOConstraintSet,
-	#superclass : #GEOConstraint,
+	#name : 'GEOConstraintSet',
+	#superclass : 'GEOConstraint',
 	#instVars : [
 		'constraints'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOConstraintSet class >> visualWorksMetadata [
 
 	^ #(

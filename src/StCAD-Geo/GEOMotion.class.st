@@ -1,6 +1,6 @@
 Class {
-	#name : #GEOMotion,
-	#superclass : #GEORelativeConstraintSet,
+	#name : 'GEOMotion',
+	#superclass : 'GEORelativeConstraintSet',
 	#instVars : [
 		'xIJ',
 		'yIJ',
@@ -9,10 +9,12 @@ Class {
 		'theIJ',
 		'psiIJ'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOMotion class >> visualWorksMetadata [
 
 	^ #(
@@ -22,13 +24,13 @@ GEOMotion class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMotion >> cut [
 	container cutMotion: self.
 	super cut
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMotion >> functionParser [
 	| parser |
 	parser := MotionFunctionParser new.
@@ -37,24 +39,24 @@ GEOMotion >> functionParser [
 	^parser
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOMotion >> isMotion [
 	^true
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 GEOMotion >> magnifySelf: aDouble [ 
 	xIJ ifNotNil: [xIJ magnifySelf: aDouble].
 	yIJ ifNotNil: [xIJ magnifySelf: aDouble].
 	zIJ ifNotNil: [xIJ magnifySelf: aDouble]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMotion >> phiIJ [
 	^phiIJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMotion >> phiIJ1 [
 	| coeffs phiIJcopy |
 	^phiIJ isNil
@@ -69,62 +71,62 @@ GEOMotion >> phiIJ1 [
 					phiIJcopy displayString]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMotion >> phiIJ: function [ 
 	phiIJ := function
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMotion >> psiIJ [
 	^psiIJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMotion >> psiIJ: function [ 
 	psiIJ := function
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMotion >> theIJ [
 	^theIJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMotion >> theIJ: function [ 
 	theIJ := function
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMotion >> uncut [
 	container addMotion: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMotion >> xIJ [
 	^xIJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMotion >> xIJ: function [ 
 	xIJ := function
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMotion >> yIJ [
 	^yIJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMotion >> yIJ: function [ 
 	yIJ := function
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMotion >> zIJ [
 	^zIJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMotion >> zIJ1 [
 	^zIJ isNil
 		ifTrue: ['']
@@ -132,7 +134,7 @@ GEOMotion >> zIJ1 [
 			zIJ displayString]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMotion >> zIJ: function [ 
 	zIJ := function
 ]

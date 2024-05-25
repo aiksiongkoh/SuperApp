@@ -1,6 +1,6 @@
-Extension { #name : #StMFFT }
+Extension { #name : 'StMFFT' }
 
-{ #category : #'*StCAD-Geo-accessing' }
+{ #category : '*StCAD-Geo-accessing' }
 StMFFT >> cyclicSeries [
 	| n answer data |
 	n := xs size.
@@ -19,7 +19,7 @@ StMFFT >> cyclicSeries [
 	^answer.
 ]
 
-{ #category : #'*StCAD-Geo-accessing' }
+{ #category : '*StCAD-Geo-accessing' }
 StMFFT >> series [
 	| n answer |
 	n := xs size.

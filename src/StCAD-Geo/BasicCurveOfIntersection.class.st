@@ -1,14 +1,15 @@
 Class {
-	#name : #BasicCurveOfIntersection,
-	#superclass : #BasicCurve,
+	#name : 'BasicCurveOfIntersection',
+	#superclass : 'BasicCurve',
 	#instVars : [
 		'aCurveOnSurface',
 		'bCurveOnSurface'
 	],
-	#category : #'StCAD-Geo'
+	#category : 'StCAD-Geo',
+	#package : 'StCAD-Geo'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 BasicCurveOfIntersection class >> visualWorksMetadata [
 
 	^ #(

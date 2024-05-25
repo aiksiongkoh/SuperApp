@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDTranslationConstraintIqcJc,
-	#superclass : #MbDTranslationConstraintIJ,
+	#name : 'MbDTranslationConstraintIqcJc',
+	#superclass : 'MbDTranslationConstraintIJ',
 	#instVars : [
 		'pGpXI',
 		'pGpEI',
@@ -9,10 +9,12 @@ Class {
 		'iqXI',
 		'iqEI'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDTranslationConstraintIqcJc class >> visualWorksMetadata [
 
 	^ #(
@@ -22,7 +24,7 @@ MbDTranslationConstraintIqcJc class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDTranslationConstraintIqcJc class >> withFrmI: afrmI frmJ: afrmJ axis: aaxis [ 
 	^(afrmI isMemberOf: MbDEndFrameqc)
 		& (afrmJ isMemberOf: MbDEndFramec)
@@ -33,12 +35,12 @@ MbDTranslationConstraintIqcJc class >> withFrmI: afrmI frmJ: afrmJ axis: aaxis [
 		ifFalse: [nil]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDTranslationConstraintIqcJc >> addToJointForceI: col [ 
 	col equalSelfPlusFullColumn: pGpXI times: lam
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDTranslationConstraintIqcJc >> addToJointTorqueI: jointTorque [ 
 	| cForceT rIpIeIp pAOIppEI aBOIp fpAOIppEIrIpIeIp dum lampGpE c2Torque |
 	cForceT := pGpXI times: lam.
@@ -54,17 +56,17 @@ MbDTranslationConstraintIqcJc >> addToJointTorqueI: jointTorque [
 	jointTorque equalSelfPlusFullColumn: c2Torque times: 0.5
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDTranslationConstraintIqcJc >> addpFIeiGOpEIto: mat [ 
 	mat equalSelfPlusFullMatrix: ppGpXIpEI times: lam
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDTranslationConstraintIqcJc >> addpFIeiGOplamto: mat [ 
 	mat at: 1 and: iG plusFullColumn: pGpXI transpose
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDTranslationConstraintIqcJc >> addpTIeiGOpEIto: mat [ 
 	| term11 prOIeOpEIT aFIeiGOover2 term12 term1 term21 pprOIeOpEIpEI term22 pprOIeOpEIipEI term22rowi pFIeiGOpEIover2 term23 aB term2 pTIeiGOpEI |
 	term11 := pGpEI transpose times: lam / 2.0.
@@ -91,14 +93,14 @@ MbDTranslationConstraintIqcJc >> addpTIeiGOpEIto: mat [
 	mat equalSelfPlusFullMatrix: pTIeiGOpEI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDTranslationConstraintIqcJc >> addpTIeiGOpXIto: mat [ 
 	| term |
 	term := frmI aBOp timesTransposeFullMatrix: ppGpXIpEI.
 	mat equalSelfPlusFullMatrix: term times: lam / 2.0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDTranslationConstraintIqcJc >> addpTIeiGOplamto: mat [ 
 	| halfB term1 prOIeOpEIT pFIeiGOplam term2 pTIeiGOplam |
 	halfB := frmI aBOp times: 0.5.
@@ -110,7 +112,7 @@ MbDTranslationConstraintIqcJc >> addpTIeiGOplamto: mat [
 	mat at: 1 and: iG plusFullColumn: pTIeiGOplam
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDTranslationConstraintIqcJc >> calcPostDynCorrectorIteration [
 	super calcPostDynCorrectorIteration.
 	pGpXI := riIeJeIe pvaluepXI.
@@ -120,12 +122,12 @@ MbDTranslationConstraintIqcJc >> calcPostDynCorrectorIteration [
 				plusFullMatrix: (riIeJeIe ppvaluepEIpEK transpose plusFullMatrix: riIeJeIe ppvaluepEKpEK)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDTranslationConstraintIqcJc >> dispCompClass [
 	^MbDDispCompIeqcJecKeqc
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDTranslationConstraintIqcJc >> fillAccICIterError: col [ 
 	| qXdotI qEdotI sum |
 	col at: iqXI plusFullColumn: pGpXI times: lam.
@@ -140,7 +142,7 @@ MbDTranslationConstraintIqcJc >> fillAccICIterError: col [
 	col at: iG plusNumber: sum
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDTranslationConstraintIqcJc >> fillCollisionError: col [ 
 	"lamDeriv is now PlamDeriv."
 	"qEddot is now qEdotDeriv."
@@ -154,14 +156,14 @@ MbDTranslationConstraintIqcJc >> fillCollisionError: col [
 	col at: iG plusNumber: sum
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDTranslationConstraintIqcJc >> fillPosICError: col [ 
 	super fillPosICError: col.
 	col at: iqXI plusFullColumn: pGpXI times: lam.
 	col at: iqEI plusFullColumn: pGpEI times: lam
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDTranslationConstraintIqcJc >> fillPosICJacob: mat [ 
 	| ppGpXIpEIlam |
 	mat at: iG and: iqXI plusFullRow: pGpXI.
@@ -173,7 +175,7 @@ MbDTranslationConstraintIqcJc >> fillPosICJacob: mat [
 	mat at: iqEI and: iqEI plusFullMatrix: ppGpEIpEI times: lam
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDTranslationConstraintIqcJc >> fillPosKineJacob: mat [ 
 	mat
 		at: iG
@@ -185,7 +187,7 @@ MbDTranslationConstraintIqcJc >> fillPosKineJacob: mat [
 		plusFullRow: pGpEI
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDTranslationConstraintIqcJc >> fillVelICJacob: mat [ 
 	mat at: iG and: iqXI plusFullRow: pGpXI.
 	mat at: iqXI and: iG plusFullColumn: pGpXI transpose.
@@ -193,7 +195,7 @@ MbDTranslationConstraintIqcJc >> fillVelICJacob: mat [
 	mat at: iqEI and: iG plusFullColumn: pGpEI transpose
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDTranslationConstraintIqcJc >> fillpFpy: mat [ 
 	| ppGpXIpEIlam |
 	mat at: iG and: iqXI plusFullRow: pGpXI.
@@ -203,13 +205,13 @@ MbDTranslationConstraintIqcJc >> fillpFpy: mat [
 	mat at: iqEI and: iqEI plusFullMatrix: ppGpEIpEI times: lam
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDTranslationConstraintIqcJc >> fillpFpydot: mat [ 
 	mat at: iqXI and: iG plusFullColumn: pGpXI transpose.
 	mat at: iqEI and: iG plusFullColumn: pGpEI transpose
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDTranslationConstraintIqcJc >> useEquationNumbers [
 	iqXI := frmI iqX.
 	iqEI := frmI iqE

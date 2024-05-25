@@ -1,10 +1,12 @@
 Class {
-	#name : #GEONotDoneFeature,
-	#superclass : #GEOFeatureDecorator,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEONotDoneFeature',
+	#superclass : 'GEOFeatureDecorator',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEONotDoneFeature class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ GEONotDoneFeature class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEONotDoneFeature >> asTreeNode [
 	| answer |
 	answer := super asTreeNode.
@@ -22,17 +24,17 @@ GEONotDoneFeature >> asTreeNode [
 	^answer
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 GEONotDoneFeature >> buildIn: solidModel [ 
 	"Do nothing."
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEONotDoneFeature >> isDone [
 	^false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEONotDoneFeature >> renderOn: aRenderingContext [ 
 	feature renderOn: aRenderingContext
 ]

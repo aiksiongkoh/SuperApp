@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDPosICKineNewtonRaphson2,
-	#superclass : #MbDAnyPosICNewtonRaphson2,
-	#category : #'StCAD-MbD-MbDSolver'
+	#name : 'MbDPosICKineNewtonRaphson2',
+	#superclass : 'MbDAnyPosICNewtonRaphson2',
+	#category : 'StCAD-MbD-MbDSolver',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDPosICKineNewtonRaphson2 class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ MbDPosICKineNewtonRaphson2 class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDPosICKineNewtonRaphson2 >> assignEquationNumbers [
 	"Equation order is q,s,u."
 
@@ -46,25 +48,25 @@ MbDPosICKineNewtonRaphson2 >> assignEquationNumbers [
 	n := eqnNo - 1
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDPosICKineNewtonRaphson2 >> initializeGlobally [
 	super initializeGlobally.
 	iterMax := system iterMaxPosKine.
 	dxTol := system errorTolPosKine
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDPosICKineNewtonRaphson2 >> isConverged [
 	^(dxNorms at: iterNo) < dxTol or: [self isConvergedToNumericalLimit]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDPosICKineNewtonRaphson2 >> logSingularMatrixMessage [
 	system 
 		logString: #'MbD: \Quasi kinematic solver has encountered a singular matrix.'
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDPosICKineNewtonRaphson2 >> preRun [
 	system logString: #'MbD: \Solving for quasi kinematic position.'.
 	super preRun

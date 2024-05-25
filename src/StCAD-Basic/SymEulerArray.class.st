@@ -2,13 +2,14 @@
 Subclasses encapsulate the behavior of Euler angles and Euler parameters.
 "
 Class {
-	#name : #SymEulerArray,
-	#superclass : #StMFullColumn,
-	#type : #variable,
-	#category : #'StCAD-Basic'
+	#name : 'SymEulerArray',
+	#superclass : 'StMFullColumn',
+	#type : 'variable',
+	#category : 'StCAD-Basic',
+	#package : 'StCAD-Basic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 SymEulerArray class >> visualWorksMetadata [
 
 	^ #(
@@ -18,12 +19,12 @@ SymEulerArray class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SymEulerArray class >> zero: n [ 
 	self shouldNotImplement
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 SymEulerArray >> transpose [
 	"Return a row with the same elements."
 

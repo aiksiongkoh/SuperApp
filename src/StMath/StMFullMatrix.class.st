@@ -1,11 +1,13 @@
 Class {
-	#name : #StMFullMatrix,
-	#superclass : #StMRowTypeMatrix,
-	#type : #variable,
-	#category : #'StMath-StMathArray'
+	#name : 'StMFullMatrix',
+	#superclass : 'StMRowTypeMatrix',
+	#type : 'variable',
+	#category : 'StMath-StMathArray',
+	#package : 'StMath',
+	#tag : 'StMathArray'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMFullMatrix class >> fromCollection: aCollection aBlock: aBlock [ 
 	| nrow ncol aFullMatrix |
 	nrow := aCollection size.
@@ -22,7 +24,7 @@ StMFullMatrix class >> fromCollection: aCollection aBlock: aBlock [
 	^aFullMatrix
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMFullMatrix class >> newWithElements: a2DArray [ 
 	| answer |
 	answer := a2DArray shallowCopy changeClassToThatOf: (self new: 0).
@@ -30,7 +32,7 @@ StMFullMatrix class >> newWithElements: a2DArray [
 	^answer
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMFullMatrix class >> rotateSymbolicx: the [ 
 	| zero one sthe cthe answer |
 	zero := 0.0 asConstant.
@@ -53,7 +55,7 @@ StMFullMatrix class >> rotateSymbolicx: the [
 	^answer
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMFullMatrix class >> rotateSymbolicx: the rotDot: thedot [ 
 	| zero sthe cthe sthedot cthedot answer |
 	zero := 0.0 asConstant.
@@ -77,7 +79,7 @@ StMFullMatrix class >> rotateSymbolicx: the rotDot: thedot [
 	^answer
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMFullMatrix class >> rotateSymbolicx: the rotDot: thedot rotDDot: theddot [ 
 	| zero sthe cthe sthedot cthedot stheddot ctheddot answer |
 	zero := 0.0 asConstant.
@@ -103,7 +105,7 @@ StMFullMatrix class >> rotateSymbolicx: the rotDot: thedot rotDDot: theddot [
 	^answer
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMFullMatrix class >> rotateSymbolicy: the [ 
 	| zero one sthe cthe answer |
 	zero := 0.0 asConstant.
@@ -126,7 +128,7 @@ StMFullMatrix class >> rotateSymbolicy: the [
 	^answer
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMFullMatrix class >> rotateSymbolicy: the rotDot: thedot [ 
 	| zero sthe cthe sthedot cthedot answer |
 	zero := 0.0 asConstant.
@@ -150,7 +152,7 @@ StMFullMatrix class >> rotateSymbolicy: the rotDot: thedot [
 	^answer
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMFullMatrix class >> rotateSymbolicy: the rotDot: thedot rotDDot: theddot [ 
 	| zero sthe cthe sthedot cthedot stheddot ctheddot answer |
 	zero := 0.0 asConstant.
@@ -176,7 +178,7 @@ StMFullMatrix class >> rotateSymbolicy: the rotDot: thedot rotDDot: theddot [
 	^answer
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMFullMatrix class >> rotateSymbolicz: the [ 
 	| zero one sthe cthe answer |
 	zero := 0.0 asConstant.
@@ -199,7 +201,7 @@ StMFullMatrix class >> rotateSymbolicz: the [
 	^answer
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMFullMatrix class >> rotateSymbolicz: the rotDot: thedot [ 
 	| zero sthe cthe sthedot cthedot answer |
 	zero := 0.0 asConstant.
@@ -223,7 +225,7 @@ StMFullMatrix class >> rotateSymbolicz: the rotDot: thedot [
 	^answer
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMFullMatrix class >> rotateSymbolicz: the rotDot: thedot rotDDot: theddot [ 
 	| zero sthe cthe sthedot cthedot stheddot ctheddot answer |
 	zero := 0.0 asConstant.
@@ -249,7 +251,7 @@ StMFullMatrix class >> rotateSymbolicz: the rotDot: thedot rotDDot: theddot [
 	^answer
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMFullMatrix class >> rotatex: the [
 
 	| sthe cthe answer zero one |
@@ -278,7 +280,7 @@ StMFullMatrix class >> rotatex: the [
 	^ answer
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMFullMatrix class >> rotatex: the rotDot: thedot [ 
 	| sthe cthe sthedot cthedot answer |
 	sthe := the sin.
@@ -301,7 +303,7 @@ StMFullMatrix class >> rotatex: the rotDot: thedot [
 	^answer
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMFullMatrix class >> rotatex: the rotDot: thedot rotDDot: theddot [ 
 	| sthe cthe sthedot cthedot stheddot ctheddot answer |
 	sthe := the sin.
@@ -326,7 +328,7 @@ StMFullMatrix class >> rotatex: the rotDot: thedot rotDDot: theddot [
 	^answer
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMFullMatrix class >> rotatey: the [
 
 	| sthe cthe answer zero one |
@@ -355,7 +357,7 @@ StMFullMatrix class >> rotatey: the [
 	^ answer
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMFullMatrix class >> rotatey: the rotDot: thedot [ 
 	| sthe cthe sthedot cthedot answer |
 	sthe := the sin.
@@ -378,7 +380,7 @@ StMFullMatrix class >> rotatey: the rotDot: thedot [
 	^answer
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMFullMatrix class >> rotatey: the rotDot: thedot rotDDot: theddot [ 
 	| sthe cthe sthedot cthedot stheddot ctheddot answer |
 	sthe := the sin.
@@ -403,7 +405,7 @@ StMFullMatrix class >> rotatey: the rotDot: thedot rotDDot: theddot [
 	^answer
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMFullMatrix class >> rotatez: the [
 
 	| sthe cthe answer zero one |
@@ -432,7 +434,7 @@ StMFullMatrix class >> rotatez: the [
 	^ answer
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMFullMatrix class >> rotatez: the rotDot: thedot [ 
 	| sthe cthe sthedot cthedot answer |
 	sthe := the sin.
@@ -455,7 +457,7 @@ StMFullMatrix class >> rotatez: the rotDot: thedot [
 	^answer
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMFullMatrix class >> rotatez: the rotDot: thedot rotDDot: theddot [ 
 	| sthe cthe sthedot cthedot stheddot ctheddot answer |
 	sthe := the sin.
@@ -480,7 +482,7 @@ StMFullMatrix class >> rotatez: the rotDot: thedot rotDDot: theddot [
 	^answer
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMFullMatrix class >> rotationMatrixFromOrigin: origin xPoint: xPoint yPoint: yPoint [ 
 	"
 	X point and Y point method of specifying orientation of a coordinate frame. Used in 
@@ -494,7 +496,7 @@ StMFullMatrix class >> rotationMatrixFromOrigin: origin xPoint: xPoint yPoint: y
 	^self rotationMatrixFromxDir: xPoint - origin yDir: yPoint - origin
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMFullMatrix class >> rotationMatrixFromOrigin: origin xPoint: xPoint zPoint: zPoint [ 
 	"
 	origin is the coordinate of the origin. 
@@ -506,7 +508,7 @@ StMFullMatrix class >> rotationMatrixFromOrigin: origin xPoint: xPoint zPoint: z
 	^self rotationMatrixFromxDir: xPoint - origin zDir: zPoint - origin
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMFullMatrix class >> rotationMatrixFromOrigin: origin zPoint: zPoint xPoint: xPoint [ 
 	"
 	origin is the coordinate of the origin. 
@@ -518,7 +520,7 @@ StMFullMatrix class >> rotationMatrixFromOrigin: origin zPoint: zPoint xPoint: x
 	^self rotationMatrixFromzDir: zPoint - origin xDir: xPoint - origin
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMFullMatrix class >> rotationMatrixFromOrigin: origin zPoint: zPoint yPoint: yPoint [ 
 	"
 	origin is the coordinate of the origin. 
@@ -530,7 +532,7 @@ StMFullMatrix class >> rotationMatrixFromOrigin: origin zPoint: zPoint yPoint: y
 	^self rotationMatrixFromzDir: zPoint - origin yDir: yPoint - origin
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMFullMatrix class >> rotationMatrixFromxDir: xDir yDir: yDir [ 
 	"
 	xDir is the direction of the positive x axis. 
@@ -549,7 +551,7 @@ StMFullMatrix class >> rotationMatrixFromxDir: xDir yDir: yDir [
 	^aA
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMFullMatrix class >> rotationMatrixFromxDir: xDir zDir: zDir [ 
 	"
 	xDir is the direction of the positive x axis. 
@@ -568,7 +570,7 @@ StMFullMatrix class >> rotationMatrixFromxDir: xDir zDir: zDir [
 	^aA
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMFullMatrix class >> rotationMatrixFromzDir: zDir xDir: xDir [ 
 	"
 	zDir is the direction of the positive z axis. 
@@ -587,7 +589,7 @@ StMFullMatrix class >> rotationMatrixFromzDir: zDir xDir: xDir [
 	^aA
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMFullMatrix class >> rotationMatrixFromzDir: zDir yDir: yDir [ 
 	"
 	zDir is the direction of the positive z axis. 
@@ -606,12 +608,12 @@ StMFullMatrix class >> rotationMatrixFromzDir: zDir yDir: yDir [
 	^aA
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMFullMatrix class >> veryShortName [
 	^'Mat'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMFullMatrix class >> visualWorksMetadata [
 
 	^ #(
@@ -621,12 +623,12 @@ StMFullMatrix class >> visualWorksMetadata [
 
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 StMFullMatrix >> asFullMatrix [
 	^self
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 StMFullMatrix >> asSparseMatrix [
 	| nrow ncol answer tol fullRowi sparseRowi aij |
 	nrow := self nrow.
@@ -646,7 +648,7 @@ StMFullMatrix >> asSparseMatrix [
 	^answer
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullMatrix >> at: i1 and: j1 minusFullColumn: aFullColumn [ 
 	| iOffset rowi |
 	iOffset := i1 - 1.
@@ -658,7 +660,7 @@ StMFullMatrix >> at: i1 and: j1 minusFullColumn: aFullColumn [
 					- (aFullColumn at: ii)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullMatrix >> at: i1 and: j1 minusFullColumn: aFullColumn times: aNumber [ 
 	| iOffset rowi |
 	iOffset := i1 - 1.
@@ -671,7 +673,7 @@ StMFullMatrix >> at: i1 and: j1 minusFullColumn: aFullColumn times: aNumber [
 							* aNumber)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullMatrix >> at: i and: j minusNumber: aNumber [ 
 	| rowi |
 	rowi := self at: i.
@@ -679,7 +681,7 @@ StMFullMatrix >> at: i and: j minusNumber: aNumber [
 			- aNumber
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullMatrix >> at: i1 and: j1 plusFullColumn: aFullColumn [ 
 	| iOffset rowi |
 	iOffset := i1 - 1.
@@ -691,7 +693,7 @@ StMFullMatrix >> at: i1 and: j1 plusFullColumn: aFullColumn [
 					+ (aFullColumn at: ii)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullMatrix >> at: i1 and: j1 plusFullColumn: aFullColumn times: aNumber [ 
 	| iOffset rowi |
 	iOffset := i1 - 1.
@@ -704,7 +706,7 @@ StMFullMatrix >> at: i1 and: j1 plusFullColumn: aFullColumn times: aNumber [
 							* aNumber)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullMatrix >> at: i and: j plusNumber: aNumber [ 
 	| rowi |
 	rowi := self at: i.
@@ -712,7 +714,7 @@ StMFullMatrix >> at: i and: j plusNumber: aNumber [
 			+ aNumber
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullMatrix >> eigenvalues [
 	"3 by 3 positive definite case only. Generalise later."
 	"Rounding error can be significant, e.g. (diag 100.0 100.0 1.0) gives only 8 digit 
@@ -773,7 +775,7 @@ StMFullMatrix >> eigenvalues [
 	^roots
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullMatrix >> eigenvectorsFor: eigenvalues [ 
 	"For inertia matrix case only. Eigenvalues are orders from smallest to largest."
 
@@ -811,7 +813,7 @@ StMFullMatrix >> eigenvectorsFor: eigenvalues [
 	^aAcm
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMFullMatrix >> eulerParameters [
 	"Given [A], compute Euler parameter."
 
@@ -881,7 +883,7 @@ StMFullMatrix >> eulerParameters [
 	^qE conditionSelf calc
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMFullMatrix >> isDiagonalToWithin: ratio [ 
 	| maxElement tol nrow |
 	maxElement := self maxElement.
@@ -898,12 +900,12 @@ StMFullMatrix >> isDiagonalToWithin: ratio [
 		ifFalse: [^false]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMFullMatrix >> matrixSolverClass [
 	^GEFullMatParPv
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullMatrix >> minusFullMatrix: aFullMatrix [ 
 	"No checking for speed. Assumes correct dimensions and type."
 
@@ -915,7 +917,7 @@ StMFullMatrix >> minusFullMatrix: aFullMatrix [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullMatrix >> minusFullMatrix: aFullMatrix times: aNumber [ 
 	"No checking for speed. Assumes correct dimensions and type."
 
@@ -928,12 +930,12 @@ StMFullMatrix >> minusFullMatrix: aFullMatrix times: aNumber [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullMatrix >> minusSelfTransposed [
 	^self minusFullMatrix: self transpose
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullMatrix >> plusFullMatrix: aFullMatrix [ 
 	"No checking for speed. Assumes correct dimensions and type."
 
@@ -945,7 +947,7 @@ StMFullMatrix >> plusFullMatrix: aFullMatrix [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullMatrix >> plusFullMatrix: aFullMatrix times: aNumber [ 
 	"No checking for speed. Assumes correct dimensions and type."
 
@@ -958,17 +960,17 @@ StMFullMatrix >> plusFullMatrix: aFullMatrix times: aNumber [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullMatrix >> plusSelfTransposed [
 	^self plusFullMatrix: self transpose
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMFullMatrix >> secondDimensionClass [
 	^StMFullRow
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullMatrix >> times: alpha minusFullMatrix: aFullMatrix [ 
 	"a*alpha - b."
 	"Assume all checking of validity of this operation has been done."
@@ -982,7 +984,7 @@ StMFullMatrix >> times: alpha minusFullMatrix: aFullMatrix [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullMatrix >> times: beta minusFullMatrix: aFullMatrix times: alpha [ 
 	"a*alpha + b*beta = b*beta + a*alpha."
 	"Assume all checking of validity of this operation has been done."
@@ -998,7 +1000,7 @@ StMFullMatrix >> times: beta minusFullMatrix: aFullMatrix times: alpha [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullMatrix >> times: alpha plusFullMatrix: aFullMatrix [ 
 	"a*alpha + b."
 	"Assume all checking of validity of this operation has been done."
@@ -1012,7 +1014,7 @@ StMFullMatrix >> times: alpha plusFullMatrix: aFullMatrix [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullMatrix >> times: beta plusFullMatrix: aFullMatrix times: alpha [ 
 	"a*alpha + b*beta = b*beta + a*alpha."
 	"Assume all checking of validity of this operation has been done."
@@ -1028,21 +1030,21 @@ StMFullMatrix >> times: beta plusFullMatrix: aFullMatrix times: alpha [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullMatrix >> timesZeroColumn: aZeroColumn [ 
 	"a*b = a(i,j)b(j) sum j."
 
 	^aZeroColumn class new: self nrow
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullMatrix >> timesZeroMatrix: aZeroMatrix [ 
 	"a*b = a(i,j)b(j,k) sum j."
 
 	^aZeroMatrix class new: self nrow by: aZeroMatrix ncol
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullMatrix >> transpose [
 	"Returns a new Matrix which is the transpose of self."
 
@@ -1061,7 +1063,7 @@ StMFullMatrix >> transpose [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullMatrix >> transposeTimes: aNumber [ 
 	| nrow ncol answer |
 	nrow := self nrow.
@@ -1080,14 +1082,14 @@ StMFullMatrix >> transposeTimes: aNumber [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullMatrix >> transposeTimesDiagonalMatrix: aDiagonalMatrix [ 
 	"aTb = (bTa)T=(ba)T"
 
 	^(aDiagonalMatrix timesFullMatrix: self) transpose
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullMatrix >> transposeTimesFullColumn1: aFullColumn [ 
 	"aT*b = a(i,j)b(i) sum i."
 
@@ -1108,7 +1110,7 @@ StMFullMatrix >> transposeTimesFullColumn1: aFullColumn [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullMatrix >> transposeTimesFullColumn: aFullColumn [ 
 	"aT*b = (bTa)T a(i,j)b(i) sum i."
 	"Transpose of vector is easier than transpose of matrix."
@@ -1116,14 +1118,14 @@ StMFullMatrix >> transposeTimesFullColumn: aFullColumn [
 	^(aFullColumn transpose timesFullMatrix: self) transpose
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullMatrix >> transposeTimesZeroColumn: aZeroColumn [ 
 	"aT*b = a(i,j)b(i) sum i."
 
 	^aZeroColumn class new: self ncol
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullMatrix >> transposeTimesZeroMatrix: aZeroMatrix [ 
 	"aT*b = a(i,j)b(i,k) sum i."
 

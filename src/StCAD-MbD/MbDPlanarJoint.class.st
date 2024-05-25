@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDPlanarJoint,
-	#superclass : #MbDInPlaneJoint,
-	#category : #'StCAD-MbD-MbDJoint'
+	#name : 'MbDPlanarJoint',
+	#superclass : 'MbDInPlaneJoint',
+	#category : 'StCAD-MbD-MbDJoint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDJoint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDPlanarJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ MbDPlanarJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPlanarJoint >> classString [
 	"Used to access the descriptive name of the joint."
 	"Needed for multi-language."
@@ -22,7 +24,7 @@ MbDPlanarJoint >> classString [
 	^TheMbDSystem getString: #'MbD: Planar Joint '
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDPlanarJoint >> initializeGlobally [
 	constraints isEmpty 
 		ifTrue: 

@@ -1,15 +1,17 @@
 Class {
-	#name : #GEOomeIJKi,
-	#superclass : #GEOFunctionIJKi,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEOomeIJKi',
+	#superclass : 'GEOFunctionIJKi',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOomeIJKi class >> functionSymbol [
 	^'omeIJKi'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOomeIJKi class >> visualWorksMetadata [
 
 	^ #(
@@ -19,27 +21,27 @@ GEOomeIJKi class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOomeIJKi >> dataSeries [
 	^geoIJ dataSeriesForChart collect: [:kineIkineJ | kineIkineJ perform: 'omeIJ' , markerK , axisK printString]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOomeIJKi >> dimension [
 	^'omega'
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOomeIJKi >> mbdClassKComp [
 	^MbDOmeCompIecJecKec
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOomeIJKi >> mbdClassOComp [
 	^MbDOmeCompIeqcJeqcO
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOomeIJKi >> mbdUnit [
 	^self mbdUnits omega
 ]

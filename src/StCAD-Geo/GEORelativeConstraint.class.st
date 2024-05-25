@@ -1,14 +1,16 @@
 Class {
-	#name : #GEORelativeConstraint,
-	#superclass : #GEOConstraint,
+	#name : 'GEORelativeConstraint',
+	#superclass : 'GEOConstraint',
 	#instVars : [
 		'markerI',
 		'markerJ'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEORelativeConstraint class >> visualWorksMetadata [
 
 	^ #(

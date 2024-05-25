@@ -1,10 +1,12 @@
 Class {
-	#name : #StableStartingBDF,
-	#superclass : #StableBackwardDifference,
-	#category : #'StMath-StMathDifferenceOperator'
+	#name : 'StableStartingBDF',
+	#superclass : 'StableBackwardDifference',
+	#category : 'StMath-StMathDifferenceOperator',
+	#package : 'StMath',
+	#tag : 'StMathDifferenceOperator'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StableStartingBDF class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ StableStartingBDF class >> visualWorksMetadata [
 
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 StableStartingBDF >> derivative: i present: y past: ypast presentDerivative: ydot pastDerivative: ydotpast [ 
 	| series |
 	i == 0 ifTrue: [^y copy].
@@ -26,12 +28,12 @@ StableStartingBDF >> derivative: i present: y past: ypast presentDerivative: ydo
 		dot: series
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 StableStartingBDF >> derivative: i with: series [ 
 	self shouldNotImplement
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 StableStartingBDF >> formTaylorMatrix [
 	"
 	This form is numerically more stable and is prefered over the full Taylor Matrix. 
@@ -52,7 +54,7 @@ StableStartingBDF >> formTaylorMatrix [
 		derivative: 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StableStartingBDF >> iStep: integer [ 
 	"iStep is the current step of interest."
 	"iStep must increase consecutively."
@@ -66,31 +68,31 @@ StableStartingBDF >> iStep: integer [
 		ifFalse: [self error: 'Not appropriate iStep.']
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 StableStartingBDF >> initialize [
 	super initialize.
 	iStep := 0.
 	order := iStep + 1
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 StableStartingBDF >> initializeLocally [
 	self initialize
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StableStartingBDF >> nStep [
 	^order - 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StableStartingBDF >> order: integer [ 
 	"order is controlled by iStep."
 
 	order == integer ifFalse: [self error: 'iStep and order must be consistent.']
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 StableStartingBDF >> pvdotpv [
 	"pvdotpv := operatorMatrix timesColumn: #(-1.0d ... -1.0d, 0.0d)."
 

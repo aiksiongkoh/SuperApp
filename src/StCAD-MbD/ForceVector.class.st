@@ -1,10 +1,12 @@
 Class {
-	#name : #ForceVector,
-	#superclass : #ForTorVector,
-	#category : #'StCAD-MbD-MbDForce'
+	#name : 'ForceVector',
+	#superclass : 'ForTorVector',
+	#category : 'StCAD-MbD-MbDForce',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDForce'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 ForceVector class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ ForceVector class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 ForceVector >> onFrmI: efrmI andFrmJ: efrmJ [ 
 	| comp1 comp2 comp3 |
 	comp1 := ForTorActReactOComp
@@ -35,7 +37,7 @@ ForceVector >> onFrmI: efrmI andFrmJ: efrmJ [
 				with: comp3
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 ForceVector >> onFrmI: efrmI andFrmJ: efrmJ wrtFrmK: efrmK [ 
 	| comp1 comp2 comp3 |
 	comp1 := ForTorActReactKComp

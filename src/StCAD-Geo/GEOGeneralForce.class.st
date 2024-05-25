@@ -1,10 +1,12 @@
 Class {
-	#name : #GEOGeneralForce,
-	#superclass : #Obsolete,
-	#category : #'StCAD-Geo-Obsolete classes'
+	#name : 'GEOGeneralForce',
+	#superclass : 'Obsolete',
+	#category : 'StCAD-Geo-Obsolete classes',
+	#package : 'StCAD-Geo',
+	#tag : 'Obsolete classes'
 }
 
-{ #category : #'binary storage' }
+{ #category : 'binary storage' }
 GEOGeneralForce class >> binaryReaderBlockForVersion: oldVersion format: oldFormat [ 
 	"Change 
 	StCAD.StGeo.GEOSpringDamperTorque 
@@ -38,12 +40,12 @@ GEOGeneralForce class >> binaryReaderBlockForVersion: oldVersion format: oldForm
 	^super binaryReaderBlockForVersion: oldVersion format: oldFormat
 ]
 
-{ #category : #'binary storage' }
+{ #category : 'binary storage' }
 GEOGeneralForce class >> binaryRepresentationVersion [
 	^40
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOGeneralForce class >> visualWorksMetadata [
 
 	^ #(

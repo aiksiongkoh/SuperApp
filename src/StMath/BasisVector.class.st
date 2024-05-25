@@ -1,13 +1,15 @@
 Class {
-	#name : #BasisVector,
-	#superclass : #VerySparseVector,
+	#name : 'BasisVector',
+	#superclass : 'VerySparseVector',
 	#instVars : [
 		'basisNumber'
 	],
-	#category : #'StMath-StMathArraySpecial'
+	#category : 'StMath-StMathArraySpecial',
+	#package : 'StMath',
+	#tag : 'StMathArraySpecial'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 BasisVector class >> visualWorksMetadata [
 
 	^ #(

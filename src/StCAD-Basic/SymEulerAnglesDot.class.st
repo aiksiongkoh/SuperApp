@@ -1,7 +1,7 @@
 Class {
-	#name : #SymEulerAnglesDot,
-	#superclass : #SymEulerArray,
-	#type : #variable,
+	#name : 'SymEulerAnglesDot',
+	#superclass : 'SymEulerArray',
+	#type : 'variable',
 	#instVars : [
 		'aEulerAngles',
 		'cAdot',
@@ -9,10 +9,11 @@ Class {
 		'omeF',
 		'omef'
 	],
-	#category : #'StCAD-Basic'
+	#category : 'StCAD-Basic',
+	#package : 'StCAD-Basic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 SymEulerAnglesDot class >> visualWorksMetadata [
 
 	^ #(
@@ -22,7 +23,7 @@ SymEulerAnglesDot class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SymEulerAnglesDot class >> with: angle [ 
 	| answer |
 	answer := super new: 3.
@@ -30,32 +31,32 @@ SymEulerAnglesDot class >> with: angle [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerAnglesDot >> aAdot [
 	^aAdot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerAnglesDot >> aEulerAngles [
 	^aEulerAngles
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerAnglesDot >> aTime [
 	^aEulerAngles aTime
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerAnglesDot >> cA [
 	^aEulerAngles cA
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerAnglesDot >> cAdot [
 	^cAdot
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 SymEulerAnglesDot >> calc [
 	| rotOrder cA |
 	aEulerAngles calc.
@@ -91,7 +92,7 @@ SymEulerAnglesDot >> calc [
 	omef := (aEulerAngles aA transposeTimesFullColumn: omeF) simplified
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 SymEulerAnglesDot >> calcSymbolic [
 	| rotOrder cA |
 	aEulerAngles calcSymbolic.
@@ -127,7 +128,7 @@ SymEulerAnglesDot >> calcSymbolic [
 	omef := (aEulerAngles aA transposeTimesFullColumn: omeF) simplified
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 SymEulerAnglesDot >> differentiateWRT: var [ 
 	| answer |
 	answer := SymEulerAnglesDDot with: self.
@@ -141,27 +142,27 @@ SymEulerAnglesDot >> differentiateWRT: var [
 	^answer
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 SymEulerAnglesDot >> initialize: angle [ 
 	aEulerAngles := angle
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerAnglesDot >> omeF [
 	^omeF
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerAnglesDot >> omef [
 	^omef
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerAnglesDot >> rotOrder [
 	^aEulerAngles rotOrder
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 SymEulerAnglesDot >> simplified [
 	| answer |
 	answer := super simplified.

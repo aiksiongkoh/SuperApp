@@ -1,13 +1,15 @@
 Class {
-	#name : #StMLeastSquaresFit,
-	#superclass : #StMDataXYFunctionX,
+	#name : 'StMLeastSquaresFit',
+	#superclass : 'StMDataXYFunctionX',
 	#instVars : [
 		'xOffset'
 	],
-	#category : #'StMath-Symbolic'
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMLeastSquaresFit class >> visualWorksMetadata [
 
 	^ #(
@@ -17,7 +19,7 @@ StMLeastSquaresFit class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMLeastSquaresFit class >> with: var order: order xs: xxs ys: yys [ 
 	^super new
 		x: var

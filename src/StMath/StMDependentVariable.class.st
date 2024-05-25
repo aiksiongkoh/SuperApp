@@ -2,15 +2,17 @@
 The dependent variable is an unknown function of its argument x.
 "
 Class {
-	#name : #StMDependentVariable,
-	#superclass : #StMVariable,
+	#name : 'StMDependentVariable',
+	#superclass : 'StMVariable',
 	#instVars : [
 		'x'
 	],
-	#category : #'StMath-Symbolic'
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #'binary storage' }
+{ #category : 'binary storage' }
 StMDependentVariable class >> binaryReaderBlockForVersion: oldVersion format: oldFormat [ 
 	"Remove the instance variable 'value dependents x name'."
 	"Remove the instance variable 'name value x'."
@@ -31,7 +33,7 @@ StMDependentVariable class >> binaryReaderBlockForVersion: oldVersion format: ol
 	^super binaryReaderBlockForVersion: oldVersion format: oldFormat
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMDependentVariable class >> visualWorksMetadata [
 
 	^ #(
@@ -41,12 +43,12 @@ StMDependentVariable class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMDependentVariable >> aIndependentVariable [
 	^x aIndependentVariable
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMDependentVariable >> differentiateWRT: variable [ 
 	| dfdx dxdvar |
 	self == variable ifTrue: [^StMConstant with: 1].
@@ -55,12 +57,12 @@ StMDependentVariable >> differentiateWRT: variable [
 	^dfdx times: dxdvar
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMDependentVariable >> differentiateWRTx [
 	^StMDifferentiatedVariable with: self wrts: (OrderedCollection with: x copy)
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 StMDependentVariable >> printOn: aStream [ 
 	aStream nextPutAll: name.
 	aStream nextPut: $(.
@@ -68,7 +70,7 @@ StMDependentVariable >> printOn: aStream [
 	aStream nextPut: $)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMDependentVariable >> x: arg [ 
 	x := self conditionArgument: arg
 ]

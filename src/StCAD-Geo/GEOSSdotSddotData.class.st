@@ -1,15 +1,17 @@
 Class {
-	#name : #GEOSSdotSddotData,
-	#superclass : #GEOData,
+	#name : 'GEOSSdotSddotData',
+	#superclass : 'GEOData',
 	#instVars : [
 		's',
 		'sdot',
 		'sddot'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOSSdotSddotData class >> visualWorksMetadata [
 
 	^ #(
@@ -19,37 +21,37 @@ GEOSSdotSddotData class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOSSdotSddotData >> initialize [
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSSdotSddotData >> s [
 	^s
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSSdotSddotData >> s: col [ 
 	s := col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSSdotSddotData >> sddot [
 	^sddot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSSdotSddotData >> sddot: col [ 
 	sddot := col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSSdotSddotData >> sdot [
 	^sdot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSSdotSddotData >> sdot: col [ 
 	sdot := col
 ]

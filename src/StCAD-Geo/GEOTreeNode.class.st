@@ -1,15 +1,17 @@
 Class {
-	#name : #GEOTreeNode,
-	#superclass : #GEOItem,
+	#name : 'GEOTreeNode',
+	#superclass : 'GEOItem',
 	#instVars : [
 		'geoItem',
 		'children',
 		'displayString'
 	],
-	#category : #'StCAD-Geo-GEOTree'
+	#category : 'StCAD-Geo-GEOTree',
+	#package : 'StCAD-Geo',
+	#tag : 'GEOTree'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOTreeNode class >> visualWorksMetadata [
 
 	^ #(
@@ -19,19 +21,19 @@ GEOTreeNode class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTreeNode >> children [
 	^children isNil
 		ifTrue: [children := Array new]
 		ifFalse: [children]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTreeNode >> children: aCollection [ 
 	children := aCollection
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 GEOTreeNode >> copyFrom: node [ 
 	| dictA dictB childB childA setA |
 	geoItem == node geoItem 
@@ -71,12 +73,12 @@ GEOTreeNode >> copyFrom: node [
 			displayString := node displayString]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTreeNode >> displayString [
 	^displayString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTreeNode >> displayString: string [ 
 	
 	[geoItem name: string.
@@ -88,22 +90,22 @@ GEOTreeNode >> displayString: string [
 			ex return]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTreeNode >> geoItem [
 	^geoItem
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTreeNode >> geoItem: item [ 
 	geoItem := item
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTreeNode >> inPlaceEdit: string [ 
 	self displayString: string
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOTreeNode >> initialize [
 	"Do nothing."
 ]

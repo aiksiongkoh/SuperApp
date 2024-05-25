@@ -1,13 +1,15 @@
 Class {
-	#name : #MbDAccCompIeqcsJeqcOKeqcs,
-	#superclass : #MbDAccCompIeqcJeqcOKeqcs,
+	#name : 'MbDAccCompIeqcsJeqcOKeqcs',
+	#superclass : 'MbDAccCompIeqcJeqcOKeqcs',
 	#instVars : [
 		'paiIeJeOKepsI'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDAccCompIeqcsJeqcOKeqcs class >> visualWorksMetadata [
 
 	^ #(

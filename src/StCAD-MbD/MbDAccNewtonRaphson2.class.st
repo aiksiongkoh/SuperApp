@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDAccNewtonRaphson2,
-	#superclass : #MbDSystemNewtonRaphson2,
-	#category : #'StCAD-MbD-MbDSolver'
+	#name : 'MbDAccNewtonRaphson2',
+	#superclass : 'MbDSystemNewtonRaphson2',
+	#category : 'StCAD-MbD-MbDSolver',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDAccNewtonRaphson2 class >> visualWorksMetadata [
 
 	^ #(
@@ -14,12 +16,12 @@ MbDAccNewtonRaphson2 class >> visualWorksMetadata [
 
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDAccNewtonRaphson2 >> askSystemToUpdate [
 	system partsJointsMotionsForcesTorquesDo: [:item | item postAccICIteration]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDAccNewtonRaphson2 >> assignEquationNumbers [
 	"Equation order is q,s,u,lamb,lam."
 
@@ -54,19 +56,19 @@ MbDAccNewtonRaphson2 >> assignEquationNumbers [
 	n := eqnNo - 1
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDAccNewtonRaphson2 >> fillPyPx [
 	pypx zeroSelf.
 	system partsJointsMotionsForcesTorquesDo: [:item | item fillAccICIterJacob: pypx]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDAccNewtonRaphson2 >> fillY [
 	y zeroSelf.
 	system partsJointsMotionsForcesTorquesDo: [:item | item fillAccICIterError: y]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDAccNewtonRaphson2 >> incrementIterNo [
 	iterNo >= iterMax
 		ifTrue: 
@@ -75,29 +77,29 @@ MbDAccNewtonRaphson2 >> incrementIterNo [
 	iterNo := iterNo + 1
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDAccNewtonRaphson2 >> initializeGlobally [
 	super initializeGlobally.
 	system partsJointsMotionsDo: [:item | item fillqsuddotlam: x]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDAccNewtonRaphson2 >> logSingularMatrixMessage [
 	system 
 		logString: #'MbD: \Some parts with zero masses or moment of inertias have infinite accelerations. \Add masses and inertias to or properly constrain those parts.'
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDAccNewtonRaphson2 >> passRootToSystem [
 	system partsJointsMotionsDo: [:item | item setqsuddotlam: x]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDAccNewtonRaphson2 >> postRun [
 	system partsJointsMotionsForcesTorquesDo: [:item | item postAccIC]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDAccNewtonRaphson2 >> preRun [
 	system partsJointsMotionsForcesTorquesDo: [:item | item preAccIC]
 ]

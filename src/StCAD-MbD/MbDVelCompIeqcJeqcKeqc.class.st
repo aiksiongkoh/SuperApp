@@ -1,16 +1,18 @@
 Class {
-	#name : #MbDVelCompIeqcJeqcKeqc,
-	#superclass : #MbDVelCompIeqcJecKeqc,
+	#name : 'MbDVelCompIeqcJeqcKeqc',
+	#superclass : 'MbDVelCompIeqcJecKeqc',
 	#instVars : [
 		'pvIeJeKeipXJ',
 		'pvIeJeKeipEJ',
 		'pvIeJeKeipXdotJ',
 		'pvIeJeKeipEdotJ'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDVelCompIeqcJeqcKeqc class >> visualWorksMetadata [
 
 	^ #(
@@ -20,7 +22,7 @@ MbDVelCompIeqcJeqcKeqc class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDVelCompIeqcJeqcKeqc class >> withFrmI: afrmI frmJ: afrmJ frmK: afrmK axisK: integer [ 
 	^(afrmI isMemberOf: MbDEndFrameqc)
 		& (afrmJ isMemberOf: MbDEndFrameqc) & (afrmK isMemberOf: MbDEndFrameqc)
@@ -32,7 +34,7 @@ MbDVelCompIeqcJeqcKeqc class >> withFrmI: afrmI frmJ: afrmJ frmK: afrmK axisK: i
 		ifFalse: [nil]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDVelCompIeqcJeqcKeqc >> calcPostDynCorrectorIteration [
 	| prIeJeOpEJ pvIeJeOpEJ pvIeJeOpEdotJ |
 	super calcPostDynCorrectorIteration.
@@ -46,7 +48,7 @@ MbDVelCompIeqcJeqcKeqc >> calcPostDynCorrectorIteration [
 	pvIeJeKeipEdotJ := aAOKej dot: pvIeJeOpEdotJ
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDVelCompIeqcJeqcKeqc >> initialize [
 	super initialize.
 	pvIeJeKeipXJ := StMFullRow new: 3.
@@ -55,22 +57,22 @@ MbDVelCompIeqcJeqcKeqc >> initialize [
 	pvIeJeKeipEdotJ := StMFullRow new: 4
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDVelCompIeqcJeqcKeqc >> pvaluepEJ [
 	^pvIeJeKeipEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDVelCompIeqcJeqcKeqc >> pvaluepEdotJ [
 	^pvIeJeKeipEdotJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDVelCompIeqcJeqcKeqc >> pvaluepXJ [
 	^pvIeJeKeipXJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDVelCompIeqcJeqcKeqc >> pvaluepXdotJ [
 	^pvIeJeKeipXdotJ
 ]

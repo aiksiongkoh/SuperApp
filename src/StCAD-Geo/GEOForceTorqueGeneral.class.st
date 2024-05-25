@@ -1,20 +1,22 @@
 Class {
-	#name : #GEOForceTorqueGeneral,
-	#superclass : #GEOForceTorqueItem,
+	#name : 'GEOForceTorqueGeneral',
+	#superclass : 'GEOForceTorqueItem',
 	#instVars : [
 		'markerK',
 		'aFIeKe',
 		'aTIeKe'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOForceTorqueGeneral class >> nameString [
 	^'GeneralForceTorque'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOForceTorqueGeneral class >> visualWorksMetadata [
 
 	^ #(
@@ -24,17 +26,17 @@ GEOForceTorqueGeneral class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOForceTorqueGeneral >> aFIeKe [
 	^aFIeKe
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOForceTorqueGeneral >> aFIeKe: col [ 
 	aFIeKe := col
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOForceTorqueGeneral >> aFIeKeFunc [
 	| aFIeKeFunc aFIeKei aFIeKeiFunc parser stack func |
 	aFIeKeFunc := StMFullColumn new: 3.
@@ -58,27 +60,27 @@ GEOForceTorqueGeneral >> aFIeKeFunc [
 	^aFIeKeFunc
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOForceTorqueGeneral >> aMarkerK [
 	^markerK
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOForceTorqueGeneral >> aMarkerK: markerk [ 
 	markerK := markerk
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOForceTorqueGeneral >> aTIeKe [
 	^aTIeKe
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOForceTorqueGeneral >> aTIeKe: col [ 
 	aTIeKe := col
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOForceTorqueGeneral >> aTIeKeFunc [
 	| aTIeKeFunc aTIeKei aTIeKeiFunc parser stack func |
 	aTIeKeFunc := StMFullColumn new: 3.
@@ -102,7 +104,7 @@ GEOForceTorqueGeneral >> aTIeKeFunc [
 	^aTIeKeFunc
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOForceTorqueGeneral >> createMbD [
 
 	| eFrmI eFrmJ mbdForce efrmK aFIeKeFunc aFIeKei aFIeKeiFunc parser stack func aTIeKeFunc aTIeKei aTIeKeiFunc |
@@ -175,40 +177,40 @@ GEOForceTorqueGeneral >> createMbD [
 				ifFalse: [ ex pass ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOForceTorqueGeneral >> cut [
 	container cutForceTorque: self.
 	super cut
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOForceTorqueGeneral >> initialize [
 	markerK := #I.
 	aFIeKe := StMFullColumn new: 3.
 	aTIeKe := StMFullColumn new: 3
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOForceTorqueGeneral >> isForce [
 	^true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOForceTorqueGeneral >> isTorque [
 	^true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOForceTorqueGeneral >> markerK [
 	^markerK
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOForceTorqueGeneral >> markerK: markerk [ 
 	markerK := markerk
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOForceTorqueGeneral >> storeOn: aStream level: level [ 
 	super storeOn: aStream level: level.
 	aStream
@@ -243,12 +245,12 @@ GEOForceTorqueGeneral >> storeOn: aStream level: level [
 				ifFalse: [#I])
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOForceTorqueGeneral >> uncut [
 	container addForceTorque: self
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOForceTorqueGeneral >> validateFormulas [
 	self aFIeKeFunc.
 	self aTIeKeFunc

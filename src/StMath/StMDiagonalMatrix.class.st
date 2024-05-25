@@ -1,11 +1,13 @@
 Class {
-	#name : #StMDiagonalMatrix,
-	#superclass : #StMArray,
-	#type : #variable,
-	#category : #'StMath-StMathArray'
+	#name : 'StMDiagonalMatrix',
+	#superclass : 'StMArray',
+	#type : 'variable',
+	#category : 'StMath-StMathArray',
+	#package : 'StMath',
+	#tag : 'StMathArray'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMDiagonalMatrix class >> visualWorksMetadata [
 
 	^ #(
@@ -15,33 +17,33 @@ StMDiagonalMatrix class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMDiagonalMatrix >> at: i and: j [ 
 	^i == j
 		ifTrue: [self at: i]
 		ifFalse: [self elementClass zero]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMDiagonalMatrix >> at: i and: j put: anObject [ 
 	^i == j
 		ifTrue: [self at: i put: anObject]
 		ifFalse: [self error: 'Not yet implemented.']
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMDiagonalMatrix >> at: i1 putDiagonalMatrix: aDiagonalMatrix [ 
 	| iOffset |
 	iOffset := i1 - 1.
 	1 to: aDiagonalMatrix nrow do: [:ii | self at: iOffset + ii put: (aDiagonalMatrix at: ii)]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMDiagonalMatrix >> ncol [
 	^self nrow
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMDiagonalMatrix >> nrow [
 	"Answer the number of indexable fields in the receiver. This value is the 
 	same as the largest legal subscript. Primitive is specified here to override 
@@ -51,7 +53,7 @@ StMDiagonalMatrix >> nrow [
 	^self basicSize
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMDiagonalMatrix >> times: aNumber [ 
 	| nrow answer |
 	nrow := self nrow.
@@ -61,7 +63,7 @@ StMDiagonalMatrix >> times: aNumber [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMDiagonalMatrix >> timesFullColumn: aFullColumn [ 
 	"a*b = a(i,j)b(j) sum j."
 
@@ -73,7 +75,7 @@ StMDiagonalMatrix >> timesFullColumn: aFullColumn [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMDiagonalMatrix >> timesFullMatrix: aFullMatrix [ 
 	"a*b = a(i,i)b(i,j) no sum."
 

@@ -1,53 +1,82 @@
 Class {
-	#name : #SymMarkerFrame,
-	#superclass : #SymCartesianFrame,
+	#name : 'SymMarkerFrame',
+	#superclass : 'SymCartesianFrame',
 	#instVars : [
 		'thepm'
 	],
-	#category : #'StCAD-Basic'
+	#category : 'StCAD-Basic',
+	#package : 'StCAD-Basic'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymMarkerFrame >> aAOm [
 
 	^ aAOf
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymMarkerFrame >> aApm [
 
 	^ aAFf
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 SymMarkerFrame >> addEndFC: aStEndFrameCurve [
 
 	subs add: aStEndFrameCurve.
 	aStEndFrameCurve sup: self
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 SymMarkerFrame >> addEndFS: aStEndFrameSurface [
 
 	subs add: aStEndFrameSurface.
 	aStEndFrameSurface sup: self
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 SymMarkerFrame >> addEndFc: aStEndFramec [
 
 	subs add: aStEndFramec.
 	aStEndFramec sup: self
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
+SymMarkerFrame >> addEndFrmC: aStEndFrameCurve [
+
+	subs add: aStEndFrameCurve.
+	aStEndFrameCurve sup: self
+]
+
+{ #category : 'adding' }
+SymMarkerFrame >> addEndFrmS: aStEndFrameSurface [
+
+	subs add: aStEndFrameSurface.
+	aStEndFrameSurface sup: self
+]
+
+{ #category : 'adding' }
+SymMarkerFrame >> addEndFrmc: aStEndFramec [
+
+	subs add: aStEndFramec.
+	aStEndFramec sup: self
+]
+
+{ #category : 'adding' }
+SymMarkerFrame >> addEndFrmt: aStEndFramet [
+
+	subs add: aStEndFramet.
+	aStEndFramet sup: self
+]
+
+{ #category : 'adding' }
 SymMarkerFrame >> addEndFt: aStEndFramet [
 
 	subs add: aStEndFramet.
 	aStEndFramet sup: self
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 SymMarkerFrame >> calcAll [
 
 	rOfO := self calcrOmO.
@@ -55,19 +84,19 @@ SymMarkerFrame >> calcAll [
 	subs do: [ :sub | sub calcAll ]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 SymMarkerFrame >> calcaAOm [
 
 	^ sup aAOp timesFullMatrix: self aApm
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 SymMarkerFrame >> calcrOmO [
 
 	^ sup rOpO + (sup aAOp timesFullColumn: self rpmp)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SymMarkerFrame >> initialize [
 
 	| rpmp1 rpmp2 rpmp3 rpmp thepm1x thepm2y thepm3z aApm |
@@ -87,19 +116,19 @@ SymMarkerFrame >> initialize [
 	aAFf := aApm simplified
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymMarkerFrame >> rOmO [
 
 	^ rOfO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymMarkerFrame >> rpmp [
 
 	^ rFfF
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymMarkerFrame >> sup: aStPartFrame [
 
 	sup := aStPartFrame

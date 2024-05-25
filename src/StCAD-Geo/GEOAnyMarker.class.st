@@ -1,10 +1,12 @@
 Class {
-	#name : #GEOAnyMarker,
-	#superclass : #GEOAnyGraphic,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEOAnyMarker',
+	#superclass : 'GEOAnyGraphic',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'triggering events' }
+{ #category : 'triggering events' }
 GEOAnyMarker class >> constructEventsTriggered [
 	^(super constructEventsTriggered)
 		add: #getaxisLength;
@@ -12,7 +14,7 @@ GEOAnyMarker class >> constructEventsTriggered [
 		yourself
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOAnyMarker class >> visualWorksMetadata [
 
 	^ #(
@@ -22,12 +24,12 @@ GEOAnyMarker class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyMarker >> addMarkersIn: set [ 
 	set add: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyMarker >> axisLength [
 	| answer |
 	answer := self triggerEvent: #getaxisLength.
@@ -38,7 +40,7 @@ GEOAnyMarker >> axisLength [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyMarker >> axisLength: axisLength [ 
 	self removeActionsForEvent: #getaxisLength.
 	axisLength notNil 
@@ -49,28 +51,28 @@ GEOAnyMarker >> axisLength: axisLength [
 				perform: #yourself]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyMarker >> cut [
 	container cutMarker: self.
 	super cut
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyMarker >> dataClass [
 	^GEOTimePosVelAccData
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyMarker >> dataTypes [
 	^self dataClass new dataTypes
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOAnyMarker >> deleteMbD [
 	self mbdObject: nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyMarker >> lineWidth [
 	| answer |
 	answer := self triggerEvent: #getlineWidth.
@@ -81,7 +83,7 @@ GEOAnyMarker >> lineWidth [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyMarker >> lineWidth: lineWidth [ 
 	self removeActionsForEvent: #getlineWidth.
 	lineWidth notNil 
@@ -92,12 +94,12 @@ GEOAnyMarker >> lineWidth: lineWidth [
 				perform: #yourself]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyMarker >> rOfO [
 	^refFrame rOfO
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 GEOAnyMarker >> renderOn: aRenderingContext [
 
 	| length pt000 pt100 pt010 pt001 |
@@ -117,12 +119,12 @@ GEOAnyMarker >> renderOn: aRenderingContext [
 			aRenderingContext displayLine: (Array with: pt000 with: pt001) ] ]
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOAnyMarker >> storeInputState [
 	"Do nothing."
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOAnyMarker >> storePOVOn: aStream level1: level [ 
 	| fullNamePOV |
 	fullNamePOV := self fullNamePOV.
@@ -139,7 +141,7 @@ GEOAnyMarker >> storePOVOn: aStream level1: level [
 	aStream storePOVLevel: level title: '}'
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOAnyMarker >> storePOVOn: aStream level: level [ 
 	| fullNamePOV |
 	fullNamePOV := self fullNamePOV.
@@ -157,7 +159,7 @@ GEOAnyMarker >> storePOVOn: aStream level: level [
 	aStream storePOVLevel: level title: ')'
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOAnyMarker >> storePOVTimeSeriesOn: aStream [
 	| dataSeries fullNamePOV series |
 	dataSeries := self dataSeriesForChart.
@@ -207,7 +209,7 @@ GEOAnyMarker >> storePOVTimeSeriesOn: aStream [
 		series: (series collect: [:data | (data at: 3) radiansToDegrees.]).
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOAnyMarker >> storePOVdatCurrentOn: aStream [
 	| dataSeries fullNamePOV series |
 	dataSeries := Array with: self dataFromCurrentState.
@@ -257,13 +259,13 @@ GEOAnyMarker >> storePOVdatCurrentOn: aStream [
 		series: (series collect: [:data | (data at: 3) radiansToDegrees.]).
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyMarker >> uncut [
 	container addMarker: self.
 	super uncut
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOAnyMarker >> updateFromInputState [
 	"Do nothing."
 ]

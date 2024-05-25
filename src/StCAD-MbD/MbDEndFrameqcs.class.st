@@ -2,8 +2,8 @@
 s is a full column of dimension 1 or 2 for curve and surface respectively.
 "
 Class {
-	#name : #MbDEndFrameqcs,
-	#superclass : #MbDEndFrameqc,
+	#name : 'MbDEndFrameqcs',
+	#superclass : 'MbDEndFrameqc',
 	#instVars : [
 		'onExterior',
 		'is',
@@ -53,10 +53,12 @@ Class {
 		'ppjempsps',
 		'ppkempsps'
 	],
-	#category : #'StCAD-MbD-MbDBasic'
+	#category : 'StCAD-MbD-MbDBasic',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDBasic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDEndFrameqcs class >> visualWorksMetadata [
 
 	^ #(
@@ -66,7 +68,7 @@ MbDEndFrameqcs class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> aOeO [
 	"Material point acceleration"
 
@@ -76,12 +78,12 @@ MbDEndFrameqcs >> aOeO [
 		plusFullColumn: (partFrame aAddotOp timesFullColumn: self rpep)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> bePerturbed: delta fillqsulam: col [ 
 	col at: is putFullColumn: s
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDEndFrameqcs >> becomeContactEndFrame [
 	| newSelf |
 	newSelf := MbDContactEndFrameqcs new.
@@ -96,7 +98,7 @@ MbDEndFrameqcs >> becomeContactEndFrame [
 	self become: newSelf
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDEndFrameqcs >> becomeNoContactEndFrame [
 	| newSelf |
 	newSelf := MbDNoContactEndFrameqcs new.
@@ -111,7 +113,7 @@ MbDEndFrameqcs >> becomeNoContactEndFrame [
 	self become: newSelf
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDEndFrameqcs >> calcAme2D [
 	| iem1 iem2 pAmeps1 ptem1ps1 pte1ps1 piemps1 piem1ps1 piem2ps1 ppAmeps1ps1 pptem1ps1ps1 ppte1ps1ps1 ppiemps1ps1 ppiem1ps1ps1 ppiem2ps1ps1 |
 	tem1 := prmemps column: 1.
@@ -147,7 +149,7 @@ MbDEndFrameqcs >> calcAme2D [
 	(ppAmeps1ps1 at: 3) at: 1 put: 0.0; at: 2 put: 0.0; at: 3 put: 0.0
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDEndFrameqcs >> calcAme3D [
 	| ptem1psj ptem2psj pte1psj pte2psj putem1psj putem2psj piempsj pkempsj pjempsj pAmepsj ptem1psi ptem2psi pte1psi pte2psi putem1psi putem2psi pptem1psips pptem2psips ppte1psips ppte2psips pputem1psips pputem2psips ppiempsips ppjempsips ppkempsips ppAmepsips pptem1psipsj pptem2psipsj ppte1psipsj ppte2psipsj pputem1psipsj pputem2psipsj ppiempsipsj ppkempsipsj ppjempsipsj pkempsi piempsi ppAmepsipsj |
 	tem1 := prmemps column: 1.
@@ -269,7 +271,7 @@ self halt: 'Check kem and its derivatives.'.
 					(ppAmepsipsj at: 3) at: 1 put: (ppiempsipsj at: 3); at: 2 put: (ppjempsipsj at: 3); at: 3 put: (ppkempsipsj at: 3)]]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDEndFrameqcs >> calcPostDynCorrectorIteration [
 	| prmempsT rOmO aAOm pAOmpE pAOppE rpmp aApm rpep prOeOpEi prOeOpEij pprOeOpEips pAOmpEi pprOeOpsips pprmempsips pprmempsipsj pAmepsi aApe ppAOepEips pAmepsj ppAmepsips ppAOepsips ppAmepsipsj |
 	rmem := rmemBlk value: s.
@@ -329,27 +331,27 @@ MbDEndFrameqcs >> calcPostDynCorrectorIteration [
 	ppAOepsps symLowerWithUpper
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> fillContactEndFrames: set [ 
 	set add: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> fillpqsumu: col [ 
 	col at: is putFullColumn: s
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> fillpqsumudot: col [ 
 	col at: is putFullColumn: sdot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> fillqsu: col [ 
 	col at: is putFullColumn: s
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> fillqsuWeights: col [ 
 	"Add a small weight just to prevent singularity from unconstrained s."
 
@@ -358,41 +360,41 @@ MbDEndFrameqcs >> fillqsuWeights: col [
 	1 to: sSize do: [:ii | col at: iOffset + ii put: 1.0d-6]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> fillqsuddotlam: col [ 
 	col at: is putFullColumn: sddot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> fillqsudot: col [ 
 	col at: is putFullColumn: sdot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> fillqsudotPlam: col [ 
 	col at: is putFullColumn: sdot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> fillqsudotPlamDeriv: col [ 
 	"sddot is now sdotDeriv for collision."
 
 	col at: is putFullColumn: sddot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> fillqsudotWeights: col [ 
 	| iOffset |
 	iOffset := is - 1.
 	1 to: sSize do: [:ii | col at: iOffset + ii put: 0.0]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> fillqsulam: col [ 
 	col at: is putFullColumn: s
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDEndFrameqcs >> initDefineSolid [
 	"Curve defines a solid when angleSwept a non material point is zero."
 	"Curve defines a hole when angleSwept is minus 2*pi."
@@ -412,12 +414,12 @@ MbDEndFrameqcs >> initDefineSolid [
 				ifFalse: [onExterior := nil]]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDEndFrameqcs >> initializeGlobally [
 	self initDefineSolid
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDEndFrameqcs >> initializeLocally [
 	"jem is constant for constant cross section solid."
 
@@ -438,22 +440,22 @@ MbDEndFrameqcs >> initializeLocally [
 	1 to: sSize do: [:i | 1 to: sSize do: [:j | ppAmepsps at: i and: j put: (StMFullMatrix new: 3 by: 3)]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> is [
 	^is
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> is: integer [ 
 	is := integer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> isOnClosedCurve [
 	^rmemBlk isCyclic
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> onExterior [
 	"EndFrame is on exterior surface, if true."
 	"Otherwise it is on an interior surface."
@@ -461,7 +463,7 @@ MbDEndFrameqcs >> onExterior [
 	^onExterior
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> pAdotjOeps: jj [ 
 	| aAdotOm answer pAmepsj pAdotOejjpsj |
 	aAdotOm := self partFrame aAdotOp timesFullMatrix: markerFrame aApm.
@@ -478,7 +480,7 @@ MbDEndFrameqcs >> pAdotjOeps: jj [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> pAjOeps: jj [ 
 	| answer pAOepsj col |
 	answer := StMFullMatrix new: 3 by: sSize.
@@ -494,7 +496,7 @@ MbDEndFrameqcs >> pAjOeps: jj [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> pAjOepsT: jj [ 
 	| answer answeri pAOepsi answerij |
 	answer := StMFullMatrix new: sSize by: 3.
@@ -507,7 +509,7 @@ MbDEndFrameqcs >> pAjOepsT: jj [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> ppAjOepEps: jj [ 
 	| answer answeri ppAOepEips |
 	answer := StMFullMatrix new: 4 by: sSize.
@@ -518,7 +520,7 @@ MbDEndFrameqcs >> ppAjOepEps: jj [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> ppAjOepsps: jj [ 
 	| answer answeri ppAOepsips |
 	answer := StMFullMatrix new: sSize by: sSize.
@@ -529,17 +531,17 @@ MbDEndFrameqcs >> ppAjOepsps: jj [
 	^answer symLowerWithUpper
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> pprOeOpEps [
 	^pprOeOpEps
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> pprOeOpsps [
 	^pprOeOpsps
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> ppriOeOpEps: ii [ 
 	| answer answeri pprOeOpEips |
 	answer := StMFullMatrix new: 4 by: sSize.
@@ -550,7 +552,7 @@ MbDEndFrameqcs >> ppriOeOpEps: ii [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> ppriOeOpsps: ii [ 
 	| answer answeri pprOeOpsips |
 	answer := StMFullMatrix new: sSize by: sSize.
@@ -561,36 +563,36 @@ MbDEndFrameqcs >> ppriOeOpsps: ii [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> prOeOps [
 	^prOeOps
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDEndFrameqcs >> preAccIC [
 	super preAccIC.
 	sddot := (StMFullColumn zero: sSize)
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDEndFrameqcs >> prePosIC [
 	super prePosIC.
 	is := nil
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDEndFrameqcs >> preStatic [
 	sdot zeroSelf.
 	super preStatic.
 	is := nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> priOeOps: i [ 
 	^prOeOps at: i
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> pvOeOpE [
 	| answer pAdotOppE |
 	answer := StMFullMatrix new: 3 by: 4.
@@ -603,7 +605,7 @@ MbDEndFrameqcs >> pvOeOpE [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> pvOeOps [
 	| answer aAdotOm |
 	answer := StMFullMatrix new: 3 by: sSize.
@@ -615,29 +617,29 @@ MbDEndFrameqcs >> pvOeOps [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> rmemBlk [
 	^rmemBlk
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> rmemBlk: function [ 
 	rmemBlk := function
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> rmems [
 	^rmemBlk ys
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDEndFrameqcs >> roughSepDistFromrOeO: col [ 
 	| rmem2 |
 	rmem2 := markerFrame rmemOFrOeO: col.
 	^self roughSepDistFromrmem: rmem2
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDEndFrameqcs >> roughSepDistFromrmem1: col [ 
 	"Answer an array of the rough minimum distance to col, index of curve point, angleSwept 
 	going round the curve."
@@ -674,7 +676,7 @@ MbDEndFrameqcs >> roughSepDistFromrmem1: col [
 		with: angleSwept
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDEndFrameqcs >> roughSepDistFromrmem: col [ 
 	"Answer an array of the rough minimum distance to col, index of 
 	curve point, angleSwept 
@@ -715,7 +717,7 @@ MbDEndFrameqcs >> roughSepDistFromrmem: col [
 		with: angleSwept
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> rpep [
 	| rpmp aApm rpep |
 	rpmp := markerFrame rpmp.
@@ -724,114 +726,114 @@ MbDEndFrameqcs >> rpep [
 	^rpep
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> s [
 	^s
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> s: col [ 
 	s := col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> sAt1 [
 	^s at: 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> sNumber: double [ 
 	s at: 1 put: double
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> sSize [
 	^sSize
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> sSize: aInteger [ 
 	sSize := aInteger
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> sddot [
 	^sddot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> sddot: col [ 
 	sddot := col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> sdot [
 	^sdot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> sdot: col [ 
 	sdot := col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> setpqsumu: col [ 
 	s equalFullColumn: col at: is
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> setpqsumuddot: col [ 
 	sddot equalFullColumn: col at: is
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> setpqsumudot: col [ 
 	sdot equalFullColumn: col at: is
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> setqsu: col [ 
 	s equalFullColumn: col at: is
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> setqsuddotlam: col [ 
 	sddot equalFullColumn: col at: is
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> setqsudot: col [ 
 	sdot equalFullColumn: col at: is
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> setqsudotPlam: col [ 
 	sdot equalFullColumn: col at: is
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> setqsudotPlamDeriv: col [ 
 	"sddot is now sdotDeriv for collision."
 
 	sddot equalFullColumn: col at: is
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> setqsudotlam: col [ 
 	sdot equalFullColumn: col at: is
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> setqsulam: col [ 
 	s equalFullColumn: col at: is
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> ss [
 	^rmemBlk xs
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqcs >> vOeO [
 	"Material point velocity"
 

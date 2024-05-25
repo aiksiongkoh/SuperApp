@@ -1,10 +1,12 @@
 Class {
-	#name : #GEOSpringDamperTorque,
-	#superclass : #Obsolete,
-	#category : #'StCAD-Geo-Obsolete classes'
+	#name : 'GEOSpringDamperTorque',
+	#superclass : 'Obsolete',
+	#category : 'StCAD-Geo-Obsolete classes',
+	#package : 'StCAD-Geo',
+	#tag : 'Obsolete classes'
 }
 
-{ #category : #'binary storage' }
+{ #category : 'binary storage' }
 GEOSpringDamperTorque class >> binaryReaderBlockForVersion: oldVersion format: oldFormat [ 
 	"Change 
 	StCAD.StGeo.GEOSpringDamperTorque 
@@ -84,12 +86,12 @@ GEOSpringDamperTorque class >> binaryReaderBlockForVersion: oldVersion format: o
 	^super binaryReaderBlockForVersion: oldVersion format: oldFormat
 ]
 
-{ #category : #'binary storage' }
+{ #category : 'binary storage' }
 GEOSpringDamperTorque class >> binaryRepresentationVersion [
 	^40
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOSpringDamperTorque class >> visualWorksMetadata [
 
 	^ #(

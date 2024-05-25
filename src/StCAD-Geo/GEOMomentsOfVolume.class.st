@@ -18,8 +18,8 @@ I am an array of 14 elements containing:
 14		aAPp		{IJK}P := [aAPp] {ijk}prin
 "
 Class {
-	#name : #GEOMomentsOfVolume,
-	#superclass : #GEOItem,
+	#name : 'GEOMomentsOfVolume',
+	#superclass : 'GEOItem',
 	#instVars : [
 		'm1',
 		'mX',
@@ -36,15 +36,17 @@ Class {
 		'aJpp',
 		'aAPp'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GEOMomentsOfVolume class >> newWithMoments: col [ 
 	^super basicNew moments: col
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOMomentsOfVolume class >> visualWorksMetadata [
 
 	^ #(
@@ -54,22 +56,22 @@ GEOMomentsOfVolume class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMomentsOfVolume >> aAPp [
 	^aAPp
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMomentsOfVolume >> aJPP [
 	^aJPP
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMomentsOfVolume >> aJpp [
 	^aJpp
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOMomentsOfVolume >> calc [
 	| solver |
 	self calcrPcP.
@@ -83,7 +85,7 @@ GEOMomentsOfVolume >> calc [
 	aAPp := solver aAPp.
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOMomentsOfVolume >> calcaJPP [
 	aJPP := StMFullMatrix new: 3 by: 3.
 	aJPP at: 1 and: 1 put: mYY + mZZ.
@@ -95,7 +97,7 @@ GEOMomentsOfVolume >> calcaJPP [
 	aJPP symLowerWithUpper
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOMomentsOfVolume >> calcrPcP [
 	"P to centroid in P components."
 
@@ -105,7 +107,7 @@ GEOMomentsOfVolume >> calcrPcP [
 				with: mZ / m1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMomentsOfVolume >> magnifySelf: aDouble [ 
 	| sq |
 	mX := mX * aDouble.
@@ -123,7 +125,7 @@ GEOMomentsOfVolume >> magnifySelf: aDouble [
 	aJpp := aJpp * sq
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMomentsOfVolume >> moments: col [ 
 	m1 := col at: 1.
 	mX := col at: 2.
@@ -138,17 +140,17 @@ GEOMomentsOfVolume >> moments: col [
 	self calc
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMomentsOfVolume >> rPcP [
 	^rPcP
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMomentsOfVolume >> vJpp [
 	^aJpp
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMomentsOfVolume >> volume [
 	^m1
 ]

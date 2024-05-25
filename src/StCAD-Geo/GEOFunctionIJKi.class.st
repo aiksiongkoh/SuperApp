@@ -1,19 +1,21 @@
 Class {
-	#name : #GEOFunctionIJKi,
-	#superclass : #GEOFunctionIJ,
+	#name : 'GEOFunctionIJKi',
+	#superclass : 'GEOFunctionIJ',
 	#instVars : [
 		'markerK',
 		'axisK'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOFunctionIJKi class >> functionTemplate [
 	^self functionSymbol , '(geoIJ, I, 1)'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOFunctionIJKi class >> visualWorksMetadata [
 
 	^ #(
@@ -23,7 +25,7 @@ GEOFunctionIJKi class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GEOFunctionIJKi class >> with: geoIJ with: markerk with: axis [ 
 	^super new
 		geoIJ: geoIJ
@@ -31,7 +33,7 @@ GEOFunctionIJKi class >> with: geoIJ with: markerk with: axis [
 		axisK: axis
 ]
 
-{ #category : #'StCAD-UI' }
+{ #category : 'StCAD-UI' }
 GEOFunctionIJKi >> cadStringOn: aStream [ 
 	aStream nextPutAll: self class functionSymbol.
 	aStream nextPut: $(.
@@ -43,7 +45,7 @@ GEOFunctionIJKi >> cadStringOn: aStream [
 	aStream nextPut: $)
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOFunctionIJKi >> createMbD [
 	| eFrmI eFrmJ dispIeJe mbdDisp efrmK |
 	eFrmI := geoIJ aMarkerI mbdObject.
@@ -67,14 +69,14 @@ GEOFunctionIJKi >> createMbD [
 	self x: dispIeJe expression: (dispIeJe times: self mbdUnit)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOFunctionIJKi >> geoIJ: aGeoIJ markerK: markerk axisK: axis [ 
 	geoIJ := aGeoIJ.
 	markerK := markerk.
 	axisK := axis
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOFunctionIJKi >> markerK: markerk axisK: integer [ 
 	markerK := markerk.
 	axisK := integer

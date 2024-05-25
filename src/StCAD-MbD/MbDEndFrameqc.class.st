@@ -2,18 +2,20 @@
 prOeOpX is the identity matrix. No need to store it. Instances makes use of that knowledge in their methods.
 "
 Class {
-	#name : #MbDEndFrameqc,
-	#superclass : #MbDEndFramec,
+	#name : 'MbDEndFrameqc',
+	#superclass : 'MbDEndFramec',
 	#instVars : [
 		'prOeOpE',
 		'pprOeOpEpE',
 		'pAOepE',
 		'ppAOepEpE'
 	],
-	#category : #'StCAD-MbD-MbDBasic'
+	#category : 'StCAD-MbD-MbDBasic',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDBasic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDEndFrameqc class >> visualWorksMetadata [
 
 	^ #(
@@ -23,29 +25,29 @@ MbDEndFrameqc class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqc >> aAdotjOe: j [ 
 	^markerFrame aAdotjOm: j
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqc >> aBOp [
 	^markerFrame aBOp
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqc >> aOeO [
 	^markerFrame aOmO
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDEndFrameqc >> calcPostDynCorrectorIteration [
 	super calcPostDynCorrectorIteration.
 	prOeOpE := markerFrame prOmOpE.
 	pAOepE := markerFrame pAOmpE
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 MbDEndFrameqc >> floatsOn: aEndFrame [ 
 	| selfmFrm basemFrm newSelf |
 	selfmFrm := self markerFrame.
@@ -58,7 +60,7 @@ MbDEndFrameqc >> floatsOn: aEndFrame [
 	self become: newSelf
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 MbDEndFrameqc >> followEndFrame: aEndFrame [ 
 	"Do not use 'self become: endFrm' because receiver might be used in kinematic objects."
 
@@ -70,7 +72,7 @@ MbDEndFrameqc >> followEndFrame: aEndFrame [
 	^endFrm
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDEndFrameqc >> initialize [
 	prOeOpE := StMFullMatrix new: 3 by: 4.
 	pprOeOpEpE := StMFullMatrix new: 4 by: 4.
@@ -78,7 +80,7 @@ MbDEndFrameqc >> initialize [
 	ppAOepEpE := StMFullMatrix new: 4 by: 4
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDEndFrameqc >> initializeGlobally [
 	"Theses are constants."
 
@@ -86,54 +88,54 @@ MbDEndFrameqc >> initializeGlobally [
 	ppAOepEpE := markerFrame ppAOmpEpE
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqc >> iqE [
 	^markerFrame iqE
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqc >> iqX [
 	^markerFrame iqX
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqc >> is: count [ 
 	"There is no s parameter except for a curve or surface."
 
 	^count
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqc >> markerFrame: frame [ 
 	markerFrame := frame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqc >> omeOeO [
 	^markerFrame omeOmO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqc >> pAOepE [ 
 	^pAOepE
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqc >> pAOppE [
 	^markerFrame pAOppE
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqc >> pAdotjOepE: axis [ 
 	^markerFrame pAdotjOmpE: axis
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqc >> pAdotjOepET: axis [ 
 	^markerFrame pAdotjOmpET: axis
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqc >> pAeOpE [
 	| pAeOpE |
 	pAeOpE := StMFullColumn new: 4.
@@ -141,7 +143,7 @@ MbDEndFrameqc >> pAeOpE [
 	^pAeOpE
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqc >> pAjOepE: jj [ 
 	| answer answeri pAOepEj answerij |
 	answer := StMFullMatrix new: 3 by: 4.
@@ -154,7 +156,7 @@ MbDEndFrameqc >> pAjOepE: jj [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqc >> pAjOepET: jj [ 
 	| answer answeri pAOepEi answerij |
 	answer := StMFullMatrix new: 4 by: 3.
@@ -167,27 +169,27 @@ MbDEndFrameqc >> pAjOepET: jj [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqc >> pkeOpE [
 	^self pAjOepE: 3
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqc >> pomeOeOpE [
 	^markerFrame pomeOmOpE
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqc >> pomeOeOpEdot [
 	^markerFrame pomeOmOpEdot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqc >> ppAOepEpE [ 
 	^ppAOepEpE
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqc >> ppAjOepEpE: jj [ 
 	| answer answeri ppAOepEipE |
 	answer := StMFullMatrix new: 4 by: 4.
@@ -198,12 +200,12 @@ MbDEndFrameqc >> ppAjOepEpE: jj [
 	^answer symLowerWithUpper
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqc >> pprOeOpEpE [ 
 	^pprOeOpEpE
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqc >> ppriOeOpEpE: ii [ 
 	| answer answeri pprOeOpEipE |
 	answer := StMFullMatrix new: 4 by: 4.
@@ -214,62 +216,62 @@ MbDEndFrameqc >> ppriOeOpEpE: ii [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqc >> prOeOpE [ 
 	^prOeOpE
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqc >> priOeOpE: i [ 
 	^prOeOpE at: i
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqc >> pvOeOpE [
 	^markerFrame pvOmOpE
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqc >> pvOeOpEdot [
 	^self prOeOpE
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqc >> pvOeOpXdot [
 	^self prOeOpX
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqc >> qEddot [
 	^markerFrame qEddot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqc >> qEdot [
 	^markerFrame qEdot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqc >> qX [
 	^markerFrame qX
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqc >> qXddot [
 	^markerFrame qXddot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqc >> qXdot [
 	^markerFrame qXdot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqc >> rpep [
 	^markerFrame rpmp
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFrameqc >> vOeO [
 	^markerFrame vOmO
 ]

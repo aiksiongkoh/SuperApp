@@ -1,18 +1,20 @@
 Class {
-	#name : #ForTorVector,
-	#superclass : #ForceTorqueItem,
+	#name : 'ForTorVector',
+	#superclass : 'ForceTorqueItem',
 	#instVars : [
 		'components'
 	],
-	#category : #'StCAD-MbD-MbDForce'
+	#category : 'StCAD-MbD-MbDForce',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDForce'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 ForTorVector class >> onFrmI: efrmI andFrmJ: efrmJ [ 
 	^self new onFrmI: efrmI andFrmJ: efrmJ
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 ForTorVector class >> onFrmI: efrmI andFrmJ: efrmJ wrtFrmK: efrmK [ 
 	^self new
 		onFrmI: efrmI
@@ -20,7 +22,7 @@ ForTorVector class >> onFrmI: efrmI andFrmJ: efrmJ wrtFrmK: efrmK [
 		wrtFrmK: efrmK
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 ForTorVector class >> visualWorksMetadata [
 
 	^ #(
@@ -30,37 +32,37 @@ ForTorVector class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ForTorVector >> aFTIeO [
 	^components inject: (StMFullColumn zero: 3) into: [:aFTIeO :comp | aFTIeO + comp aFTIeO]
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 ForTorVector >> fillAccICIterError: col [ 
 	components do: [:comp | comp fillAccICIterError: col]
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 ForTorVector >> fillAccICIterJacob: mat [ 
 	components do: [:comp | comp fillAccICIterJacob: mat]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorVector >> fillDynError: col [ 
 	components do: [:comp | comp fillDynError: col]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorVector >> fillpFpy: mat [ 
 	components do: [:comp | comp fillpFpy: mat]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorVector >> fillpFpydot: mat [ 
 	components do: [:comp | comp fillpFpydot: mat]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ForTorVector >> functions: col [ 
 	| collection funci compi |
 	collection := OrderedCollection new.
@@ -77,77 +79,77 @@ ForTorVector >> functions: col [
 	components := collection
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 ForTorVector >> initializeGlobally [
 	components do: [:comp | comp initializeGlobally]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 ForTorVector >> initializeLocally [
 	components do: [:comp | comp initializeLocally]
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 ForTorVector >> postAccICIteration [ 
 	components do: [:comp | comp postAccICIteration]
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 ForTorVector >> postCollisionCorrectorIteration [
 	components do: [:comp | comp postCollisionCorrectorIteration]
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 ForTorVector >> postCollisionPredictor [
 	components do: [:comp | comp postCollisionPredictor]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorVector >> postDynCorrectorIteration [
 	components do: [:comp | comp postDynCorrectorIteration]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorVector >> postDynOutput [
 	components do: [:comp | comp postDynOutput]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorVector >> postDynPredictor [
 	components do: [:comp | comp postDynPredictor]
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 ForTorVector >> postInput [
 	components do: [:comp | comp postInput]
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 ForTorVector >> postStaticIteration [
 	components do: [:comp | comp postStaticIteration]
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 ForTorVector >> preAccIC [ 
 	components do: [:comp | comp preAccIC]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorVector >> preDynOutput [
 	components do: [:comp | comp preDynOutput]
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 ForTorVector >> preStatic [
 	components do: [:comp | comp preStatic]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorVector >> simUpdateAll [
 	components do: [:comp | comp simUpdateAll]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 ForTorVector >> useEquationNumbers [
 	components do: [:comp | comp useEquationNumbers]
 ]

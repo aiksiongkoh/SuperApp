@@ -1,13 +1,15 @@
 Class {
-	#name : #GEORefPoint,
-	#superclass : #GEOAnyGraphic,
+	#name : 'GEORefPoint',
+	#superclass : 'GEOAnyGraphic',
 	#instVars : [
 		'markers'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEORefPoint class >> visualWorksMetadata [
 
 	^ #(
@@ -17,25 +19,25 @@ GEORefPoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORefPoint >> addMarker: geoMarker [ 
 	geoMarker refFrame refFrame: refFrame.
 	markers add: geoMarker
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORefPoint >> addMarkers: array [ 
 	array do: [:marker | self addMarker: marker]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEORefPoint >> initialize [
 
 	super initialize.
 	markers := StCAD_Misc_OrderedSet new "VW_TRANSLATION:StCAD.Misc.OrderedSet:StCAD_Misc_OrderedSet"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORefPoint >> markers [
 	^markers
 ]

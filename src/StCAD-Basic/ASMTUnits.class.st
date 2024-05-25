@@ -6,7 +6,8 @@ Newton
 
 "
 Class {
-	#name : #ASMTUnits,
-	#superclass : #ASMTItem,
-	#category : #'StCAD-Basic'
+	#name : 'ASMTUnits',
+	#superclass : 'ASMTItem',
+	#category : 'StCAD-Basic',
+	#package : 'StCAD-Basic'
 }

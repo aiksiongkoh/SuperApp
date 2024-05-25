@@ -1,13 +1,15 @@
 Class {
-	#name : #ForTorActReactOComp,
-	#superclass : #ForTorActReactComp,
+	#name : 'ForTorActReactOComp',
+	#superclass : 'ForTorActReactComp',
 	#instVars : [
 		'aFTJeOi'
 	],
-	#category : #'StCAD-MbD-MbDForce'
+	#category : 'StCAD-MbD-MbDForce',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDForce'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 ForTorActReactOComp class >> forceOnFrmI: aFrmI andFrmJ: aFrmJ axis: i [ 
 	^super new
 		forceOnFrmI: aFrmI
@@ -15,7 +17,7 @@ ForTorActReactOComp class >> forceOnFrmI: aFrmI andFrmJ: aFrmJ axis: i [
 		axis: i
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 ForTorActReactOComp class >> torqueOnFrmI: aFrmI andFrmJ: aFrmJ axis: i [ 
 	^super new
 		torqueOnFrmI: aFrmI
@@ -23,7 +25,7 @@ ForTorActReactOComp class >> torqueOnFrmI: aFrmI andFrmJ: aFrmJ axis: i [
 		axis: i
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 ForTorActReactOComp class >> visualWorksMetadata [
 
 	^ #(
@@ -33,18 +35,18 @@ ForTorActReactOComp class >> visualWorksMetadata [
 
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 ForTorActReactOComp >> calcPostDynCorrectorIteration [
 	aFTJeOi := forTorAction aFTIeOi negated
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 ForTorActReactOComp >> fillAccICIterError: col [ 
 	forTorAction fillAccICIterError: col.
 	forTorBasicJ fillAccICIterError: col aFTOi: aFTJeOi
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 ForTorActReactOComp >> fillAccICIterJacob: mat [ 
 	| forTorFunction jointActions pFTpJtActs jointAction mpFTpJtAct |
 	forTorAction fillAccICIterJacob: mat.
@@ -59,13 +61,13 @@ ForTorActReactOComp >> fillAccICIterJacob: mat [
 			forTorBasicJ fillAccICIterJacob: mat pFTOiplam: (jointAction pvalueplam times: mpFTpJtAct)]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorActReactOComp >> fillDynError: col [ 
 	forTorAction fillDynError: col.
 	forTorBasicJ fillDynError: col aFTOi: aFTJeOi
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorActReactOComp >> fillpFpy: mat [ 
 	| forTorFunction kineIJs kinedotIJs jointActions pFTpkineIJs pFTpkinedotIJs pFTpJtActs kineIJ mpFTpkineIJ kinedotIJ mpFTpkinedotIJ jointAction mpFTpJtAct |
 	forTorAction fillpFpy: mat.
@@ -106,7 +108,7 @@ ForTorActReactOComp >> fillpFpy: mat [
 				function: jointAction]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorActReactOComp >> fillpFpy: mat pFTpfunction: pFTpfunction function: function [ 
 	"function is in a user defined function. Therefore it is a function of 
 	its I,J,K which may be different 
@@ -169,7 +171,7 @@ ForTorActReactOComp >> fillpFpy: mat pFTpfunction: pFTpfunction function: functi
 						partj: partFrameK]]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorActReactOComp >> fillpFpydot: mat [ 
 	| forTorFunction kinedotIJs jointActions pFTpkinedotIJs pFTpJtActs kinedotIJ mpFTpkinedotIJ jointAction mpFTpJtAct |
 	forTorAction fillpFpydot: mat.
@@ -195,7 +197,7 @@ ForTorActReactOComp >> fillpFpydot: mat [
 			forTorBasicJ fillpFpydot: mat pFTOipmudot: (jointAction pvalueplam times: mpFTpJtAct)]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorActReactOComp >> fillpFpydot: mat pFTpfunction: pFTpfunction function: function [ 
 	| pvaluepXdotI pvaluepEdotI partFrameI pvaluepXdotJ pvaluepEdotJ partFrameJ |
 	pvaluepXdotI := function pvaluepXdotI.
@@ -236,7 +238,7 @@ ForTorActReactOComp >> fillpFpydot: mat pFTpfunction: pFTpfunction function: fun
 						partj: partFrameJ]]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 ForTorActReactOComp >> forceOnFrmI: aFrmI andFrmJ: aFrmJ axis: axis [ 
 	forTorAction forceOnFrmI: aFrmI axis: axis.
 	forTorBasicJ := ForceBasicqccqComp new.
@@ -244,12 +246,12 @@ ForTorActReactOComp >> forceOnFrmI: aFrmI andFrmJ: aFrmJ axis: axis [
 	forTorBasicJ endFrame: aFrmJ followEndFrame: aFrmI
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 ForTorActReactOComp >> initialize [
 	forTorAction := ForTorActionOComp new
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 ForTorActReactOComp >> torqueOnFrmI: aFrmI andFrmJ: aFrmJ axis: axis [ 
 	forTorAction torqueOnFrmI: aFrmI axis: axis.
 	forTorBasicJ := TorqueBasicComp new.

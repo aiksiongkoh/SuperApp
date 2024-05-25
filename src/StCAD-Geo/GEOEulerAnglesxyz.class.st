@@ -1,11 +1,13 @@
 Class {
-	#name : #GEOEulerAnglesxyz,
-	#superclass : #GEOEulerAngles,
-	#type : #variable,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEOEulerAnglesxyz',
+	#superclass : 'GEOEulerAngles',
+	#type : 'variable',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GEOEulerAnglesxyz class >> fromA: aA [ 
 	| answer sthe2y the1x the2y the3z cthe1x sthe1x y x |
 	answer := self new.
@@ -40,7 +42,7 @@ GEOEulerAnglesxyz class >> fromA: aA [
 	^answer
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOEulerAnglesxyz class >> visualWorksMetadata [
 
 	^ #(
@@ -50,7 +52,7 @@ GEOEulerAnglesxyz class >> visualWorksMetadata [
 
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOEulerAnglesxyz >> calc [
 	| aA1 aA2 aA3 |
 	aA1 := self rotatex: (self at: 1).

@@ -1,15 +1,17 @@
 Class {
-	#name : #GEOPart,
-	#superclass : #GEOPartLike,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEOPart',
+	#superclass : 'GEOPartLike',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPart class >> nameString [
 	^'Part'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOPart class >> visualWorksMetadata [
 
 	^ #(
@@ -19,7 +21,7 @@ GEOPart class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPart >> aColor [
 	^(self triggerEvent: #getColor) ifNil: 
 			[| answer |
@@ -28,7 +30,7 @@ GEOPart >> aColor [
 			answer]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPart >> aColor: aColor [ 
 	self removeActionsForEvent: #getColor.
 	aColor notNil 
@@ -39,18 +41,18 @@ GEOPart >> aColor: aColor [
 				perform: #yourself]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPart >> aMassMarker [
 	^self triggerEvent: #getMassMarker
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPart >> addMarkersIn: set [ 
 	super addMarkersIn: set.
 	set add: self massMarker
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPart >> asTreeNode [
 	| answer |
 	answer := super asTreeNode.
@@ -59,74 +61,74 @@ GEOPart >> asTreeNode [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPart >> assemblyList: collection [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPart >> cFeature [
 	^featureOrder
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOPart >> clearSolidModel [
 	solidModel releaseFacesEdgesVertexs
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOPart >> createMbD [
 "	solidModel momentsOfVolume isNil ifTrue: [solidModel calcMomentsOfVolume]."
 	super createMbD
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPart >> cut [
 	container cutPart: self.
 	super cut
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPart >> density [
 	^self massMarker density
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPart >> density: double [ 
 	^self massMarker density: double
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPart >> forceList: collection [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPart >> forceTorqueList: collection [ 
 	"Do nothing."
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOPart >> hasCentroid [
 	^solidModel hasCentroid
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPart >> isPart [
 	^true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPart >> jointList: collection [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPart >> kineIJList: collection [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPart >> magnifySelf: aDouble [ 
 	self inputData magnifySelf: aDouble.
 	self aRefFrame magnifySelf: aDouble.
@@ -137,12 +139,12 @@ GEOPart >> magnifySelf: aDouble [
 	self aNMT ifNotNil: [:aNMT | aNMT magnifySelf: aDouble]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPart >> massMarker [
 	^self triggerEvent: #getMassMarker
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPart >> massMarker: massMarker [ 
 	self removeActionsForEvent: #getMassMarker.
 	massMarker notNil ifTrue: [self
@@ -151,22 +153,22 @@ GEOPart >> massMarker: massMarker [
 			perform: #yourself]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPart >> motionList: collection [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPart >> part [
 	^self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPart >> partList: collection [ 
 	collection add: self
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 GEOPart >> removeDisplayList [
 	| block |
 	block := [:item | item removeDisplayList].
@@ -175,7 +177,7 @@ GEOPart >> removeDisplayList [
 	self aNMT ifNotNil: block
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 GEOPart >> renderOn1: aRenderingContext [ 
 	aRenderingContext productTransformation: refFrame aMFf
 		while: 
@@ -188,7 +190,7 @@ GEOPart >> renderOn1: aRenderingContext [
 			self aNMT ifNotNil: [:aNMT | aNMT renderOn: aRenderingContext]]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 GEOPart >> renderOn: aRenderingContext [ 
 	aRenderingContext pushTransformation: refFrame aMFf
 		while: 
@@ -202,7 +204,7 @@ GEOPart >> renderOn: aRenderingContext [
 			self aNMT ifNotNil: block]
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOPart >> storeOn: aStream level: level [ 
 	super storeOn: aStream level: level.
 	self refFrame storeVelocityOn: aStream level: level + 1.
@@ -217,7 +219,7 @@ GEOPart >> storeOn: aStream level: level [
 	self refSurfaces do: [:item | item storeOn: aStream level: level + 2]
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOPart >> storePOVOn: aStream level: level [ 
 	| fullNamePOV cColor index |
 	fullNamePOV := self fullNamePOV.
@@ -264,36 +266,36 @@ GEOPart >> storePOVOn: aStream level: level [
 		title: '// RefSurfaces'
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOPart >> storePOVTimeSeriesOn: aStream [ 
 	super storePOVTimeSeriesOn: aStream.
 	self massMarker storePOVTimeSeriesOn: aStream
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOPart >> storePOVdatCurrentOn: aStream [ 
 	super storePOVdatCurrentOn: aStream.
 	self massMarker storePOVdatCurrentOn: aStream
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPart >> torqueList: collection [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPart >> translateBy: shiftXYZ [ 
 	refFrame translateBy: shiftXYZ.
 	self dataSeries do: [:aData | aData translateBy: shiftXYZ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPart >> uncut [
 	container addAnyPart: self.
 	super uncut
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOPart >> zeroVelocities [
 	| zero |
 	zero := (StMFullColumn zero: 3).

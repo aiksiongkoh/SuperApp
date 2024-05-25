@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDDistIeqcsJeqc,
-	#superclass : #MbDDistIeqcJeqc,
+	#name : 'MbDDistIeqcsJeqc',
+	#superclass : 'MbDDistIeqcJeqc',
 	#instVars : [
 		'sSizeI',
 		'prIeJepsI',
@@ -16,10 +16,12 @@ Class {
 		'prIeJeps',
 		'pprIeJepsps'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDDistIeqcsJeqc class >> visualWorksMetadata [
 
 	^ #(
@@ -29,7 +31,7 @@ MbDDistIeqcsJeqc class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDDistIeqcsJeqc class >> withFrmI: afrmI frmJ: afrmJ [ 
 	^(afrmI isKindOf: MbDEndFrameqcs)
 		& (afrmJ isMemberOf: MbDEndFrameqc)
@@ -37,7 +39,7 @@ MbDDistIeqcsJeqc class >> withFrmI: afrmI frmJ: afrmJ [
 		ifFalse: [nil]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDistIeqcsJeqc >> calcLocalSeparationDistance [
 	"When rIeJe is too small NewtonRaphson can have singularity."
 
@@ -58,7 +60,7 @@ MbDDistIeqcsJeqc >> calcLocalSeparationDistance [
 				ex return]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDistIeqcsJeqc >> calcPostLocalSepDistIteration [
 	"rIeJeO has a unit fourth dimension added to avoid singularity when actual rIeJe = 0."
 
@@ -67,7 +69,7 @@ MbDDistIeqcsJeqc >> calcPostLocalSepDistIteration [
 	self calcPrivate
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDistIeqcsJeqc >> calcPrivate [
 	| mprIeJeOpsI mpprIeJeOpEIpsI mpprIeJeOpsIpsI pprIeJepXIipsI prIeJepXIi mprIeJeOipsI element pprIeJepEIipsI prIeJepEIi mpprIeJeOpEIipsI mprIeJeOpEIiT pprIeJepsIipsI prIeJepsIi mpprIeJeOpsIipsI mprIeJeOpsIiT pprIeJepXJipsI prIeJepXJi pprIeJepEJipsI prIeJepEJi prIeJeOpEJiT |
 	super calcPrivate.
@@ -142,7 +144,7 @@ MbDDistIeqcsJeqc >> calcPrivate [
 					pprIeJepsIipsI at: j put: element / rIeJe]]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDistIeqcsJeqc >> calcSeparationDistance [
 	"Do coarse global search, then accurate local search."
 	"Use original data points as discretization points."
@@ -164,14 +166,14 @@ MbDDistIeqcsJeqc >> calcSeparationDistance [
 	self calcLocalSeparationDistance
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDistIeqcsJeqc >> initialize [
 	super initialize.
 	newtonRaphson := MbDMinDistIeJeNewtonRaphson2 new.
 	newtonRaphson system: self
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDistIeqcsJeqc >> initializeGlobally [
 	| sSize |
 	sSize := sSizeI.
@@ -180,7 +182,7 @@ MbDDistIeqcsJeqc >> initializeGlobally [
 	pprIeJepsps := StMFullMatrix new: sSize by: sSize
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDistIeqcsJeqc >> initializeLocally [
 	sSizeI := frmI sSize.
 	prIeJepsI := StMFullRow new: sSizeI.
@@ -191,7 +193,7 @@ MbDDistIeqcsJeqc >> initializeLocally [
 	pprIeJepsIpsI := StMFullMatrix new: sSizeI by: sSizeI
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDistIeqcsJeqc >> postLocalSepDistIteration [
 	self setEndFramess.
 	self endFramesCalc.
@@ -203,27 +205,27 @@ MbDDistIeqcsJeqc >> postLocalSepDistIteration [
 		putFullMatrix: pprIeJepsIpsI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistIeqcsJeqc >> pprIeJepsps [
 	^pprIeJepsps
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistIeqcsJeqc >> ppvaluepsIpsI [
 	^pprIeJepsIpsI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistIeqcsJeqc >> prIeJeps [
 	^prIeJeps
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistIeqcsJeqc >> prIeJepsI [
 	^prIeJepsI
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDistIeqcsJeqc >> preLocalSepDist [
 	self endFramesCalc.
 	self calcPostLocalSepDistIteration.
@@ -232,27 +234,27 @@ MbDDistIeqcsJeqc >> preLocalSepDist [
 	pprIeJepsps at: 1 and: 1 putFullMatrix: pprIeJepsIpsI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistIeqcsJeqc >> pvaluepsI [
 	^prIeJepsI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistIeqcsJeqc >> s [
 	^s
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistIeqcsJeqc >> s: col [ 
 	s := col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistIeqcsJeqc >> separationDistance [
 	^sepDist
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistIeqcsJeqc >> setEndFramess [
 	frmI s equalFullColumn: s at: 1
 ]

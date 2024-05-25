@@ -7,18 +7,20 @@ ratio is the fraction
 # teeth on J     diameter of J
 "
 Class {
-	#name : #MbDGearConstraintIJ,
-	#superclass : #MbDConstraintIJ,
+	#name : 'MbDGearConstraintIJ',
+	#superclass : 'MbDConstraintIJ',
 	#instVars : [
 		'orbitIeJe',
 		'orbitJeIe',
 		'radiusI',
 		'radiusJ'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDGearConstraintIJ class >> visualWorksMetadata [
 
 	^ #(
@@ -28,7 +30,7 @@ MbDGearConstraintIJ class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDGearConstraintIJ class >> withFrmI: afrmI frmJ: afrmJ [ 
 	| instance |
 	self allSubclasses do: 
@@ -37,12 +39,12 @@ MbDGearConstraintIJ class >> withFrmI: afrmI frmJ: afrmJ [
 			instance notNil ifTrue: [^instance]]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDGearConstraintIJ >> calcPostDynCorrectorIteration [
 	aG := orbitJeIe value + (self ratio * orbitIeJe value) - aConstant
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDGearConstraintIJ >> classString [
 	"Used to access the descriptive name of the constraint."
 	"Needed for multi-language."
@@ -50,40 +52,40 @@ MbDGearConstraintIJ >> classString [
 	^TheMbDSystem getString: #'MbD: one parallel gear constraint '
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDGearConstraintIJ >> initializeGlobally [
 	orbitIeJe initializeGlobally.
 	orbitJeIe initializeGlobally
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDGearConstraintIJ >> initializeLocally [
 	orbitIeJe initializeLocally.
 	orbitJeIe initializeLocally
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDGearConstraintIJ >> postDynCorrectorIteration [
 	orbitIeJe postDynCorrectorIteration.
 	orbitJeIe postDynCorrectorIteration.
 	super postDynCorrectorIteration
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDGearConstraintIJ >> postDynOutput [
 	orbitIeJe postDynOutput.
 	orbitJeIe postDynOutput.
 	super postDynOutput
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDGearConstraintIJ >> postDynPredictor [
 	orbitIeJe postDynPredictor.
 	orbitJeIe postDynPredictor.
 	super postDynPredictor
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDGearConstraintIJ >> postInput [
 	orbitIeJe postInput.
 	orbitJeIe postInput.
@@ -92,93 +94,93 @@ MbDGearConstraintIJ >> postInput [
 	super postInput
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDGearConstraintIJ >> postPosICIteration [
 	orbitIeJe postPosICIteration.
 	orbitJeIe postPosICIteration.
 	super postPosICIteration
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDGearConstraintIJ >> postStaticIteration [
 	orbitIeJe postStaticIteration.
 	orbitJeIe postStaticIteration.
 	super postStaticIteration
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDGearConstraintIJ >> preAccIC [
 	orbitIeJe preAccIC.
 	orbitJeIe preAccIC.
 	super preAccIC
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDGearConstraintIJ >> preDynOutput [
 	orbitIeJe preDynOutput.
 	orbitJeIe preDynOutput.
 	super preDynOutput
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDGearConstraintIJ >> prePosIC [
 	orbitIeJe prePosIC.
 	orbitJeIe prePosIC.
 	super prePosIC
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDGearConstraintIJ >> preStatic [
 	orbitIeJe preStatic.
 	orbitJeIe preStatic.
 	super preStatic
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDGearConstraintIJ >> preVelIC [
 	orbitIeJe preVelIC.
 	orbitJeIe preVelIC.
 	super preVelIC
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDGearConstraintIJ >> radiusI [
 	^radiusI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDGearConstraintIJ >> radiusI: aDouble [
 	radiusI := aDouble
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDGearConstraintIJ >> radiusJ [
 	^radiusJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDGearConstraintIJ >> radiusJ: aDouble [
 	radiusJ := aDouble
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDGearConstraintIJ >> ratio [
 	^radiusI / radiusJ
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDGearConstraintIJ >> simUpdateAll [
 	orbitIeJe simUpdateAll.
 	orbitJeIe simUpdateAll.
 	super simUpdateAll
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDGearConstraintIJ >> type [
 	^#essential
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDGearConstraintIJ >> withFrmI: afrmI frmJ: afrmJ [ 
 	frmI := afrmI.
 	frmJ := afrmJ.

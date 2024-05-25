@@ -1,13 +1,15 @@
 Class {
-	#name : #MbDDragPosICNewtonRaphson2,
-	#superclass : #MbDPosICNewtonRaphson2,
+	#name : 'MbDDragPosICNewtonRaphson2',
+	#superclass : 'MbDPosICNewtonRaphson2',
 	#instVars : [
 		'dragPart'
 	],
-	#category : #'StCAD-MbD-MbDSolver'
+	#category : 'StCAD-MbD-MbDSolver',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDDragPosICNewtonRaphson2 class >> visualWorksMetadata [
 
 	^ #(
@@ -17,23 +19,23 @@ MbDDragPosICNewtonRaphson2 class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDragPosICNewtonRaphson2 >> dragPart [
 	^dragPart
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDragPosICNewtonRaphson2 >> dragPart: anObject [
 	dragPart := anObject
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDragPosICNewtonRaphson2 >> initialize [
 	super initialize.
 	dxTol := 1.0d-6
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDragPosICNewtonRaphson2 >> initializeGlobally [
 	super initializeGlobally.
 	system partsJointsMotionsDo: 
@@ -45,7 +47,7 @@ MbDDragPosICNewtonRaphson2 >> initializeGlobally [
 			item fillqsulam: x]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDDragPosICNewtonRaphson2 >> isConverged [
 	^(dxNorms at: iterNo) < dxTol
 ]

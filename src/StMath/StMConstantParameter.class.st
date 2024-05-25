@@ -1,16 +1,18 @@
 Class {
-	#name : #StMConstantParameter,
-	#superclass : #StMConstant,
-	#category : #'StMath-Symbolic'
+	#name : 'StMConstantParameter',
+	#superclass : 'StMConstant',
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMConstantParameter >> isConstant [
 
 	^ false
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 StMConstantParameter >> printOn: aStream [
 
 	aStream print: name.
@@ -20,7 +22,7 @@ StMConstantParameter >> printOn: aStream [
 		aStream nextPut: $) ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMConstantParameter >> value [
 
 	^ value ifNil: [ self ]

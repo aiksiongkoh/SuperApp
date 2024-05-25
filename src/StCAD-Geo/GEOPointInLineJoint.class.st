@@ -1,20 +1,22 @@
 Class {
-	#name : #GEOPointInLineJoint,
-	#superclass : #GEOInLineJoint,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEOPointInLineJoint',
+	#superclass : 'GEOInLineJoint',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPointInLineJoint class >> mbdClass [
 	^MbDPointInLineJoint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPointInLineJoint class >> nameString [
 	^'PointInLineJoint'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOPointInLineJoint class >> visualWorksMetadata [
 
 	^ #(

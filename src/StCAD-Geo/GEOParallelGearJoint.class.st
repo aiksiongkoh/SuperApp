@@ -1,14 +1,16 @@
 Class {
-	#name : #GEOParallelGearJoint,
-	#superclass : #GEOJoint,
+	#name : 'GEOParallelGearJoint',
+	#superclass : 'GEOJoint',
 	#instVars : [
 		'ratio',
 		'aConstant'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'binary storage' }
+{ #category : 'binary storage' }
 GEOParallelGearJoint class >> binaryReaderBlockForVersion: oldVersion format: oldFormat [
 	"Change 
 	StCAD.Geo.GEOParallelGearJoint 
@@ -36,22 +38,22 @@ GEOParallelGearJoint class >> binaryReaderBlockForVersion: oldVersion format: ol
 	^super binaryReaderBlockForVersion: oldVersion format: oldFormat
 ]
 
-{ #category : #'binary storage' }
+{ #category : 'binary storage' }
 GEOParallelGearJoint class >> binaryRepresentationVersion [
 	^40
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOParallelGearJoint class >> mbdClass [
 	^MbDParallelGearJoint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOParallelGearJoint class >> nameString [
 	^'ParallelGearJoint'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOParallelGearJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -61,17 +63,17 @@ GEOParallelGearJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOParallelGearJoint >> aConstant [
 	^aConstant
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOParallelGearJoint >> aConstant: anObject [
 	aConstant := anObject
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOParallelGearJoint >> createMbD [
 	| mbdParallelGearJoint |
 	super createMbD.
@@ -80,17 +82,17 @@ GEOParallelGearJoint >> createMbD [
 	mbdParallelGearJoint aConstant: aConstant
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOParallelGearJoint >> ratio [
 	^ratio
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOParallelGearJoint >> ratio: anObject [
 	ratio := anObject
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOParallelGearJoint >> storeOn: aStream level: level [ 
 	super storeOn: aStream level: level.
 	aStream

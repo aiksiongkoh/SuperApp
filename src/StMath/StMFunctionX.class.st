@@ -1,18 +1,20 @@
 Class {
-	#name : #StMFunctionX,
-	#superclass : #StMFunction,
+	#name : 'StMFunctionX',
+	#superclass : 'StMFunction',
 	#instVars : [
 		'x'
 	],
-	#category : #'StMath-Symbolic'
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMFunctionX class >> functionTemplate [
 	^self functionSymbol , '(x)'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMFunctionX class >> visualWorksMetadata [
 
 	^ #(
@@ -22,29 +24,29 @@ StMFunctionX class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMFunctionX class >> with: arg [ 
 	^super new x: arg
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 StMFunctionX >> = anObject [ 
 	^super = anObject and: [x = anObject x]
 ]
 
-{ #category : #'message handling' }
+{ #category : 'message handling' }
 StMFunctionX >> argsPerform: selector withArguments: anArray [ 
 	Processor yield.
 	x perform: selector withArguments: anArray
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMFunctionX >> arguments: array [ 
 	array size == 1 ifFalse: [ArgumentNumberError raise].
 	self x: (array at: 1)
 ]
 
-{ #category : #'StCAD-UI' }
+{ #category : 'StCAD-UI' }
 StMFunctionX >> cadStringOn: aStream [ 
 	aStream nextPutAll: self class functionSymbol.
 	aStream nextPut: $(.
@@ -52,7 +54,7 @@ StMFunctionX >> cadStringOn: aStream [
 	aStream nextPut: $)
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMFunctionX >> differentiateWRT: variable [ 
 	| dfdx dxdvar |
 	self == variable ifTrue: [^StMConstant with: 1].
@@ -61,12 +63,12 @@ StMFunctionX >> differentiateWRT: variable [
 	^dfdx times: dxdvar
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMFunctionX >> differentiateWRTx [
 	self subclassResponsibility
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMFunctionX >> expandUntil: set [ 
 	| xx copy |
 	^(set includes: self)
@@ -79,7 +81,7 @@ StMFunctionX >> expandUntil: set [
 				ifFalse: [copy]]
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMFunctionX >> partialDifferentiateWRT: variable [ 
 	| dfdx dxdvar |
 	self == variable ifTrue: [^StMConstant with: 1].
@@ -88,22 +90,22 @@ StMFunctionX >> partialDifferentiateWRT: variable [
 	^dfdx times: dxdvar
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 StMFunctionX >> postCopy [
 	x := x copy
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 StMFunctionX >> print_cArgumentOn: aStream [ 
 	aStream print: x
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMFunctionX >> setx: arg [ 
 	x := arg
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMFunctionX >> simplifyUntil: set [ 
 	| xx copy |
 	^(set includes: self)
@@ -116,7 +118,7 @@ StMFunctionX >> simplifyUntil: set [
 				ifFalse: [copy]]
 ]
 
-{ #category : #changing }
+{ #category : 'changing' }
 StMFunctionX >> substitute: var1 with: var2 [ 
 	| xx |
 	^self = var1
@@ -126,13 +128,13 @@ StMFunctionX >> substitute: var1 with: var2 [
 			self class with: xx]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMFunctionX >> x [
 
 	^ x
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMFunctionX >> x: arg [ 
 	x := self conditionArgument: arg
 ]

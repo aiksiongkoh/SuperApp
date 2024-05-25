@@ -1,6 +1,6 @@
 Class {
-	#name : #PointArc,
-	#superclass : #Combination,
+	#name : 'PointArc',
+	#superclass : 'Combination',
 	#instVars : [
 		'aCenter',
 		'aRadius',
@@ -13,10 +13,11 @@ Class {
 		'aRightDist',
 		'aMinDist'
 	],
-	#category : #'StCAD-Geo'
+	#category : 'StCAD-Geo',
+	#package : 'StCAD-Geo'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PointArc class >> aCenter: aCenter aRadius: aRadius aStartAngle: aStartAngle aEndAngle: aEndAngle bPoint: bPoint [ 
 	^(super new)
 		aCenter: aCenter
@@ -28,7 +29,7 @@ PointArc class >> aCenter: aCenter aRadius: aRadius aStartAngle: aStartAngle aEn
 		yourself
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 PointArc class >> visualWorksMetadata [
 
 	^ #(
@@ -38,7 +39,7 @@ PointArc class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PointArc >> aCenter: aFullColumn aRadius: aDouble aStartAngle: argStartAngle aEndAngle: argEndAngle bPoint: bFullColumn [ 
 	aCenter := aFullColumn.
 	aRadius := aDouble.
@@ -47,32 +48,32 @@ PointArc >> aCenter: aFullColumn aRadius: aDouble aStartAngle: argStartAngle aEn
 	bPoint := bFullColumn
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PointArc >> aClosestPoint [
 	^aClosestPoint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PointArc >> aMinDist [
 	^aMinDist
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PointArc >> aPar [
 	^aPar
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PointArc >> aRightDist [
 	^aRightDist
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PointArc >> bAngle [
 	^bAngle
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 PointArc >> calc [
 	| delta dist a1Par a2Par |
 	aEndAngle > aStartAngle ifFalse: [self error: 'Check this.'].

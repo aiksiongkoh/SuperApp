@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDScrewConstraintIJ,
-	#superclass : #MbDConstraintIJ,
+	#name : 'MbDScrewConstraintIJ',
+	#superclass : 'MbDConstraintIJ',
 	#instVars : [
 		'zIeJeIe',
 		'thezIeJe',
@@ -9,10 +9,12 @@ Class {
 	#classVars : [
 		'MbD'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDScrewConstraintIJ class >> visualWorksMetadata [
 
 	^ #(
@@ -22,7 +24,7 @@ MbDScrewConstraintIJ class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDScrewConstraintIJ class >> withFrmI: afrmI frmJ: afrmJ [ 
 	| instance |
 	self allSubclasses
@@ -32,7 +34,7 @@ MbDScrewConstraintIJ class >> withFrmI: afrmI frmJ: afrmJ [
 			instance notNil ifTrue: [^instance]]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDScrewConstraintIJ >> calcPostDynCorrectorIteration [
 	| z thez |
 	z := zIeJeIe value.
@@ -40,7 +42,7 @@ MbDScrewConstraintIJ >> calcPostDynCorrectorIteration [
 	aG := TwoPi * z - (thez * pitch) - aConstant
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDScrewConstraintIJ >> classString [
 	"Used to access the descriptive name of the constraint."
 	"Needed for multi-language."
@@ -48,62 +50,62 @@ MbDScrewConstraintIJ >> classString [
 	^TheMbDSystem getString: #'MbD: one screw constraint '
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDScrewConstraintIJ >> initialize [
 	super initialize.
 	self initziIeJeIe.
 	self initthezIeJe
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDScrewConstraintIJ >> initializeGlobally [
 	zIeJeIe initializeGlobally.
 	thezIeJe initializeGlobally
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDScrewConstraintIJ >> initializeLocally [
 	zIeJeIe initializeLocally.
 	thezIeJe initializeLocally
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDScrewConstraintIJ >> initthezIeJe [
 	self subclassResponsibility
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDScrewConstraintIJ >> initziIeJeIe [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDScrewConstraintIJ >> pitch: double [ 
 	pitch := double
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDScrewConstraintIJ >> postDynCorrectorIteration [
 	zIeJeIe postDynCorrectorIteration.
 	thezIeJe postDynCorrectorIteration.
 	super postDynCorrectorIteration
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDScrewConstraintIJ >> postDynOutput [
 	zIeJeIe postDynOutput.
 	thezIeJe postDynOutput.
 	super postDynOutput
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDScrewConstraintIJ >> postDynPredictor [
 	zIeJeIe postDynPredictor.
 	thezIeJe postDynPredictor.
 	super postDynPredictor
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDScrewConstraintIJ >> postInput [
 	zIeJeIe postInput.
 	thezIeJe postInput.
@@ -112,63 +114,63 @@ MbDScrewConstraintIJ >> postInput [
 	super postInput
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDScrewConstraintIJ >> postPosICIteration [
 	zIeJeIe postPosICIteration.
 	thezIeJe postPosICIteration.
 	super postPosICIteration
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDScrewConstraintIJ >> postStaticIteration [
 	zIeJeIe postStaticIteration.
 	thezIeJe postStaticIteration.
 	super postStaticIteration
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDScrewConstraintIJ >> preAccIC [
 	zIeJeIe preAccIC.
 	thezIeJe preAccIC.
 	super preAccIC
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDScrewConstraintIJ >> preDynOutput [
 	zIeJeIe preDynOutput.
 	thezIeJe preDynOutput.
 	super preDynOutput
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDScrewConstraintIJ >> prePosIC [
 	zIeJeIe prePosIC.
 	thezIeJe prePosIC.
 	super prePosIC
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDScrewConstraintIJ >> preStatic [
 	zIeJeIe preStatic.
 	thezIeJe preStatic.
 	super preStatic
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDScrewConstraintIJ >> preVelIC [
 	zIeJeIe preVelIC.
 	thezIeJe preVelIC.
 	super preVelIC
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDScrewConstraintIJ >> simUpdateAll [
 	zIeJeIe simUpdateAll.
 	thezIeJe simUpdateAll.
 	super simUpdateAll
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDScrewConstraintIJ >> withFrmI: afrmI frmJ: afrmJ [ 
 	frmI := afrmI.
 	frmJ := afrmJ.

@@ -1,18 +1,20 @@
 Class {
-	#name : #GEOFunctionIJ,
-	#superclass : #GEOFunction,
+	#name : 'GEOFunctionIJ',
+	#superclass : 'GEOFunction',
 	#instVars : [
 		'geoIJ'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOFunctionIJ class >> functionTemplate [
 	^self functionSymbol , '(geoIJ)'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOFunctionIJ class >> visualWorksMetadata [
 
 	^ #(
@@ -22,12 +24,12 @@ GEOFunctionIJ class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GEOFunctionIJ class >> with: geoIJ [ 
 	^super new geoIJ: geoIJ
 ]
 
-{ #category : #'StCAD-UI' }
+{ #category : 'StCAD-UI' }
 GEOFunctionIJ >> cadStringOn: aStream [ 
 	aStream nextPutAll: self class functionSymbol.
 	aStream nextPut: $(.
@@ -35,7 +37,7 @@ GEOFunctionIJ >> cadStringOn: aStream [
 	aStream nextPut: $)
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOFunctionIJ >> createMbD [
 	| eFrmI eFrmJ distIeJe |
 	eFrmI := geoIJ aMarkerI mbdObject.
@@ -45,7 +47,7 @@ GEOFunctionIJ >> createMbD [
 	self x: distIeJe expression: (distIeJe times: self mbdUnit)
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOFunctionIJ >> createPOVRay [
 	| times dataSeries geoTime spline |
 	times := self timeSeries.
@@ -59,22 +61,22 @@ GEOFunctionIJ >> createPOVRay [
 	self x: spline expression: spline
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOFunctionIJ >> geoIJ: geoij [ 
 	geoIJ := geoij
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOFunctionIJ >> mbdClass [
 	self subclassResponsibility
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOFunctionIJ >> mbdUnit [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOFunctionIJ >> timeSeries [
 	^geoIJ timeSeries
 ]

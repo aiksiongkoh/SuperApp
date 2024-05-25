@@ -1,13 +1,15 @@
 Class {
-	#name : #MbDVelCompIeqcsJeqcKeqcs,
-	#superclass : #MbDVelCompIeqcJeqcKeqcs,
+	#name : 'MbDVelCompIeqcsJeqcKeqcs',
+	#superclass : 'MbDVelCompIeqcJeqcKeqcs',
 	#instVars : [
 		'pvIeJeKeipsI'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDVelCompIeqcsJeqcKeqcs class >> visualWorksMetadata [
 
 	^ #(
@@ -17,7 +19,7 @@ MbDVelCompIeqcsJeqcKeqcs class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDVelCompIeqcsJeqcKeqcs class >> withFrmI: afrmI frmJ: afrmJ frmK: afrmK axisK: integer [ 
 	^(afrmI isKindOf: MbDEndFrameqcs)
 		& (afrmJ isMemberOf: MbDEndFrameqc) & (afrmK isKindOf: MbDEndFrameqcs)
@@ -29,7 +31,7 @@ MbDVelCompIeqcsJeqcKeqcs class >> withFrmI: afrmI frmJ: afrmJ frmK: afrmK axisK:
 		ifFalse: [nil]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDVelCompIeqcsJeqcKeqcs >> calcPostDynCorrectorIteration [
 	| mAdotOKej mAOKej mprIeJeOpsI mpvIeJeOpsI |
 	super calcPostDynCorrectorIteration.
@@ -41,7 +43,7 @@ MbDVelCompIeqcsJeqcKeqcs >> calcPostDynCorrectorIteration [
 				+ (mAOKej dot: mpvIeJeOpsI)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDVelCompIeqcsJeqcKeqcs >> pvaluepsI [
 	^pvIeJeKeipsI
 ]

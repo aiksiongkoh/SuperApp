@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDPart,
-	#superclass : #MbDItem,
+	#name : 'MbDPart',
+	#superclass : 'MbDItem',
 	#instVars : [
 		'ipX',
 		'ipE',
@@ -21,10 +21,12 @@ Class {
 	#classVars : [
 		'MbD'
 	],
-	#category : #'StCAD-MbD-MbDBasic'
+	#category : 'StCAD-MbD-MbDBasic',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDBasic'
 }
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 MbDPart class >> initializeX [
 	"MbDPart initialize."
 
@@ -32,7 +34,7 @@ MbDPart class >> initializeX [
 	Identity4by4 := StMDiagonalMatrix new: 4 withAll: 1.0
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDPart class >> visualWorksMetadata [
 
 	^ #(
@@ -42,52 +44,52 @@ MbDPart class >> visualWorksMetadata [
 
 ]
 
-{ #category : #patching }
+{ #category : 'patching' }
 MbDPart >> aA [
 	^partFrame aA
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> aA: matrix [ 
 	partFrame aA: matrix
 ]
 
-{ #category : #patching }
+{ #category : 'patching' }
 MbDPart >> aAdot [
 	^partFrame aAdot
 ]
 
-{ #category : #patching }
+{ #category : 'patching' }
 MbDPart >> aB [
 	^partFrame aB
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> aJ [
 	^aJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> aJ: matrix [ 
 	aJ := matrix
 ]
 
-{ #category : #patching }
+{ #category : 'patching' }
 MbDPart >> alpOpO [
 	^partFrame alpOpO
 ]
 
-{ #category : #constraint }
+{ #category : 'constraint' }
 MbDPart >> asFixed [
 	partFrame asFixed
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> bePerturbed: delta fillqsulam: col [ 
 	partFrame bePerturbed: delta fillqsulam: col
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDPart >> calcPostDynCorrectorIteration [
 	self calcmE.
 	self calcmEdot.
@@ -96,7 +98,7 @@ MbDPart >> calcPostDynCorrectorIteration [
 	self calcppTpEpEdot
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDPart >> calcmE [
 	| aC |
 	aC := partFrame aC.
@@ -104,7 +106,7 @@ MbDPart >> calcmE [
 				times: 4.0
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDPart >> calcmEdot [
 	| aC aCdot a4J term1 term2 |
 	aC := partFrame aC.
@@ -115,13 +117,13 @@ MbDPart >> calcmEdot [
 	mEdot := term1 plusFullMatrix: term2
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDPart >> calcp [
 	pX := mX timesFullColumn: partFrame qXdot.
 	pE := mE timesFullColumn: partFrame qEdot
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDPart >> calcpTpE [
 	"pTpE is a column vector."
 
@@ -133,14 +135,14 @@ MbDPart >> calcpTpE [
 				times: 4.0
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDPart >> calcpdot [
 	pXdot := mX timesFullColumn: partFrame qXddot.
 	pEdot := (mEdot timesFullColumn: partFrame qEdot)
 				plusFullColumn: (mE timesFullColumn: partFrame qEddot)
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDPart >> calcppTpEpE [
 	| qEdot pCpEtimesqEdot a4J |
 	qEdot := partFrame qEdot.
@@ -149,7 +151,7 @@ MbDPart >> calcppTpEpE [
 	ppTpEpE := pCpEtimesqEdot transposeTimesFullMatrix: (a4J timesFullMatrix: pCpEtimesqEdot)
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDPart >> calcppTpEpEdot [
 	| qEdot aC a4J term1 pCpEtimesqEdot term2 |
 	qEdot := partFrame qEdot.
@@ -161,12 +163,12 @@ MbDPart >> calcppTpEpEdot [
 	ppTpEpEdot := (term1 plusFullMatrix: term2) transpose
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDPart >> constraintsReport [
 	partFrame constraintsReport
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDPart >> fillAccICIterError: col [ 
 	| iqX iqE |
 	iqX := partFrame iqX.
@@ -178,7 +180,7 @@ MbDPart >> fillAccICIterError: col [
 	partFrame fillAccICIterError: col
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDPart >> fillAccICIterJacob: mat [ 
 	| iqX iqE |
 	iqX := partFrame iqX.
@@ -188,12 +190,12 @@ MbDPart >> fillAccICIterJacob: mat [
 	partFrame fillAccICIterJacob: mat
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDPart >> fillCollisionDerivativeICJacob: mat [ 
 	self fillAccICIterJacob: mat
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDPart >> fillCollisionError: col [ 
 	"qEddot is now qEdotDeriv."
 
@@ -205,7 +207,7 @@ MbDPart >> fillCollisionError: col [
 	partFrame fillCollisionError: col
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDPart >> fillCollisionpFpydot: mat [ 
 	| iqX iqE |
 	iqX := partFrame iqX.
@@ -215,12 +217,12 @@ MbDPart >> fillCollisionpFpydot: mat [
 	partFrame fillCollisionpFpydot: mat
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> fillConstraints: collection [ 
 	partFrame fillConstraints: collection
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDPart >> fillDynError: col [ 
 	partFrame fillDynError: col.
 	col at: ipX plusFullColumn: (pX minusFullColumn: (mX timesFullColumn: partFrame qXdot)).
@@ -229,63 +231,63 @@ MbDPart >> fillDynError: col [
 	col at: partFrame iqE minusFullColumn: (pEdot minusFullColumn: pTpE)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> fillEssenConstraints: collection [ 
 	partFrame fillEssenConstraints: collection
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDPart >> fillPosICError: col [ 
 	partFrame fillPosICError: col
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDPart >> fillPosICJacob: mat [ 
 	partFrame fillPosICJacob: mat
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDPart >> fillPosKineError: col [ 
 	partFrame fillPosKineError: col
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDPart >> fillPosKineJacob: mat [ 
 	partFrame fillPosKineJacob: mat
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> fillRedundantConstraints: collection [ 
 	partFrame fillRedundantConstraints: collection
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDPart >> fillStaticError: col [ 
 	partFrame fillStaticError: col
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDPart >> fillStaticJacob: mat [ 
 	partFrame fillStaticJacob: mat
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDPart >> fillVelICError: col [ 
 	partFrame fillVelICError: col
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDPart >> fillVelICJacob: mat [ 
 	partFrame fillVelICJacob: mat
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> fillp: col [ 
 	col at: ipX put: pX.
 	col at: ipE put: pE
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDPart >> fillpFpy: matrix [ 
 	| iqE |
 	matrix at: ipX and: ipX plusDiagonalMatrix: Identity3by3.
@@ -296,7 +298,7 @@ MbDPart >> fillpFpy: matrix [
 	partFrame fillpFpy: matrix
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDPart >> fillpFpydot: matrix [ 
 	| iqX iqE |
 	iqX := partFrame iqX.
@@ -309,32 +311,32 @@ MbDPart >> fillpFpydot: matrix [
 	partFrame fillpFpydot: matrix
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> fillpdot: col [ 
 	col at: ipX put: pXdot.
 	col at: ipE put: pEdot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> fillpqsumu: col [ 
 	col at: ipX putFullColumn: pX.
 	col at: ipE putFullColumn: pE.
 	partFrame fillpqsumu: col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> fillpqsumudot: col [ 
 	col at: ipX putFullColumn: pXdot.
 	col at: ipE putFullColumn: pEdot.
 	partFrame fillpqsumudot: col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> fillqsu: col [ 
 	partFrame fillqsu: col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> fillqsuWeights: col [ 
 	"Map wqX and wqE according to inertias. (0 to maximum inertia) map to (minw to maxw)"
 	"When the inertias are zero, they are set to a small number for positive definiteness."
@@ -364,7 +366,7 @@ MbDPart >> fillqsuWeights: col [
 	partFrame fillqsuWeights: col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> fillqsuWeightsBig: col [ 
 	| minw maxw wqX wqE |
 	minw := 1000.0.
@@ -379,7 +381,7 @@ MbDPart >> fillqsuWeightsBig: col [
 	partFrame fillqsuWeights: col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> fillqsuWeightsSmall: col [ 
 	| minw wqX wqE |
 	minw := 1000.0.
@@ -392,27 +394,27 @@ MbDPart >> fillqsuWeightsSmall: col [
 	partFrame fillqsuWeights: col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> fillqsuddotlam: col [ 
 	partFrame fillqsuddotlam: col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> fillqsudot: col [ 
 	partFrame fillqsudot: col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> fillqsudotPlam: col [ 
 	partFrame fillqsudotPlam: col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> fillqsudotPlamDeriv: col [ 
 	partFrame fillqsudotPlamDeriv: col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> fillqsudotWeights: col [ 
 	"wqXdot and wqEdot are set to their respective inertias."
 	"When the inertias are zero, they are set to a small number for positive definiteness."
@@ -440,22 +442,22 @@ MbDPart >> fillqsudotWeights: col [
 	partFrame fillqsudotWeights: col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> fillqsulam: col [ 
 	partFrame fillqsulam: col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> iGabs: count [ 
 	^partFrame iGabs: count
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> iGeu: count [ 
 	^partFrame iGeu: count
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDPart >> initialize [
 	partFrame := MbDPartFrame new.
 	partFrame part: self.
@@ -464,12 +466,12 @@ MbDPart >> initialize [
 	ppTpEpEdot := StMFullMatrix new: 4 by: 4
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDPart >> initializeGlobally [
 	partFrame initializeGlobally
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDPart >> initializeLocally [
 	partFrame initializeLocally.
 	mX := m > 0
@@ -477,7 +479,7 @@ MbDPart >> initializeLocally [
 				ifFalse: [StMDiagonalMatrix new: 3 withAll: 0.0]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> ip: integer [ 
 	| count |
 	count := integer.
@@ -488,163 +490,163 @@ MbDPart >> ip: integer [
 	^count
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> ipE: aInteger [ 
 	ipE := aInteger
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> ipX: aInteger [ 
 	ipX := aInteger
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> iq: count [ 
 	^partFrame iq: count
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> iqE [
 	^partFrame iqE
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> iqE: aInteger [ 
 	partFrame iqE: aInteger
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> iqX [
 	^partFrame iqX
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> iqX: aInteger [ 
 	partFrame iqX: aInteger
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> m [
 	^m
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> m: aDouble [ 
 	m := aDouble
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> mEdot [
 	^mEdot
 ]
 
-{ #category : #patching }
+{ #category : 'patching' }
 MbDPart >> markers [
 	^partFrame markers
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> mass [
 	^m
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> mass: double [ 
 	m := double
 ]
 
-{ #category : #patching }
+{ #category : 'patching' }
 MbDPart >> omeOpO [
 	^partFrame omeOpO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> omeOpO: column [ 
 	partFrame omeOpO: column
 ]
 
-{ #category : #patching }
+{ #category : 'patching' }
 MbDPart >> pApE [
 	^partFrame pApE
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> partFrame [
 	^partFrame
 ]
 
-{ #category : #patching }
+{ #category : 'patching' }
 MbDPart >> pomeOpOpE [
 	^partFrame pomeOpOpE
 ]
 
-{ #category : #patching }
+{ #category : 'patching' }
 MbDPart >> pomeOpOpEdot [
 	^partFrame pomeOpOpEdot
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDPart >> postAccIC [
 	self calcpdot
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDPart >> postCollisionCorrectorIteration [
 	partFrame postCollisionCorrectorIteration
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDPart >> postCollisionPredictor [
 	partFrame postCollisionPredictor
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDPart >> postDynCorrectorIteration [
 	partFrame postDynCorrectorIteration.
 	super postDynCorrectorIteration
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDPart >> postDynOutput [
 	partFrame postDynOutput.
 	super postDynOutput
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDPart >> postDynPredictor [
 	partFrame postDynPredictor.
 	super postDynPredictor
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDPart >> postDynStep [
 	partFrame postDynStep
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDPart >> postInput [
 	partFrame postInput.
 	super postInput
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDPart >> postPosIC [
 	partFrame postPosIC.
 	self calcmE
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDPart >> postPosICIteration [
 	partFrame postPosICIteration
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDPart >> postStaticIteration [
 	partFrame postStaticIteration.
 	super postStaticIteration
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDPart >> postVelIC [
 	partFrame postVelIC.
 	self calcp.
@@ -654,191 +656,191 @@ MbDPart >> postVelIC [
 	self calcppTpEpEdot
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDPart >> preAccIC [
 	partFrame preAccIC.
 	super preAccIC
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDPart >> preCollision [
 	partFrame preCollision
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDPart >> preCollisionDerivativeIC [
 	partFrame preCollisionDerivativeIC
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDPart >> preDyn [
 	partFrame preDyn
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDPart >> preDynOutput [
 	partFrame preDynOutput.
 	super preDynOutput
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDPart >> preICRestart [
 	partFrame preICRestart
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDPart >> prePosIC [
 	partFrame prePosIC
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDPart >> prePosKine [
 	partFrame prePosKine
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDPart >> preStatic [
 	partFrame preStatic.
 	super preStatic
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDPart >> preVelIC [
 	partFrame preVelIC
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> qE: column [ 
 	partFrame qE: column
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> qEddot [
 	^partFrame qEddot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> qEddot: column [ 
 	partFrame qEddot: column
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> qEdot [
 	^partFrame qEdot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> qEdot: column [ 
 	partFrame qEdot: column
 ]
 
-{ #category : #patching }
+{ #category : 'patching' }
 MbDPart >> qX [
 	^partFrame qX
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> qX: column [ 
 	partFrame qX: column
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> qXddot [
 	^partFrame qXddot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> qXddot: column [ 
 	partFrame qXddot: column
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> qXdot [
 	^partFrame qXdot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> qXdot: column [ 
 	partFrame qXdot: column
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDPart >> removeRedundantConstraints: redundantEqns [ 
 	partFrame removeRedundantConstraints: redundantEqns
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> setpqsumu: col [ 
 	pX equalFullColumn: col at: ipX.
 	pE equalFullColumn: col at: ipE.
 	partFrame setpqsumu: col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> setpqsumuddot: col [ 
 	partFrame setpqsumuddot: col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> setpqsumudot: col [ 
 	pXdot equalFullColumn: col at: ipX.
 	pEdot equalFullColumn: col at: ipE.
 	partFrame setpqsumudot: col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> setqsu: col [ 
 	partFrame setqsu: col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> setqsuddotlam: col [ 
 	partFrame setqsuddotlam: col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> setqsudot: col [ 
 	partFrame setqsudot: col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> setqsudotPlam: col [ 
 	partFrame setqsudotPlam: col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> setqsudotPlamDeriv: col [ 
 	partFrame setqsudotPlamDeriv: col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> setqsudotlam: col [ 
 	partFrame setqsudotlam: col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPart >> setqsulam: col [ 
 	partFrame setqsulam: col
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDPart >> simUpdateAll [
 	partFrame simUpdateAll.
 	super simUpdateAll
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDPart >> storeDynState [
 	partFrame storeDynState
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDPart >> submitToSystem [
 	self registerName.
 	TheMbDSystem parts add: self
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDPart >> suggestSmallerOrAcceptDynStepSize: hnew [ 
 	| hnew2 |
 	hnew2 := hnew.
@@ -846,7 +848,7 @@ MbDPart >> suggestSmallerOrAcceptDynStepSize: hnew [
 	^hnew2
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDPart >> useEquationNumbers [
 	partFrame useEquationNumbers
 ]

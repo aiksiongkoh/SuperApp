@@ -1,14 +1,16 @@
 Class {
-	#name : #MbDReactionComp,
-	#superclass : #MbDReaction,
+	#name : 'MbDReactionComp',
+	#superclass : 'MbDReaction',
 	#instVars : [
 		'axis',
 		'efrmK'
 	],
-	#category : #'StCAD-MbD-MbDReaction'
+	#category : 'StCAD-MbD-MbDReaction',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDReaction'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDReactionComp class >> visualWorksMetadata [
 
 	^ #(
@@ -18,7 +20,7 @@ MbDReactionComp class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDReactionComp class >> withJoint: joint efrmK: aefrmK axis: aaxis [ 
 	^self new
 		withJoint: joint
@@ -26,12 +28,12 @@ MbDReactionComp class >> withJoint: joint efrmK: aefrmK axis: aaxis [
 		axis: aaxis
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReactionComp >> partFrameK [
 	^efrmK partFrame
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDReactionComp >> withJoint: aJoint efrmK: aefrmK axis: aaxis [ 
 	joint := aJoint.
 	efrmK := aefrmK.

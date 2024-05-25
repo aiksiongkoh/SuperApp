@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDPerpendicularJoint,
-	#superclass : #MbDJoint,
-	#category : #'StCAD-MbD-MbDJoint'
+	#name : 'MbDPerpendicularJoint',
+	#superclass : 'MbDJoint',
+	#category : 'StCAD-MbD-MbDJoint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDJoint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDPerpendicularJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ MbDPerpendicularJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPerpendicularJoint >> classString [
 	"Used to access the descriptive name of the joint."
 	"Needed for multi-language."
@@ -22,7 +24,7 @@ MbDPerpendicularJoint >> classString [
 	^TheMbDSystem getString: #'MbD: Perpendicular Joint '
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDPerpendicularJoint >> initializeGlobally [
 	constraints isEmpty
 		ifTrue: 

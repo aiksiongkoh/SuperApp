@@ -1,10 +1,12 @@
 Class {
-	#name : #Surface,
-	#superclass : #Geometry,
-	#category : #'StCAD-Geo-Basic'
+	#name : 'Surface',
+	#superclass : 'Geometry',
+	#category : 'StCAD-Geo-Basic',
+	#package : 'StCAD-Geo',
+	#tag : 'Basic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 Surface class >> visualWorksMetadata [
 
 	^ #(
@@ -14,24 +16,24 @@ Surface class >> visualWorksMetadata [
 
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 Surface >> asJunOpenGL3dObject [
 
 	^self glNurbs asJunOpenGL3dObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Surface >> at_uv: uv [ 
 	^self atu: uv first v: uv last
 ]
 
-{ #category : #bounds }
+{ #category : 'bounds' }
 Surface >> boundByCircularArc: aCircularArc [
 
 	self boundByCurve: aCircularArc
 ]
 
-{ #category : #bounds }
+{ #category : 'bounds' }
 Surface >> boundByCurve: aCurve [ 
 	"
 	rFpF = rFpF
@@ -52,22 +54,22 @@ Surface >> boundByCurve: aCurve [
 			aBoundingBox expandToBound: rSpS]
 ]
 
-{ #category : #bounds }
+{ #category : 'bounds' }
 Surface >> boundByEllipticArc: aEllipticArc [ 
 	self boundByCurve: aEllipticArc
 ]
 
-{ #category : #bounds }
+{ #category : 'bounds' }
 Surface >> boundByLine: aLine [ 
 	self boundByCurve: aLine
 ]
 
-{ #category : #bounds }
+{ #category : 'bounds' }
 Surface >> boundByNurbsCurve: aNurbsCurve [ 
 	self boundByCurve: aNurbsCurve
 ]
 
-{ #category : #ops }
+{ #category : 'ops' }
 Surface >> condition_cLoopUse: cLoopUse [
 
 	| aBoundingRectangle |
@@ -81,21 +83,21 @@ Surface >> condition_cLoopUse: cLoopUse [
 	self condition_cLoopUse: cLoopUse within: aBoundingRectangle
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Surface >> condition_cglTrimNurbs1: cglTrimNurbs [ 
 	"Do nothing."
 
 	^cglTrimNurbs
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Surface >> condition_cglTrimNurbs: cglTrimNurbs [ 
 	"Do nothing."
 
 	^cglTrimNurbs
 ]
 
-{ #category : #ops }
+{ #category : 'ops' }
 Surface >> condition_cgluvTrimNurbs: acgluvTrimNurbs [
 	"
 	acgluvTrimNurbs are uv curves that represent a closed loop on surface.
@@ -112,29 +114,29 @@ Surface >> condition_cgluvTrimNurbs: acgluvTrimNurbs [
 	^cgluvTrimNurbs
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 Surface >> condition_cuv: cuv pre_uvEnd: pre_uvend [ 
 	"Do nothing."
 ]
 
-{ #category : #ops }
+{ #category : 'ops' }
 Surface >> condtionFaceUse: aFaceUse [
 
 	aFaceUse conditionForSurface
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Surface >> create_glSurface [
 	^self create_glNurbs
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Surface >> finalize_uvCurve: aaCurve [ 
 	self condition_cuv: aaCurve.
 	aaCurve finalize_cuv
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Surface >> glSurface [
 	^(self triggerEvent: #glSurface) ifNil: 
 			[| answer |
@@ -143,7 +145,7 @@ Surface >> glSurface [
 			answer]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Surface >> glSurface: glSurface [ 
 	self removeActionsForEvent: #glSurface.
 	glSurface ifNotNil: 
@@ -153,46 +155,46 @@ Surface >> glSurface: glSurface [
 				perform: #yourself]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 Surface >> isCyclic [
 
 	^false
 ]
 
-{ #category : #ops }
+{ #category : 'ops' }
 Surface >> magnifySelf: aDouble [ 
 	super magnifySelf: aDouble.
 	self glSurface: nil.
 	self aNurbs: nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Surface >> rFpF_u: u v: v [ 
 	^aRefFrame rFpFfromrfpf: (self rfpf_u: u v: v)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Surface >> rFpF_uv: uv [ 
 	^self rFpF_u: uv first v: uv last
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Surface >> rfpf_u: u v: v [ 
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Surface >> rfpf_uv: uv [ 
 	^self rfpf_u: uv first v: uv last
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Surface >> uvBound [
 	^BoundingRectangle origin: (StMFullColumn zero: 2)
 		corner: (StMFullColumn with: 1.0 with: 1.0)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Surface >> uvBoundTol [
 	| tol umin vmin umax vmax |
 	tol := 1.0d-6.
@@ -205,13 +207,13 @@ Surface >> uvBoundTol [
 		corner: (StMFullColumn with: umax + tol with: vmax + tol)
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 Surface >> uvCurveOfCircularArc: aCircularArc [
 
 	^self uvCurveOfCurve: aCircularArc
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 Surface >> uvCurveOfCurve: aCurve [
 
 	| glSurface cnPoint cnPointOn_uv uvCurve |
@@ -229,7 +231,7 @@ Surface >> uvCurveOfCurve: aCurve [
 	^Array with: uvCurve
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 Surface >> uvCurveOfCurve: aCurve preCurve: preCurve [ 
 	| cnPoint cnPointOn_uv pre_uvEnd |
 	cnPoint := aCurve crFpF_n: 32.
@@ -242,42 +244,42 @@ Surface >> uvCurveOfCurve: aCurve preCurve: preCurve [
 		yourself
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 Surface >> uvCurveOfEllipticArc: aEllipticArc [ 
 	^self uvCurveOfCurve: aEllipticArc
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 Surface >> uvCurveOfEllipticArc: aEllipticArc preCurve: preCurve [ 
 	^self uvCurveOfCurve: aEllipticArc preCurve: preCurve
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 Surface >> uvCurveOfLine: aLine [ 
 	^self uvCurveOfCurve: aLine
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 Surface >> uvCurveOfLine: aLine preCurve: preCurve [ 
 	^self uvCurveOfCurve: aLine preCurve: preCurve
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 Surface >> uvCurveOfNurbsCurve: aNurbsCurve [ 
 	^self uvCurveOfCurve: aNurbsCurve
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 Surface >> uvCurveOfNurbsCurve: aNurbsCurve preCurve: preCurve [ 
 	^self uvCurveOfCurve: aNurbsCurve preCurve: preCurve
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 Surface >> uvOfPoint: rFpF [ 
 	self subclassResponsibility
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 Surface >> uvOfPoint: rFpF uvGuess: uvGuess [ 
 	^self uvOfPoint: rFpF
 ]

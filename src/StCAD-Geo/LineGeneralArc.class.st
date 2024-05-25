@@ -1,10 +1,11 @@
 Class {
-	#name : #LineGeneralArc,
-	#superclass : #Combination,
-	#category : #'StCAD-Geo'
+	#name : 'LineGeneralArc',
+	#superclass : 'Combination',
+	#category : 'StCAD-Geo',
+	#package : 'StCAD-Geo'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 LineGeneralArc class >> visualWorksMetadata [
 
 	^ #(

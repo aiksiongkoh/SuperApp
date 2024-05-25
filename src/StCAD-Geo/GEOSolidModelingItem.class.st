@@ -1,10 +1,12 @@
 Class {
-	#name : #GEOSolidModelingItem,
-	#superclass : #GEOContainedItem,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEOSolidModelingItem',
+	#superclass : 'GEOContainedItem',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOSolidModelingItem class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ GEOSolidModelingItem class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSolidModelingItem >> rDfD [
 	^container rDfD
 ]

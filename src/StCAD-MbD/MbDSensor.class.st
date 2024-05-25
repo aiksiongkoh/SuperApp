@@ -1,16 +1,18 @@
 Class {
-	#name : #MbDSensor,
-	#superclass : #MbDItem,
+	#name : 'MbDSensor',
+	#superclass : 'MbDItem',
 	#instVars : [
 		'sensorBlk',
 		'triggerValue',
 		'tol',
 		'action'
 	],
-	#category : #'StCAD-MbD-MbDBasic'
+	#category : 'StCAD-MbD-MbDBasic',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDBasic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDSensor class >> visualWorksMetadata [
 
 	^ #(
@@ -20,28 +22,28 @@ MbDSensor class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSensor >> action: symbol [ 
 	action := symbol
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSensor >> sensorBlk: block [ 
 	sensorBlk := block
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDSensor >> submitToSystem [
 	self registerName.
 	TheMbDSystem sensors add: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSensor >> tol: double [ 
 	tol := double
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSensor >> triggerValue: double [ 
 	triggerValue := double
 ]

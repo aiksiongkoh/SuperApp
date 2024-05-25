@@ -1,15 +1,17 @@
 Class {
-	#name : #MbDConVelConstraintIqcJc,
-	#superclass : #MbDConVelConstraintIJ,
+	#name : 'MbDConVelConstraintIqcJc',
+	#superclass : 'MbDConVelConstraintIJ',
 	#instVars : [
 		'pGpEI',
 		'ppGpEIpEI',
 		'iqEI'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDConVelConstraintIqcJc class >> visualWorksMetadata [
 
 	^ #(
@@ -19,7 +21,7 @@ MbDConVelConstraintIqcJc class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDConVelConstraintIqcJc class >> withFrmI: afrmI frmJ: afrmJ [ 
 	^(afrmI isMemberOf: MbDEndFrameqc)
 		& (afrmJ isMemberOf: MbDEndFramec)
@@ -27,7 +29,7 @@ MbDConVelConstraintIqcJc class >> withFrmI: afrmI frmJ: afrmJ [
 		ifFalse: [nil]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConVelConstraintIqcJc >> addToJointTorqueI: jointTorque [ 
 	| aBOIp lampGpE c2Torque |
 	aBOIp := frmI aBOp.
@@ -36,7 +38,7 @@ MbDConVelConstraintIqcJc >> addToJointTorqueI: jointTorque [
 	jointTorque equalSelfPlusFullColumn: c2Torque times: 0.5
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConVelConstraintIqcJc >> addpTIeiGOpEIto: mat [ 
 	"pGpXI := zero. 
 	aFIeiGOover2 := zero. 
@@ -56,7 +58,7 @@ MbDConVelConstraintIqcJc >> addpTIeiGOpEIto: mat [
 	mat equalSelfPlusFullMatrix: pTIeiGOpEI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConVelConstraintIqcJc >> addpTIeiGOplamto: mat [ 
 	"pGpXI is zero."
 	"term2 is zero."
@@ -68,7 +70,7 @@ MbDConVelConstraintIqcJc >> addpTIeiGOplamto: mat [
 	mat at: 1 and: iG plusFullColumn: pTIeiGOplam
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDConVelConstraintIqcJc >> calcPostDynCorrectorIteration [
 	| pA12IeJepEI ppA12IeJepEIpEI pA21IeJepEI ppA21IeJepEIpEI ppGpEIpEIi ppA12IeJepEIpEIi ppA21IeJepEIpEIi ppGpEIpEIij |
 	super calcPostDynCorrectorIteration.
@@ -88,7 +90,7 @@ MbDConVelConstraintIqcJc >> calcPostDynCorrectorIteration [
 					ppGpEIpEI at: j and: i put: ppGpEIpEIij]]
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDConVelConstraintIqcJc >> fillAccICIterError: col [ 
 	| qEdotI sum |
 	col at: iqEI plusFullColumn: pGpEI times: lam.
@@ -99,59 +101,59 @@ MbDConVelConstraintIqcJc >> fillAccICIterError: col [
 	col at: iG plusNumber: sum
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDConVelConstraintIqcJc >> fillPosICError: col [ 
 	super fillPosICError: col.
 	col at: iqEI plusFullColumn: pGpEI times: lam
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDConVelConstraintIqcJc >> fillPosICJacob: mat [ 
 	mat at: iG and: iqEI plusFullRow: pGpEI.
 	mat at: iqEI and: iG plusFullColumn: pGpEI transpose.
 	mat at: iqEI and: iqEI plusFullMatrix: ppGpEIpEI times: lam
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDConVelConstraintIqcJc >> fillPosKineJacob: mat [ 
 	mat at: iG and: iqEI plusFullRow: pGpEI
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDConVelConstraintIqcJc >> fillVelICJacob: mat [ 
 	mat at: iG and: iqEI plusFullRow: pGpEI.
 	mat at: iqEI and: iG plusFullColumn: pGpEI transpose
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDConVelConstraintIqcJc >> fillpFpy: mat [ 
 	mat at: iG and: iqEI plusFullRow: pGpEI.
 	mat at: iqEI and: iqEI plusFullMatrix: ppGpEIpEI times: lam
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDConVelConstraintIqcJc >> fillpFpydot: mat [ 
 	mat at: iqEI and: iG plusFullColumn: pGpEI transpose
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDConVelConstraintIqcJc >> initA12IeJe [
 	aA12IeJe := MbDDirectionCosineIeqcJec new
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDConVelConstraintIqcJc >> initA21IeJe [
 	aA21IeJe := MbDDirectionCosineIeqcJec new
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDConVelConstraintIqcJc >> initialize [
 	super initialize.
 	pGpEI := StMFullRow new: 4.
 	ppGpEIpEI := StMFullMatrix new: 4 by: 4
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDConVelConstraintIqcJc >> useEquationNumbers [
 	iqEI := frmI iqE
 ]

@@ -1,15 +1,17 @@
 Class {
-	#name : #MbDSolver,
-	#superclass : #Object,
-	#category : #'StCAD-MbD-MbDSolver'
+	#name : 'MbDSolver',
+	#superclass : 'Object',
+	#category : 'StCAD-MbD-MbDSolver',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDSolver'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDSolver class >> new [
 	^super new initialize
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDSolver class >> visualWorksMetadata [
 
 	^ #(
@@ -18,14 +20,14 @@ MbDSolver class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDSolver >> initialize [
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDSolver >> initializeGlobally [
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDSolver >> initializeLocally [
 ]

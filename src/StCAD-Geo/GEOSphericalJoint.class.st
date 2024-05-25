@@ -1,20 +1,22 @@
 Class {
-	#name : #GEOSphericalJoint,
-	#superclass : #GEOJoint,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEOSphericalJoint',
+	#superclass : 'GEOJoint',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSphericalJoint class >> mbdClass [
 	^MbDSphericalJoint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSphericalJoint class >> nameString [
 	^'SphericalJoint'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOSphericalJoint class >> visualWorksMetadata [
 
 	^ #(

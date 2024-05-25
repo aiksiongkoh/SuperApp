@@ -2,13 +2,15 @@
 General like Array. Elements can store anything. This class encapsulate StM methods without affecting the base class Array.
 "
 Class {
-	#name : #StMArray,
-	#superclass : #Array,
-	#type : #variable,
-	#category : #'StMath-StMathArray'
+	#name : 'StMArray',
+	#superclass : 'Array',
+	#type : 'variable',
+	#category : 'StMath-StMathArray',
+	#package : 'StMath',
+	#tag : 'StMathArray'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 StMArray class >> aaaa [
 	"self halt. StMArray aaaa."
 
@@ -20,7 +22,7 @@ StMArray class >> aaaa [
 	^copy = vector
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 StMArray class >> example0 [
 	"self halt. self example0."
 
@@ -41,7 +43,7 @@ StMArray class >> example0 [
 	vector length = (vector normL: 2) ifFalse: [self error: 'Check this.']
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 StMArray class >> example0a [
 	"self halt. self example0a."
 
@@ -85,7 +87,7 @@ StMArray class >> example0a [
 	vector2 = vector negated ifFalse: [self error: 'Check this.']
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 StMArray class >> example1 [
 	"self halt. self example1."
 
@@ -144,7 +146,7 @@ StMArray class >> example1 [
 	vector2 = vector ifFalse: [self error: 'Check this.']
 ]
 
-{ #category : #examples2 }
+{ #category : 'examples2' }
 StMArray class >> example10 [
 	"self halt. self example10."
 	"#(0.5d 1.0 1.5d 2.0 1.0 2.0 3.0 4.0 5.0)"
@@ -164,7 +166,7 @@ StMArray class >> example10 [
 	^dum
 ]
 
-{ #category : #examples2 }
+{ #category : 'examples2' }
 StMArray class >> example11 [
 	"self halt. self example11."
 	"#(2.0 3.0 4.0)"
@@ -179,7 +181,7 @@ StMArray class >> example11 [
 	^dum
 ]
 
-{ #category : #examples2 }
+{ #category : 'examples2' }
 StMArray class >> example11b [
 	"self halt. self example11b."
 	"#(22.0 32.0 42.0)"
@@ -193,7 +195,7 @@ StMArray class >> example11b [
 	^dum
 ]
 
-{ #category : #examples2 }
+{ #category : 'examples2' }
 StMArray class >> example11d [
 	"self halt. self example11d."
 	"#(22.0 23.0 24.0)"
@@ -207,7 +209,7 @@ StMArray class >> example11d [
 	^dum
 ]
 
-{ #category : #examples2 }
+{ #category : 'examples2' }
 StMArray class >> example12 [
 	"self halt. self example12."
 	"StMFullMatrix(StMFullRow(-1.0 0.5d nil nil nil) StMFullRow(-2.0 1.0 nil nil nil) StMFullRow(-3.0 
@@ -237,7 +239,7 @@ StMArray class >> example12 [
 	^dum
 ]
 
-{ #category : #examples2 }
+{ #category : 'examples2' }
 StMArray class >> example12a [
 	"self halt. self example12a."
 
@@ -265,7 +267,7 @@ StMArray class >> example12a [
 	^dum
 ]
 
-{ #category : #examples2 }
+{ #category : 'examples2' }
 StMArray class >> example13 [
 	"self halt. self example13."
 
@@ -287,7 +289,7 @@ StMArray class >> example13 [
 	^dum
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 StMArray class >> example2 [
 	"self halt. self example2."
 
@@ -323,7 +325,7 @@ StMArray class >> example2 [
 	vector2 isZero ifFalse: [self error: 'Check this.']
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 StMArray class >> example2a [
 	"self halt. self example2a."
 	"StMFullColumn(-5.5d -3.5d -1.5d 0.5d)"
@@ -340,7 +342,7 @@ StMArray class >> example2a [
 	^dum
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 StMArray class >> example2b [
 	"self halt. self example2b."
 	"StMFullColumn(-5.5d -3.5d -1.5d 0.5d)"
@@ -356,7 +358,7 @@ StMArray class >> example2b [
 	^dum
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 StMArray class >> example3 [
 	"self halt. self example3."
 	"84.720732530713d"
@@ -372,7 +374,7 @@ StMArray class >> example3 [
 	^dum
 ]
 
-{ #category : #examples3 }
+{ #category : 'examples3' }
 StMArray class >> example31 [
 	"self halt. self example31"
 	"2 -1 3"
@@ -394,7 +396,7 @@ StMArray class >> example31 [
 	b at: 3 put: 16.0
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 StMArray class >> example4 [
 	"self halt. self example4."
 	"#(#(181.5d 198.0 214.5d) #(346.5d 363.0 379.5d) #(511.5d 528.0 544.5d))"
@@ -415,7 +417,7 @@ StMArray class >> example4 [
 	^dum
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 StMArray class >> example4a [
 	"self halt. self example4a."
 	"#(#(-148.5 -162.0 -175.5) #(-283.5 -297.0 -310.5) #(-418.5 -432.0 -445.5))"
@@ -436,7 +438,7 @@ StMArray class >> example4a [
 	^dum
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 StMArray class >> example5 [
 	"self halt. self example5."
 	" StMFullMatrix(StMFullRow(227.33333333333 254.0 280.66666666667) StMFullRow(428.0 454.66666666667 481.33333333333) StMFullRow(628.66666666667 655.33333333333 682.0))"
@@ -453,7 +455,7 @@ StMArray class >> example5 [
 	^dum
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 StMArray class >> example6 [
 	"self halt. self example6."
 
@@ -473,7 +475,7 @@ StMArray class >> example6 [
 	^answer1
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 StMArray class >> example7 [
 	"self halt. self example7."
 
@@ -493,7 +495,7 @@ StMArray class >> example7 [
 	^answer1
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 StMArray class >> example8 [
 	"self halt. self example8."
 
@@ -513,7 +515,7 @@ StMArray class >> example8 [
 	^answer1
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 StMArray class >> example9 [
 	"self halt. self example9."
 
@@ -535,7 +537,7 @@ StMArray class >> example9 [
 	^answer1
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMArray class >> newWithElements: aArray [ 
 	| answer |
 	answer := aArray shallowCopy.
@@ -547,12 +549,12 @@ StMArray class >> newWithElements: aArray [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMArray class >> veryShortName [
 	^self shortName
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMArray class >> visualWorksMetadata [
 
 	^ #(
@@ -561,12 +563,12 @@ StMArray class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMArray class >> zero: n [ 
 	^(self new: n) zeroSelf
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMArray class >> zero: n unitAt: i [ 
 	"StMFullColumn zero: 3 unitAt: 1"
 
@@ -576,7 +578,7 @@ StMArray class >> zero: n unitAt: i [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMArray >> * aNumber [ 
 	| n answer |
 	n := self size.
@@ -586,7 +588,7 @@ StMArray >> * aNumber [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMArray >> + array [ 
 	"No checking for speed. Assumes correct dimensions and type."
 
@@ -598,7 +600,7 @@ StMArray >> + array [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMArray >> - array [ 
 	"No checking for speed. Assumes correct dimensions and type."
 
@@ -610,7 +612,7 @@ StMArray >> - array [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMArray >> / aNumber [ 
 	| n answer |
 	n := self size.
@@ -620,21 +622,21 @@ StMArray >> / aNumber [
 	^answer
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMArray >> < aStMArray [ 
 	1 to: self size
 		do: [:i | (self at: i) < (aStMArray at: i) ifFalse: [^false]].
 	^true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMArray >> <= aStMArray [ 
 	1 to: self size
 		do: [:i | (self at: i) <= (aStMArray at: i) ifFalse: [^false]].
 	^true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMArray >> = aObject [ 
 	^self == aObject or: 
 			[self class == aObject class and: 
@@ -643,21 +645,21 @@ StMArray >> = aObject [
 							true]]]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMArray >> > aStMArray [ 
 	1 to: self size
 		do: [:i | (self at: i) > (aStMArray at: i) ifFalse: [^false]].
 	^true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMArray >> >= aStMArray [ 
 	1 to: self size
 		do: [:i | (self at: i) >= (aStMArray at: i) ifFalse: [^false]].
 	^true
 ]
 
-{ #category : #norms }
+{ #category : 'norms' }
 StMArray >> addTo: cNumber [ 
 	| selfAt1 |
 	selfAt1 := self at: 1.
@@ -666,7 +668,7 @@ StMArray >> addTo: cNumber [
 		ifFalse: [1 to: self size do: [:i | (self at: i) addTo: cNumber]]
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMArray >> arrangeElementsAccordingTo: arrayOfOriginalPositions [ 
 	| n answer elementi |
 	n := self size.
@@ -679,52 +681,49 @@ StMArray >> arrangeElementsAccordingTo: arrayOfOriginalPositions [
 	^answer
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 StMArray >> asFullColumn [
 	^self shallowCopy changeClassToThatOf: (StMFullColumn new: 0)
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 StMArray >> asFullMatrix [
 	self subclassResponsibility
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 StMArray >> asFullRow [
 	self subclassResponsibility
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 StMArray >> asSparseColumn [
 	self subclassResponsibility
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 StMArray >> asSparseMatrix [
 	self subclassResponsibility
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 StMArray >> asSparseRow [
 	self subclassResponsibility
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 StMArray >> asSymbolic [
 
-	^ self collect: [ :item |
-		  item isNumber
-			  ifTrue: [ StMConstant with: item ]
-			  ifFalse: [ item asSymbolic ] ]
+	^ self collect: [ :item | item asSymbolic ]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMArray >> at: i times: aNumber [ 
 	self at: i put: ((self at: i)
 			times: aNumber)
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMArray >> conditionSelf [
 	"Answer a self with insignificant elements set to zeros."
 
@@ -733,7 +732,7 @@ StMArray >> conditionSelf [
 	self conditionSelfWithTol: tol
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMArray >> conditionSelfVectorWithTol: tol [ 
 	| element |
 	1 to: self size
@@ -744,7 +743,7 @@ StMArray >> conditionSelfVectorWithTol: tol [
 			element < tol ifTrue: [self at: i put: 0.0]]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMArray >> conditionSelfWithTol: tol [ 
 	(self at: 1) isFloat
 		ifTrue: [self conditionSelfVectorWithTol: tol]
@@ -752,26 +751,26 @@ StMArray >> conditionSelfWithTol: tol [
 					conditionSelfWithTol: tol]]
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMArray >> conditioned [
 	"Answer a fresh vector with insignificant elements set to zeros."
 
 	^self copy conditionSelf
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMArray >> conditionedWithTol: tol [ 
 	"Answer a fresh vector with insignificant elements set to zeros."
 
 	^self copy conditionSelfWithTol: tol
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMArray >> differentiateWRT: aVar [ 
 	^self collect: [:item | item differentiateWRT: aVar]
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMArray >> dot1: stmArray [ 
 	"Either receiver or argument must be a one dimensional array."
 	"Assume the same first dimensions."
@@ -796,44 +795,44 @@ StMArray >> dot1: stmArray [
 	^answer
 ]
 
-{ #category : #'basic ops' }
-StMArray >> dot: stmArray [ 
+{ #category : 'basic ops' }
+StMArray >> dot: stmArray [
 	"Either receiver or argument must be a one dimensional array."
 
 	"Assume the same first dimensions."
 
 	| array1D array answer |
-	self is1D 
-		ifTrue: 
-			[array1D := self.
-			array := stmArray]
-		ifFalse: 
-			[stmArray is1D 
-				ifTrue: 
-					[array1D := stmArray.
-					array := self]
-				ifFalse: 
-					[self 
-						error: 'Dot product requires either receiver or argument to be one dimensional.']].
+	self is1D
+		ifTrue: [
+			array1D := self.
+			array := stmArray ]
+		ifFalse: [
+			stmArray is1D
+				ifTrue: [
+					array1D := stmArray.
+					array := self ]
+				ifFalse: [
+					self error:
+						'Dot product requires either receiver or argument to be one dimensional.' ] ].
 	answer := (array at: 1) * (array1D at: 1).
-	answer isSequenceable 
-		ifTrue: 
-			[2 to: array1D size
-				do: [:i | answer equalSelfPlus: (array at: i) * (array1D at: i)]]
-		ifFalse: 
-			[2 to: array1D size
-				do: [:i | answer := answer + ((array at: i) * (array1D at: i))]].
-	^answer
+	(answer isCollection and: [ answer isSequenceable ])
+		ifTrue: [
+			2 to: array1D size do: [ :i |
+			answer equalSelfPlus: (array at: i) * (array1D at: i) ] ]
+		ifFalse: [
+			2 to: array1D size do: [ :i |
+			answer := answer + ((array at: i) * (array1D at: i)) ] ].
+	^ answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMArray >> elementClass [
 	"Vector and Matrix are intended to store numbers of the same class."
 
 	^Double
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMArray >> elementTimesElementOf: stmArray [ 
 	"Element by element multiplication."
 
@@ -845,7 +844,7 @@ StMArray >> elementTimesElementOf: stmArray [
 	^answer
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMArray >> equal: stmArray [ 
 	"Assume self and stmArray are same type and dimensions."
 
@@ -855,7 +854,7 @@ StMArray >> equal: stmArray [
 					equal: (stmArray at: i)]]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMArray >> equal: stmArray at: ii1 [ 
 	"Assume self and stmArray are same type and dimensions."
 
@@ -871,7 +870,7 @@ StMArray >> equal: stmArray at: ii1 [
 					equal: (stmArray at: iiOffset + i)]]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMArray >> equal: stmArray at: ii1 and: jj1 [ 
 	| iiOffset |
 	iiOffset := ii1 - 1.
@@ -880,7 +879,7 @@ StMArray >> equal: stmArray at: ii1 and: jj1 [
 			at: jj1]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMArray >> equal: stmArray times: number [ 
 	"Assume self and stmArray are same type and dimensions."
 
@@ -892,7 +891,7 @@ StMArray >> equal: stmArray times: number [
 					times: number]]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMArray >> equalSelfMinus: stmArray [ 
 	"Assume self and stmArray are same type and dimensions."
 
@@ -903,7 +902,7 @@ StMArray >> equalSelfMinus: stmArray [
 					equalSelfMinus: (stmArray at: i)]]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMArray >> equalSelfMinus: stmArray at: ii1 [ 
 	"Assume self and stmArray are same type and dimensions."
 
@@ -920,7 +919,7 @@ StMArray >> equalSelfMinus: stmArray at: ii1 [
 					equalSelfMinus: (stmArray at: iiOffset + i)]]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMArray >> equalSelfMinus: stmArray at: ii1 and: jj1 [ 
 	| iiOffset |
 	iiOffset := ii1 - 1.
@@ -929,14 +928,14 @@ StMArray >> equalSelfMinus: stmArray at: ii1 and: jj1 [
 			at: jj1]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMArray >> equalSelfMinus: stmArray times: number [ 
 	"Assume self and stmArray are same type and dimensions."
 
 	self equalSelfPlus: stmArray times: number negated
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMArray >> equalSelfPlus: stmArray [ 
 	"Assume self and stmArray are same type and dimensions."
 
@@ -947,7 +946,7 @@ StMArray >> equalSelfPlus: stmArray [
 					equalSelfPlus: (stmArray at: i)]]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMArray >> equalSelfPlus: stmArray at: ii1 [ 
 	"Assume self and stmArray are same type and dimensions."
 
@@ -964,7 +963,7 @@ StMArray >> equalSelfPlus: stmArray at: ii1 [
 					equalSelfPlus: (stmArray at: iiOffset + i)]]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMArray >> equalSelfPlus: stmArray at: ii1 and: jj1 [ 
 	| iiOffset |
 	iiOffset := ii1 - 1.
@@ -973,7 +972,7 @@ StMArray >> equalSelfPlus: stmArray at: ii1 and: jj1 [
 			at: jj1]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMArray >> equalSelfPlus: stmArray times: number [ 
 	"Assume self and stmArray are same type and dimensions."
 
@@ -986,7 +985,7 @@ StMArray >> equalSelfPlus: stmArray times: number [
 					times: number]]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMArray >> equalSelfTimes: alpha minus: stmArray times: beta [ 
 	self
 		equalSelfTimes: alpha
@@ -994,7 +993,7 @@ StMArray >> equalSelfTimes: alpha minus: stmArray times: beta [
 		times: beta negated
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMArray >> equalSelfTimes: alpha plus: stmArray times: beta [ 
 	"Assume self and stmArray are same type and dimensions."
 	"alpha and beta are numbers."
@@ -1009,7 +1008,7 @@ StMArray >> equalSelfTimes: alpha plus: stmArray times: beta [
 					times: beta]]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMArray >> is1D [
 	"^first isSequenceable not"
 
@@ -1018,13 +1017,13 @@ StMArray >> is1D [
 	^first isFloat or: [first isSymbolic]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMArray >> isZero [
 	1 to: self size do: [:i | (self at: i) isZero ifFalse: [^false]].
 	^true
 ]
 
-{ #category : #norms }
+{ #category : 'norms' }
 StMArray >> length [
 	"Euclidean norm."
 	"Square root of the sum of squares."
@@ -1032,7 +1031,7 @@ StMArray >> length [
 	^self sumOfSquares sqrt
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMArray >> magnifySelf: aNumber [ 
 	"Magnify every number in the receiver by aNumber."
 
@@ -1043,7 +1042,7 @@ StMArray >> magnifySelf: aNumber [
 					magnifySelf: aNumber]]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMArray >> magnifySelfVector: aNumber [ 
 	"Magnify every number in the receiver by aNumber."
 
@@ -1052,7 +1051,7 @@ StMArray >> magnifySelfVector: aNumber [
 				* aNumber]
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMArray >> max: array [ 
 	| answer |
 	answer := self shallowCopy.
@@ -1061,7 +1060,7 @@ StMArray >> max: array [
 	^answer
 ]
 
-{ #category : #norms }
+{ #category : 'norms' }
 StMArray >> maxElement [
 	| selfAt1 |
 	selfAt1 := self at: 1.
@@ -1079,7 +1078,7 @@ StMArray >> maxElement [
 			answer]
 ]
 
-{ #category : #norms }
+{ #category : 'norms' }
 StMArray >> maxElementOfVector [
 	| selfAt1 answer |
 	selfAt1 := self at: 1.
@@ -1095,13 +1094,13 @@ StMArray >> maxElementOfVector [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMArray >> maxPrint [
 
 	^ 5000
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMArray >> min: array [ 
 	| answer |
 	answer := self shallowCopy.
@@ -1110,7 +1109,7 @@ StMArray >> min: array [
 	^answer
 ]
 
-{ #category : #norms }
+{ #category : 'norms' }
 StMArray >> minAndMaxValues [
 	| selfAt1 |
 	selfAt1 := self at: 1.
@@ -1133,7 +1132,7 @@ StMArray >> minAndMaxValues [
 			Array with: min with: max]
 ]
 
-{ #category : #norms }
+{ #category : 'norms' }
 StMArray >> minAndMaxValuesOfVector [
 	"Answer array of min value and max value."
 
@@ -1150,7 +1149,7 @@ StMArray >> minAndMaxValuesOfVector [
 	^Array with: min with: max
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMArray >> minValue [
 
 	| selfAt1 |
@@ -1169,7 +1168,7 @@ StMArray >> minValue [
 			answer]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMArray >> minValueOfVector [
 
 	| answer |
@@ -1183,47 +1182,47 @@ StMArray >> minValueOfVector [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMArray >> minus: stmArray times: aNumber [ 
 	^self plus: stmArray times: aNumber negated
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMArray >> minusNumber: aNumber [ 
 	"Minus aNumber from each element."
 
 	^self plusNumber: aNumber negated
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMArray >> mostNegativeSelf [
 	(self at: 1) isSequenceable
 		ifTrue: [1 to: self size do: [:i | (self at: i) mostNegativeSelf]]
 		ifFalse: [self mostNegativeSelfOfVector]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMArray >> mostNegativeSelfOfVector [
 	| largestNegative |
 	largestNegative := MachineAccuracy OfLargestDouble negated.
 	1 to: self size do: [:i | self at: i put: largestNegative]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMArray >> mostPositiveSelf [
 	(self at: 1) isSequenceable
 		ifTrue: [1 to: self size do: [:i | (self at: i) mostPositiveSelf]]
 		ifFalse: [self mostPositiveSelfOfVector]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMArray >> mostPositiveSelfOfVector [
 	| largest |
 	largest := MachineAccuracy OfLargestDouble.
 	1 to: self size do: [:i | self at: i put: largest]
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMArray >> moveElementsToPositionsSpecifiedBy: arrayOfNewPositions [ 
 	| n answer newi |
 	n := self size.
@@ -1236,14 +1235,14 @@ StMArray >> moveElementsToPositionsSpecifiedBy: arrayOfNewPositions [
 	^answer
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMArray >> negateSelf [
 	"Negate every number in the array."
 
 	self magnifySelf: -1.0
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMArray >> negated [
 	| n answer |
 	n := self size.
@@ -1252,28 +1251,28 @@ StMArray >> negated [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMArray >> numberClass [
 	"Vector and Matrix are intended to store numbers of the same class."
 
 	^Double
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMArray >> numberOfElements [
 	"Answer the number of elements in the full vector or matrix."
 
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMArray >> numberOfNonZeros [
 	"Answer the number of non-zeros in the full vector or matrix."
 
 	self subclassResponsibility
 ]
 
-{ #category : #norms }
+{ #category : 'norms' }
 StMArray >> numberOfNumbers [
 	| selfAt1 |
 	selfAt1 := self at: 1.
@@ -1286,42 +1285,42 @@ StMArray >> numberOfNumbers [
 			sum]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMArray >> numberOfStorageLocations [
 	"Answer the total number of numbers 'values' can hold."
 
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMArray >> numberOfStoredElements [
 	"Answer the actual number of numbers 'values' is holding."
 
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMArray >> numberOfStoredNonZeros [
 	"Vector or matrix must store all the non zeros."
 
 	self numberOfNonZeros
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMArray >> numberOfStoredZeros [
 	"Answer the actual number of zeros 'values' is holding."
 
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMArray >> numberOfZeros [
 	"Answer the number of zeros in the full vector or matrix."
 
 	self subclassResponsibility
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMArray >> plus: stmArray times: aNumber [ 
 	"No checking for speed. Assumes correct dimensions and type."
 
@@ -1338,7 +1337,7 @@ StMArray >> plus: stmArray times: aNumber [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMArray >> plusNumber: aNumber [ 
 	"Plus aNumber from each element."
 
@@ -1353,18 +1352,18 @@ StMArray >> plusNumber: aNumber [
 	^answer
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMArray >> positive [
 	1 to: self size do: [:i | (self at: i) positive ifFalse: [^false]].
 	^true
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 StMArray >> postCopy [
 	(self at: 1) isFloat ifFalse: [1 to: self size do: [:i | self at: i put: (self at: i) copy]]
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 StMArray >> printOn: aStream [ 
 	"Append to the argument, aStream, the elements of the Array 
 	enclosed by parentheses."
@@ -1376,7 +1375,7 @@ StMArray >> printOn: aStream [
 		nextPutAll: '('.
 	self do: 
 			[:element | 
-			element isSequenceable ifTrue: [aStream cr].
+			(element isCollection and: [element isSequenceable]) ifTrue: [aStream cr].
 			aStream position > tooMany 
 				ifTrue: 
 					[aStream nextPutAll: '...(more)...)'.
@@ -1386,7 +1385,7 @@ StMArray >> printOn: aStream [
 	aStream nextPut: $)
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMArray >> productFromDouble: aNumber [ 
 	| n answer |
 	n := self size.
@@ -1396,12 +1395,12 @@ StMArray >> productFromDouble: aNumber [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMArray >> productFromInteger: aInteger [ 
 	^self productFromDouble: aInteger asDouble
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMArray >> productFromSmallDouble: aNumber [ 
 	| n answer |
 	n := self size.
@@ -1411,24 +1410,24 @@ StMArray >> productFromSmallDouble: aNumber [
 	^answer
 ]
 
-{ #category : #norms }
+{ #category : 'norms' }
 StMArray >> rootMeanSquare [
 	"(sumOfSquares / numberOfElements) sqrt"
 
 	^(self sumOfSquares / self numberOfElements) sqrt
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMArray >> roundTo: aDouble [ 
 	^self collect: [:arg | arg roundTo: aDouble]
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMArray >> rounded [
 	^self collect: [:item | item rounded]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMArray >> scaleSelfBy: aFullColumn [ 
 	"Magnify every element in the receiver by corresponding element in aFullColumn."
 
@@ -1438,12 +1437,12 @@ StMArray >> scaleSelfBy: aFullColumn [
 			[1 to: self size do: [:i | (self at: i) magnifySelf: (aFullColumn at: i)]]
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMArray >> simplified [
 	^self collect: [:item | item simplified]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMArray >> standardDeviation [
 	"
 	sigma := sqrt(sum((x - xbar)^2)/n)
@@ -1469,7 +1468,7 @@ StMArray >> standardDeviation [
 	^((n * ssq - (sum * sum)) / (n * n)) sqrt
 ]
 
-{ #category : #norms }
+{ #category : 'norms' }
 StMArray >> sumOfAbsElements [
 	"Sum of all element abs values."
 
@@ -1484,7 +1483,7 @@ StMArray >> sumOfAbsElements [
 			sum]
 ]
 
-{ #category : #norms }
+{ #category : 'norms' }
 StMArray >> sumOfAbsElementsOfVector [
 	| sum selfAt1 |
 	selfAt1 := self at: 1.
@@ -1502,7 +1501,7 @@ StMArray >> sumOfAbsElementsOfVector [
 	^sum
 ]
 
-{ #category : #norms }
+{ #category : 'norms' }
 StMArray >> sumOfElements [
 	"Sum of all elements."
 
@@ -1517,7 +1516,7 @@ StMArray >> sumOfElements [
 			sum]
 ]
 
-{ #category : #norms }
+{ #category : 'norms' }
 StMArray >> sumOfElementsOfVector [
 	| sum |
 	sum := self at: 1.
@@ -1525,7 +1524,7 @@ StMArray >> sumOfElementsOfVector [
 	^sum
 ]
 
-{ #category : #norms }
+{ #category : 'norms' }
 StMArray >> sumOfElementsOfVectorRaisedTo: number [ 
 	"For each element abs it, raised it to the power of number."
 	"Then sum them all."
@@ -1544,7 +1543,7 @@ StMArray >> sumOfElementsOfVectorRaisedTo: number [
 	^sum
 ]
 
-{ #category : #norms }
+{ #category : 'norms' }
 StMArray >> sumOfElementsRaisedTo: number [ 
 	"For each element abs it, raised it to the power of number."
 	"Then sum them all."
@@ -1561,7 +1560,7 @@ StMArray >> sumOfElementsRaisedTo: number [
 			sum]
 ]
 
-{ #category : #norms }
+{ #category : 'norms' }
 StMArray >> sumOfSquares [
 	"Sum of squares of all elements."
 
@@ -1576,7 +1575,7 @@ StMArray >> sumOfSquares [
 			sum]
 ]
 
-{ #category : #norms }
+{ #category : 'norms' }
 StMArray >> sumOfSquaresOfVector [
 	"Sum of squares of all elements."
 
@@ -1592,7 +1591,7 @@ StMArray >> sumOfSquaresOfVector [
 	^sum
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMArray >> times: aNumber [ 
 	| n answer |
 	n := self size.
@@ -1602,7 +1601,7 @@ StMArray >> times: aNumber [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMArray >> times: alpha minus: stmArray [ 
 	"a*alpha - b."
 	"Assume all checking of validity of this operation has been done."
@@ -1619,7 +1618,7 @@ StMArray >> times: alpha minus: stmArray [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMArray >> times: beta minus: stmArray times: alpha [ 
 	^self
 		times: beta
@@ -1627,7 +1626,7 @@ StMArray >> times: beta minus: stmArray times: alpha [
 		times: alpha negated
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMArray >> times: alpha plus: stmArray [ 
 	"a*alpha + b."
 	"Assume all checking of validity of this operation has been done."
@@ -1636,7 +1635,7 @@ StMArray >> times: alpha plus: stmArray [
 	^stmArray plus: self times: alpha
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMArray >> times: beta plus: stmArray times: alpha [ 
 	"a*alpha + b*beta = b*beta + a*alpha."
 	"Assume all checking of validity of this operation has been done."
@@ -1656,75 +1655,75 @@ StMArray >> times: beta plus: stmArray times: alpha [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMArray >> transpose [
 	"Answer the transpose of self."
 
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMArray >> u [
 	^self at: 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMArray >> u: object [ 
 	^self at: 1 put: object
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMArray >> v [
 	^self at: 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMArray >> v: object [ 
 	^self at: 2 put: object
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMArray >> w [
 	^self at: 3
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMArray >> x [
 	^self at: 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMArray >> x: object [ 
 	^self at: 1 put: object
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMArray >> xy [
 
 	^self copyFrom: 1 to: 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMArray >> y [
 	^self at: 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMArray >> y: object [ 
 	^self at: 2 put: object
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMArray >> z [
 	^self at: 3
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMArray >> z: object [ 
 	^self at: 3 put: object
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMArray >> zeroCopy [
 	^(self at: 1) isFloat
 		ifTrue: [self zeroCopyOfVector]
@@ -1735,7 +1734,7 @@ StMArray >> zeroCopy [
 			answer]
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMArray >> zeroCopyOfVector [
 	| answer |
 	answer := self shallowCopy.
@@ -1743,7 +1742,7 @@ StMArray >> zeroCopyOfVector [
 	^answer
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMArray >> zeroSelf [
 	"Zero all stored numbers in array."
 
@@ -1752,7 +1751,7 @@ StMArray >> zeroSelf [
 		ifFalse: [self zeroSelfOfVector]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMArray >> zeroSelfOfVector [
 	"Zero all stored numbers in array."
 

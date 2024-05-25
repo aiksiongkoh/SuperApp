@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDFixedJoint,
-	#superclass : #MbDJoint,
-	#category : #'StCAD-MbD-MbDJoint'
+	#name : 'MbDFixedJoint',
+	#superclass : 'MbDJoint',
+	#category : 'StCAD-MbD-MbDJoint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDJoint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDFixedJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ MbDFixedJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDFixedJoint >> classString [
 	"Used to access the descriptive name of the joint."
 	"Needed for multi-language."
@@ -22,7 +24,7 @@ MbDFixedJoint >> classString [
 	^TheMbDSystem getString: #'MbD: Fixed Joint '
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDFixedJoint >> initializeGlobally [
 	constraints isEmpty
 		ifTrue: 

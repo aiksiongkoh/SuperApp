@@ -1,5 +1,6 @@
 Class {
-	#name : #ASMTRefSurface,
-	#superclass : #ASMTRefItem,
-	#category : #'StCAD-Basic'
+	#name : 'ASMTRefSurface',
+	#superclass : 'ASMTRefItem',
+	#category : 'StCAD-Basic',
+	#package : 'StCAD-Basic'
 }

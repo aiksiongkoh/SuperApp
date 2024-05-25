@@ -1,10 +1,11 @@
 Class {
-	#name : #SymEndFrameCurve,
-	#superclass : #SymEndFrames,
-	#category : #'StCAD-Basic'
+	#name : 'SymEndFrameCurve',
+	#superclass : 'SymEndFrames',
+	#category : 'StCAD-Basic',
+	#package : 'StCAD-Basic'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SymEndFrameCurve >> initialize [
 
 	| s1 |

@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDConstraint,
-	#superclass : #MbDItem,
+	#name : 'MbDConstraint',
+	#superclass : 'MbDItem',
 	#instVars : [
 		'iG',
 		'aG',
@@ -9,10 +9,12 @@ Class {
 		'lamDeriv',
 		'owner'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDConstraint class >> visualWorksMetadata [
 
 	^ #(
@@ -22,17 +24,17 @@ MbDConstraint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDConstraint >> activateConstraint [
 	"Do nothing"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraint >> bePerturbed: delta fillqsulam: col [ 
 	col at: iG put: lam
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDConstraint >> becomeRedundantConstraint [
 	| newSelf |
 	iG := nil.
@@ -41,161 +43,161 @@ MbDConstraint >> becomeRedundantConstraint [
 	self constraint: newSelf
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDConstraint >> fillAccICIterJacob: mat [ 
 	"Same as velIC."
 
 	self fillVelICJacob: mat
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDConstraint >> fillCollisionDerivativeICJacob: mat [ 
 	"Same as velIC."
 
 	self fillVelICJacob: mat
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDConstraint >> fillCollisionpFpydot: mat [ 
 	"Same as velIC."
 
 	self fillVelICJacob: mat
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraint >> fillConstraints: collection [ 
 	collection add: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraint >> fillDispConstraints: collection [ 
 	self type == #displacement ifTrue: [collection add: self]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDConstraint >> fillDynError: col [ 
 	"Same as fillPosICError: col."
 
 	self fillPosICError: col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraint >> fillEssenConstraints: collection [ 
 	self type == #essential ifTrue: [collection add: self]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraint >> fillPerpenConstraints: collection [ 
 	self type == #perpendicular ifTrue: [collection add: self]
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDConstraint >> fillPosICError: col [ 
 	col at: iG plusNumber: aG
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDConstraint >> fillPosKineError: col [ 
 	col at: iG plusNumber: aG
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraint >> fillRedundantConstraints: collection [ 
 	"Do nothing."
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDConstraint >> fillStaticError: col [ 
 	"Same as fillPosICError: col."
 
 	self fillPosICError: col
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDConstraint >> fillStaticJacob: mat [ 
 	"Same as fillPosICJacob: mat."
 
 	self fillPosICJacob: mat
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraint >> fillmu: col [ 
 	col at: iG put: mu
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraint >> fillpqsumu: col [ 
 	col at: iG put: mu
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraint >> fillpqsumudot: col [ 
 	col at: iG put: lam
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraint >> fillqsuddotlam: col [ 
 	col at: iG put: lam
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraint >> fillqsudotPlam: col [ 
 	"lam is now Plam for collision."
 
 	col at: iG put: lam
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraint >> fillqsudotPlamDeriv: col [ 
 	"lamDeriv is now PlamDeriv for collision."
 
 	col at: iG put: lamDeriv
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraint >> fillqsulam: col [ 
 	col at: iG put: lam
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraint >> iG [
 	^iG
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraint >> iG: integer [ 
 	iG := integer
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDConstraint >> initialize [
 	"Get unique name."
 
 	name := self identityHash
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDConstraint >> isRedundant [
 	^false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraint >> lam [
 	^lam
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraint >> owner: object [ 
 	owner := object
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDConstraint >> postInput [
 	lam := 0.0.
 	super postInput
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDConstraint >> preAccIC [
 	"Set any friction to zero to start iteration."
 
@@ -203,39 +205,39 @@ MbDConstraint >> preAccIC [
 	super preAccIC
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDConstraint >> preCollision [
 	"lam is now Plam."
 
 	lam := 0.0
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDConstraint >> preCollisionDerivativeIC [
 	"lam is now impulse Plam."
 
 	lam := 0.0
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDConstraint >> preDyn [
 	mu := 0.0
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDConstraint >> preICRestart [
 	mu := 0.0.
 	lam := 0.0
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDConstraint >> prePosIC [
 	lam := 0.0.
 	iG := nil.
 	super prePosIC
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDConstraint >> prePosKine [
 	"Preserve lam calculated from AccIC for possible use by DynIntegrator if system is not kinematic."
 
@@ -245,7 +247,7 @@ MbDConstraint >> prePosKine [
 	lam := lamOld
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDConstraint >> preStatic [
 	"The lambda's are not zeroed out since they are valid initial values in static solution."
 
@@ -253,63 +255,63 @@ MbDConstraint >> preStatic [
 	super preStatic
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDConstraint >> removeRedundantConstraints: redundantEqns [ 
 	(redundantEqns includes: iG)
 		ifTrue: [self becomeRedundantConstraint]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraint >> setmu: col [ 
 	mu := col at: iG
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraint >> setmuddot: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraint >> setpqsumu: col [ 
 	mu := col at: iG
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraint >> setpqsumuddot: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraint >> setpqsumudot: col [ 
 	lam := col at: iG
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraint >> setqsuddotlam: col [ 
 	lam := col at: iG
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraint >> setqsudotPlam: col [ 
 	lam := col at: iG
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraint >> setqsudotPlamDeriv: col [ 
 	lamDeriv := col at: iG
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraint >> setqsudotlam: col [ 
 	lam := col at: iG
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraint >> setqsulam: col [ 
 	lam := col at: iG
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraint >> type [
 	^#essential
 ]

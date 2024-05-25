@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDParallelAxesJoint,
-	#superclass : #MbDJoint,
-	#category : #'StCAD-MbD-MbDJoint'
+	#name : 'MbDParallelAxesJoint',
+	#superclass : 'MbDJoint',
+	#category : 'StCAD-MbD-MbDJoint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDJoint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDParallelAxesJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ MbDParallelAxesJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDParallelAxesJoint >> classString [
 	"Used to access the descriptive name of the joint."
 	"Needed for multi-language."
@@ -22,7 +24,7 @@ MbDParallelAxesJoint >> classString [
 	^TheMbDSystem getString: #'MbD: ParallelAxes Joint '
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDParallelAxesJoint >> initializeGlobally [
 	constraints isEmpty
 		ifTrue: 

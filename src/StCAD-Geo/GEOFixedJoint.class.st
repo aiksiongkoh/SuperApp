@@ -1,20 +1,22 @@
 Class {
-	#name : #GEOFixedJoint,
-	#superclass : #GEOJoint,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEOFixedJoint',
+	#superclass : 'GEOJoint',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOFixedJoint class >> mbdClass [
 	^MbDFixedJoint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOFixedJoint class >> nameString [
 	^'FixedJoint'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOFixedJoint class >> visualWorksMetadata [
 
 	^ #(

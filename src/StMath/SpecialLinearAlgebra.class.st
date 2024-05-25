@@ -1,10 +1,12 @@
 Class {
-	#name : #SpecialLinearAlgebra,
-	#superclass : #Object,
-	#category : #'StMath-StMathArraySpecial'
+	#name : 'SpecialLinearAlgebra',
+	#superclass : 'Object',
+	#category : 'StMath-StMathArraySpecial',
+	#package : 'StMath',
+	#tag : 'StMathArraySpecial'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 SpecialLinearAlgebra class >> visualWorksMetadata [
 
 	^ #(
@@ -13,21 +15,21 @@ SpecialLinearAlgebra class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpecialLinearAlgebra >> at: i and: j put: aNumber [ 
 	"Special vectors and matrices are to be read only."
 
 	self shouldNotImplement
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpecialLinearAlgebra >> at: i put: aNumber [ 
 	"Special vectors and matrices are to be read only."
 
 	self shouldNotImplement
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpecialLinearAlgebra >> numberOfElements [
 	"Answer the number of elements in the full vector or matrix."
 

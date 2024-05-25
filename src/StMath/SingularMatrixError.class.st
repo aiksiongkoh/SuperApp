@@ -1,10 +1,12 @@
 Class {
-	#name : #SingularMatrixError,
-	#superclass : #Exception,
-	#category : #'StMath-Exception'
+	#name : 'SingularMatrixError',
+	#superclass : 'Exception',
+	#category : 'StMath-Exception',
+	#package : 'StMath',
+	#tag : 'Exception'
 }
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 SingularMatrixError class >> initializeX [
 	"SingularMatrixError initialize"
 	SingularMatrixError
@@ -12,12 +14,12 @@ SingularMatrixError class >> initializeX [
 				>> 'Singular Matrix Error'
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SingularMatrixError class >> mayResume [
 	^true
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 SingularMatrixError class >> visualWorksMetadata [
 
 	^ #(

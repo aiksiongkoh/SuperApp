@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDRackPinConstraintIqcJc,
-	#superclass : #MbDRackPinConstraintIJ,
+	#name : 'MbDRackPinConstraintIqcJc',
+	#superclass : 'MbDRackPinConstraintIJ',
 	#instVars : [
 		'pGpXI',
 		'pGpEI',
@@ -9,10 +9,12 @@ Class {
 		'iqXI',
 		'iqEI'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDRackPinConstraintIqcJc class >> visualWorksMetadata [
 
 	^ #(
@@ -22,7 +24,7 @@ MbDRackPinConstraintIqcJc class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDRackPinConstraintIqcJc class >> withFrmI: afrmI frmJ: afrmJ [ 
 	^(afrmI isMemberOf: MbDEndFrameqc)
 		& (afrmJ isMemberOf: MbDEndFramec)
@@ -30,12 +32,12 @@ MbDRackPinConstraintIqcJc class >> withFrmI: afrmI frmJ: afrmJ [
 		ifFalse: [nil]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRackPinConstraintIqcJc >> addToJointForceI: col [ 
 	col equalSelfPlusFullColumn: pGpXI times: lam
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRackPinConstraintIqcJc >> addToJointTorqueI: jointTorque [ 
 	| cForceT rIpIeIp pAOIppEI aBOIp fpAOIppEIrIpIeIp dum lampGpE c2Torque |
 	cForceT := pGpXI times: lam.
@@ -51,17 +53,17 @@ MbDRackPinConstraintIqcJc >> addToJointTorqueI: jointTorque [
 	jointTorque equalSelfPlusFullColumn: c2Torque times: 0.5
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRackPinConstraintIqcJc >> addpFIeiGOpEIto: mat [ 
 	mat equalSelfPlusFullMatrix: ppGpXIpEI times: lam
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRackPinConstraintIqcJc >> addpFIeiGOplamto: mat [ 
 	mat at: 1 and: iG plusFullColumn: pGpXI transpose
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDRackPinConstraintIqcJc >> calcPostDynCorrectorIteration [
 	| pxIeJeIepXI pxIeJeIepEI ppxIeJeIepXIpEI ppxIeJeIepEIpEI pthezpEI ppthezpEIpEI ppGpEIpEIi ppxIeJeIepEIpEIi ppthezpEIpEIi ppGpEIpEIij |
 	super calcPostDynCorrectorIteration.
@@ -86,7 +88,7 @@ MbDRackPinConstraintIqcJc >> calcPostDynCorrectorIteration [
 					ppGpEIpEI at: j and: i put: ppGpEIpEIij]]
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDRackPinConstraintIqcJc >> fillAccICIterError: col [ 
 	| qXdotI qEdotI sum |
 	col at: iqXI plusFullColumn: pGpXI times: lam.
@@ -101,14 +103,14 @@ MbDRackPinConstraintIqcJc >> fillAccICIterError: col [
 	col at: iG plusNumber: sum
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDRackPinConstraintIqcJc >> fillPosICError: col [ 
 	super fillPosICError: col.
 	col at: iqXI plusFullColumn: pGpXI times: lam.
 	col at: iqEI plusFullColumn: pGpEI times: lam
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDRackPinConstraintIqcJc >> fillPosICJacob: mat [ 
 	| ppGpXIpEIlam |
 	mat at: iG and: iqXI plusFullRow: pGpXI.
@@ -120,7 +122,7 @@ MbDRackPinConstraintIqcJc >> fillPosICJacob: mat [
 	mat at: iqEI and: iqEI plusFullMatrix: ppGpEIpEI times: lam
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDRackPinConstraintIqcJc >> fillPosKineJacob: mat [ 
 	mat
 		at: iG
@@ -132,7 +134,7 @@ MbDRackPinConstraintIqcJc >> fillPosKineJacob: mat [
 		plusFullRow: pGpEI
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDRackPinConstraintIqcJc >> fillVelICJacob: mat [ 
 	mat at: iG and: iqXI plusFullRow: pGpXI.
 	mat at: iqXI and: iG plusFullColumn: pGpXI transpose.
@@ -140,7 +142,7 @@ MbDRackPinConstraintIqcJc >> fillVelICJacob: mat [
 	mat at: iqEI and: iG plusFullColumn: pGpEI transpose
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDRackPinConstraintIqcJc >> fillpFpy: mat [ 
 	| ppGpXIpEIlam |
 	mat at: iG and: iqXI plusFullRow: pGpXI.
@@ -150,13 +152,13 @@ MbDRackPinConstraintIqcJc >> fillpFpy: mat [
 	mat at: iqEI and: iqEI plusFullMatrix: ppGpEIpEI times: lam
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDRackPinConstraintIqcJc >> fillpFpydot: mat [ 
 	mat at: iqXI and: iG plusFullColumn: pGpXI transpose.
 	mat at: iqEI and: iG plusFullColumn: pGpEI transpose
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDRackPinConstraintIqcJc >> initialize [
 	super initialize.
 	pGpXI := StMFullRow new: 3.
@@ -165,17 +167,17 @@ MbDRackPinConstraintIqcJc >> initialize [
 	ppGpEIpEI := StMFullMatrix new: 4 by: 4
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDRackPinConstraintIqcJc >> initthezIeJe [
 	thezIeJe := MbDAnglezIeqcJec new
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDRackPinConstraintIqcJc >> initxIeJeIe [
 	xIeJeIe := MbDDispCompIeqcJecKeqc new
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDRackPinConstraintIqcJc >> useEquationNumbers [
 	iqXI := frmI iqX.
 	iqEI := frmI iqE

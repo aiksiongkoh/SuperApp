@@ -1,15 +1,17 @@
 Class {
-	#name : #LDUFullMatParPv,
-	#superclass : #LDUFullMat,
-	#category : #'StMath-StMathMatrixSolver'
+	#name : 'LDUFullMatParPv',
+	#superclass : 'LDUFullMat',
+	#category : 'StMath-StMathMatrixSolver',
+	#package : 'StMath',
+	#tag : 'StMathMatrixSolver'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 LDUFullMatParPv class >> isAbstractClass [
 	^false
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 LDUFullMatParPv class >> visualWorksMetadata [
 
 	^ #(
@@ -19,7 +21,7 @@ LDUFullMatParPv class >> visualWorksMetadata [
 
 ]
 
-{ #category : #pivoting }
+{ #category : 'pivoting' }
 LDUFullMatParPv >> doPivoting: p [ 
 	"Use scalings. Do row pivoting."
 
@@ -51,7 +53,7 @@ LDUFullMatParPv >> doPivoting: p [
 	max < singularPivotTolerance ifTrue: [SingularMatrixError raiseSignal]
 ]
 
-{ #category : #'forward elimination' }
+{ #category : 'forward elimination' }
 LDUFullMatParPv >> forwardEliminateWithPivot: p [ 
 	"Save factors in lower triangle for LU decomposition."
 

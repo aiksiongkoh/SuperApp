@@ -15,18 +15,20 @@ done with them, and efficiency would be compromised.
 
 "
 Class {
-	#name : #NewEventModel,
-	#superclass : #Object,
+	#name : 'NewEventModel',
+	#superclass : 'Object',
 	#instVars : [
 		'eventTable'
 	],
 	#classInstVars : [
 		'eventsTriggered'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'triggering events' }
+{ #category : 'triggering events' }
 NewEventModel class >> constructEventsTriggered [
 	^(super constructEventsTriggered)
 		add: #changed;
@@ -37,7 +39,7 @@ NewEventModel class >> constructEventsTriggered [
 		yourself
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 NewEventModel class >> visualWorksMetadata [
 
 	^ #(
@@ -46,12 +48,12 @@ NewEventModel class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NewEventModel >> cadObject [
 	^self triggerEvent: #getCADObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NewEventModel >> cadObject: cadObject [ 
 	self removeActionsForEvent: #getCADObject.
 	cadObject notNil ifTrue: [self
@@ -60,12 +62,12 @@ NewEventModel >> cadObject: cadObject [
 			perform: #yourself]
 ]
 
-{ #category : #events }
+{ #category : 'events' }
 NewEventModel >> changed [
 	self triggerEvent: #changed
 ]
 
-{ #category : #events }
+{ #category : 'events' }
 NewEventModel >> cut [
 	"My domain has cut me and does not reference me. But it is ok for me to 
 	reference the domain in case there is an undo."
@@ -73,22 +75,22 @@ NewEventModel >> cut [
 	self triggerEvent: #release
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NewEventModel >> myEventTable [
 	^eventTable
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NewEventModel >> myEventTable: anEventTable [ 
 	eventTable := anEventTable
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NewEventModel >> name [
 	^self triggerEvent: #getName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NewEventModel >> name: name [ 
 	| reversed shortName |
 	reversed := name asString reverse.
@@ -100,20 +102,20 @@ NewEventModel >> name: name [
 			perform: #yourself]
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 NewEventModel >> postCopy [
 	super postCopy.
 	eventTable := nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NewEventModel >> privateSetEventTable: dictionary [ 
 	"private "
 
 	eventTable := dictionary
 ]
 
-{ #category : #events }
+{ #category : 'events' }
 NewEventModel >> release [
 	"Release myself from the domain and release all that I am holding to."
 

@@ -1,10 +1,12 @@
 Class {
-	#name : #GEOWorldFrame2,
-	#superclass : #GEOCartesianFrame2,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEOWorldFrame2',
+	#superclass : 'GEOCartesianFrame2',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'triggering events' }
+{ #category : 'triggering events' }
 GEOWorldFrame2 class >> constructEventsTriggered [
 	^(super constructEventsTriggered)
 		add: #getaxisLength;
@@ -12,7 +14,7 @@ GEOWorldFrame2 class >> constructEventsTriggered [
 		yourself
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOWorldFrame2 class >> visualWorksMetadata [
 
 	^ #(
@@ -22,7 +24,7 @@ GEOWorldFrame2 class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWorldFrame2 >> axisLength [
 	| answer |
 	answer := self triggerEvent: #getaxisLength.
@@ -33,7 +35,7 @@ GEOWorldFrame2 >> axisLength [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWorldFrame2 >> axisLength: axisLength [ 
 	self removeActionsForEvent: #getaxisLength.
 	axisLength notNil 
@@ -44,7 +46,7 @@ GEOWorldFrame2 >> axisLength: axisLength [
 				perform: #yourself]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWorldFrame2 >> boundingBox [
 	| axisLength |
 	axisLength := self axisLength.
@@ -52,29 +54,29 @@ GEOWorldFrame2 >> boundingBox [
 		corner: axisLength , axisLength , axisLength
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWorldFrame2 >> container [
 	^refFrame
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOWorldFrame2 >> cut [
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWorldFrame2 >> fixedAtRef [
 	super fixedAtRef.
 	rOfO := (StMFullColumn zero: 3).
 	aAOf := (StMFullMatrix identity: 3)
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOWorldFrame2 >> isInterface [
 	^true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWorldFrame2 >> lineWidth [
 	| answer |
 	answer := self triggerEvent: #getlineWidth.
@@ -85,7 +87,7 @@ GEOWorldFrame2 >> lineWidth [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWorldFrame2 >> lineWidth: lineWidth [ 
 	self removeActionsForEvent: #getlineWidth.
 	lineWidth notNil 
@@ -96,20 +98,20 @@ GEOWorldFrame2 >> lineWidth: lineWidth [
 				perform: #yourself]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWorldFrame2 >> refFrame: aFrame [ 
 	"WorldFrame refFrame should be aCADInterface."
 
 	refFrame := aFrame
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOWorldFrame2 >> release [
 	body releaseRefFrame.
 	body := nil
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 GEOWorldFrame2 >> renderOn1: aRenderingContext [
 
 	| pt000 pt100 pt010 pt001 |
@@ -126,7 +128,7 @@ GEOWorldFrame2 >> renderOn1: aRenderingContext [
 	aRenderingContext displayLine: (Array with: pt000 with: pt001)
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 GEOWorldFrame2 >> renderOn: aRenderingContext [
 
 	| length pt000 pt100 pt010 pt001 |
@@ -145,7 +147,7 @@ GEOWorldFrame2 >> renderOn: aRenderingContext [
 		aRenderingContext displayLine: (Array with: pt000 with: pt001) ]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOWorldFrame2 >> uncut [
 	"Do nothing."
 ]

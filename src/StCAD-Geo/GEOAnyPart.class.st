@@ -1,13 +1,15 @@
 Class {
-	#name : #GEOAnyPart,
-	#superclass : #GEOAnyGraphic,
+	#name : 'GEOAnyPart',
+	#superclass : 'GEOAnyGraphic',
 	#instVars : [
 		'markers'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'triggering events' }
+{ #category : 'triggering events' }
 GEOAnyPart class >> constructEventsTriggered [
 	^(super constructEventsTriggered)
 		add: #getRefCurves;
@@ -17,7 +19,7 @@ GEOAnyPart class >> constructEventsTriggered [
 		yourself
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOAnyPart class >> visualWorksMetadata [
 
 	^ #(
@@ -27,12 +29,12 @@ GEOAnyPart class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> aDXFBLOCK [
 	^self triggerEvent: #getDXFBLOCK
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> aDXFBLOCK: aDXFBLOCK [ 
 	"aSub maybe already in a tree. Make sure aSub is released by its aSup."
 
@@ -49,7 +51,7 @@ GEOAnyPart >> aDXFBLOCK: aDXFBLOCK [
 	^aDXFBLOCK
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> aJpp [
 	^StMDiagonalMatrix
 		with: 0.0
@@ -57,7 +59,7 @@ GEOAnyPart >> aJpp [
 		with: 0.0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> aMassMarker: aMassMarker [ 
 	| guideFrame |
 	self removeActionsForEvent: #getMassMarker.
@@ -75,12 +77,12 @@ GEOAnyPart >> aMassMarker: aMassMarker [
 				perform: #yourself]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> aNMT [
 	^self triggerEvent: #getNMT
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> aNMT: aNMT [ 
 	"aSub maybe already in a tree. Make sure aSub is released by its aSup."
 
@@ -97,14 +99,14 @@ GEOAnyPart >> aNMT: aNMT [
 	^aNMT
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOAnyPart >> addCurrentStateToDataSeries [
 	| data |
 	data := self dataFromCurrentState.
 	self dataSeries add: data
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> addCurveMarker: curveMarker [ 
 	| curveMarkerRefFrame curveMarkerRefFrameRefFrame newCurveMarkerRefFrameRefFrame |
 	curveMarker container: self.
@@ -121,7 +123,7 @@ GEOAnyPart >> addCurveMarker: curveMarker [
 	markers add: curveMarker
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> addMarker2: geoMarker [ 
 	| markerFrame newMarkerFrame guideFrame newGuideFrame |
 	geoMarker container: self.
@@ -142,7 +144,7 @@ GEOAnyPart >> addMarker2: geoMarker [
 	markers add: geoMarker
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> addMarker: geoMarker [ 
 	| markerFrame newMarkerFrame guideFrame newGuideFrame |
 	geoMarker container: self.
@@ -167,12 +169,12 @@ GEOAnyPart >> addMarker: geoMarker [
 	markers add: geoMarker
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> addMarkersIn: set [ 
 	set addAll: markers
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> addRefCurves: array [
 	array do: 
 			[:refCurve |
@@ -193,7 +195,7 @@ GEOAnyPart >> addRefCurves: array [
 					markers add: curveMarker.].].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> addRefPoints: array [
 	array do: 
 			[:refPoint |
@@ -217,17 +219,17 @@ GEOAnyPart >> addRefPoints: array [
 					markers add: geoMarker.].].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> addRefSurfaces: array [ 
 	"Do nothing for now."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> anyPart [
 	^self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> asTreeNode [
 	| answer |
 	answer := super asTreeNode.
@@ -235,7 +237,7 @@ GEOAnyPart >> asTreeNode [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> asTreeNode1 [
 	| answer children child list |
 	answer := GEOTreeNode new.
@@ -254,18 +256,18 @@ GEOAnyPart >> asTreeNode1 [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> cMarker [
 	^markers
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOAnyPart >> canUpdateForFrame: integer [ 
 	^[(self dataSeries at: integer) notNil]
 		on: Object subscriptOutOfBoundsSignal do: [:ex | ex return: false]
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOAnyPart >> createMbD [
 	"MbDMarkers are created on demand by joints, forces, etc."
 
@@ -287,12 +289,12 @@ GEOAnyPart >> createMbD [
 	part submitToSystem
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> cutMarker: geoMarker [ 
 	markers remove: geoMarker
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOAnyPart >> dataFromCurrentState [
 	| answer |
 	answer := GEOPosVelAccData new.
@@ -305,7 +307,7 @@ GEOAnyPart >> dataFromCurrentState [
 	^answer
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOAnyPart >> dataFromMbD [
 	"
 	P := part frame. 
@@ -355,12 +357,12 @@ GEOAnyPart >> dataFromMbD [
 	^answer
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOAnyPart >> deleteMbD [
 	self mbdObject: nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> findMarkerNamed: nameComponents [ 
 	^self name = (nameComponents at: 1)
 		ifTrue: [markers detect: [:marker | marker name = (nameComponents at: 2)]
@@ -368,7 +370,7 @@ GEOAnyPart >> findMarkerNamed: nameComponents [
 		ifFalse: [nil]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> generateUniqueMarkerName [
 	| aString aItemList nameList count newName |
 	aString := 'Marker'.
@@ -385,7 +387,7 @@ GEOAnyPart >> generateUniqueMarkerName [
 	^newName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> getRefPoints [
 
 	| answer |
@@ -396,19 +398,19 @@ GEOAnyPart >> getRefPoints [
 	^ answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> inPlaneFrame [
 	^self interface projectionFrame
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOAnyPart >> initialize [
 
 	super initialize.
 	markers := StCAD_Misc_OrderedSet new "VW_TRANSLATION:StCAD.Misc.OrderedSet:StCAD_Misc_OrderedSet"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> mJpp [
 	^StMDiagonalMatrix
 		with: 0.0
@@ -416,46 +418,46 @@ GEOAnyPart >> mJpp [
 		with: 0.0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> markerList [
 	^markers asSortedCollection: [:a :b | a name <= b name]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> markerList: collection [ 
 	collection addAll: markers
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> markers [
 	^markers
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> mass [
 	^0.0
 ]
 
-{ #category : #PDMS }
+{ #category : 'PDMS' }
 GEOAnyPart >> mosesFrame [
 
 	^ markers detect: [ :marker | 
 		  marker isMemberOf: StCAD_UI_MOSES_Frame "VW_TRANSLATION:StCAD.UI.MOSES.Frame:StCAD_UI_MOSES_Frame" ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> omeOpO [
 	^StMFullColumn zero: 3
 ]
 
-{ #category : #PDMS }
+{ #category : 'PDMS' }
 GEOAnyPart >> pdmsFrame [
 
 	^ markers detect: [ :marker | 
 		  marker isMemberOf: StCAD_UI_PDMS_Frame "VW_TRANSLATION:StCAD.UI.PDMS.Frame:StCAD_UI_PDMS_Frame" ]
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 GEOAnyPart >> postCopy [
 	| originalMarkers |
 	super postCopy.
@@ -464,41 +466,41 @@ GEOAnyPart >> postCopy [
 	originalMarkers do: [:marker | self addMarker: marker copy]
 ]
 
-{ #category : #PDMS }
+{ #category : 'PDMS' }
 GEOAnyPart >> povrayFrame [
 
 	^ markers detect: [ :marker | 
 		  marker isMemberOf: StCAD_UI_POVRay_Frame "VW_TRANSLATION:StCAD.UI.POVRay.Frame:StCAD_UI_POVRay_Frame" ]
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 GEOAnyPart >> preSave [
 	super preSave.
 	markers do: [:marker | marker preSave]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> qEp [
 	^refFrame aAOf mbdEulerParameters
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> rOcmO [
 	^refFrame rOpOfromrfpf: self rPcmP
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> refCurves [
 	^self markerList select: [:marker | marker isMemberOf: GEOCurveMarker.].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> refPoints [
 	^self markerList
 		select: [:marker | (marker isMemberOf: GEOCurveMarker) not.].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> refPoints: refPoints [ 
 	self removeActionsForEvent: #getRefPoints.
 	refPoints notNil ifTrue: [self
@@ -507,18 +509,18 @@ GEOAnyPart >> refPoints: refPoints [
 			perform: #yourself]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> refSurfaces [
 	^Array new
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOAnyPart >> release [
 	markers do: [:marker | marker release].
 	super release
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> removeDXFBLOCK: aaDXFBLOCK [ 
 	^self aDXFBLOCK == aaDXFBLOCK 
 		ifTrue: 
@@ -528,7 +530,7 @@ GEOAnyPart >> removeDXFBLOCK: aaDXFBLOCK [
 		ifFalse: [self halt: 'check this']
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> removeNMT: aaNMT [ 
 	^self aNMT == aaNMT 
 		ifTrue: 
@@ -538,12 +540,12 @@ GEOAnyPart >> removeNMT: aaNMT [
 		ifFalse: [self halt: 'check this']
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOAnyPart >> storeInputFromMbD [
 	"Do nothing."
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOAnyPart >> storeInputState [
 	| data |
 	data := self dataFromCurrentState.
@@ -551,7 +553,7 @@ GEOAnyPart >> storeInputState [
 	markers do: [:marker | marker storeInputState]
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOAnyPart >> storePOVTimeSeriesOn: aStream [
 	| dataSeries fullNamePOV series |
 	dataSeries := self dataSeries.
@@ -602,7 +604,7 @@ GEOAnyPart >> storePOVTimeSeriesOn: aStream [
 	markers do: [:item | item storePOVTimeSeriesOn: aStream.].
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOAnyPart >> storePOVdatCurrentOn: aStream [
 	| dataSeries fullNamePOV series |
 	dataSeries := Array with: self dataFromCurrentState.
@@ -653,7 +655,7 @@ GEOAnyPart >> storePOVdatCurrentOn: aStream [
 	markers do: [:item | item storePOVdatCurrentOn: aStream.].
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOAnyPart >> storeTimeSeriesOn: aStream [ 
 	| inputData dataSeries series |
 	aStream nextPutAll: self nameString; nextPutAll: 'Series'; space; nextPutAll: self fullName; cr.
@@ -739,12 +741,12 @@ GEOAnyPart >> storeTimeSeriesOn: aStream [
 		series: (series collect: [:data | data at: 3])
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> uncutMarker: geoMarker [ 
 	markers add: geoMarker
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOAnyPart >> updateForFrame1: integer [ 
 	| data |
 	data := self dataSeries at: integer.
@@ -752,7 +754,7 @@ GEOAnyPart >> updateForFrame1: integer [
 	refFrame quietlyvOfO: data vOfO omeOfO: data omeOfO
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOAnyPart >> updateForFrame: integer [ 
 	| data |
 	data := self dataSeries at: integer.
@@ -760,7 +762,7 @@ GEOAnyPart >> updateForFrame: integer [
 	refFrame quietlyvOfO: data vOfO omeOfO: data omeOfO
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOAnyPart >> updateFromInitiallyAssembledState [
 	| dataSeries data |
 	dataSeries := self dataSeries.
@@ -773,7 +775,7 @@ GEOAnyPart >> updateFromInitiallyAssembledState [
 					refFrame quietlyvOfO: data vOfO omeOfO: data omeOfO]]
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOAnyPart >> updateFromInputState [
 	| data |
 	data := self inputData.
@@ -784,7 +786,7 @@ GEOAnyPart >> updateFromInputState [
 	markers do: [:marker | marker updateFromInputState]
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOAnyPart >> updateFromMbD [
 	| data |
 	data := self dataFromMbD.
@@ -793,7 +795,7 @@ GEOAnyPart >> updateFromMbD [
 	refFrame quietlyvOfO: data vOfO omeOfO: data omeOfO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyPart >> vOcmO [
 	^StMFullColumn zero: 3
 ]

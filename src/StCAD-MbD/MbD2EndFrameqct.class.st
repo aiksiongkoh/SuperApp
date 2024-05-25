@@ -1,6 +1,6 @@
 Class {
-	#name : #MbD2EndFrameqct,
-	#superclass : #MbDEndFrameqc,
+	#name : 'MbD2EndFrameqct',
+	#superclass : 'MbDEndFrameqc',
 	#instVars : [
 		'time',
 		'rmemBlks',
@@ -22,10 +22,12 @@ Class {
 		'ppAOepEpt',
 		'ppAOeptpt'
 	],
-	#category : #'StCAD-MbD-MbDBasic'
+	#category : 'StCAD-MbD-MbDBasic',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDBasic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbD2EndFrameqct class >> visualWorksMetadata [
 
 	^ #(
@@ -35,12 +37,12 @@ MbD2EndFrameqct class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbD2EndFrameqct >> aAme [
 	^aAme
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbD2EndFrameqct >> calcPostDynCorrectorIteration [
 	| rOmO aAOm prOmOpE pAOmpE prOmOpEi prOeOpEi prOeOpEij rpep aApe |
 	rOmO := markerFrame rOmO.
@@ -62,33 +64,33 @@ MbD2EndFrameqct >> calcPostDynCorrectorIteration [
 	ppAOepEpE := MbDEulerParameters ppApEpEtimesMatrix: aApe.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbD2EndFrameqct >> dAmedt [
 	^pAmept
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbD2EndFrameqct >> evalAme [
 	aAme := phiThePsiBlks
 				calc;
 				aA
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbD2EndFrameqct >> evalpAmept [
 	pAmept := pPhiThePsiptBlks
 				calc;
 				aAdot
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbD2EndFrameqct >> evalppAmeptpt [
 	ppAmeptpt := ppPhiThePsiptptBlks
 				calc;
 				aAddot
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbD2EndFrameqct >> evalpprmemptpt [
 	| secondDerivative value |
 	rmemBlks == nil ifFalse: [1 to: 3
@@ -99,7 +101,7 @@ MbD2EndFrameqct >> evalpprmemptpt [
 				pprmemptpt at: i put: value]]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbD2EndFrameqct >> evalprmempt [
 	| derivative value |
 	rmemBlks == nil ifFalse: [1 to: 3
@@ -110,7 +112,7 @@ MbD2EndFrameqct >> evalprmempt [
 				prmempt at: i put: value]]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbD2EndFrameqct >> evalrmem [
 	| expression value |
 	rmemBlks == nil ifFalse: [1 to: 3
@@ -121,7 +123,7 @@ MbD2EndFrameqct >> evalrmem [
 				rmem at: i put: value]]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbD2EndFrameqct >> initialize [
 	super initialize.
 	rmem := StMFullColumn new: 3.
@@ -136,7 +138,7 @@ MbD2EndFrameqct >> initialize [
 	ppAOeptpt := StMFullMatrix new: 3 by: 3
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbD2EndFrameqct >> initializeGlobally [
 	rmemBlks == nil
 		ifFalse: 
@@ -148,7 +150,7 @@ MbD2EndFrameqct >> initializeGlobally [
 			self initppPhiThePsiptptBlks]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbD2EndFrameqct >> initializeLocally [
 	rmemBlks == nil
 		ifTrue: 
@@ -162,21 +164,21 @@ MbD2EndFrameqct >> initializeLocally [
 			ppAmeptpt zeroSelf]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbD2EndFrameqct >> initpPhiThePsiptBlks [
 	| mbdTime |
 	mbdTime := TheMbDSystem mbdTime.
 	pPhiThePsiptBlks := phiThePsiBlks differentiateWRT: mbdTime
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbD2EndFrameqct >> initppPhiThePsiptptBlks [
 	| mbdTime |
 	mbdTime := TheMbDSystem mbdTime.
 	ppPhiThePsiptptBlks := pPhiThePsiptBlks differentiateWRT: mbdTime
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbD2EndFrameqct >> initpprmemptptBlks [
 	| mbdTime vel acc |
 	mbdTime := TheMbDSystem mbdTime.
@@ -189,7 +191,7 @@ MbD2EndFrameqct >> initpprmemptptBlks [
 			pprmemptptBlks at: i put: acc]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbD2EndFrameqct >> initprmemptBlks [
 	| mbdTime disp vel |
 	mbdTime := TheMbDSystem mbdTime.
@@ -202,27 +204,27 @@ MbD2EndFrameqct >> initprmemptBlks [
 			prmemptBlks at: i put: vel]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbD2EndFrameqct >> pAOept [
 	^pAOept
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbD2EndFrameqct >> pAjOept: j [ 
 	^pAOept column: j
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbD2EndFrameqct >> pAmept [
 	^pAmept
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbD2EndFrameqct >> phiThePsiBlks: block [ 
 	phiThePsiBlks := block
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbD2EndFrameqct >> postDynOutput [
 	time := TheMbDSystem mbdTimeValue.
 	self evalrmem.
@@ -230,7 +232,7 @@ MbD2EndFrameqct >> postDynOutput [
 	super postDynOutput
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbD2EndFrameqct >> postDynPredictor [
 	time := TheMbDSystem mbdTimeValue.
 	self evalrmem.
@@ -238,14 +240,14 @@ MbD2EndFrameqct >> postDynPredictor [
 	super postDynPredictor
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbD2EndFrameqct >> postInput [
 	self evalrmem.
 	self evalAme.
 	super postInput
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbD2EndFrameqct >> postVelIC [
 	| pAOmpE pprOeOpEpti pprOeOpEptij |
 	pAOmpE := markerFrame pAOmpE.
@@ -257,17 +259,17 @@ MbD2EndFrameqct >> postVelIC [
 	1 to: 4 do: [:i | ppAOepEpt at: i put: ((pAOmpE at: i) timesFullMatrix: pAmept)]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbD2EndFrameqct >> ppAOepEpt [
 	^ppAOepEpt
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbD2EndFrameqct >> ppAOeptpt [
 	^ppAOeptpt
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbD2EndFrameqct >> ppAjOepETpt: jj [ 
 	| answer answeri ppAOepEipt answerij |
 	answer := StMFullMatrix new: 4 by: 3.
@@ -280,47 +282,47 @@ MbD2EndFrameqct >> ppAjOepETpt: jj [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbD2EndFrameqct >> ppAjOeptpt: j [ 
 	^ppAOeptpt column: j
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbD2EndFrameqct >> ppAmeptpt [
 	^ppAmeptpt
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbD2EndFrameqct >> pprOeOpEpt [
 	^pprOeOpEpt
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbD2EndFrameqct >> pprOeOptpt [
 	^pprOeOptpt
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbD2EndFrameqct >> ppriOeOpEpt: i [ 
 	^pprOeOpEpt at: i
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbD2EndFrameqct >> ppriOeOptpt: i [ 
 	^pprOeOptpt at: i
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbD2EndFrameqct >> pprmemptpt [
 	^pprmemptpt
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbD2EndFrameqct >> prOeOpt [
 	^prOeOpt
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbD2EndFrameqct >> preAccIC [
 	| aAOm |
 	time := TheMbDSystem mbdTimeValue.
@@ -340,7 +342,7 @@ MbD2EndFrameqct >> preAccIC [
 	ppAOeptpt := aAOm timesFullMatrix: ppAmeptpt
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbD2EndFrameqct >> preDynOutput [
 	time := TheMbDSystem mbdTimeValue.
 	self evalrmem.
@@ -348,7 +350,7 @@ MbD2EndFrameqct >> preDynOutput [
 	super preDynOutput
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbD2EndFrameqct >> prePosIC [
 	time := TheMbDSystem mbdTimeValue.
 	self evalrmem.
@@ -356,7 +358,7 @@ MbD2EndFrameqct >> prePosIC [
 	super prePosIC
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbD2EndFrameqct >> preStatic [
 	time := TheMbDSystem mbdTimeValue.
 	self evalrmem.
@@ -364,7 +366,7 @@ MbD2EndFrameqct >> preStatic [
 	super preStatic
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbD2EndFrameqct >> preVelIC [
 	| aAOm |
 	time := TheMbDSystem mbdTimeValue.
@@ -378,32 +380,32 @@ MbD2EndFrameqct >> preVelIC [
 	pAOept := aAOm timesFullMatrix: pAmept
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbD2EndFrameqct >> priOeOpt: i [ 
 	^prOeOpt at: i
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbD2EndFrameqct >> prmempt [
 	^prmempt
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbD2EndFrameqct >> rmeO [
 	^markerFrame aAOm timesFullColumn: rmem
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbD2EndFrameqct >> rmem [
 	^rmem
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbD2EndFrameqct >> rmemBlks: block [ 
 	rmemBlks := block
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbD2EndFrameqct >> rpep [
 	| rpmp aApm rpep |
 	rpmp := markerFrame rpmp.
@@ -412,7 +414,7 @@ MbD2EndFrameqct >> rpep [
 	^rpep
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbD2EndFrameqct >> simUpdateAll [
 	time := TheMbDSystem mbdTimeValue.
 	self evalrmem.
@@ -420,7 +422,7 @@ MbD2EndFrameqct >> simUpdateAll [
 	super simUpdateAll
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbD2EndFrameqct >> time: double [ 
 	self halt: 'check this.'.
 	time := double

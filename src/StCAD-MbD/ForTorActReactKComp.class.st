@@ -1,13 +1,15 @@
 Class {
-	#name : #ForTorActReactKComp,
-	#superclass : #ForTorActReactComp,
+	#name : 'ForTorActReactKComp',
+	#superclass : 'ForTorActReactComp',
 	#instVars : [
 		'aFTJeO'
 	],
-	#category : #'StCAD-MbD-MbDForce'
+	#category : 'StCAD-MbD-MbDForce',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDForce'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 ForTorActReactKComp class >> forceOnFrmI: aFrmI andFrmJ: aFrmJ wrtFrmK: aFrmK axis: i [ 
 	^super new
 		forceOnFrmI: aFrmI
@@ -16,7 +18,7 @@ ForTorActReactKComp class >> forceOnFrmI: aFrmI andFrmJ: aFrmJ wrtFrmK: aFrmK ax
 		axis: i
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 ForTorActReactKComp class >> torqueOnFrmI: aFrmI andFrmJ: aFrmJ wrtFrmK: aFrmK axis: i [ 
 	^super new
 		torqueOnFrmI: aFrmI
@@ -25,7 +27,7 @@ ForTorActReactKComp class >> torqueOnFrmI: aFrmI andFrmJ: aFrmJ wrtFrmK: aFrmK a
 		axis: i
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 ForTorActReactKComp class >> visualWorksMetadata [
 
 	^ #(
@@ -35,18 +37,18 @@ ForTorActReactKComp class >> visualWorksMetadata [
 
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 ForTorActReactKComp >> calcPostDynCorrectorIteration [
 	aFTJeO := forTorAction aFTIeO negated
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 ForTorActReactKComp >> fillAccICIterError: col [ 
 	forTorAction fillAccICIterError: col.
 	forTorBasicJ fillAccICIterError: col aFTO: aFTJeO
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 ForTorActReactKComp >> fillAccICIterJacob: mat [ 
 	| aAjOKe forTorFunction jointActions pFTpJtActs jointAction mpFTpJtAct |
 	forTorAction fillAccICIterJacob: mat.
@@ -62,13 +64,13 @@ ForTorActReactKComp >> fillAccICIterJacob: mat [
 			forTorBasicJ fillAccICIterJacob: mat pFTOplam: (aAjOKe timesSparseRow: jointAction pvalueplam times: mpFTpJtAct)]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorActReactKComp >> fillDynError: col [ 
 	forTorAction fillDynError: col.
 	forTorBasicJ fillDynError: col aFTO: aFTJeO
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorActReactKComp >> fillpFpy: mat [ 
 	| forTorFunction kineIJs kinedotIJs jointActions pFTpkineIJs pFTpkinedotIJs pFTpJtActs kineIJ mpFTpkineIJ kinedotIJ mpFTpkinedotIJ jointAction mpFTpJtAct |
 	forTorAction fillpFpy: mat.
@@ -114,7 +116,7 @@ ForTorActReactKComp >> fillpFpy: mat [
 				function: jointAction]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorActReactKComp >> fillpFpy: mat pFTpfunction: pFTpfunction function: function [ 
 	| pvaluepXI pvaluepEI partFrameI pvaluepXJ pvaluepEJ partFrameJ aAjOKe pvaluepXK pvaluepEK partFrameK |
 	aAjOKe := forTorAction aAjOKe.
@@ -174,7 +176,7 @@ ForTorActReactKComp >> fillpFpy: mat pFTpfunction: pFTpfunction function: functi
 						partj: partFrameK]]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorActReactKComp >> fillpFpydot: mat [ 
 	| aAjOKe forTorFunction kinedotIJs jointActions pFTpkinedotIJs pFTpJtActs kinedotIJ mpFTpkinedotIJ jointAction mpFTpJtAct |
 	forTorAction fillpFpydot: mat.
@@ -201,7 +203,7 @@ ForTorActReactKComp >> fillpFpydot: mat [
 			forTorBasicJ fillpFpydot: mat pFOpmudot: (aAjOKe timesSparseRow: jointAction pvalueplam times: mpFTpJtAct)]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorActReactKComp >> fillpFpydot: mat pFTpfunction: pFTpfunction function: function [ 
 	| pvaluepXdotI pvaluepEdotI partFrameI pvaluepXdotJ pvaluepEdotJ partFrameJ aAjOKe |
 	aAjOKe := forTorAction aAjOKe.
@@ -243,7 +245,7 @@ ForTorActReactKComp >> fillpFpydot: mat pFTpfunction: pFTpfunction function: fun
 						partj: partFrameJ]]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 ForTorActReactKComp >> forceOnFrmI: aFrmI andFrmJ: aFrmJ wrtFrmK: aFrmK axis: i [ 
 	forTorAction
 		forceOnFrmI: aFrmI
@@ -254,12 +256,12 @@ ForTorActReactKComp >> forceOnFrmI: aFrmI andFrmJ: aFrmJ wrtFrmK: aFrmK axis: i 
 	forTorBasicJ endFrame: aFrmJ followEndFrame: aFrmI
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 ForTorActReactKComp >> initialize [
 	forTorAction := ForTorActionKComp new
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 ForTorActReactKComp >> torqueOnFrmI: aFrmI andFrmJ: aFrmJ wrtFrmK: aFrmK axis: i [ 
 	forTorAction
 		torqueOnFrmI: aFrmI

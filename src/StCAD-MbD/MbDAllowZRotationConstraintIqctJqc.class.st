@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDAllowZRotationConstraintIqctJqc,
-	#superclass : #MbDDirectionCosineConstraintIqctJqc,
-	#category : #'StCAD-MbD-MbDConstraint'
+	#name : 'MbDAllowZRotationConstraintIqctJqc',
+	#superclass : 'MbDDirectionCosineConstraintIqctJqc',
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDAllowZRotationConstraintIqctJqc class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ MbDAllowZRotationConstraintIqctJqc class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDAllowZRotationConstraintIqctJqc >> postInput [
 
 	| aAImJe aEulerAngleszxz the1z the2x |
@@ -29,7 +31,7 @@ MbDAllowZRotationConstraintIqctJqc >> postInput [
 	super postInput
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDAllowZRotationConstraintIqctJqc >> postInput1 [
 
 	| aAImJe aEulerAngleszxz the1z the2x |
@@ -44,7 +46,7 @@ MbDAllowZRotationConstraintIqctJqc >> postInput1 [
 	super postInput
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDAllowZRotationConstraintIqctJqc >> postInput2 [
 
 	| aAImJe aEulerAngleszxz the1z the2x |
@@ -59,12 +61,12 @@ MbDAllowZRotationConstraintIqctJqc >> postInput2 [
 	super postInput
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDAllowZRotationConstraintIqctJqc >> postPosIC [
 	self becomeRedundantConstraint
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDAllowZRotationConstraintIqctJqc >> prePosIC1 [
 
 	| aAImJe aEulerAngleszxz the1z |

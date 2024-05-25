@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDAnglezIecJec,
-	#superclass : #MbDAngleIeJe,
+	#name : 'MbDAnglezIecJec',
+	#superclass : 'MbDAngleIeJe',
 	#instVars : [
 		'thez',
 		'aA11IeJe',
@@ -10,10 +10,12 @@ Class {
 		'twoCosSinOverSSqSq',
 		'dSqOverSSqSq'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDAnglezIecJec class >> visualWorksMetadata [
 
 	^ #(
@@ -23,7 +25,7 @@ MbDAnglezIecJec class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDAnglezIecJec class >> withFrmI: afrmI frmJ: afrmJ [ 
 	| instance |
 	self allSubclasses
@@ -33,7 +35,7 @@ MbDAnglezIecJec class >> withFrmI: afrmI frmJ: afrmJ [
 			instance notNil ifTrue: [^instance]]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDAnglezIecJec >> calcPostDynCorrectorIteration [
 	| cthez sthez sumOfSquares diffOfSquares sumOfSquaresSquared thez0to2pi |
 	cthez := aA11IeJe value.
@@ -49,45 +51,45 @@ MbDAnglezIecJec >> calcPostDynCorrectorIteration [
 	dSqOverSSqSq := diffOfSquares / sumOfSquaresSquared
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDAnglezIecJec >> initialize [
 	self initDirectionCosines
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDAnglezIecJec >> initializeGlobally [
 	aA11IeJe initializeGlobally.
 	aA21IeJe initializeGlobally
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDAnglezIecJec >> initializeLocally [
 	aA11IeJe initializeLocally.
 	aA21IeJe initializeLocally
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDAnglezIecJec >> postDynCorrectorIteration [
 	aA11IeJe postDynCorrectorIteration.
 	aA21IeJe postDynCorrectorIteration.
 	super postDynCorrectorIteration
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDAnglezIecJec >> postDynOutput [
 	aA11IeJe postDynOutput.
 	aA21IeJe postDynOutput.
 	super postDynOutput
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDAnglezIecJec >> postDynPredictor [
 	aA11IeJe postDynPredictor.
 	aA21IeJe postDynPredictor.
 	super postDynPredictor
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDAnglezIecJec >> postInput [
 	| cthez sthez |
 	aA11IeJe postInput.
@@ -102,21 +104,21 @@ MbDAnglezIecJec >> postInput [
 	super postInput
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDAnglezIecJec >> postPosICIteration [
 	aA11IeJe postPosICIteration.
 	aA21IeJe postPosICIteration.
 	super postPosICIteration
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDAnglezIecJec >> postStaticIteration [
 	aA11IeJe postStaticIteration.
 	aA21IeJe postStaticIteration.
 	super postStaticIteration
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDAnglezIecJec >> preAccIC [
 	thez == nil ifTrue: [self prePosIC].
 	aA11IeJe preAccIC.
@@ -124,14 +126,14 @@ MbDAnglezIecJec >> preAccIC [
 	super preAccIC
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDAnglezIecJec >> preDynOutput [
 	aA11IeJe preDynOutput.
 	aA21IeJe preDynOutput.
 	super preDynOutput
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDAnglezIecJec >> prePosIC [
 	| cthez sthez |
 	aA11IeJe prePosIC.
@@ -146,38 +148,38 @@ MbDAnglezIecJec >> prePosIC [
 	super prePosIC
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDAnglezIecJec >> preStatic [
 	aA11IeJe preStatic.
 	aA21IeJe preStatic.
 	super preStatic
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDAnglezIecJec >> preVelIC [
 	aA11IeJe preVelIC.
 	aA21IeJe preVelIC.
 	super preVelIC
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDAnglezIecJec >> simUpdateAll [
 	aA11IeJe simUpdateAll.
 	aA21IeJe simUpdateAll.
 	super simUpdateAll
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDAnglezIecJec >> thez [
 	^thez
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDAnglezIecJec >> value [
 	^thez
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDAnglezIecJec >> withFrmI: afrmI frmJ: afrmJ [ 
 	frmI := afrmI.
 	frmJ := afrmJ.

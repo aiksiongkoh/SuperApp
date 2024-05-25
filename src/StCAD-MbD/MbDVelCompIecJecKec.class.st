@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDVelCompIecJecKec,
-	#superclass : #MbDKinematicDotIeJe,
+	#name : 'MbDVelCompIecJecKec',
+	#superclass : 'MbDKinematicDotIeJe',
 	#instVars : [
 		'efrmK',
 		'axisK',
@@ -10,10 +10,12 @@ Class {
 		'aAOKej',
 		'vIeJeO'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDVelCompIecJecKec class >> visualWorksMetadata [
 
 	^ #(
@@ -23,7 +25,7 @@ MbDVelCompIecJecKec class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDVelCompIecJecKec class >> withFrmI: afrmI frmJ: afrmJ frmK: afrmK axisK: integer [ 
 	| instance |
 	self allSubclasses
@@ -37,7 +39,7 @@ MbDVelCompIecJecKec class >> withFrmI: afrmI frmJ: afrmJ frmK: afrmK axisK: inte
 			instance notNil ifTrue: [^instance]]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDVelCompIecJecKec >> calcPostDynCorrectorIteration [
 	aAdotOKej := efrmK aAdotjOe: axisK.
 	aAOKej := efrmK aAjOe: axisK.
@@ -47,17 +49,17 @@ MbDVelCompIecJecKec >> calcPostDynCorrectorIteration [
 				+ (aAOKej dot: vIeJeO)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDVelCompIecJecKec >> partFrameK [
 	^efrmK partFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDVelCompIecJecKec >> value [
 	^vIeJeKei
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDVelCompIecJecKec >> withFrmI: afrmI frmJ: afrmJ frmK: afrmK axisK: integer [ 
 	frmI := afrmI.
 	frmJ := afrmJ.

@@ -1,14 +1,16 @@
 Class {
-	#name : #GEOExtrudedFeature,
-	#superclass : #GEOSketchedFeature,
+	#name : 'GEOExtrudedFeature',
+	#superclass : 'GEOSketchedFeature',
 	#instVars : [
 		'zStart',
 		'zEnd'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOExtrudedFeature class >> visualWorksMetadata [
 
 	^ #(
@@ -18,12 +20,12 @@ GEOExtrudedFeature class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOExtrudedFeature >> aSketch [
 	^sketch
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOExtrudedFeature >> asTreeNode [
 	| answer stream |
 	answer := super asTreeNode.
@@ -37,12 +39,12 @@ GEOExtrudedFeature >> asTreeNode [
 	^answer
 ]
 
-{ #category : #ops }
+{ #category : 'ops' }
 GEOExtrudedFeature >> buildIn: solidModel [ 
 	solidModel buildExtrudedFeature: self
 ]
 
-{ #category : #ops }
+{ #category : 'ops' }
 GEOExtrudedFeature >> facesEdgesVertexs [
 	"
 	.											minusZendface 
@@ -136,14 +138,14 @@ GEOExtrudedFeature >> facesEdgesVertexs [
 	^Array with: faces with: edges with: vertexs.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOExtrudedFeature >> magnifySelf: aDouble [ 
 	zStart := zStart * aDouble.
 	zEnd := zEnd * aDouble.
 	self aSketch magnifySelf: aDouble
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOExtrudedFeature >> printOn: aStream [ 
 	| title |
 	title := self class name.
@@ -157,7 +159,7 @@ GEOExtrudedFeature >> printOn: aStream [
 	aStream print: zEnd
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOExtrudedFeature >> storeOn: aStream level: level [ 
 	aStream storeLevel: level title: 'Extrusion'.
 	aStream
@@ -171,7 +173,7 @@ GEOExtrudedFeature >> storeOn: aStream level: level [
 	self sketch storeOn: aStream level: level + 1
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOExtrudedFeature >> storePOVOn: aStream level: level [ 
 	"
 	prism uses xz points extruded in y.	
@@ -210,19 +212,19 @@ GEOExtrudedFeature >> storePOVOn: aStream level: level [
 	aStream storePOVLevel: level title: '}'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOExtrudedFeature >> zEnd [
 	^zEnd == nil
 		ifTrue: [1.0]
 		ifFalse: [zEnd]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOExtrudedFeature >> zEnd: double [ 
 	zEnd := double
 ]
 
-{ #category : #ops }
+{ #category : 'ops' }
 GEOExtrudedFeature >> zFaceDataFrom: graphicPolyline sign: sign [
 	"
 	graphicPolyline is in the plane of the sketch. 
@@ -288,14 +290,14 @@ GEOExtrudedFeature >> zFaceDataFrom: graphicPolyline sign: sign [
 	^Array with: faces with: edges with: vertexs.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOExtrudedFeature >> zStart [
 	^zStart == nil
 		ifTrue: [0.0]
 		ifFalse: [zStart]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOExtrudedFeature >> zStart: double [ 
 	zStart := double
 ]

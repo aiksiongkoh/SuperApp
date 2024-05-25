@@ -1,13 +1,15 @@
 Class {
-	#name : #MbDVelCompIeqcJeqcOKeqcs,
-	#superclass : #MbDVelCompIeqcJeqcOKeqc,
+	#name : 'MbDVelCompIeqcJeqcOKeqcs',
+	#superclass : 'MbDVelCompIeqcJeqcOKeqc',
 	#instVars : [
 		'pviIeJeOKepsK'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDVelCompIeqcJeqcOKeqcs class >> visualWorksMetadata [
 
 	^ #(
@@ -17,7 +19,7 @@ MbDVelCompIeqcJeqcOKeqcs class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDVelCompIeqcJeqcOKeqcs class >> withFrmI: afrmI frmJ: afrmJ frmK: afrmK axisK: integer [ 
 	^(afrmI isMemberOf: MbDEndFrameqc)
 		& (afrmJ isMemberOf: MbDEndFrameqc) & (afrmK isKindOf: MbDEndFrameqcs)

@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDDistanceConstraintIqcJc,
-	#superclass : #MbDDistanceConstraintIJ,
+	#name : 'MbDDistanceConstraintIqcJc',
+	#superclass : 'MbDDistanceConstraintIJ',
 	#instVars : [
 		'pGpXI',
 		'pGpEI',
@@ -10,10 +10,12 @@ Class {
 		'iqXI',
 		'iqEI'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDDistanceConstraintIqcJc class >> visualWorksMetadata [
 
 	^ #(
@@ -23,19 +25,19 @@ MbDDistanceConstraintIqcJc class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDDistanceConstraintIqcJc class >> withFrmI: afrmI frmJ: afrmJ [ 
 	^(afrmI isMemberOf: MbDEndFrameqc) & (afrmJ isMemberOf: MbDEndFramec) 
 		ifTrue: [self new withFrmI: afrmI frmJ: afrmJ]
 		ifFalse: [nil]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistanceConstraintIqcJc >> addToJointForceI: col [ 
 	col equalSelfPlusFullColumn: pGpXI times: lam
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistanceConstraintIqcJc >> addToJointTorqueI: jointTorque [ 
 	| cForceT rIpIeIp pAOIppEI aBOIp fpAOIppEIrIpIeIp dum lampGpE c2Torque |
 	cForceT := pGpXI times: lam.
@@ -51,22 +53,22 @@ MbDDistanceConstraintIqcJc >> addToJointTorqueI: jointTorque [
 	jointTorque equalSelfPlusFullColumn: c2Torque times: 0.5
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistanceConstraintIqcJc >> addpFIeiGOpEIto: mat [ 
 	mat equalSelfPlusFullMatrix: ppGpXIpEI times: lam
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistanceConstraintIqcJc >> addpFIeiGOpXIto: mat [ 
 	mat equalSelfPlusFullMatrix: ppGpXIpXI times: lam
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistanceConstraintIqcJc >> addpFIeiGOplamto: mat [ 
 	mat at: 1 and: iG plusFullColumn: pGpXI transpose
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistanceConstraintIqcJc >> addpTIeiGOpEIto: mat [ 
 	| term11 prOIeOpEIT aFIeiGOover2 term12 term1 term21 pprOIeOpEIpEI term22 pprOIeOpEIipEI term22rowi pFIeiGOpEIover2 term23 aB term2 pTIeiGOpEI |
 	term11 := pGpEI transpose times: lam / 2.0.
@@ -93,7 +95,7 @@ MbDDistanceConstraintIqcJc >> addpTIeiGOpEIto: mat [
 	mat equalSelfPlusFullMatrix: pTIeiGOpEI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistanceConstraintIqcJc >> addpTIeiGOpXIto: mat [ 
 	| aB term1 prOIeOpEIT pFIeiGOpXIover2 term2 pTIeiGOpXI |
 	aB := frmI aBOp.
@@ -105,7 +107,7 @@ MbDDistanceConstraintIqcJc >> addpTIeiGOpXIto: mat [
 	mat equalSelfPlusFullMatrix: pTIeiGOpXI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistanceConstraintIqcJc >> addpTIeiGOplamto: mat [ 
 	| halfB term1 prOIeOpEIT pFIeiGOplam term2 pTIeiGOplam |
 	halfB := frmI aBOp times: 0.5.
@@ -117,7 +119,7 @@ MbDDistanceConstraintIqcJc >> addpTIeiGOplamto: mat [
 	mat at: 1 and: iG plusFullColumn: pTIeiGOplam
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDistanceConstraintIqcJc >> calcPostDynCorrectorIteration [
 	super calcPostDynCorrectorIteration.
 	pGpXI := distIeJe pvaluepXI.
@@ -127,7 +129,7 @@ MbDDistanceConstraintIqcJc >> calcPostDynCorrectorIteration [
 	ppGpEIpEI := distIeJe ppvaluepEIpEI
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDDistanceConstraintIqcJc >> fillAccICIterError: col [ 
 	| qXdotI qEdotI sum |
 	col at: iqXI plusFullColumn: pGpXI times: lam.
@@ -143,14 +145,14 @@ MbDDistanceConstraintIqcJc >> fillAccICIterError: col [
 	col at: iG plusNumber: sum
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDDistanceConstraintIqcJc >> fillPosICError: col [ 
 	super fillPosICError: col.
 	col at: iqXI plusFullColumn: pGpXI times: lam.
 	col at: iqEI plusFullColumn: pGpEI times: lam
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDDistanceConstraintIqcJc >> fillPosICJacob: mat [ 
 	| ppGpXIpEIlam |
 	mat at: iG and: iqXI plusFullRow: pGpXI.
@@ -163,7 +165,7 @@ MbDDistanceConstraintIqcJc >> fillPosICJacob: mat [
 	mat at: iqEI and: iqEI plusFullMatrix: ppGpEIpEI times: lam
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDDistanceConstraintIqcJc >> fillPosKineJacob: mat [ 
 	mat
 		at: iG
@@ -175,7 +177,7 @@ MbDDistanceConstraintIqcJc >> fillPosKineJacob: mat [
 		plusFullRow: pGpEI
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDDistanceConstraintIqcJc >> fillVelICJacob: mat [ 
 	mat at: iG and: iqXI plusFullRow: pGpXI.
 	mat at: iqXI and: iG plusFullColumn: pGpXI transpose.
@@ -183,7 +185,7 @@ MbDDistanceConstraintIqcJc >> fillVelICJacob: mat [
 	mat at: iqEI and: iG plusFullColumn: pGpEI transpose
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDDistanceConstraintIqcJc >> fillpFpy: mat [ 
 	| ppGpXIpEIlam |
 	mat at: iG and: iqXI plusFullRow: pGpXI.
@@ -194,18 +196,18 @@ MbDDistanceConstraintIqcJc >> fillpFpy: mat [
 	mat at: iqEI and: iqEI plusFullMatrix: ppGpEIpEI times: lam.
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDDistanceConstraintIqcJc >> fillpFpydot: mat [ 
 	mat at: iqXI and: iG plusFullColumn: pGpXI transpose.
 	mat at: iqEI and: iG plusFullColumn: pGpEI transpose
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDistanceConstraintIqcJc >> init_distIeJe [
 	distIeJe := MbDDistIeqcJec new
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDistanceConstraintIqcJc >> useEquationNumbers [
 	iqXI := frmI iqX.
 	iqEI := frmI iqE

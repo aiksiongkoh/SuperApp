@@ -7,17 +7,19 @@ ratio is the fraction
 # teeth on J     diameter of J
 "
 Class {
-	#name : #MbDParallelGearConstraintIJ,
-	#superclass : #MbDConstraintIJ,
+	#name : 'MbDParallelGearConstraintIJ',
+	#superclass : 'MbDConstraintIJ',
 	#instVars : [
 		'orbitIeJe',
 		'thezIeJe',
 		'ratioPlusOne'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDParallelGearConstraintIJ class >> visualWorksMetadata [
 
 	^ #(
@@ -27,7 +29,7 @@ MbDParallelGearConstraintIJ class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDParallelGearConstraintIJ class >> withFrmI: afrmI frmJ: afrmJ [ 
 	| instance |
 	self allSubclasses do: 
@@ -36,7 +38,7 @@ MbDParallelGearConstraintIJ class >> withFrmI: afrmI frmJ: afrmJ [
 			instance notNil ifTrue: [^instance]]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDParallelGearConstraintIJ >> calcPostDynCorrectorIteration [
 	| phiz thez |
 	phiz := orbitIeJe value.
@@ -44,7 +46,7 @@ MbDParallelGearConstraintIJ >> calcPostDynCorrectorIteration [
 	aG := thez - (ratioPlusOne * phiz) - aConstant
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDParallelGearConstraintIJ >> classString [
 	"Used to access the descriptive name of the constraint."
 	"Needed for multi-language."
@@ -52,40 +54,40 @@ MbDParallelGearConstraintIJ >> classString [
 	^TheMbDSystem getString: #'MbD: one parallel gear constraint '
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDParallelGearConstraintIJ >> initializeGlobally [
 	orbitIeJe initializeGlobally.
 	thezIeJe initializeGlobally
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDParallelGearConstraintIJ >> initializeLocally [
 	orbitIeJe initializeLocally.
 	thezIeJe initializeLocally
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDParallelGearConstraintIJ >> postDynCorrectorIteration [
 	orbitIeJe postDynCorrectorIteration.
 	thezIeJe postDynCorrectorIteration.
 	super postDynCorrectorIteration
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDParallelGearConstraintIJ >> postDynOutput [
 	orbitIeJe postDynOutput.
 	thezIeJe postDynOutput.
 	super postDynOutput
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDParallelGearConstraintIJ >> postDynPredictor [
 	orbitIeJe postDynPredictor.
 	thezIeJe postDynPredictor.
 	super postDynPredictor
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDParallelGearConstraintIJ >> postInput [
 	orbitIeJe postInput.
 	thezIeJe postInput.
@@ -94,73 +96,73 @@ MbDParallelGearConstraintIJ >> postInput [
 	super postInput
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDParallelGearConstraintIJ >> postPosICIteration [
 	orbitIeJe postPosICIteration.
 	thezIeJe postPosICIteration.
 	super postPosICIteration
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDParallelGearConstraintIJ >> postStaticIteration [
 	orbitIeJe postStaticIteration.
 	thezIeJe postStaticIteration.
 	super postStaticIteration
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDParallelGearConstraintIJ >> preAccIC [
 	orbitIeJe preAccIC.
 	thezIeJe preAccIC.
 	super preAccIC
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDParallelGearConstraintIJ >> preDynOutput [
 	orbitIeJe preDynOutput.
 	thezIeJe preDynOutput.
 	super preDynOutput
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDParallelGearConstraintIJ >> prePosIC [
 	orbitIeJe prePosIC.
 	thezIeJe prePosIC.
 	super prePosIC
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDParallelGearConstraintIJ >> preStatic [
 	orbitIeJe preStatic.
 	thezIeJe preStatic.
 	super preStatic
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDParallelGearConstraintIJ >> preVelIC [
 	orbitIeJe preVelIC.
 	thezIeJe preVelIC.
 	super preVelIC
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDParallelGearConstraintIJ >> ratio [
 	^ratioPlusOne - 1.0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDParallelGearConstraintIJ >> ratio: aDouble [ 
 	ratioPlusOne := aDouble + 1.0
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDParallelGearConstraintIJ >> simUpdateAll [
 	orbitIeJe simUpdateAll.
 	thezIeJe simUpdateAll.
 	super simUpdateAll
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDParallelGearConstraintIJ >> withFrmI: afrmI frmJ: afrmJ [ 
 	frmI := afrmI.
 	frmJ := afrmJ.

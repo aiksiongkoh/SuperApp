@@ -1,15 +1,17 @@
 Class {
-	#name : #MbDConstraintIJ,
-	#superclass : #MbDConstraint,
+	#name : 'MbDConstraintIJ',
+	#superclass : 'MbDConstraint',
 	#instVars : [
 		'frmI',
 		'frmJ',
 		'aConstant'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDConstraintIJ class >> visualWorksMetadata [
 
 	^ #(
@@ -19,46 +21,46 @@ MbDConstraintIJ class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraintIJ >> aConstant [
 	^aConstant
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraintIJ >> aConstant: aDouble [
 	aConstant := aDouble
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraintIJ >> addpFIeiGOpEIto: mat [ 
 	"ppGpXIpEI is zero."
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraintIJ >> addpFIeiGOpEJto: mat [ 
 	"ppGpXIpEJ is zero."
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraintIJ >> addpFIeiGOpXIto: mat [ 
 	"ppGpXIpXI is zero."
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraintIJ >> addpFIeiGOpXJto: mat [ 
 	"ppGpXIpXJ is zero."
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraintIJ >> addpFIeiGOplamto: mat [ 
 	mat at: 1 and: iG plusFullColumn: self pGpXI transpose
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraintIJ >> addpTIeiGOpEIto: mat [ 
 	| term11 prOIeOpEIT aFIeiGOover2 term12 term1 term21 pprOIeOpEIpEI term22 pprOIeOpEIipEI term22rowi pFIeiGOpEIover2 term23 aB term2 pTIeiGOpEI |
 	term11 := self pGpEI transpose times: lam / 2.0.
@@ -85,7 +87,7 @@ MbDConstraintIJ >> addpTIeiGOpEIto: mat [
 	mat equalSelfPlusFullMatrix: pTIeiGOpEI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraintIJ >> addpTIeiGOpEJto: mat [ 
 	| aB term1 prOIeOpEIT pFIeiGOpEJover2 term2 pTIeiGOpEJ |
 	aB := frmI aBOp.
@@ -97,21 +99,21 @@ MbDConstraintIJ >> addpTIeiGOpEJto: mat [
 	mat equalSelfPlusFullMatrix: pTIeiGOpEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraintIJ >> addpTIeiGOpXIto: mat [ 
 	"ppGpXIpXI is zero."
 	"ppGpEIpXI is zero."
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraintIJ >> addpTIeiGOpXJto: mat [ 
 	"ppGpXIpXJ is zero."
 	"ppGpEIpXJ is zero."
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraintIJ >> addpTIeiGOplamto: mat [ 
 	| halfB term1 prOIeOpEIT pFIeiGOplam term2 pTIeiGOplam |
 	halfB := frmI aBOp times: 0.5.
@@ -123,17 +125,17 @@ MbDConstraintIJ >> addpTIeiGOplamto: mat [
 	mat at: 1 and: iG plusFullColumn: pTIeiGOplam
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraintIJ >> frmI [
 	^frmI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstraintIJ >> frmJ [
 	^frmJ
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDConstraintIJ >> initialize [
 	super initialize.
 	aConstant := 0.0

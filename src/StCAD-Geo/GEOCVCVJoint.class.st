@@ -1,28 +1,30 @@
 Class {
-	#name : #GEOCVCVJoint,
-	#superclass : #GEOJoint,
+	#name : 'GEOCVCVJoint',
+	#superclass : 'GEOJoint',
 	#instVars : [
 		'coeffRestitution'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GEOCVCVJoint class >> faceI: facei faceJ: facej [ 
 	^super new faceI: facei faceJ: facej
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCVCVJoint class >> mbdClass [
 	^MbDFullySeparatedCVCVJoint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCVCVJoint class >> nameString [
 	^'CurveCurveContact'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOCVCVJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -32,7 +34,7 @@ GEOCVCVJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOCVCVJoint >> canUpdateForFrame: integer [ 
 	(super canUpdateForFrame: integer)
 		ifFalse: [^false].
@@ -43,17 +45,17 @@ GEOCVCVJoint >> canUpdateForFrame: integer [
 	^true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCVCVJoint >> coeffRestitution [
 	^coeffRestitution
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCVCVJoint >> coeffRestitution: double [ 
 	coeffRestitution := double
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOCVCVJoint >> createMbD [
 	| mbdCVCVJoint |
 	super createMbD.
@@ -61,14 +63,14 @@ GEOCVCVJoint >> createMbD [
 	mbdCVCVJoint coeffRestitution: coeffRestitution
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCVCVJoint >> cut [
 	markerI cut.
 	markerJ cut.
 	super cut
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOCVCVJoint >> dataFromMbD [
 	"
 	MbD returns aFIeO and aTIeO.
@@ -89,13 +91,13 @@ GEOCVCVJoint >> dataFromMbD [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCVCVJoint >> faceI: facei faceJ: facej [ 
 	markerI := GEOCurveMarker newOnFace: facei.
 	markerJ := GEOCurveMarker newOnFace: facej
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOCVCVJoint >> storeOn: aStream level: level [ 
 	super storeOn: aStream level: level.
 	aStream
@@ -104,7 +106,7 @@ GEOCVCVJoint >> storeOn: aStream level: level [
 		object: coeffRestitution
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOCVCVJoint >> storeTimeSeriesOn: aStream [ 
 	| dataSeries series |
 	super storeTimeSeriesOn: aStream.
@@ -142,35 +144,35 @@ GEOCVCVJoint >> storeTimeSeriesOn: aStream [
 		series: (series collect: [:data | data at: 1])
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCVCVJoint >> uncut [
 	markerI uncut.
 	markerJ uncut.
 	super uncut
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOCVCVJoint >> updateForFrame: integer [ 
 	super updateForFrame: integer.
 	markerI updateForFrame: integer.
 	markerJ updateForFrame: integer
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOCVCVJoint >> updateFromInitiallyAssembledState [
 	super updateFromInitiallyAssembledState.
 	markerI updateFromInitiallyAssembledState.
 	markerJ updateFromInitiallyAssembledState
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOCVCVJoint >> updateFromInputState [
 	super updateFromInputState.
 	markerI updateFromInputState.
 	markerJ updateFromInputState
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOCVCVJoint >> updateFromMbD [
 	super updateFromMbD.
 	markerI updateFromMbD.

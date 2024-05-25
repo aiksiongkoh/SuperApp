@@ -1,10 +1,18 @@
 Class {
-	#name : #StMNegative,
-	#superclass : #StMFunctionX,
-	#category : #'StMath-Symbolic'
+	#name : 'StMNegative',
+	#superclass : 'StMFunctionX',
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'accessing' }
+StMNegative class >> functionSymbol [
+
+	^ '-'
+]
+
+{ #category : 'VisualWorks metadata' }
 StMNegative class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +22,7 @@ StMNegative class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'StCAD-UI' }
+{ #category : 'StCAD-UI' }
 StMNegative >> cadStringOn: aStream [ 
 	aStream nextPut: $(.
 	aStream nextPut: $-.
@@ -22,23 +30,23 @@ StMNegative >> cadStringOn: aStream [
 	aStream nextPut: $)
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMNegative >> differentiateWRTx [
 	^StMConstant with: -1
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMNegative >> negative [
 
 	^ true
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 StMNegative >> printFuntionNameOn: aStream [
 	aStream nextPutAll: '-'
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMNegative >> value [
 	^x value negated
 ]

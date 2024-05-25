@@ -1,16 +1,18 @@
 Class {
-	#name : #MbDAnyPosICNewtonRaphson2,
-	#superclass : #MbDPosNewtonRaphson2,
+	#name : 'MbDAnyPosICNewtonRaphson2',
+	#superclass : 'MbDPosNewtonRaphson2',
 	#instVars : [
 		'nqsu',
 		'qsuOld',
 		'qsuWeights',
 		'nSingularMatrixError'
 	],
-	#category : #'StCAD-MbD-My Classes'
+	#category : 'StCAD-MbD-My Classes',
+	#package : 'StCAD-MbD',
+	#tag : 'My Classes'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDAnyPosICNewtonRaphson2 class >> visualWorksMetadata [
 
 	^ #(
@@ -20,7 +22,7 @@ MbDAnyPosICNewtonRaphson2 class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDAnyPosICNewtonRaphson2 >> assignEquationNumbers [
 	" *** This method was defined by StCAD.StMbD.MbDSystemNewtonRaphson2 as a subclass responsibility.
 	Replace its body with a proper implementation. *** "
@@ -28,14 +30,14 @@ MbDAnyPosICNewtonRaphson2 >> assignEquationNumbers [
 	self error: 'Subclass responsibility stub not reimplemented'
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDAnyPosICNewtonRaphson2 >> createVectorsAndMatrices [
 	qsuOld := StMFullColumn new: nqsu.
 	qsuWeights := StMDiagonalMatrix new: nqsu.
 	super createVectorsAndMatrices
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDAnyPosICNewtonRaphson2 >> fillPyPx [
 	pypx zeroSelf.
 	pypx 
@@ -45,7 +47,7 @@ MbDAnyPosICNewtonRaphson2 >> fillPyPx [
 	system partsJointsMotionsDo: [:item | item fillPosICJacob: pypx]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDAnyPosICNewtonRaphson2 >> fillY [
 	| newMinusOld |
 	newMinusOld := qsuOld negated.
@@ -55,13 +57,13 @@ MbDAnyPosICNewtonRaphson2 >> fillY [
 	system partsJointsMotionsDo: [:item | item fillPosICError: y]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDAnyPosICNewtonRaphson2 >> initialize [
 	super initialize.
 	nSingularMatrixError := 0
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDAnyPosICNewtonRaphson2 >> initializeGlobally [
 	super initializeGlobally.
 	system partsJointsMotionsDo: 
@@ -71,7 +73,7 @@ MbDAnyPosICNewtonRaphson2 >> initializeGlobally [
 			item fillqsulam: x]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDAnyPosICNewtonRaphson2 >> passRootToSystem [
 	system partsJointsMotionsDo: [:item | item setqsulam: x]
 ]

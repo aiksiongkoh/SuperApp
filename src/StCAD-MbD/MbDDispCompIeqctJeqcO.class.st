@@ -1,15 +1,17 @@
 Class {
-	#name : #MbDDispCompIeqctJeqcO,
-	#superclass : #MbDDispCompIeqcJeqcO,
+	#name : 'MbDDispCompIeqctJeqcO',
+	#superclass : 'MbDDispCompIeqcJeqcO',
 	#instVars : [
 		'priIeJeOpt',
 		'ppriIeJeOpEIpt',
 		'ppriIeJeOptpt'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDDispCompIeqctJeqcO class >> visualWorksMetadata [
 
 	^ #(
@@ -19,7 +21,7 @@ MbDDispCompIeqctJeqcO class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDDispCompIeqctJeqcO class >> withFrmI: afrmI frmJ: afrmJ axis: i [ 
 	^(afrmI isMemberOf: MbDEndFrameqct)
 		& (afrmJ isMemberOf: MbDEndFrameqc)
@@ -30,7 +32,7 @@ MbDDispCompIeqctJeqcO class >> withFrmI: afrmI frmJ: afrmJ axis: i [
 		ifFalse: [nil]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDispCompIeqctJeqcO >> calcPostDynCorrectorIteration [
 	"ppriIeJeOpEIpEI is not a constant now."
 
@@ -38,50 +40,50 @@ MbDDispCompIeqctJeqcO >> calcPostDynCorrectorIteration [
 	ppriIeJeOpEIpEI := (frmI ppriOeOpEpE: axis) negated
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDispCompIeqctJeqcO >> initializeGlobally [
 	ppriIeJeOpEJpEJ := frmJ ppriOeOpEpE: axis
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqctJeqcO >> ppriIeJeOpEIpt [
 	^ppriIeJeOpEIpt
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqctJeqcO >> ppriIeJeOptpt [
 	^ppriIeJeOptpt
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqctJeqcO >> ppvaluepEIpt [
 	^ppriIeJeOpEIpt
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqctJeqcO >> ppvalueptpt [
 	^ppriIeJeOptpt
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDDispCompIeqctJeqcO >> preAccIC [
 	super preAccIC.
 	ppriIeJeOpEIpt := (frmI ppriOeOpEpt: axis) negated.
 	ppriIeJeOptpt := (frmI ppriOeOptpt: axis) negated
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDDispCompIeqctJeqcO >> preVelIC [
 	super preVelIC.
 	priIeJeOpt := (frmI priOeOpt: axis) negated
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqctJeqcO >> priIeJeOpt [
 	^priIeJeOpt
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqctJeqcO >> pvaluept [
 	^priIeJeOpt
 ]

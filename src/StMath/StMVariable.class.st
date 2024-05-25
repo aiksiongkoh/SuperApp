@@ -2,16 +2,18 @@
 Abstract class
 "
 Class {
-	#name : #StMVariable,
-	#superclass : #StMSymbolic,
+	#name : 'StMVariable',
+	#superclass : 'StMSymbolic',
 	#instVars : [
 		'name',
 		'value'
 	],
-	#category : #'StMath-Symbolic'
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #'binary storage' }
+{ #category : 'binary storage' }
 StMVariable class >> binaryReaderBlockForVersion: oldVersion format: oldFormat [ 
 	"Remove the instance variable 'value dependents x name'."
 	"Remove the instance variable 'name value'."
@@ -31,17 +33,17 @@ StMVariable class >> binaryReaderBlockForVersion: oldVersion format: oldFormat [
 	^super binaryReaderBlockForVersion: oldVersion format: oldFormat
 ]
 
-{ #category : #'binary storage' }
+{ #category : 'binary storage' }
 StMVariable class >> binaryRepresentationVersion [
 	^30
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMVariable class >> name: symbol [ 
 	^super new name: symbol
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMVariable class >> visualWorksMetadata [
 
 	^ #(
@@ -51,40 +53,40 @@ StMVariable class >> visualWorksMetadata [
 
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 StMVariable >> = anObject [ 
 	^self == anObject
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 StMVariable >> copy [
 	"A SymVariable is unique."
 	"Do nothing."
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMVariable >> expandUntil: set [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMVariable >> name [
 	^name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMVariable >> name: symbol [ 
 	name := symbol asSymbol
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMVariable >> partialDifferentiateWRT: variable [ 
 	^self == variable
 		ifTrue: [StMConstant with: 1]
 		ifFalse: [StMConstant with: 0]
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 StMVariable >> printOn: aStream [ 
 	aStream print: self class.
 	aStream nextPut: $'.
@@ -95,32 +97,31 @@ StMVariable >> printOn: aStream [
 	aStream nextPut: $)
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMVariable >> simplifyUntil: set [ 
 	"Do nothing."
 ]
 
-{ #category : #changing }
+{ #category : 'changing' }
 StMVariable >> substitute: var1 with: var2 [ 
 	^self == var1
 		ifTrue: [var2]
 		ifFalse: [self]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMVariable >> value [
 
 	^ value ifNil: [ self ]
 ]
 
-{ #category : #accessing }
-StMVariable >> value: arg [ 
-	value := arg isNumber
-				ifTrue: [arg]
-				ifFalse: [self error: 'Argument must be a constant.']
+{ #category : 'accessing' }
+StMVariable >> value: arg [
+
+	value := arg
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMVariable >> withUnits: argUnits [ 
 	"Do nothing."
 ]

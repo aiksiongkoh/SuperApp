@@ -1,14 +1,15 @@
 Class {
-	#name : #BasicSweep,
-	#superclass : #BasicSurface,
+	#name : 'BasicSweep',
+	#superclass : 'BasicSurface',
 	#instVars : [
 		'aCurve',
 		'trajectory'
 	],
-	#category : #'StCAD-Geo'
+	#category : 'StCAD-Geo',
+	#package : 'StCAD-Geo'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 BasicSweep class >> visualWorksMetadata [
 
 	^ #(

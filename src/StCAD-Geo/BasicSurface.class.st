@@ -1,10 +1,11 @@
 Class {
-	#name : #BasicSurface,
-	#superclass : #BasicGeometry,
-	#category : #'StCAD-Geo'
+	#name : 'BasicSurface',
+	#superclass : 'BasicGeometry',
+	#category : 'StCAD-Geo',
+	#package : 'StCAD-Geo'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 BasicSurface class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +15,7 @@ BasicSurface class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicSurface >> pprfpfpsps_s: s [ 
 	| answer u v pprfpfpupu pprfpfpupv pprfpfpvpv |
 	answer := StMFullMatrix new: 2 by: 2.
@@ -38,7 +39,7 @@ BasicSurface >> pprfpfpsps_s: s [
 	^answer symLowerWithUpper
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicSurface >> rfpf_s: s [ 
 	^self rfpf_u: (s at: 1) v: (s at: 2)
 ]

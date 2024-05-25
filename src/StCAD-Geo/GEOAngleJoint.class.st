@@ -1,23 +1,25 @@
 Class {
-	#name : #GEOAngleJoint,
-	#superclass : #GEOJoint,
+	#name : 'GEOAngleJoint',
+	#superclass : 'GEOJoint',
 	#instVars : [
 		'theIzJz'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAngleJoint class >> mbdClass [
 	^MbDAngleJoint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAngleJoint class >> nameString [
 	^'AngleJoint'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOAngleJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -27,7 +29,7 @@ GEOAngleJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOAngleJoint >> createMbD [
 	| mbdScrewJoint |
 	super createMbD.
@@ -35,7 +37,7 @@ GEOAngleJoint >> createMbD [
 	mbdScrewJoint theIzJz: theIzJz
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOAngleJoint >> storeOn: aStream level: level [ 
 	super storeOn: aStream level: level.
 	aStream
@@ -44,12 +46,12 @@ GEOAngleJoint >> storeOn: aStream level: level [
 		object: theIzJz
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAngleJoint >> theIzJz [
 	^theIzJz
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAngleJoint >> theIzJz: anObject [
 	theIzJz := anObject
 ]

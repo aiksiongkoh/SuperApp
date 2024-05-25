@@ -1,16 +1,18 @@
 Class {
-	#name : #MinSepMaxPenIeJeNewtonRaphson2,
-	#superclass : #VectorNewtonRaphson2,
+	#name : 'MinSepMaxPenIeJeNewtonRaphson2',
+	#superclass : 'VectorNewtonRaphson2',
 	#instVars : [
 		'aAIe3Je1',
 		'lamConstraint',
 		'sSizeI',
 		'sSizeJ'
 	],
-	#category : #'StCAD-MbD-MbDSolver'
+	#category : 'StCAD-MbD-MbDSolver',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MinSepMaxPenIeJeNewtonRaphson2 class >> visualWorksMetadata [
 
 	^ #(
@@ -20,14 +22,14 @@ MinSepMaxPenIeJeNewtonRaphson2 class >> visualWorksMetadata [
 
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MinSepMaxPenIeJeNewtonRaphson2 >> askSystemToUpdate [
 	system endFramesCalc.
 	system calcPostLocalSepDistIteration.
 	aAIe3Je1 calcPostDynCorrectorIteration
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MinSepMaxPenIeJeNewtonRaphson2 >> fillPyPx [
 	pypx
 		at: 1
@@ -56,20 +58,20 @@ MinSepMaxPenIeJeNewtonRaphson2 >> fillPyPx [
 	pypx symLowerWithUpper
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MinSepMaxPenIeJeNewtonRaphson2 >> fillY [
 	y at: 1 putFullColumn: system pvaluepsI + (aAIe3Je1 pvaluepsI times: lamConstraint).
 	y at: sSizeI + 1 putFullColumn: system pvaluepsJ + (aAIe3Je1 pvaluepsJ times: lamConstraint).
 	y at: sSizeI + sSizeJ + 1 put: aAIe3Je1 value
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MinSepMaxPenIeJeNewtonRaphson2 >> incrementIterNo [
 	iterNo := iterNo + 1.
 	iterNo > iterMax ifTrue: [MaximumIterationError raiseSignal]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MinSepMaxPenIeJeNewtonRaphson2 >> initializeGlobally [
 	| lamSize |
 	aAIe3Je1 initializeGlobally.
@@ -86,42 +88,42 @@ MinSepMaxPenIeJeNewtonRaphson2 >> initializeGlobally [
 	matrixSolver := self matrixSolverClass new
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MinSepMaxPenIeJeNewtonRaphson2 >> initializeLocally [
 	super initializeLocally.
 	aAIe3Je1 initializeLocally.
 	dxTol := 1.0d-9
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MinSepMaxPenIeJeNewtonRaphson2 >> isConverged [
 	^dxNorm < dxTol or: [yNorm < yNormTol or: [iterNo = iterMax]]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MinSepMaxPenIeJeNewtonRaphson2 >> passRootToSystem [
 	system frmI s equalFullColumn: x at: 1.
 	system frmJ s equalFullColumn: x at: sSizeI + 1.
 	lamConstraint := x at: sSizeI + sSizeJ + 1
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MinSepMaxPenIeJeNewtonRaphson2 >> postRun [
 	"Do nothing."
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MinSepMaxPenIeJeNewtonRaphson2 >> preRun [
 	system endFramesCalc.
 	system calcPostLocalSepDistIteration
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MinSepMaxPenIeJeNewtonRaphson2 >> run [
 	self runWithBackTracking
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MinSepMaxPenIeJeNewtonRaphson2 >> runWithBackTracking [
 	self preRun.
 	self initializeLocally.
@@ -132,7 +134,7 @@ MinSepMaxPenIeJeNewtonRaphson2 >> runWithBackTracking [
 	^x
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MinSepMaxPenIeJeNewtonRaphson2 >> system: rIeJe [ 
 	| frmI frmJ |
 	super system: rIeJe.

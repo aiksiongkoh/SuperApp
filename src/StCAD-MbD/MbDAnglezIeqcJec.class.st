@@ -1,16 +1,18 @@
 Class {
-	#name : #MbDAnglezIeqcJec,
-	#superclass : #MbDAnglezIecJec,
+	#name : 'MbDAnglezIeqcJec',
+	#superclass : 'MbDAnglezIecJec',
 	#instVars : [
 		'pthezpEI',
 		'ppthezpEIpEI',
 		'pcthezpEI',
 		'psthezpEI'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDAnglezIeqcJec class >> visualWorksMetadata [
 
 	^ #(
@@ -20,7 +22,7 @@ MbDAnglezIeqcJec class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDAnglezIeqcJec class >> withFrmI: afrmI frmJ: afrmJ [ 
 	^(afrmI isMemberOf: MbDEndFrameqc)
 		& (afrmJ isMemberOf: MbDEndFramec)
@@ -28,7 +30,7 @@ MbDAnglezIeqcJec class >> withFrmI: afrmI frmJ: afrmJ [
 		ifFalse: [nil]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDAnglezIeqcJec >> calcPostDynCorrectorIteration [
 	| ppcthezpEIpEI ppsthezpEIpEI ppthezpEIpEIi ppcthezpEIpEIi ppsthezpEIpEIi pcthezpEIi psthezpEIi term1 term2 term3 pcthezpEIj psthezpEIj ppthezpEIpEIij |
 	super calcPostDynCorrectorIteration.
@@ -58,35 +60,35 @@ MbDAnglezIeqcJec >> calcPostDynCorrectorIteration [
 					ppthezpEIpEI at: j and: i put: ppthezpEIpEIij]]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDAnglezIeqcJec >> initDirectionCosines [
 	aA11IeJe := MbDDirectionCosineIeqcJec new.
 	aA21IeJe := MbDDirectionCosineIeqcJec new
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDAnglezIeqcJec >> initialize [
 	super initialize.
 	pthezpEI := StMFullRow new: 4.
 	ppthezpEIpEI := StMFullMatrix new: 4 by: 4
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDAnglezIeqcJec >> ppthezpEIpEI [
 	^ppthezpEIpEI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDAnglezIeqcJec >> ppvaluepEIpEI [
 	^ppthezpEIpEI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDAnglezIeqcJec >> pthezpEI [
 	^pthezpEI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDAnglezIeqcJec >> pvaluepEI [
 	^pthezpEI
 ]

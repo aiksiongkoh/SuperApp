@@ -1,16 +1,18 @@
 Class {
-	#name : #MbDDirectionCosineIeqcJec,
-	#superclass : #MbDDirectionCosineIecJec,
+	#name : 'MbDDirectionCosineIeqcJec',
+	#superclass : 'MbDDirectionCosineIecJec',
 	#instVars : [
 		'pAijIeJepEI',
 		'ppAijIeJepEIpEI',
 		'pAjOIepEIT',
 		'ppAjOIepEIpEI'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDDirectionCosineIeqcJec class >> visualWorksMetadata [
 
 	^ #(
@@ -20,7 +22,7 @@ MbDDirectionCosineIeqcJec class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDDirectionCosineIeqcJec class >> withFrmI: afrmI frmJ: afrmJ axisI: aaxisI axisJ: aaxisJ [ 
 	^(afrmI isMemberOf: MbDEndFrameqc)
 		& (afrmJ isMemberOf: MbDEndFramec)
@@ -32,7 +34,7 @@ MbDDirectionCosineIeqcJec class >> withFrmI: afrmI frmJ: afrmJ axisI: aaxisI axi
 		ifFalse: [nil]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDirectionCosineIeqcJec >> calcPostDynCorrectorIteration [
 	| ppAijIeJepEIipEI ppAjOIepEIipEI |
 	super calcPostDynCorrectorIteration.
@@ -45,34 +47,34 @@ MbDDirectionCosineIeqcJec >> calcPostDynCorrectorIteration [
 	ppAijIeJepEIpEI symLowerWithUpper
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDirectionCosineIeqcJec >> initialize [
 	super initialize.
 	pAijIeJepEI := StMFullRow new: 4.
 	ppAijIeJepEIpEI := StMFullMatrix new: 4 by: 4
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDirectionCosineIeqcJec >> initializeGlobally [
 	ppAjOIepEIpEI := frmI ppAjOepEpE: axisI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineIeqcJec >> pAijIeJepEI [
 	^pAijIeJepEI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineIeqcJec >> ppAijIeJepEIpEI [
 	^ppAijIeJepEIpEI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineIeqcJec >> ppvaluepEIpEI [
 	^ppAijIeJepEIpEI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineIeqcJec >> pvaluepEI [
 	^pAijIeJepEI
 ]

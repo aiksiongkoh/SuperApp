@@ -1,15 +1,17 @@
 Class {
-	#name : #MbDVelMagIecJec,
-	#superclass : #MbDKinematicDotIeJe,
+	#name : 'MbDVelMagIecJec',
+	#superclass : 'MbDKinematicDotIeJe',
 	#instVars : [
 		'vIeJe',
 		'vIeJeO',
 		'uvIeJeO'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDVelMagIecJec class >> visualWorksMetadata [
 
 	^ #(
@@ -19,7 +21,7 @@ MbDVelMagIecJec class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDVelMagIecJec class >> withFrmI: afrmI frmJ: afrmJ [ 
 	| instance |
 	self allSubclasses
@@ -29,7 +31,7 @@ MbDVelMagIecJec class >> withFrmI: afrmI frmJ: afrmJ [
 			instance notNil ifTrue: [^instance]]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDVelMagIecJec >> calcPostDynCorrectorIteration [
 	vIeJeO := frmJ vOeO - frmI vOeO.
 	vIeJe := vIeJeO length.
@@ -38,7 +40,7 @@ MbDVelMagIecJec >> calcPostDynCorrectorIteration [
 				ifFalse: [vIeJeO times: 1.0 / vIeJe]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDVelMagIecJec >> value [
 	^vIeJe
 ]

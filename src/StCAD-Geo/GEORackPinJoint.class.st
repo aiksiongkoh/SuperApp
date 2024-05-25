@@ -1,14 +1,16 @@
 Class {
-	#name : #GEORackPinJoint,
-	#superclass : #GEOJoint,
+	#name : 'GEORackPinJoint',
+	#superclass : 'GEOJoint',
 	#instVars : [
 		'pitchRadius',
 		'aConstant'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'binary storage' }
+{ #category : 'binary storage' }
 GEORackPinJoint class >> binaryReaderBlockForVersion: oldVersion format: oldFormat [
 	"Change 
 	StCAD.Geo.GEORackPinJoint 
@@ -36,22 +38,22 @@ GEORackPinJoint class >> binaryReaderBlockForVersion: oldVersion format: oldForm
 	^super binaryReaderBlockForVersion: oldVersion format: oldFormat
 ]
 
-{ #category : #'binary storage' }
+{ #category : 'binary storage' }
 GEORackPinJoint class >> binaryRepresentationVersion [
 	^40
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORackPinJoint class >> mbdClass [
 	^MbDRackPinJoint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORackPinJoint class >> nameString [
 	^'RackPinionJoint'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEORackPinJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -61,17 +63,17 @@ GEORackPinJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORackPinJoint >> aConstant [
 	^aConstant
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORackPinJoint >> aConstant: anObject [
 	aConstant := anObject
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEORackPinJoint >> createMbD [
 	| mbdRackPinJoint |
 	super createMbD.
@@ -80,22 +82,22 @@ GEORackPinJoint >> createMbD [
 	mbdRackPinJoint aConstant: aConstant
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 GEORackPinJoint >> magnifySelf: aDouble [ 
 	pitchRadius := pitchRadius * aDouble
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORackPinJoint >> pitchRadius [
 	^pitchRadius
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORackPinJoint >> pitchRadius: double [ 
 	pitchRadius := double
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEORackPinJoint >> storeOn: aStream level: level [ 
 	super storeOn: aStream level: level.
 	aStream

@@ -1,14 +1,16 @@
 Class {
-	#name : #MbDFullMotion,
-	#superclass : #MbDPrescribedMotion,
+	#name : 'MbDFullMotion',
+	#superclass : 'MbDPrescribedMotion',
 	#instVars : [
 		'frIJI',
 		'fangIJJ'
 	],
-	#category : #'StCAD-MbD-MbDMotion'
+	#category : 'StCAD-MbD-MbDMotion',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDMotion'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDFullMotion class >> visualWorksMetadata [
 
 	^ #(
@@ -18,7 +20,7 @@ MbDFullMotion class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDFullMotion >> classString [
 	"Used to access the descriptive name of the joint."
 	"Needed for multi-language."
@@ -26,7 +28,7 @@ MbDFullMotion >> classString [
 	^TheMbDSystem getString: #'MbD: Full Motion '
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDFullMotion >> connectsI: mkrII toJ: mkrJJ [ 
 	| eFrmqct |
 	super connectsI: mkrII toJ: mkrJJ.
@@ -36,23 +38,23 @@ MbDFullMotion >> connectsI: mkrII toJ: mkrJJ [
 	frmI become: eFrmqct
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDFullMotion >> fangIJJ: aEulerAngles [ 
 	fangIJJ := aEulerAngles
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDFullMotion >> frIJI: col [ 
 	frIJI := col
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDFullMotion >> initMotions [
 	frmI rmemBlks: frIJI.
 	frmI phiThePsiBlks: fangIJJ
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDFullMotion >> initializeGlobally [
 	constraints isEmpty
 		ifTrue: 

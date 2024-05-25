@@ -2,22 +2,24 @@
 Used by SparseMatrix. The second dimension size (size2) is stored in SparseMatrix and not by individual IdentityDictionarys.
 "
 Class {
-	#name : #StMSparseVector,
-	#superclass : #IdentityDictionary,
-	#type : #variable,
+	#name : 'StMSparseVector',
+	#superclass : 'IdentityDictionary',
+	#type : 'variable',
 	#instVars : [
 		'fullsize'
 	],
-	#category : #'StMath-StMathArray'
+	#category : 'StMath-StMathArray',
+	#package : 'StMath',
+	#tag : 'StMathArray'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMSparseVector class >> new: aInteger [ 
 	^(super new: aInteger)
 		fullsize: aInteger
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMSparseVector class >> visualWorksMetadata [
 
 	^ #(
@@ -26,14 +28,14 @@ StMSparseVector class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'basic ops *' }
+{ #category : 'basic ops *' }
 StMSparseVector >> * aNumber [ 
 	| answer |
 	answer := self copy.
 	^answer magnifySelf: aNumber
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMSparseVector >> = otherCollection [ 
 	"Answer whether the two sparse vectors are equal even in structure."
 
@@ -48,7 +50,7 @@ StMSparseVector >> = otherCollection [
 	^true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMSparseVector >> at2: key [ 
 	"Behaves like IdentityDictionary>at: but specialized for numbers."
 
@@ -72,7 +74,7 @@ StMSparseVector >> at2: key [
 	^value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMSparseVector >> at: key [ 
 	"Behaves like IdentityDictionary>at: but specialized for numbers."
 
@@ -90,14 +92,14 @@ StMSparseVector >> at: key [
 						ifFalse: [(index := index + 1) > length ifTrue: [index := 1]]]]
 ]
 
-{ #category : #'ops on self -' }
+{ #category : 'ops on self -' }
 StMSparseVector >> at: i minusFullVector: aFullVector [ 
 	| iOffset |
 	iOffset := i - 1.
 	1 to: aFullVector size do: [:ii | self at: iOffset + ii minusNumber: (aFullVector at: ii)]
 ]
 
-{ #category : #'ops on self -' }
+{ #category : 'ops on self -' }
 StMSparseVector >> at: i minusFullVector: aFullVector times: aNumber [ 
 	| iOffset |
 	iOffset := i - 1.
@@ -105,7 +107,7 @@ StMSparseVector >> at: i minusFullVector: aFullVector times: aNumber [
 				* aNumber]
 ]
 
-{ #category : #'ops on self -' }
+{ #category : 'ops on self -' }
 StMSparseVector >> at: key minusNumber: aNumber [ 
 	"Efficient method for row at: key put: ((row at: key) + aNumber)"
 
@@ -132,21 +134,21 @@ StMSparseVector >> at: key minusNumber: aNumber [
 						ifFalse: [(index := index + 1) > length ifTrue: [index := 1]]]]
 ]
 
-{ #category : #'ops on self -' }
+{ #category : 'ops on self -' }
 StMSparseVector >> at: i1 minusSparseVector: aSparseVector [ 
 	| ioffset |
 	ioffset := i1 - 1.
 	aSparseVector keysAndValuesDo: [:ii :value | self at: ioffset + ii minusNumber: value]
 ]
 
-{ #category : #'ops on self +' }
+{ #category : 'ops on self +' }
 StMSparseVector >> at: i plusFullVector: aFullVector [ 
 	| iOffset |
 	iOffset := i - 1.
 	1 to: aFullVector size do: [:ii | self at: iOffset + ii plusNumber: (aFullVector at: ii)]
 ]
 
-{ #category : #'ops on self +' }
+{ #category : 'ops on self +' }
 StMSparseVector >> at: i plusFullVector: aFullVector times: aNumber [ 
 	| iOffset |
 	iOffset := i - 1.
@@ -154,7 +156,7 @@ StMSparseVector >> at: i plusFullVector: aFullVector times: aNumber [
 				* aNumber]
 ]
 
-{ #category : #'ops on self +' }
+{ #category : 'ops on self +' }
 StMSparseVector >> at: key plusNumber: aNumber [ 
 	"Efficient method for row at: key put: ((row at: key) + aNumber)"
 
@@ -181,14 +183,14 @@ StMSparseVector >> at: key plusNumber: aNumber [
 						ifFalse: [(index := index + 1) > length ifTrue: [index := 1]]]]
 ]
 
-{ #category : #'ops on self +' }
+{ #category : 'ops on self +' }
 StMSparseVector >> at: i1 plusSparseVector: aSparseVector [ 
 	| ioffset |
 	ioffset := i1 - 1.
 	aSparseVector keysAndValuesDo: [:ii :value | self at: ioffset + ii plusNumber: value]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMSparseVector >> at: key put: aNumber [ 
 	"Behaves like IdentityDictionary>at:put: but specialized for numbers."
 
@@ -213,14 +215,14 @@ StMSparseVector >> at: key put: aNumber [
 						ifFalse: [(index := index + 1) > length ifTrue: [index := 1]]]]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMSparseVector >> at: i putFullVector: aFullVector [ 
 	| iOffset |
 	iOffset := i - 1.
 	1 to: aFullVector size do: [:ii | self at: iOffset + ii put: (aFullVector at: ii)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMSparseVector >> at: i putFullVector: aFullVector times: number [ 
 	| iOffset |
 	iOffset := i - 1.
@@ -228,7 +230,7 @@ StMSparseVector >> at: i putFullVector: aFullVector times: number [
 				* number]
 ]
 
-{ #category : #'ops on self *' }
+{ #category : 'ops on self *' }
 StMSparseVector >> at: key times: aNumber [ 
 	"Efficient method for row at: key put: ((row at: key) * aNumber)"
 
@@ -248,19 +250,19 @@ StMSparseVector >> at: key times: aNumber [
 					ifFalse: [(index := index + 1) > length ifTrue: [index := 1]]]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMSparseVector >> atIndex: index [ 
 	^valueArray at: index
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMSparseVector >> conditionSelf [
 	"self become new sparse vector with significant elements only."
 
 	self become: self conditioned
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMSparseVector >> conditionSelfWithTol: tol [ 
 	"self become new sparse vector with significant elements only."
 
@@ -269,7 +271,7 @@ StMSparseVector >> conditionSelfWithTol: tol [
 	self become: newSelf
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMSparseVector >> conditioned [
 	"Answer a fresh sparse vector of significant elements."
 
@@ -278,7 +280,7 @@ StMSparseVector >> conditioned [
 	^self conditionedWithTol: tol
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMSparseVector >> conditionedWithTol: tol [ 
 	"Answer a fresh sparse vector of significant elements."
 
@@ -288,7 +290,7 @@ StMSparseVector >> conditionedWithTol: tol [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMSparseVector >> dot: aVector [ 
 	"Inner dot product."
 
@@ -303,27 +305,27 @@ StMSparseVector >> dot: aVector [
 	^answer
 ]
 
-{ #category : #'ops on self -' }
+{ #category : 'ops on self -' }
 StMSparseVector >> equalSelfMinusSparseVector: aSparseVector [ 
 	aSparseVector keysAndValuesDo: [:i :value | self at: i minusNumber: value]
 ]
 
-{ #category : #'ops on self -' }
+{ #category : 'ops on self -' }
 StMSparseVector >> equalSelfMinusSparseVector: aSparseVector times: aNumber [ 
 	aSparseVector keysAndValuesDo: [:i :value | self at: i minusNumber: value * aNumber]
 ]
 
-{ #category : #'ops on self +' }
+{ #category : 'ops on self +' }
 StMSparseVector >> equalSelfPlusSparseVector: aSparseVector [ 
 	aSparseVector keysAndValuesDo: [:i :value | self at: i plusNumber: value]
 ]
 
-{ #category : #'ops on self +' }
+{ #category : 'ops on self +' }
 StMSparseVector >> equalSelfPlusSparseVector: aSparseVector times: aNumber [ 
 	aSparseVector keysAndValuesDo: [:i :value | self at: i plusNumber: value * aNumber]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 StMSparseVector >> findKeyOrNil: key [ 
 	"Look for the key in the receiver. If it is found, answer 
 	the index of the association containting the key, otherwise 
@@ -344,12 +346,12 @@ StMSparseVector >> findKeyOrNil: key [
 						ifFalse: [(index := index + 1) > length ifTrue: [index := 1]]]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMSparseVector >> fullsize: aInteger [ 
 	fullsize := aInteger
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 StMSparseVector >> grow [
 	| oldfullsize |
 	oldfullsize := fullsize.
@@ -357,14 +359,14 @@ StMSparseVector >> grow [
 	fullsize := oldfullsize
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMSparseVector >> isSequenceable [
 	"Answers true."
 
 	^true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMSparseVector >> isZero [
 	| value |
 	1 to: self basicSize
@@ -376,7 +378,7 @@ StMSparseVector >> isZero [
 	^true
 ]
 
-{ #category : #norms }
+{ #category : 'norms' }
 StMSparseVector >> length [
 	"Euclidean norm."
 	"Square root of the sum of squares."
@@ -384,7 +386,7 @@ StMSparseVector >> length [
 	^self sumOfSquares sqrt
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMSparseVector >> magnifySelf: double [ 
 	double = 1 ifTrue: [^self].
 	1 to: self basicSize do: [:index | (self basicAt: index)
@@ -392,7 +394,7 @@ StMSparseVector >> magnifySelf: double [
 					* double]]
 ]
 
-{ #category : #norms }
+{ #category : 'norms' }
 StMSparseVector >> maxElement [
 	"abs is not efficient."
 
@@ -410,10 +412,10 @@ StMSparseVector >> maxElement [
 	^answer
 ]
 
-{ #category : #norms }
+{ #category : 'norms' }
 StMSparseVector >> minAndMaxValues [
-	| min max num |
-	min := 1.0d300.
+	| min max num valueArray |
+	min := 1.0e300.
 	max := min negated.
 	1 to: self basicSize
 		do: 
@@ -426,7 +428,7 @@ StMSparseVector >> minAndMaxValues [
 	^Array with: min with: max
 ]
 
-{ #category : #'basic ops -' }
+{ #category : 'basic ops -' }
 StMSparseVector >> minusSparseVector: aSparseVector [ 
 	| answer |
 	self tally < aSparseVector tally
@@ -439,7 +441,7 @@ StMSparseVector >> minusSparseVector: aSparseVector [
 	^answer
 ]
 
-{ #category : #'basic ops -' }
+{ #category : 'basic ops -' }
 StMSparseVector >> minusSparseVector: aSparseVector times: beta [ 
 	| answer |
 	self tally < aSparseVector tally
@@ -452,35 +454,35 @@ StMSparseVector >> minusSparseVector: aSparseVector times: beta [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMSparseVector >> ncol [
 	self subclassResponsibility
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMSparseVector >> negated [
 	^self times: -1.0
 ]
 
-{ #category : #norms }
+{ #category : 'norms' }
 StMSparseVector >> normL: number [ 
 	^(self sumOfElementsRaisedTo: number)
 		raisedTo: number reciprocal
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMSparseVector >> nrow [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMSparseVector >> numberOfElements [
 	"Answer the number of elements in the full vector or matrix."
 
 	^fullsize
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 StMSparseVector >> outputOnFile: aString [ 
 	| writeStream aij aijString |
 	writeStream := aString asFilename writeStream.
@@ -498,7 +500,7 @@ StMSparseVector >> outputOnFile: aString [
 	writeStream flush; close
 ]
 
-{ #category : #'basic ops +' }
+{ #category : 'basic ops +' }
 StMSparseVector >> plusSparseVector: aSparseVector [ 
 	| answer |
 	self tally < aSparseVector tally
@@ -511,7 +513,7 @@ StMSparseVector >> plusSparseVector: aSparseVector [
 	^answer
 ]
 
-{ #category : #'basic ops +' }
+{ #category : 'basic ops +' }
 StMSparseVector >> plusSparseVector: aSparseVector times: beta [ 
 	| answer |
 	self tally < aSparseVector tally
@@ -524,7 +526,7 @@ StMSparseVector >> plusSparseVector: aSparseVector times: beta [
 	^answer
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 StMSparseVector >> printOn: aStream [ 
 	"Append to the argument aStream a sequence of characters that identifies the receiver."
 
@@ -546,7 +548,7 @@ StMSparseVector >> printOn: aStream [
 	aStream nextPut: $)
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 StMSparseVector >> removeKey: key [ 
 	"Remove key from the receiver. If key is not in the receiver, 
 	do nothing and return nil. Otherwise, answer the value 
@@ -563,14 +565,14 @@ StMSparseVector >> removeKey: key [
 			value]
 ]
 
-{ #category : #norms }
+{ #category : 'norms' }
 StMSparseVector >> rootMeanSquare [
 	"(sumOfSquares / numberOfElements) sqrt"
 
 	^(self sumOfSquares / self numberOfElements) sqrt
 ]
 
-{ #category : #norms }
+{ #category : 'norms' }
 StMSparseVector >> sumOfAbsElements [
 	| sum |
 	sum := 0.
@@ -583,7 +585,7 @@ StMSparseVector >> sumOfAbsElements [
 	^sum
 ]
 
-{ #category : #norms }
+{ #category : 'norms' }
 StMSparseVector >> sumOfElements [
 	| sum |
 	sum := 0.
@@ -594,7 +596,7 @@ StMSparseVector >> sumOfElements [
 	^sum
 ]
 
-{ #category : #norms }
+{ #category : 'norms' }
 StMSparseVector >> sumOfElementsRaisedTo: number [ 
 	"For each element abs it, raised it to the power of number."
 	"Then sum them all."
@@ -611,7 +613,7 @@ StMSparseVector >> sumOfElementsRaisedTo: number [
 	^sum
 ]
 
-{ #category : #norms }
+{ #category : 'norms' }
 StMSparseVector >> sumOfSquares [
 	"When sum is integer 0, num * num + sum is more efficient than sum + num * num."
 
@@ -624,19 +626,19 @@ StMSparseVector >> sumOfSquares [
 	^sum
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMSparseVector >> tally [
 	^tally
 ]
 
-{ #category : #'basic ops *' }
+{ #category : 'basic ops *' }
 StMSparseVector >> times: aNumber [ 
 	| answer |
 	answer := self copy.
 	^answer magnifySelf: aNumber
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMSparseVector >> times: double conditionedWithTol: tol [ 
 	"Answer a fresh sparse vector of significant elements."
 
@@ -650,7 +652,7 @@ StMSparseVector >> times: double conditionedWithTol: tol [
 	^answer
 ]
 
-{ #category : #'basic ops -' }
+{ #category : 'basic ops -' }
 StMSparseVector >> times: alpha minusSparseVector: aSparseVector [ 
 	| answer |
 	self tally < aSparseVector tally
@@ -663,7 +665,7 @@ StMSparseVector >> times: alpha minusSparseVector: aSparseVector [
 	^answer
 ]
 
-{ #category : #'basic ops -' }
+{ #category : 'basic ops -' }
 StMSparseVector >> times: alpha minusSparseVector: aSparseVector times: beta [ 
 	| answer |
 	self tally < aSparseVector tally
@@ -676,7 +678,7 @@ StMSparseVector >> times: alpha minusSparseVector: aSparseVector times: beta [
 	^answer
 ]
 
-{ #category : #'basic ops +' }
+{ #category : 'basic ops +' }
 StMSparseVector >> times: alpha plusSparseVector: aSparseVector [ 
 	| answer |
 	self tally < aSparseVector tally
@@ -689,7 +691,7 @@ StMSparseVector >> times: alpha plusSparseVector: aSparseVector [
 	^answer
 ]
 
-{ #category : #'basic ops +' }
+{ #category : 'basic ops +' }
 StMSparseVector >> times: alpha plusSparseVector: aSparseVector times: beta [ 
 	| answer |
 	self tally < aSparseVector tally
@@ -702,7 +704,7 @@ StMSparseVector >> times: alpha plusSparseVector: aSparseVector times: beta [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMSparseVector >> validIndicesWithoutKey: discardKey [ 
 	| indices |
 	indices := OrderedCollection new: self size.
@@ -715,12 +717,12 @@ StMSparseVector >> validIndicesWithoutKey: discardKey [
 	^indices
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMSparseVector >> valueArray [
 	^valueArray
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMSparseVector >> zeroSelf [
 	"Make non zero elements zero. Do not remove them."
 

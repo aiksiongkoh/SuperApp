@@ -1,13 +1,15 @@
 Class {
-	#name : #MbDReaction,
-	#superclass : #MbDItem,
+	#name : 'MbDReaction',
+	#superclass : 'MbDItem',
 	#instVars : [
 		'joint'
 	],
-	#category : #'StCAD-MbD-MbDReaction'
+	#category : 'StCAD-MbD-MbDReaction',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDReaction'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDReaction class >> visualWorksMetadata [
 
 	^ #(
@@ -17,49 +19,49 @@ MbDReaction class >> visualWorksMetadata [
 
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 MbDReaction >> differentiateWRT: variable [ 
 	^self == variable
 		ifTrue: [StMConstant with: 1]
 		ifFalse: [StMConstant with: 0]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReaction >> joint: aJoint [ 
 	joint := aJoint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReaction >> partFrameI [
 	^joint partFrameI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReaction >> partFrameJ [
 	^joint partFrameJ
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDReaction >> postAccICIteration [
 	self calcPostDynCorrectorIteration
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDReaction >> postCollisionCorrectorIteration [
 	self calcPostDynCorrectorIteration
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDReaction >> postCollisionPredictor [
 	self calcPostDynCorrectorIteration
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDReaction >> simplified [
 	"Do nothing."
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDReaction >> useEquationNumbers [
 	"Do nothing."
 ]

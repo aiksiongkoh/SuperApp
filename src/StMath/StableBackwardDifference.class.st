@@ -1,10 +1,12 @@
 Class {
-	#name : #StableBackwardDifference,
-	#superclass : #LinearMultiStepMethod,
-	#category : #'StMath-StMathDifferenceOperator'
+	#name : 'StableBackwardDifference',
+	#superclass : 'LinearMultiStepMethod',
+	#category : 'StMath-StMathDifferenceOperator',
+	#package : 'StMath',
+	#tag : 'StMathDifferenceOperator'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StableBackwardDifference class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ StableBackwardDifference class >> visualWorksMetadata [
 
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 StableBackwardDifference >> derivative: n at: t present: y past: ypast [ 
 	"Interpolate or extrapolate."
 	"dfdt(t) = df0dt + d2f0dt2*(t - t0) + d3f0dt3*(t - t0)^2 / 2! + ..."
@@ -42,7 +44,7 @@ StableBackwardDifference >> derivative: n at: t present: y past: ypast [
 	^answer
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 StableBackwardDifference >> derivative: i present: y past1: ypast [ 
 	"Answer ith derivative given present value and past values."
 
@@ -55,7 +57,7 @@ StableBackwardDifference >> derivative: i present: y past1: ypast [
 		dot: series
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 StableBackwardDifference >> derivative: i present: y past: ypast [ 
 	"Answer ith derivative given present value and past values."
 
@@ -72,7 +74,7 @@ StableBackwardDifference >> derivative: i present: y past: ypast [
 				ifFalse: [y zeroCopy]]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 StableBackwardDifference >> derivative: n present: y past: ypast presentDerivative: ydot pastDerivative: ydotpast [ 
 	^self
 		derivative: n
@@ -80,7 +82,7 @@ StableBackwardDifference >> derivative: n present: y past: ypast presentDerivati
 		past: ypast
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 StableBackwardDifference >> derivative: i with: series [ 
 	| y ypast |
 	y := series at: 1.
@@ -91,7 +93,7 @@ StableBackwardDifference >> derivative: i with: series [
 		past: ypast
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 StableBackwardDifference >> formSmallerTaylorMatrix [
 	"
 	This form is numerically more stable and is prefered over the full Taylor Matrix. 
@@ -108,7 +110,7 @@ StableBackwardDifference >> formSmallerTaylorMatrix [
 			derivative: 0]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 StableBackwardDifference >> formTaylorMatrix [
 	"
 	This form is numerically more stable and is prefered over the full Taylor Matrix. 
@@ -125,7 +127,7 @@ StableBackwardDifference >> formTaylorMatrix [
 			derivative: 0]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 StableBackwardDifference >> formTaylorRow: i withTimeNode: ii derivative: k [ 
 	| rowi hi hipower aij |
 	rowi := taylorMatrix at: i.
@@ -144,20 +146,20 @@ StableBackwardDifference >> formTaylorRow: i withTimeNode: ii derivative: k [
 			rowi at: j put: aij]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 StableBackwardDifference >> instanciateTaylorMatrix [
 	(taylorMatrix isNil or: [taylorMatrix nrow ~= order])
 		ifTrue: [taylorMatrix := StMFullMatrix new: order by: order]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StableBackwardDifference >> order: integer [ 
 	"Method order of formula."
 
 	order := integer
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 StableBackwardDifference >> pvdotpv [
 	"pvdotpv := operatorMatrix timesColumn: #(-1.0d ... -1.0d)."
 

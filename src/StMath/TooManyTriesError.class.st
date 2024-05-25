@@ -1,10 +1,12 @@
 Class {
-	#name : #TooManyTriesError,
-	#superclass : #IntegratorError,
-	#category : #'StMath-StMathIntegrator'
+	#name : 'TooManyTriesError',
+	#superclass : 'IntegratorError',
+	#category : 'StMath-StMathIntegrator',
+	#package : 'StMath',
+	#tag : 'StMathIntegrator'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 TooManyTriesError class >> visualWorksMetadata [
 
 	^ #(

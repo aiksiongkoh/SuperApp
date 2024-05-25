@@ -1,14 +1,16 @@
 Class {
-	#name : #Integrator,
-	#superclass : #Solver,
+	#name : 'Integrator',
+	#superclass : 'Solver',
 	#instVars : [
 		'system',
 		'direction'
 	],
-	#category : #'StMath-StMathIntegrator'
+	#category : 'StMath-StMathIntegrator',
+	#package : 'StMath',
+	#tag : 'StMathIntegrator'
 }
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 Integrator class >> initSignals [
 	IntegratorError notifierString: #'StM: Integrator error'; nameClass: self message: #integratorError.
 	DiscontinuityError notifierString: #'StM: A discontinuity is found.'; nameClass: self message: #discontinuityError.
@@ -16,14 +18,14 @@ Integrator class >> initSignals [
 	TooSmallStepSizeError notifierString: #'StM: Step size is too small.'; nameClass: self message: #tooSmallStepSizeError
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 Integrator class >> initializeX [
 	"StMIntegrator initialize."
 
 	self initSignals
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 Integrator class >> visualWorksMetadata [
 
 	^ #(
@@ -33,32 +35,32 @@ Integrator class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Integrator >> direction [
 	^direction
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Integrator >> direction: double [ 
 	direction := double
 ]
 
-{ #category : #output }
+{ #category : 'output' }
 Integrator >> logString: string [ 
 	system logString: string
 ]
 
-{ #category : #output }
+{ #category : 'output' }
 Integrator >> logString: string withArgument: string1 [ 
 	system logString: string withArgument: string1
 ]
 
-{ #category : #output }
+{ #category : 'output' }
 Integrator >> logString: string withArguments: arrayOfStrings [ 
 	system logString: string withArguments: arrayOfStrings
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Integrator >> system: object [ 
 	system := object
 ]

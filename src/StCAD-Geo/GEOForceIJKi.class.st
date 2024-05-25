@@ -1,10 +1,12 @@
 Class {
-	#name : #GEOForceIJKi,
-	#superclass : #GEOFunctionIJKi,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEOForceIJKi',
+	#superclass : 'GEOFunctionIJKi',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOForceIJKi class >> visualWorksMetadata [
 
 	^ #(
@@ -14,12 +16,12 @@ GEOForceIJKi class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOForceIJKi >> dimension [
 	^'force'
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOForceIJKi >> mbdUnit [
 	^self mbdUnits force
 ]

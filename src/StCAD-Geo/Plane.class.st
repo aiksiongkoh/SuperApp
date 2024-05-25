@@ -1,13 +1,15 @@
 Class {
-	#name : #Plane,
-	#superclass : #Surface,
+	#name : 'Plane',
+	#superclass : 'Surface',
 	#instVars : [
 		'aRectSurface'
 	],
-	#category : #'StCAD-Geo-Basic'
+	#category : 'StCAD-Geo-Basic',
+	#package : 'StCAD-Geo',
+	#tag : 'Basic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 Plane class >> visualWorksMetadata [
 
 	^ #(
@@ -17,17 +19,17 @@ Plane class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Plane >> aRectSurface [
 	^aRectSurface
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Plane >> aRectSurface: anObject [
 	aRectSurface := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Plane >> addRectSurface: argaRectSurface [ 
 	"aSub maybe already in a tree. Make sure aSub is released by its aSup."
 
@@ -39,7 +41,7 @@ Plane >> addRectSurface: argaRectSurface [
 	^argaRectSurface
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 Plane >> initialize [
 	super initialize.
 	self addRectSurface: RectSurface new

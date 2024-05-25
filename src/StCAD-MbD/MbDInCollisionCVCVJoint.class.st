@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDInCollisionCVCVJoint,
-	#superclass : #MbDSeparatedCVCVJoint,
-	#category : #'StCAD-MbD-MbDJoint'
+	#name : 'MbDInCollisionCVCVJoint',
+	#superclass : 'MbDSeparatedCVCVJoint',
+	#category : 'StCAD-MbD-MbDJoint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDJoint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDInCollisionCVCVJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -14,14 +16,14 @@ MbDInCollisionCVCVJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDInCollisionCVCVJoint >> becomeSeparatedCVCVJoint [
 	self changeClassToThatOf: MbDFullySeparatedCVCVJoint basicNew.
 	frmI becomeNoContactEndFrame.
 	frmJ becomeNoContactEndFrame
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDInCollisionCVCVJoint >> checkForCollisionDiscontinuityBetween: impulsePrevious and: impulse [ 
 	"Find normal impulse (Pcz0) that makes impact velocity zero 
 	(maxCompression)."
@@ -65,12 +67,12 @@ MbDInCollisionCVCVJoint >> checkForCollisionDiscontinuityBetween: impulsePreviou
 					^impulse]]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDInCollisionCVCVJoint >> connectsI: mkrII toJ: mkrJJ [ 
 	self error: 'Simulation should not start in collision.'
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDInCollisionCVCVJoint >> discontinuityAt: impulseStartNew addTypeTo: collection [ 
 	| impactVelocityTol |
 	impulseStart = impulseStartNew 
@@ -86,7 +88,7 @@ MbDInCollisionCVCVJoint >> discontinuityAt: impulseStartNew addTypeTo: collectio
 					self becomeSeparatedCVCVJoint]]
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDInCollisionCVCVJoint >> fillCollisionDerivativeICError: col [ 
 	"Add contact friction later."
 	"muv := #(0.0d 0.0d -1.0d)."
@@ -107,7 +109,7 @@ MbDInCollisionCVCVJoint >> fillCollisionDerivativeICError: col [
 	col at: iqEJ minusFullColumn: prOJeOpEJTaAOIemuv
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDInCollisionCVCVJoint >> fillCollisionError: col [ 
 	"Add contact friction later."
 	"muv := #(0.0d 0.0d -1.0d)."
@@ -129,7 +131,7 @@ MbDInCollisionCVCVJoint >> fillCollisionError: col [
 	col at: iqEJ minusFullColumn: prOJeOpEJTaAOIemuv
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDInCollisionCVCVJoint >> impactVelocityAt: tout [ 
 	| answer |
 	answer := self impactVelocityDerivative: 0 at: tout.
@@ -137,7 +139,7 @@ MbDInCollisionCVCVJoint >> impactVelocityAt: tout [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDInCollisionCVCVJoint >> impactVelocityDerivative: n at: tout [ 
 	^interpolator
 		derivative: n
@@ -146,41 +148,41 @@ MbDInCollisionCVCVJoint >> impactVelocityDerivative: n at: tout [
 		past: impactVelocityPast
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDInCollisionCVCVJoint >> impulseStart [
 	^impulseStart
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDInCollisionCVCVJoint >> impulseStart: aDouble [ 
 	impulseStart := aDouble
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDInCollisionCVCVJoint >> normalImpulse: aDouble [ 
 	normalImpulse := aDouble
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDInCollisionCVCVJoint >> postCollisionCorrectorIteration [
 	"super postCollisionCorrectorIteration."
 
 	impactVelocity := self vIeJeOIez
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDInCollisionCVCVJoint >> postCollisionDerivativeIC [
 	self recordImpactVelocity
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDInCollisionCVCVJoint >> postCollisionPredictor [
 	"super postCollisionPredictor."
 
 	impactVelocity := self vIeJeOIez
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDInCollisionCVCVJoint >> preCollision [
 	super preCollision.
 	interpolator := TheMbDSystem mbdSystemSolver opBDF.
@@ -189,19 +191,19 @@ MbDInCollisionCVCVJoint >> preCollision [
 	impulseStart := 0.0
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDInCollisionCVCVJoint >> preCollisionDerivativeIC [
 	super preCollisionDerivativeIC.
 	impactVelocity := self vIeJeOIez
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDInCollisionCVCVJoint >> recordImpactVelocity [
 	impactVelocity := self vIeJeOIez.
 	TheMbDSystem logImpactVelocity: impactVelocity
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDInCollisionCVCVJoint >> storeCollisionState [
 	impactVelocityPast addFirst: impactVelocity.
 	[interpolator timeNodes size < impactVelocityPast size]

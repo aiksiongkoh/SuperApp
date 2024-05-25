@@ -1,13 +1,14 @@
 Class {
-	#name : #BasicEquationCurve,
-	#superclass : #BasicCurve,
+	#name : 'BasicEquationCurve',
+	#superclass : 'BasicCurve',
 	#instVars : [
 		'rfpfEqn'
 	],
-	#category : #'StCAD-Geo'
+	#category : 'StCAD-Geo',
+	#package : 'StCAD-Geo'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 BasicEquationCurve class >> visualWorksMetadata [
 
 	^ #(

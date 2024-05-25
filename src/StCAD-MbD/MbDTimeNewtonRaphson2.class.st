@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDTimeNewtonRaphson2,
-	#superclass : #MbDScalarNewtonRaphson2,
-	#category : #'StCAD-MbD-MbDSolver'
+	#name : 'MbDTimeNewtonRaphson2',
+	#superclass : 'MbDScalarNewtonRaphson2',
+	#category : 'StCAD-MbD-MbDSolver',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDTimeNewtonRaphson2 class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ MbDTimeNewtonRaphson2 class >> visualWorksMetadata [
 
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDTimeNewtonRaphson2 >> incrementIterNo [
 	iterNo >= iterMax
 		ifTrue: 
@@ -23,17 +25,17 @@ MbDTimeNewtonRaphson2 >> incrementIterNo [
 	iterNo := iterNo + 1
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDTimeNewtonRaphson2 >> initializeGlobally [
 	x := system tstart
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDTimeNewtonRaphson2 >> passRootToSystem [
 	system tstart: x
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDTimeNewtonRaphson2 >> preRun [
 	| tguess |
 	tguess := system interpolator firstPastTimeNode.

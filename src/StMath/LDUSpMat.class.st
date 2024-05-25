@@ -1,6 +1,6 @@
 Class {
-	#name : #LDUSpMat,
-	#superclass : #MatrixLDU,
+	#name : 'LDUSpMat',
+	#superclass : 'MatrixLDU',
 	#instVars : [
 		'matrixL',
 		'matrixD',
@@ -10,10 +10,12 @@ Class {
 		'privateIndicesOfNonZerosInPivotRow',
 		'rowPositionsOfNonZerosInPivotColumn'
 	],
-	#category : #'StMath-StMathMatrixSolver'
+	#category : 'StMath-StMathMatrixSolver',
+	#package : 'StMath',
+	#tag : 'StMathMatrixSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 LDUSpMat class >> visualWorksMetadata [
 
 	^ #(
@@ -23,7 +25,7 @@ LDUSpMat class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'back substitution' }
+{ #category : 'back substitution' }
 LDUSpMat >> backSubstituteIntoDU [
 	"aD is a diagonal matrix."
 	"aU is upper triangular with the ones in the diagonal omitted."
@@ -59,7 +61,7 @@ LDUSpMat >> backSubstituteIntoDU [
 					- sum]
 ]
 
-{ #category : #'forward elimination' }
+{ #category : 'forward elimination' }
 LDUSpMat >> forwardEliminateWithPivot: p [ 
 	| rowp app rowi aip factor jIndex j apj i rowpValues rowUp |
 	rowp := matrixA at: p.
@@ -95,7 +97,7 @@ LDUSpMat >> forwardEliminateWithPivot: p [
 			rowUp at: j put: apj / app]
 ]
 
-{ #category : #'forward substitution' }
+{ #category : 'forward substitution' }
 LDUSpMat >> forwardSubstituteIntoL [
 	"aL is lower triangular with the ones in the diagonal omitted."
 
@@ -127,7 +129,7 @@ LDUSpMat >> forwardSubstituteIntoL [
 	^rightHandSideB := vectorc
 ]
 
-{ #category : #solution }
+{ #category : 'solution' }
 LDUSpMat >> preSolve: aMatrix saveOriginal: saveOriginal [ 
 	"A conditioned copy of aMatrix is solved."
 
@@ -157,7 +159,7 @@ LDUSpMat >> preSolve: aMatrix saveOriginal: saveOriginal [
 			rowOrder at: i put: i]
 ]
 
-{ #category : #'forward elimination' }
+{ #category : 'forward elimination' }
 LDUSpMat >> privateIndicesOfNonZerosInPivotRow: pivotRow withoutKey: discardKey [ 
 	"pivotRow is aStMSparseRow."
 

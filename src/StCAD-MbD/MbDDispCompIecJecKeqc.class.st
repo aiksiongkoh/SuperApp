@@ -1,16 +1,18 @@
 Class {
-	#name : #MbDDispCompIecJecKeqc,
-	#superclass : #MbDDispCompIecJecKec,
+	#name : 'MbDDispCompIecJecKeqc',
+	#superclass : 'MbDDispCompIecJecKec',
 	#instVars : [
 		'priIeJeKepEK',
 		'ppriIeJeKepEKpEK',
 		'pAjOKepEKT',
 		'ppAjOKepEKpEK'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDDispCompIecJecKeqc class >> visualWorksMetadata [
 
 	^ #(
@@ -20,7 +22,7 @@ MbDDispCompIecJecKeqc class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDDispCompIecJecKeqc class >> withFrmI: afrmI frmJ: afrmJ frmK: afrmK axisK: integer [ 
 	^(afrmI isMemberOf: MbDEndFramec)
 		& (afrmJ isMemberOf: MbDEndFramec) & (afrmK isMemberOf: MbDEndFrameqc)
@@ -32,12 +34,12 @@ MbDDispCompIecJecKeqc class >> withFrmI: afrmI frmJ: afrmJ frmK: afrmK axisK: in
 		ifFalse: [nil]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIecJecKeqc >> axisK [
 	^axisK
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDispCompIecJecKeqc >> calcPostDynCorrectorIteration [
 	| ppAjOKepEKipEK ppriIeJeKepEKipEK ppriIeJeKepEKipEKj |
 	aAjOKe := efrmK aAjOe: axisK.
@@ -56,43 +58,43 @@ MbDDispCompIecJecKeqc >> calcPostDynCorrectorIteration [
 					ppriIeJeKepEKpEK at: j and: i put: ppriIeJeKepEKipEKj]]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDispCompIecJecKeqc >> initialize [
 	priIeJeKepEK := StMFullRow new: 4.
 	ppriIeJeKepEKpEK := StMFullMatrix new: 4 by: 4
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDispCompIecJecKeqc >> initializeGlobally [
 	ppAjOKepEKpEK := efrmK ppAjOepEpE: axisK
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIecJecKeqc >> ppriIeJeKepEKpEK [
 	^ppriIeJeKepEKpEK
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIecJecKeqc >> ppvaluepEKpEK [
 	^ppriIeJeKepEKpEK
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIecJecKeqc >> priIeJeKepEK [
 	^priIeJeKepEK
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIecJecKeqc >> pvaluepEK [
 	^priIeJeKepEK
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIecJecKeqc >> riIeJeKe [
 	^riIeJeKe
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDispCompIecJecKeqc >> withFrmI: afrmI frmJ: afrmJ frmK: afrmK axisK: integer [ 
 	frmI := afrmI.
 	frmJ := afrmJ.

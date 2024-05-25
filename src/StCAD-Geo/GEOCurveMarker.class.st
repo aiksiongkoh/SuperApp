@@ -1,24 +1,26 @@
 Class {
-	#name : #GEOCurveMarker,
-	#superclass : #GEOAnyMarker,
+	#name : 'GEOCurveMarker',
+	#superclass : 'GEOAnyMarker',
 	#instVars : [
 		's',
 		'rFfFCurve'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCurveMarker class >> nameString [
 	^'CurveMarker'
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GEOCurveMarker class >> newOnFace: face [ 
 	^super new face: face
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOCurveMarker class >> visualWorksMetadata [
 
 	^ #(
@@ -28,7 +30,7 @@ GEOCurveMarker class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCurveMarker >> aAeqnfat: col [ 
 	| prmemps tem1 te1 iem iem1 iem2 aAme |
 	prmemps := rFfFCurve rfpfEqn pvalueps: col.
@@ -44,7 +46,7 @@ GEOCurveMarker >> aAeqnfat: col [
 	^aAme
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCurveMarker >> aApm [
 	| aAPp aAPm |
 	aAPp := self anyPart aAPp.
@@ -52,18 +54,18 @@ GEOCurveMarker >> aApm [
 	^aAPp transposeTimesFullMatrix: aAPm
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 GEOCurveMarker >> basicRenderOn: aRenderingContext [ 
 	super renderOn: aRenderingContext
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOCurveMarker >> canUpdateForFrame: integer [ 
 	^[(self dataSeries at: integer) notNil]
 		on: Object subscriptOutOfBoundsSignal do: [:ex | ex return: false]
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOCurveMarker >> createMbD [
 	| mkr eFrm |
 	self dataSeries: OrderedCollection new.
@@ -83,19 +85,19 @@ GEOCurveMarker >> createMbD [
 	self mbdObject: eFrm
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCurveMarker >> cut [
 	container cutMarker: self.
 	rFfFCurve refFrame cut.
 	self triggerEvent: #release
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCurveMarker >> dataClass [
 	^GEORelPosVelAccData
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOCurveMarker >> dataFromCurrentState [
 	| answer |
 	answer := GEOSSdotSddotData new.
@@ -105,7 +107,7 @@ GEOCurveMarker >> dataFromCurrentState [
 	^answer
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOCurveMarker >> dataFromCurrentStatePOV [
 	"
 	reqnfeqn := eqn y: s.
@@ -147,7 +149,7 @@ GEOCurveMarker >> dataFromCurrentStatePOV [
 	^markerData
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOCurveMarker >> dataFromMbD [
 	| mbdTime mbdItem answer |
 	mbdTime := self mbdUnits time.
@@ -159,7 +161,7 @@ GEOCurveMarker >> dataFromMbD [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCurveMarker >> dataSeriesForChart [
 	"
 	reqnfeqn := eqn y: s.
@@ -215,7 +217,7 @@ GEOCurveMarker >> dataSeriesForChart [
 		ifFalse: [Array new]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCurveMarker >> face: face [ 
 	| interface name polyline rFpointsF sSeries |
 	interface := face interface.
@@ -237,40 +239,40 @@ GEOCurveMarker >> face: face [
 	interface createUpdateSelectGOfor: self
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOCurveMarker >> initialize [
 	super initialize.
 	rFfFCurve := GEOEquationCurve new.
 	rFfFCurve container: self
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOCurveMarker >> isCutable [
 	^false
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOCurveMarker >> preSave [
 	super preSave.
 	rFfFCurve preSave
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCurveMarker >> rFfFCurve [
 	^rFfFCurve
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCurveMarker >> rFfFat: col [ 
 	^rFfFCurve rfpfEqn value: col
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 GEOCurveMarker >> renderOn: aRenderingContext [ 
 	rFfFCurve renderOn: aRenderingContext withCurveMarker: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCurveMarker >> rpmp [
 	| anyPart rPmP rPpP aAPp |
 	anyPart := self anyPart.
@@ -280,12 +282,12 @@ GEOCurveMarker >> rpmp [
 	^aAPp transposeTimesFullColumn: (rPmP minusFullColumn: rPpP)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCurveMarker >> s [
 	^s
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCurveMarker >> s: double [ 
 	| rFfFEqn aAFf1 aAFf2 aAFf3 aAFf rFfF |
 	s := double.
@@ -313,19 +315,19 @@ GEOCurveMarker >> s: double [
 	refFrame quietlyrFfF: rFfF aAFf: aAFf
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCurveMarker >> sets: double [ 
 	s := double
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOCurveMarker >> storeInputState [
 	| data |
 	data := self dataFromCurrentState.
 	self inputData: data
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOCurveMarker >> storeOn: aStream level: level [ 
 	aStream storeLevel: level title: 'RefCurve'.
 	rFfFCurve refFrame storeOn: aStream level: level + 1.
@@ -342,7 +344,7 @@ GEOCurveMarker >> storeOn: aStream level: level [
 		object: s
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOCurveMarker >> storePOVdatCurrentOn: aStream [
 	| dataSeries fullNamePOV series |
 	dataSeries := Array with: self dataFromCurrentStatePOV.
@@ -392,20 +394,20 @@ GEOCurveMarker >> storePOVdatCurrentOn: aStream [
 		series: (series collect: [:data | (data at: 3) radiansToDegrees.]).
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCurveMarker >> uncut [
 	rFfFCurve refFrame uncut.
 	container uncutMarker: self
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOCurveMarker >> updateForFrame: integer [ 
 	| data |
 	data := self dataSeries at: integer.
 	self s: (data s at: 1)
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOCurveMarker >> updateFromInitiallyAssembledState [
 	| dataSeries data |
 	dataSeries := self dataSeries.
@@ -415,14 +417,14 @@ GEOCurveMarker >> updateFromInitiallyAssembledState [
 			data notNil ifTrue: [self s: (data s at: 1)]]
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOCurveMarker >> updateFromInputState [
 	| data |
 	data := self inputData.
 	data notNil ifTrue: [self s: (data s at: 1)]
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOCurveMarker >> updateFromMbD [
 	| data |
 	data := self dataFromMbD.

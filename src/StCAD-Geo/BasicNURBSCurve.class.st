@@ -1,6 +1,6 @@
 Class {
-	#name : #BasicNURBSCurve,
-	#superclass : #BasicCurve,
+	#name : 'BasicNURBSCurve',
+	#superclass : 'BasicCurve',
 	#instVars : [
 		'cControlPoint',
 		'cWeight',
@@ -15,15 +15,16 @@ Class {
 	#classVars : [
 		'Geo'
 	],
-	#category : #'StCAD-Geo'
+	#category : 'StCAD-Geo',
+	#package : 'StCAD-Geo'
 }
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 BasicNURBSCurve class >> CcBinomial [
 	^CcBinomial.
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 BasicNURBSCurve class >> aMatrixNu_cu: cu cuKnot: cuKnot uDegree: uDegree [ 
 	"
 	Ref: The NURBS Book, 2nd Ed. by Les Piegl and Wayne Tiller.
@@ -58,7 +59,7 @@ BasicNURBSCurve class >> aMatrixNu_cu: cu cuKnot: cuKnot uDegree: uDegree [
 	^aMatrixNu
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 BasicNURBSCurve class >> cControlPoint: acControlPoint cWeight: acWeight cuKnot: acuKnot [ 
 	| answer |
 	answer := self new.
@@ -69,7 +70,7 @@ BasicNURBSCurve class >> cControlPoint: acControlPoint cWeight: acWeight cuKnot:
 	^answer
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 BasicNURBSCurve class >> cControlPoint: acControlPoint cWeight: acWeight cuKnot: acuKnot isSpatial: isSpatial [ 
 	| answer |
 	answer := self new.
@@ -81,7 +82,7 @@ BasicNURBSCurve class >> cControlPoint: acControlPoint cWeight: acWeight cuKnot:
 	^answer
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 BasicNURBSCurve class >> cNu_at: u uSpan: uSpan cuKnot: cuKnot uDegree: uDegree [ 
 	"
 	Ref: The NURBS Book, 2nd Ed. by Les Piegl and Wayne Tiller.
@@ -115,7 +116,7 @@ BasicNURBSCurve class >> cNu_at: u uSpan: uSpan cuKnot: cuKnot uDegree: uDegree 
 	^cN
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 BasicNURBSCurve class >> ccDerivNu_at: u uDeriv: uDeriv uSpan: uSpan cuKnot: cuKnot uDegree: uDegree [ 
 	"
 	Ref: The NURBS Book, 2nd Ed. by Les Piegl and Wayne Tiller.
@@ -253,7 +254,7 @@ BasicNURBSCurve class >> ccDerivNu_at: u uDeriv: uDeriv uSpan: uSpan cuKnot: cuK
 	^ccDerivN
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 BasicNURBSCurve class >> cuKnot_cu: cu uDegree: uDegree [ 
 	| nPoint uDegree1 nKnot cKnot |
 	nPoint := cu size.
@@ -275,7 +276,7 @@ BasicNURBSCurve class >> cuKnot_cu: cu uDegree: uDegree [
 	^cKnot
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 BasicNURBSCurve class >> cu_cDataPoint: cDataPoint [ 
 	| n cdelta d cu u |
 	n := cDataPoint size.
@@ -300,7 +301,7 @@ BasicNURBSCurve class >> cu_cDataPoint: cDataPoint [
 	^cu
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 BasicNURBSCurve class >> fromLine: aLine [ 
 	| cPoint cWeight cuKnot |
 	cPoint := StMArray with: aLine rfStartPointf copy
@@ -317,7 +318,7 @@ BasicNURBSCurve class >> fromLine: aLine [
 		cuKnot: cuKnot
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 BasicNURBSCurve class >> fromcDataPoint: cDataPoint uDegree: uDegree [ 
 	"Interpolate thru cDataPoint.
 	Ref: The NURBS Book, 2nd Ed. by Les Piegl and Wayne Tiller.
@@ -344,7 +345,7 @@ BasicNURBSCurve class >> fromcDataPoint: cDataPoint uDegree: uDegree [
 		cuKnot: cuKnot
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 BasicNURBSCurve class >> initializeX [
 	"self initialize."
 
@@ -368,7 +369,7 @@ BasicNURBSCurve class >> initializeX [
 	^CcBinomial
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 BasicNURBSCurve class >> uSpan_at: u cuKnot: cuKnot uDegree: uDegree [ 
 	"
 	Ref: The NURBS Book, 2nd Ed. by Les Piegl and Wayne Tiller.
@@ -393,7 +394,7 @@ BasicNURBSCurve class >> uSpan_at: u cuKnot: cuKnot uDegree: uDegree [
 			iLow]
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 BasicNURBSCurve class >> visualWorksMetadata [
 
 	^ #(
@@ -403,19 +404,19 @@ BasicNURBSCurve class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicNURBSCurve >> _cPoint: acPoint [ 
 	cControlPoint := acPoint.
 	self calc_uDegree
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicNURBSCurve >> _cuKnot: acuKnot [ 
 	cuKnot := acuKnot.
 	self calc_uDegree
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicNURBSCurve >> asJunOpenGL2dTrimCurve [
 	^JunOpenGL2dTrimNurbsCurve 
 		controlPoints: (cControlPoint collect: [:aPoint | aPoint asJun2dPoint])
@@ -423,7 +424,7 @@ BasicNURBSCurve >> asJunOpenGL2dTrimCurve [
 		knotVector: cuKnot copy
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicNURBSCurve >> atU: u [ 
 	"
 	Ref: The NURBS Book, 2nd Ed. by Les Piegl and Wayne Tiller. 
@@ -445,7 +446,7 @@ BasicNURBSCurve >> atU: u [
 	^numerator / denominator
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicNURBSCurve >> cControlPoint: acControlPoint cWeight: acWeight cuKnot: acuKnot [ 
 	cControlPoint := acControlPoint.
 	cWeight := acWeight.
@@ -453,7 +454,7 @@ BasicNURBSCurve >> cControlPoint: acControlPoint cWeight: acWeight cuKnot: acuKn
 	self calcAll
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicNURBSCurve >> cDeriv: iDeriv u: u [ 
 	"
 	Ref: The NURBS Book, 2nd Ed. by Les Piegl and Wayne Tiller.
@@ -518,7 +519,7 @@ BasicNURBSCurve >> cDeriv: iDeriv u: u [
 	^cDeriv
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicNURBSCurve >> cNu_at: u uSpan: uSpan [ 
 	^self class 
 		cNu_at: u
@@ -527,22 +528,22 @@ BasicNURBSCurve >> cNu_at: u uSpan: uSpan [
 		uDegree: uDegree
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicNURBSCurve >> cPoint [
 	^cControlPoint
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicNURBSCurve >> cWeight [
 	^cWeight
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicNURBSCurve >> cWeight: anObject [
 	cWeight := anObject
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicNURBSCurve >> calcAll [
 
 	isCyclic := cControlPoint first
@@ -562,18 +563,18 @@ BasicNURBSCurve >> calcAll [
 			aBoundingBox expandToBound: (self rFpF_u: u) ] ]
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicNURBSCurve >> calc_uDegree [
 	cControlPoint 
 		ifNotNil: [cuKnot ifNotNil: [uDegree := cuKnot size - cControlPoint size - 1]]
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicNURBSCurve >> cuKnot [
 	^cuKnot
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicNURBSCurve >> extremeValueAxis: axis uguess: uguess [ 
 	| uextreme |
 	uextreme := (CurveExtremum new)
@@ -588,7 +589,7 @@ BasicNURBSCurve >> extremeValueAxis: axis uguess: uguess [
 	^uextreme
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicNURBSCurve >> minmaxAxis: axis [ 
 	| minmax tol min max |
 	minmax := self minmaxGuessAxis: axis.
@@ -604,7 +605,7 @@ BasicNURBSCurve >> minmaxAxis: axis [
 	^minmax
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicNURBSCurve >> minmaxGuessAxis: axis [
 	| min max coordinate |
 	min := MachineAccuracy OfLargestDouble.
@@ -625,12 +626,12 @@ BasicNURBSCurve >> minmaxGuessAxis: axis [
 	^Array with: umin with: umax.
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicNURBSCurve >> nDimension [
 	^cControlPoint first size
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicNURBSCurve >> normalizeKnots [
 	| magnification |
 	umin := cuKnot first.
@@ -639,32 +640,32 @@ BasicNURBSCurve >> normalizeKnots [
 	cuKnot := cuKnot collect: [:u | (u - umin) * magnification.].
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicNURBSCurve >> order [
 	^uDegree + 1
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicNURBSCurve >> pprFpFpupu_u: u [
 	^self pprfpfpupu_u: u.
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicNURBSCurve >> pprfpfpupu_u: u [ 
 	^(self cDeriv: 2 u: u) at: 2 + 1
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicNURBSCurve >> prFpFpu_u: u [
 	^self prfpfpu_u: u.
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicNURBSCurve >> prfpfpu_u: u [ 
 	^(self cDeriv: 1 u: u) at: 1 + 1
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicNURBSCurve >> rfpf_u: u [ 
 	"
 	Ref: The NURBS Book, 2nd Ed. by Les Piegl and Wayne Tiller. 
@@ -686,7 +687,7 @@ BasicNURBSCurve >> rfpf_u: u [
 	^numerator / denominator
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicNURBSCurve >> uspan_at: u [ 
 	^self class 
 		uSpan_at: u
@@ -694,12 +695,12 @@ BasicNURBSCurve >> uspan_at: u [
 		uDegree: uDegree
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicNURBSCurve >> uvEnd [
 	^self atU: 1.0
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicNURBSCurve >> uvStart [
 	^self atU: 0.0
 ]

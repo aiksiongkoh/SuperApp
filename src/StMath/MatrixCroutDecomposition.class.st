@@ -1,10 +1,12 @@
 Class {
-	#name : #MatrixCroutDecomposition,
-	#superclass : #MatrixDecomposition,
-	#category : #'StMath-StMathMatrixSolver'
+	#name : 'MatrixCroutDecomposition',
+	#superclass : 'MatrixDecomposition',
+	#category : 'StMath-StMathMatrixSolver',
+	#package : 'StMath',
+	#tag : 'StMathMatrixSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MatrixCroutDecomposition class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ MatrixCroutDecomposition class >> visualWorksMetadata [
 
 ]
 
-{ #category : #solution }
+{ #category : 'solution' }
 MatrixCroutDecomposition >> decompose: aMatrix saveOriginal: saveOriginal [ 
 	self preSolve: aMatrix saveOriginal: saveOriginal.
 	1 to: m
@@ -25,7 +27,7 @@ MatrixCroutDecomposition >> decompose: aMatrix saveOriginal: saveOriginal [
 			self formUij: p]
 ]
 
-{ #category : #solution }
+{ #category : 'solution' }
 MatrixCroutDecomposition >> forAndBackSub: aVector saveOriginal: saveOriginal [ 
 	rightHandSideB := saveOriginal
 				ifTrue: [aVector copy]

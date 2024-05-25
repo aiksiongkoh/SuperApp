@@ -1,21 +1,22 @@
 Class {
-	#name : #SymEulerParameters,
-	#superclass : #SymEulerArray,
-	#type : #variable,
+	#name : 'SymEulerParameters',
+	#superclass : 'SymEulerArray',
+	#type : 'variable',
 	#instVars : [
 		'aA',
 		'aB',
 		'aC'
 	],
-	#category : #'StCAD-Basic'
+	#category : 'StCAD-Basic',
+	#package : 'StCAD-Basic'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SymEulerParameters class >> new [
 	^(super new: 4) initialize
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SymEulerParameters class >> symbolic: aE1 with: aE2 with: aE3 with: aE4 [ 
 	^(self new)
 		at: 1 put: aE1;
@@ -26,7 +27,7 @@ SymEulerParameters class >> symbolic: aE1 with: aE2 with: aE3 with: aE4 [
 		yourself
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 SymEulerParameters class >> visualWorksMetadata [
 
 	^ #(
@@ -36,7 +37,7 @@ SymEulerParameters class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SymEulerParameters class >> with: aE1 with: aE2 with: aE3 with: aE4 [
 
 	^ self new
@@ -49,38 +50,38 @@ SymEulerParameters class >> with: aE1 with: aE2 with: aE3 with: aE4 [
 		  yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SymEulerParameters class >> withAxis: axis theta: theta [ 
 	^self new withAxis: axis theta: theta
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerParameters >> aA [
 	^aA
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerParameters >> aB [
 	^aB
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerParameters >> aC [
 	^aC
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 SymEulerParameters >> calc [
 	self calcABC
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 SymEulerParameters >> calc1 [
 	self calcBC.
 	aA := aB timesTransposeFullMatrix: aC
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 SymEulerParameters >> calcABC [
 	"aA, aB and aC are all calculated together and only here."
 
@@ -101,7 +102,7 @@ SymEulerParameters >> calcABC [
 	aA := aB timesTransposeFullMatrix: aC
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 SymEulerParameters >> calcBC [
 	"aB and aC are all calculated together and only here."
 
@@ -121,18 +122,18 @@ SymEulerParameters >> calcBC [
 	(aC at: 3) at: 1 put: aE2; at: 2 put: mE1; at: 3 put: aE4; at: 4 put: mE3.
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 SymEulerParameters >> calcSymbolic [
 	self calc
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 SymEulerParameters >> calcSymbolic1 [
 	self calcBC.
 	aA := aB timesFullMatrix: aC transpose
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 SymEulerParameters >> conditionSelf [
 
 	(self allSatisfy: [ :q | q isNumber ]) ifTrue: [
@@ -140,7 +141,7 @@ SymEulerParameters >> conditionSelf [
 		self normalizeSelf ]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 SymEulerParameters >> differentiateWRT: var [ 
 	| answer |
 	answer := SymEulerParametersDot with: self.
@@ -154,14 +155,14 @@ SymEulerParameters >> differentiateWRT: var [
 	^answer
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 SymEulerParameters >> initialize [
 	aA := StMFullMatrix new: 3 by: 3.
 	aB := StMFullMatrix new: 3 by: 4.
 	aC := StMFullMatrix new: 3 by: 4
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 SymEulerParameters >> withAxis: axis theta: theta [ 
 	| halfTheta sinHalfTheta cosHalfTheta |
 	halfTheta := theta / 2.0.

@@ -1,10 +1,12 @@
 Class {
-	#name : #NotKinematicError,
-	#superclass : #Exception,
-	#category : #'StCAD-MbD-Exception'
+	#name : 'NotKinematicError',
+	#superclass : 'Exception',
+	#category : 'StCAD-MbD-Exception',
+	#package : 'StCAD-MbD',
+	#tag : 'Exception'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 NotKinematicError class >> visualWorksMetadata [
 
 	^ #(

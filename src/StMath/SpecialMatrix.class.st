@@ -1,10 +1,12 @@
 Class {
-	#name : #SpecialMatrix,
-	#superclass : #SpecialLinearAlgebra,
-	#category : #'StMath-StMathArraySpecial'
+	#name : 'SpecialMatrix',
+	#superclass : 'SpecialLinearAlgebra',
+	#category : 'StMath-StMathArraySpecial',
+	#package : 'StMath',
+	#tag : 'StMathArraySpecial'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 SpecialMatrix class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ SpecialMatrix class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpecialMatrix >> numberOfElements [
 	"Answer the number of elements in the full vector or matrix."
 

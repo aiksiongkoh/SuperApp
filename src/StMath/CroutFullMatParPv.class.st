@@ -1,15 +1,17 @@
 Class {
-	#name : #CroutFullMatParPv,
-	#superclass : #CroutFullMat,
-	#category : #'StMath-StMathMatrixSolver'
+	#name : 'CroutFullMatParPv',
+	#superclass : 'CroutFullMat',
+	#category : 'StMath-StMathMatrixSolver',
+	#package : 'StMath',
+	#tag : 'StMathMatrixSolver'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 CroutFullMatParPv class >> isAbstractClass [
 	^false
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 CroutFullMatParPv class >> visualWorksMetadata [
 
 	^ #(
@@ -19,7 +21,7 @@ CroutFullMatParPv class >> visualWorksMetadata [
 
 ]
 
-{ #category : #pivoting }
+{ #category : 'pivoting' }
 CroutFullMatParPv >> doPivoting: p [ 
 	"Use scalings. Do row pivoting."
 

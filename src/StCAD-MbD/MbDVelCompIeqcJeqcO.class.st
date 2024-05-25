@@ -1,15 +1,17 @@
 Class {
-	#name : #MbDVelCompIeqcJeqcO,
-	#superclass : #MbDVelCompIeqcJecO,
+	#name : 'MbDVelCompIeqcJeqcO',
+	#superclass : 'MbDVelCompIeqcJecO',
 	#instVars : [
 		'pvIeJeOipEJ',
 		'pvIeJeOipXdotJ',
 		'pvIeJeOipEdotJ'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDVelCompIeqcJeqcO class >> visualWorksMetadata [
 
 	^ #(
@@ -19,7 +21,7 @@ MbDVelCompIeqcJeqcO class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDVelCompIeqcJeqcO class >> withFrmI: afrmI frmJ: afrmJ axis: aaxis [ 
 	^(afrmI isMemberOf: MbDEndFrameqc)
 		& (afrmJ isMemberOf: MbDEndFrameqc)
@@ -30,14 +32,14 @@ MbDVelCompIeqcJeqcO class >> withFrmI: afrmI frmJ: afrmJ axis: aaxis [
 		ifFalse: [nil]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDVelCompIeqcJeqcO >> calcPostDynCorrectorIteration [
 	super calcPostDynCorrectorIteration.
 	pvIeJeOipEJ := frmJ pvOeOpE at: axis.
 	pvIeJeOipEdotJ := frmJ pvOeOpEdot at: axis
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDVelCompIeqcJeqcO >> initialize [
 	super initialize.
 	pvIeJeOipEJ := StMFullRow new: 4.
@@ -45,24 +47,24 @@ MbDVelCompIeqcJeqcO >> initialize [
 	pvIeJeOipEdotJ := StMFullRow new: 4
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDVelCompIeqcJeqcO >> initializeLocally [
 	super initializeLocally.
 	pvIeJeOipXdotJ := (StMFullRow zero: 3).
 	pvIeJeOipXdotJ at: axis put: 1.0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDVelCompIeqcJeqcO >> pvaluepEJ [
 	^pvIeJeOipEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDVelCompIeqcJeqcO >> pvaluepEdotJ [
 	^pvIeJeOipEdotJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDVelCompIeqcJeqcO >> pvaluepXdotJ [
 	^pvIeJeOipXdotJ
 ]

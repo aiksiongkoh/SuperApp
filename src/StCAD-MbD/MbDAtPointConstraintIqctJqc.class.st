@@ -1,15 +1,17 @@
 Class {
-	#name : #MbDAtPointConstraintIqctJqc,
-	#superclass : #MbDAtPointConstraintIqcJqc,
+	#name : 'MbDAtPointConstraintIqctJqc',
+	#superclass : 'MbDAtPointConstraintIqcJqc',
 	#instVars : [
 		'pGpt',
 		'ppGpEIpt',
 		'ppGptpt'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDAtPointConstraintIqctJqc class >> visualWorksMetadata [
 
 	^ #(
@@ -19,7 +21,7 @@ MbDAtPointConstraintIqctJqc class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDAtPointConstraintIqctJqc class >> withFrmI: afrmI frmJ: afrmJ axis: aaxis [ 
 	^(afrmI isMemberOf: MbDEndFrameqct)
 		& (afrmJ isMemberOf: MbDEndFrameqc)
@@ -27,7 +29,7 @@ MbDAtPointConstraintIqctJqc class >> withFrmI: afrmI frmJ: afrmJ axis: aaxis [
 		ifFalse: [nil]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDAtPointConstraintIqctJqc >> calcPostDynCorrectorIteration [
 	"ppGpEIpEI is no longer constant."
 
@@ -35,12 +37,12 @@ MbDAtPointConstraintIqctJqc >> calcPostDynCorrectorIteration [
 	super calcPostDynCorrectorIteration
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDAtPointConstraintIqctJqc >> dispCompClass [
 	^MbDDispCompIeqctJeqcO
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDAtPointConstraintIqctJqc >> fillAccICIterError: col [ 
 	| sum qEdotI |
 	super fillAccICIterError: col.
@@ -51,31 +53,31 @@ MbDAtPointConstraintIqctJqc >> fillAccICIterError: col [
 	col at: iG plusNumber: sum
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDAtPointConstraintIqctJqc >> fillVelICError: col [ 
 	col at: iG minusNumber: pGpt
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDAtPointConstraintIqctJqc >> initializeGlobally [
 	riIeJeO initializeGlobally.
 	ppGpEJpEJ := riIeJeO ppriIeJeOpEJpEJ
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDAtPointConstraintIqctJqc >> preAccIC [
 	super preAccIC.
 	ppGpEIpt := riIeJeO ppriIeJeOpEIpt.
 	ppGptpt := riIeJeO ppriIeJeOptpt
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDAtPointConstraintIqctJqc >> preVelIC [
 	super preVelIC.
 	pGpt := riIeJeO priIeJeOpt
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDAtPointConstraintIqctJqc >> type [
 	^#essential
 ]

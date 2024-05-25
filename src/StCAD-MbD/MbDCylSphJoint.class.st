@@ -1,13 +1,15 @@
 Class {
-	#name : #MbDCylSphJoint,
-	#superclass : #MbDJoint,
+	#name : 'MbDCylSphJoint',
+	#superclass : 'MbDJoint',
 	#instVars : [
 		'distanceIJ'
 	],
-	#category : #'StCAD-MbD-MbDJoint'
+	#category : 'StCAD-MbD-MbDJoint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDJoint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDCylSphJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -17,7 +19,7 @@ MbDCylSphJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDCylSphJoint >> classString [
 	"Used to access the descriptive name of the joint."
 
@@ -26,12 +28,12 @@ MbDCylSphJoint >> classString [
 	^TheMbDSystem getString: #'MbD: Cylindrical-Spherical Joint '
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDCylSphJoint >> distanceIJ: double [ 
 	distanceIJ := double
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDCylSphJoint >> initializeGlobally [
 	| constraint |
 	constraints isEmpty 

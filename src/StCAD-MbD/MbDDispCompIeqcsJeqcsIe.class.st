@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDDispCompIeqcsJeqcsIe,
-	#superclass : #MbDDispCompIeqcsJeqcIe,
+	#name : 'MbDDispCompIeqcsJeqcsIe',
+	#superclass : 'MbDDispCompIeqcsJeqcIe',
 	#instVars : [
 		'sSizeJ',
 		'priIeJeIepsJ',
@@ -9,10 +9,12 @@ Class {
 		'ppriIeJeIepsIpsJ',
 		'ppriIeJeIepsJpsJ'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDDispCompIeqcsJeqcsIe class >> visualWorksMetadata [
 
 	^ #(
@@ -22,7 +24,7 @@ MbDDispCompIeqcsJeqcsIe class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDDispCompIeqcsJeqcsIe class >> withFrmI: afrmI frmJ: afrmJ axis: aaxis [ 
 	^(afrmI isKindOf: MbDEndFrameqcs)
 		& (afrmJ isKindOf: MbDEndFrameqcs)
@@ -30,7 +32,7 @@ MbDDispCompIeqcsJeqcsIe class >> withFrmI: afrmI frmJ: afrmJ axis: aaxis [
 		ifFalse: [nil]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDispCompIeqcsJeqcsIe >> calcPostDynCorrectorIteration [
 	| prIeJeOpsJ pprIeJeOpEJpsJ pprIeJeOpsJpsJ pprIeJeOpEJipsJ ppriIeJeIepEJipsJ pprIeJeOpsJipsJ ppriIeJeIepsJipsJ |
 	super calcPostDynCorrectorIteration.
@@ -51,7 +53,7 @@ MbDDispCompIeqcsJeqcsIe >> calcPostDynCorrectorIteration [
 	ppriIeJeIepsJpsJ symLowerWithUpper
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDispCompIeqcsJeqcsIe >> initializeLocally [
 	super initializeLocally.
 	sSizeJ := frmJ sSize.
@@ -62,27 +64,27 @@ MbDDispCompIeqcsJeqcsIe >> initializeLocally [
 	ppriIeJeIepsJpsJ := StMFullMatrix new: sSizeJ by: sSizeJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqcsJeqcsIe >> ppriIeJeIepEIpsJ [
 	^ppriIeJeIepEIpsJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqcsJeqcsIe >> ppriIeJeIepEJpsJ [
 	^ppriIeJeIepEJpsJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqcsJeqcsIe >> ppriIeJeIepsIpsJ [
 	^ppriIeJeIepsIpsJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqcsJeqcsIe >> ppriIeJeIepsJpsJ [
 	^ppriIeJeIepsJpsJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqcsJeqcsIe >> priIeJeIepsJ [
 	^priIeJeIepsJ
 ]

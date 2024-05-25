@@ -1,14 +1,16 @@
 Class {
-	#name : #GEOScrewJoint,
-	#superclass : #GEOJoint,
+	#name : 'GEOScrewJoint',
+	#superclass : 'GEOJoint',
 	#instVars : [
 		'pitch',
 		'aConstant'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'binary storage' }
+{ #category : 'binary storage' }
 GEOScrewJoint class >> binaryReaderBlockForVersion: oldVersion format: oldFormat [
 	"Change 
 	StCAD.Geo.GEOScrewJoint 
@@ -37,22 +39,22 @@ GEOScrewJoint class >> binaryReaderBlockForVersion: oldVersion format: oldFormat
 	^super binaryReaderBlockForVersion: oldVersion format: oldFormat
 ]
 
-{ #category : #'binary storage' }
+{ #category : 'binary storage' }
 GEOScrewJoint class >> binaryRepresentationVersion [
 	^40
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOScrewJoint class >> mbdClass [
 	^MbDScrewJoint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOScrewJoint class >> nameString [
 	^'ScrewJoint'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOScrewJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -62,17 +64,17 @@ GEOScrewJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOScrewJoint >> aConstant [
 	^aConstant
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOScrewJoint >> aConstant: anObject [
 	aConstant := anObject
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOScrewJoint >> createMbD [
 	| mbdScrewJoint |
 	super createMbD.
@@ -81,22 +83,22 @@ GEOScrewJoint >> createMbD [
 	mbdScrewJoint aConstant: aConstant
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 GEOScrewJoint >> magnifySelf: aDouble [ 
 	pitch := pitch * aDouble
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOScrewJoint >> pitch [
 	^pitch
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOScrewJoint >> pitch: double [ 
 	pitch := double
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOScrewJoint >> storeOn: aStream level: level [ 
 	super storeOn: aStream level: level.
 	aStream

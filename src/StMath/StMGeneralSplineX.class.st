@@ -13,18 +13,20 @@ Instance Variables:
 
 "
 Class {
-	#name : #StMGeneralSplineX,
-	#superclass : #StMDataXYFunctionX,
+	#name : 'StMGeneralSplineX',
+	#superclass : 'StMDataXYFunctionX',
 	#instVars : [
 		'derivs',
 		'degree',
 		'index',
 		'delta'
 	],
-	#category : #'StMath-Symbolic'
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 StMGeneralSplineX class >> example1 [
 	"StMGeneralSpline example1"
 
@@ -44,7 +46,7 @@ StMGeneralSplineX class >> example1 [
 		ys: ys
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 StMGeneralSplineX class >> example2 [
 	"StMGeneralSpline example2"
 
@@ -64,7 +66,7 @@ StMGeneralSplineX class >> example2 [
 		ys: ys
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 StMGeneralSplineX class >> example3 [
 	"StMGeneralSpline example3"
 
@@ -84,7 +86,7 @@ StMGeneralSplineX class >> example3 [
 		ys: ys
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 StMGeneralSplineX class >> example4 [
 	"StMGeneralSpline example4"
 
@@ -106,17 +108,17 @@ StMGeneralSplineX class >> example4 [
 		ys: ys
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMGeneralSplineX class >> functionSymbol [
 	^'spline'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMGeneralSplineX class >> functionTemplate [
 	^self functionSymbol , '(x, degree, x1, y1, x2, y2, ...)'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMGeneralSplineX class >> visualWorksMetadata [
 
 	^ #(
@@ -126,7 +128,7 @@ StMGeneralSplineX class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMGeneralSplineX class >> with: var order: order xs: xxs ys: yys [ 
 	| ys answer |
 	ys := (yys isKindOf: StMArray)
@@ -142,7 +144,7 @@ StMGeneralSplineX class >> with: var order: order xs: xxs ys: yys [
 		ys: ys
 ]
 
-{ #category : #ops }
+{ #category : 'ops' }
 StMGeneralSplineX >> * double [ 
 	^StMGeneralSplineX 
 		with: self x
@@ -151,7 +153,7 @@ StMGeneralSplineX >> * double [
 		ys: (self ys collect: [:element | element * double])
 ]
 
-{ #category : #ops }
+{ #category : 'ops' }
 StMGeneralSplineX >> / double [ 
 	^StMGeneralSplineX
 		with: self x
@@ -160,12 +162,12 @@ StMGeneralSplineX >> / double [
 		ys: (self ys collect: [:element | element / double])
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 StMGeneralSplineX >> = anObject [ 
 	^super = anObject and: [derivs = anObject derivs and: [degree = anObject degree]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMGeneralSplineX >> arguments1: array [ 
 	| n |
 	self x: (array at: 1).
@@ -182,7 +184,7 @@ StMGeneralSplineX >> arguments1: array [
 	self ys: ys
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMGeneralSplineX >> arguments: array [ 
 	| n arg order xarray yarray |
 	arg := array at: 1.
@@ -202,7 +204,7 @@ StMGeneralSplineX >> arguments: array [
 		ys: yarray
 ]
 
-{ #category : #calculation }
+{ #category : 'calculation' }
 StMGeneralSplineX >> calcCyclicIndexAndDelta [
 	| xFirst xLast |
 	xFirst := xs first.
@@ -211,7 +213,7 @@ StMGeneralSplineX >> calcCyclicIndexAndDelta [
 	self calcIndexAndDelta
 ]
 
-{ #category : #calculation }
+{ #category : 'calculation' }
 StMGeneralSplineX >> calcIndexAndDelta [
 	(index < xs size and: [(xs at: index)
 			<= xvalue & (xvalue < (xs at: index + 1))])
@@ -219,7 +221,7 @@ StMGeneralSplineX >> calcIndexAndDelta [
 	delta := xvalue - (xs at: index)
 ]
 
-{ #category : #calculation }
+{ #category : 'calculation' }
 StMGeneralSplineX >> calcIndexAndDeltaFor: xx [ 
 	xvalue := xx.
 	self isCyclic
@@ -227,7 +229,7 @@ StMGeneralSplineX >> calcIndexAndDeltaFor: xx [
 		ifFalse: [self calcNonCyclicIndexAndDelta]
 ]
 
-{ #category : #calculation }
+{ #category : 'calculation' }
 StMGeneralSplineX >> calcNonCyclicIndexAndDelta [
 	| xFirst xLast |
 	xFirst := xs first.
@@ -243,7 +245,7 @@ StMGeneralSplineX >> calcNonCyclicIndexAndDelta [
 				ifFalse: [self calcIndexAndDelta]]
 ]
 
-{ #category : #calculation }
+{ #category : 'calculation' }
 StMGeneralSplineX >> computeDerivatives [
 	"See derivation in 9spline.doc."
 
@@ -352,7 +354,7 @@ StMGeneralSplineX >> computeDerivatives [
 					1 to: p do: [:j | derivsi at: j put: (derivsi at: j) / (hmaxpowers at: j)]]]
 ]
 
-{ #category : #calculation }
+{ #category : 'calculation' }
 StMGeneralSplineX >> computeDerivatives1 [
 	"See derivation in 9spline.doc."
 
@@ -475,7 +477,7 @@ StMGeneralSplineX >> computeDerivatives1 [
 					equalFullRow: derivsVector at: i - 1 * p + 1]]
 ]
 
-{ #category : #calculation }
+{ #category : 'calculation' }
 StMGeneralSplineX >> computeDerivativesgood [
 	"See derivation in 9spline.doc."
 
@@ -565,29 +567,29 @@ StMGeneralSplineX >> computeDerivativesgood [
 				do: [:i | (derivs at: i) equalFullRow: derivsVector at: (i - 1) * p + 1]]
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMGeneralSplineX >> d2ydx2: xx [ 
 	^self derivative: 2 at: xx
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMGeneralSplineX >> d3ydx3: xx [ 
 	^self derivative: 3 at: xx
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMGeneralSplineX >> degree [
 	^degree
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMGeneralSplineX >> degree: integer [ 
 	degree := integer.
 	(degree even and: [self isCyclic])
 		ifTrue: [self error: 'KOH001: Even degree cyclic spline is not possible.']
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMGeneralSplineX >> derivative: n at1: xx [ 
 	"dydx(x) := dydxi + d2ydx2i*hi + d3ydx3i*hi^2/2! +"
 	"d2ydx2(x) := d2ydx2i + d3ydx3i*hi + d4ydx4i*hi^2/2! +"
@@ -608,7 +610,7 @@ StMGeneralSplineX >> derivative: n at1: xx [
 		+ sum
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMGeneralSplineX >> derivative: n at: xx [ 
 	"dydx(x) := dydxi + d2ydx2i*hi + d3ydx3i*hi^2/2! +"
 
@@ -630,35 +632,35 @@ StMGeneralSplineX >> derivative: n at: xx [
 			(derivsi at: n) + sum]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMGeneralSplineX >> derivs [
 	^derivs
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMGeneralSplineX >> differentiateWRTx [
 	^StMDifferentiatedGeneralSplineX with: self derivativeOrder: 1
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMGeneralSplineX >> dydx: xx [ 
 	^self derivative: 1 at: xx
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 StMGeneralSplineX >> initialize [
 	super initialize.
 	index := 1
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMGeneralSplineX >> isCyclic [
 	"Answer whether the receiver is cyclic, i.e., folds back on itself."
 
 	^ys size > 3 and: [ys first = ys last]
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 StMGeneralSplineX >> postCopy [
 	super postCopy.
 	derivs := derivs isSequenceable
@@ -669,22 +671,22 @@ StMGeneralSplineX >> postCopy [
 	delta := delta copy
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMGeneralSplineX >> pppvaluepspsps: s [ 
 	^Array with: (Array with: (Array with: (self d3ydx3: (s at: 1))))
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMGeneralSplineX >> ppvaluepsps: s [ 
 	^StMFullMatrix with: (StMFullRow with: (self d2ydx2: (s at: 1)))
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMGeneralSplineX >> pvalueps: s [ 
 	^(self dydx: (s at: 1)) asFullMatrix
 ]
 
-{ #category : #calculation }
+{ #category : 'calculation' }
 StMGeneralSplineX >> searchIndexFrom: first to: last [ 
 	"Assume xs(first) <= xvalue < xs(last)."
 
@@ -698,7 +700,7 @@ StMGeneralSplineX >> searchIndexFrom: first to: last [
 				ifFalse: [self searchIndexFrom: middle to: last]]
 ]
 
-{ #category : #changing }
+{ #category : 'changing' }
 StMGeneralSplineX >> substitute: var1 with: var2 [ 
 	| xx |
 	^self = var1
@@ -712,17 +714,17 @@ StMGeneralSplineX >> substitute: var1 with: var2 [
 				ys: ys]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMGeneralSplineX >> value [
 	^self y: x value
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMGeneralSplineX >> value: s [ 
 	^self y: (s at: 1)
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 StMGeneralSplineX >> x: arg order: order xs: xarray ys: yarray [ 
 	x := self conditionArgument: arg.
 	degree := order asInteger.
@@ -734,18 +736,18 @@ StMGeneralSplineX >> x: arg order: order xs: xarray ys: yarray [
 	self computeDerivatives
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMGeneralSplineX >> xs [
 	^xs
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMGeneralSplineX >> xs: array [ 
 	array isIncreasing ifFalse: [self error: #'KOH: x series must be in increasing order.'].
 	xs := array
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMGeneralSplineX >> y: xx [ 
 	"y(x) := yi + dydxi*hi + d2ydx2i*hi^2/2! + d3ydx3i*hi^3/3! +"
 
@@ -760,12 +762,12 @@ StMGeneralSplineX >> y: xx [
 	^(ys at: index) + sum
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMGeneralSplineX >> ys [
 	^ys
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMGeneralSplineX >> ys: array [ 
 	ys := array.
 	(degree notNil and: [degree even and: [self isCyclic]])

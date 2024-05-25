@@ -4,16 +4,17 @@ prpt := prps*pspt
 pprptpt := psptT*pprpsps*pspt + prps*ppsptpt
 "
 Class {
-	#name : #BasicCurveOnSurface,
-	#superclass : #BasicCurve,
+	#name : 'BasicCurveOnSurface',
+	#superclass : 'BasicCurve',
 	#instVars : [
 		'aSurface',
 		'uvCurve'
 	],
-	#category : #'StCAD-Geo'
+	#category : 'StCAD-Geo',
+	#package : 'StCAD-Geo'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 BasicCurveOnSurface class >> visualWorksMetadata [
 
 	^ #(
@@ -23,29 +24,29 @@ BasicCurveOnSurface class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicCurveOnSurface >> aJun3dPolylineu: u [ 
 	| acPoint |
 	acPoint := u collect: [:au | self rFpF_u: au].
 	^Jun3dPolyline points: acPoint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicCurveOnSurface >> aSurface [
 	^aSurface
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicCurveOnSurface >> aSurface: anObject [
 	aSurface := anObject
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicCurveOnSurface >> asJunOpenGL3dObject [
 	^(self aJun3dPolylineu: (0.0 to: 1.0 nStep: 100)) asJunOpenGL3dObject
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicCurveOnSurface >> csguess [
 	| n |
 	n := 2.
@@ -54,7 +55,7 @@ BasicCurveOnSurface >> csguess [
 	^Array with: (0.0 to: 1.0 nStep: n)
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicCurveOnSurface >> pprfpfpupu_u: t [ 
 	"
 	r(s(t))
@@ -90,7 +91,7 @@ BasicCurveOnSurface >> pprfpfpupu_u: t [
 	^psptT_pprpsps_pspt plusFullColumn: prps_ppsptpt
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicCurveOnSurface >> prfpfpu_u: t [ 
 	"prfpfpt := prfpfps*pspt"
 
@@ -101,31 +102,31 @@ BasicCurveOnSurface >> prfpfpu_u: t [
 	^prfpfps timesFullColumn: pspt
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicCurveOnSurface >> rOpO_s: s [ 
 	| uv |
 	uv := uvCurve rfpf_u: s first.
 	^aSurface rOpO_s: uv
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicCurveOnSurface >> rfpfNurbs [
 	^BasicNURBSCurve fromcDataPoint: (self cPoint_n: 32) uDegree: 3
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicCurveOnSurface >> rfpf_u: u [ 
 	| uv |
 	uv := uvCurve rfpf_u: u.
 	^aSurface rFpF_s: uv
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicCurveOnSurface >> uvCurve [
 	^uvCurve
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicCurveOnSurface >> uvCurve: anObject [
 	uvCurve := anObject
 ]

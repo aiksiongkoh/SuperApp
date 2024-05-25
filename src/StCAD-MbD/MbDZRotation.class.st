@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDZRotation,
-	#superclass : #MbDPrescribedMotion,
-	#category : #'StCAD-MbD-MbDMotion'
+	#name : 'MbDZRotation',
+	#superclass : 'MbDPrescribedMotion',
+	#category : 'StCAD-MbD-MbDMotion',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDMotion'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDZRotation class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ MbDZRotation class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDZRotation >> classString [
 	"Used to access the descriptive name of the joint."
 	"Needed for multi-language."
@@ -22,7 +24,7 @@ MbDZRotation >> classString [
 	^TheMbDSystem getString: #'MbD: Z Rotation '
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDZRotation >> initializeGlobally [
 	constraints isEmpty
 		ifTrue: 

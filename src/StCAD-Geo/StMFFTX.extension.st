@@ -1,6 +1,6 @@
-Extension { #name : #StMFFTX }
+Extension { #name : 'StMFFTX' }
 
-{ #category : #'*StCAD-Geo-accessing' }
+{ #category : '*StCAD-Geo-accessing' }
 StMFFTX >> transformSeriesPosFreqOnly [
 	| n fmin answer data nOver2 |
 	n := xs size.

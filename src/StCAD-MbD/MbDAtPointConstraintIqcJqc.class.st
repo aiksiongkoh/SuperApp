@@ -1,16 +1,18 @@
 Class {
-	#name : #MbDAtPointConstraintIqcJqc,
-	#superclass : #MbDAtPointConstraintIqcJc,
+	#name : 'MbDAtPointConstraintIqcJqc',
+	#superclass : 'MbDAtPointConstraintIqcJc',
 	#instVars : [
 		'pGpEJ',
 		'ppGpEJpEJ',
 		'iqXJminusOnePlusAxis',
 		'iqEJ'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDAtPointConstraintIqcJqc class >> visualWorksMetadata [
 
 	^ #(
@@ -20,7 +22,7 @@ MbDAtPointConstraintIqcJqc class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDAtPointConstraintIqcJqc class >> withFrmI: afrmI frmJ: afrmJ axis: aaxis [ 
 	^(afrmI isMemberOf: MbDEndFrameqc)
 		& (afrmJ isMemberOf: MbDEndFrameqc)
@@ -31,12 +33,12 @@ MbDAtPointConstraintIqcJqc class >> withFrmI: afrmI frmJ: afrmJ axis: aaxis [
 		ifFalse: [nil]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDAtPointConstraintIqcJqc >> addToJointForceJ: col [ 
 	col at: axis plusNumber: lam
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDAtPointConstraintIqcJqc >> addToJointTorqueJ: col [ 
 	| cForceT rJpJeJp pAOJppEJ aBOJp fpAOJppEJrJpJeJp dum lampGpE c2Torque |
 	cForceT := (StMFullRow zero: 3).
@@ -53,7 +55,7 @@ MbDAtPointConstraintIqcJqc >> addToJointTorqueJ: col [
 	col equalSelfPlusFullColumn: c2Torque times: 0.5
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDAtPointConstraintIqcJqc >> addpTIeiGOpEJto: mat [ 
 	"ppGpXIpEJ := zero."
 	"ppGpEIpEJ := zero."
@@ -61,18 +63,18 @@ MbDAtPointConstraintIqcJqc >> addpTIeiGOpEJto: mat [
 	"Do nothing."
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDAtPointConstraintIqcJqc >> calcPostDynCorrectorIteration [
 	super calcPostDynCorrectorIteration.
 	pGpEJ := riIeJeO priIeJeOpEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDAtPointConstraintIqcJqc >> dispCompClass [
 	^MbDDispCompIeqcJeqcO
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDAtPointConstraintIqcJqc >> fillAccICIterError: col [ 
 	| qEdotJ sum |
 	super fillAccICIterError: col.
@@ -86,7 +88,7 @@ MbDAtPointConstraintIqcJqc >> fillAccICIterError: col [
 	col at: iG plusNumber: sum
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDAtPointConstraintIqcJqc >> fillCollisionError: col [ 
 	"lamDeriv is now PlamDeriv."
 	"qEddot is now qEdotDeriv."
@@ -101,14 +103,14 @@ MbDAtPointConstraintIqcJqc >> fillCollisionError: col [
 	col at: iG plusNumber: sum
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDAtPointConstraintIqcJqc >> fillPosICError: col [ 
 	super fillPosICError: col.
 	col at: iqXJminusOnePlusAxis plusNumber: lam.
 	col at: iqEJ plusFullColumn: pGpEJ times: lam
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDAtPointConstraintIqcJqc >> fillPosICJacob: mat [ 
 	super fillPosICJacob: mat.
 	mat at: iG and: iqXJminusOnePlusAxis plusNumber: 1.0.
@@ -118,14 +120,14 @@ MbDAtPointConstraintIqcJqc >> fillPosICJacob: mat [
 	mat at: iqEJ and: iqEJ plusFullMatrix: ppGpEJpEJ times: lam
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDAtPointConstraintIqcJqc >> fillPosKineJacob: mat [ 
 	super fillPosKineJacob: mat.
 	mat at: iG and: iqXJminusOnePlusAxis plusNumber: 1.0.
 	mat at: iG and: iqEJ plusFullRow: pGpEJ
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDAtPointConstraintIqcJqc >> fillVelICJacob: mat [ 
 	super fillVelICJacob: mat.
 	mat at: iG and: iqXJminusOnePlusAxis plusNumber: 1.0.
@@ -134,7 +136,7 @@ MbDAtPointConstraintIqcJqc >> fillVelICJacob: mat [
 	mat at: iqEJ and: iG plusFullColumn: pGpEJ transpose
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDAtPointConstraintIqcJqc >> fillpFpy: mat [ 
 	super fillpFpy: mat.
 	mat at: iG and: iqXJminusOnePlusAxis plusNumber: 1.0.
@@ -142,20 +144,20 @@ MbDAtPointConstraintIqcJqc >> fillpFpy: mat [
 	mat at: iqEJ and: iqEJ plusFullMatrix: ppGpEJpEJ times: lam
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDAtPointConstraintIqcJqc >> fillpFpydot: mat [ 
 	super fillpFpydot: mat.
 	mat at: iqXJminusOnePlusAxis and: iG plusNumber: 1.0.
 	mat at: iqEJ and: iG plusFullColumn: pGpEJ transpose
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDAtPointConstraintIqcJqc >> initializeGlobally [
 	super initializeGlobally.
 	ppGpEJpEJ := riIeJeO ppriIeJeOpEJpEJ
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDAtPointConstraintIqcJqc >> useEquationNumbers [
 	super useEquationNumbers.
 	iqXJminusOnePlusAxis := frmJ iqX - 1 + axis.

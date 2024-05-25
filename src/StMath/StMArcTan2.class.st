@@ -1,15 +1,17 @@
 Class {
-	#name : #StMArcTan2,
-	#superclass : #StMFunctionXY,
-	#category : #'StMath-Symbolic'
+	#name : 'StMArcTan2',
+	#superclass : 'StMFunctionXY',
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMArcTan2 class >> functionSymbol [
 	^'arctan2'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMArcTan2 class >> visualWorksMetadata [
 
 	^ #(
@@ -19,7 +21,7 @@ StMArcTan2 class >> visualWorksMetadata [
 
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMArcTan2 >> differentiateWRT: variable [ 
 	| arg dargdvar dfuncdarg |
 	self == variable ifTrue: [^StMConstant with: 1].
@@ -30,7 +32,7 @@ StMArcTan2 >> differentiateWRT: variable [
 	^dfuncdarg times: dargdvar
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMArcTan2 >> partialDifferentiateWRT: variable [ 
 	| arg dargdvar dfuncdarg |
 	self == variable ifTrue: [^StMConstant with: 1].
@@ -41,7 +43,7 @@ StMArcTan2 >> partialDifferentiateWRT: variable [
 	^dfuncdarg times: dargdvar
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMArcTan2 >> simplifyUntil: set [ 
 	| xx yy copy |
 	(set includes: self)
@@ -55,7 +57,7 @@ StMArcTan2 >> simplifyUntil: set [
 	^copy
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMArcTan2 >> value [
 	^Double arcTanMpiTOpiY: y value overX: x value
 ]

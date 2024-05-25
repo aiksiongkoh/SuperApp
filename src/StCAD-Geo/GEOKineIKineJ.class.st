@@ -1,14 +1,16 @@
 Class {
-	#name : #GEOKineIKineJ,
-	#superclass : #GEOData,
+	#name : 'GEOKineIKineJ',
+	#superclass : 'GEOData',
 	#instVars : [
 		'kineI',
 		'kineJ'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOKineIKineJ class >> visualWorksMetadata [
 
 	^ #(
@@ -18,32 +20,32 @@ GEOKineIKineJ class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> aAIJ [
 	^self aAOI transpose timesFullMatrix: self aAOJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> aAOI [
 	^kineI aAOf
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> aAOIT [
 	^kineI aAOf transpose
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> aAOJ [
 	^kineJ aAOf
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> aIJ [
 	^self aIJI length
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> aIJI [
 	| rIJI omeOII |
 	rIJI := self rIJI.
@@ -53,145 +55,145 @@ GEOKineIKineJ >> aIJI [
 				+ (omeOII cross: (omeOII cross: rIJI)) + (2.0 * (omeOII cross: self vIJI)))
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> aIJI1 [
 	^self aIJI at: 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> aIJI2 [
 	^self aIJI at: 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> aIJI3 [
 	^self aIJI at: 3
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> aOIO [
 	^kineI aOfO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> aOJO [
 	^kineJ aOfO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> alpIJ [
 	^self alpIJI length
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> alpIJI [
 	^(self aAOIT timesFullColumn: self alpOJO - self alpOIO)
 		- (self omeOII cross: self omeIJI)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> alpIJI1 [
 	^self alpIJI at: 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> alpIJI2 [
 	^self alpIJI at: 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> alpIJI3 [
 	^self alpIJI at: 3
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> alpOII [
 	^self aAOIT timesFullColumn: self alpOIO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> alpOIO [
 	^kineI alpOfO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> alpOJO [
 	^kineJ alpOfO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> bryantIJ [
 	^self aAIJ bryantAngles
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> bryantIJ1 [
 	^self bryantIJ at: 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> bryantIJ2 [
 	^self bryantIJ at: 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> bryantIJ3 [
 	^self bryantIJ at: 3
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> centripetalAccIJ [
 	^self centripetalAccIJI length
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> centripetalAccIJI [
 	| omeOII |
 	omeOII := self omeOII.
 	^omeOII cross: (omeOII cross: self rIJI)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> centripetalAccIJI1 [
 	^self centripetalAccIJI at: 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> centripetalAccIJI2 [
 	^self centripetalAccIJI at: 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> centripetalAccIJI3 [
 	^self centripetalAccIJI at: 3
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> coriollisAccIJ [
 	^self coriollisAccIJI length
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> coriollisAccIJI [
 	^2.0 * (self omeOII cross: self vIJI)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> coriollisAccIJI1 [
 	^self coriollisAccIJI at: 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> coriollisAccIJI2 [
 	^self coriollisAccIJI at: 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> coriollisAccIJI3 [
 	^self coriollisAccIJI at: 3
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> dataTypes [
 	"
 	rOJO := rOIO + aAOI*rIJI. 
@@ -260,188 +262,188 @@ GEOKineIKineJ >> dataTypes [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> eulerAngleszyxIJ [
 	^GEOEulerAngleszyx fromA: self aAIJ.
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOKineIKineJ >> initialize [
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> kineI: geoKine [ 
 	kineI := geoKine
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> kineJ: geoKine [ 
 	kineJ := geoKine
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> omeIJ [
 	^self omeIJI length
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> omeIJI [
 	^self aAOIT timesFullColumn: self omeOJO - self omeOIO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> omeIJI1 [
 	^self omeIJI at: 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> omeIJI2 [
 	^self omeIJI at: 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> omeIJI3 [
 	^self omeIJI at: 3
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> omeOII [
 	^self aAOIT timesFullColumn: self omeOIO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> omeOIO [
 	^kineI omeOfO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> omeOJO [
 	^kineJ omeOfO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> rIJ [
 	^self rIJI length
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> rIJI [
 	^self aAOIT timesFullColumn: self rOJO - self rOIO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> rIJI1 [
 	^self rIJI at: 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> rIJI2 [
 	^self rIJI at: 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> rIJI3 [
 	^self rIJI at: 3
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> rOIO [
 	^kineI rOfO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> rOJO [
 	^kineJ rOfO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> time [
 	^kineI time
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> timetime [
 	^kineI timetime
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> transverseAccIJ [
 	^self transverseAccIJI length
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> transverseAccIJI [
 	^self alpOII cross: self rIJI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> transverseAccIJI1 [
 	^self transverseAccIJI at: 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> transverseAccIJI2 [
 	^self transverseAccIJI at: 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> transverseAccIJI3 [
 	^self transverseAccIJI at: 3
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> transverseVelIJ [
 	^self transverseVelIJI length
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> transverseVelIJI [
 	^self omeOII cross: self rIJI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> transverseVelIJI1 [
 	^self transverseVelIJI at: 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> transverseVelIJI2 [
 	^self transverseVelIJI at: 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> transverseVelIJI3 [
 	^self transverseVelIJI at: 3
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> vIJ [
 	^self vIJI length
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> vIJI [
 	^(self aAOIT timesFullColumn: self vOJO - self vOIO)
 		- (self omeOII cross: self rIJI)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> vIJI1 [
 	^self vIJI at: 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> vIJI2 [
 	^self vIJI at: 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> vIJI3 [
 	^self vIJI at: 3
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> vIJRadial [
 	| ur |
 	^self rIJI length > 0
@@ -451,12 +453,12 @@ GEOKineIKineJ >> vIJRadial [
 		ifFalse: [self vIJI length]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> vOIO [
 	^kineI vOfO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIKineJ >> vOJO [
 	^kineJ vOfO
 ]

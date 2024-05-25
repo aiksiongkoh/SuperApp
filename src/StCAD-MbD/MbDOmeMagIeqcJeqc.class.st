@@ -1,14 +1,16 @@
 Class {
-	#name : #MbDOmeMagIeqcJeqc,
-	#superclass : #MbDOmeMagIeqcJec,
+	#name : 'MbDOmeMagIeqcJeqc',
+	#superclass : 'MbDOmeMagIeqcJec',
 	#instVars : [
 		'pomeIeJepEJ',
 		'pomeIeJepEJdot'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDOmeMagIeqcJeqc class >> visualWorksMetadata [
 
 	^ #(
@@ -18,7 +20,7 @@ MbDOmeMagIeqcJeqc class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDOmeMagIeqcJeqc class >> withFrmI: afrmI frmJ: afrmJ [ 
 	^(afrmI isMemberOf: MbDEndFrameqc)
 		& (afrmJ isMemberOf: MbDEndFrameqc)
@@ -26,7 +28,7 @@ MbDOmeMagIeqcJeqc class >> withFrmI: afrmI frmJ: afrmJ [
 		ifFalse: [nil]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDOmeMagIeqcJeqc >> calcPostDynCorrectorIteration [
 	| zeroColumn pomeIeJeOpEJ pomeIeJeOpEJdot |
 	super calcPostDynCorrectorIteration.
@@ -43,12 +45,12 @@ MbDOmeMagIeqcJeqc >> calcPostDynCorrectorIteration [
 			pomeIeJepEJdot := pomeIeJeOpEJdot transposeTimesFullColumn: uomeIeJeO]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDOmeMagIeqcJeqc >> pvaluepEJ [
 	^pomeIeJepEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDOmeMagIeqcJeqc >> pvaluepEJdot [
 	^pomeIeJepEJdot
 ]

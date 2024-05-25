@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDZeroSeparationNewtonRaphson2,
-	#superclass : #MbDTimeNewtonRaphson2,
-	#category : #'StCAD-MbD-MbDSolver'
+	#name : 'MbDZeroSeparationNewtonRaphson2',
+	#superclass : 'MbDTimeNewtonRaphson2',
+	#category : 'StCAD-MbD-MbDSolver',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDZeroSeparationNewtonRaphson2 class >> visualWorksMetadata [
 
 	^ #(
@@ -14,12 +16,12 @@ MbDZeroSeparationNewtonRaphson2 class >> visualWorksMetadata [
 
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDZeroSeparationNewtonRaphson2 >> fillPyPx [
 	pypx := system separationDerivative: 1 at: x
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDZeroSeparationNewtonRaphson2 >> fillY [
 	y := system separationAt: x
 ]

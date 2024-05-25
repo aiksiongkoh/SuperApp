@@ -2,12 +2,14 @@
 This class is obselete. It is required to read *.asm created with 'freeCAD2' or earlier.
 "
 Class {
-	#name : #MbDUnits,
-	#superclass : #Units,
-	#category : #'StCAD-MbD-MbDBasic'
+	#name : 'MbDUnits',
+	#superclass : 'Units',
+	#category : 'StCAD-MbD-MbDBasic',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDBasic'
 }
 
-{ #category : #'binary storage' }
+{ #category : 'binary storage' }
 MbDUnits class >> binaryReaderBlockForVersion: oldVersion format: oldFormat [ 
 	"Change order from 
 	name mass length time aJ velocity omega acceleration alpha force torque 
@@ -36,12 +38,12 @@ MbDUnits class >> binaryReaderBlockForVersion: oldVersion format: oldFormat [
 	^super binaryReaderBlockForVersion: oldVersion format: oldFormat
 ]
 
-{ #category : #'binary storage' }
+{ #category : 'binary storage' }
 MbDUnits class >> binaryRepresentationVersion [
 	^30
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDUnits class >> visualWorksMetadata [
 
 	^ #(

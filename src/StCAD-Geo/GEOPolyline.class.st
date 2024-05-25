@@ -7,16 +7,18 @@ points	<OrderedCollection>	vertices of polyline.
 isClosed	<Boolean>		first point = last point.
 "
 Class {
-	#name : #GEOPolyline,
-	#superclass : #GEOCurve,
+	#name : 'GEOPolyline',
+	#superclass : 'GEOCurve',
 	#instVars : [
 		'rfpointsf',
 		'isClosed'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #BOSS }
+{ #category : 'BOSS' }
 GEOPolyline class >> binaryReaderBlockForVersion: oldVersion format: oldFormat [ 
 	| newGEOPolyline rfpointsf |
 	oldVersion isNil ifTrue: [^
@@ -31,24 +33,24 @@ GEOPolyline class >> binaryReaderBlockForVersion: oldVersion format: oldFormat [
 		oldGEOPolyline become: newGEOPolyline]]
 ]
 
-{ #category : #BOSS }
+{ #category : 'BOSS' }
 GEOPolyline class >> binaryRepresentationVersion [
 	"rfpointsf replaces points."
 
 	^20
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GEOPolyline class >> refFrame: refFrm rFpointsF: pts [ 
 	^super new refFrame: refFrm rFpointsF: pts
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GEOPolyline class >> start: start end: end [ 
 	^self new start: start end: end
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOPolyline class >> visualWorksMetadata [
 
 	^ #(
@@ -58,12 +60,12 @@ GEOPolyline class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPolyline >> aBoundingBox [
 	^self triggerEvent: #getBoundingBox
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOPolyline >> calcBoundingBox [
 	| aBoundingBox |
 	aBoundingBox := BoundingBox new.
@@ -72,22 +74,22 @@ GEOPolyline >> calcBoundingBox [
 	self aBoundingBox: aBoundingBox
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPolyline >> crfpointf [
 	^rfpointsf
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOPolyline >> isClosed [
 	^isClosed
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOPolyline >> isClosed: bool [ 
 	isClosed := bool
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPolyline >> listCopyOfPoints [
 	| list |
 	list := List new: rfpointsf size.
@@ -95,14 +97,14 @@ GEOPolyline >> listCopyOfPoints [
 	^list
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPolyline >> magnifySelf: aDouble [ 
 	self aBoundingBox ifNotNil: [:a | a magnifySelf: aDouble].
 	self aRefFrame magnifySelf: aDouble.
 	self crfpointf do: [:rfpointf | rfpointf magnifySelf: aDouble]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 GEOPolyline >> makeOppositeFacePositive [
 	"
 	For plane loops only. 
@@ -116,13 +118,13 @@ GEOPolyline >> makeOppositeFacePositive [
 	rfpointsf do: [:rfpointf | rfpointf at: 2 put: (rfpointf at: 2) negated]
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 GEOPolyline >> postCopy [
 	super postCopy.
 	rfpointsf := rfpointsf collect: [:rfpointf | rfpointf copy]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPolyline >> rFpointsF: array [ 
 	"
 	rFpF := rFfF + aAFf * rfpf. 
@@ -136,7 +138,7 @@ GEOPolyline >> rFpointsF: array [
 	self rfpointsf: (array collect: [:rFpF | aAFfT timesFullColumn: rFpF - rFfF])
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPolyline >> refFrame: refFrm rFpointsF: rFptsF [ 
 	"If polyline is closed, create a Frame at first point and use right hand rule for z of plane."
 
@@ -169,7 +171,7 @@ GEOPolyline >> refFrame: refFrm rFpointsF: rFptsF [
 			self rfpointsf: (rfptsF collect: [:rfpF | aAFfT timesFullColumn: rfpF])]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 GEOPolyline >> renderOn1: aRenderingContext [ 
 	aRenderingContext productTransformation: refFrame aMFf
 		while: 
@@ -185,7 +187,7 @@ GEOPolyline >> renderOn1: aRenderingContext [
 			self hasStipple ifTrue: [aRenderingContext disableLineStipple]]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 GEOPolyline >> renderOn3: aRenderingContext [ 
 	aRenderingContext productTransformation: refFrame aMFf
 		while: 
@@ -201,7 +203,7 @@ GEOPolyline >> renderOn3: aRenderingContext [
 			self hasStipple ifTrue: [aRenderingContext disableLineStipple]]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 GEOPolyline >> renderOn4: aRenderingContext [ 
 	"JunOpenGL3dNonConvexPolygon does not have the last vertex repeated."
 
@@ -218,7 +220,7 @@ GEOPolyline >> renderOn4: aRenderingContext [
 			nonConvexPolygon renderOn: aRenderingContext]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 GEOPolyline >> renderPolyfaceOn: aRenderingContext [ 
 	self cadObject notNil 
 		ifTrue: 
@@ -236,7 +238,7 @@ GEOPolyline >> renderPolyfaceOn: aRenderingContext [
 					self hasStipple ifTrue: [aRenderingContext disableLineStipple]]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPolyline >> rfpointfAt: i put: col [ 
 	(isClosed and: [i == 1 or: [i == rfpointsf size]]) 
 		ifTrue: 
@@ -247,12 +249,12 @@ GEOPolyline >> rfpointfAt: i put: col [
 	self changed
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPolyline >> rfpointsf [
 	^rfpointsf
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPolyline >> rfpointsf: array [ 
 	rfpointsf := array.
 	isClosed := rfpointsf first = rfpointsf last.
@@ -260,7 +262,7 @@ GEOPolyline >> rfpointsf: array [
 	self changed
 ]
 
-{ #category : #transforming }
+{ #category : 'transforming' }
 GEOPolyline >> scaledBy: aFullColumn [ 
 	self isClosed 
 		ifTrue: 
@@ -272,12 +274,12 @@ GEOPolyline >> scaledBy: aFullColumn [
 	self calcBoundingBox
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPolyline >> setrfpointsf: array [ 
 	rfpointsf := array
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPolyline >> start: start end: end [ 
 	rfpointsf := Array with: start with: end.
 	isClosed := false.
@@ -285,7 +287,7 @@ GEOPolyline >> start: start end: end [
 	self changed
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOPolyline >> storeOn: aStream level: level [ 
 	| block |
 	aStream storeLevel: level title: 'Polyline'.
@@ -303,7 +305,7 @@ GEOPolyline >> storeOn: aStream level: level [
 	block value: 'y' value: (rfpointsf collect: [:col | col at: 2])
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPolyline >> vertexes [
 	^rfpointsf
 ]

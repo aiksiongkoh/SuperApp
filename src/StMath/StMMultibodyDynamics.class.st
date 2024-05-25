@@ -1,16 +1,18 @@
 Class {
-	#name : #StMMultibodyDynamics,
-	#superclass : #StMSymbolic,
+	#name : 'StMMultibodyDynamics',
+	#superclass : 'StMSymbolic',
 	#instVars : [
 		'rOaO',
 		'rapa',
 		'rpmp',
 		'rmem'
 	],
-	#category : #'StMath-Symbolic'
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 StMMultibodyDynamics >> initialize [ 
 	| t rOaO1 rOaO2 rOaO3 qXd1 qXd2 qXd3 qXd rapa1 rapa2 rapa3 rpmp1 rpmp2 rpmp3 rmem1 rmem2 rmem3 rmemt1 rmemt2 rmemt3 rmemt qXt1 qXt2 qXt3 qXt st1 st2 st sd1 sd2 sd s1 s2 s rmems1 rmems2 rmems3 rmems qE2 qE3 qE4 qE1 qE |
 	t := StMIndependentVariable name: #t.
@@ -86,7 +88,7 @@ StMMultibodyDynamics >> initialize [
 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 StMMultibodyDynamics >> initialize2 [
 	"self initialize2."
 

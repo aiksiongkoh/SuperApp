@@ -1,14 +1,16 @@
 Class {
-	#name : #MbDParallelGearJoint,
-	#superclass : #MbDJoint,
+	#name : 'MbDParallelGearJoint',
+	#superclass : 'MbDJoint',
 	#instVars : [
 		'ratio',
 		'aConstant'
 	],
-	#category : #'StCAD-MbD-MbDJoint'
+	#category : 'StCAD-MbD-MbDJoint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDJoint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDParallelGearJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -18,17 +20,17 @@ MbDParallelGearJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDParallelGearJoint >> aConstant [
 	^aConstant
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDParallelGearJoint >> aConstant: anObject [
 	aConstant := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDParallelGearJoint >> classString [
 	"Used to access the descriptive name of the joint."
 	"Needed for multi-language."
@@ -36,7 +38,7 @@ MbDParallelGearJoint >> classString [
 	^TheMbDSystem getString: #'MbD: Parallel Gear Joint '
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDParallelGearJoint >> initializeGlobally [
 	| constraint |
 	constraints isEmpty 
@@ -49,12 +51,12 @@ MbDParallelGearJoint >> initializeGlobally [
 		ifFalse: [super initializeGlobally]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDParallelGearJoint >> ratio [
 	^ratio
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDParallelGearJoint >> ratio: anObject [
 	ratio := anObject
 ]

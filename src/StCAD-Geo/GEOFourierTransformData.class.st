@@ -1,15 +1,17 @@
 Class {
-	#name : #GEOFourierTransformData,
-	#superclass : #GEOData,
+	#name : 'GEOFourierTransformData',
+	#superclass : 'GEOData',
 	#instVars : [
 		'f',
 		'aFx',
 		'aFy'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOFourierTransformData class >> visualWorksMetadata [
 
 	^ #(
@@ -19,70 +21,70 @@ GEOFourierTransformData class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOFourierTransformData >> aFx [
 	^aFx
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOFourierTransformData >> aFx: realPart [ 
 	aFx := realPart
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOFourierTransformData >> aFy [
 	^aFy
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOFourierTransformData >> aFy: imPart [ 
 	aFy := imPart
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOFourierTransformData >> f [
 	^f
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOFourierTransformData >> f: frequency [ 
 	f := frequency
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOFourierTransformData >> initialize [
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOFourierTransformData >> magnitude [
 	^(aFx * aFx + (aFy * aFy)) sqrt
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOFourierTransformData >> oneSidedSpectralDensity [
 	"One sided spectral density of real functions."
 
 	^2 * (aFx * aFx + (aFy * aFy))
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOFourierTransformData >> phase [
 	^Double arcTan0to2piY: aFy overX: aFx
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOFourierTransformData >> phase1 [
 	^Double arcTanMpiTOpiY: aFy overX: aFx
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOFourierTransformData >> phaseDegrees [
 	^[(Double arcTan0to2piY: aFy overX: aFx) radiansToDegrees] on: Error
 		do: [:ex | 0.0]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOFourierTransformData >> spectralDensity [
 	"One sided spectral density of real functions."
 

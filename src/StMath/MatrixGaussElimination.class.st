@@ -1,10 +1,12 @@
 Class {
-	#name : #MatrixGaussElimination,
-	#superclass : #MatrixSolver,
-	#category : #'StMath-StMathMatrixSolver'
+	#name : 'MatrixGaussElimination',
+	#superclass : 'MatrixSolver',
+	#category : 'StMath-StMathMatrixSolver',
+	#package : 'StMath',
+	#tag : 'StMathMatrixSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MatrixGaussElimination class >> visualWorksMetadata [
 
 	^ #(
@@ -14,14 +16,14 @@ MatrixGaussElimination class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'back substitution' }
+{ #category : 'back substitution' }
 MatrixGaussElimination >> backSubstituteIntoDU [
 	"DU is upper triangular with nonzero and arbitrary diagonals."
 
 	self subclassResponsibility
 ]
 
-{ #category : #solution }
+{ #category : 'solution' }
 MatrixGaussElimination >> basicSolve: aMatrix with: aVector saveOriginal: saveOriginal [ 
 	self
 		preSolve: aMatrix
@@ -37,7 +39,7 @@ MatrixGaussElimination >> basicSolve: aMatrix with: aVector saveOriginal: saveOr
 	^answerX
 ]
 
-{ #category : #'forward elimination' }
+{ #category : 'forward elimination' }
 MatrixGaussElimination >> forwardEliminateWithPivot: p [ 
 	self subclassResponsibility
 ]

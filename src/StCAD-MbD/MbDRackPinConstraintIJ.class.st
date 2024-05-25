@@ -1,15 +1,17 @@
 Class {
-	#name : #MbDRackPinConstraintIJ,
-	#superclass : #MbDConstraintIJ,
+	#name : 'MbDRackPinConstraintIJ',
+	#superclass : 'MbDConstraintIJ',
 	#instVars : [
 		'xIeJeIe',
 		'thezIeJe',
 		'pitchRadius'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDRackPinConstraintIJ class >> visualWorksMetadata [
 
 	^ #(
@@ -19,7 +21,7 @@ MbDRackPinConstraintIJ class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDRackPinConstraintIJ class >> withFrmI: afrmI frmJ: afrmJ [ 
 	| instance |
 	self allSubclasses
@@ -29,7 +31,7 @@ MbDRackPinConstraintIJ class >> withFrmI: afrmI frmJ: afrmJ [
 			instance notNil ifTrue: [^instance]]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDRackPinConstraintIJ >> calcPostDynCorrectorIteration [
 	| x thez |
 	x := xIeJeIe value.
@@ -37,7 +39,7 @@ MbDRackPinConstraintIJ >> calcPostDynCorrectorIteration [
 	aG := x + (pitchRadius * thez) - aConstant
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRackPinConstraintIJ >> classString [
 	"Used to access the descriptive name of the constraint."
 	"Needed for multi-language."
@@ -45,62 +47,62 @@ MbDRackPinConstraintIJ >> classString [
 	^TheMbDSystem getString: #'MbD: one rack and pinion constraint '
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDRackPinConstraintIJ >> initialize [
 	super initialize.
 	self initxIeJeIe.
 	self initthezIeJe
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDRackPinConstraintIJ >> initializeGlobally [
 	xIeJeIe initializeGlobally.
 	thezIeJe initializeGlobally
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDRackPinConstraintIJ >> initializeLocally [
 	xIeJeIe initializeLocally.
 	thezIeJe initializeLocally
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDRackPinConstraintIJ >> initthezIeJe [
 	self subclassResponsibility
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDRackPinConstraintIJ >> initxIeJeIe [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRackPinConstraintIJ >> pitchRadius: double [ 
 	pitchRadius := double
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDRackPinConstraintIJ >> postDynCorrectorIteration [
 	xIeJeIe postDynCorrectorIteration.
 	thezIeJe postDynCorrectorIteration.
 	super postDynCorrectorIteration
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDRackPinConstraintIJ >> postDynOutput [
 	xIeJeIe postDynOutput.
 	thezIeJe postDynOutput.
 	super postDynOutput
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDRackPinConstraintIJ >> postDynPredictor [
 	xIeJeIe postDynPredictor.
 	thezIeJe postDynPredictor.
 	super postDynPredictor
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDRackPinConstraintIJ >> postInput [
 	xIeJeIe postInput.
 	thezIeJe postInput.
@@ -109,63 +111,63 @@ MbDRackPinConstraintIJ >> postInput [
 	super postInput
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDRackPinConstraintIJ >> postPosICIteration [
 	xIeJeIe postPosICIteration.
 	thezIeJe postPosICIteration.
 	super postPosICIteration
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDRackPinConstraintIJ >> postStaticIteration [
 	xIeJeIe postStaticIteration.
 	thezIeJe postStaticIteration.
 	super postStaticIteration
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDRackPinConstraintIJ >> preAccIC [
 	xIeJeIe preAccIC.
 	thezIeJe preAccIC.
 	super preAccIC
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDRackPinConstraintIJ >> preDynOutput [
 	xIeJeIe preDynOutput.
 	thezIeJe preDynOutput.
 	super preDynOutput
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDRackPinConstraintIJ >> prePosIC [
 	xIeJeIe prePosIC.
 	thezIeJe prePosIC.
 	super prePosIC
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDRackPinConstraintIJ >> preStatic [
 	xIeJeIe preStatic.
 	thezIeJe preStatic.
 	super preStatic
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDRackPinConstraintIJ >> preVelIC [
 	xIeJeIe preVelIC.
 	thezIeJe preVelIC.
 	super preVelIC
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDRackPinConstraintIJ >> simUpdateAll [
 	xIeJeIe simUpdateAll.
 	thezIeJe simUpdateAll.
 	super simUpdateAll
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDRackPinConstraintIJ >> withFrmI: afrmI frmJ: afrmJ [ 
 	frmI := afrmI.
 	frmJ := afrmJ.

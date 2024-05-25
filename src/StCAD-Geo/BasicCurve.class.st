@@ -1,10 +1,11 @@
 Class {
-	#name : #BasicCurve,
-	#superclass : #BasicGeometry,
-	#category : #'StCAD-Geo'
+	#name : 'BasicCurve',
+	#superclass : 'BasicGeometry',
+	#category : 'StCAD-Geo',
+	#package : 'StCAD-Geo'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 BasicCurve class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +15,7 @@ BasicCurve class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicCurve >> cPoint_n: n [ 
 	| delta answer |
 	delta := 1.0 / (n - 1).
@@ -23,7 +24,7 @@ BasicCurve >> cPoint_n: n [
 	^answer asArray
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicCurve >> crOpO_nStep: nStep withFirst: withFirst withLast: withLast [ 
 	| iFirst iLast delta answer |
 	iFirst := withFirst ifTrue: [0] ifFalse: [1].
@@ -35,7 +36,7 @@ BasicCurve >> crOpO_nStep: nStep withFirst: withFirst withLast: withLast [
 	^answer
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicCurve >> pprfpfpsps_s: s [ 
 	| answer u pprfpfpupu |
 	answer := StMFullMatrix new: 1 by: 1.
@@ -48,24 +49,24 @@ BasicCurve >> pprfpfpsps_s: s [
 	^answer
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicCurve >> prfpfps_s: s [ 
 	| prfpfpu |
 	prfpfpu := self prfpfpu_u: (s at: 1).
 	^prfpfpu asFullMatrix
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicCurve >> rFpF_u: u [ 
 	^self rfpf_u: u
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicCurve >> rfpf_s: s [ 
 	^self rfpf_u: (s at: 1)
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicCurve >> uv_connectTo: aCurve [ 
 	self assert: [self uvend equal: aCurve uvstart lTol: 1.0d-3]
 ]

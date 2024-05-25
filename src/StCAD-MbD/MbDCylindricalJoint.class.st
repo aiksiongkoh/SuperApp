@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDCylindricalJoint,
-	#superclass : #MbDInLineJoint,
-	#category : #'StCAD-MbD-MbDJoint'
+	#name : 'MbDCylindricalJoint',
+	#superclass : 'MbDInLineJoint',
+	#category : 'StCAD-MbD-MbDJoint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDJoint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDCylindricalJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ MbDCylindricalJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDCylindricalJoint >> classString [
 	"Used to access the descriptive name of the joint."
 	"Needed for multi-language."
@@ -22,7 +24,7 @@ MbDCylindricalJoint >> classString [
 	^TheMbDSystem getString: #'MbD: Cylindrical Joint '
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDCylindricalJoint >> initializeGlobally [
 	constraints isEmpty
 		ifTrue: 

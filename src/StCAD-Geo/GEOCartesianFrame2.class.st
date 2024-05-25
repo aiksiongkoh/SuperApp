@@ -12,8 +12,8 @@ dependentFrames	<IdentitySet>	set of dependent frames.
 body	<aObject>	any object associated with the current frame.
 "
 Class {
-	#name : #GEOCartesianFrame2,
-	#superclass : #NewEventModel,
+	#name : 'GEOCartesianFrame2',
+	#superclass : 'NewEventModel',
 	#instVars : [
 		'refFrame',
 		'rFfF',
@@ -23,10 +23,12 @@ Class {
 		'dependentFrames',
 		'body'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'triggering events' }
+{ #category : 'triggering events' }
 GEOCartesianFrame2 class >> constructEventsTriggered [
 	^(super constructEventsTriggered)
 		add: #getvOfO;
@@ -36,17 +38,17 @@ GEOCartesianFrame2 class >> constructEventsTriggered [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GEOCartesianFrame2 class >> new [
 	^super new initialize
 ]
 
-{ #category : #ops }
+{ #category : 'ops' }
 GEOCartesianFrame2 class >> rFpFfromrFfF: rFfF aAFf: aAFf rfpf: rfpf [ 
 	^rFfF plusFullColumn: (aAFf timesFullColumn: rfpf)
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GEOCartesianFrame2 class >> refFrame: frame rFfF: r aAFf: aA [ 
 	^self new
 		refFrame: frame
@@ -54,7 +56,7 @@ GEOCartesianFrame2 class >> refFrame: frame rFfF: r aAFf: aA [
 		aAFf: aA
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GEOCartesianFrame2 class >> refFrame: aFrame rFfF: origin xPoint: xPoint zPoint: zPoint [ 
 	^self new
 		refFrame: aFrame
@@ -63,12 +65,12 @@ GEOCartesianFrame2 class >> refFrame: aFrame rFfF: origin xPoint: xPoint zPoint:
 		zPoint: zPoint
 ]
 
-{ #category : #ops }
+{ #category : 'ops' }
 GEOCartesianFrame2 class >> rfpffromrFfF: rFfF aAFf: aAFf rFpF: rFpF [ 
 	^aAFf transposeTimesFullColumn: (rFpF minusFullColumn: rFfF)
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOCartesianFrame2 class >> visualWorksMetadata [
 
 	^ #(
@@ -78,30 +80,30 @@ GEOCartesianFrame2 class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> aAFf [
 	^aAFf
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> aAFf: aA [ 
 	aAFf := aA.
 	self changed
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> aAOF [
 	^refFrame aAOf
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> aAOf [
 	^aAOf ifNil: 
 			[aAOf := refFrame ifNil: [aAFf]
 						ifNotNil: [refFrame aAOf timesFullMatrix: aAFf]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> aMFf [
 	| aAFf1 aAFf2 aAFf3 answer |
 	aAFf1 := aAFf at: 1.
@@ -131,7 +133,7 @@ GEOCartesianFrame2 >> aMFf [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> aMFfT [
 	| aAFf1 aAFf2 aAFf3 answer |
 	aAFf1 := aAFf at: 1.
@@ -161,7 +163,7 @@ GEOCartesianFrame2 >> aMFfT [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> aOfO [
 	| answer |
 	answer := self triggerEvent: #getaOfO.
@@ -172,7 +174,7 @@ GEOCartesianFrame2 >> aOfO [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> aOfO: aOfO [ 
 	self removeActionsForEvent: #getaOfO.
 	aOfO notNil ifTrue: [self
@@ -181,28 +183,28 @@ GEOCartesianFrame2 >> aOfO: aOfO [
 			perform: #yourself]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> aSup [
 	^refFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> aSup: aaRefFrame [ 
 	refFrame := aaRefFrame.
 	^aaRefFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> addDependentFrame: aFrame [ 
 	dependentFrames add: aFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> addMarkersIn: set [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> addSub: aSub [ 
 	"aSub maybe already in a tree. Make sure aSub is released by its aSup."
 
@@ -212,7 +214,7 @@ GEOCartesianFrame2 >> addSub: aSub [
 	^aSub
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> alpOfO [
 	| answer |
 	answer := self triggerEvent: #getalpOfO.
@@ -223,7 +225,7 @@ GEOCartesianFrame2 >> alpOfO [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> alpOfO: alpOfO [ 
 	self removeActionsForEvent: #getalpOfO.
 	alpOfO notNil ifTrue: [self
@@ -232,28 +234,28 @@ GEOCartesianFrame2 >> alpOfO: alpOfO [
 			perform: #yourself]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOCartesianFrame2 >> axis: i dotFrame: frame axis: j [ 
 	^(self aAOf column: i)
 		dot: (frame aAOf column: j)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> body [
 	^body
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> body: aObject [ 
 	body := aObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> cSub [
 	^dependentFrames
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOCartesianFrame2 >> calc [
 	"Calculate all dependent instance variables."
 
@@ -269,13 +271,13 @@ GEOCartesianFrame2 >> calc [
 			aAOf := aAOF timesFullMatrix: aAFf]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOCartesianFrame2 >> calcAll [
 	self calc.
 	dependentFrames do: [:dependentFrame | dependentFrame calcAll]
 ]
 
-{ #category : #change }
+{ #category : 'change' }
 GEOCartesianFrame2 >> changed [
 	rOfO := nil.
 	aAOf := nil.
@@ -284,12 +286,12 @@ GEOCartesianFrame2 >> changed [
 	super changed
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOCartesianFrame2 >> coincideWithRefFrame [
 	self rFfF: (StMFullColumn zero: 3) aAFf: (StMFullMatrix identity: 3)
 ]
 
-{ #category : #change }
+{ #category : 'change' }
 GEOCartesianFrame2 >> conditionA [
 	aAFf := StMFullMatrix 
 				rotationMatrixFromOrigin: (StMFullColumn  zero: 3)
@@ -298,20 +300,20 @@ GEOCartesianFrame2 >> conditionA [
 	dependentFrames do: [:dependentFrame | dependentFrame conditionA]
 ]
 
-{ #category : #copy }
+{ #category : 'copy' }
 GEOCartesianFrame2 >> copyrFfFandAFfFrom: frame [ 
 	rFfF := frame rFfF copy.
 	aAFf := frame aAFf copy.
 	self changed
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOCartesianFrame2 >> cut [
 	refFrame removeDependentFrame: self.
 	super cut
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOCartesianFrame2 >> dataAxesIntersectLine: geoLine axisLength: length tolerance: tol [ 
 	"
 	Find the minimum distance to any axis. 
@@ -360,7 +362,7 @@ GEOCartesianFrame2 >> dataAxesIntersectLine: geoLine axisLength: length toleranc
 	^Array with: false
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOCartesianFrame2 >> dataAxesIntersectLine: geoLine tolerance: tol [
 	"
 	Find the minimum distance to any axis. 
@@ -390,7 +392,7 @@ GEOCartesianFrame2 >> dataAxesIntersectLine: geoLine tolerance: tol [
 		with: distStartIntsec
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOCartesianFrame2 >> dataXYPlaneIntersectLine: geoLine [ 
 	"
 	Find the intesection of the line on the xy plane. 
@@ -419,21 +421,21 @@ GEOCartesianFrame2 >> dataXYPlaneIntersectLine: geoLine [
 		with: distStartIntsec
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOCartesianFrame2 >> distXYPlaneIntersectLine: geoLine [ 
 	| data |
 	data := self dataXYPlaneIntersectLine: geoLine.
 	^data at: 3
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> fixedAtRef [
 	rFfF := (StMFullColumn zero: 3).
 	aAFf := (StMFullMatrix identity: 3).
 	self changed
 ]
 
-{ #category : #copy }
+{ #category : 'copy' }
 GEOCartesianFrame2 >> frozenCopy [
 	"Used in handle tracking."
 
@@ -443,43 +445,43 @@ GEOCartesianFrame2 >> frozenCopy [
 	^answer
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOCartesianFrame2 >> initialize [
 
 	dependentFrames := StCAD_Misc_OrderedSet new "VW_TRANSLATION:StCAD.Misc.OrderedSet:StCAD_Misc_OrderedSet"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> interface [
 	^refFrame interface
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOCartesianFrame2 >> isAssembly [
 	^false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> isFace [
 	^false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOCartesianFrame2 >> isInterface [
 	^false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOCartesianFrame2 >> isPart [
 	^false
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOCartesianFrame2 >> logString: string [ 
 	refFrame logString: string
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> magnifySelf: aDouble [ 
 	self rFfF magnifySelf: aDouble.
 	self rOfO: nil.
@@ -487,12 +489,12 @@ GEOCartesianFrame2 >> magnifySelf: aDouble [
 	self aOfO: nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> menu [
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> omeOfO [
 	| answer |
 	answer := self triggerEvent: #getomeOfO.
@@ -503,7 +505,7 @@ GEOCartesianFrame2 >> omeOfO [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> omeOfO: omeOfO [ 
 	self removeActionsForEvent: #getomeOfO.
 	omeOfO notNil ifTrue: [self
@@ -512,7 +514,7 @@ GEOCartesianFrame2 >> omeOfO: omeOfO [
 			perform: #yourself]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> positionMemento [
 
 	| aMemento |
@@ -523,7 +525,7 @@ GEOCartesianFrame2 >> positionMemento [
 	^ aMemento
 ]
 
-{ #category : #copy }
+{ #category : 'copy' }
 GEOCartesianFrame2 >> postCopy [
 
 	"OK for copy to reference the refFrame and body. But they do not know of this new copy. User still 
@@ -537,12 +539,12 @@ GEOCartesianFrame2 >> postCopy [
 	dependentFrames := StCAD_Misc_OrderedSet new "VW_TRANSLATION:StCAD.Misc.OrderedSet:StCAD_Misc_OrderedSet"
 ]
 
-{ #category : #copy }
+{ #category : 'copy' }
 GEOCartesianFrame2 >> preSave [
 	"Do nothing."
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOCartesianFrame2 >> printOn: aStream [ 
 	| title |
 	title := self class name.
@@ -556,14 +558,14 @@ GEOCartesianFrame2 >> printOn: aStream [
 	aStream print: body
 ]
 
-{ #category : #change }
+{ #category : 'change' }
 GEOCartesianFrame2 >> quietlyChanged [
 	rOfO := nil.
 	aAOf := nil.
 	dependentFrames do: [:dependentFrame | dependentFrame quietlyChanged]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> quietlyrFfF: rFpF aAFf: aAFp [ 
 	"Must be used from the root on down."
 	"Then the root must perform changed."
@@ -574,7 +576,7 @@ GEOCartesianFrame2 >> quietlyrFfF: rFpF aAFf: aAFp [
 	aAOf := nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> quietlyrOfO: rOpO aAOf: aAOp [ 
 	"Must be used from the root on down."
 	"Then the root must perform changed."
@@ -585,89 +587,89 @@ GEOCartesianFrame2 >> quietlyrOfO: rOpO aAOf: aAOp [
 	aAOf := aAOp
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> quietlyvOfO: vOpO omeOfO: omeOfO [ 
 	self vOfO: vOpO.
 	self omeOfO: omeOfO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> rDbodycenterPx [
 	^self interface projectionFrame rDpPxfromrOpO: body rOcenterO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> rDfD [
 	^self interface projectionFrame rDpPxfromrOpO: rOfO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> rDoriginPx [
 	^self interface projectionFrame rDpPxfromrOpO: self rOfO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> rDpPxfromrfpf: rfpf [ 
 	^self interface projectionFrame rDpPxfromrOpO: (self rOpOfromrfpf: rfpf)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> rFfF [
 	^rFfF
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> rFfF: col [ 
 	rFfF := col.
 	self changed
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> rFfF: r aAFf: aA [ 
 	rFfF := r.
 	aAFf := aA.
 	self changed
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> rFpFfromrOpO: rOpO [ 
 	^self refFrame rfpffromrOpO: rOpO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> rFpFfromrfpf: rfpf [ 
 	^rFfF + (aAFf timesFullColumn: rfpf)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> rOfO [
 	^rOfO ifNil: 
 			[rOfO := refFrame ifNil: [rFfF]
 						ifNotNil: [refFrame rOfO + (refFrame aAOf timesFullColumn: rFfF)]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> rOfO: aFullColumn [ 
 	rOfO := aFullColumn
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> rOpOfromrfpf: rfpf [ 
 	^self rOfO + (self aAOf timesFullColumn: rfpf)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> refFrame [
 	^refFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> refFrame: aFrame [ 
 	self setRefFrame: aFrame.
 	self changed
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> refFrame: aFrame rFfF: r aAFf: aA [ 
 	self setRefFrame: aFrame.
 	rFfF := r.
@@ -675,7 +677,7 @@ GEOCartesianFrame2 >> refFrame: aFrame rFfF: r aAFf: aA [
 	self changed
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> refFrame: aFrame rFfF: origin xPoint: xPoint yPoint: yPoint [ 
 	| aA |
 	aA := StMFullMatrix
@@ -688,7 +690,7 @@ GEOCartesianFrame2 >> refFrame: aFrame rFfF: origin xPoint: xPoint yPoint: yPoin
 		aAFf: aA
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> refFrame: aFrame rFfF: origin xPoint: xPoint zPoint: zPoint [ 
 	| aA |
 	aA := StMFullMatrix
@@ -701,7 +703,7 @@ GEOCartesianFrame2 >> refFrame: aFrame rFfF: origin xPoint: xPoint zPoint: zPoin
 		aAFf: aA
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> refFrame: aFrame rFfF: origin zPoint: zPoint xPoint: xPoint [ 
 	| aA |
 	aA := StMFullMatrix
@@ -714,7 +716,7 @@ GEOCartesianFrame2 >> refFrame: aFrame rFfF: origin zPoint: zPoint xPoint: xPoin
 		aAFf: aA
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOCartesianFrame2 >> release [
 	"release self."
 
@@ -727,12 +729,12 @@ GEOCartesianFrame2 >> release [
 	super release
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> removeDependentFrame: frame [ 
 	^dependentFrames remove: frame ifAbsent: [nil]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOCartesianFrame2 >> removeFramesBetweenSelfAnd: aFrame [ 
 	| newrFfF newAFf |
 	newrFfF := aFrame rfpffromrOpO: self rOfO.
@@ -743,7 +745,7 @@ GEOCartesianFrame2 >> removeFramesBetweenSelfAnd: aFrame [
 		aAFf: newAFf
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOCartesianFrame2 >> removeIntermediateFrame: aFrame [ 
 	| aboveFrame middleFrame belowFrame newrFfF newAFf |
 	aboveFrame := self.
@@ -762,7 +764,7 @@ GEOCartesianFrame2 >> removeIntermediateFrame: aFrame [
 				aAFf: newAFf]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> removeSub: aSub [ 
 	^(self cSub remove: aSub ifAbsent: [nil]) ifNotNil: 
 			[:aaSub | 
@@ -770,22 +772,22 @@ GEOCartesianFrame2 >> removeSub: aSub [
 			aaSub]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> removeSup [
 	self aSup ifNotNil: [:aaSup | aaSup removeSub: self]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> rfpffromrFpF: rFpF [ 
 	^aAFf transpose timesFullColumn: rFpF - rFfF
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> rfpffromrOpO: rOpO [ 
 	^self aAOf transpose timesFullColumn: rOpO - self rOfO
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOCartesianFrame2 >> rotateAt: rFpvF axisF: axisF theta: theta [
 	"Right hand rotation about axisF thru rFpvF."
 	| eulerParameter aAthe |
@@ -796,7 +798,7 @@ GEOCartesianFrame2 >> rotateAt: rFpvF axisF: axisF theta: theta [
 	self changed.
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOCartesianFrame2 >> rotateAt: rFpvF axisf: axisf theta: theta [ 
 	"Right hand rotation about axisf thru rFpvF."
 
@@ -808,7 +810,7 @@ GEOCartesianFrame2 >> rotateAt: rFpvF axisf: axisf theta: theta [
 		theta: theta
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOCartesianFrame2 >> rotateAxisF: i theta: theta [ 
 	| axisF |
 	axisF := (StMFullColumn zero: 3).
@@ -819,7 +821,7 @@ GEOCartesianFrame2 >> rotateAxisF: i theta: theta [
 		theta: theta
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOCartesianFrame2 >> rotateAxisf: i theta: theta [ 
 	| axisf |
 	axisf := (StMFullColumn zero: 3).
@@ -830,7 +832,7 @@ GEOCartesianFrame2 >> rotateAxisf: i theta: theta [
 		theta: theta
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> setRefFrame: aFrame [ 
 	"Receiver must be dependent on only one refFrame."
 
@@ -839,7 +841,7 @@ GEOCartesianFrame2 >> setRefFrame: aFrame [
 	refFrame notNil ifTrue: [refFrame addDependentFrame: self]
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOCartesianFrame2 >> store2DOn: aStream level: level [ 
 	aStream tabToLevel: level; nextPutAll: 'Position2D'; cr.
 	aStream tabToLevel: level; tab; nextPutAll: (rFfF at: 1) printForExport; tab; nextPutAll: (rFfF at: 2) printForExport; cr.
@@ -847,12 +849,12 @@ GEOCartesianFrame2 >> store2DOn: aStream level: level [
 	aStream tabToLevel: level; tab; nextPutAll: (aAFf bryantAngles at: 3) printForExport; cr
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> storeMemento: aMemento for: anObject [ 
 	refFrame notNil ifTrue: [refFrame storeMemento: aMemento for: anObject]
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOCartesianFrame2 >> storeOn: aStream level: level [ 
 	aStream
 		storeLevel: level
@@ -864,7 +866,7 @@ GEOCartesianFrame2 >> storeOn: aStream level: level [
 		object: aAFf
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOCartesianFrame2 >> storePOVOn: aStream level1: level [
 	| array |
 	array := GEOEulerAngleszyx fromA: aAFf.
@@ -877,7 +879,7 @@ GEOCartesianFrame2 >> storePOVOn: aStream level1: level [
 		title: ('translate %<<1s>,<2s>,<3s>>' expandMacrosWithArguments: array).
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOCartesianFrame2 >> storeVelocityOn: aStream level: level [ 
 	aStream
 		storeLevel: level
@@ -893,22 +895,22 @@ GEOCartesianFrame2 >> storeVelocityOn: aStream level: level [
 				ifFalse: [(StMFullColumn zero: 3)])
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> translateBy: shiftXYZ [ 
 	self rFfF: rFfF + shiftXYZ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> translateSelfBy: delta [ 
 	self rFfF: self rFfF + delta
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOCartesianFrame2 >> uncut [
 	refFrame addDependentFrame: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> unitx [
 	^StMFullColumn
 		with: 1.0
@@ -916,7 +918,7 @@ GEOCartesianFrame2 >> unitx [
 		with: 0.0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> unity [
 	^StMFullColumn
 		with: 0.0
@@ -924,7 +926,7 @@ GEOCartesianFrame2 >> unity [
 		with: 0.0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> unitz [
 	^StMFullColumn
 		with: 0.0
@@ -932,7 +934,7 @@ GEOCartesianFrame2 >> unitz [
 		with: 1.0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> vOfO [
 	| answer |
 	answer := self triggerEvent: #getvOfO.
@@ -943,7 +945,7 @@ GEOCartesianFrame2 >> vOfO [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> vOfO: vOfO [ 
 	self removeActionsForEvent: #getvOfO.
 	vOfO notNil ifTrue: [self
@@ -952,7 +954,7 @@ GEOCartesianFrame2 >> vOfO: vOfO [
 			perform: #yourself]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOCartesianFrame2 >> xyPlaneIntersectLine: geoLine [ 
 	"
 	Find the intesection of the line on the xy plane. 
@@ -981,6 +983,6 @@ GEOCartesianFrame2 >> xyPlaneIntersectLine: geoLine [
 			NearParallelIntersectionError raiseSignal]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCartesianFrame2 >> xyplaneCoeffs [
 ]

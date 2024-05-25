@@ -1,15 +1,17 @@
 Class {
-	#name : #MbDDispCompIeqcsJeqcO,
-	#superclass : #MbDDispCompIeqcJeqcO,
+	#name : 'MbDDispCompIeqcsJeqcO',
+	#superclass : 'MbDDispCompIeqcJeqcO',
 	#instVars : [
 		'priIeJeOpsI',
 		'ppriIeJeOpEIpsI',
 		'ppriIeJeOpsIpsI'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDDispCompIeqcsJeqcO class >> visualWorksMetadata [
 
 	^ #(
@@ -19,7 +21,7 @@ MbDDispCompIeqcsJeqcO class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDDispCompIeqcsJeqcO class >> withFrmI: afrmI frmJ: afrmJ axis: i [ 
 	^(afrmI isMemberOf: MbDEndFrameqcs)
 		& (afrmJ isMemberOf: MbDEndFrameqc)
@@ -30,7 +32,7 @@ MbDDispCompIeqcsJeqcO class >> withFrmI: afrmI frmJ: afrmJ axis: i [
 		ifFalse: [nil]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDispCompIeqcsJeqcO >> calcPostDynCorrectorIteration [
 	"ppriIeJeOpEIpEI is no longer a constant."
 
@@ -41,37 +43,37 @@ MbDDispCompIeqcsJeqcO >> calcPostDynCorrectorIteration [
 	ppriIeJeOpsIpsI := (frmI ppriOeOpsps: axis) negated
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDispCompIeqcsJeqcO >> initializeGlobally [
 	ppriIeJeOpEJpEJ := frmJ ppriOeOpEpE: axis
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqcsJeqcO >> ppriIeJeOpEIpsI [
 	^ppriIeJeOpEIpsI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqcsJeqcO >> ppriIeJeOpsIpsI [
 	^ppriIeJeOpsIpsI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqcsJeqcO >> ppvaluepEIpsI [
 	^ppriIeJeOpEIpsI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqcsJeqcO >> ppvaluepsIpsI [
 	^ppriIeJeOpsIpsI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqcsJeqcO >> priIeJeOpsI [
 	^priIeJeOpsI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqcsJeqcO >> pvaluepsI [
 	^priIeJeOpsI
 ]

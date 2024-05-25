@@ -1,10 +1,12 @@
 Class {
-	#name : #GEODormantFeature,
-	#superclass : #GEOFeatureDecorator,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEODormantFeature',
+	#superclass : 'GEOFeatureDecorator',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEODormantFeature class >> visualWorksMetadata [
 
 	^ #(
@@ -14,14 +16,14 @@ GEODormantFeature class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEODormantFeature >> becomeActive [
 	| newSelf |
 	newSelf := self feature.
 	self become: newSelf
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEODormantFeature >> feature [
 	^feature
 ]

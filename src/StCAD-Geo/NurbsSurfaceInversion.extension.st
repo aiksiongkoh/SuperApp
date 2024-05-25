@@ -1,6 +1,6 @@
-Extension { #name : #NurbsSurfaceInversion }
+Extension { #name : 'NurbsSurfaceInversion' }
 
-{ #category : #'*StCAD-Geo-initialize-release' }
+{ #category : '*StCAD-Geo-initialize-release' }
 NurbsSurfaceInversion >> initializeGlobally [
 	| ccDeriv s |
 	ccDeriv := system 

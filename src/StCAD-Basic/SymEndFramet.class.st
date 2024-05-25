@@ -1,13 +1,14 @@
 Class {
-	#name : #SymEndFramet,
-	#superclass : #SymEndFrame,
+	#name : 'SymEndFramet',
+	#superclass : 'SymEndFrame',
 	#instVars : [
 		'themet'
 	],
-	#category : #'StCAD-Basic'
+	#category : 'StCAD-Basic',
+	#package : 'StCAD-Basic'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SymEndFramet >> initialize [
 
 	| rmemt1 rmemt2 rmemt3 rmemt themet1x themet2y themet3z aAme |
@@ -27,11 +28,11 @@ SymEndFramet >> initialize [
 	aAFf := aAme simplified
 ]
 
-{ #category : #accessing }
-SymEndFramet >> sup: aStMarkerFrame [
+{ #category : 'accessing' }
+SymEndFramet >> sup: markerFrm [
 
 	| t |
-	sup := aStMarkerFrame.
+	super sup: markerFrm.
 	t := self time.
 	rFfF do: [ :r | r x: t ].
 	themet do: [ :the | the x: t ]

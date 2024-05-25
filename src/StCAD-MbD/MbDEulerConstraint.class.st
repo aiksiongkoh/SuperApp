@@ -1,14 +1,16 @@
 Class {
-	#name : #MbDEulerConstraint,
-	#superclass : #MbDConstraint,
+	#name : 'MbDEulerConstraint',
+	#superclass : 'MbDConstraint',
 	#instVars : [
 		'pGpE',
 		'iqE'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDEulerConstraint class >> visualWorksMetadata [
 
 	^ #(
@@ -18,7 +20,7 @@ MbDEulerConstraint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDEulerConstraint >> calcPostDynCorrectorIteration [
 	| qE |
 	qE := owner qE.
@@ -26,7 +28,7 @@ MbDEulerConstraint >> calcPostDynCorrectorIteration [
 	1 to: 4 do: [:i | pGpE at: i put: 2.0 * (qE at: i)]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEulerConstraint >> classString [
 	"Used to access the descriptive name of the constraint."
 	"Needed for multi-language."
@@ -34,7 +36,7 @@ MbDEulerConstraint >> classString [
 	^TheMbDSystem getString: #'MbD: Euler constraint '
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDEulerConstraint >> fillAccICIterError: col [ 
 	"qdotT[ppGpqpq]*qdot."
 	"qdotT[2 2 2 2 diag]*qdot."
@@ -47,7 +49,7 @@ MbDEulerConstraint >> fillAccICIterError: col [
 	col at: iG plusNumber: sum
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDEulerConstraint >> fillCollisionError: col [ 
 	"lamDeriv is now PlamDeriv."
 	"qEddot is now qEdotDeriv."
@@ -59,13 +61,13 @@ MbDEulerConstraint >> fillCollisionError: col [
 	col at: iG plusNumber: sum
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDEulerConstraint >> fillPosICError: col [ 
 	super fillPosICError: col.
 	col at: iqE plusFullColumn: pGpE times: lam
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDEulerConstraint >> fillPosICJacob: mat [ 
 	"ppGpEpE is a diag(2,2,2,2)."
 
@@ -79,7 +81,7 @@ MbDEulerConstraint >> fillPosICJacob: mat [
 			mat at: i and: i plusNumber: twolam]
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDEulerConstraint >> fillPosKineJacob: mat [ 
 	mat
 		at: iG
@@ -87,13 +89,13 @@ MbDEulerConstraint >> fillPosKineJacob: mat [
 		plusFullRow: pGpE
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDEulerConstraint >> fillVelICJacob: mat [ 
 	mat at: iG and: iqE plusFullRow: pGpE.
 	mat at: iqE and: iG plusFullColumn: pGpE transpose
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDEulerConstraint >> fillpFpy: mat [ 
 	"ppGpEpE is a diag(2,2,2,2)."
 
@@ -106,23 +108,23 @@ MbDEulerConstraint >> fillpFpy: mat [
 			mat at: i and: i plusNumber: twolam]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDEulerConstraint >> fillpFpydot: mat [ 
 	mat at: iqE and: iG plusFullColumn: pGpE transpose
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDEulerConstraint >> initialize [
 	super initialize.
 	pGpE := StMFullRow new: 4
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEulerConstraint >> pGpE [
 	^pGpE
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDEulerConstraint >> useEquationNumbers [
 	iqE := owner iqE
 ]

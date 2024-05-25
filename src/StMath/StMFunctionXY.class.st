@@ -1,19 +1,21 @@
 Class {
-	#name : #StMFunctionXY,
-	#superclass : #StMFunction,
+	#name : 'StMFunctionXY',
+	#superclass : 'StMFunction',
 	#instVars : [
 		'x',
 		'y'
 	],
-	#category : #'StMath-Symbolic'
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMFunctionXY class >> functionTemplate [
 	^self functionSymbol , '(x, y)'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMFunctionXY class >> visualWorksMetadata [
 
 	^ #(
@@ -23,24 +25,24 @@ StMFunctionXY class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMFunctionXY class >> with: xx with: yy [ 
 	^super new x: xx y: yy
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 StMFunctionXY >> = anObject [ 
 	^super = anObject and: [x = anObject x and: [y = anObject y]]
 ]
 
-{ #category : #'message handling' }
+{ #category : 'message handling' }
 StMFunctionXY >> argsPerform: selector withArguments: anArray [ 
 	Processor yield.
 	x perform: selector withArguments: anArray.
 	y perform: selector withArguments: anArray
 ]
 
-{ #category : #'StCAD-UI' }
+{ #category : 'StCAD-UI' }
 StMFunctionXY >> cadStringOn: aStream [ 
 	aStream nextPutAll: self class functionSymbol.
 	aStream nextPut: $(.
@@ -50,7 +52,7 @@ StMFunctionXY >> cadStringOn: aStream [
 	aStream nextPut: $)
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMFunctionXY >> differentiateWRT: variable [ 
 	| dfdx dxdvar dfdy dydvar |
 	self == variable ifTrue: [^StMConstant with: 1].
@@ -62,17 +64,17 @@ StMFunctionXY >> differentiateWRT: variable [
 		plus: (dfdy times: dydvar)
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMFunctionXY >> differentiateWRTx [
 	self subclassResponsibility
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMFunctionXY >> differentiateWRTy [
 	self subclassResponsibility
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMFunctionXY >> expandUntil: set [ 
 	| xx yy copy |
 	^(set includes: self)
@@ -86,7 +88,7 @@ StMFunctionXY >> expandUntil: set [
 				ifFalse: [copy]]
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMFunctionXY >> partialDifferentiateWRT: variable [ 
 	| dfdx dxdvar dfdy dydvar |
 	self == variable ifTrue: [^StMConstant with: 1].
@@ -98,13 +100,13 @@ StMFunctionXY >> partialDifferentiateWRT: variable [
 		plus: (dfdy times: dydvar)
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 StMFunctionXY >> postCopy [
 	x := x copy.
 	y := y copy
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 StMFunctionXY >> printOn: aStream [ 
 	aStream print: self class.
 	aStream nextPut: $(.
@@ -114,7 +116,7 @@ StMFunctionXY >> printOn: aStream [
 	aStream nextPut: $)
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMFunctionXY >> simplifyUntil: set [ 
 	| xx yy copy |
 	^(set includes: self)
@@ -128,7 +130,7 @@ StMFunctionXY >> simplifyUntil: set [
 				ifFalse: [copy]]
 ]
 
-{ #category : #changing }
+{ #category : 'changing' }
 StMFunctionXY >> substitute: var1 with: var2 [ 
 	| xx yy |
 	^self = var1
@@ -139,18 +141,18 @@ StMFunctionXY >> substitute: var1 with: var2 [
 			self class with: xx with: yy]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMFunctionXY >> x: arg [ 
 	x := self conditionArgument: arg
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMFunctionXY >> x: argx y: argy [ 
 	x := self conditionArgument: argx.
 	y := self conditionArgument: argy
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMFunctionXY >> y: arg [ 
 	y := self conditionArgument: arg
 ]

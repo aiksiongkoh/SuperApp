@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDCollisionDerivativeICNewtonRaphson2,
-	#superclass : #MbDSystemNewtonRaphson2,
-	#category : #'StCAD-MbD-MbDSolver'
+	#name : 'MbDCollisionDerivativeICNewtonRaphson2',
+	#superclass : 'MbDSystemNewtonRaphson2',
+	#category : 'StCAD-MbD-MbDSolver',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDCollisionDerivativeICNewtonRaphson2 class >> visualWorksMetadata [
 
 	^ #(
@@ -14,12 +16,12 @@ MbDCollisionDerivativeICNewtonRaphson2 class >> visualWorksMetadata [
 
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDCollisionDerivativeICNewtonRaphson2 >> askSystemToUpdate [
 	"Do nothing."
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDCollisionDerivativeICNewtonRaphson2 >> assignEquationNumbers [
 	"Equation order is q,s,u,lamb,lam."
 
@@ -54,25 +56,25 @@ MbDCollisionDerivativeICNewtonRaphson2 >> assignEquationNumbers [
 	n := eqnNo - 1
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDCollisionDerivativeICNewtonRaphson2 >> fillPyPx [
 	pypx zeroSelf.
 	system partsJointsMotionsDo: [:item | item fillCollisionDerivativeICJacob: pypx]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDCollisionDerivativeICNewtonRaphson2 >> fillY [
 	y zeroSelf.
 	system partsJointsMotionsDo: [:item | item fillCollisionDerivativeICError: y]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDCollisionDerivativeICNewtonRaphson2 >> initializeGlobally [
 	super initializeGlobally.
 	x zeroSelf
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDCollisionDerivativeICNewtonRaphson2 >> isConverged [
 	"No friction case for now."
 	"Hence system is linear."
@@ -80,23 +82,23 @@ MbDCollisionDerivativeICNewtonRaphson2 >> isConverged [
 	^true
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDCollisionDerivativeICNewtonRaphson2 >> logSingularMatrixMessage [
 	system 
 		logString: #'MbD: \Collision derivative solver has encountered a singular matrix.'
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDCollisionDerivativeICNewtonRaphson2 >> passRootToSystem [
 	system partsJointsMotionsDo: [:item | item setqsudotPlamDeriv: x]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDCollisionDerivativeICNewtonRaphson2 >> postRun [
 	system partsJointsMotionsDo: [:item | item postCollisionDerivativeIC]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDCollisionDerivativeICNewtonRaphson2 >> preRun [
 	system logString: #'MbD: \Solving for collision derivative initial conditions.'.
 	system partsJointsMotionsDo: [:item | item preCollisionDerivativeIC]

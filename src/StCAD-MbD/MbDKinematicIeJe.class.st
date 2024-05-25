@@ -48,16 +48,18 @@ IJ
 		IctJct
 "
 Class {
-	#name : #MbDKinematicIeJe,
-	#superclass : #MbDItem,
+	#name : 'MbDKinematicIeJe',
+	#superclass : 'MbDItem',
 	#instVars : [
 		'frmI',
 		'frmJ'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDKinematicIeJe class >> visualWorksMetadata [
 
 	^ #(
@@ -67,24 +69,24 @@ MbDKinematicIeJe class >> visualWorksMetadata [
 
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDKinematicIeJe >> differentiateWRT: variable [ 
 	^self == variable
 		ifTrue: [StMConstant with: 1]
 		ifFalse: [StMConstant with: 0]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicIeJe >> endFrameI [
 	^frmI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicIeJe >> endFrameJ [
 	^frmJ
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDKinematicIeJe >> endFramesCalc [
 	"New design requires all frames to be updated by parts."
 	"Used for separation calculation."
@@ -93,132 +95,132 @@ MbDKinematicIeJe >> endFramesCalc [
 	frmJ calcPostDynCorrectorIteration
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicIeJe >> frmI [
 	^frmI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicIeJe >> frmI: frm [ 
 	frmI := frm
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicIeJe >> frmJ [
 	^frmJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicIeJe >> frmJ: frm [ 
 	frmJ := frm
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicIeJe >> isKineIJ [
 	^true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicIeJe >> partFrameI [
 	^frmI partFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicIeJe >> partFrameJ [
 	^frmJ partFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicIeJe >> partFrameK [
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicIeJe >> ppvaluepEIpEI [
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicIeJe >> ppvaluepEIpEJ [
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicIeJe >> ppvaluepEIpXJ [
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicIeJe >> ppvaluepEJpEJ [
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicIeJe >> ppvaluepXIpEI [
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicIeJe >> ppvaluepXIpEJ [
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicIeJe >> ppvaluepXIpXI [
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicIeJe >> ppvaluepXIpXJ [
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicIeJe >> ppvaluepXJpEJ [
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicIeJe >> ppvaluepXJpXJ [
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicIeJe >> pvaluepEI [
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicIeJe >> pvaluepEJ [
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicIeJe >> pvaluepEK [
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicIeJe >> pvaluepXI [
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicIeJe >> pvaluepXJ [
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicIeJe >> pvaluepXK [
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicIeJe >> value [
 	^nil
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDKinematicIeJe >> withFrmI: afrmI frmJ: afrmJ [ 
 	frmI := afrmI.
 	frmJ := afrmJ

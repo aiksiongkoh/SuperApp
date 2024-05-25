@@ -16,8 +16,8 @@ singularPivotTolerance	<Double>
 millisecondsToRun	<Integer>	
 "
 Class {
-	#name : #MatrixSolver,
-	#superclass : #Solver,
+	#name : 'MatrixSolver',
+	#superclass : 'Solver',
 	#instVars : [
 		'm',
 		'n',
@@ -31,15 +31,17 @@ Class {
 		'singularPivotTolerance',
 		'millisecondsToRun'
 	],
-	#category : #'StMath-StMathMatrixSolver'
+	#category : 'StMath-StMathMatrixSolver',
+	#package : 'StMath',
+	#tag : 'StMathMatrixSolver'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 MatrixSolver class >> isAbstractClass [
 	^true
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MatrixSolver class >> visualWorksMetadata [
 
 	^ #(
@@ -49,17 +51,17 @@ MatrixSolver class >> visualWorksMetadata [
 
 ]
 
-{ #category : #solution }
+{ #category : 'solution' }
 MatrixSolver >> basicSolve: aMatrix with: aVector saveOriginal: saveOriginal [ 
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MatrixSolver >> colOrder [
 	^colOrder
 ]
 
-{ #category : #pivoting }
+{ #category : 'pivoting' }
 MatrixSolver >> doPivoting: p [ 
 	"Matrices consist of rows of elements."
 	"Row pivoting is actually carried out."
@@ -68,7 +70,7 @@ MatrixSolver >> doPivoting: p [
 	self subclassResponsibility
 ]
 
-{ #category : #scaling }
+{ #category : 'scaling' }
 MatrixSolver >> findScalingsForRows: i1 to: i2 [ 
 	"Row element * scaling <= 1.0."
 
@@ -82,33 +84,33 @@ MatrixSolver >> findScalingsForRows: i1 to: i2 [
 			rowScalings at: i put: maxRowElement reciprocal]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MatrixSolver >> initialize [
 	super initialize.
 	singularPivotTolerance := MachineAccuracy OfDoubleTimesFour
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MatrixSolver >> millisecondsToRun [
 	^millisecondsToRun
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MatrixSolver >> pivotValues [
 	^pivotValues
 ]
 
-{ #category : #solution }
+{ #category : 'solution' }
 MatrixSolver >> postSolve [
 	self subclassResponsibility
 ]
 
-{ #category : #solution }
+{ #category : 'solution' }
 MatrixSolver >> preSolve: aMatrix with: aVector saveOriginal: saveOriginal [ 
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MatrixSolver >> rhsZeroElement [
 	| rhs1 |
 	rhs1 := rightHandSideB at: 1.
@@ -117,17 +119,17 @@ MatrixSolver >> rhsZeroElement [
 		ifFalse: [0.0]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MatrixSolver >> rowOrder [
 	^rowOrder
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MatrixSolver >> singularPivotTolerance: double [ 
 	singularPivotTolerance := double asDouble
 ]
 
-{ #category : #solution }
+{ #category : 'solution' }
 MatrixSolver >> solve: aMatrix with: aVector saveOriginal: saveOriginal [ 
 	self
 		timedSolve: aMatrix
@@ -137,7 +139,7 @@ MatrixSolver >> solve: aMatrix with: aVector saveOriginal: saveOriginal [
 	^answerX
 ]
 
-{ #category : #solution }
+{ #category : 'solution' }
 MatrixSolver >> timedSolve: aMatrix with: aVector saveOriginal: saveOriginal [ 
 	millisecondsToRun := nil.
 	millisecondsToRun := Time millisecondsToRun: [self

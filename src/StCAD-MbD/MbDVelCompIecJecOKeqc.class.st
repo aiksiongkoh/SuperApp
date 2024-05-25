@@ -2,15 +2,17 @@
 VelIeJeOKe has no omega cross effect. Ke is instantaneously fixed in space.
 "
 Class {
-	#name : #MbDVelCompIecJecOKeqc,
-	#superclass : #MbDVelCompIecJecOKec,
+	#name : 'MbDVelCompIecJecOKeqc',
+	#superclass : 'MbDVelCompIecJecOKec',
 	#instVars : [
 		'pviIeJeOKepEK'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDVelCompIecJecOKeqc class >> visualWorksMetadata [
 
 	^ #(
@@ -20,7 +22,7 @@ MbDVelCompIecJecOKeqc class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDVelCompIecJecOKeqc class >> withFrmI: afrmI frmJ: afrmJ frmK: afrmK axisK: integer [ 
 	^(afrmI isMemberOf: MbDEndFramec)
 		& (afrmJ isMemberOf: MbDEndFramec) & (afrmK isMemberOf: MbDEndFrameqc)
@@ -32,7 +34,7 @@ MbDVelCompIecJecOKeqc class >> withFrmI: afrmI frmJ: afrmJ frmK: afrmK axisK: in
 		ifFalse: [nil]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDVelCompIecJecOKeqc >> calcPostDynCorrectorIteration [
 	| pAjOKepEK |
 	super calcPostDynCorrectorIteration.
@@ -40,12 +42,12 @@ MbDVelCompIecJecOKeqc >> calcPostDynCorrectorIteration [
 	pviIeJeOKepEK := pAjOKepEK dot: vIeJeO
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDVelCompIecJecOKeqc >> initialize [
 	pviIeJeOKepEK := StMFullRow new: 4
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDVelCompIecJecOKeqc >> pvaluepEK [
 	^pviIeJeOKepEK
 ]

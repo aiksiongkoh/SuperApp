@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDDirectionCosineConstraintIqcsJqcs,
-	#superclass : #MbDDirectionCosineConstraintIqcsJqc,
+	#name : 'MbDDirectionCosineConstraintIqcsJqcs',
+	#superclass : 'MbDDirectionCosineConstraintIqcsJqc',
 	#instVars : [
 		'pGpsJ',
 		'ppGpEIpsJ',
@@ -9,10 +9,12 @@ Class {
 		'ppGpsJpsJ',
 		'isJ'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDDirectionCosineConstraintIqcsJqcs class >> visualWorksMetadata [
 
 	^ #(
@@ -22,7 +24,7 @@ MbDDirectionCosineConstraintIqcsJqcs class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDDirectionCosineConstraintIqcsJqcs class >> withFrmI: afrmI frmJ: afrmJ axisI: aaxisI axisJ: aaxisJ [ 
 	^(afrmI isKindOf: MbDEndFrameqcs)
 		& (afrmJ isKindOf: MbDEndFrameqcs)
@@ -34,7 +36,7 @@ MbDDirectionCosineConstraintIqcsJqcs class >> withFrmI: afrmI frmJ: afrmJ axisI:
 		ifFalse: [nil]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDirectionCosineConstraintIqcsJqcs >> calcPostDynCorrectorIteration [
 	super calcPostDynCorrectorIteration.
 	pGpsJ := aAijIeJe pAijIeJepsJ.
@@ -44,12 +46,12 @@ MbDDirectionCosineConstraintIqcsJqcs >> calcPostDynCorrectorIteration [
 	ppGpsJpsJ := aAijIeJe ppAijIeJepsJpsJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineConstraintIqcsJqcs >> directionCosineClass [
 	^MbDDirectionCosineIeqcsJeqcs
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDDirectionCosineConstraintIqcsJqcs >> fillAccICIterError: col [ 
 	| qEdotI sdotI qEdotJ sdotJ sum |
 	super fillAccICIterError: col.
@@ -67,7 +69,7 @@ MbDDirectionCosineConstraintIqcsJqcs >> fillAccICIterError: col [
 	col at: iG plusNumber: sum
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDDirectionCosineConstraintIqcsJqcs >> fillCollisionError: col [ 
 	"lamDeriv is now PlamDeriv."
 	"qEddot is now qEdotDeriv."
@@ -80,13 +82,13 @@ MbDDirectionCosineConstraintIqcsJqcs >> fillCollisionError: col [
 	col at: iG plusNumber: sum
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDDirectionCosineConstraintIqcsJqcs >> fillPosICError: col [ 
 	super fillPosICError: col.
 	col at: isJ plusFullColumn: pGpsJ times: lam
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDDirectionCosineConstraintIqcsJqcs >> fillPosICJacob: mat [ 
 	| ppGpEIpsJlam ppGpEJpsJlam ppGpsIpsJlam |
 	super fillPosICJacob: mat.
@@ -101,7 +103,7 @@ MbDDirectionCosineConstraintIqcsJqcs >> fillPosICJacob: mat [
 	mat at: isJ and: isJ plusFullMatrix: ppGpsJpsJ times: lam
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDDirectionCosineConstraintIqcsJqcs >> fillPosKineJacob: mat [ 
 	super fillPosKineJacob: mat.
 	mat
@@ -110,14 +112,14 @@ MbDDirectionCosineConstraintIqcsJqcs >> fillPosKineJacob: mat [
 		plusFullRow: pGpsJ
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDDirectionCosineConstraintIqcsJqcs >> fillVelICJacob: mat [ 
 	super fillVelICJacob: mat.
 	mat at: iG and: isJ plusFullRow: pGpsJ.
 	mat at: isJ and: iG plusFullColumn: pGpsJ transpose
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDDirectionCosineConstraintIqcsJqcs >> fillpFpy: mat [ 
 	| ppGpEIpsJlam ppGpsIpsJlam ppGpEJpsJlam |
 	super fillpFpy: mat.
@@ -131,13 +133,13 @@ MbDDirectionCosineConstraintIqcsJqcs >> fillpFpy: mat [
 	mat at: isJ and: isJ plusFullMatrix: ppGpsJpsJ times: lam
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDDirectionCosineConstraintIqcsJqcs >> fillpFpydot: mat [ 
 	super fillpFpydot: mat.
 	mat at: isJ and: iG plusFullColumn: pGpsJ transpose
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDirectionCosineConstraintIqcsJqcs >> useEquationNumbers [
 	super useEquationNumbers.
 	isJ := frmJ is

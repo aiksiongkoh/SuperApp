@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDTranslationConstraintIqctJqc,
-	#superclass : #MbDTranslationConstraintIqcJqc,
+	#name : 'MbDTranslationConstraintIqctJqc',
+	#superclass : 'MbDTranslationConstraintIqcJqc',
 	#instVars : [
 		'pGpt',
 		'ppGpXIpt',
@@ -9,10 +9,12 @@ Class {
 		'ppGpEJpt',
 		'ppGptpt'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDTranslationConstraintIqctJqc class >> visualWorksMetadata [
 
 	^ #(
@@ -22,7 +24,7 @@ MbDTranslationConstraintIqctJqc class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDTranslationConstraintIqctJqc class >> withFrmI: afrmI frmJ: afrmJ axis: aaxis [ 
 	^(afrmI isMemberOf: MbDEndFrameqct) | (afrmI isMemberOf: MbD2EndFrameqct) 
 		& (afrmJ isMemberOf: MbDEndFrameqc) 
@@ -34,12 +36,12 @@ MbDTranslationConstraintIqctJqc class >> withFrmI: afrmI frmJ: afrmJ axis: aaxis
 			ifFalse: [nil]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDTranslationConstraintIqctJqc >> dispCompClass [
 	^MbDDispCompIeqctJeqcKeqct
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDTranslationConstraintIqctJqc >> fillAccICIterError: col [ 
 	| qEdotI sum qXdotI qXdotJ qEdotJ |
 	super fillAccICIterError: col.
@@ -56,12 +58,12 @@ MbDTranslationConstraintIqctJqc >> fillAccICIterError: col [
 	col at: iG plusNumber: sum
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDTranslationConstraintIqctJqc >> fillVelICError: col [ 
 	col at: iG minusNumber: pGpt
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDTranslationConstraintIqctJqc >> preAccIC [
 	super preAccIC.
 	ppGpXIpt := riIeJeIe ppvaluepXIpt.
@@ -71,13 +73,13 @@ MbDTranslationConstraintIqctJqc >> preAccIC [
 	ppGptpt := riIeJeIe ppvalueptpt
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDTranslationConstraintIqctJqc >> preVelIC [
 	super preVelIC.
 	pGpt := riIeJeIe pvaluept
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDTranslationConstraintIqctJqc >> type [
 	^#essential
 ]

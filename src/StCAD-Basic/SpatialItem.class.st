@@ -10,24 +10,25 @@ Instance Variables:
 
 "
 Class {
-	#name : #SpatialItem,
-	#superclass : #SubItem,
+	#name : 'SpatialItem',
+	#superclass : 'SubItem',
 	#instVars : [
 		'name',
 		'aRefFrame',
 		'aBoundingBox'
 	],
-	#category : #'StCAD-Basic'
+	#category : 'StCAD-Basic',
+	#package : 'StCAD-Basic'
 }
 
-{ #category : #events }
+{ #category : 'events' }
 SpatialItem class >> constructEventsTriggered [
 	^(super constructEventsTriggered)
 		add: #getUI;
 		yourself
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 SpatialItem class >> visualWorksMetadata [
 
 	^ #(
@@ -36,48 +37,48 @@ SpatialItem class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpatialItem >> _aRefFrame: aaRefFrame [ 
 	aRefFrame := aaRefFrame.
 	aRefFrame body: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpatialItem >> aBoundingBox [
 	^aBoundingBox ifNil: 
 			[self calcBoundingBox.
 			aBoundingBox]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpatialItem >> aBoundingBox: anObject [
 	aBoundingBox := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpatialItem >> aBoundingBoxF [
 	"In aRefFrame components."
 
 	^self aBoundingBox inRefFrame: aRefFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpatialItem >> aRefFrame [
 	^aRefFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpatialItem >> aRefFrame: aaRefFrame [ 
 	aRefFrame := aaRefFrame.
 	aRefFrame body: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpatialItem >> aUI [
 	^self triggerEvent: #getUI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpatialItem >> aUI: aUI [ 
 	self removeActionsForEvent: #getUI.
 	aUI ifNotNil: 
@@ -87,12 +88,12 @@ SpatialItem >> aUI: aUI [
 				perform: #yourself]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpatialItem >> addMarkersIn: set [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpatialItem >> addRefFrame: argRefFrame [ 
 	"Example usage:
 
@@ -107,17 +108,17 @@ SpatialItem >> addRefFrame: argRefFrame [
 	aRefFrame addSub: argRefFrame
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 SpatialItem >> cItemWithBoundingBox [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpatialItem >> cadObject [
 	^self triggerEvent: #getCADObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpatialItem >> cadObject: cadObject [ 
 	self removeActionsForEvent: #getCADObject.
 	cadObject notNil 
@@ -128,23 +129,23 @@ SpatialItem >> cadObject: cadObject [
 				perform: #yourself]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 SpatialItem >> calc [
 	"Do nothing."
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 SpatialItem >> calcBoundingBox [
 	self privateCalcBoundingBox.
 	aSup ifNotNil: [aSup clearBoundingBox]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpatialItem >> container [
 	^aSup
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 SpatialItem >> initialize [
 
 	super initialize.
@@ -153,38 +154,38 @@ SpatialItem >> initialize [
 	aBoundingBox := StCAD_Misc_BoundingBox new "VW_TRANSLATION:StCAD.Misc.BoundingBox:StCAD_Misc_BoundingBox"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpatialItem >> interface [
 	^aSup ifNotNil: [aSup interface]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpatialItem >> isFace [
 	^false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpatialItem >> isSketch [
 	^false
 ]
 
-{ #category : #ops }
+{ #category : 'ops' }
 SpatialItem >> magnifySelf: aDouble [ 
 	aRefFrame rFfF magnifySelf: aDouble.
 	aBoundingBox magnifySelf: aDouble
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpatialItem >> name [
 	^name notNil ifTrue: [name] ifFalse: [self class asString asSymbol]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpatialItem >> name: anObject [ 
 	name := anObject ifNotNil: [anObject asSymbol]
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 SpatialItem >> postCopy [
 	super postCopy.
 	name := nil.
@@ -192,14 +193,14 @@ SpatialItem >> postCopy [
 	self aBoundingBox: aBoundingBox copy
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 SpatialItem >> privateCalcBoundingBox [
 
 	aBoundingBox := StCAD_Misc_BoundingBox new. "VW_TRANSLATION:StCAD.Misc.BoundingBox:StCAD_Misc_BoundingBox"
 	self privateCalcBoundingBox: self cItemWithBoundingBox
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 SpatialItem >> privateCalcBoundingBox: cSpatialItem [ 
 	cSpatialItem do: 
 			[:aSpatialItem | 
@@ -207,22 +208,22 @@ SpatialItem >> privateCalcBoundingBox: cSpatialItem [
 				ifNotNil: [aBoundingBox expandToBound: aSpatialItem aBoundingBoxF]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpatialItem >> rDfD [
 	^self interface projectionFrame rDpPxfromrOpO: aRefFrame rOfO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpatialItem >> refFrame [
 	^aRefFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpatialItem >> removeSub: aSub [ 
 	aRefFrame removeSub: aSub aRefFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SpatialItem >> treeNodesBlock [
 
 	^ [ :items :displayString | 

@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDConstantVelocityJoint,
-	#superclass : #MbDJoint,
-	#category : #'StCAD-MbD-MbDJoint'
+	#name : 'MbDConstantVelocityJoint',
+	#superclass : 'MbDJoint',
+	#category : 'StCAD-MbD-MbDJoint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDJoint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDConstantVelocityJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ MbDConstantVelocityJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConstantVelocityJoint >> classString [
 	"Used to access the descriptive name of the joint."
 	"Needed for multi-language."
@@ -22,7 +24,7 @@ MbDConstantVelocityJoint >> classString [
 	^TheMbDSystem getString: #'MbD: Constant Veocity Joint '
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDConstantVelocityJoint >> connectsI: mkrII toJ: mkrJJ [ 
 	"Subsequent prescribed motions may make endFrameI , J become prescribed end frames."
 	"Use newCopyEndFrameqc to prevent efrms from becoming EndFrameqct."
@@ -31,7 +33,7 @@ MbDConstantVelocityJoint >> connectsI: mkrII toJ: mkrJJ [
 	frmJ := mkrJJ newCopyEndFrameqc
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDConstantVelocityJoint >> initializeGlobally [
 	constraints isEmpty
 		ifTrue: 

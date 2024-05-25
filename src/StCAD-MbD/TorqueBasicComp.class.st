@@ -1,13 +1,15 @@
 Class {
-	#name : #TorqueBasicComp,
-	#superclass : #ForTorBasic,
+	#name : 'TorqueBasicComp',
+	#superclass : 'ForTorBasic',
 	#instVars : [
 		'twoBaxisT'
 	],
-	#category : #'StCAD-MbD-MbDTorque'
+	#category : 'StCAD-MbD-MbDTorque',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDTorque'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 TorqueBasicComp class >> visualWorksMetadata [
 
 	^ #(
@@ -17,17 +19,17 @@ TorqueBasicComp class >> visualWorksMetadata [
 
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 TorqueBasicComp >> calcPostDynCorrectorIteration [
 	twoBaxisT := (endFrame partFrame aB at: parent axis) transpose times: 2.0
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 TorqueBasicComp >> fillAccICIterError: col aFTOi: aFTOi [ 
 	col at: iqE plusFullColumn: (twoBaxisT times: aFTOi)
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 TorqueBasicComp >> fillAccICIterJacob: mat pFTOiplam: pFTOiplam [ 
 	| pQEplam |
 	pQEplam := twoBaxisT timesSparseRow: pFTOiplam.
@@ -37,12 +39,12 @@ TorqueBasicComp >> fillAccICIterJacob: mat pFTOiplam: pFTOiplam [
 		plusSparseMatrix: pQEplam
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 TorqueBasicComp >> fillDynError: col aFTOi: aFTOi [ 
 	col at: iqE plusFullColumn: (twoBaxisT times: aFTOi)
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 TorqueBasicComp >> fillpFpy: mat aFTOi: aFTOi [ 
 	| aFTO |
 	aFTO := (StMFullColumn zero: 3).
@@ -53,7 +55,7 @@ TorqueBasicComp >> fillpFpy: mat aFTOi: aFTOi [
 		plusFullMatrix: (MbDEulerParameters pBTpEtimesColumn: (aFTO times: 2.0))
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 TorqueBasicComp >> fillpFpy: mat pFTOipEj: pFTOipEj partFramej: partFramej [ 
 	mat
 		at: iqE
@@ -61,7 +63,7 @@ TorqueBasicComp >> fillpFpy: mat pFTOipEj: pFTOipEj partFramej: partFramej [
 		plusFullMatrix: (twoBaxisT timesFullRow: pFTOipEj)
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 TorqueBasicComp >> fillpFpy: mat pFTOipEj: pFTOipEj partj: partj [ 
 	mat
 		at: iqE
@@ -69,7 +71,7 @@ TorqueBasicComp >> fillpFpy: mat pFTOipEj: pFTOipEj partj: partj [
 		plusFullMatrix: (twoBaxisT timesFullRow: pFTOipEj)
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 TorqueBasicComp >> fillpFpy: mat pFTOipXj: pFTOipXj pFTOipEj: pFTOipEj partFramej: partFramej [ 
 	mat
 		at: iqE
@@ -81,7 +83,7 @@ TorqueBasicComp >> fillpFpy: mat pFTOipXj: pFTOipXj pFTOipEj: pFTOipEj partFrame
 		plusFullMatrix: (twoBaxisT timesFullRow: pFTOipEj)
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 TorqueBasicComp >> fillpFpy: mat pFTOipXj: pFTOipXj pFTOipEj: pFTOipEj partj: partj [ 
 	mat
 		at: iqE
@@ -93,7 +95,7 @@ TorqueBasicComp >> fillpFpy: mat pFTOipXj: pFTOipXj pFTOipEj: pFTOipEj partj: pa
 		plusFullMatrix: (twoBaxisT timesFullRow: pFTOipEj)
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 TorqueBasicComp >> fillpFpydot: mat pFTOipEdotj: pFTOipEdotj partFramej: partFramej [ 
 	mat
 		at: iqE
@@ -101,7 +103,7 @@ TorqueBasicComp >> fillpFpydot: mat pFTOipEdotj: pFTOipEdotj partFramej: partFra
 		plusFullMatrix: (twoBaxisT timesFullRow: pFTOipEdotj)
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 TorqueBasicComp >> fillpFpydot: mat pFTOipEdotj: pFTOipEdotj partj: partj [ 
 	mat
 		at: iqE
@@ -109,7 +111,7 @@ TorqueBasicComp >> fillpFpydot: mat pFTOipEdotj: pFTOipEdotj partj: partj [
 		plusFullMatrix: (twoBaxisT timesFullRow: pFTOipEdotj)
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 TorqueBasicComp >> fillpFpydot: mat pFTOipXdotj: pFTOipXdotj pFTOipEdotj: pFTOipEdotj partFramej: partFramej [ 
 	mat
 		at: iqE
@@ -121,7 +123,7 @@ TorqueBasicComp >> fillpFpydot: mat pFTOipXdotj: pFTOipXdotj pFTOipEdotj: pFTOip
 		plusFullMatrix: (twoBaxisT timesFullRow: pFTOipEdotj)
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 TorqueBasicComp >> fillpFpydot: mat pFTOipXdotj: pFTOipXdotj pFTOipEdotj: pFTOipEdotj partj: partj [ 
 	mat
 		at: iqE
@@ -133,7 +135,7 @@ TorqueBasicComp >> fillpFpydot: mat pFTOipXdotj: pFTOipXdotj pFTOipEdotj: pFTOip
 		plusFullMatrix: (twoBaxisT timesFullRow: pFTOipEdotj)
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 TorqueBasicComp >> fillpFpydot: mat pFTOipmudot: pFTOipmudot [ 
 	mat
 		at: iqE

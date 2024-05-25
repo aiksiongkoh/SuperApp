@@ -1,10 +1,12 @@
 Class {
-	#name : #BackwardDifference,
-	#superclass : #LinearMultiStepMethod,
-	#category : #'StMath-StMathDifferenceOperator'
+	#name : 'BackwardDifference',
+	#superclass : 'LinearMultiStepMethod',
+	#category : 'StMath-StMathDifferenceOperator',
+	#package : 'StMath',
+	#tag : 'StMathDifferenceOperator'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 BackwardDifference class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ BackwardDifference class >> visualWorksMetadata [
 
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 BackwardDifference >> derivative: n at: t present: y past: ypast [ 
 	"Interpolate or extrapolate."
 	"dfdt(t) = df0dt + d2f0dt2*(t - t0) + d3f0dt3*(t - t0)^2 / 2! + ..."
@@ -42,7 +44,7 @@ BackwardDifference >> derivative: n at: t present: y past: ypast [
 	^answer
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 BackwardDifference >> derivative: i present: y past: ypast [ 
 	"Answer ith derivative given present value and past values."
 
@@ -55,7 +57,7 @@ BackwardDifference >> derivative: i present: y past: ypast [
 		dot: series
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 BackwardDifference >> derivative: n present: y past: ypast presentDerivative: ydot pastDerivative: ydotpast [ 
 	^self
 		derivative: n
@@ -63,7 +65,7 @@ BackwardDifference >> derivative: n present: y past: ypast presentDerivative: yd
 		past: ypast
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 BackwardDifference >> derivative: i with: series [ 
 	"Answer ith derivative given present value and past values in series."
 
@@ -71,7 +73,7 @@ BackwardDifference >> derivative: i with: series [
 	^super derivative: i with: series
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 BackwardDifference >> formSmallerTaylorMatrix [
 	"
 	This form is numerically more stable and is prefered over the full Taylor Matrix. 
@@ -88,7 +90,7 @@ BackwardDifference >> formSmallerTaylorMatrix [
 			derivative: 0]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 BackwardDifference >> formTaylorMatrix [
 	"
 	For method order 3: 
@@ -106,12 +108,12 @@ BackwardDifference >> formTaylorMatrix [
 			derivative: 0]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 BackwardDifference >> pvdotpv [
 	^operatorMatrix at: 2 and: 1
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 BackwardDifference >> valueAt: t present: y past: ypast [ 
 	^self
 		derivative: 0
@@ -120,7 +122,7 @@ BackwardDifference >> valueAt: t present: y past: ypast [
 		past: ypast
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 BackwardDifference >> valuedotWith: y past: ypast [ 
 	^self
 		derivative: 1

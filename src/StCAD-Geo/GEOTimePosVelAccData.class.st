@@ -1,13 +1,15 @@
 Class {
-	#name : #GEOTimePosVelAccData,
-	#superclass : #GEOPosVelAccData,
+	#name : 'GEOTimePosVelAccData',
+	#superclass : 'GEOPosVelAccData',
 	#instVars : [
 		'time'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOTimePosVelAccData class >> visualWorksMetadata [
 
 	^ #(
@@ -17,62 +19,62 @@ GEOTimePosVelAccData class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccData >> aOf [
 	^aOfO length
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccData >> aOfO1 [
 	^aOfO at: 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccData >> aOfO2 [
 	^aOfO at: 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccData >> aOfO3 [
 	^aOfO at: 3
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccData >> alpOf [
 	^self alpOfO length
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccData >> alpOfO1 [
 	^alpOfO at: 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccData >> alpOfO2 [
 	^alpOfO at: 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccData >> alpOfO3 [
 	^alpOfO at: 3
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccData >> bryantOf1 [
 	^aAOf bryantAngles at: 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccData >> bryantOf2 [
 	^aAOf bryantAngles at: 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccData >> bryantOf3 [
 	^aAOf bryantAngles at: 3
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccData >> dataTypes [
 	| answer |
 	answer := OrderedCollection new.
@@ -104,82 +106,82 @@ GEOTimePosVelAccData >> dataTypes [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccData >> omeOf [
 	^omeOfO length
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccData >> omeOfO1 [
 	^omeOfO at: 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccData >> omeOfO2 [
 	^omeOfO at: 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccData >> omeOfO3 [
 	^omeOfO at: 3
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccData >> rOf [
 	^rOfO length
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccData >> rOfO1 [
 	^rOfO at: 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccData >> rOfO2 [
 	^rOfO at: 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccData >> rOfO3 [
 	^rOfO at: 3
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccData >> time [
 	^time
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccData >> time: double [ 
 	time := double
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccData >> timetime [
 	^time @ time
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccData >> vOf [
 	^vOfO length
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccData >> vOfO1 [
 	^vOfO at: 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccData >> vOfO2 [
 	^vOfO at: 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccData >> vOfO3 [
 	^vOfO at: 3
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccData >> vOfRadial [
 	| ur |
 	^rOfO length > 0
@@ -189,7 +191,7 @@ GEOTimePosVelAccData >> vOfRadial [
 		ifFalse: [vOfO length]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 GEOTimePosVelAccData >> zeroSelf [
 	super zeroSelf.
 	time := 0.0

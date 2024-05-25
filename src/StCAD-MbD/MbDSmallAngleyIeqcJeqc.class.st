@@ -1,15 +1,17 @@
 Class {
-	#name : #MbDSmallAngleyIeqcJeqc,
-	#superclass : #MbDSmallAngleyIeqcJec,
+	#name : 'MbDSmallAngleyIeqcJeqc',
+	#superclass : 'MbDSmallAngleyIeqcJec',
 	#instVars : [
 		'ptheypEJ',
 		'pptheypEIpEJ',
 		'pptheypEJpEJ'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDSmallAngleyIeqcJeqc class >> visualWorksMetadata [
 
 	^ #(
@@ -19,7 +21,7 @@ MbDSmallAngleyIeqcJeqc class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDSmallAngleyIeqcJeqc class >> withFrmI: afrmI frmJ: afrmJ [ 
 	^(afrmI isMemberOf: MbDEndFrameqc)
 		& (afrmJ isMemberOf: MbDEndFrameqc)
@@ -27,7 +29,7 @@ MbDSmallAngleyIeqcJeqc class >> withFrmI: afrmI frmJ: afrmJ [
 		ifFalse: [nil]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDSmallAngleyIeqcJeqc >> calcPostDynCorrectorIteration [
 	super calcPostDynCorrectorIteration.
 	ptheypEJ := aA13IeJe pvaluepEJ.
@@ -35,37 +37,37 @@ MbDSmallAngleyIeqcJeqc >> calcPostDynCorrectorIteration [
 	pptheypEJpEJ := aA13IeJe ppvaluepEJpEJ
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDSmallAngleyIeqcJeqc >> initialize [
 	aA13IeJe := MbDDirectionCosineIeqcJeqc new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSmallAngleyIeqcJeqc >> pptheypEIpEJ [
 	^pptheypEIpEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSmallAngleyIeqcJeqc >> pptheypEJpEJ [
 	^pptheypEJpEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSmallAngleyIeqcJeqc >> ppvaluepEIpEJ [
 	^pptheypEIpEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSmallAngleyIeqcJeqc >> ppvaluepEJpEJ [
 	^pptheypEJpEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSmallAngleyIeqcJeqc >> ptheypEJ [
 	^ptheypEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSmallAngleyIeqcJeqc >> pvaluepEJ [
 	^ptheypEJ
 ]

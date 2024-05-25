@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDDispCompIecJecKec,
-	#superclass : #MbDKinematicIeJe,
+	#name : 'MbDDispCompIecJecKec',
+	#superclass : 'MbDKinematicIeJe',
 	#instVars : [
 		'efrmK',
 		'axisK',
@@ -8,10 +8,12 @@ Class {
 		'aAjOKe',
 		'rIeJeO'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDDispCompIecJecKec class >> visualWorksMetadata [
 
 	^ #(
@@ -21,7 +23,7 @@ MbDDispCompIecJecKec class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDDispCompIecJecKec class >> withFrmI: afrmI frmJ: afrmJ frmK: afrmK axisK: integer [ 
 	| instance |
 	self allSubclasses
@@ -35,12 +37,12 @@ MbDDispCompIecJecKec class >> withFrmI: afrmI frmJ: afrmJ frmK: afrmK axisK: int
 			instance notNil ifTrue: [^instance]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIecJecKec >> partFrameK [
 	^efrmK partFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIecJecKec >> value [
 	^riIeJeKe
 ]

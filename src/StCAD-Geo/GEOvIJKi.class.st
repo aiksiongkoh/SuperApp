@@ -1,15 +1,17 @@
 Class {
-	#name : #GEOvIJKi,
-	#superclass : #GEOFunctionIJKi,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEOvIJKi',
+	#superclass : 'GEOFunctionIJKi',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOvIJKi class >> functionSymbol [
 	^'vIJKi'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOvIJKi class >> visualWorksMetadata [
 
 	^ #(
@@ -19,27 +21,27 @@ GEOvIJKi class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOvIJKi >> dataSeries [
 	^geoIJ dataSeriesForChart collect: [:kineIkineJ | kineIkineJ perform: 'vIJ' , markerK , axisK printString]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOvIJKi >> dimension [
 	^'velocity'
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOvIJKi >> mbdClassKComp [
 	^MbDVelCompIeqcJeqcKeqc
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOvIJKi >> mbdClassOComp [
 	^MbDVelCompIeqcJeqcO
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOvIJKi >> mbdUnit [
 	^self mbdUnits velocity
 ]

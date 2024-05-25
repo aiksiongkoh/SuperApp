@@ -22,16 +22,18 @@ where
 
 "
 Class {
-	#name : #StMPiecewiseFunctionX,
-	#superclass : #StMFunctionX,
+	#name : 'StMPiecewiseFunctionX',
+	#superclass : 'StMFunctionX',
 	#instVars : [
 		'functions',
 		'transitions'
 	],
-	#category : #'StMath-Symbolic'
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMPiecewiseFunctionX class >> visualWorksMetadata [
 
 	^ #(
@@ -41,7 +43,7 @@ StMPiecewiseFunctionX class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMPiecewiseFunctionX class >> with: var functions: funcs transitions: trans [ 
 	^super new
 		x: var
@@ -49,19 +51,19 @@ StMPiecewiseFunctionX class >> with: var functions: funcs transitions: trans [
 		transitions: trans
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 StMPiecewiseFunctionX >> = anObject [ 
 	^super = anObject and: [functions = anObject functions and: [transitions = anObject transitions]]
 ]
 
-{ #category : #'message handling' }
+{ #category : 'message handling' }
 StMPiecewiseFunctionX >> argsPerform: selector withArguments: anArray [ 
 	super argsPerform: selector withArguments: anArray.
 	functions do: [:function | function perform: selector withArguments: anArray].
 	transitions do: [:transition | transition perform: selector withArguments: anArray]
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMPiecewiseFunctionX >> differentiateWRT: variable [ 
 	| derivs |
 	derivs := functions collect: [:function | function differentiateWRT: variable].
@@ -71,7 +73,7 @@ StMPiecewiseFunctionX >> differentiateWRT: variable [
 		transitions: transitions
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMPiecewiseFunctionX >> expandUntil: set [ 
 	| xx newfunctions newtransitions copy |
 	^(set includes: self)
@@ -89,12 +91,12 @@ StMPiecewiseFunctionX >> expandUntil: set [
 				ifFalse: [copy]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMPiecewiseFunctionX >> functions [
 	^functions
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMPiecewiseFunctionX >> partialDifferentiateWRT: variable [ 
 	| derivs answer |
 	derivs := functions collect: [:function | function partialDifferentiateWRT: variable].
@@ -105,14 +107,14 @@ StMPiecewiseFunctionX >> partialDifferentiateWRT: variable [
 	^answer
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 StMPiecewiseFunctionX >> postCopy [
 	super postCopy.
 	functions := functions collect: [:function | function copy].
 	transitions := transitions collect: [:transition | transition copy]
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMPiecewiseFunctionX >> simplifyUntil: set [ 
 	| xx newfunctions newtransitions copy |
 	^(set includes: self)
@@ -130,7 +132,7 @@ StMPiecewiseFunctionX >> simplifyUntil: set [
 				ifFalse: [copy]]
 ]
 
-{ #category : #changing }
+{ #category : 'changing' }
 StMPiecewiseFunctionX >> substitute: var1 with: var2 [ 
 	| xx newFunctions newTransitions |
 	^self = var1
@@ -145,12 +147,12 @@ StMPiecewiseFunctionX >> substitute: var1 with: var2 [
 				transitions: newTransitions]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMPiecewiseFunctionX >> transitions [
 	^transitions
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMPiecewiseFunctionX >> value [
 	| nTransitions xvalue |
 	nTransitions := transitions size.
@@ -159,7 +161,7 @@ StMPiecewiseFunctionX >> value [
 	^(functions at: nTransitions + 1) value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMPiecewiseFunctionX >> x: arg [ 
 	| xold |
 	xold := x.
@@ -168,7 +170,7 @@ StMPiecewiseFunctionX >> x: arg [
 	transitions := transitions collect: [:transition | transition substitute: xold with: x]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 StMPiecewiseFunctionX >> x: var functions: funcs transitions: trans [ 
 	x := self conditionArgument: var.
 	functions := funcs collect: [:func | self conditionArgument: func].

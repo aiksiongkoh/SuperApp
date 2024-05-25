@@ -1,10 +1,12 @@
 Class {
-	#name : #StMPower,
-	#superclass : #StMFunctionXY,
-	#category : #'StMath-Symbolic'
+	#name : 'StMPower',
+	#superclass : 'StMFunctionXY',
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMPower class >> visualWorksMetadata [
 
 	^ #(
@@ -14,37 +16,37 @@ StMPower class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMPower class >> with: base raisedTo: exponent [ 
 	^super new x: base y: exponent
 ]
 
-{ #category : #'StCAD-UI' }
+{ #category : 'StCAD-UI' }
 StMPower >> cadStringOn: aStream [ 
 	x cadStringOn: aStream.
 	aStream nextPutAll: '^'.
 	y cadStringOn: aStream
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMPower >> differentiateWRTx [
 	| ycopy |
 	ycopy := y copy.
 	^ycopy times: (x copy raisedTo: (ycopy plus: -1)) simplified
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMPower >> differentiateWRTy [
 	^(self copy times: (StMLn with: x copy)) simplified
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMPower >> isReciprocal [
 
 	^ y = -1
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMPower >> simplifyUntil: set [ 
 	| xx yy copy |
 	(set includes: self)
@@ -64,7 +66,7 @@ StMPower >> simplifyUntil: set [
 	^copy
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMPower >> value [
 	^x value raisedTo: y value
 ]

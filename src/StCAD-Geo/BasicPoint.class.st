@@ -1,13 +1,14 @@
 Class {
-	#name : #BasicPoint,
-	#superclass : #BasicGeometry,
+	#name : 'BasicPoint',
+	#superclass : 'BasicGeometry',
 	#instVars : [
 		'aFullColumn'
 	],
-	#category : #'StCAD-Geo'
+	#category : 'StCAD-Geo',
+	#package : 'StCAD-Geo'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 BasicPoint class >> visualWorksMetadata [
 
 	^ #(

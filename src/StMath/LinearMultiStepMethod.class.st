@@ -1,10 +1,12 @@
 Class {
-	#name : #LinearMultiStepMethod,
-	#superclass : #DifferenceOperator,
-	#category : #'StMath-StMathDifferenceOperator'
+	#name : 'LinearMultiStepMethod',
+	#superclass : 'DifferenceOperator',
+	#category : 'StMath-StMathDifferenceOperator',
+	#package : 'StMath',
+	#tag : 'StMathDifferenceOperator'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 LinearMultiStepMethod class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ LinearMultiStepMethod class >> visualWorksMetadata [
 
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 LinearMultiStepMethod >> derivative: n at: t present: y past: ypast presentDerivative: ydot pastDerivative: ydotpast [ 
 	"Interpolate or extrapolate."
 	"dfdt(t) = df0dt + d2f0dt2*(t - t0) + d3f0dt3*(t - t0)^2 / 2! + ..."
@@ -46,7 +48,7 @@ LinearMultiStepMethod >> derivative: n at: t present: y past: ypast presentDeriv
 	^answer
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 LinearMultiStepMethod >> derivative: n present: y past: ypast presentDerivative: ydot pastDerivative: ydotpast [ 
 	"Answer nth derivative given present value, past values, present first derivative and past first 
 	derivatives"
@@ -54,12 +56,12 @@ LinearMultiStepMethod >> derivative: n present: y past: ypast presentDerivative:
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LinearMultiStepMethod >> firstPastTimeNode [
 	^timeNodes at: 1
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 LinearMultiStepMethod >> valueAt: t present: y past: ypast presentDerivative: ydot pastDerivative: ydotpast [ 
 	^self
 		derivative: 0

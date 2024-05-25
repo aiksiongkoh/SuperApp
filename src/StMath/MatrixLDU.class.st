@@ -1,10 +1,12 @@
 Class {
-	#name : #MatrixLDU,
-	#superclass : #MatrixDecomposition,
-	#category : #'StMath-StMathMatrixSolver'
+	#name : 'MatrixLDU',
+	#superclass : 'MatrixDecomposition',
+	#category : 'StMath-StMathMatrixSolver',
+	#package : 'StMath',
+	#tag : 'StMathMatrixSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MatrixLDU class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ MatrixLDU class >> visualWorksMetadata [
 
 ]
 
-{ #category : #solution }
+{ #category : 'solution' }
 MatrixLDU >> decompose: aMatrix saveOriginal: saveOriginal [ 
 	self preSolve: aMatrix saveOriginal: saveOriginal.
 	1 to: m
@@ -24,7 +26,7 @@ MatrixLDU >> decompose: aMatrix saveOriginal: saveOriginal [
 			self forwardEliminateWithPivot: p]
 ]
 
-{ #category : #solution }
+{ #category : 'solution' }
 MatrixLDU >> forAndBackSub: aVector saveOriginal: saveOriginal [ 
 	rightHandSideB := saveOriginal
 				ifTrue: [aVector copy]

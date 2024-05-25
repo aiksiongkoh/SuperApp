@@ -1,15 +1,17 @@
 Class {
-	#name : #GESpMatParPvPrecise,
-	#superclass : #GESpMatParPv,
-	#category : #'StMath-StMathMatrixSolver'
+	#name : 'GESpMatParPvPrecise',
+	#superclass : 'GESpMatParPv',
+	#category : 'StMath-StMathMatrixSolver',
+	#package : 'StMath',
+	#tag : 'StMathMatrixSolver'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 GESpMatParPvPrecise class >> isAbstractClass [
 	^false
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GESpMatParPvPrecise class >> visualWorksMetadata [
 
 	^ #(
@@ -19,7 +21,7 @@ GESpMatParPvPrecise class >> visualWorksMetadata [
 
 ]
 
-{ #category : #pivoting }
+{ #category : 'pivoting' }
 GESpMatParPvPrecise >> doPivoting: p [ 
 	"Search from bottom to top."
 	"Use scaling vector and partial pivoting with actual swapping of rows."
@@ -71,7 +73,7 @@ GESpMatParPvPrecise >> doPivoting: p [
 	max < singularPivotTolerance ifTrue: [SingularMatrixError raiseSignal]
 ]
 
-{ #category : #solution }
+{ #category : 'solution' }
 GESpMatParPvPrecise >> preSolve: aMatrix with: aVector saveOriginal: saveOriginal [ 
 	"A conditioned copy of aMatrix is solved."
 

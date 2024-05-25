@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDAccICKineNewtonRaphson2,
-	#superclass : #MbDAccNewtonRaphson2,
-	#category : #'StCAD-MbD-MbDSolver'
+	#name : 'MbDAccICKineNewtonRaphson2',
+	#superclass : 'MbDAccNewtonRaphson2',
+	#category : 'StCAD-MbD-MbDSolver',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDAccICKineNewtonRaphson2 class >> visualWorksMetadata [
 
 	^ #(
@@ -14,14 +16,14 @@ MbDAccICKineNewtonRaphson2 class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDAccICKineNewtonRaphson2 >> initializeGlobally [
 	super initializeGlobally.
 	iterMax := system iterMaxAccKine.
 	dxTol := system errorTolAccKine
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDAccICKineNewtonRaphson2 >> preRun [
 	system logString: #'MbD: \Solving for quasi kinematic acceleration.'.
 	super preRun

@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDTranslationConstraintIqcsJqcs,
-	#superclass : #MbDTranslationConstraintIqcsJqc,
+	#name : 'MbDTranslationConstraintIqcsJqcs',
+	#superclass : 'MbDTranslationConstraintIqcsJqc',
 	#instVars : [
 		'isJ',
 		'pGpsJ',
@@ -9,10 +9,12 @@ Class {
 		'ppGpsIpsJ',
 		'ppGpsJpsJ'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDTranslationConstraintIqcsJqcs class >> visualWorksMetadata [
 
 	^ #(
@@ -22,7 +24,7 @@ MbDTranslationConstraintIqcsJqcs class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDTranslationConstraintIqcsJqcs class >> withFrmI: afrmI frmJ: afrmJ axis: aaxis [ 
 	^(afrmI isKindOf: MbDEndFrameqcs)
 		& (afrmJ isKindOf: MbDEndFrameqcs)
@@ -30,12 +32,12 @@ MbDTranslationConstraintIqcsJqcs class >> withFrmI: afrmI frmJ: afrmJ axis: aaxi
 		ifFalse: [nil]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDTranslationConstraintIqcsJqcs >> addpTIeiGOpsJto: mat [ 
 	self halt: 'To be implemented.'
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDTranslationConstraintIqcsJqcs >> calcPostDynCorrectorIteration [
 	super calcPostDynCorrectorIteration.
 	pGpsJ := riIeJeIe pvaluepsJ.
@@ -45,12 +47,12 @@ MbDTranslationConstraintIqcsJqcs >> calcPostDynCorrectorIteration [
 	ppGpsJpsJ := riIeJeIe ppvaluepsJpsJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDTranslationConstraintIqcsJqcs >> dispCompClass [
 	^MbDDispCompIeqcsJeqcsKeqcs
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDTranslationConstraintIqcsJqcs >> fillAccICIterError: col [ 
 	| qEdotI sdotI sum qEdotJ sdotJ |
 	super fillAccICIterError: col.
@@ -68,7 +70,7 @@ MbDTranslationConstraintIqcsJqcs >> fillAccICIterError: col [
 	col at: iG plusNumber: sum
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDTranslationConstraintIqcsJqcs >> fillCollisionError: col [ 
 	"lamDeriv is now PlamDeriv."
 	"qEddot is now qEdotDeriv."
@@ -81,13 +83,13 @@ MbDTranslationConstraintIqcsJqcs >> fillCollisionError: col [
 	col at: iG plusNumber: sum
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDTranslationConstraintIqcsJqcs >> fillPosICError: col [ 
 	super fillPosICError: col.
 	col at: isJ plusFullColumn: pGpsJ times: lam
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDTranslationConstraintIqcsJqcs >> fillPosICJacob: mat [ 
 	| ppGpEIpsJlam ppGpEJpsJlam ppGpsIpsJlam |
 	super fillPosICJacob: mat.
@@ -102,7 +104,7 @@ MbDTranslationConstraintIqcsJqcs >> fillPosICJacob: mat [
 	mat at: isJ and: isJ plusFullMatrix: ppGpsJpsJ times: lam
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDTranslationConstraintIqcsJqcs >> fillPosKineJacob: mat [ 
 	super fillPosKineJacob: mat.
 	mat
@@ -111,14 +113,14 @@ MbDTranslationConstraintIqcsJqcs >> fillPosKineJacob: mat [
 		plusFullRow: pGpsJ
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDTranslationConstraintIqcsJqcs >> fillVelICJacob: mat [ 
 	super fillVelICJacob: mat.
 	mat at: iG and: isJ plusFullRow: pGpsJ.
 	mat at: isJ and: iG plusFullColumn: pGpsJ transpose
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDTranslationConstraintIqcsJqcs >> fillpFpy: mat [ 
 	| ppGpEIpsJlam ppGpEJpsJlam ppGpsIpsJlam |
 	super fillpFpy: mat.
@@ -132,13 +134,13 @@ MbDTranslationConstraintIqcsJqcs >> fillpFpy: mat [
 	mat at: isJ and: isJ plusFullMatrix: ppGpsJpsJ times: lam
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDTranslationConstraintIqcsJqcs >> fillpFpydot: mat [ 
 	super fillpFpydot: mat.
 	mat at: isJ and: iG plusFullColumn: pGpsJ transpose
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDTranslationConstraintIqcsJqcs >> useEquationNumbers [
 	super useEquationNumbers.
 	isJ := frmJ is

@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDCouplerFunction,
-	#superclass : #MbDCouplerConstraint,
+	#name : 'MbDCouplerFunction',
+	#superclass : 'MbDCouplerConstraint',
 	#instVars : [
 		'n',
 		'kineIJs',
@@ -11,10 +11,12 @@ Class {
 		'pfuncpkineIJBlks',
 		'ppfuncpkineIJpkineIJBlks'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDCouplerFunction class >> visualWorksMetadata [
 
 	^ #(
@@ -24,7 +26,7 @@ MbDCouplerFunction class >> visualWorksMetadata [
 
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDCouplerFunction >> calcPostDynCorrectorIteration [
 	| ppfuncpkineIJpkineIJsi ppfuncpkineIJpkineIJBlksi |
 	1 to: n do: [:i | 
@@ -34,17 +36,17 @@ MbDCouplerFunction >> calcPostDynCorrectorIteration [
 			i to: n do: [:j | ppfuncpkineIJpkineIJsi at: j put: (ppfuncpkineIJpkineIJBlksi at: j) value]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDCouplerFunction >> func [
 	^funcBlk value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDCouplerFunction >> funcBlk: function [ 
 	funcBlk := function
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDCouplerFunction >> initializeGlobally [
 	| kineIJi ppfuncpkineIJpkineIJBlksi kineIJj pfuncpkineIJBlksi |
 	n := kineIJs size.
@@ -58,7 +60,7 @@ MbDCouplerFunction >> initializeGlobally [
 					ppfuncpkineIJpkineIJBlksi at: j put: (pfuncpkineIJBlksi differentiateWRT: kineIJj) simplified]]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDCouplerFunction >> initializeLocally [
 	kineIJs := OrderedCollection new.
 	funcBlk fillKineIJs: kineIJs.
@@ -71,99 +73,99 @@ MbDCouplerFunction >> initializeLocally [
 	ppfuncpkineIJpkineIJBlks := StMFullMatrix new: n by: n
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDCouplerFunction >> kineIJs [
 	^kineIJs
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDCouplerFunction >> n [
 	^n
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDCouplerFunction >> pfuncpkineIJs [
 	^pfuncpkineIJs
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDCouplerFunction >> postDynCorrectorIteration [
 	kineIJs do: [:kineIJi | kineIJi postDynCorrectorIteration].
 	super postDynCorrectorIteration
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDCouplerFunction >> postDynOutput [
 	kineIJs do: [:kineIJi | kineIJi postDynOutput].
 	super postDynOutput
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDCouplerFunction >> postDynPredictor [
 	kineIJs do: [:kineIJi | kineIJi postDynPredictor].
 	super postDynPredictor
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDCouplerFunction >> postInput [
 	kineIJs do: [:kineIJi | kineIJi postInput].
 	super postInput
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDCouplerFunction >> postPosICIteration [
 	kineIJs do: [:kineIJi | kineIJi postPosICIteration].
 	super postPosICIteration
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDCouplerFunction >> postStaticIteration [
 	kineIJs do: [:kineIJi | kineIJi postStaticIteration].
 	super postStaticIteration
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDCouplerFunction >> ppfuncpkineIJpkineIJs [
 	^ppfuncpkineIJpkineIJs
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDCouplerFunction >> preAccIC [
 	kineIJs do: [:kineIJ | kineIJ preAccIC].
 	super preAccIC
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDCouplerFunction >> preDynOutput [
 	kineIJs do: [:kineIJi | kineIJi preDynOutput].
 	super preDynOutput
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDCouplerFunction >> prePosIC [
 	kineIJs do: [:kineIJi | kineIJi prePosIC].
 	super prePosIC
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDCouplerFunction >> preStatic [
 	kineIJs do: [:kineIJi | kineIJi preStatic].
 	super preStatic
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDCouplerFunction >> preVelIC [
 	kineIJs do: [:kineIJi | kineIJi preVelIC].
 	super preVelIC
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDCouplerFunction >> simUpdateAll [
 	kineIJs do: [:kineIJi | kineIJi simUpdateAll].
 	super simUpdateAll
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDCouplerFunction >> useEquationNumbers [
 	"Do nothing."
 ]

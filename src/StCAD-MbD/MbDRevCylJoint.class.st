@@ -1,13 +1,15 @@
 Class {
-	#name : #MbDRevCylJoint,
-	#superclass : #MbDJoint,
+	#name : 'MbDRevCylJoint',
+	#superclass : 'MbDJoint',
 	#instVars : [
 		'distanceIJ'
 	],
-	#category : #'StCAD-MbD-MbDJoint'
+	#category : 'StCAD-MbD-MbDJoint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDJoint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDRevCylJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -17,7 +19,7 @@ MbDRevCylJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRevCylJoint >> classString [
 	"Used to access the descriptive name of the joint."
 	"Needed for multi-language."
@@ -25,12 +27,12 @@ MbDRevCylJoint >> classString [
 	^TheMbDSystem getString: #'MbD: Revolute-Cyllindrical Joint '
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDRevCylJoint >> distanceIJ: double [ 
 	distanceIJ := double
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDRevCylJoint >> initializeGlobally [
 	| constraint |
 	constraints isEmpty 

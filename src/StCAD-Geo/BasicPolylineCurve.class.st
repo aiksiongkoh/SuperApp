@@ -1,13 +1,14 @@
 Class {
-	#name : #BasicPolylineCurve,
-	#superclass : #BasicCurve,
+	#name : 'BasicPolylineCurve',
+	#superclass : 'BasicCurve',
 	#instVars : [
 		'crfpointf'
 	],
-	#category : #'StCAD-Geo'
+	#category : 'StCAD-Geo',
+	#package : 'StCAD-Geo'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 BasicPolylineCurve class >> visualWorksMetadata [
 
 	^ #(

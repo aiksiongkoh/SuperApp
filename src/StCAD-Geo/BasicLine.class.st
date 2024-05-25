@@ -1,14 +1,15 @@
 Class {
-	#name : #BasicLine,
-	#superclass : #BasicCurve,
+	#name : 'BasicLine',
+	#superclass : 'BasicCurve',
 	#instVars : [
 		'rfStartPointf',
 		'rfEndPointf'
 	],
-	#category : #'StCAD-Geo'
+	#category : 'StCAD-Geo',
+	#package : 'StCAD-Geo'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 BasicLine class >> visualWorksMetadata [
 
 	^ #(
@@ -18,7 +19,7 @@ BasicLine class >> visualWorksMetadata [
 
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 BasicLine >> = aObject [ 
 	^self == aObject or: 
 			[self class == aObject class and: 
@@ -26,28 +27,28 @@ BasicLine >> = aObject [
 						and: [(rfEndPointf - aObject rfEndPointf) length < 1.0d-9]]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicLine >> aDir [
 
 	^rfEndPointf minusFullColumn: rfStartPointf.
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicLine >> boundCylindricalSurface: aCylindricalSurface [ 
 	aCylindricalSurface boundByLine: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicLine >> boundRectSurface: aRectSurface [ 
 	aRectSurface boundByLine: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicLine >> cPoint [
 	^Array with: rfStartPointf with: rfEndPointf.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicLine >> cPoint_n1: n [ 
 	| answer delta |
 	answer := StMFullColumn new: n.
@@ -59,7 +60,7 @@ BasicLine >> cPoint_n1: n [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicLine >> cPoint_n: n [
 	| delta |
 	delta := (rfEndPointf - rfStartPointf) / (n - 1).
@@ -67,22 +68,22 @@ BasicLine >> cPoint_n: n [
 		collect: [:i | rfStartPointf plusFullVector: delta times: i asDouble.].
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicLine >> calc [
 	"Do nothing"
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicLine >> csguess [
 	^Array with: (0.0 to: 1.0 nStep: 2)
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicLine >> cuv [
 	^self cPoint_n: 4
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicLine >> gluvCurveOnSurface: aSurface [ 
 	| aaCurve |
 	aaCurve := aSurface gluvCurveOfLine: self.
@@ -90,13 +91,13 @@ BasicLine >> gluvCurveOnSurface: aSurface [
 	^aaCurve
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 BasicLine >> initStartAndEnd [
 	rfStartPointf := StMFullColumn zero: 3.
 	rfEndPointf := StMFullColumn zero: 3.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 BasicLine >> intersectPoint: aaPoint lTol: tol [
 
 	| aLinePoint |
@@ -110,28 +111,28 @@ BasicLine >> intersectPoint: aaPoint lTol: tol [
 		  parameter > 0.0 and: [ parameter < 1.0 ] ]
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicLine >> isSpatial [
 	^rfStartPointf size = 3
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicLine >> magnifySelf: aDouble [ 
 	rfStartPointf magnifySelf: aDouble.
 	rfEndPointf magnifySelf: aDouble
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicLine >> pprfpfpupu_u: u [ 
 	^StMFullColumn zero: rfStartPointf size
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicLine >> prfpfpu_u: u [ 
 	^rfEndPointf minusFullColumn: rfStartPointf
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 BasicLine >> printOn: aStream [ 
 	aStream nextPut: $a.
 	aStream print: self class.
@@ -145,7 +146,7 @@ BasicLine >> printOn: aStream [
 	aStream nextPut: $)
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 BasicLine >> printVerboseOn: aStream [ 
 	aStream
 		nextPutAll: 'Line';
@@ -155,17 +156,17 @@ BasicLine >> printVerboseOn: aStream [
 		print: rfEndPointf
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicLine >> rFEndPointF [
 	^rfEndPointf
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicLine >> rFStartPointF [
 	^rfStartPointf
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicLine >> reverse [
 	| answer |
 	answer := self shallowCopy.
@@ -174,7 +175,7 @@ BasicLine >> reverse [
 	^answer
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicLine >> reverseSelf [
 	| temp |
 	temp := rfStartPointf.
@@ -182,32 +183,32 @@ BasicLine >> reverseSelf [
 	rfEndPointf := temp
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicLine >> rfEndPointf [
 	^rfEndPointf
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicLine >> rfEndPointf: aFullColumn [ 
 	rfEndPointf := aFullColumn
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicLine >> rfStartPointf [
 	^rfStartPointf
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicLine >> rfStartPointf: aFullColumn [ 
 	rfStartPointf := aFullColumn
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicLine >> rfpfNurbs [
 	^BasicNURBSCurve fromLine: self.
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicLine >> rfpf_u: u [ 
 	^u = 0.0 
 		ifTrue: [rfStartPointf shallowCopy]
@@ -221,7 +222,7 @@ BasicLine >> rfpf_u: u [
 						times: u]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicLine >> uOfPoint: rFpF [
 	| avec bvec |
 	avec := rFpF - rfStartPointf.
@@ -235,7 +236,7 @@ BasicLine >> uOfPoint: rFpF [
 	^(avec dot: bvec) / bvec sumOfSquares.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicLine >> uvCurveOnSurface: aSurface [ 
 	| aaCurve |
 	aaCurve := aSurface uvCurveOfLine: self.
@@ -243,37 +244,37 @@ BasicLine >> uvCurveOnSurface: aSurface [
 	^aaCurve
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicLine >> uvEnd: aFullColumn [ 
 	rfEndPointf := aFullColumn
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicLine >> uvStart: aFullColumn [ 
 	rfStartPointf := aFullColumn
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicLine >> uv_connectFromLine: aLine [ 
 	aLine uv_connectToLine: self
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicLine >> uv_connectTo: aCurve [ 
 	aCurve uv_connectFromLine: self
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicLine >> uv_connectToLine: aLine [ 
 	aLine rfStartPointf: self rfEndPointf copy
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicLine >> uvend [
 	^rfEndPointf
 ]
 
-{ #category : #'As yet unclassified' }
+{ #category : 'As yet unclassified' }
 BasicLine >> uvstart [
 	^rfStartPointf
 ]

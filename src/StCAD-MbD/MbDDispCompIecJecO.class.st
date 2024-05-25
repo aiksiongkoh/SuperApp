@@ -1,14 +1,16 @@
 Class {
-	#name : #MbDDispCompIecJecO,
-	#superclass : #MbDKinematicIeJe,
+	#name : 'MbDDispCompIecJecO',
+	#superclass : 'MbDKinematicIeJe',
 	#instVars : [
 		'axis',
 		'riIeJeO'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDDispCompIecJecO class >> visualWorksMetadata [
 
 	^ #(
@@ -18,7 +20,7 @@ MbDDispCompIecJecO class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDDispCompIecJecO class >> withFrmI: afrmI frmJ: afrmJ axis: i [ 
 	| instance |
 	self allSubclasses
@@ -31,22 +33,22 @@ MbDDispCompIecJecO class >> withFrmI: afrmI frmJ: afrmJ axis: i [
 			instance notNil ifTrue: [^instance]]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDispCompIecJecO >> calcPostDynCorrectorIteration [
 	riIeJeO := (frmJ riOeO: axis) - (frmI riOeO: axis)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIecJecO >> riIeJeO [
 	^riIeJeO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIecJecO >> value [
 	^riIeJeO
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDispCompIecJecO >> withFrmI: afrmI frmJ: afrmJ axis: aaxis [ 
 	frmI := afrmI.
 	frmJ := afrmJ.

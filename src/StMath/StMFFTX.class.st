@@ -10,15 +10,17 @@ Instance Variables:
 
 "
 Class {
-	#name : #StMFFTX,
-	#superclass : #StMFFT,
+	#name : 'StMFFTX',
+	#superclass : 'StMFFT',
 	#instVars : [
 		'delta'
 	],
-	#category : #'StMath-Symbolic'
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 StMFFTX class >> example1 [
 	"self halt. self example1."
 
@@ -37,7 +39,7 @@ StMFFTX class >> example1 [
 	fft doBitReversedOrder
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 StMFFTX class >> example2 [
 	"self halt. self example2."
 
@@ -56,7 +58,7 @@ StMFFTX class >> example2 [
 	fft inverse
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 StMFFTX class >> example3 [
 	"self halt. self example3."
 
@@ -75,7 +77,7 @@ StMFFTX class >> example3 [
 	fft inverse
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 StMFFTX class >> example4 [
 	"self halt. self example4."
 
@@ -98,7 +100,7 @@ StMFFTX class >> example4 [
 	fft inverse
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 StMFFTX class >> example5 [
 	"self halt. self example5."
 
@@ -119,7 +121,7 @@ StMFFTX class >> example5 [
 	fft inverse
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 StMFFTX class >> example6 [
 	"self halt. self example6."
 
@@ -141,7 +143,7 @@ StMFFTX class >> example6 [
 	fft transform
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMFFTX class >> visualWorksMetadata [
 
 	^ #(
@@ -151,7 +153,7 @@ StMFFTX class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMFFTX >> cyclicInverseSeries [
 	| n dt answer |
 	n := xs size.
@@ -161,17 +163,17 @@ StMFFTX >> cyclicInverseSeries [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMFFTX >> delta: del [ 
 	delta := del abs asDouble
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 StMFFTX >> inverse [
 	self FFTsign: -1 times: delta
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMFFTX >> inverseSeries [
 	| n dt answer |
 	n := xs size.
@@ -181,12 +183,12 @@ StMFFTX >> inverseSeries [
 	^answer
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 StMFFTX >> transform [
 	self FFTsign: 1 times: delta
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMFFTX >> transformSeries [
 	| n nOver2 fmin answer |
 	n := xs size.
@@ -202,7 +204,7 @@ StMFFTX >> transformSeries [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMFFTX >> xs: xarray ys: yarray delta: del [ 
 	super xs: xarray ys: yarray.
 	delta := del abs asDouble

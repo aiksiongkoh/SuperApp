@@ -1,13 +1,15 @@
 Class {
-	#name : #MbDDistanceConstraintIJ,
-	#superclass : #MbDConstraintIJ,
+	#name : 'MbDDistanceConstraintIJ',
+	#superclass : 'MbDConstraintIJ',
 	#instVars : [
 		'distIeJe'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDDistanceConstraintIJ class >> visualWorksMetadata [
 
 	^ #(
@@ -17,7 +19,7 @@ MbDDistanceConstraintIJ class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDDistanceConstraintIJ class >> withFrmI: afrmI frmJ: afrmJ [ 
 	| instance |
 	self allSubclasses do: 
@@ -26,12 +28,12 @@ MbDDistanceConstraintIJ class >> withFrmI: afrmI frmJ: afrmJ [
 			instance notNil ifTrue: [^instance]]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDistanceConstraintIJ >> calcPostDynCorrectorIteration [
 	aG := distIeJe value - aConstant
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistanceConstraintIJ >> classString [
 	"Used to access the descriptive name of the constraint."
 	"Needed for multi-language."
@@ -39,105 +41,105 @@ MbDDistanceConstraintIJ >> classString [
 	^TheMbDSystem getString: #'MbD: one distance constraint '
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDistanceConstraintIJ >> init_distIeJe [
 	self subclassResponsibility
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDistanceConstraintIJ >> initialize [
 	super initialize.
 	self init_distIeJe
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDistanceConstraintIJ >> initializeGlobally [
 	distIeJe initializeGlobally
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDistanceConstraintIJ >> initializeLocally [
 	distIeJe initializeLocally
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDDistanceConstraintIJ >> postDynCorrectorIteration [
 	distIeJe postDynCorrectorIteration.
 	super postDynCorrectorIteration
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDDistanceConstraintIJ >> postDynOutput [
 	distIeJe postDynOutput.
 	super postDynOutput
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDDistanceConstraintIJ >> postDynPredictor [
 	distIeJe postDynPredictor.
 	super postDynPredictor
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDDistanceConstraintIJ >> postInput [
 	distIeJe postInput.
 	super postInput
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDDistanceConstraintIJ >> postPosICIteration [
 	distIeJe postPosICIteration.
 	super postPosICIteration
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDDistanceConstraintIJ >> postStaticIteration [
 	distIeJe postStaticIteration.
 	super postStaticIteration
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDDistanceConstraintIJ >> preAccIC [
 	distIeJe preAccIC.
 	super preAccIC
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDDistanceConstraintIJ >> preDynOutput [
 	distIeJe preDynOutput.
 	super preDynOutput
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDDistanceConstraintIJ >> prePosIC [
 	distIeJe prePosIC.
 	super prePosIC
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDDistanceConstraintIJ >> preStatic [
 	distIeJe preStatic.
 	super preStatic
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDDistanceConstraintIJ >> preVelIC [
 	distIeJe preVelIC.
 	super preVelIC
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDDistanceConstraintIJ >> simUpdateAll [
 	distIeJe simUpdateAll.
 	super simUpdateAll
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistanceConstraintIJ >> type [
 	^#displacement
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDistanceConstraintIJ >> withFrmI: afrmI frmJ: afrmJ [ 
 	frmI := afrmI.
 	frmJ := afrmJ.

@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDBasicQuasiIntegrator,
-	#superclass : #BasicIntegrator,
-	#category : #'StCAD-MbD-MbDSolver'
+	#name : 'MbDBasicQuasiIntegrator',
+	#superclass : 'BasicIntegrator',
+	#category : 'StCAD-MbD-MbDSolver',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDBasicQuasiIntegrator class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ MbDBasicQuasiIntegrator class >> visualWorksMetadata [
 
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDBasicQuasiIntegrator >> firstStep [
 	istep := 0.
 	self preFirstStep.
@@ -36,17 +38,17 @@ MbDBasicQuasiIntegrator >> firstStep [
 	self reportStepStats
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDBasicQuasiIntegrator >> isRedoingFirstStep [
 	^false
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDBasicQuasiIntegrator >> isRedoingStep [
 	^false
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDBasicQuasiIntegrator >> nextStep [
 	self preStep.
 	iTry := 1.
@@ -66,12 +68,12 @@ MbDBasicQuasiIntegrator >> nextStep [
 	self reportStepStats
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDBasicQuasiIntegrator >> reportStepStats [
 	system useQuasiStepStats: statistics
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDBasicQuasiIntegrator >> reportTrialStepStats [
 	statistics at: #istep put: istep.
 	statistics at: #t put: t.
@@ -79,12 +81,12 @@ MbDBasicQuasiIntegrator >> reportTrialStepStats [
 	system useTrialStepStats: statistics
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDBasicQuasiIntegrator >> runInitialConditionTypeSolution [
 	system runInitialConditionTypeSolution
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDBasicQuasiIntegrator >> selectFirstStepSize [
 	iTry == 1
 		ifTrue: [hnew := direction * (system tout - t)]
@@ -92,7 +94,7 @@ MbDBasicQuasiIntegrator >> selectFirstStepSize [
 	hnew := system suggestSmallerOrAcceptFirstStepSize: hnew
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDBasicQuasiIntegrator >> selectStepSize [
 	iTry == 1
 		ifTrue: [hnew := direction * (system tout - t)]

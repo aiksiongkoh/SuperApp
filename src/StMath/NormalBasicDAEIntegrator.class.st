@@ -1,13 +1,15 @@
 Class {
-	#name : #NormalBasicDAEIntegrator,
-	#superclass : #BasicDAEIntegrator,
+	#name : 'NormalBasicDAEIntegrator',
+	#superclass : 'BasicDAEIntegrator',
 	#instVars : [
 		'opBDFhigher'
 	],
-	#category : #'StMath-StMathIntegrator'
+	#category : 'StMath-StMathIntegrator',
+	#package : 'StMath',
+	#tag : 'StMathIntegrator'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 NormalBasicDAEIntegrator class >> visualWorksMetadata [
 
 	^ #(
@@ -17,18 +19,18 @@ NormalBasicDAEIntegrator class >> visualWorksMetadata [
 
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 NormalBasicDAEIntegrator >> calcOperatorMatrix [
 	super calcOperatorMatrix.
 	opBDFhigher calcOperatorMatrix
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NormalBasicDAEIntegrator >> correctorBDF [
 	^opBDF
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 NormalBasicDAEIntegrator >> dyOrderPlusOnedt [
 	^opBDFhigher
 		derivative: order + 1
@@ -36,20 +38,20 @@ NormalBasicDAEIntegrator >> dyOrderPlusOnedt [
 		past: ypast
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NormalBasicDAEIntegrator >> iStep: integer [ 
 	super iStep: integer.
 	opBDFhigher iStep: integer
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 NormalBasicDAEIntegrator >> initialize [
 	super initialize.
 	opBDFhigher := StableBackwardDifference new.
 	opBDFhigher timeNodes: tpast
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 NormalBasicDAEIntegrator >> initializeLocally [
 	"NormalBasicDAEIntegrator is not used for starting an integration."
 	"Change to StartingBasicDAEIntegrator."
@@ -60,24 +62,24 @@ NormalBasicDAEIntegrator >> initializeLocally [
 	self changeClassToThatOf: StartingBasicDAEIntegrator basicNew
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NormalBasicDAEIntegrator >> order: integer [ 
 	super order: integer.
 	opBDFhigher order: integer + 1
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 NormalBasicDAEIntegrator >> selectOrder [
 	self selectOrderNormal
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NormalBasicDAEIntegrator >> time: double [ 
 	super time: double.
 	opBDFhigher time: double
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NormalBasicDAEIntegrator >> yDeriv: integer [ 
 	^opBDF
 		derivative: integer
@@ -85,7 +87,7 @@ NormalBasicDAEIntegrator >> yDeriv: integer [
 		past: ypast
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NormalBasicDAEIntegrator >> yDeriv: integer at: time [ 
 	^opBDF
 		derivative: integer

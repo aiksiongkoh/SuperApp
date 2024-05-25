@@ -1,21 +1,23 @@
 Class {
-	#name : #NonlinearEquationSolver,
-	#superclass : #Solver,
+	#name : 'NonlinearEquationSolver',
+	#superclass : 'Solver',
 	#instVars : [
 		'n',
 		'vars',
 		'eqns',
 		'jacobian'
 	],
-	#category : #'StMath-StMathNewtonRaphson'
+	#category : 'StMath-StMathNewtonRaphson',
+	#package : 'StMath',
+	#tag : 'StMathNewtonRaphson'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 NonlinearEquationSolver class >> new: size [ 
 	^super new initialize: size
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 NonlinearEquationSolver class >> visualWorksMetadata [
 
 	^ #(
@@ -25,7 +27,7 @@ NonlinearEquationSolver class >> visualWorksMetadata [
 
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NonlinearEquationSolver >> dx: dx x: x [ 
 	n == 1
 		ifTrue: [(vars at: 1)
@@ -34,17 +36,17 @@ NonlinearEquationSolver >> dx: dx x: x [
 					value: (x at: i)]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NonlinearEquationSolver >> eqnAt: i put: eqn [ 
 	eqns at: i put: eqn
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NonlinearEquationSolver >> fillErrorVector: y [ 
 	1 to: n do: [:i | y at: i put: (eqns at: i) value asDouble]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NonlinearEquationSolver >> fillJacobian: pypx [ 
 	| pypxrow jacobianrow |
 	1 to: n
@@ -55,12 +57,12 @@ NonlinearEquationSolver >> fillJacobian: pypx [
 			1 to: n do: [:j | pypxrow at: j put: (jacobianrow at: j) value asDouble]]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NonlinearEquationSolver >> fillVarVector: x [ 
 	1 to: n do: [:i | x at: i put: (vars at: i) value asDouble]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 NonlinearEquationSolver >> initialize: size [ 
 	n := size.
 	vars := StMFullColumn new: size.
@@ -68,22 +70,22 @@ NonlinearEquationSolver >> initialize: size [
 	jacobian := StMFullMatrix new: size by: size
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NonlinearEquationSolver >> n [
 	^n
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NonlinearEquationSolver >> postNewtonRaphson [
 	"Do nothing."
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NonlinearEquationSolver >> postNewtonRaphsonIteration [
 	"Do nothing."
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NonlinearEquationSolver >> preNewtonRaphson [
 	| rowi eqni partialij |
 	(vars detect: [:var | var value isFloat not]
@@ -104,19 +106,19 @@ NonlinearEquationSolver >> preNewtonRaphson [
 					rowi at: j put: partialij]]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NonlinearEquationSolver >> preNewtonRaphsonIteration [
 	"Do nothing."
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NonlinearEquationSolver >> pypx [
 	^n == 1
 		ifTrue: [(jacobian at: 1 and: 1) value asDouble]
 		ifFalse: [jacobian collect: [:row | row collect: [:aij | aij value asDouble]]]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NonlinearEquationSolver >> run [
 	| newtonRaphson |
 	n == 1
@@ -131,7 +133,7 @@ NonlinearEquationSolver >> run [
 	newtonRaphson run
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NonlinearEquationSolver >> runWithBackTracking [
 	| newtonRaphson |
 	n == 1
@@ -146,34 +148,34 @@ NonlinearEquationSolver >> runWithBackTracking [
 	newtonRaphson runWithBackTracking
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NonlinearEquationSolver >> updateForNewtonRaphson [
 	"Do nothing."
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NonlinearEquationSolver >> updateNewtonRaphsonErrorVectorOnly [
 	"Do nothing."
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NonlinearEquationSolver >> useNewtonRaphsonStats: stats [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NonlinearEquationSolver >> varAt: i put: var [ 
 	vars at: i put: var
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NonlinearEquationSolver >> x [
 	^n == 1
 		ifTrue: [(vars at: 1) value asDouble]
 		ifFalse: [vars collect: [:var | var value asDouble]]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NonlinearEquationSolver >> y [
 	^n == 1
 		ifTrue: [(eqns at: 1) value asDouble]

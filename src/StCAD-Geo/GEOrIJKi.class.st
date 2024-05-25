@@ -1,15 +1,17 @@
 Class {
-	#name : #GEOrIJKi,
-	#superclass : #GEOFunctionIJKi,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEOrIJKi',
+	#superclass : 'GEOFunctionIJKi',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOrIJKi class >> functionSymbol [
 	^'rIJKi'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOrIJKi class >> visualWorksMetadata [
 
 	^ #(
@@ -19,27 +21,27 @@ GEOrIJKi class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOrIJKi >> dataSeries [
 	^geoIJ dataSeriesForChart collect: [:kineIkineJ | kineIkineJ perform: 'rIJ' , markerK , axisK printString]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOrIJKi >> dimension [
 	^'length'
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOrIJKi >> mbdClassKComp [
 	^MbDDispCompIecJecKec
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOrIJKi >> mbdClassOComp [
 	^MbDDispCompIecJecO
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOrIJKi >> mbdUnit [
 	^self mbdUnits length
 ]

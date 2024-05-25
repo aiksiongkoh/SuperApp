@@ -1,10 +1,12 @@
 Class {
-	#name : #StMFunction,
-	#superclass : #StMSymbolic,
-	#category : #'StMath-Symbolic'
+	#name : 'StMFunction',
+	#superclass : 'StMSymbolic',
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #'binary storage' }
+{ #category : 'binary storage' }
 StMFunction class >> binaryReaderBlockForVersion: oldVersion format: oldFormat [ 
 	"Remove the instance variable 'value' from StMSymbolic."
 	"Remove the instance variable 'dependents' from StMFunction."
@@ -27,22 +29,22 @@ StMFunction class >> binaryReaderBlockForVersion: oldVersion format: oldFormat [
 	^super binaryReaderBlockForVersion: oldVersion format: oldFormat
 ]
 
-{ #category : #'binary storage' }
+{ #category : 'binary storage' }
 StMFunction class >> binaryRepresentationVersion [
 	^30
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMFunction class >> functionSymbol [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMFunction class >> functionTemplate [
 	self subclassResponsibility
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMFunction class >> visualWorksMetadata [
 
 	^ #(
@@ -52,22 +54,22 @@ StMFunction class >> visualWorksMetadata [
 
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 StMFunction >> = anObject [ 
 	^self class == anObject class
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMFunction >> arguments: array [ 
 	self subclassResponsibility
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 StMFunction >> initialize [
 	"Do nothing."
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 StMFunction >> outputOn: filename interval: interval [ 
 	| writeStream |
 	Transcript cr; show: 'Tabulated data is in ' , filename.
@@ -87,12 +89,12 @@ StMFunction >> outputOn: filename interval: interval [
 	writeStream flush; close
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 StMFunction >> printFuntionNameOn: aStream [
 	self subclassResponsibility
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 StMFunction >> printOn: aStream [ 
 	self printFuntionNameOn: aStream.
 	aStream nextPut: $(.
@@ -100,12 +102,12 @@ StMFunction >> printOn: aStream [
 	aStream nextPut: $)
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 StMFunction >> print_cArgumentOn: aStream [
 	self subclassResponsibility
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMFunction >> value: xx [ 
 	self x: xx.
 	^self value

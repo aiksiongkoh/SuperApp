@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDSeparatedCVCVJoint,
-	#superclass : #MbDIntermittentCVCVJoint,
-	#category : #'StCAD-MbD-MbDJoint'
+	#name : 'MbDSeparatedCVCVJoint',
+	#superclass : 'MbDIntermittentCVCVJoint',
+	#category : 'StCAD-MbD-MbDJoint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDJoint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDSeparatedCVCVJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ MbDSeparatedCVCVJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDSeparatedCVCVJoint >> becomeStartingInContactCVCVJoint [
 	self changeClassToThatOf: MbDStartingInContactCVCVJoint basicNew.
 	frmI becomeContactEndFrame.
@@ -23,14 +25,14 @@ MbDSeparatedCVCVJoint >> becomeStartingInContactCVCVJoint [
 	constraints do: [:a | a activateConstraint]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDSeparatedCVCVJoint >> connectsI: mkrII toJ: mkrJJ [ 
 	super connectsI: mkrII toJ: mkrJJ.
 	frmI becomeNoContactEndFrame.
 	frmJ becomeNoContactEndFrame
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDSeparatedCVCVJoint >> initializeGlobally [
 	unusedConstraints isEmpty 
 		ifTrue: 
@@ -42,7 +44,7 @@ MbDSeparatedCVCVJoint >> initializeGlobally [
 			unusedConstraints do: [:constraint | constraint initializeGlobally]]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDSeparatedCVCVJoint >> initializeLocally [
 	unusedConstraints isEmpty 
 		ifFalse: 
@@ -50,14 +52,14 @@ MbDSeparatedCVCVJoint >> initializeLocally [
 			unusedConstraints do: [:constraint | constraint initializeLocally]]
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDSeparatedCVCVJoint >> prePosIC [
 	rIeJe calcSeparationDistance.
 	frmI becomeNoContactEndFrame.
 	frmJ becomeNoContactEndFrame
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDSeparatedCVCVJoint >> recordContactForceAndSeparationDistance [
 	contactForce := 0.0.
 	separation := rIeJe calcSeparationDistance; separationDistance

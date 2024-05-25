@@ -1,10 +1,12 @@
 Class {
-	#name : #GEOInLineJoint,
-	#superclass : #GEOJoint,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEOInLineJoint',
+	#superclass : 'GEOJoint',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'binary storage' }
+{ #category : 'binary storage' }
 GEOInLineJoint class >> binaryReaderBlockForVersion: oldVersion format: oldFormat [ 
 	"
 	Change 
@@ -26,7 +28,7 @@ GEOInLineJoint class >> binaryReaderBlockForVersion: oldVersion format: oldForma
 	^super binaryReaderBlockForVersion: oldVersion format: oldFormat
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOInLineJoint class >> visualWorksMetadata [
 
 	^ #(

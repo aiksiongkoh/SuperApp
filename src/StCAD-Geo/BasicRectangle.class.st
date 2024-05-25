@@ -1,14 +1,15 @@
 Class {
-	#name : #BasicRectangle,
-	#superclass : #BasicCurve2D,
+	#name : 'BasicRectangle',
+	#superclass : 'BasicCurve2D',
 	#instVars : [
 		'xLength',
 		'yLength'
 	],
-	#category : #'StCAD-Geo'
+	#category : 'StCAD-Geo',
+	#package : 'StCAD-Geo'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 BasicRectangle class >> visualWorksMetadata [
 
 	^ #(

@@ -1,11 +1,13 @@
 Class {
-	#name : #StMSparseRow,
-	#superclass : #StMSparseVector,
-	#type : #variable,
-	#category : #'StMath-StMathArray'
+	#name : 'StMSparseRow',
+	#superclass : 'StMSparseVector',
+	#type : 'variable',
+	#category : 'StMath-StMathArray',
+	#package : 'StMath',
+	#tag : 'StMathArray'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMSparseRow class >> visualWorksMetadata [
 
 	^ #(
@@ -15,7 +17,7 @@ StMSparseRow class >> visualWorksMetadata [
 
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 StMSparseRow >> asFullRow [
 	| answer key |
 	answer := StMFullRow new: self ncol.
@@ -24,17 +26,17 @@ StMSparseRow >> asFullRow [
 	^answer
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 StMSparseRow >> asSparseRow [
 	^self
 ]
 
-{ #category : #'ops on self -' }
+{ #category : 'ops on self -' }
 StMSparseRow >> at: i minusFullRow: aFullRow [ 
 	super at: i minusFullVector: aFullRow
 ]
 
-{ #category : #'ops on self -' }
+{ #category : 'ops on self -' }
 StMSparseRow >> at: i minusFullRow: aFullRow times: aNumber [ 
 	^super
 		at: i
@@ -42,17 +44,17 @@ StMSparseRow >> at: i minusFullRow: aFullRow times: aNumber [
 		times: aNumber
 ]
 
-{ #category : #'ops on self -' }
+{ #category : 'ops on self -' }
 StMSparseRow >> at: i1 minusSparseRow: aSparseRow [ 
 	super at: i1 minusSparseVector: aSparseRow
 ]
 
-{ #category : #'ops on self +' }
+{ #category : 'ops on self +' }
 StMSparseRow >> at: i plusFullRow: aFullRow [ 
 	^super at: i plusFullVector: aFullRow
 ]
 
-{ #category : #'ops on self +' }
+{ #category : 'ops on self +' }
 StMSparseRow >> at: i plusFullRow: aFullRow times: aNumber [ 
 	^super
 		at: i
@@ -60,17 +62,17 @@ StMSparseRow >> at: i plusFullRow: aFullRow times: aNumber [
 		times: aNumber
 ]
 
-{ #category : #'ops on self +' }
+{ #category : 'ops on self +' }
 StMSparseRow >> at: i1 plusSparseRow: aSparseRow [ 
 	super at: i1 plusSparseVector: aSparseRow
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMSparseRow >> at: i1 putFullRow: aFullRow [ 
 	super at: i1 putFullVector: aFullRow
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMSparseRow >> at: i1 putFullRow: aFullRow times: number [ 
 	super
 		at: i1
@@ -78,64 +80,64 @@ StMSparseRow >> at: i1 putFullRow: aFullRow times: number [
 		times: number
 ]
 
-{ #category : #'ops on self -' }
+{ #category : 'ops on self -' }
 StMSparseRow >> equalSelfMinusSparseRow: aSparseRow [ 
 	super equalSelfMinusSparseVector: aSparseRow
 ]
 
-{ #category : #'ops on self -' }
+{ #category : 'ops on self -' }
 StMSparseRow >> equalSelfMinusSparseRow: aSparseRow times: aNumber [ 
 	super equalSelfMinusSparseVector: aSparseRow times: aNumber
 ]
 
-{ #category : #'ops on self +' }
+{ #category : 'ops on self +' }
 StMSparseRow >> equalSelfPlusSparseRow: aSparseRow [ 
 	super equalSelfPlusSparseVector: aSparseRow
 ]
 
-{ #category : #'ops on self +' }
+{ #category : 'ops on self +' }
 StMSparseRow >> equalSelfPlusSparseRow: aSparseRow times: aNumber [ 
 	super equalSelfPlusSparseVector: aSparseRow times: aNumber
 ]
 
-{ #category : #'basic ops -' }
+{ #category : 'basic ops -' }
 StMSparseRow >> minusSparseRow: aSparseRow [ 
 	^super minusSparseVector: aSparseRow
 ]
 
-{ #category : #'basic ops -' }
+{ #category : 'basic ops -' }
 StMSparseRow >> minusSparseRow: aSparseRow times: beta [ 
 	^super minusSparseVector: aSparseRow times: beta
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMSparseRow >> ncol [
 	"Answer the number of elements in the full vector or matrix."
 
 	^fullsize
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMSparseRow >> nrow [
 	^1
 ]
 
-{ #category : #'basic ops +' }
+{ #category : 'basic ops +' }
 StMSparseRow >> plusSparseRow: aSparseRow [ 
 	^super plusSparseVector: aSparseRow
 ]
 
-{ #category : #'basic ops +' }
+{ #category : 'basic ops +' }
 StMSparseRow >> plusSparseRow: aSparseRow times: beta [ 
 	^super plusSparseVector: aSparseRow times: beta
 ]
 
-{ #category : #'basic ops -' }
+{ #category : 'basic ops -' }
 StMSparseRow >> times: alpha minusSparseRow: aSparseRow [ 
 	^super times: alpha minusSparseVector: aSparseRow
 ]
 
-{ #category : #'basic ops -' }
+{ #category : 'basic ops -' }
 StMSparseRow >> times: alpha minusSparseRow: aSparseRow times: beta [ 
 	^super
 		times: alpha
@@ -143,12 +145,12 @@ StMSparseRow >> times: alpha minusSparseRow: aSparseRow times: beta [
 		times: beta
 ]
 
-{ #category : #'basic ops +' }
+{ #category : 'basic ops +' }
 StMSparseRow >> times: alpha plusSparseRow: aSparseRow [ 
 	^super times: alpha plusSparseVector: aSparseRow
 ]
 
-{ #category : #'basic ops +' }
+{ #category : 'basic ops +' }
 StMSparseRow >> times: alpha plusSparseRow: aSparseRow times: beta [ 
 	^super
 		times: alpha
@@ -156,7 +158,7 @@ StMSparseRow >> times: alpha plusSparseRow: aSparseRow times: beta [
 		times: beta
 ]
 
-{ #category : #'basic ops *' }
+{ #category : 'basic ops *' }
 StMSparseRow >> timesFullColumn: aFullColumn [ 
 	| answer key |
 	answer := 0.0.
@@ -169,7 +171,7 @@ StMSparseRow >> timesFullColumn: aFullColumn [
 	^answer
 ]
 
-{ #category : #'basic ops *' }
+{ #category : 'basic ops *' }
 StMSparseRow >> timesFullMatrix: aFullMatrix [ 
 	"Similar to inner dot product."
 
@@ -185,7 +187,7 @@ StMSparseRow >> timesFullMatrix: aFullMatrix [
 	^answer
 ]
 
-{ #category : #'basic ops *' }
+{ #category : 'basic ops *' }
 StMSparseRow >> timesSparseMatrix: aSparseMatrix [ 
 	"Similar to inner dot product."
 
@@ -201,7 +203,7 @@ StMSparseRow >> timesSparseMatrix: aSparseMatrix [
 	^answer
 ]
 
-{ #category : #'basic ops *' }
+{ #category : 'basic ops *' }
 StMSparseRow >> timesTransposeSparseMatrix: aSparseMatrix [ 
 	"a*bT = a(1,j)b(k,j)"
 
@@ -217,7 +219,7 @@ StMSparseRow >> timesTransposeSparseMatrix: aSparseMatrix [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMSparseRow >> transpose [
 	"Return a row with the same elements."
 	"This method is much faster than the obvious way."

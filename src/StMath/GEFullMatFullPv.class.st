@@ -1,15 +1,17 @@
 Class {
-	#name : #GEFullMatFullPv,
-	#superclass : #GEFullMat,
-	#category : #'StMath-StMathMatrixSolver'
+	#name : 'GEFullMatFullPv',
+	#superclass : 'GEFullMat',
+	#category : 'StMath-StMathMatrixSolver',
+	#package : 'StMath',
+	#tag : 'StMathMatrixSolver'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEFullMatFullPv class >> isAbstractClass [
 	^false
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEFullMatFullPv class >> visualWorksMetadata [
 
 	^ #(
@@ -19,7 +21,7 @@ GEFullMatFullPv class >> visualWorksMetadata [
 
 ]
 
-{ #category : #solution }
+{ #category : 'solution' }
 GEFullMatFullPv >> applyColOrderOnAnswerX [
 	| answer |
 	answer := answerX class new: n.
@@ -27,7 +29,7 @@ GEFullMatFullPv >> applyColOrderOnAnswerX [
 	answerX := answer
 ]
 
-{ #category : #pivoting }
+{ #category : 'pivoting' }
 GEFullMatFullPv >> doPivoting: p [ 
 	"Do full pivoting."
 
@@ -65,7 +67,7 @@ GEFullMatFullPv >> doPivoting: p [
 	max < singularPivotTolerance ifTrue: [SingularMatrixError raiseSignal]
 ]
 
-{ #category : #solution }
+{ #category : 'solution' }
 GEFullMatFullPv >> postSolve [
 	self applyColOrderOnAnswerX.
 	super postSolve

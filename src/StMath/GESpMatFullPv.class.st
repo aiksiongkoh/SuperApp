@@ -7,21 +7,23 @@ positionsOfOriginalCols	<StMArray>	given an original column number as index, ans
 rowPositionsOfNonZerosInColumns	<StMArray of OrderedCollection>	
 "
 Class {
-	#name : #GESpMatFullPv,
-	#superclass : #GESpMat,
+	#name : 'GESpMatFullPv',
+	#superclass : 'GESpMat',
 	#instVars : [
 		'positionsOfOriginalCols',
 		'rowPositionsOfNonZerosInColumns'
 	],
-	#category : #'StMath-StMathMatrixSolver'
+	#category : 'StMath-StMathMatrixSolver',
+	#package : 'StMath',
+	#tag : 'StMathMatrixSolver'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 GESpMatFullPv class >> isAbstractClass [
 	^false
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GESpMatFullPv class >> visualWorksMetadata [
 
 	^ #(
@@ -31,7 +33,7 @@ GESpMatFullPv class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'back substitution' }
+{ #category : 'back substitution' }
 GESpMatFullPv >> backSubstituteIntoDU [
 	"Use colOrder to get DU in upper triangular with nonzero diagonals."
 	"Formula given by Eqn. 9.26 and 9.27 in Chapra's text 2nd Edition."
@@ -85,7 +87,7 @@ GESpMatFullPv >> backSubstituteIntoDU [
 					- sum / duii]
 ]
 
-{ #category : #pivoting }
+{ #category : 'pivoting' }
 GESpMatFullPv >> doPivoting: p [ 
 	"Used by Gauss Elimination only."
 	"Do full pivoting."
@@ -139,7 +141,7 @@ GESpMatFullPv >> doPivoting: p [
 	markowitzPivotColCount := rowPositionsOfNonZerosInPivotColumn size
 ]
 
-{ #category : #'forward elimination' }
+{ #category : 'forward elimination' }
 GESpMatFullPv >> forwardEliminateWithPivot: p [ 
 	"
 	app is pivot. 
@@ -178,13 +180,13 @@ GESpMatFullPv >> forwardEliminateWithPivot: p [
 							- (bp * factor)]]
 ]
 
-{ #category : #solution }
+{ #category : 'solution' }
 GESpMatFullPv >> postSolve [
 	"Do nothing because column pivoting is done in-place."
 	"Column pivoting is recorded but not carried out."
 ]
 
-{ #category : #solution }
+{ #category : 'solution' }
 GESpMatFullPv >> preSolve: aMatrix with: aVector saveOriginal: saveOriginal [ 
 	"A conditioned copy of aMatrix is solved."
 

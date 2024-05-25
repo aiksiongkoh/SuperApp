@@ -1,10 +1,12 @@
 Class {
-	#name : #ForTorZero,
-	#superclass : #ForceTorqueItem,
-	#category : #'StCAD-MbD-MbDForce'
+	#name : 'ForTorZero',
+	#superclass : 'ForceTorqueItem',
+	#category : 'StCAD-MbD-MbDForce',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDForce'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 ForTorZero class >> visualWorksMetadata [
 
 	^ #(
@@ -14,12 +16,12 @@ ForTorZero class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 ForTorZero >> aFTIeO [
 	^(StMFullColumn zero: 3)
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 ForTorZero >> calcPostDynCorrectorIteration [
 	"Do nothing."
 ]

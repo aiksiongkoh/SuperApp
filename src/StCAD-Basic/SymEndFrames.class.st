@@ -4,16 +4,17 @@ Instance Variables
 
 "
 Class {
-	#name : #SymEndFrames,
-	#superclass : #SymEndFrame,
+	#name : 'SymEndFrames',
+	#superclass : 'SymEndFrame',
 	#instVars : [
 		's',
 		'theme'
 	],
-	#category : #'StCAD-Basic'
+	#category : 'StCAD-Basic',
+	#package : 'StCAD-Basic'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SymEndFrames >> initialize [
 
 	| rmems1 rmems2 rmems3 rmems theme1x theme2y theme3z aAme |
@@ -35,11 +36,11 @@ SymEndFrames >> initialize [
 	aAFf := aAme simplified
 ]
 
-{ #category : #accessing }
-SymEndFrames >> sup: aStMarkerFrame [
+{ #category : 'accessing' }
+SymEndFrames >> sup: markerFrm [
 
 	| t |
-	sup := aStMarkerFrame.
+	super sup: markerFrm.
 	t := self time.
 	s do: [ :si | si x: t ]
 ]

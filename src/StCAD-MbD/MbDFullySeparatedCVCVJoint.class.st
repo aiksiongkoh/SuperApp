@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDFullySeparatedCVCVJoint,
-	#superclass : #MbDSeparatedCVCVJoint,
-	#category : #'StCAD-MbD-MbDJoint'
+	#name : 'MbDFullySeparatedCVCVJoint',
+	#superclass : 'MbDSeparatedCVCVJoint',
+	#category : 'StCAD-MbD-MbDJoint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDJoint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDFullySeparatedCVCVJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -14,14 +16,14 @@ MbDFullySeparatedCVCVJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDFullySeparatedCVCVJoint >> becomeInCollisionCVCVJoint [
 	self changeClassToThatOf: MbDInCollisionCVCVJoint basicNew.
 	frmI becomeNoContactEndFrame.
 	frmJ becomeNoContactEndFrame
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDFullySeparatedCVCVJoint >> checkForDynDiscontinuityBetween: tprevious and: t [ 
 	"Check separation is less than zero and decreasing."
 
@@ -45,7 +47,7 @@ MbDFullySeparatedCVCVJoint >> checkForDynDiscontinuityBetween: tprevious and: t 
 		ifFalse: [t]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDFullySeparatedCVCVJoint >> discontinuityAt: tstartNew addTypeTo1: collection [ 
 	tstart = tstartNew ifFalse: [^self].
 	separation := rIeJe
@@ -55,7 +57,7 @@ MbDFullySeparatedCVCVJoint >> discontinuityAt: tstartNew addTypeTo1: collection 
 	collection add: #REBOUND
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDFullySeparatedCVCVJoint >> discontinuityAt: tstartNew addTypeTo2: collection [ 
 	| tstartPast1 hout dtstart dtstartTol |
 	tstart = tstartNew ifFalse: [^self].
@@ -77,7 +79,7 @@ MbDFullySeparatedCVCVJoint >> discontinuityAt: tstartNew addTypeTo2: collection 
 		ifFalse: [collection add: #REBOUND]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDFullySeparatedCVCVJoint >> discontinuityAt: tstartNew addTypeTo3: collection [ 
 	| pastStartTimes hout dstartTol |
 	tstart = tstartNew ifFalse: [^self].
@@ -100,7 +102,7 @@ MbDFullySeparatedCVCVJoint >> discontinuityAt: tstartNew addTypeTo3: collection 
 			ifFalse: [collection add: #REBOUND]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDFullySeparatedCVCVJoint >> discontinuityAt: tstartNew addTypeTo: collection [ 
 	| pastStartTimes hout dstartTol |
 	tstart = tstartNew ifFalse: [^self].
@@ -123,13 +125,13 @@ MbDFullySeparatedCVCVJoint >> discontinuityAt: tstartNew addTypeTo: collection [
 			ifFalse: [collection add: #REBOUND]
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDFullySeparatedCVCVJoint >> discontinuityAtICAddTo1: collection [ 
 	self halt: 'check for impact.'.
 	separation < -1.0d-6 ifTrue: [collection add: #TOUCHDOWN]
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDFullySeparatedCVCVJoint >> discontinuityAtICAddTo2: collection [ 
 	separation < 1.0d-6 
 		ifTrue: 
@@ -155,7 +157,7 @@ MbDFullySeparatedCVCVJoint >> discontinuityAtICAddTo2: collection [
 					collection add: #TOUCHDOWN]]
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDFullySeparatedCVCVJoint >> discontinuityAtICAddTo: collection [ 
 	| sepTol velTol accTol vIeJeOIez |
 	sepTol := self separationTol.
@@ -197,12 +199,12 @@ MbDFullySeparatedCVCVJoint >> discontinuityAtICAddTo: collection [
 							SimulationStoppingError raiseSignal]]]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDFullySeparatedCVCVJoint >> preDynStep [
 	TheMbDSystem logSeparationDistance: separation
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDFullySeparatedCVCVJoint >> preICRestart [
 	| sepTol |
 	sepTol := self separationTol.
@@ -210,7 +212,7 @@ MbDFullySeparatedCVCVJoint >> preICRestart [
 		ifTrue: [self becomeStartingInContactCVCVJoint]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDFullySeparatedCVCVJoint >> separationAt: tout [ 
 	| answer |
 	answer := self separationDerivative: 0 at: tout.
@@ -218,7 +220,7 @@ MbDFullySeparatedCVCVJoint >> separationAt: tout [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDFullySeparatedCVCVJoint >> separationDerivative: n at: tout [ 
 	^interpolator
 		derivative: n
@@ -227,7 +229,7 @@ MbDFullySeparatedCVCVJoint >> separationDerivative: n at: tout [
 		past: separationPast
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDFullySeparatedCVCVJoint >> suggestSmallerOrAcceptDynStepSize: hnew [ 
 	| timeNew separationNew sepTol h |
 	timeNew := interpolator time + (interpolator direction * hnew).

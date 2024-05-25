@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDPathDistanceConstraint,
-	#superclass : #MbDConstraint,
+	#name : 'MbDPathDistanceConstraint',
+	#superclass : 'MbDConstraint',
 	#instVars : [
 		'efrm',
 		'pathDistBlks',
@@ -11,10 +11,12 @@ Class {
 		'pGpt',
 		'ppGptpt'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDPathDistanceConstraint class >> visualWorksMetadata [
 
 	^ #(
@@ -24,33 +26,33 @@ MbDPathDistanceConstraint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPathDistanceConstraint >> addToJointForceI: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPathDistanceConstraint >> addToJointForceJ: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPathDistanceConstraint >> addToJointTorqueI: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPathDistanceConstraint >> addToJointTorqueJ: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPathDistanceConstraint >> addpFIeiGOplamto: mat [ 
 	"pGpXI is zero."
 	"Do nothing."
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDPathDistanceConstraint >> calcPostDynCorrectorIteration [
 	| s |
 	s := efrm s at: 1.
@@ -60,7 +62,7 @@ MbDPathDistanceConstraint >> calcPostDynCorrectorIteration [
 	ppGpsps := pathDistBlks d2ydx2: s
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPathDistanceConstraint >> classString [
 	"Used to access the descriptive name of the constraint."
 	"Needed for multi-language."
@@ -68,12 +70,12 @@ MbDPathDistanceConstraint >> classString [
 	^TheMbDSystem getString: #'MbD: one path distance constraint '
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPathDistanceConstraint >> efrm: frm [ 
 	efrm := frm
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDPathDistanceConstraint >> fillAccICIterError: col [ 
 	| sdot sddot sum |
 	col at: is plusNumber: pGps * lam.
@@ -86,20 +88,20 @@ MbDPathDistanceConstraint >> fillAccICIterError: col [
 	col at: iG plusNumber: sum
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDPathDistanceConstraint >> fillPosICError: col [ 
 	super fillPosICError: col.
 	col at: is plusNumber: pGps * lam
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDPathDistanceConstraint >> fillPosICJacob: mat [ 
 	mat at: iG and: is plusNumber: pGps.
 	mat at: is and: iG plusNumber: pGps.
 	mat at: is and: is plusNumber: ppGpsps * lam
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDPathDistanceConstraint >> fillPosKineJacob: mat [ 
 	mat
 		at: iG
@@ -107,51 +109,51 @@ MbDPathDistanceConstraint >> fillPosKineJacob: mat [
 		plusNumber: pGps
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDPathDistanceConstraint >> fillVelICError: col [ 
 	col at: iG minusNumber: pGpt
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDPathDistanceConstraint >> fillVelICJacob: mat [ 
 	mat at: iG and: is plusNumber: pGps.
 	mat at: is and: iG plusNumber: pGps
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDPathDistanceConstraint >> fillpFpy: mat [ 
 	mat at: iG and: is plusNumber: pGps.
 	mat at: is and: is plusNumber: ppGpsps * lam
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDPathDistanceConstraint >> fillpFpydot: mat [ 
 	mat at: is and: iG plusNumber: pGps
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDPathDistanceConstraint >> initializeGlobally [
 	pathDistBlks initializeGlobally.
 	pathDistBlkt initializeGlobally
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDPathDistanceConstraint >> initializeLocally [
 	pathDistBlks initializeLocally.
 	pathDistBlkt initializeLocally
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPathDistanceConstraint >> pathDistBlks: block [ 
 	pathDistBlks := block
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPathDistanceConstraint >> pathDistBlkt: block [ 
 	pathDistBlkt := block
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDPathDistanceConstraint >> preAccIC [
 	| derivative secondDerivative mbdTime |
 	super preAccIC.
@@ -161,7 +163,7 @@ MbDPathDistanceConstraint >> preAccIC [
 	ppGptpt := secondDerivative value negated
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDPathDistanceConstraint >> preVelIC [
 	| derivative mbdTime |
 	super preVelIC.
@@ -170,7 +172,7 @@ MbDPathDistanceConstraint >> preVelIC [
 	pGpt := derivative value negated
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDPathDistanceConstraint >> useEquationNumbers [
 	is := efrm is
 ]

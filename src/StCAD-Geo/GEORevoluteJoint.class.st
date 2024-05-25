@@ -1,20 +1,22 @@
 Class {
-	#name : #GEORevoluteJoint,
-	#superclass : #GEOJoint,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEORevoluteJoint',
+	#superclass : 'GEOJoint',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORevoluteJoint class >> mbdClass [
 	^MbDRevoluteJoint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORevoluteJoint class >> nameString [
 	^'RevoluteJoint'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEORevoluteJoint class >> visualWorksMetadata [
 
 	^ #(

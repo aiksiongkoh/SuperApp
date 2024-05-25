@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDCouplerJoint,
-	#superclass : #MbDJoint,
-	#category : #'StCAD-MbD-MbDJoint'
+	#name : 'MbDCouplerJoint',
+	#superclass : 'MbDJoint',
+	#category : 'StCAD-MbD-MbDJoint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDJoint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDCouplerJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ MbDCouplerJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDCouplerJoint >> aFXIjoint: n [ 
 	"Answer constraint force on marker I of joint n."
 
@@ -25,7 +27,7 @@ MbDCouplerJoint >> aFXIjoint: n [
 	^pGpXI asFullColumn times: con lam
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDCouplerJoint >> aFXJjoint: n [ 
 	"Answer constraint force on marker J of joint n."
 
@@ -36,7 +38,7 @@ MbDCouplerJoint >> aFXJjoint: n [
 	^pGpXJ asFullColumn times: con lam
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDCouplerJoint >> aTXIjoint: n [ 
 	"Answer constraint torque on marker I of joint n."
 
@@ -58,7 +60,7 @@ MbDCouplerJoint >> aTXIjoint: n [
 	^aBOIp timesFullColumn: col
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDCouplerJoint >> aTXJjoint: n [ 
 	"Answer constraint torque on marker J of joint n."
 
@@ -80,7 +82,7 @@ MbDCouplerJoint >> aTXJjoint: n [
 	^aBOJp timesFullColumn: col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDCouplerJoint >> classString [
 	"Used to access the descriptive name of the joint."
 	"Needed for multi-language."
@@ -88,22 +90,22 @@ MbDCouplerJoint >> classString [
 	^TheMbDSystem getString: #'MbD: Coupler Joint '
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDCouplerJoint >> constraint [
 	^constraints at: 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDCouplerJoint >> fillContactEndFrames: set [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDCouplerJoint >> funcBlk: funcBlk [ 
 	self constraint funcBlk: funcBlk
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDCouplerJoint >> initialize [
 	constraints := OrderedCollection new.
 	constraints add: MbDNonlinearCoupler new

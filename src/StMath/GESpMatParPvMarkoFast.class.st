@@ -1,10 +1,12 @@
 Class {
-	#name : #GESpMatParPvMarkoFast,
-	#superclass : #GESpMatParPvMarko,
-	#category : #'StMath-StMathMatrixSolver'
+	#name : 'GESpMatParPvMarkoFast',
+	#superclass : 'GESpMatParPvMarko',
+	#category : 'StMath-StMathMatrixSolver',
+	#package : 'StMath',
+	#tag : 'StMathMatrixSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GESpMatParPvMarkoFast class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ GESpMatParPvMarkoFast class >> visualWorksMetadata [
 
 ]
 
-{ #category : #pivoting }
+{ #category : 'pivoting' }
 GESpMatParPvMarkoFast >> doPivoting: p [ 
 	"Search from bottom to top."
 	"Optimized for speed. No check for singular pivot."
@@ -66,7 +68,7 @@ GESpMatParPvMarkoFast >> doPivoting: p [
 	max < singularPivotTolerance ifTrue: [SingularMatrixError raiseSignal]
 ]
 
-{ #category : #solution }
+{ #category : 'solution' }
 GESpMatParPvMarkoFast >> preSolve: aMatrix with: aVector saveOriginal: saveOriginal [ 
 	"Optimized for speed."
 

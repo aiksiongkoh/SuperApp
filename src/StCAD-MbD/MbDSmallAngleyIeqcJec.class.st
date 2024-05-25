@@ -1,14 +1,16 @@
 Class {
-	#name : #MbDSmallAngleyIeqcJec,
-	#superclass : #MbDSmallAngleyIecJec,
+	#name : 'MbDSmallAngleyIeqcJec',
+	#superclass : 'MbDSmallAngleyIecJec',
 	#instVars : [
 		'ptheypEI',
 		'pptheypEIpEI'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDSmallAngleyIeqcJec class >> visualWorksMetadata [
 
 	^ #(
@@ -18,7 +20,7 @@ MbDSmallAngleyIeqcJec class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDSmallAngleyIeqcJec class >> withFrmI: afrmI frmJ: afrmJ [ 
 	^(afrmI isMemberOf: MbDEndFrameqc)
 		& (afrmJ isMemberOf: MbDEndFramec)
@@ -26,34 +28,34 @@ MbDSmallAngleyIeqcJec class >> withFrmI: afrmI frmJ: afrmJ [
 		ifFalse: [nil]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDSmallAngleyIeqcJec >> calcPostDynCorrectorIteration [
 	super calcPostDynCorrectorIteration.
 	ptheypEI := aA13IeJe pvaluepEI.
 	pptheypEIpEI := aA13IeJe ppvaluepEIpEI
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDSmallAngleyIeqcJec >> initialize [
 	aA13IeJe := MbDDirectionCosineIeqcJec new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSmallAngleyIeqcJec >> pptheypEIpEI [
 	^pptheypEIpEI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSmallAngleyIeqcJec >> ppvaluepEIpEI [
 	^pptheypEIpEI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSmallAngleyIeqcJec >> ptheypEI [
 	^ptheypEI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSmallAngleyIeqcJec >> pvaluepEI [
 	^ptheypEI
 ]

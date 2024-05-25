@@ -1,13 +1,15 @@
 Class {
-	#name : #MbDInPlaneJoint,
-	#superclass : #MbDJoint,
+	#name : 'MbDInPlaneJoint',
+	#superclass : 'MbDJoint',
 	#instVars : [
 		'offset'
 	],
-	#category : #'StCAD-MbD-MbDJoint'
+	#category : 'StCAD-MbD-MbDJoint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDJoint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDInPlaneJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -17,7 +19,7 @@ MbDInPlaneJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDInPlaneJoint >> createTranslationConstraint [
 	| constraint |
 	constraint := MbDTranslationConstraintIJ 
@@ -28,12 +30,12 @@ MbDInPlaneJoint >> createTranslationConstraint [
 	self owns: constraint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDInPlaneJoint >> offset [
 	^offset
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDInPlaneJoint >> offset: anObject [
 	offset := anObject
 ]

@@ -1,5 +1,12 @@
 Class {
-	#name : #SymConstraintIJ,
-	#superclass : #SymConstraint,
-	#category : #'StCAD-Basic'
+	#name : 'SymConstraintIJ',
+	#superclass : 'SymConstraint',
+	#instVars : [
+		'iqXI',
+		'iqEI',
+		'iqXJ',
+		'iqEJ'
+	],
+	#category : 'StCAD-Basic',
+	#package : 'StCAD-Basic'
 }

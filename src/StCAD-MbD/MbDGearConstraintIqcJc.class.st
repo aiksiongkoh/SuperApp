@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDGearConstraintIqcJc,
-	#superclass : #MbDGearConstraintIJ,
+	#name : 'MbDGearConstraintIqcJc',
+	#superclass : 'MbDGearConstraintIJ',
 	#instVars : [
 		'pGpXI',
 		'pGpEI',
@@ -10,10 +10,12 @@ Class {
 		'iqXI',
 		'iqEI'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDGearConstraintIqcJc class >> visualWorksMetadata [
 
 	^ #(
@@ -23,19 +25,19 @@ MbDGearConstraintIqcJc class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDGearConstraintIqcJc class >> withFrmI: afrmI frmJ: afrmJ [ 
 	^(afrmI isMemberOf: MbDEndFrameqc) & (afrmJ isMemberOf: MbDEndFramec) 
 		ifTrue: [self new withFrmI: afrmI frmJ: afrmJ]
 		ifFalse: [nil]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDGearConstraintIqcJc >> addToJointForceI: col [ 
 	col equalSelfPlusFullColumn: pGpXI times: lam
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDGearConstraintIqcJc >> addToJointTorqueI: jointTorque [ 
 	| cForceT rIpIeIp pAOIppEI aBOIp fpAOIppEIrIpIeIp dum lampGpE c2Torque |
 	cForceT := pGpXI times: lam.
@@ -51,22 +53,22 @@ MbDGearConstraintIqcJc >> addToJointTorqueI: jointTorque [
 	jointTorque equalSelfPlusFullColumn: c2Torque times: 0.5
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDGearConstraintIqcJc >> addpFIeiGOpEIto: mat [ 
 	mat equalSelfPlusFullMatrix: ppGpXIpEI times: lam
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDGearConstraintIqcJc >> addpFIeiGOpXIto: mat [ 
 	mat equalSelfPlusFullMatrix: ppGpXIpXI times: lam
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDGearConstraintIqcJc >> addpFIeiGOplamto: mat [ 
 	mat at: 1 and: iG plusFullColumn: pGpXI transpose
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDGearConstraintIqcJc >> addpTIeiGOpEIto: mat [ 
 	| term11 prOIeOpEIT aFIeiGOover2 term12 term1 term21 pprOIeOpEIpEI term22 pprOIeOpEIipEI term22rowi pFIeiGOpEIover2 term23 aB term2 pTIeiGOpEI |
 	term11 := pGpEI transpose times: lam / 2.0.
@@ -93,7 +95,7 @@ MbDGearConstraintIqcJc >> addpTIeiGOpEIto: mat [
 	mat equalSelfPlusFullMatrix: pTIeiGOpEI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDGearConstraintIqcJc >> addpTIeiGOpXIto: mat [ 
 	| aB term1 prOIeOpEIT pFIeiGOpXIover2 term2 pTIeiGOpXI |
 	aB := frmI aBOp.
@@ -105,7 +107,7 @@ MbDGearConstraintIqcJc >> addpTIeiGOpXIto: mat [
 	mat equalSelfPlusFullMatrix: pTIeiGOpXI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDGearConstraintIqcJc >> addpTIeiGOplamto: mat [ 
 	| halfB term1 prOIeOpEIT pFIeiGOplam term2 pTIeiGOplam |
 	halfB := frmI aBOp times: 0.5.
@@ -117,7 +119,7 @@ MbDGearConstraintIqcJc >> addpTIeiGOplamto: mat [
 	mat at: 1 and: iG plusFullColumn: pTIeiGOplam
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDGearConstraintIqcJc >> calcPostDynCorrectorIteration [
 	super calcPostDynCorrectorIteration.
 	self calc_pGpXI.
@@ -127,35 +129,35 @@ MbDGearConstraintIqcJc >> calcPostDynCorrectorIteration [
 	self calc_ppGpEIpEI
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDGearConstraintIqcJc >> calc_pGpEI [
 	pGpEI := orbitJeIe pvaluepEJ + (orbitIeJe pvaluepEI times: self ratio)
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDGearConstraintIqcJc >> calc_pGpXI [
 	pGpXI := orbitJeIe pvaluepXJ + (orbitIeJe pvaluepXI times: self ratio)
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDGearConstraintIqcJc >> calc_ppGpEIpEI [
 	ppGpEIpEI := orbitJeIe ppvaluepEJpEJ 
 				+ (orbitIeJe ppvaluepEIpEI times: self ratio)
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDGearConstraintIqcJc >> calc_ppGpXIpEI [
 	ppGpXIpEI := orbitJeIe ppvaluepXJpEJ 
 				+ (orbitIeJe ppvaluepXIpEI times: self ratio)
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDGearConstraintIqcJc >> calc_ppGpXIpXI [
 	ppGpXIpXI := orbitJeIe ppvaluepXJpXJ 
 				+ (orbitIeJe ppvaluepXIpXI times: self ratio)
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDGearConstraintIqcJc >> fillAccICIterError: col [ 
 	| qXdotI qEdotI sum |
 	col at: iqXI plusFullColumn: pGpXI times: lam.
@@ -171,14 +173,14 @@ MbDGearConstraintIqcJc >> fillAccICIterError: col [
 	col at: iG plusNumber: sum
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDGearConstraintIqcJc >> fillPosICError: col [ 
 	super fillPosICError: col.
 	col at: iqXI plusFullColumn: pGpXI times: lam.
 	col at: iqEI plusFullColumn: pGpEI times: lam
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDGearConstraintIqcJc >> fillPosICJacob: mat [ 
 	| ppGpXIpEIlam |
 	mat at: iG and: iqXI plusFullRow: pGpXI.
@@ -191,7 +193,7 @@ MbDGearConstraintIqcJc >> fillPosICJacob: mat [
 	mat at: iqEI and: iqEI plusFullMatrix: ppGpEIpEI times: lam
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDGearConstraintIqcJc >> fillPosKineJacob: mat [ 
 	mat
 		at: iG
@@ -203,7 +205,7 @@ MbDGearConstraintIqcJc >> fillPosKineJacob: mat [
 		plusFullRow: pGpEI
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDGearConstraintIqcJc >> fillVelICJacob: mat [ 
 	mat at: iG and: iqXI plusFullRow: pGpXI.
 	mat at: iqXI and: iG plusFullColumn: pGpXI transpose.
@@ -211,7 +213,7 @@ MbDGearConstraintIqcJc >> fillVelICJacob: mat [
 	mat at: iqEI and: iG plusFullColumn: pGpEI transpose
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDGearConstraintIqcJc >> fillpFpy: mat [ 
 	| ppGpXIpEIlam |
 	mat at: iG and: iqXI plusFullRow: pGpXI.
@@ -222,13 +224,13 @@ MbDGearConstraintIqcJc >> fillpFpy: mat [
 	mat at: iqEI and: iqEI plusFullMatrix: ppGpEIpEI times: lam.
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDGearConstraintIqcJc >> fillpFpydot: mat [ 
 	mat at: iqXI and: iG plusFullColumn: pGpXI transpose.
 	mat at: iqEI and: iG plusFullColumn: pGpEI transpose
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDGearConstraintIqcJc >> useEquationNumbers [
 	iqXI := frmI iqX.
 	iqEI := frmI iqE

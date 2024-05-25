@@ -1,14 +1,16 @@
 Class {
-	#name : #GEOAssembly,
-	#superclass : #GEOAnyPart,
+	#name : 'GEOAssembly',
+	#superclass : 'GEOAnyPart',
 	#instVars : [
 		'anyParts',
 		'constraintSets'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'triggering events' }
+{ #category : 'triggering events' }
 GEOAssembly class >> constructEventsTriggered [
 	^(super constructEventsTriggered)
 		add: #getAnimationData;
@@ -22,12 +24,12 @@ GEOAssembly class >> constructEventsTriggered [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly class >> nameString [
 	^'Assembly'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOAssembly class >> visualWorksMetadata [
 
 	^ #(
@@ -37,12 +39,12 @@ GEOAssembly class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> aAPp [
 	^(StMFullMatrix identity: 3)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> aSimulationData [
 	| answer |
 	answer := self triggerEvent: #getSimulationData.
@@ -53,7 +55,7 @@ GEOAssembly >> aSimulationData [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> aSimulationData: simulationData [ 
 	self removeActionsForEvent: #getSimulationData.
 	simulationData notNil ifTrue: [self
@@ -62,7 +64,7 @@ GEOAssembly >> aSimulationData: simulationData [
 			perform: #yourself]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> addAnyPart: geoAnyPart [
 
 	geoAnyPart
@@ -72,51 +74,51 @@ GEOAssembly >> addAnyPart: geoAnyPart [
 			anyParts add: geoAnyPart]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> addForce: geoForce [ 
 	geoForce container: self.
 	self forcesTorques add: geoForce
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> addForceTorque: geoForceTorque [ 
 	geoForceTorque container: self.
 	self forcesTorques add: geoForceTorque
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> addForceTorques: array [ 
 	array do: [:joint | self addForceTorque: joint]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> addGeneralConstraintSets: array [ 
 	array do: [:joint | self addGeneralConstraintSet: joint]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> addJoint: geoJoint [ 
 	geoJoint container: self.
 	constraintSets add: geoJoint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> addJoints: array [ 
 	array do: [:joint | self addJoint: joint]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> addKineIJ: geoKineIJ [ 
 	geoKineIJ container: self.
 	constraintSets add: geoKineIJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> addKinematicIJs: array [ 
 	array do: [:kineIJ | self addKineIJ: kineIJ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> addLighting: aLighting [ 
 	"aSub maybe already in a tree. Make sure aSub is released by its aSup."
 
@@ -128,40 +130,40 @@ GEOAssembly >> addLighting: aLighting [
 	^aLighting
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> addMarkersIn: set [ 
 	super addMarkersIn: set.
 	anyParts do: [:anyPart | anyPart addMarkersIn: set]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> addMotion: geoMotion [ 
 	geoMotion container: self.
 	constraintSets add: geoMotion
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> addMotions: array [ 
 	array do: [:item | self addMotion: item]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> addParts: array [ 
 	array do: [:part | self addAnyPart: part]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> addTorque: geoTorque [ 
 	geoTorque container: self.
 	self forcesTorques add: geoTorque
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> addcAnyPart: cAnyPart [ 
 	cAnyPart do: [:aAnyPart | self addAnyPart: aAnyPart]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> animationData [
 	| dataSeries answer nseries |
 	dataSeries := self dataSeries.
@@ -177,7 +179,7 @@ GEOAssembly >> animationData [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> animationData1 [
 	| dataSeries answer data |
 	dataSeries := self dataSeries.
@@ -195,7 +197,7 @@ GEOAssembly >> animationData1 [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> animationData: animationData [ 
 	self removeActionsForEvent: #getAnimationData.
 	animationData notNil ifTrue: [self
@@ -204,12 +206,12 @@ GEOAssembly >> animationData: animationData [
 			perform: #yourself]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> anyParts [
 	^anyParts
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> asTreeNode [
 	| answer |
 	answer := super asTreeNode.
@@ -225,7 +227,7 @@ GEOAssembly >> asTreeNode [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> asTreeNode1 [
 	| answer |
 	answer := super asTreeNode.
@@ -236,18 +238,18 @@ GEOAssembly >> asTreeNode1 [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> assembly [
 	^self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> assemblyList: collection [ 
 	collection add: self.
 	anyParts do: [:anyPart | anyPart assemblyList: collection]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> boundingBox [
 	| answer |
 	answer := super boundingBox.
@@ -255,23 +257,23 @@ GEOAssembly >> boundingBox [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> cAnyPart [
 	^anyParts
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> cForceTorque [
 	^self triggerEvent: #getForcesTorques
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> cJoint [
 	^(constraintSets select: [:set | set isJoint]) 
 		asSortedCollection: [:a :b | a name <= b name]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> cLighting [
 
 	| cLighting |
@@ -301,7 +303,7 @@ GEOAssembly >> cLighting [
 	^ cLighting
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> cLighting: cLighting [ 
 	self removeActionsForEvent: #getcLighting.
 	cLighting notNil 
@@ -312,24 +314,24 @@ GEOAssembly >> cLighting: cLighting [
 				perform: #yourself]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> cMotion [
 	^(constraintSets select: [:set | set isMotion]) 
 		asSortedCollection: [:a :b | a name <= b name]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> cRobotAxis [
 	^(constraintSets select: [:set | set isRobotAxis]) 
 		asSortedCollection: [:a :b | a name <= b name]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOAssembly >> calcBoundingBox [
 	self notYetImplemented
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOAssembly >> calcCharacteristicDimensions [
 	| unitMass unitLength unitTime unitAngle |
 	unitTime := self calcCharacteristicTime.
@@ -348,7 +350,7 @@ GEOAssembly >> calcCharacteristicDimensions [
 			angle: unitAngle)
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOAssembly >> calcCharacteristicLength [
 	| lengths sumOfSquares unitLength |
 	lengths := OrderedCollection new.
@@ -363,7 +365,7 @@ GEOAssembly >> calcCharacteristicLength [
 	^unitLength
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOAssembly >> calcCharacteristicMass [
 	| masses sumOfSquares unitMass |
 	masses := self interface partList collect: [:part | part mass].
@@ -373,12 +375,12 @@ GEOAssembly >> calcCharacteristicMass [
 	^unitMass
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOAssembly >> calcCharacteristicTime [
 	^self aSimulationData hout abs
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOAssembly >> canUpdateForFrame: integer [ 
 	(super canUpdateForFrame: integer)
 		ifFalse: [^false].
@@ -391,7 +393,7 @@ GEOAssembly >> canUpdateForFrame: integer [
 	^true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> connectorList [
 	| answer |
 	answer := OrderedCollection new.
@@ -402,19 +404,19 @@ GEOAssembly >> connectorList [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> connectorList: collection [ 
 	anyParts do: [:anyPart | anyPart connectorList: collection].
 	constraintSets do: [:constraintSet | constraintSet connectorList: collection].
 	self forcesTorques do: [:forceTorque | forceTorque connectorList: collection]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> constraintSets [
 	^constraintSets
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOAssembly >> createMbD [
 	| simulationData mbdSystemSolver mbdUnits block |
 	container isInterface 
@@ -463,7 +465,7 @@ GEOAssembly >> createMbD [
 	block value: self forcesTorques
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOAssembly >> createMbD1 [
 	| simulationData mbdSystemSolver mbdUnits |
 	container isInterface
@@ -507,53 +509,53 @@ GEOAssembly >> createMbD1 [
 	self forcesTorques do: [:forceTorque | forceTorque createMbD]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> cut [
 	container cutAssembly: self.
 	super cut
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> cutForce: geoForce [ 
 	self forcesTorques remove: geoForce
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> cutForceTorque: geoForceTorque [ 
 	self forcesTorques remove: geoForceTorque
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> cutJoint: geoJoint [ 
 	constraintSets remove: geoJoint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> cutKineIJ: geoKineIJ [ 
 	constraintSets remove: geoKineIJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> cutMotion: geoMotion [ 
 	constraintSets remove: geoMotion
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> cutPart: geoPart [ 
 	anyParts remove: geoPart
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> cutTorque: geoTorque [ 
 	self forcesTorques remove: geoTorque
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> defaultGravity [
 	^GEOGravity new gX: 0.0 gY: 0.0 gZ: 0.0.
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOAssembly >> deleteMbD [
 	super deleteMbD.
 	self gravity deleteMbD.
@@ -563,7 +565,7 @@ GEOAssembly >> deleteMbD [
 	self forcesTorques do: [:forceTorque | forceTorque deleteMbD]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> findMarkerNamed: nameComponents [ 
 	| answer part newNameComponents |
 	^self name = (nameComponents at: 1)
@@ -583,34 +585,34 @@ GEOAssembly >> findMarkerNamed: nameComponents [
 		ifFalse: [nil]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> forceList [
 	^(self forcesTorques select: [:set | set isForce]) asList
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> forceList: collection [ 
 	collection addAll: (self forcesTorques select: [:set | set isForce]).
 	anyParts do: [:anyPart | anyPart forceList: collection]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> forceTorqueList [
 	^self forcesTorques asSortedCollection: [:a :b | a name <= b name]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> forceTorqueList: collection [ 
 	collection addAll: self forcesTorques.
 	anyParts do: [:anyPart | anyPart forceTorqueList: collection]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> forcesTorques [
 	^self triggerEvent: #getForcesTorques
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> forcesTorques: forcesTorques [ 
 	self removeActionsForEvent: #getForcesTorques.
 	forcesTorques notNil ifTrue: [self
@@ -619,13 +621,13 @@ GEOAssembly >> forcesTorques: forcesTorques [
 			perform: #yourself]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> generalConstraintSetList [
 	^(constraintSets select: [:set | set isGeneralConstraintSet])
 		asSortedCollection: [:a :b | a name <= b name]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> generateUniqueNameFor: aString [ 
 	| aDict aItemList nameList count newName |
 	aDict := IdentityDictionary new.
@@ -646,7 +648,7 @@ GEOAssembly >> generateUniqueNameFor: aString [
 	^newName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> geoTime [
 	| answer |
 	^(container == nil or: [container isInterface])
@@ -660,7 +662,7 @@ GEOAssembly >> geoTime [
 		ifFalse: [container geoTime]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> geoTime1 [
 	| answer |
 	^container == nil
@@ -676,7 +678,7 @@ GEOAssembly >> geoTime1 [
 				ifFalse: [container geoTime]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> geoTime: geoTime [ 
 	self removeActionsForEvent: #getTime.
 	geoTime notNil
@@ -688,7 +690,7 @@ GEOAssembly >> geoTime: geoTime [
 				perform: #yourself]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> gravity [
 	| answer |
 	answer := self triggerEvent: #getGravity.
@@ -699,7 +701,7 @@ GEOAssembly >> gravity [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> gravity: gravity [ 
 	self removeActionsForEvent: #getGravity.
 	gravity notNil
@@ -711,7 +713,7 @@ GEOAssembly >> gravity: gravity [
 				perform: #yourself]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOAssembly >> initialize [
 
 	super initialize.
@@ -720,7 +722,7 @@ GEOAssembly >> initialize [
 	self forcesTorques: StCAD_Misc_OrderedSet new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> insertAssembly: aAssembly [
 	| shiftXYZ block cNameMarker cNameAnyPart cNameConstraintSet cNameForceTorque nameBlock |
 	shiftXYZ := StMFullColumn zero: 3.
@@ -767,36 +769,36 @@ GEOAssembly >> insertAssembly: aAssembly [
 			self addForceTorque: aForceTorque.].
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOAssembly >> isAssembly [
 	^true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> jointList [
 	^(constraintSets select: [:set | set isJoint])
 		asSortedCollection: [:a :b | a name <= b name]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> jointList: collection [ 
 	collection addAll: (constraintSets select: [:set | set isJoint]).
 	anyParts do: [:anyPart | anyPart jointList: collection]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> kineIJList [
 	^(constraintSets select: [:set | set isKineIJ])
 		asSortedCollection: [:a :b | a name <= b name]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> kineIJList: collection [ 
 	collection addAll: (constraintSets select: [:set | set isKineIJ]).
 	anyParts do: [:anyPart | anyPart kineIJList: collection]
 ]
 
-{ #category : #ops }
+{ #category : 'ops' }
 GEOAssembly >> magnifySelf: aDouble [ 
 	self inputData magnifySelf: aDouble.
 	self aRefFrame magnifySelf: aDouble.
@@ -807,25 +809,25 @@ GEOAssembly >> magnifySelf: aDouble [
 	self cForceTorque do: [:aForceTorque | aForceTorque magnifySelf: aDouble]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> markerList: collection [ 
 	super markerList: collection.
 	anyParts do: [:anyPart | anyPart markerList: collection]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> motionList [
 	^(constraintSets select: [:set | set isMotion])
 		asSortedCollection: [:a :b | a name <= b name]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> motionList: collection [ 
 	collection addAll: (constraintSets select: [:set | set isMotion]).
 	anyParts do: [:anyPart | anyPart motionList: collection]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> newDataSeries [
 	self timeSeries: OrderedCollection new.
 	self animationData: nil.
@@ -835,22 +837,22 @@ GEOAssembly >> newDataSeries [
 	self forcesTorques do: [:forceTorque | forceTorque newDataSeries]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> part [
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> partList [
 	^anyParts asSortedCollection: [:a :b | a name <= b name]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> partList: collection [ 
 	anyParts do: [:anyPart | anyPart partList: collection]
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 GEOAssembly >> postCopy [
 	| originalAnyParts |
 	super postCopy.
@@ -859,12 +861,12 @@ GEOAssembly >> postCopy [
 	originalAnyParts do: [:anyPart | self addAnyPart: anyPart copy]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 GEOAssembly >> preRenderOn: renderingContext [ 
 	self cLighting do: [:aLighting | aLighting shineOn: renderingContext]
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 GEOAssembly >> preSave [
 	| forcesTorques |
 	super preSave.
@@ -874,7 +876,7 @@ GEOAssembly >> preSave [
 	forcesTorques notNil ifTrue: [forcesTorques do: [:forceTorque | forceTorque preSave]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> rOMarkerCenterO [
 	| zeroColumn sumOfrOfOs nmarker |
 	zeroColumn := (StMFullColumn zero: 3).
@@ -884,7 +886,7 @@ GEOAssembly >> rOMarkerCenterO [
 	^nmarker > 0 ifTrue: [sumOfrOfOs / nmarker] ifFalse: [sumOfrOfOs]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> rOcenterO [
 	| sumDiagonal sumMoment block |
 	sumDiagonal := 0.0.
@@ -905,7 +907,7 @@ GEOAssembly >> rOcenterO [
 		ifFalse: [self rOMarkerCenterO]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> rOcenterO1 [
 	| zeroColumn sumOfrOcenterOs nAnyPart |
 	zeroColumn := StMFullColumn zero: 3.
@@ -917,7 +919,7 @@ GEOAssembly >> rOcenterO1 [
 		ifFalse: [self rOMarkerCenterO]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> rOcenterO2 [
 	| nAnyPart |
 	nAnyPart := anyParts size.
@@ -938,12 +940,12 @@ GEOAssembly >> rOcenterO2 [
 		ifFalse: [self rOMarkerCenterO]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> rPcmP [
 	^StMFullColumn zero: 3
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOAssembly >> release [
 	"
 	Order of release: connectors, markers, anyParts. 
@@ -961,24 +963,24 @@ GEOAssembly >> release [
 	self releaseEventTable
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 GEOAssembly >> removeDisplayList [
 	anyParts do: [:aAnyPart | aAnyPart removeDisplayList]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> removeSup [
 	self aSup ifNotNil: [:aaSup | aaSup removeSub: self]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 GEOAssembly >> renderOn1: aRenderingContext [ 
 	self preRenderOn: aRenderingContext.
 	aRenderingContext productTransformation: refFrame aMFf
 		while: [anyParts do: [:anyPart | anyPart renderOn: aRenderingContext]]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 GEOAssembly >> renderOn2: aRenderingContext [ 
 	self preRenderOn: aRenderingContext.
 	aRenderingContext createDisplayList: 
@@ -987,7 +989,7 @@ GEOAssembly >> renderOn2: aRenderingContext [
 		displayImmediately: true
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 GEOAssembly >> renderOn3: aRenderingContext [ 
 	self preRenderOn: aRenderingContext.
 	aRenderingContext productTransformation: refFrame aMFf
@@ -1000,7 +1002,7 @@ GEOAssembly >> renderOn3: aRenderingContext [
 				do: [:forceTorque | forceTorque renderOn: aRenderingContext]]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 GEOAssembly >> renderOn: aRenderingContext [ 
 	self preRenderOn: aRenderingContext.
 	aRenderingContext pushTransformation: refFrame aMFf
@@ -1014,17 +1016,17 @@ GEOAssembly >> renderOn: aRenderingContext [
 				do: [:forceTorque | forceTorque renderOn: aRenderingContext]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> simulationData1 [
 	^self triggerEvent: #getSimulationData
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> sketchList: collection [ 
 	anyParts do: [:anyPart | anyPart sketchList: collection]
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOAssembly >> storeInputFromMbD [
 	super storeInputFromMbD.
 	anyParts do: [:anyPart | anyPart storeInputFromMbD].
@@ -1032,7 +1034,7 @@ GEOAssembly >> storeInputFromMbD [
 	self forcesTorques do: [:forceTorque | forceTorque storeInputFromMbD]
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOAssembly >> storeInputState [
 	super storeInputState.
 	anyParts do: [:anyPart | anyPart storeInputState].
@@ -1040,7 +1042,7 @@ GEOAssembly >> storeInputState [
 	self forcesTorques do: [:forceTorque | forceTorque storeInputState]
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOAssembly >> storeOn: aStream level: level [ 
 	aStream storeLevel: level title: self nameString.
 	aStream 
@@ -1078,7 +1080,7 @@ GEOAssembly >> storeOn: aStream level: level [
 	self animationData storeOn: aStream level: level + 1
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOAssembly >> storePOVOn: aStream level: level [ 
 	aStream storePOVLevel: level
 		title: ('// <1s>' expandMacrosWith: self fullNamePOV).
@@ -1100,7 +1102,7 @@ GEOAssembly >> storePOVOn: aStream level: level [
 		title: '// Parts'
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOAssembly >> storePOVTimeSeriesOn: aStream [ 
 	| timeSeries dataSeries ndata |
 	timeSeries := self timeSeries.
@@ -1119,7 +1121,7 @@ GEOAssembly >> storePOVTimeSeriesOn: aStream [
 			self forceTorqueList do: [:item | item storePOVTimeSeriesOn: aStream]]
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOAssembly >> storePOVdatCurrentOn: aStream [ 
 	| timeSeries dataSeries ndata |
 	timeSeries := Array with: 0.
@@ -1138,7 +1140,7 @@ GEOAssembly >> storePOVdatCurrentOn: aStream [
 			self forceTorqueList do: [:item | item storePOVdatCurrentOn: aStream]]
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOAssembly >> storeRobotAxesOn: writeStream [
 	| nAxisLimit cAxisSeries timeSeries nrec cRobotAxis nRobotAxis dataSeries eulerAngleszyxIJSeries titleBlock recordBlock nExtra |
 	nAxisLimit := 6.
@@ -1201,7 +1203,7 @@ GEOAssembly >> storeRobotAxesOn: writeStream [
 					writeStream cr.].].
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOAssembly >> storeTimeSeriesOn: aStream [ 
 	| timeSeries dataSeries ndata |
 	timeSeries := self timeSeries.
@@ -1226,12 +1228,12 @@ GEOAssembly >> storeTimeSeriesOn: aStream [
 			self forceTorqueList do: [:item | item storeTimeSeriesOn: aStream]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> timeSeries [
 	^self triggerEvent: #getTimeSeries
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> timeSeries: timeSeries [ 
 	self removeActionsForEvent: #getTimeSeries.
 	timeSeries notNil ifTrue: [self
@@ -1240,12 +1242,12 @@ GEOAssembly >> timeSeries: timeSeries [
 			perform: #yourself]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> timesAtDiscontinuities [
 	^self triggerEvent: #getTimesAtDiscontinuities
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> timesAtDiscontinuities: timesAtDiscontinuities [ 
 	self removeActionsForEvent: #getTimesAtDiscontinuities.
 	timesAtDiscontinuities notNil ifTrue: [self
@@ -1254,7 +1256,7 @@ GEOAssembly >> timesAtDiscontinuities: timesAtDiscontinuities [
 			perform: #yourself]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> translateBy: shiftXYZ [ 
 	| block |
 	block := [:item | item translateBy: shiftXYZ].
@@ -1262,13 +1264,13 @@ GEOAssembly >> translateBy: shiftXYZ [
 	self anyParts do: block
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> uncut [
 	container addAnyPart: self.
 	super uncut
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOAssembly >> updateForFrame1: integer [ 
 	super updateForFrame: integer.
 	anyParts do: [:anyPart | anyPart updateForFrame: integer].
@@ -1276,7 +1278,7 @@ GEOAssembly >> updateForFrame1: integer [
 	self forcesTorques do: [:forceTorque | forceTorque updateForFrame: integer]
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOAssembly >> updateForFrame2: integer [ 
 	super updateForFrame: integer.
 	anyParts do: [:anyPart | anyPart updateForFrame: integer].
@@ -1284,7 +1286,7 @@ GEOAssembly >> updateForFrame2: integer [
 	self forcesTorques do: [:forceTorque | forceTorque updateForFrame: integer]
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOAssembly >> updateForFrame: integer [ 
 	super updateForFrame: integer.
 	anyParts do: [:anyPart | anyPart updateForFrame: integer].
@@ -1293,7 +1295,7 @@ GEOAssembly >> updateForFrame: integer [
 	self forcesTorques do: [:forceTorque | forceTorque updateForFrame: integer]
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOAssembly >> updateFromInitiallyAssembledState [
 	super updateFromInitiallyAssembledState.
 	anyParts do: [:anyPart | anyPart updateFromInitiallyAssembledState].
@@ -1301,7 +1303,7 @@ GEOAssembly >> updateFromInitiallyAssembledState [
 	self forcesTorques do: [:forceTorque | forceTorque updateFromInitiallyAssembledState]
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOAssembly >> updateFromInputState [
 	super updateFromInputState.
 	anyParts do: [:anyPart | anyPart updateFromInputState].
@@ -1309,7 +1311,7 @@ GEOAssembly >> updateFromInputState [
 	self forcesTorques do: [:forceTorque | forceTorque updateFromInputState]
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOAssembly >> updateFromMbD [
 	super updateFromMbD.
 	self timeSeries add: self geoTime value.
@@ -1318,7 +1320,7 @@ GEOAssembly >> updateFromMbD [
 	self forcesTorques do: [:forceTorque | forceTorque updateFromMbD]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAssembly >> vectorList: collection [ 
 	"Do nothing for now."
 ]

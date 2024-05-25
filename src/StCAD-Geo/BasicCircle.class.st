@@ -1,13 +1,14 @@
 Class {
-	#name : #BasicCircle,
-	#superclass : #BasicCurve2D,
+	#name : 'BasicCircle',
+	#superclass : 'BasicCurve2D',
 	#instVars : [
 		'radius'
 	],
-	#category : #'StCAD-Geo'
+	#category : 'StCAD-Geo',
+	#package : 'StCAD-Geo'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 BasicCircle class >> visualWorksMetadata [
 
 	^ #(

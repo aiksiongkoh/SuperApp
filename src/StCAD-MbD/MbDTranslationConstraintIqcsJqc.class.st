@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDTranslationConstraintIqcsJqc,
-	#superclass : #MbDTranslationConstraintIqcJqc,
+	#name : 'MbDTranslationConstraintIqcsJqc',
+	#superclass : 'MbDTranslationConstraintIqcJqc',
 	#instVars : [
 		'isI',
 		'pGpsI',
@@ -10,10 +10,12 @@ Class {
 		'ppGpEJpsI',
 		'ppGpsIpsI'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDTranslationConstraintIqcsJqc class >> visualWorksMetadata [
 
 	^ #(
@@ -23,7 +25,7 @@ MbDTranslationConstraintIqcsJqc class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDTranslationConstraintIqcsJqc class >> withFrmI: afrmI frmJ: afrmJ axis: aaxis [ 
 	^(afrmI isKindOf: MbDEndFrameqcs)
 		& (afrmJ isMemberOf: MbDEndFrameqc)
@@ -31,12 +33,12 @@ MbDTranslationConstraintIqcsJqc class >> withFrmI: afrmI frmJ: afrmJ axis: aaxis
 		ifFalse: [nil]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDTranslationConstraintIqcsJqc >> addpTIeiGOpsIto: mat [ 
 	self halt: 'To be implemented.'
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDTranslationConstraintIqcsJqc >> calcPostDynCorrectorIteration [
 	super calcPostDynCorrectorIteration.
 	pGpsI := riIeJeIe pvaluepsI plusFullRow: riIeJeIe pvaluepsK.
@@ -49,12 +51,12 @@ MbDTranslationConstraintIqcsJqc >> calcPostDynCorrectorIteration [
 				plusFullMatrix: (riIeJeIe ppvaluepsIpsK transpose plusFullMatrix: riIeJeIe ppvaluepsKpsK)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDTranslationConstraintIqcsJqc >> dispCompClass [
 	^MbDDispCompIeqcsJeqcKeqcs
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDTranslationConstraintIqcsJqc >> fillAccICIterError: col [ 
 	| qXdotI qEdotI sdotI sum qXdotJ qEdotJ |
 	super fillAccICIterError: col.
@@ -74,7 +76,7 @@ MbDTranslationConstraintIqcsJqc >> fillAccICIterError: col [
 	col at: iG plusNumber: sum
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDTranslationConstraintIqcsJqc >> fillCollisionError: col [ 
 	"lamDeriv is now PlamDeriv."
 	"qEddot is now qEdotDeriv."
@@ -87,13 +89,13 @@ MbDTranslationConstraintIqcsJqc >> fillCollisionError: col [
 	col at: iG plusNumber: sum
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDTranslationConstraintIqcsJqc >> fillPosICError: col [ 
 	super fillPosICError: col.
 	col at: isI plusFullColumn: pGpsI times: lam
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDTranslationConstraintIqcsJqc >> fillPosICJacob: mat [ 
 	| ppGpXIpsIlam ppGpEIpsIlam ppGpXJpsIlam ppGpEJpsIlam |
 	super fillPosICJacob: mat.
@@ -110,7 +112,7 @@ MbDTranslationConstraintIqcsJqc >> fillPosICJacob: mat [
 	mat at: isI and: isI plusFullMatrix: ppGpsIpsI times: lam
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDTranslationConstraintIqcsJqc >> fillPosKineJacob: mat [ 
 	super fillPosKineJacob: mat.
 	mat
@@ -119,14 +121,14 @@ MbDTranslationConstraintIqcsJqc >> fillPosKineJacob: mat [
 		plusFullRow: pGpsI
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDTranslationConstraintIqcsJqc >> fillVelICJacob: mat [ 
 	super fillVelICJacob: mat.
 	mat at: iG and: isI plusFullRow: pGpsI.
 	mat at: isI and: iG plusFullColumn: pGpsI transpose
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDTranslationConstraintIqcsJqc >> fillpFpy: mat [ 
 	| ppGpXIpsIlam ppGpEIpsIlam ppGpXJpsIlam ppGpEJpsIlam |
 	super fillpFpy: mat.
@@ -142,18 +144,18 @@ MbDTranslationConstraintIqcsJqc >> fillpFpy: mat [
 	mat at: isI and: isI plusFullMatrix: ppGpsIpsI times: lam
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDTranslationConstraintIqcsJqc >> fillpFpydot: mat [ 
 	super fillpFpydot: mat.
 	mat at: isI and: iG plusFullColumn: pGpsI transpose
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDTranslationConstraintIqcsJqc >> type [
 	^#essential
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDTranslationConstraintIqcsJqc >> useEquationNumbers [
 	super useEquationNumbers.
 	isI := frmI is

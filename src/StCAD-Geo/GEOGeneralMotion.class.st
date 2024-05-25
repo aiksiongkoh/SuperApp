@@ -1,23 +1,25 @@
 Class {
-	#name : #GEOGeneralMotion,
-	#superclass : #GEOMotion,
+	#name : 'GEOGeneralMotion',
+	#superclass : 'GEOMotion',
 	#instVars : [
 		'rotOrder'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOGeneralMotion class >> mbdClass [
 	^MbDFullMotion
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOGeneralMotion class >> nameString [
 	^'GeneralMotion'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOGeneralMotion class >> visualWorksMetadata [
 
 	^ #(
@@ -27,7 +29,7 @@ GEOGeneralMotion class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOGeneralMotion >> angleIJJ [
 	^StMFullColumn 
 		with: phiIJ
@@ -35,14 +37,14 @@ GEOGeneralMotion >> angleIJJ [
 		with: psiIJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOGeneralMotion >> angleIJJ: col [ 
 	phiIJ := col at: 1.
 	theIJ := col at: 2.
 	psiIJ := col at: 3
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOGeneralMotion >> createMbD [
 	| block mbdFullMotion length frIJI angle fangIJJ |
 	super createMbD.
@@ -75,7 +77,7 @@ GEOGeneralMotion >> createMbD [
 	mbdFullMotion fangIJJ: fangIJJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOGeneralMotion >> rIJI [
 	^StMFullColumn 
 		with: xIJ
@@ -83,24 +85,24 @@ GEOGeneralMotion >> rIJI [
 		with: zIJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOGeneralMotion >> rIJI: col [ 
 	xIJ := col at: 1.
 	yIJ := col at: 2.
 	zIJ := col at: 3
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOGeneralMotion >> rotOrder [
 	^rotOrder
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOGeneralMotion >> rotOrder: col [ 
 	rotOrder := col
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOGeneralMotion >> storeOn: aStream level: level [ 
 	super storeOn: aStream level: level.
 	aStream 

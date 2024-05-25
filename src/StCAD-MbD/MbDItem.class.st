@@ -26,23 +26,25 @@ Let IntegratorDAE handle all integration parameters, not MbDItem.
 
 "
 Class {
-	#name : #MbDItem,
-	#superclass : #Object,
+	#name : 'MbDItem',
+	#superclass : 'Object',
 	#instVars : [
 		'name'
 	],
 	#classVars : [
 		'MbD'
 	],
-	#category : #'StCAD-MbD-MbDBasic'
+	#category : 'StCAD-MbD-MbDBasic',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDBasic'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDItem class >> TheMbDSystem [
 	^TheMbDSystem
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDItem class >> clearTheMbDSystem [
 	"StCAD.StMbD.MbDItem clearTheMbDSystem."
 
@@ -50,12 +52,12 @@ MbDItem class >> clearTheMbDSystem [
 	ObjectMemory garbageCollect
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDItem class >> new [
 	^super new initialize
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDItem class >> visualWorksMetadata [
 
 	^ #(
@@ -64,17 +66,17 @@ MbDItem class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDItem >> TheMbDSystem [
 	^TheMbDSystem
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDItem >> bePerturbed: delta fillqsulam: col [ 
 	"Default is do nothing."
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDItem >> calcPostDynCorrectorIteration [
 	"A commonly used subset of calculations."
 	"It is equal or super set of calcPostPosICIteration."
@@ -82,7 +84,7 @@ MbDItem >> calcPostDynCorrectorIteration [
 	self subclassResponsibility
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDItem >> checkForCollisionDiscontinuityBetween: impulsePrevious and: impulse [ 
 	"Check for discontinuity in the last step defined by the interval (impulsePrevious,impulse]."
 	"Default is assume no discontinuity and return impulse."
@@ -90,7 +92,7 @@ MbDItem >> checkForCollisionDiscontinuityBetween: impulsePrevious and: impulse [
 	^impulse
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDItem >> checkForDynDiscontinuityBetween: tprevious and: t [ 
 	"Check for discontinuity in the last step defined by the interval (tprevious,t]."
 	"Default is assume no discontinuity and return t."
@@ -98,170 +100,170 @@ MbDItem >> checkForDynDiscontinuityBetween: tprevious and: t [
 	^t
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDItem >> discontinuityAt: tstartNew addTypeTo: collection [ 
 	"Do all the transitions or mutations before restart here."
 	"Default is do nothing."
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDItem >> discontinuityAtICAddTo: collection [ 
 	"Every object is given chance to transform."
 	"Default is do nothing."
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDItem >> fillAccICIterError: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDItem >> fillAccICIterJacob: mat [ 
 	"Do nothing."
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDItem >> fillCollisionDerivativeICError: col [ 
 	"Do nothing."
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDItem >> fillCollisionDerivativeICJacob: mat [ 
 	"Do nothing."
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDItem >> fillCollisionError: col [ 
 	"Do nothing."
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDItem >> fillCollisionpFpy: mat [ 
 	"Do nothing."
 	"Collision is pure ODE."
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDItem >> fillCollisionpFpydot: mat [ 
 	"Default is do nothing."
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDItem >> fillDynError: col [ 
 	"Do nothing."
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDItem >> fillPosICError: col [ 
 	"Default is do nothing."
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDItem >> fillPosICJacob: mat [ 
 	"Default is do nothing."
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDItem >> fillPosKineError: col [ 
 	"Default is do nothing."
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDItem >> fillPosKineJacob: mat [ 
 	"Default is do nothing."
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDItem >> fillStaticError: col [ 
 	"Default is do nothing."
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDItem >> fillStaticJacob: mat [ 
 	"Default is do nothing."
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDItem >> fillVelICError: col [ 
 	"Default is do nothing."
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDItem >> fillVelICJacob: mat [ 
 	"Default is do nothing."
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDItem >> fillpFpy: mat [ 
 	"Do nothing."
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDItem >> fillpFpydot: mat [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDItem >> fillpqsumu: col [ 
 	"Default is do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDItem >> fillpqsumudot: col [ 
 	"Default is do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDItem >> fillqsu: col [ 
 	"Default is do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDItem >> fillqsuWeights: col [ 
 	"Default is do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDItem >> fillqsuWeightsSmall: col [ 
 	"Default is do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDItem >> fillqsuddotlam: col [ 
 	"Default is do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDItem >> fillqsudot: col [ 
 	"Default is do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDItem >> fillqsudotPlam: col [ 
 	"Default is do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDItem >> fillqsudotPlamDeriv: col [ 
 	"Default is do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDItem >> fillqsudotWeights: col [ 
 	"Default is do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDItem >> fillqsulam: col [ 
 	"Default is do nothing."
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDItem >> getString: string [ 
 	^TheMbDSystem getString: string
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDItem >> initialize [
 	"Called once only."
 	"Used immediately after instance creation."
@@ -269,14 +271,14 @@ MbDItem >> initialize [
 	"Default is do nothing."
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDItem >> initializeGlobally [
 	"Called once only."
 	"Initialize all constant dependent instance variables using local and global objects."
 	"Default is do nothing."
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDItem >> initializeLocally [
 	"Called once only."
 	"Assume that the independent instance variables are already set."
@@ -284,57 +286,57 @@ MbDItem >> initializeLocally [
 	"Default is do nothing."
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MbDItem >> isJointForce [
 	^false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MbDItem >> isJointTorque [
 	^false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MbDItem >> isKineIJ [
 	^false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MbDItem >> isKinedotIJ [
 	^false
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDItem >> logString: string [ 
 	TheMbDSystem logString: string
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDItem >> logString: string withArgument: string1 [ 
 	TheMbDSystem logString: string withArgument: string1
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDItem >> logString: string withArguments: arrayOfStrings [ 
 	TheMbDSystem logString: string withArguments: arrayOfStrings
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDItem >> name [
 	^name asString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDItem >> name: symbol [ 
 	name := symbol asSymbol
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDItem >> normalImpulse: aDouble [ 
 	"Default is do nothing."
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDItem >> postAccIC [
 	"Assume positions and velocities are valid."
 	"Called after solving for acceleration initial conditions."
@@ -343,7 +345,7 @@ MbDItem >> postAccIC [
 	"Do nothing."
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDItem >> postAccICIteration [
 	"Called after each iteration in the accIC solution."
 	"Update only instance variables dependent on pddot,qddot,sddot,uddot,lam 
@@ -351,14 +353,14 @@ MbDItem >> postAccICIteration [
 	"Default is do nothing."
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDItem >> postCollisionCorrector [
 	"Called after the corrector stage in the collision solution."
 	"Update instance variables not updated by postCollisionCorrectorIteration."
 	"Default is do nothing."
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDItem >> postCollisionCorrectorIteration [
 	"Called after the predictor stage in the collision solution."
 	"Update only instance variables dependent on qdot,sdot,udot, Plam 
@@ -366,12 +368,12 @@ MbDItem >> postCollisionCorrectorIteration [
 	"Default is do nothing."
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDItem >> postCollisionDerivativeIC [
 	"Do nothing."
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDItem >> postCollisionPredictor [
 	"Called after the predictor stage in the collision solution."
 	"Update only instance variables dependent on qdot,sdot,udot, Plam 
@@ -379,12 +381,12 @@ MbDItem >> postCollisionPredictor [
 	"Default is do nothing."
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDItem >> postCollisionStep [
 	"Do nothing."
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDItem >> postDyn [
 	"Assume runDYNAMICS ended successfully."
 	"Called once at the end of runDYNAMICS."
@@ -394,14 +396,14 @@ MbDItem >> postDyn [
 	"Default is do nothing."
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDItem >> postDynCorrector [
 	"Called after the corrector stage in the dynamic solution."
 	"Update instance variables not updated by postDynCorrectorIteration."
 	"Default is do nothing."
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDItem >> postDynCorrectorIteration [
 	"Called after the predictor stage in the dynamic solution."
 	"Update only instance variables dependent on p,q,s,u,mu,pdot,qdot,sdot,udot,mudot (lam) 
@@ -410,21 +412,21 @@ MbDItem >> postDynCorrectorIteration [
 	self calcPostDynCorrectorIteration
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDItem >> postDynFirstStep [
 	"Called after the end of the first step in the dynamic solution."
 
 	self postDynStep
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDItem >> postDynOutput [
 	"Calculate all instance variables just after output."
 
 	self calcPostDynCorrectorIteration
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDItem >> postDynPredictor [
 	"Called after the predictor stage in the dynamic solution."
 	"Update only instance variables dependent on p,q,s,u,mu,pdot,qdot,sdot,udot,mudot (lam) 
@@ -437,21 +439,21 @@ MbDItem >> postDynPredictor [
 	self calcPostDynCorrectorIteration
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDItem >> postDynStep [
 	"Called after the end of a complete step in the dynamic solution."
 	"Update info before checking for discontinuities."
 	"Default is do nothing."
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDItem >> postInput [
 	"Called once after input."
 
 	self calcPostDynCorrectorIteration
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDItem >> postPosIC [
 	"Called once after solving for position initial conditions."
 	"Update all instance variables dependent on position regardless of whether they are 
@@ -460,7 +462,7 @@ MbDItem >> postPosIC [
 	"Default is do nothing."
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDItem >> postPosICIteration [
 	"Called after each iteration in the posIC solution."
 	"Update only instance variables dependent on p,q,s,u,lam 
@@ -471,7 +473,7 @@ MbDItem >> postPosICIteration [
 	self calcPostDynCorrectorIteration
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDItem >> postStatic [
 	"Assume runSTATICS ended successfully."
 	"Called once at the end of runSTATICS."
@@ -480,7 +482,7 @@ MbDItem >> postStatic [
 	"Default is do nothing."
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDItem >> postStaticIteration [
 	"Called after each iteration in the static solution."
 	"Update only instance variables dependent on q,s,u,w,lam. 
@@ -490,7 +492,7 @@ MbDItem >> postStaticIteration [
 	self calcPostDynCorrectorIteration
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDItem >> postVelIC [
 	"Assume positions are valid."
 	"Called after solving for velocity initial conditions."
@@ -499,7 +501,7 @@ MbDItem >> postVelIC [
 	"Default is do nothing."
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDItem >> preAccIC [
 	"Assume positions and velocities are valid."
 	"Called once before solving for acceleration initial conditions."
@@ -509,7 +511,7 @@ MbDItem >> preAccIC [
 	self calcPostDynCorrectorIteration
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDItem >> preCollision [
 	"Assume positions, velocities and accelerations are valid."
 	"Called once before solving for collision solution."
@@ -519,7 +521,7 @@ MbDItem >> preCollision [
 	"Default is do nothing."
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDItem >> preCollisionCorrector [
 	"Called before the corrector stage in the collision solution."
 	"postCollisionPredictor should have done the updating needed."
@@ -527,7 +529,7 @@ MbDItem >> preCollisionCorrector [
 	"Default is do nothing."
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDItem >> preCollisionCorrectorIteration [
 	"Called before each corrector iteration in the collision solution."
 	"postCollisionPredictor or postCollisionCorrectorIteration should have done the updating needed."
@@ -535,12 +537,12 @@ MbDItem >> preCollisionCorrectorIteration [
 	"Default is do nothing."
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDItem >> preCollisionDerivativeIC [
 	"Do nothing."
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDItem >> preCollisionPredictor [
 	"Assume past p,q,s,u,mu,pdot,qdot,sdot,udot,mudot (lam) are valid."
 	"Called before the predictor stage in the collision solution."
@@ -548,13 +550,13 @@ MbDItem >> preCollisionPredictor [
 	"Default is do nothing."
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDItem >> preCollisionStep [
 	"Called before the start of a step in the collision solution."
 	"Default is do nothing."
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDItem >> preDyn [
 	"Assume positions, velocities and accelerations are valid."
 	"Called once before solving for dynamic solution."
@@ -564,7 +566,7 @@ MbDItem >> preDyn [
 	"Default is do nothing."
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDItem >> preDynCorrector [
 	"Called before the corrector stage in the dynamic solution."
 	"postDynPredictor should have done the updating needed."
@@ -572,7 +574,7 @@ MbDItem >> preDynCorrector [
 	"Default is do nothing."
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDItem >> preDynCorrectorIteration [
 	"Called before each corrector iteration in the dynamic solution."
 	"postDynPredictor or postDynCorrectorIteration should have done the updating needed."
@@ -580,21 +582,21 @@ MbDItem >> preDynCorrectorIteration [
 	"Default is do nothing."
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDItem >> preDynFirstStep [
 	"Called before the start of the first step in the dynamic solution."
 
 	self preDynStep
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDItem >> preDynOutput [
 	"Calculate all instance variables just before output."
 
 	self calcPostDynCorrectorIteration
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDItem >> preDynPredictor [
 	"Assume past p,q,s,u,mu,pdot,qdot,sdot,udot,mudot (lam) are valid."
 	"Called before the predictor stage in the dynamic solution."
@@ -602,19 +604,19 @@ MbDItem >> preDynPredictor [
 	"Default is do nothing."
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDItem >> preDynStep [
 	"Called before the start of a step in the dynamic solution."
 	"Default is do nothing."
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDItem >> preICRestart [
 	"Do all the transitions or mutations before restart here."
 	"Default is do nothing."
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDItem >> prePosIC [
 	"Called once before solving for position initial conditions."
 	"Update all variable dependent instance variables needed for posIC."
@@ -624,12 +626,12 @@ MbDItem >> prePosIC [
 	self calcPostDynCorrectorIteration
 ]
 
-{ #category : #kine }
+{ #category : 'kine' }
 MbDItem >> prePosKine [
 	self prePosIC
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDItem >> preStatic [
 	"Called once before solving for static solution."
 	"Velocities and accelerations are set to zeros."
@@ -640,7 +642,7 @@ MbDItem >> preStatic [
 	self calcPostDynCorrectorIteration
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDItem >> preVelIC [
 	"Assume positions are valid."
 	"Called once before solving for velocity initial conditions."
@@ -651,7 +653,7 @@ MbDItem >> preVelIC [
 	self calcPostDynCorrectorIteration
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDItem >> registerName [
 	| namedItems |
 	((name isKindOf: String) and: [name isEmpty not]) 
@@ -666,7 +668,7 @@ MbDItem >> registerName [
 		ifFalse: [self error: 'TheMbDSystem is trying to register an unnamed item.']
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDItem >> registerName1 [
 	| namedItems |
 	name == nil
@@ -680,86 +682,86 @@ MbDItem >> registerName1 [
 					SimulationStoppingError raiseSignal]]
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDItem >> removeRedundantConstraints: redundantEqns [ 
 	"Default is do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDItem >> setpqsumu: col [ 
 	"Default is do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDItem >> setpqsumuddot: col [ 
 	"Default is do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDItem >> setpqsumudot: col [ 
 	"Default is do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDItem >> setqsu: col [ 
 	"Default is do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDItem >> setqsuddotlam: col [ 
 	"Default is do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDItem >> setqsudot: col [ 
 	"Default is do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDItem >> setqsudotPlam: col [ 
 	"Default is do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDItem >> setqsudotPlamDeriv: col [ 
 	"Default is do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDItem >> setqsudotlam: col [ 
 	"Default is do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDItem >> setqsulam: col [ 
 	"Default is do nothing."
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDItem >> simUpdateAll [
 	self calcPostDynCorrectorIteration
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDItem >> storeCollisionState [
 	"Store current state in time series."
 	"Default is do nothing."
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDItem >> storeDynState [
 	"Store current state in time series."
 	"Default is do nothing."
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDItem >> submitToSystem [
 	"Commit an MbDItem to TheMbDSystem."
 
 	self subclassResponsibility
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDItem >> suggestSmallerOrAcceptCollisionFirstStepSize: hnew [ 
 	"Default is return hnew."
 	"Best to do nothing so as not to disrupt the starting algorithm."
@@ -767,7 +769,7 @@ MbDItem >> suggestSmallerOrAcceptCollisionFirstStepSize: hnew [
 	^hnew
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDItem >> suggestSmallerOrAcceptCollisionStepSize: hnew [ 
 	"Default is return hnew."
 	"Best to do nothing so as not to disrupt the starting algorithm."
@@ -775,7 +777,7 @@ MbDItem >> suggestSmallerOrAcceptCollisionStepSize: hnew [
 	^hnew
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDItem >> suggestSmallerOrAcceptDynFirstStepSize: hnew [ 
 	"Default is return hnew."
 	"Best to do nothing so as not to disrupt the starting algorithm."
@@ -783,14 +785,14 @@ MbDItem >> suggestSmallerOrAcceptDynFirstStepSize: hnew [
 	^hnew
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDItem >> suggestSmallerOrAcceptDynStepSize: hnew [ 
 	"Default is return hnew."
 
 	^hnew
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDItem >> useEquationNumbers [
 	"Equation numbers have just been assigned to parts, endframes and constraints."
 	"Derived variables can now use those numbers."

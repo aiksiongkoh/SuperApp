@@ -1,19 +1,21 @@
 Class {
-	#name : #GEOForceTorqueInLine,
-	#superclass : #GEOForceTorqueItem,
+	#name : 'GEOForceTorqueInLine',
+	#superclass : 'GEOForceTorqueItem',
 	#instVars : [
 		'tensionFunc',
 		'twistFunc'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOForceTorqueInLine class >> nameString [
 	^'InLineForceTorque'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOForceTorqueInLine class >> visualWorksMetadata [
 
 	^ #(
@@ -23,7 +25,7 @@ GEOForceTorqueInLine class >> visualWorksMetadata [
 
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOForceTorqueInLine >> createMbD [
 
 	| eFrmI eFrmJ mbdForceTorqueInLine tension parser stack func twist |
@@ -78,23 +80,23 @@ GEOForceTorqueInLine >> createMbD [
 				ifFalse: [ ex pass ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOForceTorqueInLine >> cut [
 	container cutForceTorque: self.
 	super cut
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOForceTorqueInLine >> isForce [
 	^true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOForceTorqueInLine >> isTorque [
 	^false
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOForceTorqueInLine >> storeOn: aStream level: level [ 
 	super storeOn: aStream level: level.
 	aStream
@@ -107,7 +109,7 @@ GEOForceTorqueInLine >> storeOn: aStream level: level [
 		object: twistFunc
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOForceTorqueInLine >> tension [
 	| parser stack |
 	^tensionFunc notNil
@@ -123,17 +125,17 @@ GEOForceTorqueInLine >> tension [
 		ifFalse: [nil]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOForceTorqueInLine >> tensionFunc [
 	^tensionFunc
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOForceTorqueInLine >> tensionFunc: userFunc [ 
 	tensionFunc := userFunc
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOForceTorqueInLine >> twist [
 	| parser stack |
 	^twistFunc notNil
@@ -149,22 +151,22 @@ GEOForceTorqueInLine >> twist [
 		ifFalse: [nil]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOForceTorqueInLine >> twistFunc [
 	^twistFunc
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOForceTorqueInLine >> twistFunc: userFunc [ 
 	twistFunc := userFunc
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOForceTorqueInLine >> uncut [
 	container addForceTorque: self
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOForceTorqueInLine >> validateFormulas [
 	self tension.
 	self twist

@@ -19,18 +19,20 @@ LUAM:			Factorized self and return row pivoting. Ready for use with different b 
 LU:SC:PV:		Scale and pivot b vector, then forward and back substitute with LU for x.
 "
 Class {
-	#name : #StMRowTypeMatrix,
-	#superclass : #StMArray,
-	#type : #variable,
-	#category : #'StMath-StMathArray'
+	#name : 'StMRowTypeMatrix',
+	#superclass : 'StMArray',
+	#type : 'variable',
+	#category : 'StMath-StMathArray',
+	#package : 'StMath',
+	#tag : 'StMathArray'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMRowTypeMatrix class >> identity: n [ 
 	^(self square: n) identity
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMRowTypeMatrix class >> new: nrow by: ncol [ 
 	"Creates the row dimension of a matrix and send a message to create the column 
 	dimension."
@@ -40,12 +42,12 @@ StMRowTypeMatrix class >> new: nrow by: ncol [
 		by: ncol
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMRowTypeMatrix class >> square: n [ 
 	^self new: n by: n
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMRowTypeMatrix class >> visualWorksMetadata [
 
 	^ #(
@@ -55,12 +57,12 @@ StMRowTypeMatrix class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMRowTypeMatrix class >> zero: n [ 
 	self shouldNotImplement
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMRowTypeMatrix class >> zero: nrow by: ncol [ 
 	"Creates the row dimension of a matrix and send a message to create the column 
 	dimension."
@@ -70,7 +72,7 @@ StMRowTypeMatrix class >> zero: nrow by: ncol [
 	^(self new: nrow by: ncol) zeroSelf
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 StMRowTypeMatrix >> asDiagonalMatrix [
 	| nrow answer |
 	nrow := self nrow.
@@ -79,29 +81,29 @@ StMRowTypeMatrix >> asDiagonalMatrix [
 	^answer
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 StMRowTypeMatrix >> asFullColumn [
 	self ncol == 1 ifFalse: [self error: 'Matrix cannot be converted into a column.'].
 	^self fullColumn: 1
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 StMRowTypeMatrix >> asIdentityMatrix [
 	^IdentityMatrix new: self nrow
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 StMRowTypeMatrix >> asSparseColumn [
 	self ncol == 1 ifFalse: [self error: 'Matrix cannot be converted into a column.'].
 	^self sparseColumn: 1
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 StMRowTypeMatrix >> asZeroMatrix [
 	^ZeroMatrix new: self nrow by: self ncol
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMRowTypeMatrix >> at: i and: j [ 
 	"Return element aij."
 
@@ -109,7 +111,7 @@ StMRowTypeMatrix >> at: i and: j [
 		at: j
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> at: i1 and: j1 minusDiagonalMatrix: aDiagonalMatrix [ 
 	| n iOffset jOffset |
 	n := aDiagonalMatrix nrow.
@@ -119,7 +121,7 @@ StMRowTypeMatrix >> at: i1 and: j1 minusDiagonalMatrix: aDiagonalMatrix [
 			at: jOffset + ii minusNumber: (aDiagonalMatrix at: ii)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> at: i1 and: j1 minusFullColumn: aFullColumn [ 
 	| iOffset |
 	iOffset := i1 - 1.
@@ -127,7 +129,7 @@ StMRowTypeMatrix >> at: i1 and: j1 minusFullColumn: aFullColumn [
 			at: j1 minusNumber: (aFullColumn at: ii)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> at: i1 and: j1 minusFullColumn: aFullColumn times: aNumber [ 
 	| iOffset |
 	iOffset := i1 - 1.
@@ -136,7 +138,7 @@ StMRowTypeMatrix >> at: i1 and: j1 minusFullColumn: aFullColumn times: aNumber [
 				* aNumber]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> at: i1 and: j1 minusFullMatrix: aFullMatrix [ 
 	| iOffset |
 	iOffset := i1 - 1.
@@ -144,7 +146,7 @@ StMRowTypeMatrix >> at: i1 and: j1 minusFullMatrix: aFullMatrix [
 			at: j1 minusFullRow: (aFullMatrix at: ii)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> at: i1 and: j1 minusFullMatrix: aFullMatrix times: aNumber [ 
 	| iOffset |
 	iOffset := i1 - 1.
@@ -154,13 +156,13 @@ StMRowTypeMatrix >> at: i1 and: j1 minusFullMatrix: aFullMatrix times: aNumber [
 			times: aNumber]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> at: i1 and: j1 minusFullRow: aFullRow [ 
 	(self at: i1)
 		at: j1 minusFullRow: aFullRow
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> at: i1 and: j1 minusFullRow: aFullRow times: aNumber [ 
 	(self at: i1)
 		at: j1
@@ -168,7 +170,7 @@ StMRowTypeMatrix >> at: i1 and: j1 minusFullRow: aFullRow times: aNumber [
 		times: aNumber
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> at: i1 and: j1 minusSparseMatrix: aSparseMatrix [ 
 	| iOffset |
 	iOffset := i1 - 1.
@@ -176,7 +178,7 @@ StMRowTypeMatrix >> at: i1 and: j1 minusSparseMatrix: aSparseMatrix [
 			at: j1 minusSparseRow: (aSparseMatrix at: ii)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> at: i1 and: j1 minusTransposeFullMatrix: aFullMatrix [ 
 	| jOffset |
 	jOffset := j1 - 1.
@@ -186,7 +188,7 @@ StMRowTypeMatrix >> at: i1 and: j1 minusTransposeFullMatrix: aFullMatrix [
 			minusFullColumn: (aFullMatrix at: jj) transpose]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> at: i1 and: j1 minusTransposeFullMatrix: aFullMatrix times: aNumber [ 
 	| jOffset |
 	jOffset := j1 - 1.
@@ -197,7 +199,7 @@ StMRowTypeMatrix >> at: i1 and: j1 minusTransposeFullMatrix: aFullMatrix times: 
 			times: aNumber]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> at: i1 and: j1 plusDiagonalMatrix: aDiagonalMatrix [ 
 	| n iOffset jOffset |
 	n := aDiagonalMatrix nrow.
@@ -207,7 +209,7 @@ StMRowTypeMatrix >> at: i1 and: j1 plusDiagonalMatrix: aDiagonalMatrix [
 			at: jOffset + ii plusNumber: (aDiagonalMatrix at: ii)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> at: i1 and: j1 plusFullColumn: aFullColumn [ 
 	| iOffset |
 	iOffset := i1 - 1.
@@ -215,7 +217,7 @@ StMRowTypeMatrix >> at: i1 and: j1 plusFullColumn: aFullColumn [
 			at: j1 plusNumber: (aFullColumn at: ii)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> at: i1 and: j1 plusFullColumn: aFullColumn times: aNumber [ 
 	| iOffset |
 	iOffset := i1 - 1.
@@ -224,7 +226,7 @@ StMRowTypeMatrix >> at: i1 and: j1 plusFullColumn: aFullColumn times: aNumber [
 				* aNumber]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> at: i1 and: j1 plusFullMatrix: aFullMatrix [ 
 	| iOffset |
 	iOffset := i1 - 1.
@@ -232,7 +234,7 @@ StMRowTypeMatrix >> at: i1 and: j1 plusFullMatrix: aFullMatrix [
 			at: j1 plusFullRow: (aFullMatrix at: ii)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> at: i1 and: j1 plusFullMatrix: aFullMatrix times: aNumber [ 
 	| iOffset |
 	iOffset := i1 - 1.
@@ -242,13 +244,13 @@ StMRowTypeMatrix >> at: i1 and: j1 plusFullMatrix: aFullMatrix times: aNumber [
 			times: aNumber]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> at: i1 and: j1 plusFullRow: aFullRow [ 
 	(self at: i1)
 		at: j1 plusFullRow: aFullRow
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> at: i1 and: j1 plusFullRow: aFullRow times: aNumber [ 
 	(self at: i1)
 		at: j1
@@ -256,13 +258,13 @@ StMRowTypeMatrix >> at: i1 and: j1 plusFullRow: aFullRow times: aNumber [
 		times: aNumber
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> at: i and: j plusNumber: aNumber [ 
 	^(self at: i)
 		at: j plusNumber: aNumber
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> at: i1 and: j1 plusSparseMatrix: aSparseMatrix [ 
 	| iOffset |
 	iOffset := i1 - 1.
@@ -270,7 +272,7 @@ StMRowTypeMatrix >> at: i1 and: j1 plusSparseMatrix: aSparseMatrix [
 			at: j1 plusSparseRow: (aSparseMatrix at: ii)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> at: i1 and: j1 plusTransposeFullMatrix: aFullMatrix [ 
 	| jOffset |
 	jOffset := j1 - 1.
@@ -280,7 +282,7 @@ StMRowTypeMatrix >> at: i1 and: j1 plusTransposeFullMatrix: aFullMatrix [
 			plusFullColumn: (aFullMatrix at: jj) transpose]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> at: i1 and: j1 plusTransposeFullMatrix: aFullMatrix times: aNumber [ 
 	| jOffset |
 	jOffset := j1 - 1.
@@ -291,7 +293,7 @@ StMRowTypeMatrix >> at: i1 and: j1 plusTransposeFullMatrix: aFullMatrix times: a
 			times: aNumber]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMRowTypeMatrix >> at: i and: j put: value [ 
 	"Set element aij."
 
@@ -299,7 +301,7 @@ StMRowTypeMatrix >> at: i and: j put: value [
 		at: j put: value
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> at: i1 and: j1 putFullColumn: aFullColumn [ 
 	| iOffset |
 	iOffset := i1 - 1.
@@ -309,7 +311,7 @@ StMRowTypeMatrix >> at: i1 and: j1 putFullColumn: aFullColumn [
 			put: (aFullColumn at: ii)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> at: i1 and: j1 putFullMatrix: aFullMatrix [ 
 	"Put aFullMatrix into a submatrix of self."
 
@@ -319,7 +321,7 @@ StMRowTypeMatrix >> at: i1 and: j1 putFullMatrix: aFullMatrix [
 			at: j1 putFullRow: (aFullMatrix at: ii)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> at: i1 and: j1 putFullMatrix: aFullMatrix times: aNumber [ 
 	"Put aFullMatrix into a submatrix of self."
 
@@ -331,20 +333,20 @@ StMRowTypeMatrix >> at: i1 and: j1 putFullMatrix: aFullMatrix times: aNumber [
 			times: aNumber]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> at: i1 and: j1 putFullRow: aFullRow [ 
 	(self at: i1)
 		at: j1 putFullRow: aFullRow
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMRowTypeMatrix >> by: ncol [ 
 	"Add second dimension to matrix. Used by new:by: only."
 
 	1 to: self nrow do: [:i | self at: i put: (self secondDimensionClass new: ncol)]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMRowTypeMatrix >> column: j [ 
 	"Returns the column of a matrix."
 
@@ -355,12 +357,12 @@ StMRowTypeMatrix >> column: j [
 	^column
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> conditionSelfByRow [
 	1 to: self nrow do: [:i | self at: i put: (self at: i) conditioned]
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMRowTypeMatrix >> conditionedByRow [
 	| nrow answer |
 	nrow := self nrow.
@@ -369,13 +371,13 @@ StMRowTypeMatrix >> conditionedByRow [
 	^answer
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> equalFullMatrix: aFullMatrix [ 
 	1 to: self nrow do: [:i | (self at: i)
 			equalFullRow: (aFullMatrix at: i)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> equalFullMatrix: aFullMatrix at: ii1 and: jj1 [ 
 	| iiOffset |
 	iiOffset := ii1 - 1.
@@ -384,20 +386,20 @@ StMRowTypeMatrix >> equalFullMatrix: aFullMatrix at: ii1 and: jj1 [
 			at: jj1]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> equalFullMatrix: aFullMatrix times: aNumber [ 
 	1 to: self nrow do: [:i | (self at: i)
 			equalFullRow: (aFullMatrix at: i)
 			times: aNumber]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> equalSelfMinusFullMatrix: aFullMatrix [ 
 	1 to: self nrow do: [:i | (self at: i)
 			equalSelfMinusFullRow: (aFullMatrix at: i)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> equalSelfMinusFullMatrix: aFullMatrix at: ii1 and: jj1 [ 
 	| iiOffset |
 	iiOffset := ii1 - 1.
@@ -406,20 +408,20 @@ StMRowTypeMatrix >> equalSelfMinusFullMatrix: aFullMatrix at: ii1 and: jj1 [
 			at: jj1]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> equalSelfMinusFullMatrix: aFullMatrix times: aNumber [ 
 	1 to: self nrow do: [:i | (self at: i)
 			equalSelfMinusFullRow: (aFullMatrix at: i)
 			times: aNumber]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> equalSelfPlusFullMatrix: aFullMatrix [ 
 	1 to: self nrow do: [:i | (self at: i)
 			equalSelfPlusFullRow: (aFullMatrix at: i)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> equalSelfPlusFullMatrix: aFullMatrix at: ii1 and: jj1 [ 
 	| iiOffset |
 	iiOffset := ii1 - 1.
@@ -428,14 +430,14 @@ StMRowTypeMatrix >> equalSelfPlusFullMatrix: aFullMatrix at: ii1 and: jj1 [
 			at: jj1]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> equalSelfPlusFullMatrix: aFullMatrix times: aNumber [ 
 	1 to: self nrow do: [:i | (self at: i)
 			equalSelfPlusFullRow: (aFullMatrix at: i)
 			times: aNumber]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> equalSelfTimes: alpha minusFullMatrix: aFullMatrix times: beta [ 
 	1 to: self nrow do: [:i | (self at: i)
 			equalSelfTimes: alpha
@@ -443,7 +445,7 @@ StMRowTypeMatrix >> equalSelfTimes: alpha minusFullMatrix: aFullMatrix times: be
 			times: beta]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> equalSelfTimes: alpha plusFullMatrix: aFullMatrix times: beta [ 
 	1 to: self nrow do: [:i | (self at: i)
 			equalSelfTimes: alpha
@@ -451,7 +453,7 @@ StMRowTypeMatrix >> equalSelfTimes: alpha plusFullMatrix: aFullMatrix times: bet
 			times: beta]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMRowTypeMatrix >> fullColumn: j [ 
 	"Returns the fullColumn of a matrix."
 
@@ -462,14 +464,14 @@ StMRowTypeMatrix >> fullColumn: j [
 	^fullColumn
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMRowTypeMatrix >> identity [
 	self nrow == self ncol ifFalse: [self error: 'Matrix is not square'].
 	self zeroSelf.
 	1 to: self nrow do: [:i | self at: i and: i put: 1.0]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMRowTypeMatrix >> isDiagonal [
 	| m n |
 	m := self nrow.
@@ -485,7 +487,7 @@ StMRowTypeMatrix >> isDiagonal [
 	^true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMRowTypeMatrix >> isIdentity [
 	| n identicalElement m |
 	m := self nrow.
@@ -505,17 +507,17 @@ StMRowTypeMatrix >> isIdentity [
 	^true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMRowTypeMatrix >> matrixSolverClass [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMRowTypeMatrix >> ncol [
 	^(self at: 1) ncol
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMRowTypeMatrix >> nrow [
 	"Answer the number of indexable fields in the receiver. This value is the 
 	same as the largest legal subscript. Primitive is specified here to override 
@@ -525,14 +527,14 @@ StMRowTypeMatrix >> nrow [
 	^self basicSize
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMRowTypeMatrix >> numberOfElements [
 	"Answer the number of elements in the full vector or matrix."
 
 	^self nrow * self ncol
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 StMRowTypeMatrix >> outputOnFile: aString [ 
 	| writeStream aij aijString |
 	writeStream := aString asFilename writeStream.
@@ -554,12 +556,12 @@ StMRowTypeMatrix >> outputOnFile: aString [
 	writeStream flush; close
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMRowTypeMatrix >> row: i [ 
 	^(self at: i) copy
 ]
 
-{ #category : #norms }
+{ #category : 'norms' }
 StMRowTypeMatrix >> rowSumNorm [
 	| rowsum answer |
 	answer := (self at: 1) sumOfAbsElements.
@@ -571,13 +573,13 @@ StMRowTypeMatrix >> rowSumNorm [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMRowTypeMatrix >> scaledWith: scalingVector forRows: i1 to: i2 [ 
 	i1 to: i2 do: [:i | (self at: i)
 			magnifySelf: (scalingVector at: i)]
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMRowTypeMatrix >> scalingVectorForRows: i1 to: i2 [ 
 	"Row element * scaling <= 1.0."
 
@@ -591,12 +593,12 @@ StMRowTypeMatrix >> scalingVectorForRows: i1 to: i2 [
 	^scalingVector
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMRowTypeMatrix >> secondDimensionClass [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMRowTypeMatrix >> sparseColumn: j [ 
 	"Returns the sparseColumn of a matrix."
 
@@ -612,7 +614,7 @@ StMRowTypeMatrix >> sparseColumn: j [
 	^sparseColumn
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMRowTypeMatrix >> symLowerWithUpper [
 	"Upper triangle is given."
 	"Fill lower triangle with upper triangle to make matrix symmetric."
@@ -632,7 +634,7 @@ StMRowTypeMatrix >> symLowerWithUpper [
 					put: (row at: j)]]
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMRowTypeMatrix >> timesFullColumn: aFullColumn [ 
 	"a*b = a(i,j)b(j) sum j."
 
@@ -644,7 +646,7 @@ StMRowTypeMatrix >> timesFullColumn: aFullColumn [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMRowTypeMatrix >> timesFullMatrix: aFullMatrix [ 
 	"a*b = a(i,j)b(j,k)"
 
@@ -656,7 +658,7 @@ StMRowTypeMatrix >> timesFullMatrix: aFullMatrix [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMRowTypeMatrix >> timesFullRow: aFullRow [ 
 	"a*b = a(i,1)b(1,j) sum j."
 
@@ -668,7 +670,7 @@ StMRowTypeMatrix >> timesFullRow: aFullRow [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMRowTypeMatrix >> timesSparseMatrix: aSparseMatrix [ 
 	"a*b = a(i,j)b(j,k)"
 
@@ -680,14 +682,14 @@ StMRowTypeMatrix >> timesSparseMatrix: aSparseMatrix [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMRowTypeMatrix >> timesTransposeFullColumn: aFullColumn [ 
 	"a*bT = a(i,1)b(j)"
 
 	^self timesFullRow: aFullColumn transpose
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMRowTypeMatrix >> timesTransposeFullMatrix: aFullMatrix [ 
 	"a*bT = a(i,j)b(k,j)"
 
@@ -699,7 +701,7 @@ StMRowTypeMatrix >> timesTransposeFullMatrix: aFullMatrix [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMRowTypeMatrix >> timesTransposeSparseMatrix: aSparseMatrix [ 
 	"a*bT = a(i,j)b(k,j)"
 
@@ -711,7 +713,7 @@ StMRowTypeMatrix >> timesTransposeSparseMatrix: aSparseMatrix [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMRowTypeMatrix >> trace [
 	"No checking."
 
@@ -721,19 +723,19 @@ StMRowTypeMatrix >> trace [
 	^trace
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMRowTypeMatrix >> transposeTimes: aNumber [ 
 	self subclassResponsibility
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMRowTypeMatrix >> transposeTimesFullColumn: aFullColumn [ 
 	"aT*b = a(i,j)b(i) sum i."
 
 	self subclassResponsibility
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMRowTypeMatrix >> transposeTimesFullColumn: aFullColumn times: aNumber [ 
 	"aT*b = a(i,j)b(i) sum i."
 
@@ -747,17 +749,17 @@ StMRowTypeMatrix >> transposeTimesFullColumn: aFullColumn times: aNumber [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMRowTypeMatrix >> transposeTimesFullMatrix: aFullMatrix [ 
 	^self transpose timesFullMatrix: aFullMatrix
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMRowTypeMatrix >> transposeTimesSparseMatrix: aSparseMatrix [ 
 	^self transpose timesSparseMatrix: aSparseMatrix
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 StMRowTypeMatrix >> validateElements [
 	"Check that all the arrays have the same second dimension size."
 

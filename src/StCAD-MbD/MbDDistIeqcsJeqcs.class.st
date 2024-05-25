@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDDistIeqcsJeqcs,
-	#superclass : #MbDDistIeqcsJeqc,
+	#name : 'MbDDistIeqcsJeqcs',
+	#superclass : 'MbDDistIeqcsJeqc',
 	#instVars : [
 		'sSizeJ',
 		'prIeJepsJ',
@@ -11,10 +11,12 @@ Class {
 		'pprIeJepsIpsJ',
 		'pprIeJepsJpsJ'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDDistIeqcsJeqcs class >> visualWorksMetadata [
 
 	^ #(
@@ -24,7 +26,7 @@ MbDDistIeqcsJeqcs class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDDistIeqcsJeqcs class >> withFrmI: afrmI frmJ: afrmJ [ 
 	^(afrmI isKindOf: MbDEndFrameqcs)
 		& (afrmJ isKindOf: MbDEndFrameqcs)
@@ -32,12 +34,12 @@ MbDDistIeqcsJeqcs class >> withFrmI: afrmI frmJ: afrmJ [
 		ifFalse: [nil]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDistIeqcsJeqcs >> calcLocalSeparationDistance [
 	super calcLocalSeparationDistance
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDistIeqcsJeqcs >> calcLocalSeparationDistance1 [
 	"Iterate for points with parallel normals."
 
@@ -52,7 +54,7 @@ MbDDistIeqcsJeqcs >> calcLocalSeparationDistance1 [
 			ex return]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDistIeqcsJeqcs >> calcLocalSeparationDistance2 [
 	"Iterate for points with parallel normals."
 
@@ -70,7 +72,7 @@ MbDDistIeqcsJeqcs >> calcLocalSeparationDistance2 [
 			ex return]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDistIeqcsJeqcs >> calcPrivate [
 	| prIeJeOpsJ prIeJeOpsJT pprIeJeOpEJpsJ pprIeJeOpsJpsJ pprIeJepXIipsJ prIeJepXIi prIeJeOipsJ element pprIeJepEIipsJ prIeJepEIi mprIeJeOpEIiT pprIeJepsIipsJ prIeJepsIi mprIeJeOpsIiT pprIeJepXJipsJ prIeJepXJi pprIeJepEJipsJ prIeJepEJi pprIeJeOpEJipsJ prIeJeOpEJiT pprIeJepsJipsJ prIeJepsJi pprIeJeOpsJipsJ prIeJeOpsJiT |
 	super calcPrivate.
@@ -155,7 +157,7 @@ MbDDistIeqcsJeqcs >> calcPrivate [
 					pprIeJepsJipsJ at: j put: element / rIeJe]]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDistIeqcsJeqcs >> calcSeparationDistance [
 	"Do coarse global search, then accurate local search."
 
@@ -224,7 +226,7 @@ MbDDistIeqcsJeqcs >> calcSeparationDistance [
 				dsJ: ((sJs last - sJs first) / sJs size) abs]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDistIeqcsJeqcs >> calcSeparationDistance1 [
 	"Do coarse global search, then accurate local search."
 	"Use original data points as discretization points."
@@ -286,7 +288,7 @@ MbDDistIeqcsJeqcs >> calcSeparationDistance1 [
 				dsJ: (sJs last - sJs first / sJs size) abs]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDistIeqcsJeqcs >> depth: depth sI: sI sJ: sJ dsI: dsI dsJ: dsJ [ 
 	"No need to check for intersections of curves since the 
 	MinSepMaxPenNewtonRaphson solver will 
@@ -299,7 +301,7 @@ MbDDistIeqcsJeqcs >> depth: depth sI: sI sJ: sJ dsI: dsI dsJ: dsJ [
 	^sepDist
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDistIeqcsJeqcs >> initializeGlobally [
 	| sSize |
 	sSize := sSizeI + sSizeJ.
@@ -308,7 +310,7 @@ MbDDistIeqcsJeqcs >> initializeGlobally [
 	pprIeJepsps := StMFullMatrix new: sSize by: sSize
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDistIeqcsJeqcs >> initializeLocally [
 	super initializeLocally.
 	sSizeJ := frmJ sSize.
@@ -322,7 +324,7 @@ MbDDistIeqcsJeqcs >> initializeLocally [
 	pprIeJepsJpsJ := StMFullMatrix new: sSizeJ by: sSizeJ
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDistIeqcsJeqcs >> postLocalSepDistIteration [
 	| sSizeI1 |
 	super postLocalSepDistIteration.
@@ -339,22 +341,22 @@ MbDDistIeqcsJeqcs >> postLocalSepDistIteration [
 	pprIeJepsps symLowerWithUpper
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistIeqcsJeqcs >> ppvaluepsIpsJ [
 	^pprIeJepsIpsJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistIeqcsJeqcs >> ppvaluepsJpsJ [
 	^pprIeJepsJpsJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistIeqcsJeqcs >> prIeJepsJ [
 	^prIeJepsJ
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDistIeqcsJeqcs >> preLocalSepDist [
 	| sSizeI1 |
 	super preLocalSepDist.
@@ -366,12 +368,12 @@ MbDDistIeqcsJeqcs >> preLocalSepDist [
 	pprIeJepsps symLowerWithUpper
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistIeqcsJeqcs >> pvaluepsJ [
 	^prIeJepsJ
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDistIeqcsJeqcs >> sepDist: minDist sI: sI sJ: sJ dsI: dsI dsJ1: dsJ [ 
 	"minDist is upper bound of sepDist."
 
@@ -413,7 +415,7 @@ MbDDistIeqcsJeqcs >> sepDist: minDist sI: sI sJ: sJ dsI: dsI dsJ1: dsJ [
 	^sepDist
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDistIeqcsJeqcs >> sepDist: minDist sI: sI sJ: sJ dsI: dsI dsJ: dsJ [ 
 	"minDist is upper bound of sepDist."
 
@@ -453,7 +455,7 @@ MbDDistIeqcsJeqcs >> sepDist: minDist sI: sI sJ: sJ dsI: dsI dsJ: dsJ [
 	^sepDist
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDistIeqcsJeqcs >> sepDistsI1: sI sJ: sJ dsI: dsI dsJ: dsJ [ 
 	| tol sIs sJs sIintersect1 sJintersect1 sIintersect2 sJintersect2 |
 	frmI sNumber: sI.
@@ -500,7 +502,7 @@ MbDDistIeqcsJeqcs >> sepDistsI1: sI sJ: sJ dsI: dsI dsJ: dsJ [
 	^sepDist
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDistIeqcsJeqcs >> sepDistsI2: sI sJ: sJ dsI: dsI dsJ: dsJ [ 
 	| tol sIs sJs |
 	frmI sNumber: sI.
@@ -527,7 +529,7 @@ MbDDistIeqcsJeqcs >> sepDistsI2: sI sJ: sJ dsI: dsI dsJ: dsJ [
 	^sepDist
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDistIeqcsJeqcs >> sepDistsI3: sI sJ: sJ dsI: dsI dsJ: dsJ [ 
 	| tol sIs sJs sIi sJj |
 	frmI sNumber: sI.
@@ -560,7 +562,7 @@ MbDDistIeqcsJeqcs >> sepDistsI3: sI sJ: sJ dsI: dsI dsJ: dsJ [
 	^sepDist
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDistIeqcsJeqcs >> sepDistsI4: sI sJ: sJ dsI: dsI dsJ: dsJ [ 
 	"No need to check for intersections of curves since the MinSepMaxPenNewtonRaphson solver will 
 	not find intersects of curves."
@@ -571,7 +573,7 @@ MbDDistIeqcsJeqcs >> sepDistsI4: sI sJ: sJ dsI: dsI dsJ: dsJ [
 	^sepDist
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDistIeqcsJeqcs >> sepDistsI5: sI sJ: sJ dsI: dsI dsJ: dsJ [ 
 	"No need to check for intersections of curves since the 
 	MinSepMaxPenNewtonRaphson solver will 
@@ -598,7 +600,7 @@ sepDist < 0 ifTrue: [self halt].
 	^sepDist
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDistIeqcsJeqcs >> sepDistsI6: sI sJ: sJ dsI: dsI dsJ: dsJ [ 
 	"Use MbDMinDistIeJeNewtonRaphson2 first. 
 	When sepDist is nearly zero (intersection) or less than zero 
@@ -624,7 +626,7 @@ MbDDistIeqcsJeqcs >> sepDistsI6: sI sJ: sJ dsI: dsI dsJ: dsJ [
 	^sepDist
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDistIeqcsJeqcs >> sepDistsI: sI sJ: sJ dsI: dsI dsJ: dsJ [ 
 	"Use MbDMinDistIeJeNewtonRaphson2 first. 
 	When sepDist is nearly zero (intersection) or less than zero 
@@ -650,19 +652,19 @@ MbDDistIeqcsJeqcs >> sepDistsI: sI sJ: sJ dsI: dsI dsJ: dsJ [
 	^sepDist
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistIeqcsJeqcs >> setEndFramess [
 	super setEndFramess.
 	frmJ s equalFullColumn: s at: sSizeI + 1
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDDistIeqcsJeqcs >> storeDynState [
 	frmI storeDynState.
 	frmJ storeDynState
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDistIeqcsJeqcs >> withFrmI: afrmI frmJ: afrmJ [ 
 	super withFrmI: afrmI frmJ: afrmJ.
 	newtonRaphson := MbDMinDistIeJeNewtonRaphson2 new.

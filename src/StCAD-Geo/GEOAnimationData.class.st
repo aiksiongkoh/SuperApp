@@ -1,6 +1,6 @@
 Class {
-	#name : #GEOAnimationData,
-	#superclass : #GEOData,
+	#name : 'GEOAnimationData',
+	#superclass : 'GEOData',
 	#instVars : [
 		'nframe',
 		'icurrent',
@@ -9,15 +9,17 @@ Class {
 		'isForward',
 		'framesPerSecond'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GEOAnimationData class >> new: integer [ 
 	^super new initialize: integer
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOAnimationData class >> visualWorksMetadata [
 
 	^ #(
@@ -27,37 +29,37 @@ GEOAnimationData class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnimationData >> framesPerSecond [
 	^framesPerSecond
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnimationData >> framesPerSecond: integer [ 
 	framesPerSecond := integer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnimationData >> icurrent [
 	^icurrent
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnimationData >> icurrent: integer [ 
 	icurrent := integer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnimationData >> iend [
 	^iend
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnimationData >> iend: integer [ 
 	iend := integer abs min: nframe
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOAnimationData >> initialize [
 	nframe := 1000000.
 	icurrent := 1.
@@ -67,46 +69,46 @@ GEOAnimationData >> initialize [
 	framesPerSecond := 30
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOAnimationData >> initialize: integer [ 
 	nframe := integer.
 	iend := integer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnimationData >> isForward [
 	^isForward
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnimationData >> isForward: bool [ 
 	isForward := bool
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnimationData >> istart [
 	^istart
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnimationData >> istart: integer [ 
 	istart := integer.
 	istart := integer abs min: nframe
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnimationData >> nframe [
 	^nframe
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnimationData >> nframe: integer [ 
 	nframe := 0 max: integer abs.
 	istart notNil ifTrue: [istart := istart min: nframe].
 	iend notNil ifTrue: [iend := iend min: nframe]
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOAnimationData >> storeOn: aStream level: level [ 
 	aStream storeLevel: level title: 'AnimationParameters'.
 	aStream
@@ -135,7 +137,7 @@ GEOAnimationData >> storeOn: aStream level: level [
 		object: framesPerSecond
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOAnimationData >> storePOVOn: aStream level: level [ 
 	"Do nothing."
 ]

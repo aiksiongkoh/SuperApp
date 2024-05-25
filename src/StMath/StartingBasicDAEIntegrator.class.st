@@ -1,13 +1,15 @@
 Class {
-	#name : #StartingBasicDAEIntegrator,
-	#superclass : #BasicDAEIntegrator,
+	#name : 'StartingBasicDAEIntegrator',
+	#superclass : 'BasicDAEIntegrator',
 	#instVars : [
 		'startingBDF'
 	],
-	#category : #'StMath-StMathIntegrator'
+	#category : 'StMath-StMathIntegrator',
+	#package : 'StMath',
+	#tag : 'StMathIntegrator'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StartingBasicDAEIntegrator class >> visualWorksMetadata [
 
 	^ #(
@@ -17,18 +19,18 @@ StartingBasicDAEIntegrator class >> visualWorksMetadata [
 
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 StartingBasicDAEIntegrator >> calcOperatorMatrix [
 	super calcOperatorMatrix.
 	startingBDF calcOperatorMatrix
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StartingBasicDAEIntegrator >> correctorBDF [
 	^startingBDF
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 StartingBasicDAEIntegrator >> dyOrderPlusOnedt [
 	^startingBDF
 		derivative: order + 1
@@ -38,7 +40,7 @@ StartingBasicDAEIntegrator >> dyOrderPlusOnedt [
 		pastDerivative: ydotpast
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StartingBasicDAEIntegrator >> iStep: integer [ 
 	super iStep: integer.
 	startingBDF iStep: integer.
@@ -48,32 +50,32 @@ StartingBasicDAEIntegrator >> iStep: integer [
 			self changeClassToThatOf: NormalBasicDAEIntegrator basicNew]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 StartingBasicDAEIntegrator >> initialize [
 	super initialize.
 	startingBDF := StableStartingBDF new.
 	startingBDF timeNodes: tpast
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 StartingBasicDAEIntegrator >> initializeLocally [
 	super initializeLocally.
 	startingBDF initializeLocally
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StartingBasicDAEIntegrator >> order: integer [ 
 	super order: integer.
 	startingBDF order: integer + 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StartingBasicDAEIntegrator >> time: double [ 
 	super time: double.
 	startingBDF time: double
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StartingBasicDAEIntegrator >> yDeriv: integer [ 
 	^startingBDF
 		derivative: integer
@@ -83,7 +85,7 @@ StartingBasicDAEIntegrator >> yDeriv: integer [
 		pastDerivative: ydotpast
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StartingBasicDAEIntegrator >> yDeriv: integer at: time [ 
 	^startingBDF
 		derivative: integer

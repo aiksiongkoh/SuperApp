@@ -1,27 +1,28 @@
 Class {
-	#name : #SymEulerParametersDDot,
-	#superclass : #SymEulerArray,
-	#type : #variable,
+	#name : 'SymEulerParametersDDot',
+	#superclass : 'SymEulerArray',
+	#type : 'variable',
 	#instVars : [
 		'qEdot',
 		'aAddot',
 		'aBddot',
 		'aCddot'
 	],
-	#category : #'StCAD-Basic'
+	#category : 'StCAD-Basic',
+	#package : 'StCAD-Basic'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SymEulerParametersDDot class >> fromqEdot: qEdot qEddot: qEddot [ 
 	^self new fromqEdot: qEdot qEddot: qEddot
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SymEulerParametersDDot class >> new [
 	^(super new: 4) initialize
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 SymEulerParametersDDot class >> visualWorksMetadata [
 
 	^ #(
@@ -31,7 +32,7 @@ SymEulerParametersDDot class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SymEulerParametersDDot class >> with: aEulerParametersDot [ 
 	| answer |
 	answer := super new: 4.
@@ -39,70 +40,70 @@ SymEulerParametersDDot class >> with: aEulerParametersDot [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerParametersDDot >> aA [
 	^qEdot aA
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerParametersDDot >> aAddot [
 	^aAddot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerParametersDDot >> aAdot [
 	^qEdot aAdot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerParametersDDot >> aB [
 	^qEdot aB
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerParametersDDot >> aBddot [
 	^aBddot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerParametersDDot >> aBdot [
 	^qEdot aBdot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerParametersDDot >> aC [
 	^qEdot aC
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerParametersDDot >> aCddot [
 	^aCddot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerParametersDDot >> aCdot [
 	^qEdot aCdot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerParametersDDot >> alpF [
 	^(self aBdot timesFullColumn: qEdot) + (self aB timesFullColumn: self) 
 		times: 2.0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerParametersDDot >> alpOpO [
 	^(self aBdot timesFullColumn: qEdot) + (self aB timesFullColumn: self) 
 		times: 2.0
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 SymEulerParametersDDot >> calc [
 	qEdot calc.
 	self calcAddotBddotCddot
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 SymEulerParametersDDot >> calcAddotBddotCddot [
 	"aAddot, aBddot and aCddot are all calculated together and only here.
 
@@ -155,13 +156,13 @@ SymEulerParametersDDot >> calcAddotBddotCddot [
 				+ (self aB timesTransposeFullMatrix: aCddot) times: 2.0
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 SymEulerParametersDDot >> calcSymbolic [
 	qEdot calcSymbolic.
 	self calcSymbolicAddotBddotCddot
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 SymEulerParametersDDot >> calcSymbolicAddotBddotCddot [
 	"aAddot, aBddot and aCddot are all calculated together and only here.
 
@@ -214,31 +215,31 @@ SymEulerParametersDDot >> calcSymbolicAddotBddotCddot [
 				+ (self aB timesFullMatrix: aCddot transpose) times: 2.0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerParametersDDot >> fromqEdot: aqEdot qEddot: qEddot [ 
 	qEdot := aqEdot.
 	1 to: 4 do: [:i | self at: i put: (qEddot at: i)]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 SymEulerParametersDDot >> initialize [
 	aAddot := StMFullMatrix new: 3 by: 3.
 	aBddot := StMFullMatrix new: 3 by: 4.
 	aCddot := StMFullMatrix new: 3 by: 4
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 SymEulerParametersDDot >> initialize: aEulerParametersDot [ 
 	self initialize.
 	qEdot := aEulerParametersDot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerParametersDDot >> qEdot: aMbDEulerParametersDot [ 
 	qEdot := aMbDEulerParametersDot
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 SymEulerParametersDDot >> simplified [
 	| answer |
 	answer := super simplified.
@@ -246,7 +247,7 @@ SymEulerParametersDDot >> simplified [
 	^answer
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 SymEulerParametersDDot >> zeroSelf [
 	super zeroSelf.
 	self calc

@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDReactionForceMagIe,
-	#superclass : #MbDReactionMag,
+	#name : 'MbDReactionForceMagIe',
+	#superclass : 'MbDReactionMag',
 	#instVars : [
 		'aFIe',
 		'pFIepXI',
@@ -9,10 +9,12 @@ Class {
 		'pFIepEJ',
 		'pFIeplam'
 	],
-	#category : #'StCAD-MbD-MbDReaction'
+	#category : 'StCAD-MbD-MbDReaction',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDReaction'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDReactionForceMagIe class >> visualWorksMetadata [
 
 	^ #(
@@ -22,7 +24,7 @@ MbDReactionForceMagIe class >> visualWorksMetadata [
 
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDReactionForceMagIe >> calcPostDynCorrectorIteration [
 	| aFIeJtO uFIeJtO |
 	aFIeJtO := joint aFIeJtO.
@@ -43,42 +45,42 @@ MbDReactionForceMagIe >> calcPostDynCorrectorIteration [
 			pFIeplam := uFIeJtO transpose timesSparseMatrix: joint pFIeJtOplam]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReactionForceMagIe >> isJointForce [
 	^true
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDReactionForceMagIe >> postInput [
 	aFIe := joint aFIeJtO length
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReactionForceMagIe >> pvaluepEI [
 	^pFIepEI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReactionForceMagIe >> pvaluepEJ [
 	^pFIepEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReactionForceMagIe >> pvaluepXI [
 	^pFIepXI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReactionForceMagIe >> pvaluepXJ [
 	^pFIepXJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReactionForceMagIe >> pvalueplam [
 	^pFIeplam
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReactionForceMagIe >> value [
 	^aFIe
 ]

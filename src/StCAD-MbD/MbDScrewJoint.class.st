@@ -1,14 +1,16 @@
 Class {
-	#name : #MbDScrewJoint,
-	#superclass : #MbDJoint,
+	#name : 'MbDScrewJoint',
+	#superclass : 'MbDJoint',
 	#instVars : [
 		'pitch',
 		'aConstant'
 	],
-	#category : #'StCAD-MbD-MbDJoint'
+	#category : 'StCAD-MbD-MbDJoint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDJoint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDScrewJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -18,24 +20,24 @@ MbDScrewJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDScrewJoint >> aConstant [
 	^aConstant
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDScrewJoint >> aConstant: anObject [
 	aConstant := anObject
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDScrewJoint >> aTX [
 	"aTX is torque on ADAMS marker I."
 
 	^self jointTorqueJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDScrewJoint >> classString [
 	"Used to access the descriptive name of the joint."
 	"Needed for multi-language."
@@ -43,7 +45,7 @@ MbDScrewJoint >> classString [
 	^TheMbDSystem getString: #'MbD: Screw Joint '
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDScrewJoint >> connectsI: mkrII toJ: mkrJJ [ 
 	"Subsequent prescribed motions may make endFrameI , J become prescribed end frames."
 	"Use newCopyEndFrameqc to prevent efrms from becoming EndFrameqct."
@@ -52,7 +54,7 @@ MbDScrewJoint >> connectsI: mkrII toJ: mkrJJ [
 	frmJ := mkrJJ newCopyEndFrameqc
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDScrewJoint >> initializeGlobally [
 	| constraint |
 	constraints isEmpty 
@@ -65,7 +67,7 @@ MbDScrewJoint >> initializeGlobally [
 		ifFalse: [super initializeGlobally]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDScrewJoint >> pitch: double [ 
 	pitch := double
 ]

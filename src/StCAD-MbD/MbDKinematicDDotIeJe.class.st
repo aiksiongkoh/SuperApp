@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDKinematicDDotIeJe,
-	#superclass : #MbDKinematicIeJe,
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#name : 'MbDKinematicDDotIeJe',
+	#superclass : 'MbDKinematicIeJe',
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDKinematicDDotIeJe class >> visualWorksMetadata [
 
 	^ #(

@@ -48,8 +48,8 @@ OneOverFactorials	<ClassOfVariable>	description of variable''s function
 VectorFactorial	<ClassOfVariable>	description of variable''s function
 "
 Class {
-	#name : #DifferenceOperator,
-	#superclass : #Object,
+	#name : 'DifferenceOperator',
+	#superclass : 'StMNumeric',
 	#instVars : [
 		'iStep',
 		'order',
@@ -61,10 +61,12 @@ Class {
 	#classVars : [
 		'Math'
 	],
-	#category : #'StMath-StMathDifferenceOperator'
+	#category : 'StMath-StMathDifferenceOperator',
+	#package : 'StMath',
+	#tag : 'StMathDifferenceOperator'
 }
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 DifferenceOperator class >> initializeX [
 	"StMDifferenceOperator initialize."
 
@@ -72,12 +74,12 @@ DifferenceOperator class >> initializeX [
 	1 to: OneOverFactorials size do: [:i | OneOverFactorials at: i put: 1.0 / i factorial]
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 DifferenceOperator class >> new [
 	^super new initialize
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 DifferenceOperator class >> visualWorksMetadata [
 
 	^ #(
@@ -86,7 +88,7 @@ DifferenceOperator class >> visualWorksMetadata [
 
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 DifferenceOperator >> calcOperatorMatrix [
 	"Compute operatorMatrix such that 
 	value?(time) := (operatorMatrix at: 1) timesColumn: series. 
@@ -98,12 +100,12 @@ DifferenceOperator >> calcOperatorMatrix [
 				on: SingularMatrixError do: [:ex | ex resume]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DifferenceOperator >> currentStepSize [
 	^time - (timeNodes at: 1)
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 DifferenceOperator >> derivative: i with: series [ 
 	"Answer ith derivative given past values in series."
 
@@ -111,7 +113,7 @@ DifferenceOperator >> derivative: i with: series [
 		dot: series
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DifferenceOperator >> direction [
 	^(timeNodes at: 1)
 		< time
@@ -119,7 +121,7 @@ DifferenceOperator >> direction [
 		ifFalse: [-1.0]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 DifferenceOperator >> formDegenerateTaylorRow: i [ 
 	| rowi |
 	rowi := taylorMatrix at: i.
@@ -127,12 +129,12 @@ DifferenceOperator >> formDegenerateTaylorRow: i [
 	2 to: order + 1 do: [:j | rowi at: j put: 0.0]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 DifferenceOperator >> formTaylorMatrix [
 	self subclassResponsibility
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 DifferenceOperator >> formTaylorRow: i withTimeNode: ii derivative: k [ 
 	| rowi hi hipower aij |
 	rowi := taylorMatrix at: i.
@@ -149,31 +151,31 @@ DifferenceOperator >> formTaylorRow: i withTimeNode: ii derivative: k [
 			rowi at: j put: aij]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DifferenceOperator >> iStep: integer [ 
 	"iStep is the current step of interest."
 
 	iStep := integer
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 DifferenceOperator >> initialize [
 	"Do nothing."
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 DifferenceOperator >> instanciateTaylorMatrix [
 	(taylorMatrix isNil or: [taylorMatrix nrow ~= (order + 1)])
 		ifTrue: [taylorMatrix := StMFullMatrix new: order + 1 by: order + 1]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 DifferenceOperator >> isConstantStepFor: nsteps [ 
 	| nPastNodes dt tol dti |
 	nPastNodes := timeNodes size.
 	nPastNodes < nsteps ifTrue: [^false].
 	dt := time - (timeNodes at: 1).
-	tol := 1.0d-6 * dt abs.
+	tol := 1.0e-6 * dt abs.
 	2 to: nsteps
 		do: 
 			[:i | 
@@ -183,12 +185,12 @@ DifferenceOperator >> isConstantStepFor: nsteps [
 	^true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 DifferenceOperator >> isDecreasingStepFor: nsteps [ 
 	| nPastNodes oneMinusTolFactor dtPast dtNow |
 	nPastNodes := timeNodes size.
 	nPastNodes < nsteps ifTrue: [^false].
-	oneMinusTolFactor := 1.0 - 1.0d-6.
+	oneMinusTolFactor := 1.0 - 1.0e-6.
 	dtPast := time - (timeNodes at: 1).
 	dtPast := dtPast abs.
 	2 to: nsteps
@@ -202,12 +204,12 @@ DifferenceOperator >> isDecreasingStepFor: nsteps [
 	^true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 DifferenceOperator >> isIncreasingStepFor: nsteps [ 
 	| nPastNodes onePlusTolFactor dtPast dtNow |
 	nPastNodes := timeNodes size.
 	nPastNodes < (nsteps + 1) ifTrue: [^false].
-	onePlusTolFactor := 1.0 + 1.0d-6.
+	onePlusTolFactor := 1.0 + 1.0-6.
 	dtPast := time - (timeNodes at: 1).
 	dtPast := dtPast abs.
 	2 to: nsteps + 1
@@ -221,51 +223,51 @@ DifferenceOperator >> isIncreasingStepFor: nsteps [
 	^true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DifferenceOperator >> nStep [
 	^order
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DifferenceOperator >> operatorMatrix [
 	^operatorMatrix
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DifferenceOperator >> order [
 	^order
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DifferenceOperator >> order: integer [ 
 	"Method order of formula."
 
 	order := integer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DifferenceOperator >> time [
 	^time
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DifferenceOperator >> time: double [ 
 	time := double
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DifferenceOperator >> timeNodes [
 	^timeNodes
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DifferenceOperator >> timeNodes: row [ 
 	"Row of past times in order of increasing past."
 
 	timeNodes := row
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 DifferenceOperator >> valueWith: series [ 
 	"series stores past values for Extrapolator."
 	"series stores present and past values for BackwardDifference."
@@ -273,7 +275,7 @@ DifferenceOperator >> valueWith: series [
 	^self derivative: 0 with: series
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 DifferenceOperator >> valueddddotWith: series [ 
 	"series stores past values for Extrapolator."
 	"series stores present and past values for BackwardDifference."
@@ -281,7 +283,7 @@ DifferenceOperator >> valueddddotWith: series [
 	^self derivative: 4 with: series
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 DifferenceOperator >> valuedddotWith: series [ 
 	"series stores past values for Extrapolator."
 	"series stores present and past values for BackwardDifference."
@@ -289,7 +291,7 @@ DifferenceOperator >> valuedddotWith: series [
 	^self derivative: 3 with: series
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 DifferenceOperator >> valueddotWith: series [ 
 	"series stores past values for Extrapolator."
 	"series stores present and past values for BackwardDifference."
@@ -297,7 +299,7 @@ DifferenceOperator >> valueddotWith: series [
 	^self derivative: 2 with: series
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 DifferenceOperator >> valuedotWith: series [ 
 	"series stores past values for Extrapolator."
 	"series stores present and past values for BackwardDifference."

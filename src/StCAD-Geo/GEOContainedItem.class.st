@@ -1,13 +1,15 @@
 Class {
-	#name : #GEOContainedItem,
-	#superclass : #NewEventModel,
+	#name : 'GEOContainedItem',
+	#superclass : 'NewEventModel',
 	#instVars : [
 		'container'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'triggering events' }
+{ #category : 'triggering events' }
 GEOContainedItem class >> constructEventsTriggered [
 	^(super constructEventsTriggered)
 		add: #getMbDObject;
@@ -19,12 +21,12 @@ GEOContainedItem class >> constructEventsTriggered [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GEOContainedItem class >> new [
 	^super new initialize
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOContainedItem class >> visualWorksMetadata [
 
 	^ #(
@@ -34,35 +36,35 @@ GEOContainedItem class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> aSup [
 	^container
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> aSup: aaSup [ 
 	container := aaSup.
 	^aaSup
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> addCurrentStateToDataSeries [
 	| data |
 	data := self dataFromCurrentState.
 	self dataSeries add: data
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> addMarkersIn: set [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> anyPart [
 	^container anyPart
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> asTreeNode [
 	| answer |
 	answer := GEOTreeNode new.
@@ -72,27 +74,27 @@ GEOContainedItem >> asTreeNode [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> assembly [
 	^container assembly
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> boundingBox [
 	self subclassResponsibility
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOContainedItem >> calcBoundingBox [
 	self notYetImplemented
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> chartTypes [
 	^self triggerEvent: #getChartTypes
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> chartTypes: chartTypes [ 
 	self removeActionsForEvent: #getChartTypes.
 	chartTypes notNil ifTrue: [self
@@ -101,22 +103,22 @@ GEOContainedItem >> chartTypes: chartTypes [
 			perform: #yourself]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> connectorList: collection [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> container [
 	^container
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> container: geoItem [ 
 	container := geoItem
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> dataSeries [
 	| answer |
 	answer := self triggerEvent: #getDataSeries.
@@ -127,7 +129,7 @@ GEOContainedItem >> dataSeries [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> dataSeries: dataSeries [ 
 	self removeActionsForEvent: #getDataSeries.
 	dataSeries notNil ifTrue: [self
@@ -136,12 +138,12 @@ GEOContainedItem >> dataSeries: dataSeries [
 			perform: #yourself]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> discontinuities [
 	^self triggerEvent: #getDiscontinuities
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> discontinuities: discontinuities [ 
 	self removeActionsForEvent: #getDiscontinuities.
 	discontinuities notNil ifTrue: [self
@@ -150,14 +152,14 @@ GEOContainedItem >> discontinuities: discontinuities [
 			perform: #yourself]
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 GEOContainedItem >> frozenCopy [
 	"Used in handle tracking."
 
 	^self copy
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> fullName [
 	| stream |
 	stream := WriteStream on: (String new: 256).
@@ -169,7 +171,7 @@ GEOContainedItem >> fullName [
 	^stream contents asSymbol
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> fullNamePOV [
 	| stream |
 	stream := WriteStream on: (String new: 256).
@@ -184,7 +186,7 @@ GEOContainedItem >> fullNamePOV [
 	^stream contents asSymbol
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> fullpath [
 	| fullpath |
 	fullpath := container isNil
@@ -194,7 +196,7 @@ GEOContainedItem >> fullpath [
 	^fullpath
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> functionParser [
 	| parser |
 	parser := FunctionParser new.
@@ -204,19 +206,19 @@ GEOContainedItem >> functionParser [
 	^parser
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> geoTime [
 	^container == nil
 		ifTrue: [nil]
 		ifFalse: [container geoTime]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOContainedItem >> initialize [
 	"Do nothing is default."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> inputData [
 	| answer |
 	answer := self triggerEvent: #getInputData.
@@ -227,7 +229,7 @@ GEOContainedItem >> inputData [
 			self triggerEvent: #getInputData]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> inputData: inputData [ 
 	self removeActionsForEvent: #getInputData.
 	inputData notNil ifTrue: [self
@@ -236,83 +238,83 @@ GEOContainedItem >> inputData: inputData [
 			perform: #yourself]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> interface [
 	container == nil ifTrue: [^nil].
 	^container interface
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOContainedItem >> isAssembly [
 	^false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOContainedItem >> isCutable [
 	^true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOContainedItem >> isFace [
 	^false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOContainedItem >> isGeneralConstraintSet [
 	^false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOContainedItem >> isInterface [
 	^false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOContainedItem >> isJoint [
 	^false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOContainedItem >> isKineIJ [
 	^false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOContainedItem >> isMotion [
 	^false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOContainedItem >> isPart [
 	^false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOContainedItem >> isPlanar [
 	^false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOContainedItem >> isRobotAxis [
 	^false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOContainedItem >> isSketch [
 	^false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> logString: string [ 
 	container logString: string
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> mbdClass [
 	^self class mbdClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> mbdObject [
 	| answer |
 	^(answer := self triggerEvent: #getMbDObject) notNil
@@ -322,7 +324,7 @@ GEOContainedItem >> mbdObject [
 			self mbdObject]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> mbdObject: mbdObject [ 
 	self removeActionsForEvent: #getMbDObject.
 	mbdObject notNil ifTrue: [self
@@ -331,29 +333,29 @@ GEOContainedItem >> mbdObject: mbdObject [
 			perform: #yourself]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> mbdUnits [
 	^container == nil
 		ifTrue: [nil]
 		ifFalse: [container mbdUnits]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> nameString [
 	^self class nameString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> newDataSeries [
 	self dataSeries: OrderedCollection new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> notes [
 	^self triggerEvent: #getNotes
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> notes: notes [ 
 	self removeActionsForEvent: #getNotes.
 	notes notNil ifTrue: [self
@@ -362,27 +364,27 @@ GEOContainedItem >> notes: notes [
 			perform: #yourself]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> part [
 	^container part
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> plotTypes [
 	^self triggerEvent: #getChartTypes
 ]
 
-{ #category : #modeling }
+{ #category : 'modeling' }
 GEOContainedItem >> postBuildSolidModelFrom: geoPart [ 
 	container postBuildSolidModelFrom: geoPart
 ]
 
-{ #category : #modeling }
+{ #category : 'modeling' }
 GEOContainedItem >> preBuildSolidModelFrom: geoPart [ 
 	container notNil ifTrue: [container preBuildSolidModelFrom: geoPart]
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 GEOContainedItem >> preSave [
 	| go mbd |
 	go := self triggerEvent: #getCADObject.
@@ -393,44 +395,44 @@ GEOContainedItem >> preSave [
 	mbd notNil ifTrue: [self removeAllActionsWithReceiver: mbd]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 GEOContainedItem >> refFrameChanged [
 	self triggerEvent: #refFrameChanged
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOContainedItem >> release [
 	container := nil.
 	super release
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> removeSup [
 	self aSup ifNotNil: [:aaSup | aaSup removeSub: self]
 ]
 
-{ #category : #memento }
+{ #category : 'memento' }
 GEOContainedItem >> storeMemento: aMemento for: anObject [ 
 	container notNil ifTrue: [container storeMemento: aMemento for: anObject]
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOContainedItem >> storeOn: aStream level: level [ 
 	self subclassResponsibility
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOContainedItem >> storePOVOn: aStream level: level [ 
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> timeSeries [
 	container == nil ifTrue: [^nil].
 	^container timeSeries
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> treeNodesBlock [
 	^
 	[:items :displayString | 
@@ -447,7 +449,7 @@ GEOContainedItem >> treeNodesBlock [
 	child]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOContainedItem >> withUnits: argUnits [ 
 	"Do nothing."
 ]

@@ -1,15 +1,17 @@
 Class {
-	#name : #GEOvIJ,
-	#superclass : #GEOFunctionIJ,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEOvIJ',
+	#superclass : 'GEOFunctionIJ',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOvIJ class >> functionSymbol [
 	^'vIJ'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOvIJ class >> visualWorksMetadata [
 
 	^ #(
@@ -19,22 +21,22 @@ GEOvIJ class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOvIJ >> dataSeries [
 	^geoIJ dataSeriesForChart collect: [:kineIkineJ | kineIkineJ vIJ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOvIJ >> dimension [
 	^'velocity'
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOvIJ >> mbdClass [
 	^MbDVelMagIecJec
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOvIJ >> mbdUnit [
 	^self mbdUnits velocity
 ]

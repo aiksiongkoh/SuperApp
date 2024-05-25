@@ -1,10 +1,12 @@
 Class {
-	#name : #GEOCurve,
-	#superclass : #GEOAnyGraphic,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEOCurve',
+	#superclass : 'GEOAnyGraphic',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'triggering events' }
+{ #category : 'triggering events' }
 GEOCurve class >> constructEventsTriggered [
 	^(super constructEventsTriggered)
 		add: #getpaint;
@@ -15,7 +17,7 @@ GEOCurve class >> constructEventsTriggered [
 		yourself
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOCurve class >> visualWorksMetadata [
 
 	^ #(
@@ -25,7 +27,7 @@ GEOCurve class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCurve >> aColor [
 	^(self triggerEvent: #getColor) ifNil: 
 			[| answer |
@@ -34,7 +36,7 @@ GEOCurve >> aColor [
 			answer]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCurve >> aColor: aColor [ 
 	self removeActionsForEvent: #getColor.
 	aColor notNil 
@@ -45,7 +47,7 @@ GEOCurve >> aColor: aColor [
 				perform: #yourself]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCurve >> alpha [
 	| answer |
 	answer := self triggerEvent: #getalpha.
@@ -56,7 +58,7 @@ GEOCurve >> alpha [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCurve >> alpha: alpha [ 
 	self removeActionsForEvent: #getalpha.
 	alpha notNil 
@@ -67,7 +69,7 @@ GEOCurve >> alpha: alpha [
 				perform: #yourself]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCurve >> asPolyline [
 	| polyline |
 	polyline := GEOPolyline new.
@@ -77,33 +79,33 @@ GEOCurve >> asPolyline [
 	^polyline
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCurve >> cut [
 	container cutCurve: self.
 	super cut
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOCurve >> hasAlpha [
 	^self alpha notNil
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOCurve >> hasPaint [
 	^self paint notNil
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOCurve >> hasStipple [
 	^self stipplePattern notNil
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOCurve >> isClosed [
 	^false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCurve >> lineWidth [
 	| answer |
 	answer := self triggerEvent: #getlineWidth.
@@ -114,7 +116,7 @@ GEOCurve >> lineWidth [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCurve >> lineWidth: lineWidth [ 
 	self removeActionsForEvent: #getlineWidth.
 	lineWidth notNil 
@@ -125,7 +127,7 @@ GEOCurve >> lineWidth: lineWidth [
 				perform: #yourself]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCurve >> paint [
 
 	| answer |
@@ -135,7 +137,7 @@ GEOCurve >> paint [
 	^ answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCurve >> paint1 [
 
 	| answer |
@@ -148,7 +150,7 @@ GEOCurve >> paint1 [
 	^ answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCurve >> paint: paint [ 
 	self removeActionsForEvent: #getpaint.
 	paint notNil 
@@ -159,7 +161,7 @@ GEOCurve >> paint: paint [
 				perform: #yourself]
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 GEOCurve >> postCopy [
 	| aColor |
 	aColor := self aColor.
@@ -167,24 +169,24 @@ GEOCurve >> postCopy [
 	self aColor: aColor copy
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCurve >> rOpointsO [
 	^self rfpointsf collect: [:rfpointf | refFrame rOpOfromrfpf: rfpointf]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCurve >> rPpointsP [
 	| partRefFrame |
 	partRefFrame := self part refFrame.
 	^self rOpointsO collect: [:rOpO | partRefFrame rfpffromrOpO: rOpO]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCurve >> rSkpointsSk [
 	^self rfpointsf collect: [:rfpointf | refFrame rFpFfromrfpf: rfpointf]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 GEOCurve >> renderOn: aRenderingContext [ 
 	self cadObject notNil 
 		ifTrue: 
@@ -202,7 +204,7 @@ GEOCurve >> renderOn: aRenderingContext [
 					self hasStipple ifTrue: [aRenderingContext disableLineStipple]]]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 GEOCurve >> renderPolygonOn: aRenderingContext [ 
 	self cadObject notNil 
 		ifTrue: 
@@ -220,14 +222,14 @@ GEOCurve >> renderPolygonOn: aRenderingContext [
 					self hasStipple ifTrue: [aRenderingContext disableLineStipple]]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCurve >> stipplePattern [
 	| answer |
 	answer := self triggerEvent: #getstipplePattern.
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCurve >> stipplePattern: stipplePattern [ 
 	self removeActionsForEvent: #getstipplePattern.
 	stipplePattern notNil 
@@ -238,7 +240,7 @@ GEOCurve >> stipplePattern: stipplePattern [
 				perform: #yourself]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCurve >> theta: angle [ 
 	| aA cosAngle sinAngle |
 	aA := (StMFullMatrix zero: 3 by: 3).
@@ -253,7 +255,7 @@ GEOCurve >> theta: angle [
 	self changed
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCurve >> uncut [
 	container addGraphic: self.
 	super uncut

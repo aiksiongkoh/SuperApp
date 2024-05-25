@@ -7,16 +7,18 @@ Instance Variables:
 
 "
 Class {
-	#name : #StMFFT,
-	#superclass : #StMFunction,
+	#name : 'StMFFT',
+	#superclass : 'StMFunction',
 	#instVars : [
 		'xs',
 		'ys'
 	],
-	#category : #'StMath-Symbolic'
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 StMFFT class >> example1 [
 	"self halt. self example1."
 
@@ -35,7 +37,7 @@ StMFFT class >> example1 [
 	fft doBitReversedOrder
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 StMFFT class >> example2 [
 	"self halt. self example2."
 
@@ -49,7 +51,7 @@ StMFFT class >> example2 [
 	fft inverse
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 StMFFT class >> example3 [
 	"self halt. self example3."
 
@@ -63,7 +65,7 @@ StMFFT class >> example3 [
 	fft inverse
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 StMFFT class >> example4 [
 	"self halt. self example4."
 
@@ -81,7 +83,7 @@ StMFFT class >> example4 [
 	fft inverse
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMFFT class >> visualWorksMetadata [
 
 	^ #(
@@ -91,7 +93,7 @@ StMFFT class >> visualWorksMetadata [
 
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 StMFFT >> FFTsign: sign times: double [ 
 	self doBitReversedOrder.
 	self doDanielsonLanczosWithSign: sign sign.
@@ -99,7 +101,7 @@ StMFFT >> FFTsign: sign times: double [
 	ys magnifySelf: double
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 StMFFT >> doBitReversedOrder [
 	| n j |
 	n := xs size.
@@ -125,7 +127,7 @@ StMFFT >> doBitReversedOrder [
 			j := j + m]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 StMFFT >> doDanielsonLanczosWithSign: sign [ 
 	"Ref: Numerical Recipe in Fortran"
 
@@ -162,27 +164,27 @@ StMFFT >> doDanielsonLanczosWithSign: sign [
 			mmax := istep]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 StMFFT >> inverse [
 	self FFTsign: -1 times: 1.0 / xs size
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMFFT >> size [
 	^xs size
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 StMFFT >> transform [
 	self FFTsign: 1 times: 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMFFT >> xs [
 	^xs
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMFFT >> xs: array [ 
 	| n |
 	n := array size.
@@ -193,7 +195,7 @@ StMFFT >> xs: array [
 	xs := array
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMFFT >> xs: xarray ys: yarray [ 
 	| n nn xxs yys |
 	xarray isNil 
@@ -227,7 +229,7 @@ StMFFT >> xs: xarray ys: yarray [
 	ys := yys
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMFFT >> ys: array [ 
 	| n |
 	n := array size.

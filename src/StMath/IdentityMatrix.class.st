@@ -1,19 +1,21 @@
 Class {
-	#name : #IdentityMatrix,
-	#superclass : #SpecialMatrix,
+	#name : 'IdentityMatrix',
+	#superclass : 'SpecialMatrix',
 	#instVars : [
 		'nrow'
 	],
-	#category : #'StMath-StMathArraySpecial'
+	#category : 'StMath-StMathArraySpecial',
+	#package : 'StMath',
+	#tag : 'StMathArraySpecial'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 IdentityMatrix class >> new: aInteger [ 
 	^(super basicNew: 0)
 		initialize: aInteger
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 IdentityMatrix class >> visualWorksMetadata [
 
 	^ #(
@@ -23,61 +25,61 @@ IdentityMatrix class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'basic ops *' }
+{ #category : 'basic ops *' }
 IdentityMatrix >> * anObject [ 
 	^anObject
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 IdentityMatrix >> asIdentityMatrix [
 	^self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 IdentityMatrix >> at: i and: j [ 
 	^i == j
 		ifTrue: [self elementClass unity]
 		ifFalse: [self elementClass zero]
 ]
 
-{ #category : #'initialize - release' }
+{ #category : 'initialize - release' }
 IdentityMatrix >> initialize: aInteger [ 
 	nrow := aInteger
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 IdentityMatrix >> isDiagonal [
 	^true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 IdentityMatrix >> isIdentity [
 	^true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 IdentityMatrix >> ncol [
 	^nrow
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 IdentityMatrix >> nrow [
 	^nrow
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 IdentityMatrix >> numberOfElements [
 	"Answer the number of elements in the full vector or matrix."
 
 	^nrow * nrow
 ]
 
-{ #category : #'basic ops *' }
+{ #category : 'basic ops *' }
 IdentityMatrix >> productFromTranspose: aObject [ 
 	^aObject transpose
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 IdentityMatrix >> startingAt: i3 and: j3 replaceElementsIn: aVector from: i1 to: i2 [ 
 	"OK to use FullMatrix version."
 
@@ -89,7 +91,7 @@ IdentityMatrix >> startingAt: i3 and: j3 replaceElementsIn: aVector from: i1 to:
 		and: j3
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 IdentityMatrix >> startingAt: ii1 and: jj1 sumFromThenReplaceElementsIn: aMatrix from: i1 and: j1 to: i2 and: j2 [ 
 	"This destructively replaces elements from start to stop in the 
 	collection starting at index, repStart, in the receiver. 
@@ -106,7 +108,7 @@ IdentityMatrix >> startingAt: ii1 and: jj1 sumFromThenReplaceElementsIn: aMatrix
 		times: self elementClass unity
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 IdentityMatrix >> startingAt: i3 and: j3 times: aNumber replaceElementsIn: aVector from: i1 to: i2 [ 
 	"OK to use FullMatrix version."
 
@@ -119,7 +121,7 @@ IdentityMatrix >> startingAt: i3 and: j3 times: aNumber replaceElementsIn: aVect
 		times: aNumber
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 IdentityMatrix >> startingAt: i3 and: j3 times: aNumber sumFromThenReplaceElementsIn: aMatrix from: i1 and: j1 to: i2 and: j2 [ 
 	"This destructively replaces elements from start to stop in the 
 	collection starting at index, repStart, in the receiver. 

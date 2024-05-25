@@ -1,6 +1,6 @@
 Class {
-	#name : #GEOWingedEdge,
-	#superclass : #GEOSolidModelingItem,
+	#name : 'GEOWingedEdge',
+	#superclass : 'GEOSolidModelingItem',
 	#instVars : [
 		'vertex1',
 		'vertex2',
@@ -11,10 +11,12 @@ Class {
 		'edge21',
 		'edge22'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOWingedEdge class >> visualWorksMetadata [
 
 	^ #(
@@ -24,71 +26,71 @@ GEOWingedEdge class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWingedEdge >> edge11 [
 	^edge11
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWingedEdge >> edge11: edge [ 
 	edge11 := edge
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWingedEdge >> edge12 [
 	^edge12
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWingedEdge >> edge12: edge [ 
 	edge12 := edge
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWingedEdge >> edge21 [
 	^edge21
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWingedEdge >> edge21: edge [ 
 	edge21 := edge
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWingedEdge >> edge22 [
 	^edge22
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWingedEdge >> edge22: edge [ 
 	edge22 := edge
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWingedEdge >> face12 [
 	^face12
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWingedEdge >> face12: face [ 
 	face12 := face
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWingedEdge >> face21 [
 	^face21
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWingedEdge >> face21: face [ 
 	face21 := face
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWingedEdge >> facePlaneFor: face [
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWingedEdge >> faceVertexsFor: face [ 
 	| vertexs |
 	vertexs := OrderedCollection new.
@@ -96,7 +98,7 @@ GEOWingedEdge >> faceVertexsFor: face [
 	^vertexs
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWingedEdge >> faceVertexsFor: face in: vertexs [ 
 	| firstVertex nextVertex nextEdges |
 	face == face12
@@ -115,27 +117,27 @@ GEOWingedEdge >> faceVertexsFor: face in: vertexs [
 		nextEdges do: [:edge | edge faceVertexsFor: face in: vertexs]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWingedEdge >> magnifySelf: aDouble [ 
 	"Do nothing. Work done by vertexs and faces."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWingedEdge >> vertex1 [
 	^vertex1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWingedEdge >> vertex1: vertex [ 
 	vertex1 := vertex
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWingedEdge >> vertex2 [
 	^vertex2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWingedEdge >> vertex2: vertex [ 
 	vertex2 := vertex
 ]

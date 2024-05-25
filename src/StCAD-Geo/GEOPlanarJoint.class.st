@@ -1,20 +1,22 @@
 Class {
-	#name : #GEOPlanarJoint,
-	#superclass : #GEOInPlaneJoint,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEOPlanarJoint',
+	#superclass : 'GEOInPlaneJoint',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPlanarJoint class >> mbdClass [
 	^MbDPlanarJoint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPlanarJoint class >> nameString [
 	^'PlanarJoint'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOPlanarJoint class >> visualWorksMetadata [
 
 	^ #(

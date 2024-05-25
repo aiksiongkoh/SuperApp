@@ -22,12 +22,14 @@ Instance Variables:
 sineFunction	<ClassOfVariable>	description of variable's function
 "
 Class {
-	#name : #StMSmoothSineStep,
-	#superclass : #StMSmoothStep,
-	#category : #'StMath-Symbolic'
+	#name : 'StMSmoothSineStep',
+	#superclass : 'StMSmoothStep',
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMSmoothSineStep class >> visualWorksMetadata [
 
 	^ #(
@@ -37,7 +39,7 @@ StMSmoothSineStep class >> visualWorksMetadata [
 
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 StMSmoothSineStep >> transitionFunctionx1: x1 y1: y1 x2: x2 y2: y2 [ 
 	| c A ome phi |
 	c := (y1 plus: y2)

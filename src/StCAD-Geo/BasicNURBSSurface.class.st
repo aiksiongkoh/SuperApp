@@ -1,6 +1,6 @@
 Class {
-	#name : #BasicNURBSSurface,
-	#superclass : #BasicSurface,
+	#name : 'BasicNURBSSurface',
+	#superclass : 'BasicSurface',
 	#instVars : [
 		'ccControlPoint',
 		'ccWeight',
@@ -9,10 +9,11 @@ Class {
 		'uDegree',
 		'vDegree'
 	],
-	#category : #'StCAD-Geo'
+	#category : 'StCAD-Geo',
+	#package : 'StCAD-Geo'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 BasicNURBSSurface class >> visualWorksMetadata [
 
 	^ #(

@@ -1,13 +1,15 @@
 Class {
-	#name : #GEOAnyGraphic,
-	#superclass : #GEOContainedItem,
+	#name : 'GEOAnyGraphic',
+	#superclass : 'GEOContainedItem',
 	#instVars : [
 		'refFrame'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'triggering events' }
+{ #category : 'triggering events' }
 GEOAnyGraphic class >> constructEventsTriggered [
 	^(super constructEventsTriggered)
 		add: #getbounds;
@@ -15,7 +17,7 @@ GEOAnyGraphic class >> constructEventsTriggered [
 		yourself
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOAnyGraphic class >> visualWorksMetadata [
 
 	^ #(
@@ -25,12 +27,12 @@ GEOAnyGraphic class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyGraphic >> aBoundingBox [
 	^self triggerEvent: #getBoundingBox
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyGraphic >> aBoundingBox: aBoundingBox [ 
 	self removeActionsForEvent: #getBoundingBox.
 	aBoundingBox ifNotNil: 
@@ -40,19 +42,19 @@ GEOAnyGraphic >> aBoundingBox: aBoundingBox [
 				perform: #yourself]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyGraphic >> aBoundingBoxF [
 	"In refFrame components."
 
 	^self aBoundingBox inRefFrame: refFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyGraphic >> aRefFrame [
 	^refFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyGraphic >> addRefFrame: argRefFrame [ 
 	"Example usage:
 
@@ -67,14 +69,14 @@ GEOAnyGraphic >> addRefFrame: argRefFrame [
 	self aRefFrame addSub: argRefFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyGraphic >> boundingBoxF [
 	"In refFrame components."
 
 	^self boundingBox inRefFrame: refFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyGraphic >> bounds: bounds [ 
 	self removeActionsForEvent: #getbounds.
 	bounds notNil 
@@ -85,98 +87,98 @@ GEOAnyGraphic >> bounds: bounds [
 				perform: #yourself]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOAnyGraphic >> cut [
 	refFrame cut.
 	super cut
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyGraphic >> flushBounds [
 	self removeActionsForEvent: #getbounds
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyGraphic >> guideFrame [
 	^refFrame refFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyGraphic >> inPlaneFrame [
 	^refFrame refFrame
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOAnyGraphic >> initialize [
 	self refFrame: GEOCartesianFrame2 new.
 	refFrame fixedAtRef
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyGraphic >> movingFrame [
 	^refFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyGraphic >> plane [
 	^refFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyGraphic >> positionMemento [
 	^refFrame positionMemento
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 GEOAnyGraphic >> postCopy [
 	super postCopy.
 	self refFrame: refFrame copy
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 GEOAnyGraphic >> preSave [
 	super preSave.
 	refFrame preSave
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyGraphic >> rDfD [
 	^self interface projectionFrame rDpPxfromrOpO: refFrame rOfO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyGraphic >> refFrame [
 	^refFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyGraphic >> refFrame: aFrame [ 
 	refFrame := aFrame.
 	refFrame body: self
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOAnyGraphic >> release [
 	refFrame release.
 	super release
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOAnyGraphic >> releaseRefFrame [
 	refFrame := nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyGraphic >> setRefFrame: aFrame [ 
 	refFrame := aFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAnyGraphic >> setrefFrame: aFrame [ 
 	refFrame := aFrame
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOAnyGraphic >> storeOn: aStream level: level [ 
 	aStream storeLevel: level title: self nameString.
 	aStream
@@ -186,13 +188,13 @@ GEOAnyGraphic >> storeOn: aStream level: level [
 	self refFrame storeOn: aStream level: level + 1
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 GEOAnyGraphic >> translateSelfBy: delta [ 
 	refFrame translateSelfBy: delta.
 	self changed
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOAnyGraphic >> uncut [
 	refFrame uncut
 ]

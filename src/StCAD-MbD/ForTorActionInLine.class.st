@@ -1,14 +1,16 @@
 Class {
-	#name : #ForTorActionInLine,
-	#superclass : #ForTorAction,
+	#name : 'ForTorActionInLine',
+	#superclass : 'ForTorAction',
 	#instVars : [
 		'distIeJe',
 		'aFTIeO'
 	],
-	#category : #'StCAD-MbD-MbDForce'
+	#category : 'StCAD-MbD-MbDForce',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDForce'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 ForTorActionInLine class >> visualWorksMetadata [
 
 	^ #(
@@ -18,12 +20,12 @@ ForTorActionInLine class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ForTorActionInLine >> aFTIeO [
 	^aFTIeO
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 ForTorActionInLine >> calcPostDynCorrectorIteration [
 	| uIeJeO tension |
 	uIeJeO := distIeJe uIeJeO.
@@ -31,27 +33,27 @@ ForTorActionInLine >> calcPostDynCorrectorIteration [
 	aFTIeO := uIeJeO times: tension
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ForTorActionInLine >> distIeJe [
 	^distIeJe
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 ForTorActionInLine >> fillAccICIterError: col [ 
 	forTorBasicI fillAccICIterError: col aFTO: aFTIeO
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 ForTorActionInLine >> fillAccICIterJacob: mat [ 
 	forTorBasicI fillAccICIterJacob: mat
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorActionInLine >> fillDynError: col [ 
 	forTorBasicI fillDynError: col aFTO: aFTIeO
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorActionInLine >> fillpFpy: mat [ 
 	| forTor block |
 	forTor := forTorFunction forTor.
@@ -78,7 +80,7 @@ ForTorActionInLine >> fillpFpy: mat [
 	block value: forTorFunction jointActions value: forTorFunction pFTpJtActs
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorActionInLine >> fillpFpy: mat pFTpfunction: pFTpfunction function: function [ 
 	| uIeJeO block |
 	uIeJeO := distIeJe uIeJeO.
@@ -111,7 +113,7 @@ ForTorActionInLine >> fillpFpy: mat pFTpfunction: pFTpfunction function: functio
 		value: function partFrameK
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorActionInLine >> fillpFpydot: mat [ 
 	| uIeJeO kinedotIJs jointActions pFTpkinedotIJs pFTpJtActs |
 	uIeJeO := distIeJe uIeJeO.
@@ -126,7 +128,7 @@ ForTorActionInLine >> fillpFpydot: mat [
 	1 to: jointActions size do: [:i | forTorBasicI fillpFpydot: mat pFTOpmudot: (uIeJeO timesSparseRow: (jointActions at: i) pvalueplam times: (pFTpJtActs at: i))]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorActionInLine >> fillpFpydot: mat pFTpfunction: pFTpfunction function: function [ 
 	| uIeJeO block |
 	uIeJeO := distIeJe uIeJeO.
@@ -159,7 +161,7 @@ ForTorActionInLine >> fillpFpydot: mat pFTpfunction: pFTpfunction function: func
 		value: function partFrameK
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 ForTorActionInLine >> forceOnFrmI: efrmi andFrmJ: efrmj [ 
 	forTorBasicI := ForceBasicqcVector new.
 	forTorBasicI parent: self.
@@ -167,27 +169,27 @@ ForTorActionInLine >> forceOnFrmI: efrmi andFrmJ: efrmj [
 	distIeJe withFrmI: efrmi frmJ: efrmj
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 ForTorActionInLine >> initialize [
 	distIeJe := MbDDistIeqcJeqc new.
 	forTorFunction := ForTorFunction new
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 ForTorActionInLine >> initializeGlobally [
 	distIeJe initializeGlobally.
 	forTorFunction initializeGlobally.
 	forTorBasicI initializeGlobally
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 ForTorActionInLine >> initializeLocally [
 	distIeJe initializeLocally.
 	forTorFunction initializeLocally.
 	forTorBasicI initializeLocally
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 ForTorActionInLine >> postAccICIteration [
 	distIeJe postAccICIteration.
 	forTorFunction postAccICIteration.
@@ -195,7 +197,7 @@ ForTorActionInLine >> postAccICIteration [
 	super postAccICIteration
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 ForTorActionInLine >> postCollisionCorrectorIteration [
 	distIeJe postCollisionCorrectorIteration.
 	forTorFunction postCollisionCorrectorIteration.
@@ -203,7 +205,7 @@ ForTorActionInLine >> postCollisionCorrectorIteration [
 	super postCollisionCorrectorIteration
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 ForTorActionInLine >> postCollisionPredictor [
 	distIeJe postCollisionPredictor.
 	forTorFunction postCollisionPredictor.
@@ -211,7 +213,7 @@ ForTorActionInLine >> postCollisionPredictor [
 	super postCollisionPredictor
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorActionInLine >> postDynCorrectorIteration [
 	distIeJe postDynCorrectorIteration.
 	forTorFunction postDynCorrectorIteration.
@@ -219,7 +221,7 @@ ForTorActionInLine >> postDynCorrectorIteration [
 	super postDynCorrectorIteration
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorActionInLine >> postDynOutput [
 	distIeJe postDynOutput.
 	forTorFunction postDynOutput.
@@ -227,7 +229,7 @@ ForTorActionInLine >> postDynOutput [
 	super postDynOutput
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorActionInLine >> postDynPredictor [
 	distIeJe postDynPredictor.
 	forTorFunction postDynPredictor.
@@ -235,7 +237,7 @@ ForTorActionInLine >> postDynPredictor [
 	super postDynPredictor
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 ForTorActionInLine >> postInput [
 	distIeJe postInput.
 	forTorFunction postInput.
@@ -243,7 +245,7 @@ ForTorActionInLine >> postInput [
 	super postInput
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 ForTorActionInLine >> postStaticIteration [
 	distIeJe postStaticIteration.
 	forTorFunction postStaticIteration.
@@ -251,7 +253,7 @@ ForTorActionInLine >> postStaticIteration [
 	super postStaticIteration
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 ForTorActionInLine >> preAccIC [
 	distIeJe preAccIC.
 	forTorFunction preAccIC.
@@ -259,7 +261,7 @@ ForTorActionInLine >> preAccIC [
 	super preAccIC
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorActionInLine >> preDynOutput [
 	distIeJe preDynOutput.
 	forTorFunction preDynOutput.
@@ -267,7 +269,7 @@ ForTorActionInLine >> preDynOutput [
 	super preDynOutput
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 ForTorActionInLine >> preStatic [
 	distIeJe preStatic.
 	forTorFunction preStatic.
@@ -275,7 +277,7 @@ ForTorActionInLine >> preStatic [
 	super preStatic
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorActionInLine >> simUpdateAll [
 	distIeJe simUpdateAll.
 	forTorFunction simUpdateAll.
@@ -283,12 +285,12 @@ ForTorActionInLine >> simUpdateAll [
 	super simUpdateAll
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ForTorActionInLine >> tension [
 	^forTorFunction
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 ForTorActionInLine >> torqueOnFrmI: efrmi andFrmJ: efrmj [ 
 	forTorBasicI := TorqueBasicVector new.
 	forTorBasicI parent: self.
@@ -296,12 +298,12 @@ ForTorActionInLine >> torqueOnFrmI: efrmi andFrmJ: efrmj [
 	distIeJe withFrmI: efrmi frmJ: efrmj
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ForTorActionInLine >> uIeJeO [
 	^distIeJe uIeJeO
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 ForTorActionInLine >> useEquationNumbers [
 	distIeJe useEquationNumbers.
 	forTorFunction useEquationNumbers.

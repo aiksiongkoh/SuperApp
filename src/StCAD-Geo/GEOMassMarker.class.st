@@ -1,6 +1,6 @@
 Class {
-	#name : #GEOMassMarker,
-	#superclass : #GEOMarker,
+	#name : 'GEOMassMarker',
+	#superclass : 'GEOMarker',
 	#instVars : [
 		'mass',
 		'aJppx',
@@ -8,10 +8,12 @@ Class {
 		'aJppz',
 		'density'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOMassMarker class >> visualWorksMetadata [
 
 	^ #(
@@ -21,58 +23,58 @@ GEOMassMarker class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMassMarker >> aAPp [
 	^refFrame aAFf
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMassMarker >> aJppx [
 	^aJppx == nil
 		ifTrue: [0.0]
 		ifFalse: [aJppx]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMassMarker >> aJppx: double [ 
 	aJppx := double
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMassMarker >> aJppy [
 	^aJppy == nil
 		ifTrue: [0.0]
 		ifFalse: [aJppy]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMassMarker >> aJppy: double [ 
 	aJppy := double
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMassMarker >> aJppz [
 	^aJppz == nil
 		ifTrue: [0.0]
 		ifFalse: [aJppz]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMassMarker >> aJppz: double [ 
 	aJppz := double
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMassMarker >> cut [
 	Dialog warn: 'Not appropriate to cut the mass marker.'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMassMarker >> dataClass [
 	^GEOTimePosVelAccDynData
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMassMarker >> dataSeriesForChart [
 	| answer |
 	answer := super dataSeriesForChart.
@@ -86,24 +88,24 @@ GEOMassMarker >> dataSeriesForChart [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMassMarker >> density [
 	^density == nil
 		ifTrue: [0.0]
 		ifFalse: [density]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMassMarker >> density: double [ 
 	density := double
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOMassMarker >> hasCentroid [
 	^self anyPart hasCentroid
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOMassMarker >> initialize [
 	super initialize.
 	mass := 0.0.
@@ -113,7 +115,7 @@ GEOMassMarker >> initialize [
 	density := 0.0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMassMarker >> mJpp [
 	^StMDiagonalMatrix
 		with: self aJppx
@@ -121,7 +123,7 @@ GEOMassMarker >> mJpp [
 		with: self aJppz
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMassMarker >> magnifySelf: aDouble [ 
 	| sq |
 	super magnifySelf: aDouble.
@@ -131,34 +133,34 @@ GEOMassMarker >> magnifySelf: aDouble [
 	aJppz := aJppz * sq
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMassMarker >> mass [
 	^mass == nil
 		ifTrue: [0.0]
 		ifFalse: [mass]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMassMarker >> mass: double [ 
 	mass := double
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMassMarker >> qEp [
 	^refFrame aAOf mbdEulerParameters
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMassMarker >> rOcmO [
 	^refFrame rOfO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMassMarker >> rPcmP [
 	^refFrame rFfF
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOMassMarker >> storeOn: aStream level: level [ 
 	aStream storeLevel: level title: 'PrincipalMassMarker'.
 	aStream

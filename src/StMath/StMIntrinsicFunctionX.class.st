@@ -1,5 +1,7 @@
 Class {
-	#name : #StMIntrinsicFunctionX,
-	#superclass : #StMFunctionX,
-	#category : #'StMath-Symbolic'
+	#name : 'StMIntrinsicFunctionX',
+	#superclass : 'StMFunctionX',
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }

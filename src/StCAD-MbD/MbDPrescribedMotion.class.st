@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDPrescribedMotion,
-	#superclass : #MbDJoint,
+	#name : 'MbDPrescribedMotion',
+	#superclass : 'MbDJoint',
 	#instVars : [
 		'xBlk',
 		'yBlk',
@@ -9,10 +9,12 @@ Class {
 		'theBlk',
 		'psiBlk'
 	],
-	#category : #'StCAD-MbD-MbDMotion'
+	#category : 'StCAD-MbD-MbDMotion',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDMotion'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDPrescribedMotion class >> visualWorksMetadata [
 
 	^ #(
@@ -22,7 +24,7 @@ MbDPrescribedMotion class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDPrescribedMotion >> connectsI: mkrII toJ: mkrJJ [ 
 	| eFrmqct |
 	super connectsI: mkrII toJ: mkrJJ.
@@ -34,30 +36,30 @@ MbDPrescribedMotion >> connectsI: mkrII toJ: mkrJJ [
 			frmI become: eFrmqct]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPrescribedMotion >> fillDispConstraints: collection [ 
 	"Prescribed constraints are essential."
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPrescribedMotion >> fillEssenConstraints: collection [ 
 	constraints do: [:con | con fillEssenConstraints: collection]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPrescribedMotion >> fillPerpenConstraints: collection [ 
 	"Prescribed constraints are essential."
 	"Do nothing."
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDPrescribedMotion >> initMotions [
 	frmI rmemBlks: (StMFullColumn with: xBlk with: yBlk with: zBlk).
 	frmI phiThePsiBlks: (StMFullColumn with: phiBlk with: theBlk with: psiBlk)
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDPrescribedMotion >> initialize [
 	super initialize.
 	xBlk := StMConstant with: 0.
@@ -68,32 +70,32 @@ MbDPrescribedMotion >> initialize [
 	psiBlk := StMConstant with: 0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPrescribedMotion >> phiBlk: block [ 
 	phiBlk := block
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPrescribedMotion >> psiBlk: block [ 
 	psiBlk := block
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPrescribedMotion >> theBlk: block [ 
 	theBlk := block
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPrescribedMotion >> xBlk: block [ 
 	xBlk := block
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPrescribedMotion >> yBlk: block [ 
 	yBlk := block
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPrescribedMotion >> zBlk: block [ 
 	zBlk := block
 ]

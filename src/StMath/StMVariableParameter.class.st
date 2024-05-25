@@ -2,12 +2,14 @@
 The parameter is a constant variable.
 "
 Class {
-	#name : #StMVariableParameter,
-	#superclass : #StMDependentVariable,
-	#category : #'StMath-Symbolic'
+	#name : 'StMVariableParameter',
+	#superclass : 'StMDependentVariable',
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMVariableParameter class >> visualWorksMetadata [
 
 	^ #(

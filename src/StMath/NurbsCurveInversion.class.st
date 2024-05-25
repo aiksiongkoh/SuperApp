@@ -12,18 +12,20 @@ Therefore,
 fu = (Su dot Su) + (r dot Suu)
 "
 Class {
-	#name : #NurbsCurveInversion,
-	#superclass : #ScalarNewtonRaphson,
+	#name : 'NurbsCurveInversion',
+	#superclass : 'ScalarNewtonRaphson',
 	#instVars : [
 		'rFpF',
 		'r',
 		'su',
 		'suu'
 	],
-	#category : #'StMath-StMathNewtonRaphson'
+	#category : 'StMath-StMathNewtonRaphson',
+	#package : 'StMath',
+	#tag : 'StMathNewtonRaphson'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 NurbsCurveInversion class >> visualWorksMetadata [
 
 	^ #(
@@ -33,47 +35,47 @@ NurbsCurveInversion class >> visualWorksMetadata [
 
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NurbsCurveInversion >> askSystemToUpdate [
 	self initializeGlobally
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NurbsCurveInversion >> fillPyPx [
 	pypx := (su dot: su) + (r dot: suu)
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NurbsCurveInversion >> fillY [
 	y := r dot: su
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NurbsCurveInversion >> passRootToSystem [
 	"Do nothing."
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NurbsCurveInversion >> postRun [
 	"Do nothing."
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NurbsCurveInversion >> preRun [
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NurbsCurveInversion >> rFpF [
 	^rFpF
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NurbsCurveInversion >> rFpF: anObject [ 
 	rFpF := anObject
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NurbsCurveInversion >> run [
 	^
 	[self preRun.

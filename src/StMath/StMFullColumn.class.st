@@ -1,11 +1,13 @@
 Class {
-	#name : #StMFullColumn,
-	#superclass : #StMFullVector,
-	#type : #variable,
-	#category : #'StMath-StMathArray'
+	#name : 'StMFullColumn',
+	#superclass : 'StMFullVector',
+	#type : 'variable',
+	#category : 'StMath-StMathArray',
+	#package : 'StMath',
+	#tag : 'StMathArray'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMFullColumn class >> fromCollection: aCollection aBlock: aBlock [ 
 	| size aFullColumn |
 	size := aCollection size.
@@ -15,12 +17,12 @@ StMFullColumn class >> fromCollection: aCollection aBlock: aBlock [
 	^aFullColumn
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMFullColumn class >> veryShortName [
 	^'Col'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMFullColumn class >> visualWorksMetadata [
 
 	^ #(
@@ -30,13 +32,13 @@ StMFullColumn class >> visualWorksMetadata [
 
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 StMFullColumn >> asFullColumn [
 
 	^self
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 StMFullColumn >> asFullMatrix [
 	| nrow answer |
 	nrow := self nrow.
@@ -46,22 +48,22 @@ StMFullColumn >> asFullMatrix [
 	^answer
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 StMFullColumn >> asFullRow [
 	^self shallowCopy changeClassToThatOf: (StMFullRow new: 0)
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 StMFullColumn >> asZeroColumn [
 	^ZeroColumn new: self nrow
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullColumn >> at: i minusFullColumn: aFullColumn [ 
 	super at: i minusFullVector: aFullColumn
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullColumn >> at: i minusFullColumn: aFullColumn times: aNumber [ 
 	super
 		at: i
@@ -69,12 +71,12 @@ StMFullColumn >> at: i minusFullColumn: aFullColumn times: aNumber [
 		times: aNumber
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullColumn >> at: i plusFullColumn: aFullColumn [ 
 	super at: i plusFullVector: aFullColumn
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullColumn >> at: i plusFullColumn: aFullColumn times: aNumber [ 
 	super
 		at: i
@@ -82,12 +84,12 @@ StMFullColumn >> at: i plusFullColumn: aFullColumn times: aNumber [
 		times: aNumber
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullColumn >> at: i1 putFullColumn: aFullColumn [ 
 	super at: i1 putFullVector: aFullColumn
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullColumn >> at: i1 putFullColumn: aFullColumn times: aNumber [ 
 	super
 		at: i1
@@ -95,7 +97,7 @@ StMFullColumn >> at: i1 putFullColumn: aFullColumn times: aNumber [
 		times: aNumber
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 StMFullColumn >> equal: aArray tol: tol [ 
 	"Equal to within a box of side 2*tol."
 
@@ -112,7 +114,7 @@ StMFullColumn >> equal: aArray tol: tol [
 	^answer
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 StMFullColumn >> equal: aArray tolBox: tol [ 
 	"Equal to within a box of side 2*tol."
 
@@ -129,49 +131,49 @@ StMFullColumn >> equal: aArray tolBox: tol [
 	^answer
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 StMFullColumn >> equal: aFullColumn tolRadius: tol [ 
 	^(self minusFullColumn: aFullColumn) length <= tol
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullColumn >> equalFullColumn: aFullColumn [ 
 	super equalFullVector: aFullColumn
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullColumn >> equalFullColumn: aFullColumn at: ii1 [ 
 	super equalFullVector: aFullColumn at: ii1
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullColumn >> equalFullColumn: aFullColumn times: aNumber [ 
 	super equalFullVector: aFullColumn times: aNumber
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullColumn >> equalFullMatrix: aFullMatrix at: ii1 and: jj1 [ 
 	| iiOffset |
 	iiOffset := ii1 - 1.
 	1 to: self size do: [:i | self at: i put: (aFullMatrix at: iiOffset + i and: jj1)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullColumn >> equalSelfMinusFullColumn: aFullColumn [ 
 	super equalSelfMinusFullVector: aFullColumn
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullColumn >> equalSelfMinusFullColumn: aFullColumn at: ii1 [ 
 	super equalSelfMinusFullVector: aFullColumn at: ii1
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullColumn >> equalSelfMinusFullColumn: aFullColumn times: aNumber [ 
 	super equalSelfMinusFullVector: aFullColumn times: aNumber
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullColumn >> equalSelfMinusFullMatrix: aFullMatrix at: ii1 and: jj1 [ 
 	| iiOffset |
 	iiOffset := ii1 - 1.
@@ -179,32 +181,32 @@ StMFullColumn >> equalSelfMinusFullMatrix: aFullMatrix at: ii1 and: jj1 [
 				- (aFullMatrix at: iiOffset + i and: jj1)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullColumn >> equalSelfMinusSparseColumn: aSparseColumn [ 
 	super equalSelfMinusSparseVector: aSparseColumn
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullColumn >> equalSelfMinusSparseColumn: aSparseColumn times: aNumber [ 
 	super equalSelfMinusSparseVector: aSparseColumn times: aNumber
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullColumn >> equalSelfPlusFullColumn: aFullColumn [ 
 	super equalSelfPlusFullVector: aFullColumn
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullColumn >> equalSelfPlusFullColumn: aFullColumn at: ii1 [ 
 	super equalSelfPlusFullVector: aFullColumn at: ii1
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullColumn >> equalSelfPlusFullColumn: aFullColumn times: aNumber [ 
 	super equalSelfPlusFullVector: aFullColumn times: aNumber
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullColumn >> equalSelfPlusFullMatrix: aFullMatrix at: ii1 and: jj1 [ 
 	| iiOffset |
 	iiOffset := ii1 - 1.
@@ -212,17 +214,17 @@ StMFullColumn >> equalSelfPlusFullMatrix: aFullMatrix at: ii1 and: jj1 [
 				+ (aFullMatrix at: iiOffset + i and: jj1)]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullColumn >> equalSelfPlusSparseColumn: aSparseColumn [ 
 	super equalSelfPlusSparseVector: aSparseColumn
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullColumn >> equalSelfPlusSparseColumn: aSparseColumn times: aNumber [ 
 	super equalSelfPlusSparseVector: aSparseColumn times: aNumber
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullColumn >> equalSelfTimes: alpha minusFullColumn: aFullColumn times: beta [ 
 	super
 		equalSelfTimes: alpha
@@ -230,7 +232,7 @@ StMFullColumn >> equalSelfTimes: alpha minusFullColumn: aFullColumn times: beta 
 		times: beta
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullColumn >> equalSelfTimes: alpha plusFullColumn: aFullColumn times: beta [ 
 	super
 		equalSelfTimes: alpha
@@ -238,7 +240,7 @@ StMFullColumn >> equalSelfTimes: alpha plusFullColumn: aFullColumn times: beta [
 		times: beta
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 StMFullColumn >> fitSelfInBox: aBoundingBox [ 
 	aBoundingBox isDefined 
 		ifTrue: 
@@ -247,22 +249,22 @@ StMFullColumn >> fitSelfInBox: aBoundingBox [
 		ifFalse: [aBoundingBox origin: self copy corner: self copy]
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullColumn >> minusFullColumn: aFullColumn [ 
 	^super minusFullVector: aFullColumn
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullColumn >> minusFullColumn: aFullColumn times: aNumber [ 
 	^super minusFullVector: aFullColumn times: aNumber
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMFullColumn >> ncol [
 	^1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMFullColumn >> nrow [
 	"Answer the number of indexable fields in the receiver. This value is the 
 	same as the largest legal subscript. Primitive is specified here to override 
@@ -272,22 +274,22 @@ StMFullColumn >> nrow [
 	^self basicSize
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullColumn >> plusFullColumn: aFullColumn [ 
 	^super plusFullVector: aFullColumn
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullColumn >> plusFullColumn: aFullColumn times: aNumber [ 
 	^super plusFullVector: aFullColumn times: aNumber
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullColumn >> times: beta minusFullColumn: aFullColumn [ 
 	^super times: beta minusFullVector: aFullColumn
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullColumn >> times: beta minusFullColumn: aFullColumn times: alpha [ 
 	^super
 		times: beta
@@ -295,12 +297,12 @@ StMFullColumn >> times: beta minusFullColumn: aFullColumn times: alpha [
 		times: alpha
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullColumn >> times: alpha plusFullColumn: aFullColumn [ 
 	^super times: alpha plusFullVector: aFullColumn
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullColumn >> times: beta plusFullColumn: aFullColumn times: alpha [ 
 	^super
 		times: beta
@@ -308,12 +310,12 @@ StMFullColumn >> times: beta plusFullColumn: aFullColumn times: alpha [
 		times: alpha
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullColumn >> timesFullColumn: aFullColumn [ 
 	self halt: 'Column times: Column is not a valid operation.'
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullColumn >> timesFullMatrix: aFullMatrix [ 
 	"a*b = a(i)b(1,j)"
 
@@ -322,7 +324,7 @@ StMFullColumn >> timesFullMatrix: aFullMatrix [
 		ifFalse: [self error: 'StM: Incompatible row size.']
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullColumn >> timesFullRow: aFullRow [ 
 	"a*b = a(i)b(j)"
 
@@ -333,7 +335,7 @@ StMFullColumn >> timesFullRow: aFullRow [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullColumn >> timesFullRow: aFullRow times: double [ 
 	"a*b*scalar = a(i)b(j)*scalar"
 
@@ -345,7 +347,7 @@ StMFullColumn >> timesFullRow: aFullRow times: double [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullColumn >> timesSparseMatrix: aSparseMatrix [ 
 	"a*b = a(i)b(1,j)"
 
@@ -354,7 +356,7 @@ StMFullColumn >> timesSparseMatrix: aSparseMatrix [
 		ifFalse: [self error: 'StM: Incompatible row size.']
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullColumn >> timesSparseRow: aSparseRow [ 
 	"a*b = a(i)b(j)"
 
@@ -365,7 +367,7 @@ StMFullColumn >> timesSparseRow: aSparseRow [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullColumn >> timesSparseRow: aSparseRow times: double [ 
 	"a*b*scalar = a(i)b(j)*scalar"
 
@@ -376,35 +378,35 @@ StMFullColumn >> timesSparseRow: aSparseRow times: double [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullColumn >> timesTransposeFullColumn: aFullColumn [ 
 	"a*bT = a(i)b(j)"
 
 	^self timesFullRow: aFullColumn transpose
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullColumn >> timesTransposeFullMatrix: aFullMatrix [ 
 	"a*bT = a(i)b(j,1)"
 
 	^self timesTransposeFullColumn: aFullMatrix asFullColumn
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullColumn >> timesTransposeSparseColumn: aSparseColumn [ 
 	"a*bT = a(i)b(j)"
 
 	^self timesSparseRow: aSparseColumn transpose
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullColumn >> timesTransposeSparseMatrix: aSparseMatrix [ 
 	"a*bT = a(i)b(j,1)"
 
 	^self timesTransposeSparseColumn: aSparseMatrix asSparseColumn
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullColumn >> transpose [
 	"Return a row with the same elements."
 	"This method is much faster than the obvious way."
@@ -412,30 +414,30 @@ StMFullColumn >> transpose [
 	^self shallowCopy changeClassToThatOf: (StMFullRow new: 0)
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullColumn >> transposeTimesFullColumn: aFullColumn [ 
 	"colT*col = row*col."
 
 	^self dot: aFullColumn
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullColumn >> transposeTimesFullMatrix: aFullMatrix [ 
 	^self transpose timesFullMatrix: aFullMatrix
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMFullColumn >> transposeTimesSparseMatrix: aSparseMatrix [ 
 	^self transpose timesSparseMatrix: aSparseMatrix
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMFullColumn >> value [
 
 	^self
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 StMFullColumn >> value: x [ 
 	"self is a column of block formulas."
 	"Return evaluation at x."

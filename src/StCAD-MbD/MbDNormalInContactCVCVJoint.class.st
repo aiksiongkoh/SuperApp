@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDNormalInContactCVCVJoint,
-	#superclass : #MbDInContactCVCVJoint,
-	#category : #'StCAD-MbD-MbDJoint'
+	#name : 'MbDNormalInContactCVCVJoint',
+	#superclass : 'MbDInContactCVCVJoint',
+	#category : 'StCAD-MbD-MbDJoint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDJoint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDNormalInContactCVCVJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ MbDNormalInContactCVCVJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDNormalInContactCVCVJoint >> becomeStartingInContactCVCVJoint [
 	self changeClassToThatOf: MbDStartingInContactCVCVJoint basicNew.
 	frmI becomeContactEndFrame.
@@ -22,7 +24,7 @@ MbDNormalInContactCVCVJoint >> becomeStartingInContactCVCVJoint [
 	constraints do: [:a | a activateConstraint]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDNormalInContactCVCVJoint >> contactForceAt: tout [ 
 	| answer |
 	answer := leastSquaresFit value: tout.
@@ -30,12 +32,12 @@ MbDNormalInContactCVCVJoint >> contactForceAt: tout [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDNormalInContactCVCVJoint >> contactForceDerivative: n at: tout [ 
 	^leastSquaresFit derivative: n at: tout
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDNormalInContactCVCVJoint >> postDynStep [
 	super postDynStep.
 	self calcLSScoeffs

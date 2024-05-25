@@ -1,13 +1,15 @@
 Class {
-	#name : #StMDifferentiatedGeneralSplineX,
-	#superclass : #StMGeneralSplineX,
+	#name : 'StMDifferentiatedGeneralSplineX',
+	#superclass : 'StMGeneralSplineX',
 	#instVars : [
 		'derivativeOrder'
 	],
-	#category : #'StMath-Symbolic'
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMDifferentiatedGeneralSplineX class >> visualWorksMetadata [
 
 	^ #(
@@ -17,27 +19,27 @@ StMDifferentiatedGeneralSplineX class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMDifferentiatedGeneralSplineX class >> with: aStMGeneralSpline derivativeOrder: integer [ 
 	^super new generalSpline: aStMGeneralSpline derivativeOrder: integer
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 StMDifferentiatedGeneralSplineX >> = anObject [ 
 	^super = anObject and: [derivativeOrder = anObject derivativeOrder]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMDifferentiatedGeneralSplineX >> derivativeOrder [
 	^derivativeOrder
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMDifferentiatedGeneralSplineX >> differentiateWRTx [
 	^StMDifferentiatedGeneralSplineX with: self derivativeOrder: self derivativeOrder + 1
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMDifferentiatedGeneralSplineX >> generalSpline: stmGeneralSpline derivativeOrder: integer [ 
 	x := stmGeneralSpline x copy.
 	xs := stmGeneralSpline xs.
@@ -47,13 +49,13 @@ StMDifferentiatedGeneralSplineX >> generalSpline: stmGeneralSpline derivativeOrd
 	derivativeOrder := integer asInteger
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 StMDifferentiatedGeneralSplineX >> postCopy [
 	super postCopy.
 	derivativeOrder := derivativeOrder copy
 ]
 
-{ #category : #changing }
+{ #category : 'changing' }
 StMDifferentiatedGeneralSplineX >> substitute: var1 with: var2 [ 
 	| answer |
 	^self = var1
@@ -64,7 +66,7 @@ StMDifferentiatedGeneralSplineX >> substitute: var1 with: var2 [
 			answer]
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMDifferentiatedGeneralSplineX >> value [
 	^self derivative: derivativeOrder at: x value
 ]

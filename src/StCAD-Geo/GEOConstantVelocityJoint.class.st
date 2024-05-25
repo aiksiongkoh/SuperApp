@@ -1,20 +1,22 @@
 Class {
-	#name : #GEOConstantVelocityJoint,
-	#superclass : #GEOJoint,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEOConstantVelocityJoint',
+	#superclass : 'GEOJoint',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOConstantVelocityJoint class >> mbdClass [
 	^MbDConstantVelocityJoint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOConstantVelocityJoint class >> nameString [
 	^'ConstantVelocityJoint'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOConstantVelocityJoint class >> visualWorksMetadata [
 
 	^ #(

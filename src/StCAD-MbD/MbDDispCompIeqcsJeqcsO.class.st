@@ -1,15 +1,17 @@
 Class {
-	#name : #MbDDispCompIeqcsJeqcsO,
-	#superclass : #MbDDispCompIeqcsJeqcO,
+	#name : 'MbDDispCompIeqcsJeqcsO',
+	#superclass : 'MbDDispCompIeqcsJeqcO',
 	#instVars : [
 		'priIeJeOpsJ',
 		'ppriIeJeOpEJpsJ',
 		'ppriIeJeOpsJpsJ'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDDispCompIeqcsJeqcsO class >> visualWorksMetadata [
 
 	^ #(
@@ -19,7 +21,7 @@ MbDDispCompIeqcsJeqcsO class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDDispCompIeqcsJeqcsO class >> withFrmI: afrmI frmJ: afrmJ axis: i [ 
 	^(afrmI isMemberOf: MbDEndFrameqcs)
 		& (afrmJ isMemberOf: MbDEndFrameqcs)
@@ -30,7 +32,7 @@ MbDDispCompIeqcsJeqcsO class >> withFrmI: afrmI frmJ: afrmJ axis: i [
 		ifFalse: [nil]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDispCompIeqcsJeqcsO >> calcPostDynCorrectorIteration [
 	"ppriIeJeOpEJpEJ is no longer a constant."
 
@@ -41,37 +43,37 @@ MbDDispCompIeqcsJeqcsO >> calcPostDynCorrectorIteration [
 	ppriIeJeOpsJpsJ := frmJ ppriOeOpsps: axis
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDispCompIeqcsJeqcsO >> initializeGlobally [
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqcsJeqcsO >> ppriIeJeOpEJpsJ [
 	^ppriIeJeOpEJpsJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqcsJeqcsO >> ppriIeJeOpsJpsJ [
 	^ppriIeJeOpsJpsJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqcsJeqcsO >> ppvaluepEJpsJ [
 	^ppriIeJeOpEJpsJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqcsJeqcsO >> ppvaluepsJpsJ [
 	^ppriIeJeOpsJpsJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqcsJeqcsO >> priIeJeOpsJ [
 	^priIeJeOpsJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqcsJeqcsO >> pvaluepsJ [
 	^priIeJeOpsJ
 ]

@@ -1,10 +1,11 @@
 Class {
-	#name : #BasicSphericalSurface,
-	#superclass : #BasicSurfaceOfRevolution,
-	#category : #'StCAD-Geo'
+	#name : 'BasicSphericalSurface',
+	#superclass : 'BasicSurfaceOfRevolution',
+	#category : 'StCAD-Geo',
+	#package : 'StCAD-Geo'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 BasicSphericalSurface class >> visualWorksMetadata [
 
 	^ #(

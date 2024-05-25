@@ -7,21 +7,23 @@ startPoint	<ClassOfVariable>	description of variable's function
 endPoint	<ClassOfVariable>	description of variable's function
 "
 Class {
-	#name : #GEOLine,
-	#superclass : #GEOCurve,
+	#name : 'GEOLine',
+	#superclass : 'GEOCurve',
 	#instVars : [
 		'startPoint',
 		'endPoint'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GEOLine class >> start: start end: end [ 
 	^self new start: start end: end
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOLine class >> visualWorksMetadata [
 
 	^ #(
@@ -31,7 +33,7 @@ GEOLine class >> visualWorksMetadata [
 
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOLine >> dataIntersectLine: geoLine tolerance: tol [ 
 	"
 	Find the minimum distance to any axis. 
@@ -71,52 +73,52 @@ GEOLine >> dataIntersectLine: geoLine tolerance: tol [
 	^Array with: false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOLine >> end: bPoint [ 
 	endPoint := bPoint.
 	self changed
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOLine >> endPoint [
 	^endPoint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOLine >> rOendO [
 	^refFrame rOfO + (refFrame aAOf timesFullColumn: endPoint)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOLine >> rOstartO [
 	^refFrame rOfO + (refFrame aAOf timesFullColumn: startPoint)
 ]
 
-{ #category : #transforming }
+{ #category : 'transforming' }
 GEOLine >> scaledBy: aFullColumn [ 
 	startPoint scaleSelfBy: aFullColumn.
 	endPoint scaleSelfBy: aFullColumn
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOLine >> start: bPoint [ 
 	startPoint := bPoint.
 	self changed
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOLine >> start: aPoint end: bPoint [ 
 	startPoint := aPoint.
 	endPoint := bPoint.
 	self changed
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOLine >> startPoint [
 	^startPoint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOLine >> translateSelfBy: delta [ 
 	startPoint := startPoint + delta.
 	endPoint := endPoint + delta.

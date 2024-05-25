@@ -19,8 +19,8 @@ aJp is the principle aJ at frame P origin.
 ijkP := aAPp * ijkp.
 "
 Class {
-	#name : #MbDMomentOfInertiaSolver,
-	#superclass : #MbDSolver,
+	#name : 'MbDMomentOfInertiaSolver',
+	#superclass : 'MbDSolver',
 	#instVars : [
 		'm',
 		'aJP',
@@ -33,10 +33,12 @@ Class {
 		'aJPcopy',
 		'colOrder'
 	],
-	#category : #'StCAD-MbD-MbDSolver'
+	#category : 'StCAD-MbD-MbDSolver',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDMomentOfInertiaSolver class >> visualWorksMetadata [
 
 	^ #(
@@ -46,34 +48,34 @@ MbDMomentOfInertiaSolver class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMomentOfInertiaSolver >> aAPo: mat [ 
 	aAPo := mat
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMomentOfInertiaSolver >> aAPp [
 	^aAPp
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMomentOfInertiaSolver >> aJo: mat [ 
 	aJo := mat
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMomentOfInertiaSolver >> aJp [
 	^aJp
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDMomentOfInertiaSolver >> calc [
 	self calcJP.
 	self calcJp.
 	self calcAPp
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDMomentOfInertiaSolver >> calcAPp [
 	| lam1 lam2 lam3 eigenvector2 eigenvector3 eigenvector1 |
 	lam1 := aJp at: 1.
@@ -104,7 +106,7 @@ MbDMomentOfInertiaSolver >> calcAPp [
 	aAPp at: 3 put: eigenvector3 asFullRow
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDMomentOfInertiaSolver >> calcJP [
 	| rocmPtilde rPoPtilde term1 term21 term22 term23 term2 |
 	rocmPtilde := rocmP tildeMatrix.
@@ -119,14 +121,14 @@ MbDMomentOfInertiaSolver >> calcJP [
 	aJP conditionSelfWithTol: aJP maxElement * 1.0e-6
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDMomentOfInertiaSolver >> calcJp [
 	aJP isDiagonal
 		ifTrue: [self calcJpFromDiagJP]
 		ifFalse: [self calcJpFromFullJP]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDMomentOfInertiaSolver >> calcJpFromDiagJP [
 	"Eigenvalues are orders from smallest to largest."
 
@@ -163,7 +165,7 @@ MbDMomentOfInertiaSolver >> calcJpFromDiagJP [
 				with: lam3
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDMomentOfInertiaSolver >> calcJpFromFullJP [
 	"Eigenvalues are orders from smallest to largest."
 	"Rounding error can be significant."
@@ -217,7 +219,7 @@ MbDMomentOfInertiaSolver >> calcJpFromFullJP [
 				with: lam3
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDMomentOfInertiaSolver >> doFullPivoting: p [ 
 	| max pivotRow pivotCol rowi aij mag |
 	max := 0.
@@ -243,7 +245,7 @@ MbDMomentOfInertiaSolver >> doFullPivoting: p [
 			colOrder swap: p with: pivotCol]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDMomentOfInertiaSolver >> dummy [
 	| lam1 lam2 lam3 |
 	lam1 := aJP at: 1 and: 1.
@@ -255,7 +257,7 @@ MbDMomentOfInertiaSolver >> dummy [
 	aJp at: 3 put: lam3
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDMomentOfInertiaSolver >> eigenvectorFor: lam [ 
 	"[aJP] - lam[I]."
 
@@ -289,7 +291,7 @@ MbDMomentOfInertiaSolver >> eigenvectorFor: lam [
 	^eigenvector
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDMomentOfInertiaSolver >> forwardEliminateWithPivot: p [ 
 	| rowp app rowi aip factor |
 	rowp := aJPcopy at: p.
@@ -304,12 +306,12 @@ MbDMomentOfInertiaSolver >> forwardEliminateWithPivot: p [
 					p + 1 to: 3 do: [:j | rowi at: j minusNumber: factor * (rowp at: j)]]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMomentOfInertiaSolver >> m: double [ 
 	m := double
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDMomentOfInertiaSolver >> momentsFrom: array [ 
 	| I1 x1mx2 d a2x1expy2 b y12expy22 c Ix x1expy2 a n2dexpy2 x1expy22 Iy y13expy23 Iz d2 b2 a2 c2 Ixx x13expy2 x12expy22 Iyy y14expy24 x1expy23 Izz d3 b3 a3 c3 Ixy Ixz Iyz y1py2 answer |
 	a := array at: 1.
@@ -360,7 +362,7 @@ MbDMomentOfInertiaSolver >> momentsFrom: array [
 	^answer
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDMomentOfInertiaSolver >> momentsOfAreaUnderLine: aLine [ 
 	"Line is in xy plane."
 	"					x2		y1 + ((y2 -y1)*(x - x1)/(x2 -x1))		"
@@ -426,12 +428,12 @@ MbDMomentOfInertiaSolver >> momentsOfAreaUnderLine: aLine [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMomentOfInertiaSolver >> rPoP: col [ 
 	rPoP := col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMomentOfInertiaSolver >> rocmP: col [ 
 	rocmP := col
 ]

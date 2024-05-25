@@ -1,14 +1,15 @@
 Class {
-	#name : #BasicCircularArc,
-	#superclass : #BasicCircle,
+	#name : 'BasicCircularArc',
+	#superclass : 'BasicCircle',
 	#instVars : [
 		'theStart',
 		'theEnd'
 	],
-	#category : #'StCAD-Geo'
+	#category : 'StCAD-Geo',
+	#package : 'StCAD-Geo'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 BasicCircularArc class >> visualWorksMetadata [
 
 	^ #(

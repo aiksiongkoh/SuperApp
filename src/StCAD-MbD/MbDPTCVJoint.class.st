@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDPTCVJoint,
-	#superclass : #MbDSphericalJoint,
-	#category : #'StCAD-MbD-MbDJoint'
+	#name : 'MbDPTCVJoint',
+	#superclass : 'MbDSphericalJoint',
+	#category : 'StCAD-MbD-MbDJoint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDJoint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDPTCVJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ MbDPTCVJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPTCVJoint >> classString [
 	"Used to access the descriptive name of the constraint."
 	"Needed for multi-language."

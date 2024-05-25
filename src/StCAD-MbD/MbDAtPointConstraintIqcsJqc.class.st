@@ -1,16 +1,18 @@
 Class {
-	#name : #MbDAtPointConstraintIqcsJqc,
-	#superclass : #MbDAtPointConstraintIqcJqc,
+	#name : 'MbDAtPointConstraintIqcsJqc',
+	#superclass : 'MbDAtPointConstraintIqcJqc',
 	#instVars : [
 		'isI',
 		'pGpsI',
 		'ppGpEIpsI',
 		'ppGpsIpsI'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDAtPointConstraintIqcsJqc class >> visualWorksMetadata [
 
 	^ #(
@@ -20,7 +22,7 @@ MbDAtPointConstraintIqcsJqc class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDAtPointConstraintIqcsJqc class >> withFrmI: afrmI frmJ: afrmJ axis: aaxis [ 
 	^(afrmI isKindOf: MbDEndFrameqcs)
 		& (afrmJ isMemberOf: MbDEndFrameqc)
@@ -28,12 +30,12 @@ MbDAtPointConstraintIqcsJqc class >> withFrmI: afrmI frmJ: afrmJ axis: aaxis [
 		ifFalse: [nil]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDAtPointConstraintIqcsJqc >> addpTIeiGOpsIto: mat [ 
 	self halt: 'To be implemented.'
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDAtPointConstraintIqcsJqc >> calcPostDynCorrectorIteration [
 	"ppGpEIpEI is no longer constant."
 
@@ -44,12 +46,12 @@ MbDAtPointConstraintIqcsJqc >> calcPostDynCorrectorIteration [
 	ppGpsIpsI := riIeJeO ppriIeJeOpsIpsI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDAtPointConstraintIqcsJqc >> dispCompClass [
 	^MbDDispCompIeqcsJeqcO
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDAtPointConstraintIqcsJqc >> fillAccICIterError: col [ 
 	| qEdotI sdotI sum |
 	super fillAccICIterError: col.
@@ -63,13 +65,13 @@ MbDAtPointConstraintIqcsJqc >> fillAccICIterError: col [
 	col at: iG plusNumber: sum
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDAtPointConstraintIqcsJqc >> fillPosICError: col [ 
 	super fillPosICError: col.
 	col at: isI plusFullColumn: pGpsI times: lam
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDAtPointConstraintIqcsJqc >> fillPosICJacob: mat [ 
 	| ppGpEIpsIlam |
 	super fillPosICJacob: mat.
@@ -80,20 +82,20 @@ MbDAtPointConstraintIqcsJqc >> fillPosICJacob: mat [
 	mat at: isI and: isI plusFullMatrix: ppGpsIpsI times: lam
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDAtPointConstraintIqcsJqc >> fillPosKineJacob: mat [ 
 	super fillPosKineJacob: mat.
 	mat at: iG and: isI plusFullRow: pGpsI
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDAtPointConstraintIqcsJqc >> fillVelICJacob: mat [ 
 	super fillVelICJacob: mat.
 	mat at: iG and: isI plusFullRow: pGpsI.
 	mat at: isI and: iG plusFullColumn: pGpsI transpose
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDAtPointConstraintIqcsJqc >> fillpFpy: mat [ 
 	super fillpFpy: mat.
 	mat at: iG and: isI plusFullRow: pGpsI.
@@ -101,24 +103,24 @@ MbDAtPointConstraintIqcsJqc >> fillpFpy: mat [
 	mat at: isI and: isI plusFullMatrix: ppGpsIpsI times: lam
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDAtPointConstraintIqcsJqc >> fillpFpydot: mat [ 
 	super fillpFpydot: mat.
 	mat at: isI and: iG plusFullColumn: pGpsI transpose
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDAtPointConstraintIqcsJqc >> initializeGlobally [
 	riIeJeO initializeGlobally.
 	ppGpEJpEJ := riIeJeO ppriIeJeOpEJpEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDAtPointConstraintIqcsJqc >> type [
 	^#essential
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDAtPointConstraintIqcsJqc >> useEquationNumbers [
 	super useEquationNumbers.
 	isI := frmI is

@@ -1,10 +1,12 @@
 Class {
-	#name : #StartingBDF,
-	#superclass : #BackwardDifference,
-	#category : #'StMath-StMathDifferenceOperator'
+	#name : 'StartingBDF',
+	#superclass : 'BackwardDifference',
+	#category : 'StMath-StMathDifferenceOperator',
+	#package : 'StMath',
+	#tag : 'StMathDifferenceOperator'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StartingBDF class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ StartingBDF class >> visualWorksMetadata [
 
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 StartingBDF >> derivative: i present: y past: ypast presentDerivative: ydot pastDerivative: ydotpast [ 
 	| series |
 	i == 0 ifTrue: [^y copy].
@@ -26,7 +28,7 @@ StartingBDF >> derivative: i present: y past: ypast presentDerivative: ydot past
 		dot: series
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 StartingBDF >> formSmallerTaylorMatrix [
 	"
 	This form is numerically more stable and is prefered over the full Taylor Matrix. 
@@ -47,7 +49,7 @@ StartingBDF >> formSmallerTaylorMatrix [
 		derivative: 1
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 StartingBDF >> formTaylorMatrix [
 	"
 	For method order 3: 
@@ -69,7 +71,7 @@ StartingBDF >> formTaylorMatrix [
 		derivative: 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StartingBDF >> iStep: integer [ 
 	"iStep is the current step of interest."
 	"iStep must increase consecutively."
@@ -83,20 +85,20 @@ StartingBDF >> iStep: integer [
 		ifFalse: [self error: 'Not appropriate iStep.']
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 StartingBDF >> initialize [
 	super initialize.
 	iStep := 0.
 	order := iStep + 1
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 StartingBDF >> initializeLocally [
 	iStep := 0.
 	order := iStep + 1.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StartingBDF >> order: integer [ 
 	"order is controlled by iStep."
 

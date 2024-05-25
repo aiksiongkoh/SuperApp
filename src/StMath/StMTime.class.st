@@ -1,10 +1,12 @@
 Class {
-	#name : #StMTime,
-	#superclass : #StMIndependentVariable,
-	#category : #'StMath-Symbolic'
+	#name : 'StMTime',
+	#superclass : 'StMIndependentVariable',
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMTime class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ StMTime class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 StMTime >> initialize [
 	super initialize.
 	name := #t

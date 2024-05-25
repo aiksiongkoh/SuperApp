@@ -1,5 +1,6 @@
 Class {
-	#name : #ASMTForceTorqueGeneral,
-	#superclass : #ASMTForceTorque,
-	#category : #'StCAD-Basic'
+	#name : 'ASMTForceTorqueGeneral',
+	#superclass : 'ASMTForceTorque',
+	#category : 'StCAD-Basic',
+	#package : 'StCAD-Basic'
 }

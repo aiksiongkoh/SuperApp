@@ -1,10 +1,12 @@
 Class {
-	#name : #ForceBasicqcsVector,
-	#superclass : #ForceBasicqcVector,
-	#category : #'StCAD-MbD-MbDForce'
+	#name : 'ForceBasicqcsVector',
+	#superclass : 'ForceBasicqcVector',
+	#category : 'StCAD-MbD-MbDForce',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDForce'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 ForceBasicqcsVector class >> visualWorksMetadata [
 
 	^ #(

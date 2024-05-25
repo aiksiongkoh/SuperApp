@@ -9,18 +9,20 @@ privateIndicesOfNonZerosInPivotRow	<OrderedCollection>	depends on implementation
 rowPositionsOfNonZerosInPivotColumn	<OrderedCollection>	
 "
 Class {
-	#name : #GESpMat,
-	#superclass : #MatrixGaussElimination,
+	#name : 'GESpMat',
+	#superclass : 'MatrixGaussElimination',
 	#instVars : [
 		'markowitzPivotRowCount',
 		'markowitzPivotColCount',
 		'privateIndicesOfNonZerosInPivotRow',
 		'rowPositionsOfNonZerosInPivotColumn'
 	],
-	#category : #'StMath-StMathMatrixSolver'
+	#category : 'StMath-StMathMatrixSolver',
+	#package : 'StMath',
+	#tag : 'StMathMatrixSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GESpMat class >> visualWorksMetadata [
 
 	^ #(
@@ -30,7 +32,7 @@ GESpMat class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'forward elimination' }
+{ #category : 'forward elimination' }
 GESpMat >> privateIndicesOfNonZerosInPivotRow: pivotRow withoutKey: discardKey [ 
 	"pivotRow is aStMSparseRow."
 

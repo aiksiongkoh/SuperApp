@@ -1,15 +1,17 @@
 Class {
-	#name : #BasicUserFunction,
-	#superclass : #UserFunction,
+	#name : 'BasicUserFunction',
+	#superclass : 'UserFunction',
 	#instVars : [
 		'funcText',
 		'myUnit',
 		'units'
 	],
-	#category : #'StMath-Symbolic'
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 BasicUserFunction class >> visualWorksMetadata [
 
 	^ #(
@@ -19,7 +21,7 @@ BasicUserFunction class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 BasicUserFunction class >> with: string myUnit: argUnit units: argUnits [ 
 	^(super new)
 		funcText: string
@@ -27,35 +29,35 @@ BasicUserFunction class >> with: string myUnit: argUnit units: argUnits [
 		units: argUnits; yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 BasicUserFunction class >> with: string units: argUnits [ 
 	^(super new) funcText: string units: argUnits; yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicUserFunction >> funcText [
 	^funcText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicUserFunction >> funcText: string [ 
 	funcText := string
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicUserFunction >> funcText: string myUnit: argUnit units: argUnits [ 
 	funcText := string.
 	myUnit := argUnit.
 	units := argUnits
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicUserFunction >> funcText: string units: argUnits [ 
 	funcText := string.
 	units := argUnits
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 BasicUserFunction >> magnifySelf: aDouble [ 
 	| aStream |
 	aStream := (String new: funcText size + 100) writeStream.
@@ -68,23 +70,23 @@ BasicUserFunction >> magnifySelf: aDouble [
 	funcText := aStream contents asText
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicUserFunction >> myUnit [
 	^myUnit
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 BasicUserFunction >> postCopy [
 	funcText := funcText copy.
 	units := units copy
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicUserFunction >> units [
 	^units
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicUserFunction >> units: argUnits [ 
 	units := argUnits
 ]

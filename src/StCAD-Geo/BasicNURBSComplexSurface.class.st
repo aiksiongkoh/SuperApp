@@ -1,6 +1,6 @@
 Class {
-	#name : #BasicNURBSComplexSurface,
-	#superclass : #BasicNURBSSurface,
+	#name : 'BasicNURBSComplexSurface',
+	#superclass : 'BasicNURBSSurface',
 	#instVars : [
 		'uIsCyclic',
 		'vIsCyclic',
@@ -10,10 +10,11 @@ Class {
 		'v0isSingular',
 		'v1isSingular'
 	],
-	#category : #'StCAD-Geo'
+	#category : 'StCAD-Geo',
+	#package : 'StCAD-Geo'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 BasicNURBSComplexSurface class >> visualWorksMetadata [
 
 	^ #(

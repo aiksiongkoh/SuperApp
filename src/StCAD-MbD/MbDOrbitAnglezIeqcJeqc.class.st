@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDOrbitAnglezIeqcJeqc,
-	#superclass : #MbDOrbitAnglezIeqcJec,
+	#name : 'MbDOrbitAnglezIeqcJeqc',
+	#superclass : 'MbDOrbitAnglezIeqcJec',
 	#instVars : [
 		'pthezpXJ',
 		'pthezpEJ',
@@ -12,10 +12,12 @@ Class {
 		'ppthezpXJpEJ',
 		'ppthezpEJpEJ'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDOrbitAnglezIeqcJeqc class >> visualWorksMetadata [
 
 	^ #(
@@ -25,14 +27,14 @@ MbDOrbitAnglezIeqcJeqc class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDOrbitAnglezIeqcJeqc class >> withFrmI: afrmI frmJ: afrmJ [ 
 	^(afrmI isMemberOf: MbDEndFrameqc) & (afrmJ isMemberOf: MbDEndFrameqc) 
 		ifTrue: [self new withFrmI: afrmI frmJ: afrmJ]
 		ifFalse: [nil]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDOrbitAnglezIeqcJeqc >> calcPostDynCorrectorIteration [
 	super calcPostDynCorrectorIteration.
 	self calc_pthezpXJ.
@@ -46,7 +48,7 @@ MbDOrbitAnglezIeqcJeqc >> calcPostDynCorrectorIteration [
 	self calc_ppthezpEJpEJ
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDOrbitAnglezIeqcJeqc >> calc_ppthezpEIpEJ [
 	| pxpEI pypEI pxpEJ pypEJ ppxpEIpEJ ppypEIpEJ ppthezpEIpEJi ppxpEIpEJi ppypEIpEJi pxpEIi pypEIi pxpEJj pypEJj term1 term2 term3 |
 	pxpEI := xIeJeIe pvaluepEI.
@@ -75,7 +77,7 @@ MbDOrbitAnglezIeqcJeqc >> calc_ppthezpEIpEJ [
 					ppthezpEIpEJi at: j put: term1 + term2 + term3]]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDOrbitAnglezIeqcJeqc >> calc_ppthezpEIpXJ [
 	| pxpEI pypEI pxpXJ pypXJ ppxpEIpXJ ppypEIpXJ ppthezpEIpXJi ppxpEIpXJi ppypEIpXJi pxpEIi pypEIi pxpXJj pypXJj term1 term2 term3 |
 	pxpEI := xIeJeIe pvaluepEI.
@@ -104,7 +106,7 @@ MbDOrbitAnglezIeqcJeqc >> calc_ppthezpEIpXJ [
 					ppthezpEIpXJi at: j put: term1 + term2 + term3]]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDOrbitAnglezIeqcJeqc >> calc_ppthezpEJpEJ [
 	| pxpEJ pypEJ ppxpEJpEJ ppypEJpEJ ppthezpEJpEJi ppxpEJpEJi ppypEJpEJi pxpEJi pypEJi term1 term2 term3 pxpEJj pypEJj ppthezpEJpEJij |
 	pxpEJ := xIeJeIe pvaluepEJ.
@@ -138,7 +140,7 @@ MbDOrbitAnglezIeqcJeqc >> calc_ppthezpEJpEJ [
 								put: ppthezpEJpEJij]]]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDOrbitAnglezIeqcJeqc >> calc_ppthezpXIpEJ [
 	"
 	ppxpXIpEJ = 0
@@ -166,7 +168,7 @@ MbDOrbitAnglezIeqcJeqc >> calc_ppthezpXIpEJ [
 					ppthezpXIpEJi at: j put: term1 + term3]]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDOrbitAnglezIeqcJeqc >> calc_ppthezpXIpXJ [
 	"
 	ppxpXIpXJ = 0
@@ -194,7 +196,7 @@ MbDOrbitAnglezIeqcJeqc >> calc_ppthezpXIpXJ [
 					ppthezpXIpXJi at: j put: term1 + term3]]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDOrbitAnglezIeqcJeqc >> calc_ppthezpXJpEJ [
 	"
 	ppxpXJpEJ = 0
@@ -222,7 +224,7 @@ MbDOrbitAnglezIeqcJeqc >> calc_ppthezpXJpEJ [
 					ppthezpXJpEJi at: j put: term1 + term3]]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDOrbitAnglezIeqcJeqc >> calc_ppthezpXJpXJ [
 	"
 	ppxpXJpXJ = 0
@@ -248,7 +250,7 @@ MbDOrbitAnglezIeqcJeqc >> calc_ppthezpXJpXJ [
 					ppthezpXJpXJi at: j put: term1 + term3]]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDOrbitAnglezIeqcJeqc >> calc_pthezpEJ [
 	| pxpEJ pypEJ |
 	pxpEJ := xIeJeIe pvaluepEJ.
@@ -260,7 +262,7 @@ MbDOrbitAnglezIeqcJeqc >> calc_pthezpEJ [
 				put: (pypEJ at: i) * cosOverSSq - ((pxpEJ at: i) * sinOverSSq)]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDOrbitAnglezIeqcJeqc >> calc_pthezpXJ [
 	| pxpXJ pypXJ |
 	pxpXJ := xIeJeIe pvaluepXJ.
@@ -272,7 +274,7 @@ MbDOrbitAnglezIeqcJeqc >> calc_pthezpXJ [
 				put: (pypXJ at: i) * cosOverSSq - ((pxpXJ at: i) * sinOverSSq)]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDOrbitAnglezIeqcJeqc >> initialize [
 	super initialize.
 	pthezpXJ := StMFullRow new: 3.
@@ -286,92 +288,92 @@ MbDOrbitAnglezIeqcJeqc >> initialize [
 	ppthezpEJpEJ := StMFullMatrix new: 4 by: 4
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDOrbitAnglezIeqcJeqc >> ppthezpEIpEJ [
 	^ppthezpEIpEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDOrbitAnglezIeqcJeqc >> ppthezpEIpXJ [
 	^ppthezpEIpXJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDOrbitAnglezIeqcJeqc >> ppthezpEJpEJ [
 	^ppthezpEJpEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDOrbitAnglezIeqcJeqc >> ppthezpXIpEJ [
 	^ppthezpXIpEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDOrbitAnglezIeqcJeqc >> ppthezpXIpXJ [
 	^ppthezpXIpXJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDOrbitAnglezIeqcJeqc >> ppthezpXJpEJ [
 	^ppthezpXJpEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDOrbitAnglezIeqcJeqc >> ppthezpXJpXJ [
 	^ppthezpXJpXJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDOrbitAnglezIeqcJeqc >> ppvaluepEIpEJ [
 	^ppthezpEIpEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDOrbitAnglezIeqcJeqc >> ppvaluepEIpXJ [
 	^ppthezpEIpXJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDOrbitAnglezIeqcJeqc >> ppvaluepEJpEJ [
 	^ppthezpEJpEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDOrbitAnglezIeqcJeqc >> ppvaluepXIpEJ [
 	^ppthezpXIpEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDOrbitAnglezIeqcJeqc >> ppvaluepXIpXJ [
 	^ppthezpXIpXJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDOrbitAnglezIeqcJeqc >> ppvaluepXJpEJ [
 	^ppthezpXJpEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDOrbitAnglezIeqcJeqc >> ppvaluepXJpXJ [
 	^ppthezpXJpXJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDOrbitAnglezIeqcJeqc >> pthezpEJ [
 	^pthezpEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDOrbitAnglezIeqcJeqc >> pthezpXJ [
 	^pthezpXJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDOrbitAnglezIeqcJeqc >> pvaluepEJ [
 	^pthezpEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDOrbitAnglezIeqcJeqc >> pvaluepXJ [
 	^pthezpXJ
 ]

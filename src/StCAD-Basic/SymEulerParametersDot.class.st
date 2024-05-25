@@ -1,32 +1,33 @@
 Class {
-	#name : #SymEulerParametersDot,
-	#superclass : #SymEulerArray,
-	#type : #variable,
+	#name : 'SymEulerParametersDot',
+	#superclass : 'SymEulerArray',
+	#type : 'variable',
 	#instVars : [
 		'qE',
 		'aAdot',
 		'aBdot',
 		'aCdot'
 	],
-	#category : #'StCAD-Basic'
+	#category : 'StCAD-Basic',
+	#package : 'StCAD-Basic'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SymEulerParametersDot class >> fromqEOp: qEOp andOmegaOpO: omeOpO [ 
 	^self new fromqEOp: qEOp andOmegaOpO: omeOpO
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SymEulerParametersDot class >> fromqEOp: qEOp andOmegaOpp: omeOpp [ 
 	^self new fromqEOp: qEOp andOmegaOpp: omeOpp
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SymEulerParametersDot class >> new [
 	^(super new: 4) initialize
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 SymEulerParametersDot class >> visualWorksMetadata [
 
 	^ #(
@@ -36,7 +37,7 @@ SymEulerParametersDot class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SymEulerParametersDot class >> with: aEulerParameters [ 
 	| answer |
 	answer := super new: 4.
@@ -44,43 +45,43 @@ SymEulerParametersDot class >> with: aEulerParameters [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerParametersDot >> aA [
 	^qE aA
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerParametersDot >> aAdot [
 	^aAdot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerParametersDot >> aB [
 	^qE aB
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerParametersDot >> aBdot [
 	^aBdot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerParametersDot >> aC [
 	^qE aC
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerParametersDot >> aCdot [
 	^aCdot
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 SymEulerParametersDot >> calc [
 	qE calc.
 	self calcAdotBdotCdot
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 SymEulerParametersDot >> calcAdotBdotCdot [
 	"aAdot, aBdot and aCdot are all calculated together and only here."
 
@@ -125,13 +126,13 @@ SymEulerParametersDot >> calcAdotBdotCdot [
 	aAdot := (self aB timesTransposeFullMatrix: aCdot) times: 2.0
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 SymEulerParametersDot >> calcSymbolic [
 	qE calcSymbolic.
 	self calcSymbolicAdotBdotCdot
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 SymEulerParametersDot >> calcSymbolicAdotBdotCdot [
 	"aAdot, aBdot and aCdot are all calculated together and only here."
 
@@ -176,12 +177,12 @@ SymEulerParametersDot >> calcSymbolicAdotBdotCdot [
 	aAdot := (self aB timesFullMatrix: aCdot transpose) times: 2.0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerParametersDot >> dAdt [
 	^aAdot
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 SymEulerParametersDot >> differentiateWRT: var [ 
 	| answer |
 	answer := SymEulerParametersDDot with: self.
@@ -195,7 +196,7 @@ SymEulerParametersDot >> differentiateWRT: var [
 	^answer
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 SymEulerParametersDot >> fromqEOp: qEOp andOmegaOpO: omeOpO [ 
 	| aB |
 	qEOp calcABC.
@@ -205,7 +206,7 @@ SymEulerParametersDot >> fromqEOp: qEOp andOmegaOpO: omeOpO [
 	self calc
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 SymEulerParametersDot >> fromqEOp: qEOp andOmegaOpp: omeOpp [ 
 	| aC |
 	qEOp calcABC.
@@ -215,36 +216,36 @@ SymEulerParametersDot >> fromqEOp: qEOp andOmegaOpp: omeOpp [
 	self calc
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 SymEulerParametersDot >> initialize [
 	aAdot := StMFullMatrix new: 3 by: 3.
 	aBdot := StMFullMatrix new: 3 by: 4.
 	aCdot := StMFullMatrix new: 3 by: 4.
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 SymEulerParametersDot >> initialize: aEulerParameters [ 
 	self initialize.
 	qE := aEulerParameters
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerParametersDot >> omeF [
 	^(self aB timesFullColumn: self) times: 2.0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerParametersDot >> omeOpO [
 	^(self aB timesFullColumn: self)
 		times: 2.0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerParametersDot >> qE: eulerParameters [ 
 	qE := eulerParameters
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 SymEulerParametersDot >> simplified [
 	| answer |
 	answer := super simplified.
@@ -252,7 +253,7 @@ SymEulerParametersDot >> simplified [
 	^answer
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 SymEulerParametersDot >> zeroSelf [
 	super zeroSelf.
 	self calc

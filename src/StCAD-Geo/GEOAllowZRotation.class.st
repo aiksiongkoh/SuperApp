@@ -1,20 +1,22 @@
 Class {
-	#name : #GEOAllowZRotation,
-	#superclass : #GEOMotion,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEOAllowZRotation',
+	#superclass : 'GEOMotion',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAllowZRotation class >> mbdClass [
 	^MbDAllowZRotation
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOAllowZRotation class >> nameString [
 	^'AllowRotation'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOAllowZRotation class >> visualWorksMetadata [
 
 	^ #(

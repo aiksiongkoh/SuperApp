@@ -13,12 +13,14 @@ Instance Variables:
 
 "
 Class {
-	#name : #UserFunction,
-	#superclass : #StMSymbolic,
-	#category : #'StMath-Symbolic'
+	#name : 'UserFunction',
+	#superclass : 'StMSymbolic',
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #'binary storage' }
+{ #category : 'binary storage' }
 UserFunction class >> binaryReaderBlockForVersion: oldVersion format: oldFormat [ 
 	"Change order from 
 	'funcText' 'units' 
@@ -40,12 +42,12 @@ UserFunction class >> binaryReaderBlockForVersion: oldVersion format: oldFormat 
 	^super binaryReaderBlockForVersion: oldVersion format: oldFormat
 ]
 
-{ #category : #'binary storage' }
+{ #category : 'binary storage' }
 UserFunction class >> binaryRepresentationVersion [
 	^30
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 UserFunction class >> visualWorksMetadata [
 
 	^ #(
@@ -55,7 +57,7 @@ UserFunction class >> visualWorksMetadata [
 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 UserFunction >> isUserFunction [
 	^true
 ]

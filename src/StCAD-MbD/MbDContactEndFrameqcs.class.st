@@ -1,15 +1,17 @@
 Class {
-	#name : #MbDContactEndFrameqcs,
-	#superclass : #MbDEndFrameqcs,
+	#name : 'MbDContactEndFrameqcs',
+	#superclass : 'MbDEndFrameqcs',
 	#instVars : [
 		'sPresent',
 		'sPast',
 		'sInterpolator'
 	],
-	#category : #'StCAD-MbD-MbDBasic'
+	#category : 'StCAD-MbD-MbDBasic',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDBasic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDContactEndFrameqcs class >> visualWorksMetadata [
 
 	^ #(
@@ -19,29 +21,29 @@ MbDContactEndFrameqcs class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDContactEndFrameqcs >> becomeContactEndFrame [
 	"Do nothing."
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDContactEndFrameqcs >> becomeNoContactEndFrame [
 	self changeClassToThatOf: MbDNoContactEndFrameqcs basicNew
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDContactEndFrameqcs >> initialize [
 	super initialize.
 	sPast := OrderedCollection new
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDContactEndFrameqcs >> initializeLocally [
 	super initializeLocally.
 	sPresent := StMFullColumn new: sSize
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDContactEndFrameqcs >> postDynStep [
 	"sPresent is the true value of s at integrator time t."
 	"s will be changed a lot for intermediate results."
@@ -49,7 +51,7 @@ MbDContactEndFrameqcs >> postDynStep [
 	sPresent equalFullColumn: s
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDContactEndFrameqcs >> postPosIC [
 	"sPresent is the true value of s at integrator time t."
 	"s will be changed a lot for intermediate results."
@@ -57,12 +59,12 @@ MbDContactEndFrameqcs >> postPosIC [
 	sPresent equalFullColumn: s
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDContactEndFrameqcs >> preDyn [
 	sInterpolator == nil ifTrue: [sInterpolator := TheMbDSystem mbdSystemSolver opBDF]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDContactEndFrameqcs >> sDerivative: n at: tout [ 
 	^sInterpolator
 		derivative: n
@@ -71,7 +73,7 @@ MbDContactEndFrameqcs >> sDerivative: n at: tout [
 		past: sPast
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDContactEndFrameqcs >> storeDynState [
 	sPast addFirst: sPresent.
 	[sInterpolator timeNodes size < sPast size]

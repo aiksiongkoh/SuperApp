@@ -1,1 +1,1 @@
-Package { #name : #'StCAD-Basic' }
+Package { #name : 'StCAD-Basic' }

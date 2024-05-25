@@ -1,13 +1,15 @@
 Class {
-	#name : #VectorNewtonRaphson,
-	#superclass : #NewtonRaphson,
+	#name : 'VectorNewtonRaphson',
+	#superclass : 'NewtonRaphson',
 	#instVars : [
 		'matrixSolver'
 	],
-	#category : #'StMath-StMathNewtonRaphson'
+	#category : 'StMath-StMathNewtonRaphson',
+	#package : 'StMath',
+	#tag : 'StMathNewtonRaphson'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 VectorNewtonRaphson class >> visualWorksMetadata [
 
 	^ #(
@@ -17,7 +19,7 @@ VectorNewtonRaphson class >> visualWorksMetadata [
 
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 VectorNewtonRaphson >> basicSolveEquations [
 "	self toDebugTxtShowContextFrom: 1 to: 100."
 	dx := matrixSolver 
@@ -26,83 +28,83 @@ VectorNewtonRaphson >> basicSolveEquations [
 				saveOriginal: false
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 VectorNewtonRaphson >> calcdxNorm [
 	"Subclasses can modify calculation of dxNorm."
 
 	dxNorm := dx rootMeanSquare
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 VectorNewtonRaphson >> calcyNorm [
 	"Subclasses can modify calculation of yNorm."
 
 	yNorm := 0.5 * y sumOfSquares
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 VectorNewtonRaphson >> dxEqualdxTimeslam [
 	dx magnifySelf: lam.
 	super dxEqualdxTimeslam
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 VectorNewtonRaphson >> fillPyPx [
 	system fillJacobian: pypx
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 VectorNewtonRaphson >> fillY [
 	system fillErrorVector: y
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 VectorNewtonRaphson >> handleSingularMatrix [
 	self error: 'Singular matrix encountered.'
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 VectorNewtonRaphson >> initializeGlobally [
 	system fillVarVector: x
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 VectorNewtonRaphson >> matrixSolver: matSolver [ 
 	matrixSolver := matSolver
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 VectorNewtonRaphson >> matrixSolverClass [
 	^GEFullMatParPv
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 VectorNewtonRaphson >> pypx: mat [ 
 	pypx := mat
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 VectorNewtonRaphson >> solveEquations [
 	[self basicSolveEquations] on: SingularMatrixError
 		do: [:ex | self handleSingularMatrix]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 VectorNewtonRaphson >> x: col [ 
 	x := col asFullColumn
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 VectorNewtonRaphson >> xEqualxoldPlusdx [
 	x := xold plusFullColumn: dx
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 VectorNewtonRaphson >> xEqualxoldPlusdxTimeslam [
 	x := xold plusFullColumn: dx times: lam
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 VectorNewtonRaphson >> y: col [ 
 	y := col asFullColumn
 ]

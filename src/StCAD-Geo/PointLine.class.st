@@ -1,6 +1,6 @@
 Class {
-	#name : #PointLine,
-	#superclass : #Combination,
+	#name : 'PointLine',
+	#superclass : 'Combination',
 	#instVars : [
 		'a0',
 		'aDir',
@@ -10,10 +10,11 @@ Class {
 		'aRightDist',
 		'aMinDist'
 	],
-	#category : #'StCAD-Geo'
+	#category : 'StCAD-Geo',
+	#package : 'StCAD-Geo'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PointLine class >> a0: a0 aDir: aDir b0: b0 [ 
 	^(super new)
 		a0: a0
@@ -23,7 +24,7 @@ PointLine class >> a0: a0 aDir: aDir b0: b0 [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PointLine class >> aStartPoint: aStartPoint aEndPoint: aEndPoint bPoint: bPoint [ 
 	^self 
 		a0: aStartPoint
@@ -31,7 +32,7 @@ PointLine class >> aStartPoint: aStartPoint aEndPoint: aEndPoint bPoint: bPoint 
 		b0: bPoint
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 PointLine class >> visualWorksMetadata [
 
 	^ #(
@@ -41,49 +42,49 @@ PointLine class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PointLine >> a0 [
 	^a0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PointLine >> a0: aFullColumn aDir: aaFullColumn b0: bFullColumn [ 
 	a0 := aFullColumn.
 	aDir := aaFullColumn.
 	b0 := bFullColumn
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PointLine >> aClosestPoint [
 	^aClosestPoint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PointLine >> aDir [
 	^aDir
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PointLine >> aMinDist [
 	^aMinDist
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PointLine >> aPar [
 	^aPar
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PointLine >> aRightDist [
 	^aRightDist
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PointLine >> b0 [
 	^b0
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 PointLine >> calc [
 	| aDirSSq aLength bDir |
 	aDirSSq := aDir sumOfSquares.

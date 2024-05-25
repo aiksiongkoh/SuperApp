@@ -1,14 +1,16 @@
 Class {
-	#name : #StMLeastSquaresFitPolynomial,
-	#superclass : #StMLeastSquaresFit,
+	#name : 'StMLeastSquaresFitPolynomial',
+	#superclass : 'StMLeastSquaresFit',
 	#instVars : [
 		'order',
 		'polynomial'
 	],
-	#category : #'StMath-Symbolic'
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMLeastSquaresFitPolynomial class >> visualWorksMetadata [
 
 	^ #(
@@ -18,7 +20,7 @@ StMLeastSquaresFitPolynomial class >> visualWorksMetadata [
 
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 StMLeastSquaresFitPolynomial >> calcCoeffs [
 	| orderPlusOne twoOrder xspower xspowerSum matrix vector rowi power element coeffs |
 	self conditionData.
@@ -59,7 +61,7 @@ StMLeastSquaresFitPolynomial >> calcCoeffs [
 				coeffs: coeffs
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 StMLeastSquaresFitPolynomial >> conditionData [
 	"Shift origin to midpoint of xs to avoid ill conditioning."
 
@@ -71,22 +73,22 @@ StMLeastSquaresFitPolynomial >> conditionData [
 	xs := xs minusNumber: xOffset
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 StMLeastSquaresFitPolynomial >> derivative: n at: xx [ 
 	^polynomial derivative: n at: xx - xOffset
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMLeastSquaresFitPolynomial >> differentiateWRT: variable [ 
 	^polynomial differentiateWRT: variable
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMLeastSquaresFitPolynomial >> partialDifferentiateWRT: variable [ 
 	^polynomial partialDifferentiateWRT: variable
 ]
 
-{ #category : #changing }
+{ #category : 'changing' }
 StMLeastSquaresFitPolynomial >> substitute: var1 with: var2 [ 
 	| xx |
 	^self = var1
@@ -100,17 +102,17 @@ StMLeastSquaresFitPolynomial >> substitute: var1 with: var2 [
 				ys: ys]
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMLeastSquaresFitPolynomial >> value [
 	^polynomial value
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMLeastSquaresFitPolynomial >> value: xx [ 
 	^polynomial value: xx - xOffset
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMLeastSquaresFitPolynomial >> x: arg [ 
 	| xold |
 	xold := x.
@@ -118,7 +120,7 @@ StMLeastSquaresFitPolynomial >> x: arg [
 	polynomial := polynomial substitute: xold with: x
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 StMLeastSquaresFitPolynomial >> x: arg order: integer xs: xarray ys: yarray [ 
 	x := self conditionArgument: arg.
 	xs := xarray.

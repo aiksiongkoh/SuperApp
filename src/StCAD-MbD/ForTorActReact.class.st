@@ -1,14 +1,16 @@
 Class {
-	#name : #ForTorActReact,
-	#superclass : #ForceTorqueItem,
+	#name : 'ForTorActReact',
+	#superclass : 'ForceTorqueItem',
 	#instVars : [
 		'forTorAction',
 		'forTorBasicJ'
 	],
-	#category : #'StCAD-MbD-MbDForce'
+	#category : 'StCAD-MbD-MbDForce',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDForce'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 ForTorActReact class >> visualWorksMetadata [
 
 	^ #(
@@ -18,118 +20,118 @@ ForTorActReact class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ForTorActReact >> aFTIeO [
 	^forTorAction aFTIeO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ForTorActReact >> forTorFunction [
 	^forTorAction forTorFunction
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ForTorActReact >> forTorFunction: formula [ 
 	forTorAction forTorFunction: formula
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 ForTorActReact >> initializeGlobally [
 	forTorAction initializeGlobally.
 	forTorBasicJ initializeGlobally
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 ForTorActReact >> initializeLocally [
 	forTorAction initializeLocally.
 	forTorBasicJ initializeLocally
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 ForTorActReact >> postAccICIteration [
 	forTorAction postAccICIteration.
 	forTorBasicJ postAccICIteration.
 	super postAccICIteration
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 ForTorActReact >> postCollisionCorrectorIteration [
 	forTorAction postCollisionCorrectorIteration.
 	forTorBasicJ postCollisionCorrectorIteration.
 	super postCollisionCorrectorIteration
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 ForTorActReact >> postCollisionPredictor [
 	forTorAction postCollisionPredictor.
 	forTorBasicJ postCollisionPredictor.
 	super postCollisionPredictor
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorActReact >> postDynCorrectorIteration [
 	forTorAction postDynCorrectorIteration.
 	forTorBasicJ postDynCorrectorIteration.
 	super postDynCorrectorIteration
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorActReact >> postDynOutput [
 	forTorAction postDynOutput.
 	forTorBasicJ postDynOutput.
 	super postDynOutput
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorActReact >> postDynPredictor [
 	forTorAction postDynPredictor.
 	forTorBasicJ postDynPredictor.
 	super postDynPredictor
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 ForTorActReact >> postInput [
 	forTorAction postInput.
 	forTorBasicJ postInput.
 	super postInput
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 ForTorActReact >> postStaticIteration [
 	forTorAction postStaticIteration.
 	forTorBasicJ postStaticIteration.
 	super postStaticIteration
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 ForTorActReact >> preAccIC [
 	forTorAction preAccIC.
 	forTorBasicJ preAccIC.
 	super preAccIC
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorActReact >> preDynOutput [
 	forTorAction preDynOutput.
 	forTorBasicJ preDynOutput.
 	super preDynOutput
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 ForTorActReact >> preStatic [
 	forTorAction preStatic.
 	forTorBasicJ preStatic.
 	super preStatic
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorActReact >> simUpdateAll [
 	forTorAction simUpdateAll.
 	forTorBasicJ simUpdateAll.
 	super simUpdateAll
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 ForTorActReact >> useEquationNumbers [
 	forTorAction useEquationNumbers.
 	forTorBasicJ useEquationNumbers

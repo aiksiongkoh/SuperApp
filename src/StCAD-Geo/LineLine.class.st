@@ -9,8 +9,8 @@ Find the minimum distance between two lines.
 	
 "
 Class {
-	#name : #LineLine,
-	#superclass : #Combination,
+	#name : 'LineLine',
+	#superclass : 'Combination',
 	#instVars : [
 		'a0',
 		'aDir',
@@ -25,10 +25,11 @@ Class {
 		'tolDist',
 		'aCrossPoint'
 	],
-	#category : #'StCAD-Geo'
+	#category : 'StCAD-Geo',
+	#package : 'StCAD-Geo'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LineLine class >> a0: a3DPoint aDir: aDir b0: b3DPoint bDir: bDir tolParallel: tolParallel tolDist: tolDist [ 
 	^(super new)
 		a0: a3DPoint
@@ -41,7 +42,7 @@ LineLine class >> a0: a3DPoint aDir: aDir b0: b3DPoint bDir: bDir tolParallel: t
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 LineLine class >> aStartPoint: aStartPoint aEndPoint: aEndPoint bStartPoint: bStartPoint bEndPoint: bEndPoint tolParallel: tolParallel tolDist: tolDist [ 
 	^self 
 		a0: aStartPoint
@@ -52,7 +53,7 @@ LineLine class >> aStartPoint: aStartPoint aEndPoint: aEndPoint bStartPoint: bSt
 		tolDist: tolDist
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 LineLine class >> visualWorksMetadata [
 
 	^ #(
@@ -62,12 +63,12 @@ LineLine class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LineLine >> a0 [
 	^a0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LineLine >> a0: aFullColumn aDir: aaFullColumn b0: bFullColumn bDir: bbFullColumn tolParallel: aDouble tolDist: aaDouble [ 
 	a0 := aFullColumn.
 	aDir := aaFullColumn.
@@ -77,52 +78,52 @@ LineLine >> a0: aFullColumn aDir: aaFullColumn b0: bFullColumn bDir: bbFullColum
 	tolDist := aaDouble
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LineLine >> aClosestPoint [
 	^aClosestPoint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LineLine >> aCrossPoint [
 	^aCrossPoint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LineLine >> aDir [
 	^aDir
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LineLine >> aMinDist [
 	^aMinDist
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LineLine >> aPar [
 	^aPar
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LineLine >> b0 [
 	^b0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LineLine >> bClosestPoint [
 	^bClosestPoint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LineLine >> bDir [
 	^bDir
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LineLine >> bPar [
 	^bPar
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 LineLine >> calc [
 	"See class comments."
 
@@ -146,7 +147,7 @@ LineLine >> calc [
 		ifFalse: ['Lines are parallel.']
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LineLine >> tolParallel [
 	^tolParallel
 ]

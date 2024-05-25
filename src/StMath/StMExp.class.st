@@ -1,15 +1,17 @@
 Class {
-	#name : #StMExp,
-	#superclass : #StMIntrinsicFunctionX,
-	#category : #'StMath-Symbolic'
+	#name : 'StMExp',
+	#superclass : 'StMIntrinsicFunctionX',
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMExp class >> functionSymbol [
 	^'exp'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMExp class >> visualWorksMetadata [
 
 	^ #(
@@ -19,17 +21,17 @@ StMExp class >> visualWorksMetadata [
 
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMExp >> differentiateWRTx [
 	^StMExp with: x copy
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 StMExp >> printFuntionNameOn: aStream [
 	aStream nextPutAll: 'exp'
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMExp >> value [
 	^x value exp
 ]

@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDQuasiIntegrator,
-	#superclass : #IntegratorInterface,
-	#category : #'StCAD-MbD-MbDSolver'
+	#name : 'MbDQuasiIntegrator',
+	#superclass : 'IntegratorInterface',
+	#category : 'StCAD-MbD-MbDSolver',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDQuasiIntegrator class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ MbDQuasiIntegrator class >> visualWorksMetadata [
 
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDQuasiIntegrator >> checkForDiscontinuity [
 	"Check for discontinuity in (tpast,t] or [t,tpast) if integrating 
 	backward."
@@ -38,7 +40,7 @@ MbDQuasiIntegrator >> checkForDiscontinuity [
 			DiscontinuityError signalWith: discontinuityTypes]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDQuasiIntegrator >> checkForOutputThrough1: t [ 
 	"Kinematic analysis is done at every tout."
 
@@ -49,7 +51,7 @@ MbDQuasiIntegrator >> checkForOutputThrough1: t [
 			tout := tout + hout]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDQuasiIntegrator >> checkForOutputThrough2: t [ 
 	"Kinematic analysis is done at every tout."
 
@@ -60,7 +62,7 @@ MbDQuasiIntegrator >> checkForOutputThrough2: t [
 			tout := tout + hout]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDQuasiIntegrator >> checkForOutputThrough: t [ 
 	"Kinematic analysis is done at every tout."
 
@@ -72,20 +74,20 @@ MbDQuasiIntegrator >> checkForOutputThrough: t [
 		ifFalse: [integrator continue: false]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDQuasiIntegrator >> incrementTime: aDouble [ 
 	system partsJointsMotionsForcesTorquesDo: [:item | item storeDynState].
 	system time: aDouble
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDQuasiIntegrator >> initialize [
 	super initialize.
 	integrator := MbDBasicQuasiIntegrator new.
 	integrator system: self
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDQuasiIntegrator >> interpolateAt: tArg [ 
 	"Interpolate for system state at tArg and leave system in that state."
 
@@ -93,7 +95,7 @@ MbDQuasiIntegrator >> interpolateAt: tArg [
 	self runInitialConditionTypeSolution
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDQuasiIntegrator >> postFirstStep [
 	system partsJointsMotionsForcesTorquesDo: [:item | item postDynFirstStep].
 	integrator istep > 0 ifTrue: ["Noise make checking at the start unreliable."
@@ -101,12 +103,12 @@ MbDQuasiIntegrator >> postFirstStep [
 	self checkForOutputThrough: integrator t
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDQuasiIntegrator >> postRun [
 	system partsJointsMotionsForcesTorquesDo: [:item | item postDyn]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDQuasiIntegrator >> postStep [
 	system partsJointsMotionsForcesTorquesDo: [:item | item postDynStep].
 	integrator istep > 0 ifTrue: ["Noise make checking at the start unreliable."
@@ -114,27 +116,27 @@ MbDQuasiIntegrator >> postStep [
 	self checkForOutputThrough: integrator t
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDQuasiIntegrator >> preFirstStep [
 	system partsJointsMotionsForcesTorquesDo: [:item | item preDynFirstStep]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDQuasiIntegrator >> preRun [
 	system partsJointsMotionsForcesTorquesDo: [:item | item preDyn]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDQuasiIntegrator >> preStep [
 	system partsJointsMotionsForcesTorquesDo: [:item | item preDynStep]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDQuasiIntegrator >> reportStats [
 	"Do nothing."
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDQuasiIntegrator >> run [
 	
 	[
@@ -171,12 +173,12 @@ MbDQuasiIntegrator >> run [
 				SimulationStoppingError raiseSignal]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDQuasiIntegrator >> runInitialConditionTypeSolution [
 	self subclassResponsibility
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDQuasiIntegrator >> suggestSmallerOrAcceptFirstStepSize: hnew [ 
 	| hnew2 |
 	hnew2 := hnew.
@@ -192,7 +194,7 @@ MbDQuasiIntegrator >> suggestSmallerOrAcceptFirstStepSize: hnew [
 	^hnew2
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDQuasiIntegrator >> suggestSmallerOrAcceptStepSize: hnew [ 
 	| hnew2 |
 	hnew2 := hnew.
@@ -208,12 +210,12 @@ MbDQuasiIntegrator >> suggestSmallerOrAcceptStepSize: hnew [
 	^hnew2
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDQuasiIntegrator >> useQuasiStepStats: stats [ 
 	"Do nothing for now."
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDQuasiIntegrator >> useTrialStepStats: stats [ 
 	system useDynTrialStepStats: stats
 ]

@@ -1,13 +1,15 @@
 Class {
-	#name : #GEOKineIForceIKineJ,
-	#superclass : #GEOKineIKineJ,
+	#name : 'GEOKineIForceIKineJ',
+	#superclass : 'GEOKineIKineJ',
 	#instVars : [
 		'forceI'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOKineIForceIKineJ class >> visualWorksMetadata [
 
 	^ #(
@@ -17,7 +19,7 @@ GEOKineIForceIKineJ class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIForceIKineJ >> dataTypes [
 	| answer |
 	answer := super dataTypes.
@@ -32,57 +34,57 @@ GEOKineIForceIKineJ >> dataTypes [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIForceIKineJ >> forceI [
 	^self forceIO length
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIForceIKineJ >> forceI: geoData [ 
 	forceI := geoData
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIForceIKineJ >> forceIO [
 	^forceI aFIO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIForceIKineJ >> forceIO1 [
 	^self forceIO at: 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIForceIKineJ >> forceIO2 [
 	^self forceIO at: 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIForceIKineJ >> forceIO3 [
 	^self forceIO at: 3
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIForceIKineJ >> torqueI [
 	^self torqueIO length
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIForceIKineJ >> torqueIO [
 	^forceI aTIO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIForceIKineJ >> torqueIO1 [
 	^self torqueIO at: 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIForceIKineJ >> torqueIO2 [
 	^self torqueIO at: 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOKineIForceIKineJ >> torqueIO3 [
 	^self torqueIO at: 3
 ]

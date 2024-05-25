@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDOrbitAnglezIecJec,
-	#superclass : #MbDKinematicIeJe,
+	#name : 'MbDOrbitAnglezIecJec',
+	#superclass : 'MbDKinematicIeJe',
 	#instVars : [
 		'thez',
 		'xIeJeIe',
@@ -10,10 +10,12 @@ Class {
 		'twoCosSinOverSSqSq',
 		'dSqOverSSqSq'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDOrbitAnglezIecJec class >> visualWorksMetadata [
 
 	^ #(
@@ -23,7 +25,7 @@ MbDOrbitAnglezIecJec class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDOrbitAnglezIecJec class >> withFrmI: afrmI frmJ: afrmJ [ 
 	| instance |
 	self allSubclasses
@@ -33,7 +35,7 @@ MbDOrbitAnglezIecJec class >> withFrmI: afrmI frmJ: afrmJ [
 			instance notNil ifTrue: [^instance]]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDOrbitAnglezIecJec >> calcPostDynCorrectorIteration [
 	| x y sumOfSquares diffOfSquares sumOfSquaresSquared thez0to2pi |
 	x := xIeJeIe value.
@@ -50,40 +52,40 @@ MbDOrbitAnglezIecJec >> calcPostDynCorrectorIteration [
 	dSqOverSSqSq := diffOfSquares / sumOfSquaresSquared
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDOrbitAnglezIecJec >> initializeGlobally [
 	xIeJeIe initializeGlobally.
 	yIeJeIe initializeGlobally
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDOrbitAnglezIecJec >> initializeLocally [
 	xIeJeIe initializeLocally.
 	yIeJeIe initializeLocally
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDOrbitAnglezIecJec >> postDynCorrectorIteration [
 	xIeJeIe postDynCorrectorIteration.
 	yIeJeIe postDynCorrectorIteration.
 	super postDynCorrectorIteration
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDOrbitAnglezIecJec >> postDynOutput [
 	xIeJeIe postDynOutput.
 	yIeJeIe postDynOutput.
 	super postDynOutput
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDOrbitAnglezIecJec >> postDynPredictor [
 	xIeJeIe postDynPredictor.
 	yIeJeIe postDynPredictor.
 	super postDynPredictor
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDOrbitAnglezIecJec >> postInput [
 	| x y |
 	xIeJeIe postInput.
@@ -98,21 +100,21 @@ MbDOrbitAnglezIecJec >> postInput [
 	super postInput
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDOrbitAnglezIecJec >> postPosICIteration [
 	xIeJeIe postPosICIteration.
 	yIeJeIe postPosICIteration.
 	super postPosICIteration
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDOrbitAnglezIecJec >> postStaticIteration [
 	xIeJeIe postStaticIteration.
 	yIeJeIe postStaticIteration.
 	super postStaticIteration
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDOrbitAnglezIecJec >> preAccIC [
 	thez == nil ifTrue: [self prePosIC].
 	xIeJeIe preAccIC.
@@ -120,14 +122,14 @@ MbDOrbitAnglezIecJec >> preAccIC [
 	super preAccIC
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDOrbitAnglezIecJec >> preDynOutput [
 	xIeJeIe preDynOutput.
 	yIeJeIe preDynOutput.
 	super preDynOutput
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDOrbitAnglezIecJec >> prePosIC [
 	| x y |
 	xIeJeIe prePosIC.
@@ -142,38 +144,38 @@ MbDOrbitAnglezIecJec >> prePosIC [
 	super prePosIC
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDOrbitAnglezIecJec >> preStatic [
 	xIeJeIe preStatic.
 	yIeJeIe preStatic.
 	super preStatic
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDOrbitAnglezIecJec >> preVelIC [
 	xIeJeIe preVelIC.
 	yIeJeIe preVelIC.
 	super preVelIC
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDOrbitAnglezIecJec >> simUpdateAll [
 	xIeJeIe simUpdateAll.
 	yIeJeIe simUpdateAll.
 	super simUpdateAll
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDOrbitAnglezIecJec >> thez [
 	^thez
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDOrbitAnglezIecJec >> value [
 	^thez
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDOrbitAnglezIecJec >> withFrmI: afrmI frmJ: afrmJ [ 
 	frmI := afrmI.
 	frmJ := afrmJ.

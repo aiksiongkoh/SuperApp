@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDOrbitAnglezIeqcJec,
-	#superclass : #MbDOrbitAnglezIecJec,
+	#name : 'MbDOrbitAnglezIeqcJec',
+	#superclass : 'MbDOrbitAnglezIecJec',
 	#instVars : [
 		'pthezpXI',
 		'pthezpEI',
@@ -8,10 +8,12 @@ Class {
 		'ppthezpXIpEI',
 		'ppthezpEIpEI'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDOrbitAnglezIeqcJec class >> visualWorksMetadata [
 
 	^ #(
@@ -21,7 +23,7 @@ MbDOrbitAnglezIeqcJec class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDOrbitAnglezIeqcJec class >> withFrmI: afrmI frmJ: afrmJ [ 
 	^(afrmI isMemberOf: MbDEndFrameqc)
 		& (afrmJ isMemberOf: MbDEndFramec)
@@ -29,7 +31,7 @@ MbDOrbitAnglezIeqcJec class >> withFrmI: afrmI frmJ: afrmJ [
 		ifFalse: [nil]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDOrbitAnglezIeqcJec >> calcPostDynCorrectorIteration [
 	super calcPostDynCorrectorIteration.
 	self calc_pthezpXI.
@@ -39,7 +41,7 @@ MbDOrbitAnglezIeqcJec >> calcPostDynCorrectorIteration [
 	self calc_ppthezpEIpEI
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDOrbitAnglezIeqcJec >> calc_ppthezpEIpEI [
 	| pxpEI pypEI ppxpEIpEI ppypEIpEI ppthezpEIpEIi ppxpEIpEIi ppypEIpEIi pxpEIi pypEIi term1 term2 term3 pxpEIj pypEIj ppthezpEIpEIij |
 	pxpEI := xIeJeIe pvaluepEI.
@@ -73,7 +75,7 @@ MbDOrbitAnglezIeqcJec >> calc_ppthezpEIpEI [
 								put: ppthezpEIpEIij]]]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDOrbitAnglezIeqcJec >> calc_ppthezpXIpEI [
 	| pxpXI pypXI pxpEI pypEI ppxpXIpEI ppypXIpEI ppthezpXIpEIi ppxpXIpEIi ppypXIpEIi pxpXIi pypXIi pxpEIj pypEIj term1 term2 term3 |
 	pxpXI := xIeJeIe pvaluepXI.
@@ -102,7 +104,7 @@ MbDOrbitAnglezIeqcJec >> calc_ppthezpXIpEI [
 					ppthezpXIpEIi at: j put: term1 + term2 + term3]]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDOrbitAnglezIeqcJec >> calc_ppthezpXIpXI [
 	"
 	ppxpXIpXI = 0
@@ -128,7 +130,7 @@ MbDOrbitAnglezIeqcJec >> calc_ppthezpXIpXI [
 					ppthezpXIpXIi at: j put: term1 + term3]]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDOrbitAnglezIeqcJec >> calc_pthezpEI [
 	| pxpEI pypEI |
 	pxpEI := xIeJeIe pvaluepEI.
@@ -140,7 +142,7 @@ MbDOrbitAnglezIeqcJec >> calc_pthezpEI [
 				put: (pypEI at: i) * cosOverSSq - ((pxpEI at: i) * sinOverSSq)]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDOrbitAnglezIeqcJec >> calc_pthezpXI [
 	| pxpXI pypXI |
 	pxpXI := xIeJeIe pvaluepXI.
@@ -152,7 +154,7 @@ MbDOrbitAnglezIeqcJec >> calc_pthezpXI [
 				put: (pypXI at: i) * cosOverSSq - ((pxpXI at: i) * sinOverSSq)]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDOrbitAnglezIeqcJec >> initialize [
 	super initialize.
 	pthezpXI := StMFullRow new: 3.
@@ -162,52 +164,52 @@ MbDOrbitAnglezIeqcJec >> initialize [
 	ppthezpEIpEI := StMFullMatrix new: 4 by: 4
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDOrbitAnglezIeqcJec >> ppthezpEIpEI [
 	^ppthezpEIpEI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDOrbitAnglezIeqcJec >> ppthezpXIpEI [
 	^ppthezpXIpEI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDOrbitAnglezIeqcJec >> ppthezpXIpXI [
 	^ppthezpXIpXI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDOrbitAnglezIeqcJec >> ppvaluepEIpEI [
 	^ppthezpEIpEI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDOrbitAnglezIeqcJec >> ppvaluepXIpEI [
 	^ppthezpXIpEI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDOrbitAnglezIeqcJec >> ppvaluepXIpXI [
 	^ppthezpXIpXI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDOrbitAnglezIeqcJec >> pthezpEI [
 	^pthezpEI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDOrbitAnglezIeqcJec >> pthezpXI [
 	^pthezpXI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDOrbitAnglezIeqcJec >> pvaluepEI [
 	^pthezpEI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDOrbitAnglezIeqcJec >> pvaluepXI [
 	^pthezpXI
 ]

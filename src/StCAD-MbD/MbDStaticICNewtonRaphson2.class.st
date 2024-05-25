@@ -1,15 +1,17 @@
 Class {
-	#name : #MbDStaticICNewtonRaphson2,
-	#superclass : #MbDSystemNewtonRaphson2,
+	#name : 'MbDStaticICNewtonRaphson2',
+	#superclass : 'MbDSystemNewtonRaphson2',
 	#instVars : [
 		'nqsu',
 		'qsuOld',
 		'qsuWeights'
 	],
-	#category : #'StCAD-MbD-MbDSolver'
+	#category : 'StCAD-MbD-MbDSolver',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDStaticICNewtonRaphson2 class >> visualWorksMetadata [
 
 	^ #(
@@ -19,12 +21,12 @@ MbDStaticICNewtonRaphson2 class >> visualWorksMetadata [
 
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDStaticICNewtonRaphson2 >> askSystemToUpdate [
 	system partsJointsMotionsForcesTorquesDo: [:item | item postStaticIteration]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDStaticICNewtonRaphson2 >> assignEquationNumbers [
 	"Equation order is q,s,u,lamb,lam."
 
@@ -60,14 +62,14 @@ MbDStaticICNewtonRaphson2 >> assignEquationNumbers [
 	n := eqnNo - 1
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDStaticICNewtonRaphson2 >> createVectorsAndMatrices [
 	qsuOld := StMFullColumn new: nqsu.
 	qsuWeights := StMDiagonalMatrix new: nqsu.
 	super createVectorsAndMatrices
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDStaticICNewtonRaphson2 >> fillPyPx [
 	pypx zeroSelf.
 	pypx
@@ -77,7 +79,7 @@ MbDStaticICNewtonRaphson2 >> fillPyPx [
 	system partsJointsMotionsForcesTorquesDo: [:item | item fillStaticJacob: pypx]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDStaticICNewtonRaphson2 >> fillY [
 	| newMinusOld |
 	newMinusOld := qsuOld negated.
@@ -87,7 +89,7 @@ MbDStaticICNewtonRaphson2 >> fillY [
 	system partsJointsMotionsForcesTorquesDo: [:item | item fillStaticError: y]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDStaticICNewtonRaphson2 >> incrementIterNo [
 	iterNo >= iterMax
 		ifTrue: 
@@ -97,7 +99,7 @@ MbDStaticICNewtonRaphson2 >> incrementIterNo [
 	iterNo := iterNo + 1
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDStaticICNewtonRaphson2 >> initializeGlobally [
 	super initializeGlobally.
 	system partsJointsMotionsDo: 
@@ -109,22 +111,22 @@ MbDStaticICNewtonRaphson2 >> initializeGlobally [
 	dxTol := system errorTolAccKine
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDStaticICNewtonRaphson2 >> logSingularMatrixMessage [
 	system logString: #'MbD: \A static solution cannot be found'
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDStaticICNewtonRaphson2 >> passRootToSystem [
 	system partsJointsMotionsDo: [:item | item setqsulam: x]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDStaticICNewtonRaphson2 >> postRun [
 	system partsJointsMotionsForcesTorquesDo: [:item | item postStatic]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDStaticICNewtonRaphson2 >> preRun [
 	system logString: #'MbD: \Iterating for static solution.'.
 	system partsJointsMotionsForcesTorquesDo: [:item | item preStatic]

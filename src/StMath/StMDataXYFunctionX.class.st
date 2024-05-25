@@ -1,10 +1,12 @@
 Class {
-	#name : #StMDataXYFunctionX,
-	#superclass : #StMFunctionX,
-	#category : #'StMath-Symbolic'
+	#name : 'StMDataXYFunctionX',
+	#superclass : 'StMFunctionX',
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMDataXYFunctionX class >> visualWorksMetadata [
 
 	^ #(
@@ -14,23 +16,23 @@ StMDataXYFunctionX class >> visualWorksMetadata [
 
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 StMDataXYFunctionX >> = anObject [ 
 	^super = anObject and: [x = anObject x]
 ]
 
-{ #category : #'message handling' }
+{ #category : 'message handling' }
 StMDataXYFunctionX >> argsPerform: selector withArguments: anArray [ 
 	Processor yield.
 	x perform: selector withArguments: anArray
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 StMDataXYFunctionX >> postCopy [
 	x := x copy
 ]
 
-{ #category : #changing }
+{ #category : 'changing' }
 StMDataXYFunctionX >> substitute: var1 with: var2 [ 
 	| xx |
 	^self = var1
@@ -40,12 +42,12 @@ StMDataXYFunctionX >> substitute: var1 with: var2 [
 			self class with: xx]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMDataXYFunctionX >> x [
 	^x
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMDataXYFunctionX >> x: arg [ 
 	x := self conditionArgument: arg
 ]

@@ -1,13 +1,14 @@
 Class {
-	#name : #BasicSurfaceOfRevolution,
-	#superclass : #BasicSurface,
+	#name : 'BasicSurfaceOfRevolution',
+	#superclass : 'BasicSurface',
 	#instVars : [
 		'aCurve'
 	],
-	#category : #'StCAD-Geo'
+	#category : 'StCAD-Geo',
+	#package : 'StCAD-Geo'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 BasicSurfaceOfRevolution class >> visualWorksMetadata [
 
 	^ #(

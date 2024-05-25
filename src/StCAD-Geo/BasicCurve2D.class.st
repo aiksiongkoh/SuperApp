@@ -1,10 +1,11 @@
 Class {
-	#name : #BasicCurve2D,
-	#superclass : #BasicCurve,
-	#category : #'StCAD-Geo'
+	#name : 'BasicCurve2D',
+	#superclass : 'BasicCurve',
+	#category : 'StCAD-Geo',
+	#package : 'StCAD-Geo'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 BasicCurve2D class >> visualWorksMetadata [
 
 	^ #(

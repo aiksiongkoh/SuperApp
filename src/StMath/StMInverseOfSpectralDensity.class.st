@@ -1,6 +1,6 @@
 Class {
-	#name : #StMInverseOfSpectralDensity,
-	#superclass : #StMDataXYFunctionX,
+	#name : 'StMInverseOfSpectralDensity',
+	#superclass : 'StMDataXYFunctionX',
 	#instVars : [
 		'deriveOrder',
 		'nfreq',
@@ -10,21 +10,23 @@ Class {
 		'seed',
 		'spline'
 	],
-	#category : #'StMath-Symbolic'
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMInverseOfSpectralDensity class >> functionSymbol [
 	^'invSD'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMInverseOfSpectralDensity class >> functionTemplate [
 	^self functionSymbol 
 		, '(time, derivOrderOfSpectrum, nfreq, freqMax, freqScale, densityScale, seed, freq1, den1, freq2, den2, ...)'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMInverseOfSpectralDensity class >> visualWorksMetadata [
 
 	^ #(
@@ -34,7 +36,7 @@ StMInverseOfSpectralDensity class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMInverseOfSpectralDensity >> arguments: array [ 
 	| n |
 	x := array at: 1.
@@ -55,7 +57,7 @@ StMInverseOfSpectralDensity >> arguments: array [
 	self computeSpline
 ]
 
-{ #category : #calculation }
+{ #category : 'calculation' }
 StMInverseOfSpectralDensity >> computeSpline [
 	| splineSD df reals ims random twopi f amp phase real im ii fourier timeSeries ts xxs xs ys |
 	splineSD := StMGeneralSplineX 
@@ -112,12 +114,12 @@ StMInverseOfSpectralDensity >> computeSpline [
 				ys: xxs
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMInverseOfSpectralDensity >> differentiateWRTx [
 	^spline differentiateWRTx
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMInverseOfSpectralDensity >> value [
 	^spline value
 ]

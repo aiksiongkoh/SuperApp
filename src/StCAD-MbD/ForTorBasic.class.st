@@ -1,15 +1,17 @@
 Class {
-	#name : #ForTorBasic,
-	#superclass : #ForceTorqueItem,
+	#name : 'ForTorBasic',
+	#superclass : 'ForceTorqueItem',
 	#instVars : [
 		'parent',
 		'endFrame',
 		'iqE'
 	],
-	#category : #'StCAD-MbD-MbDForce'
+	#category : 'StCAD-MbD-MbDForce',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDForce'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 ForTorBasic class >> visualWorksMetadata [
 
 	^ #(
@@ -19,22 +21,22 @@ ForTorBasic class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ForTorBasic >> endFrame: eFrm [ 
 	endFrame := eFrm
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ForTorBasic >> endFrame: aFrmJ followEndFrame: aFrmI [ 
 	endFrame := aFrmJ followEndFrame: aFrmI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ForTorBasic >> parent: actionOrReaction [ 
 	parent := actionOrReaction
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 ForTorBasic >> useEquationNumbers [
 	iqE := endFrame partFrame iqE
 ]

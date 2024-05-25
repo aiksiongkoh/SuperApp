@@ -60,8 +60,8 @@ Limit
 
 "
 Class {
-	#name : #NewtonRaphson,
-	#superclass : #Solver,
+	#name : 'NewtonRaphson',
+	#superclass : 'Solver',
 	#instVars : [
 		'system',
 		'xold',
@@ -83,10 +83,12 @@ Class {
 		'twoAlp',
 		'lam'
 	],
-	#category : #'StMath-StMathNewtonRaphson'
+	#category : 'StMath-StMathNewtonRaphson',
+	#package : 'StMath',
+	#tag : 'StMathNewtonRaphson'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 NewtonRaphson class >> visualWorksMetadata [
 
 	^ #(
@@ -96,12 +98,12 @@ NewtonRaphson class >> visualWorksMetadata [
 
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NewtonRaphson >> askSystemToUpdate [
 	system updateForNewtonRaphson
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NewtonRaphson >> calcDXNormImproveRootCalcYNorm [
 	self calcdxNorm.
 	dxNorms add: dxNorm.
@@ -116,7 +118,7 @@ NewtonRaphson >> calcDXNormImproveRootCalcYNorm [
 	yNormOld := yNorm
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NewtonRaphson >> calcDXNormImproveRootMinimizeYNorm [
 	self calcdxNorm.
 	dxNorms add: dxNorm.
@@ -132,17 +134,17 @@ NewtonRaphson >> calcDXNormImproveRootMinimizeYNorm [
 	yNormOld := yNorm
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NewtonRaphson >> calcdxNorm [
 	self subclassResponsibility
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NewtonRaphson >> calcyNorm [
 	self subclassResponsibility
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NewtonRaphson >> doBackTracking [
 	"Ref: Numerical Recipies in C, 2nd Ed. p. 383-5."
 	"Use gprime(0) = -2*g(0)."
@@ -186,7 +188,7 @@ NewtonRaphson >> doBackTracking [
 	self dxEqualdxTimeslam
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NewtonRaphson >> dxEqualdxTimeslam [
 	"New dx is found from backtracking."
 
@@ -195,22 +197,22 @@ NewtonRaphson >> dxEqualdxTimeslam [
 	dxNorms add: dxNorm
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NewtonRaphson >> dxTol: tol [ 
 	dxTol := tol
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NewtonRaphson >> fillPyPx [
 	self subclassResponsibility
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NewtonRaphson >> fillY [
 	self subclassResponsibility
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NewtonRaphson >> incrementIterNo [
 	iterNo := iterNo + 1.
 	iterNo > iterMax
@@ -219,18 +221,18 @@ NewtonRaphson >> incrementIterNo [
 			MaximumIterationError raiseSignal]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 NewtonRaphson >> initialize [
 	super initialize.
 	dxNorms := OrderedCollection new.
 	dxTol := MachineAccuracy OfDoubleTimesFour.
 	yNorms := OrderedCollection new.
-	yNormTol := 1.0d-30 "StMMachineAccuracy OfDoubleTimesFour".
+	yNormTol := 1.0e-30 "StMMachineAccuracy OfDoubleTimesFour".
 	iterMax := 100.
-	twoAlp := 2.0d-4
+	twoAlp := 2.0e-4
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 NewtonRaphson >> initializeLocally [
 	"setIndices is a fast way of clearing anOrderedCollection."
 
@@ -242,19 +244,19 @@ NewtonRaphson >> initializeLocally [
 	yNormOld := MachineAccuracy OfLargestDouble
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NewtonRaphson >> isConverged [
 	^self isConvergedToNumericalLimit
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NewtonRaphson >> isConvergedToNumericalLimit [
 	"worthIterating is less stringent with IterNo."
 
 	"nDivergenceMax is the number of small divergences allowed."
 
 	| tooLargeTol smallEnoughTol nDecade dxNormIterNo dxNormIterNoOld farTooLargeError worthIterating stillConverging nDivergenceMax |
-	tooLargeTol := 1.0d-2.
+	tooLargeTol := 1.0e-2.
 	smallEnoughTol := MachineAccuracy OfDouble.
 	nDecade := (tooLargeTol / smallEnoughTol) log.
 	nDivergenceMax := 3.
@@ -276,14 +278,14 @@ NewtonRaphson >> isConvergedToNumericalLimit [
 			worthIterating not]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NewtonRaphson >> isConvergedToNumericalLimit1 [
 	"worthIterating is less stringent with IterNo."
 	"nDivergenceMax is the number of small divergences allowed."
 
 	| tooLargeTol smallEnoughTol nDecade dxNormIterNo dxNormIterNoOld farTooLargeError worthIterating stillConverging nDivergenceMax |
 	tooLargeTol := 1.0.
-	smallEnoughTol := 1.0d-18.
+	smallEnoughTol := 1.0e-18.
 	nDecade := (tooLargeTol / smallEnoughTol) log.
 	nDivergenceMax := 3.
 	dxNormIterNo := dxNorms at: iterNo.
@@ -303,7 +305,7 @@ NewtonRaphson >> isConvergedToNumericalLimit1 [
 			worthIterating not]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NewtonRaphson >> isConvergedToNumericalLimit2 [
 	"worthIterating is less stringent with IterNo."
 
@@ -332,12 +334,12 @@ NewtonRaphson >> isConvergedToNumericalLimit2 [
 			worthIterating not]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NewtonRaphson >> iterMax: integer [ 
 	iterMax := integer
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NewtonRaphson >> iterate [
 	"
 	Do not skip matrix solution even when yNorm is very small. 
@@ -360,7 +362,7 @@ NewtonRaphson >> iterate [
 	self isConverged] whileFalse
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NewtonRaphson >> iterateWithBackTracking [
 	iterNo := 0.
 	self fillY.
@@ -376,28 +378,28 @@ NewtonRaphson >> iterateWithBackTracking [
 	self isConverged] whileFalse
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NewtonRaphson >> passRootToSystem [
 	system dx: dx x: x
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NewtonRaphson >> postRun [
 	system postNewtonRaphson
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NewtonRaphson >> preRun [
 	system preNewtonRaphson
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NewtonRaphson >> reportStats [
 	statistics at: #iterNo put: iterNo.
 	system useNewtonRaphsonStats: statistics
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NewtonRaphson >> run [
 	self preRun.
 	self initializeLocally.
@@ -409,7 +411,7 @@ NewtonRaphson >> run [
 	^x
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NewtonRaphson >> runWithBackTracking [
 	self preRun.
 	self initializeLocally.
@@ -421,37 +423,37 @@ NewtonRaphson >> runWithBackTracking [
 	^x
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NewtonRaphson >> solveEquations [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NewtonRaphson >> system: sys [ 
 	system := sys
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NewtonRaphson >> x [
 	^x
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NewtonRaphson >> x: aObject [ 
 	x := aObject
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NewtonRaphson >> xEqualxoldPlusdx [
 	self subclassResponsibility
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NewtonRaphson >> xEqualxoldPlusdxTimeslam [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NewtonRaphson >> yNormTol: tol [ 
 	yNormTol := tol
 ]

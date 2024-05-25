@@ -16,8 +16,8 @@ gu = (Su dot Sv) + (r dot Suv) = fv
 gv = (Sv dot Sv) + (r dot Svv)
 "
 Class {
-	#name : #NurbsSurfaceInversion,
-	#superclass : #VectorNewtonRaphson,
+	#name : 'NurbsSurfaceInversion',
+	#superclass : 'VectorNewtonRaphson',
 	#instVars : [
 		'rFpF',
 		'r',
@@ -27,10 +27,12 @@ Class {
 		'suv',
 		'svv'
 	],
-	#category : #'StMath-StMathNewtonRaphson'
+	#category : 'StMath-StMathNewtonRaphson',
+	#package : 'StMath',
+	#tag : 'StMathNewtonRaphson'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 NurbsSurfaceInversion class >> visualWorksMetadata [
 
 	^ #(
@@ -40,12 +42,12 @@ NurbsSurfaceInversion class >> visualWorksMetadata [
 
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NurbsSurfaceInversion >> askSystemToUpdate [
 	self initializeGlobally
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NurbsSurfaceInversion >> fillPyPx [
 	| a12 |
 	(pypx at: 1)
@@ -56,50 +58,50 @@ NurbsSurfaceInversion >> fillPyPx [
 		at: 2 put: (sv dot: sv) + (r dot: svv)
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NurbsSurfaceInversion >> fillY [
 	y at: 1 put: (r dot: su).
 	y at: 2 put: (r dot: sv)
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 NurbsSurfaceInversion >> initialize [
 	super initialize.
 	y := StMFullColumn new: 2.
 	pypx := StMFullMatrix new: 2 by: 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NurbsSurfaceInversion >> matrixSolverClass [
 	^GEFullMatFullPv
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NurbsSurfaceInversion >> passRootToSystem [
 	"Do nothing."
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NurbsSurfaceInversion >> postRun [
 	"Do nothing."
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NurbsSurfaceInversion >> preRun [
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NurbsSurfaceInversion >> rFpF [
 	^rFpF
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NurbsSurfaceInversion >> rFpF: anObject [
 	rFpF := anObject
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 NurbsSurfaceInversion >> run [
 	^
 	[self preRun.

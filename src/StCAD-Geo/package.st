@@ -1,1 +1,1 @@
-Package { #name : #'StCAD-Geo' }
+Package { #name : 'StCAD-Geo' }

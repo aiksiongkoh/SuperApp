@@ -1,6 +1,6 @@
 Class {
-	#name : #DifferentialAlgebraicEquationSolver,
-	#superclass : #Solver,
+	#name : 'DifferentialAlgebraicEquationSolver',
+	#superclass : 'Solver',
 	#instVars : [
 		'n',
 		't',
@@ -22,15 +22,17 @@ Class {
 		'youts',
 		'ydotouts'
 	],
-	#category : #'StMath-StMathIntegrator'
+	#category : 'StMath-StMathIntegrator',
+	#package : 'StMath',
+	#tag : 'StMathIntegrator'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 DifferentialAlgebraicEquationSolver class >> new: size [ 
 	^super new initialize: size
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 DifferentialAlgebraicEquationSolver class >> visualWorksMetadata [
 
 	^ #(
@@ -40,52 +42,52 @@ DifferentialAlgebraicEquationSolver class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DifferentialAlgebraicEquationSolver >> aFAt: i put: eqn [ 
 	aF at: i put: eqn
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DifferentialAlgebraicEquationSolver >> absoluteTol: double [ 
 	absoluteTol := double
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DifferentialAlgebraicEquationSolver >> checkForDiscontinuity [
 	"Do nothing."
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DifferentialAlgebraicEquationSolver >> correctorAbsoluteTolerance [
 	^self toleranceVectorFrom: absoluteTol
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DifferentialAlgebraicEquationSolver >> correctorRelativeTolerance [
 	^self toleranceVectorFrom: relativeTol
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DifferentialAlgebraicEquationSolver >> endTime [
 	^tend
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DifferentialAlgebraicEquationSolver >> fillF: col [ 
 	1 to: n do: [:i | col at: i put: (aF at: i) value asDouble]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DifferentialAlgebraicEquationSolver >> fillY: col [ 
 	1 to: n do: [:i | col at: i put: (y at: i) value asDouble]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DifferentialAlgebraicEquationSolver >> fillYdot: col [ 
 	1 to: n do: [:i | col at: i put: (ydot at: i) value asDouble]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DifferentialAlgebraicEquationSolver >> fillpFpy: mat [ 
 	| rowi pFipy |
 	1 to: n
@@ -96,7 +98,7 @@ DifferentialAlgebraicEquationSolver >> fillpFpy: mat [
 			pFipy keysAndValuesDo: [:j :pFipyj | rowi at: j put: pFipyj value asDouble]]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DifferentialAlgebraicEquationSolver >> fillpFpydot: mat [ 
 	| rowi pFipydot |
 	1 to: n
@@ -107,27 +109,27 @@ DifferentialAlgebraicEquationSolver >> fillpFpydot: mat [
 			pFipydot keysAndValuesDo: [:j :pFipydotj | rowi at: j put: pFipydotj value asDouble]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DifferentialAlgebraicEquationSolver >> firstOutputTime [
 	^tstart
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DifferentialAlgebraicEquationSolver >> hmax: double [ 
 	hmax := double
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DifferentialAlgebraicEquationSolver >> hmin: double [ 
 	hmin := double
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DifferentialAlgebraicEquationSolver >> hout: double [ 
 	hout := double
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 DifferentialAlgebraicEquationSolver >> initialize: size [ 
 	n := size.
 	y := StMFullColumn new: size.
@@ -140,21 +142,21 @@ DifferentialAlgebraicEquationSolver >> initialize: size [
 	ydotouts := OrderedCollection new
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DifferentialAlgebraicEquationSolver >> integrationAbsoluteTolerance [
 	"Answer integrationAbsoluteTolerance vector with nil for algebraic equations."
 
 	^self integrationToleranceVectorFrom: absoluteTol
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DifferentialAlgebraicEquationSolver >> integrationRelativeTolerance [
 	"Answer integrationRelativeTolerance vector with nil for algebraic equations."
 
 	^self integrationToleranceVectorFrom: relativeTol
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DifferentialAlgebraicEquationSolver >> integrationToleranceVectorFrom: tol [ 
 	"Answer integrationTolerance vector with nil for algebraic equations."
 
@@ -164,62 +166,62 @@ DifferentialAlgebraicEquationSolver >> integrationToleranceVectorFrom: tol [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DifferentialAlgebraicEquationSolver >> iterMax [
 	^iterMax
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DifferentialAlgebraicEquationSolver >> iterMax: integer [ 
 	iterMax := integer
 ]
 
-{ #category : #output }
+{ #category : 'output' }
 DifferentialAlgebraicEquationSolver >> logString: string [ 
 	Transcript show: string mbdMessage
 ]
 
-{ #category : #output }
+{ #category : 'output' }
 DifferentialAlgebraicEquationSolver >> logString: string withArgument: string1 [ 
 	Transcript show: (string mbdMessage expandWithArgument: string1)
 ]
 
-{ #category : #output }
+{ #category : 'output' }
 DifferentialAlgebraicEquationSolver >> logString: string withArguments: arrayOfStrings [ 
 	Transcript show: (string mbdMessage expandWithArguments: arrayOfStrings)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DifferentialAlgebraicEquationSolver >> maxStepSize [
 	^hmax
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DifferentialAlgebraicEquationSolver >> minStepSize [
 	^hmin
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DifferentialAlgebraicEquationSolver >> n [
 	^n
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DifferentialAlgebraicEquationSolver >> neqn [
 	^n
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DifferentialAlgebraicEquationSolver >> orderMax [
 	^orderMax
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DifferentialAlgebraicEquationSolver >> orderMax: integer [ 
 	orderMax := integer
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DifferentialAlgebraicEquationSolver >> output [
 	"Do nothing."
 
@@ -228,7 +230,7 @@ DifferentialAlgebraicEquationSolver >> output [
 	ydotouts add: (ydot collect: [:ydoti | ydoti value])
 ]
 
-{ #category : #output }
+{ #category : 'output' }
 DifferentialAlgebraicEquationSolver >> outputOnFile: aString [ 
 	| writeStream block numberString |
 	writeStream := aString asFilename writeStream.
@@ -267,52 +269,52 @@ DifferentialAlgebraicEquationSolver >> outputOnFile: aString [
 	writeStream flush; close
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DifferentialAlgebraicEquationSolver >> outputStepSize [
 	^hout
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DifferentialAlgebraicEquationSolver >> postDAECorrector [
 	"Do nothing."
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DifferentialAlgebraicEquationSolver >> postDAEFirstStep [
 	"Do nothing."
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DifferentialAlgebraicEquationSolver >> postDAEIntegrator [
 	"Do nothing."
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DifferentialAlgebraicEquationSolver >> postDAEOutput [
 	"Do nothing."
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DifferentialAlgebraicEquationSolver >> postDAEPredictor [
 	"Do nothing."
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DifferentialAlgebraicEquationSolver >> postDAEStep [
 	"Do nothing."
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DifferentialAlgebraicEquationSolver >> preDAECorrector [
 	"Do nothing."
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DifferentialAlgebraicEquationSolver >> preDAEFirstStep [
 	"Do nothing."
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DifferentialAlgebraicEquationSolver >> preDAEIntegrator [
 	(y detect: [:yi | yi value isFloat not]
 		ifNone: [false])
@@ -337,27 +339,27 @@ DifferentialAlgebraicEquationSolver >> preDAEIntegrator [
 					pFipydotj isZero ifFalse: [pFipydot at: j put: pFipydotj]]]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DifferentialAlgebraicEquationSolver >> preDAEOutput [
 	"Do nothing."
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DifferentialAlgebraicEquationSolver >> preDAEPredictor [
 	"Do nothing."
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DifferentialAlgebraicEquationSolver >> preDAEStep [
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DifferentialAlgebraicEquationSolver >> relativeTol: double [ 
 	relativeTol := double
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DifferentialAlgebraicEquationSolver >> run [
 	| daeIntegrator |
 	daeIntegrator := DAEIntegrator new.
@@ -365,12 +367,12 @@ DifferentialAlgebraicEquationSolver >> run [
 	daeIntegrator run
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DifferentialAlgebraicEquationSolver >> startTime [
 	^tstart
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DifferentialAlgebraicEquationSolver >> suggestSmallerOrAcceptFirstStepSize: hnew [ 
 	"Default is return hnew."
 	"Best to do nothing so as not to disrupt the starting algorithm."
@@ -378,7 +380,7 @@ DifferentialAlgebraicEquationSolver >> suggestSmallerOrAcceptFirstStepSize: hnew
 	^hnew
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DifferentialAlgebraicEquationSolver >> suggestSmallerOrAcceptStepSize: hnew [ 
 	"Default is return hnew."
 	"Best to do nothing so as not to disrupt the algorithm."
@@ -386,22 +388,22 @@ DifferentialAlgebraicEquationSolver >> suggestSmallerOrAcceptStepSize: hnew [
 	^hnew
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DifferentialAlgebraicEquationSolver >> t: var [ 
 	t := var
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DifferentialAlgebraicEquationSolver >> tend: double [ 
 	tend := double
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DifferentialAlgebraicEquationSolver >> time: aDouble [ 
 	t value: aDouble
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DifferentialAlgebraicEquationSolver >> toleranceVectorFrom: tol [ 
 	"Answer tolerance vector."
 	"tol may be number or array."
@@ -423,27 +425,27 @@ DifferentialAlgebraicEquationSolver >> toleranceVectorFrom: tol [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DifferentialAlgebraicEquationSolver >> tstart: double [ 
 	tstart := double
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DifferentialAlgebraicEquationSolver >> updateForDAECorrector [
 	"Do nothing."
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DifferentialAlgebraicEquationSolver >> useDAEStats: stats [ 
 	"Do nothing."
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DifferentialAlgebraicEquationSolver >> useDAEStepStats: stats [ 
 	"Do nothing."
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DifferentialAlgebraicEquationSolver >> useDAETrialStepStats: stats [ 
 	| array |
 	array := Array new: 6.
@@ -456,29 +458,29 @@ DifferentialAlgebraicEquationSolver >> useDAETrialStepStats: stats [
 	self logString: #'StM: \%1 , t=%2 , o=%3 , h=%4 , it=%5 , e=%6' withArguments: array
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DifferentialAlgebraicEquationSolver >> y: col [ 
 	1 to: n do: [:i | (y at: i)
 			value: (col at: i)]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DifferentialAlgebraicEquationSolver >> yAt: i put: var [ 
 	y at: i put: var
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DifferentialAlgebraicEquationSolver >> yddot: col [ 
 	"Do nothing."
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 DifferentialAlgebraicEquationSolver >> ydot: col [ 
 	1 to: n do: [:i | (ydot at: i)
 			value: (col at: i)]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DifferentialAlgebraicEquationSolver >> ydotAt: i put: var [ 
 	ydot at: i put: var
 ]

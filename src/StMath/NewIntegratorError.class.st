@@ -1,10 +1,12 @@
 Class {
-	#name : #NewIntegratorError,
-	#superclass : #Exception,
-	#category : #'StMath-Exception'
+	#name : 'NewIntegratorError',
+	#superclass : 'Exception',
+	#category : 'StMath-Exception',
+	#package : 'StMath',
+	#tag : 'Exception'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 NewIntegratorError class >> visualWorksMetadata [
 
 	^ #(

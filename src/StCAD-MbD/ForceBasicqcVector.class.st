@@ -1,14 +1,16 @@
 Class {
-	#name : #ForceBasicqcVector,
-	#superclass : #ForTorBasic,
+	#name : 'ForceBasicqcVector',
+	#superclass : 'ForTorBasic',
 	#instVars : [
 		'iqX',
 		'prOeOpET'
 	],
-	#category : #'StCAD-MbD-MbDForce'
+	#category : 'StCAD-MbD-MbDForce',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDForce'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 ForceBasicqcVector class >> visualWorksMetadata [
 
 	^ #(
@@ -18,20 +20,20 @@ ForceBasicqcVector class >> visualWorksMetadata [
 
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 ForceBasicqcVector >> calcPostDynCorrectorIteration [
 	"rpep is not a constant for aMbDEndFrameqccq, qcs or qct."
 
 	prOeOpET := endFrame prOeOpE transpose
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 ForceBasicqcVector >> fillAccICIterError: col aFTO: aFTO [ 
 	col at: iqX plusFullColumn: aFTO.
 	col at: iqE plusFullColumn: (prOeOpET timesFullColumn: aFTO)
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 ForceBasicqcVector >> fillAccICIterJacob: mat pFTOplam: pFTOplam [ 
 	mat
 		at: iqX
@@ -43,13 +45,13 @@ ForceBasicqcVector >> fillAccICIterJacob: mat pFTOplam: pFTOplam [
 		plusSparseMatrix: (prOeOpET timesSparseMatrix: pFTOplam)
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForceBasicqcVector >> fillDynError: col aFTO: aFTO [ 
 	col at: iqX plusFullColumn: aFTO.
 	col at: iqE plusFullColumn: (prOeOpET timesFullColumn: aFTO)
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForceBasicqcVector >> fillpFpy: mat aFTO: aFTO [ 
 	| pprOeOpEpE iqEm1 pprOeOpEpEi mati pprOeOpEpEij |
 	pprOeOpEpE := endFrame pprOeOpEpE.
@@ -66,7 +68,7 @@ ForceBasicqcVector >> fillpFpy: mat aFTO: aFTO [
 					mati at: iqEm1 + j plusNumber: (pprOeOpEpEij dot: aFTO)]]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForceBasicqcVector >> fillpFpy: mat pFTOpEj: pFTOpEj partj: partj [ 
 	| iqEj |
 	iqEj := partj iqE.
@@ -80,7 +82,7 @@ ForceBasicqcVector >> fillpFpy: mat pFTOpEj: pFTOpEj partj: partj [
 		plusFullMatrix: (prOeOpET timesFullMatrix: pFTOpEj)
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForceBasicqcVector >> fillpFpy: mat pFTOpXj: pFTOpXj pFTOpEj: pFTOpEj partj: partj [ 
 	self
 		fillpFpy: mat
@@ -92,7 +94,7 @@ ForceBasicqcVector >> fillpFpy: mat pFTOpXj: pFTOpXj pFTOpEj: pFTOpEj partj: par
 		partj: partj
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForceBasicqcVector >> fillpFpy: mat pFTOpXj: pFTOpXj partj: partj [ 
 	| iqXj |
 	iqXj := partj iqX.
@@ -106,7 +108,7 @@ ForceBasicqcVector >> fillpFpy: mat pFTOpXj: pFTOpXj partj: partj [
 		plusFullMatrix: (prOeOpET timesFullMatrix: pFTOpXj)
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForceBasicqcVector >> fillpFpydot: mat pFTOpEdotj: pFTOpEdotj partj: partj [ 
 	| iqEj |
 	iqEj := partj iqE.
@@ -120,7 +122,7 @@ ForceBasicqcVector >> fillpFpydot: mat pFTOpEdotj: pFTOpEdotj partj: partj [
 		plusFullMatrix: (prOeOpET timesFullMatrix: pFTOpEdotj)
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForceBasicqcVector >> fillpFpydot: mat pFTOpXdotj: pFTOpXdotj pFTOpEdotj: pFTOpEdotj partj: partj [ 
 	self
 		fillpFpydot: mat
@@ -132,7 +134,7 @@ ForceBasicqcVector >> fillpFpydot: mat pFTOpXdotj: pFTOpXdotj pFTOpEdotj: pFTOpE
 		partj: partj
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForceBasicqcVector >> fillpFpydot: mat pFTOpXdotj: pFTOpXdotj partj: partj [ 
 	| iqXj |
 	iqXj := partj iqX.
@@ -146,7 +148,7 @@ ForceBasicqcVector >> fillpFpydot: mat pFTOpXdotj: pFTOpXdotj partj: partj [
 		plusFullMatrix: (prOeOpET timesFullMatrix: pFTOpXdotj)
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForceBasicqcVector >> fillpFpydot: mat pFTOpmudot: pFTOpmudot [ 
 	mat
 		at: iqX
@@ -158,7 +160,7 @@ ForceBasicqcVector >> fillpFpydot: mat pFTOpmudot: pFTOpmudot [
 		plusSparseMatrix: (prOeOpET timesSparseMatrix: pFTOpmudot)
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 ForceBasicqcVector >> useEquationNumbers [
 	super useEquationNumbers.
 	iqX := endFrame partFrame iqX

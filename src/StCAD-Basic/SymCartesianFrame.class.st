@@ -1,10 +1,11 @@
 Class {
-	#name : #SymCartesianFrame,
-	#superclass : #SymCoordinateFrame,
-	#category : #'StCAD-Basic'
+	#name : 'SymCartesianFrame',
+	#superclass : 'SymCoordinateFrame',
+	#category : 'StCAD-Basic',
+	#package : 'StCAD-Basic'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymCartesianFrame >> time [
 
 	^ sup time

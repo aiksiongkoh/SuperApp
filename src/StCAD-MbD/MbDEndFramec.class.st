@@ -1,15 +1,17 @@
 Class {
-	#name : #MbDEndFramec,
-	#superclass : #MbDCartesianFrame,
+	#name : 'MbDEndFramec',
+	#superclass : 'MbDCartesianFrame',
 	#instVars : [
 		'markerFrame',
 		'rOeO',
 		'aAOe'
 	],
-	#category : #'StCAD-MbD-MbDBasic'
+	#category : 'StCAD-MbD-MbDBasic',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDBasic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDEndFramec class >> visualWorksMetadata [
 
 	^ #(
@@ -19,69 +21,69 @@ MbDEndFramec class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFramec >> aAOe [
 	^aAOe
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFramec >> aAeO [
 	^aAOe transpose
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFramec >> aAjOe: j [ 
 	^aAOe column: j
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFramec >> aApm: mat [ 
 	markerFrame aApm: mat
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDEndFramec >> calcPostDynCorrectorIteration [
 	rOeO := markerFrame rOmO.
 	aAOe := markerFrame aAOm
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFramec >> fillContactEndFrames: set [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFramec >> ieO [
 	^aAOe column: 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFramec >> isOn: mFrm [ 
 	markerFrame := mFrm.
 	markerFrame endFrames add: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFramec >> jeO [
 	^aAOe column: 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFramec >> keO [
 	^aAOe column: 3
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFramec >> markerFrame [
 	^markerFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFramec >> markerFrame: frame [ 
 	markerFrame := frame
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 MbDEndFramec >> newCopyEndFrameqc [
 	| answer |
 	answer := MbDEndFrameqc new.
@@ -89,53 +91,53 @@ MbDEndFramec >> newCopyEndFrameqc [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFramec >> part: aPart [ 
 	markerFrame partFrame: aPart partFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFramec >> partFrame [
 	^markerFrame partFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFramec >> qEOe [
 	^aAOe mbdEulerParameters
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFramec >> rOeO [ 
 	^rOeO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFramec >> rOeO: aFullColumn [ 
 	rOeO := aFullColumn.
 	markerFrame rOmO: aFullColumn
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFramec >> riOeO: i [ 
 	^rOeO at: i
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFramec >> rmeO [
 	^rOeO - markerFrame rOmO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDEndFramec >> rpmp: col [ 
 	markerFrame rpmp: col
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDEndFramec >> submitToSystem [
 	self registerName
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDEndFramec >> swapXandZaxes [
 	markerFrame swapXandZaxes
 ]

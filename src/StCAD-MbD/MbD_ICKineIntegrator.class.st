@@ -1,10 +1,12 @@
 Class {
-	#name : #'MbD_ICKineIntegrator',
-	#superclass : #MbDQuasiIntegrator,
-	#category : #'StCAD-MbD-MbDSolver'
+	#name : 'MbD_ICKineIntegrator',
+	#superclass : 'MbDQuasiIntegrator',
+	#category : 'StCAD-MbD-MbDSolver',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbD_ICKineIntegrator class >> visualWorksMetadata [
 
 	^ #(
@@ -14,13 +16,13 @@ MbD_ICKineIntegrator class >> visualWorksMetadata [
 
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbD_ICKineIntegrator >> preRun [
 	system logString: #'MbD: \Starting quasi kinematic analysis.'.
 	super preRun
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbD_ICKineIntegrator >> runInitialConditionTypeSolution [
 	system runPosICKine.
 	system runVelICKine.

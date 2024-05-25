@@ -37,8 +37,8 @@ Provide diagnostics for over constraint systems.
 Combine MbD, FEM, CFD.
 "
 Class {
-	#name : #MbDSystem,
-	#superclass : #MbDItem,
+	#name : 'MbDSystem',
+	#superclass : 'MbDItem',
 	#instVars : [
 		'admSystem',
 		'namedItems',
@@ -51,10 +51,12 @@ Class {
 		'hasChanged',
 		'mbdSystemSolver'
 	],
-	#category : #'StCAD-MbD-MbDBasic'
+	#category : 'StCAD-MbD-MbDBasic',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDBasic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDSystem class >> visualWorksMetadata [
 
 	^ #(
@@ -64,17 +66,17 @@ MbDSystem class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystem >> admSystem [
 	^admSystem
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystem >> admSystem: admSys [ 
 	admSystem := admSys
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystem >> allConstraints [
 	| allConstraints |
 	allConstraints := OrderedCollection new.
@@ -82,7 +84,7 @@ MbDSystem >> allConstraints [
 	^allConstraints
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystem >> allRedundantConstraints [
 	| allRedundantConstraints |
 	allRedundantConstraints := OrderedCollection new.
@@ -90,12 +92,12 @@ MbDSystem >> allRedundantConstraints [
 	^allRedundantConstraints
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDSystem >> bePerturbed: delta fillqsulam: col [ 
 	self partsJointsMotionsDo: [:item | item bePerturbed: delta fillqsulam: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystem >> cDiscontinuityAtIC [
 	| cDiscontinuity |
 	cDiscontinuity := OrderedCollection new.
@@ -105,12 +107,12 @@ MbDSystem >> cDiscontinuityAtIC [
 	^cDiscontinuity
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystem >> classMbDMarker [
 	^MbDEndFrameqc
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystem >> contactEndFrames [
 	| contactEndFrames |
 	contactEndFrames := OrderedCollection new.
@@ -118,17 +120,17 @@ MbDSystem >> contactEndFrames [
 	^contactEndFrames
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystem >> correctorAbsoluteTolerance [
 	^admSystem correctorAbsoluteTolerance
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystem >> correctorRelativeTolerance [
 	^admSystem correctorRelativeTolerance
 ]
 
-{ #category : #debug }
+{ #category : 'debug' }
 MbDSystem >> debugFindConstraint_iG: i [ 
 	jointsMotions do: 
 			[:joint | 
@@ -136,7 +138,7 @@ MbDSystem >> debugFindConstraint_iG: i [
 				do: [:con | (con isRedundant not and: [con iG = i]) ifTrue: [^con]]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystem >> displacementConstraints [
 	| dispConstraints |
 	dispConstraints := OrderedCollection new.
@@ -144,22 +146,22 @@ MbDSystem >> displacementConstraints [
 	^dispConstraints
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDSystem >> endTime [
 	^admSystem endTime
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDSystem >> errorTolAccKine [
 	^admSystem errorTolAccKine
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDSystem >> errorTolPosKine [
 	^admSystem errorTolPosKine
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystem >> essentialConstraints2 [
 	| essenConstraints |
 	essenConstraints := OrderedCollection new.
@@ -167,7 +169,7 @@ MbDSystem >> essentialConstraints2 [
 	^essenConstraints
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDSystem >> fillStaticWeights: col [ 
 	"self fillqsuWeights: col."
 	"col magnifySelf: 1.0d-9 / TheMbDSystem gSubC"
@@ -175,12 +177,12 @@ MbDSystem >> fillStaticWeights: col [
 	col atAllPut: 0.001
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDSystem >> fillqsulam: col [ 
 	self partsJointsMotionsDo: [:item | item fillqsulam: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystem >> find: aSymbol [ 
 	^namedItems at: aSymbol
 		ifAbsent: 
@@ -188,7 +190,7 @@ MbDSystem >> find: aSymbol [
 			SimulationStoppingError raiseSignal]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystem >> followPart: aGEOPart [ 
 	admSystem preMbDrun.
 	
@@ -202,34 +204,34 @@ MbDSystem >> followPart: aGEOPart [
 	admSystem postMbDrun
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystem >> forcesTorques [
 	^forcesTorques
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystem >> gSubC [
 	"F := ma / gSubC."
 
 	^admSystem gSubC
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDSystem >> getString: symbol [ 
 	^admSystem getString: symbol
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystem >> hasChanged [
 	^hasChanged
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystem >> hasChanged: boolean [ 
 	hasChanged := boolean
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDSystem >> hasDiscontinuityAtIC [
 	| discontinuityTypes |
 	discontinuityTypes := OrderedCollection new.
@@ -237,12 +239,12 @@ MbDSystem >> hasDiscontinuityAtIC [
 	^discontinuityTypes isEmpty not
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDSystem >> initStepSize [
 	^self admSystem HINIT
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDSystem >> initialize [
 	TheMbDSystem := self.
 	namedItems := IdentityDictionary new.
@@ -256,13 +258,13 @@ MbDSystem >> initialize [
 	mbdSystemSolver system: self
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDSystem >> initializeGlobally [
 	self partsJointsMotionsForcesTorquesDo: [:item | item initializeGlobally].
 	mbdSystemSolver initializeGlobally
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDSystem >> initializeLocally [
 	hasChanged := false.
 	self mbdTimeValue: mbdSystemSolver startTime.
@@ -270,72 +272,72 @@ MbDSystem >> initializeLocally [
 	mbdSystemSolver initializeLocally
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystem >> integrationAbsoluteTolerance [
 	^admSystem integrationAbsoluteTolerance
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystem >> integrationRelativeTolerance [
 	^admSystem integrationRelativeTolerance
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDSystem >> iterMaxAccKine [
 	^admSystem iterMaxAccKine
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDSystem >> iterMaxDyn [
 	^admSystem iterMaxDyn
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDSystem >> iterMaxPosKine [
 	^admSystem iterMaxPosKine
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystem >> jointsMotions [
 	^jointsMotions
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDSystem >> logContactForce: double [ 
 	admSystem logContactForce: double
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDSystem >> logImpactVelocity: double [ 
 	admSystem logImpactVelocity: double
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDSystem >> logSeparationDistance: double [ 
 	admSystem logSeparationDistance: double
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDSystem >> logString: string [ 
 	admSystem logString: string
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDSystem >> logString: string withArgument: string1 [ 
 	admSystem logString: string withArgument: string1
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDSystem >> logString: string withArguments: arrayOfStrings [ 
 	self admSystem logString: string withArguments: arrayOfStrings
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDSystem >> maxStepSize [
 	^admSystem maxStepSize
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystem >> maximumMass [
 	| max |
 	max := 0.0.
@@ -343,7 +345,7 @@ MbDSystem >> maximumMass [
 	^max
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystem >> maximumMomentOfInertia [
 	| max |
 	max := 0.0.
@@ -351,75 +353,75 @@ MbDSystem >> maximumMomentOfInertia [
 	^max
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystem >> mbdSystemSolver [
 	^mbdSystemSolver
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystem >> mbdTime [
 	^mbdTime
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystem >> mbdTimeValue [
 	^mbdTime value
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDSystem >> mbdTimeValue: double [ 
 	mbdTime value = double ifFalse: [mbdTime value: double]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDSystem >> minStepSize [
 	^admSystem minStepSize
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystem >> namedItems [
 	^namedItems
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDSystem >> orderMax [
 	^admSystem orderMax
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDSystem >> outputFor: analysisType [ 
 	admSystem outputFor: analysisType
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystem >> outputStepSize [
 	^mbdSystemSolver hout
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystem >> parts [
 	^parts
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystem >> partsJointsMotionsDo: aBlock [ 
 	parts do: aBlock.
 	jointsMotions do: aBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystem >> partsJointsMotionsForcesTorquesDo: aBlock [ 
 	parts do: aBlock.
 	jointsMotions do: aBlock.
 	forcesTorques do: aBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystem >> pastStartTimes [
 	^mbdSystemSolver tstartPasts
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystem >> perpendicularConstraints2 [
 	| perpenConstraints |
 	perpenConstraints := OrderedCollection new.
@@ -427,12 +429,12 @@ MbDSystem >> perpendicularConstraints2 [
 	^perpenConstraints
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDSystem >> rotationLimit [
 	^mbdSystemSolver rotationLimit
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystem >> runDYNAMIC [
 	admSystem preMbDrun.
 	
@@ -448,7 +450,7 @@ MbDSystem >> runDYNAMIC [
 	admSystem postMbDrun
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystem >> runKINEMATIC [
 	admSystem preMbDrun.
 	
@@ -464,7 +466,7 @@ MbDSystem >> runKINEMATIC [
 	admSystem postMbDrun
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystem >> runQuasiKinematic [
 	admSystem preMbDrun.
 	
@@ -480,7 +482,7 @@ MbDSystem >> runQuasiKinematic [
 	admSystem postMbDrun
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystem >> runSTATICS [
 	admSystem preMbDrun.
 	
@@ -497,7 +499,7 @@ MbDSystem >> runSTATICS [
 	admSystem postMbDrun
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystem >> runSTATICS1 [
 	admSystem preMbDrun.
 	
@@ -514,7 +516,7 @@ MbDSystem >> runSTATICS1 [
 	admSystem postMbDrun
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystem >> runTRANSIENT [
 	admSystem preMbDrun.
 	
@@ -530,7 +532,7 @@ MbDSystem >> runTRANSIENT [
 	admSystem postMbDrun
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDSystem >> runTRANSIENT1 [
 	admSystem preMbDrun.
 	
@@ -545,27 +547,27 @@ MbDSystem >> runTRANSIENT1 [
 	admSystem postMbDrun
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystem >> sensors [
 	^sensors
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDSystem >> simCompleted [
 	self admSystem closeOutputs
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDSystem >> startTime [
 	^mbdTime value
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDSystem >> translationLimit [
 	^mbdSystemSolver translationLimit
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystem >> uHolders [
 	| uHolders |
 	uHolders := OrderedCollection new.
@@ -573,22 +575,22 @@ MbDSystem >> uHolders [
 	^uHolders
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDSystem >> useCollisionTrialStepStats: stats [ 
 	admSystem useCollisionTrialStepStats: stats
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDSystem >> useDynTrialStepStats: stats [ 
 	admSystem useDynTrialStepStats: stats
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDSystem >> useKineTrialStepStats: stats [ 
 	admSystem useKineTrialStepStats: stats
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSystem >> variables [
 	^variables
 ]

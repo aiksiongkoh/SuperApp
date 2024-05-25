@@ -1,10 +1,12 @@
 Class {
-	#name : #StMSmoothStep,
-	#superclass : #StMPiecewiseFunctionX,
-	#category : #'StMath-Symbolic'
+	#name : 'StMSmoothStep',
+	#superclass : 'StMPiecewiseFunctionX',
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMSmoothStep class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ StMSmoothStep class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMSmoothStep class >> with: variable x1: xx1 y1: yy1 x2: xx2 y2: yy2 [ 
 	^super new
 		x: variable
@@ -24,7 +26,7 @@ StMSmoothStep class >> with: variable x1: xx1 y1: yy1 x2: xx2 y2: yy2 [
 		y2: yy2
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 StMSmoothStep >> x: arg x1: argx1 y1: argy1 x2: argx2 y2: argy2 [ 
 	| x1 y1 x2 y2 |
 	x := self conditionArgument: arg.

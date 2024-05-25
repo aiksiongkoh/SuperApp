@@ -1,13 +1,15 @@
 Class {
-	#name : #GEOGravity,
-	#superclass : #GEOContainedItem,
+	#name : 'GEOGravity',
+	#superclass : 'GEOContainedItem',
 	#instVars : [
 		'gXYZ'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOGravity class >> visualWorksMetadata [
 
 	^ #(
@@ -17,7 +19,7 @@ GEOGravity class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOGravity >> asTreeNode [
 	| answer |
 	answer := super asTreeNode.
@@ -25,7 +27,7 @@ GEOGravity >> asTreeNode [
 	^answer
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOGravity >> createMbD [
 	| mbdGravity |
 	mbdGravity := MbDConstantGravity new.
@@ -34,12 +36,12 @@ GEOGravity >> createMbD [
 	self mbdObject: mbdGravity
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOGravity >> deleteMbD [
 	self mbdObject: nil
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOGravity >> gX: gX gY: gY gZ: gZ [ 
 	""
 
@@ -49,22 +51,22 @@ GEOGravity >> gX: gX gY: gY gZ: gZ [
 	gXYZ at: 3 put: gZ
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOGravity >> gXYZ [
 	^gXYZ
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOGravity >> gXYZ: col [ 
 	gXYZ := col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOGravity >> rDfD [
 	^container rDfD
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOGravity >> storeOn: aStream level: level [ 
 	aStream
 		storeLevel: level
@@ -72,7 +74,7 @@ GEOGravity >> storeOn: aStream level: level [
 		object: gXYZ
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOGravity >> storePOVOn: aStream level: level [ 
 	"Do nothing."
 ]

@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDDispCompIeqcJecIe,
-	#superclass : #MbDDispCompIecJecIe,
+	#name : 'MbDDispCompIeqcJecIe',
+	#superclass : 'MbDDispCompIecJecIe',
 	#instVars : [
 		'priIeJeIepXI',
 		'priIeJeIepEI',
@@ -9,10 +9,12 @@ Class {
 		'pAjOIepEIT',
 		'ppAjOIepEIpEI'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDDispCompIeqcJecIe class >> visualWorksMetadata [
 
 	^ #(
@@ -22,7 +24,7 @@ MbDDispCompIeqcJecIe class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDDispCompIeqcJecIe class >> withFrmI: afrmI frmJ: afrmJ axis: aaxis [ 
 	^(afrmI isMemberOf: MbDEndFrameqc)
 		& (afrmJ isMemberOf: MbDEndFramec)
@@ -30,7 +32,7 @@ MbDDispCompIeqcJecIe class >> withFrmI: afrmI frmJ: afrmJ axis: aaxis [
 		ifFalse: [nil]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDispCompIeqcJecIe >> calcPostDynCorrectorIteration [
 	| ppriIeJeIepXIipEI mprIeJeOpEIT mpprIeJeOpEIpEI ppAjOIepEIipEI mpprIeJeOpEIipEI ppriIeJeIepEIipEI term1 mterm2 mterm3 mterm4 |
 	super calcPostDynCorrectorIteration.
@@ -57,7 +59,7 @@ MbDDispCompIeqcJecIe >> calcPostDynCorrectorIteration [
 	ppriIeJeIepEIpEI symLowerWithUpper
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDispCompIeqcJecIe >> initialize [
 	super initialize.
 	priIeJeIepXI := StMFullRow new: 3.
@@ -66,47 +68,47 @@ MbDDispCompIeqcJecIe >> initialize [
 	ppriIeJeIepEIpEI := StMFullMatrix new: 4 by: 4
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDispCompIeqcJecIe >> initializeGlobally [
 	ppAjOIepEIpEI := frmI ppAjOepEpE: axis
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqcJecIe >> ppriIeJeIepEIpEI [
 	^ppriIeJeIepEIpEI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqcJecIe >> ppriIeJeIepXIpEI [
 	^ppriIeJeIepXIpEI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqcJecIe >> ppvaluepEIpEI [
 	^ppriIeJeIepEIpEI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqcJecIe >> ppvaluepXIpEI [
 	^ppriIeJeIepXIpEI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqcJecIe >> priIeJeIepEI [
 	^priIeJeIepEI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqcJecIe >> priIeJeIepXI [
 	^priIeJeIepXI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqcJecIe >> pvaluepEI [
 	^priIeJeIepEI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqcJecIe >> pvaluepXI [
 	^priIeJeIepXI
 ]

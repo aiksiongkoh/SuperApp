@@ -2,28 +2,36 @@
 InertialFrame is the root that contains everything
 "
 Class {
-	#name : #SymInertialFrame,
-	#superclass : #SymCartesianFrame,
+	#name : 'SymInertialFrame',
+	#superclass : 'SymCartesianFrame',
 	#instVars : [
 		'symUnits',
 		'time'
 	],
-	#category : #'StCAD-Basic'
+	#category : 'StCAD-Basic',
+	#package : 'StCAD-Basic'
 }
 
-{ #category : #adding }
+{ #category : 'adding' }
 SymInertialFrame >> addAssemblyF: aStAssemblyFrame [ 
 	subs add: aStAssemblyFrame.
 	aStAssemblyFrame sup: self. 
 ]
 
-{ #category : #calc }
+{ #category : 'adding' }
+SymInertialFrame >> addAssemblyFrm: assemblyFrame [
+
+	subs add: assemblyFrame.
+	assemblyFrame sup: self
+]
+
+{ #category : 'calc' }
 SymInertialFrame >> calcAll [
 
 	subs do: [ :sub | sub calcAll ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SymInertialFrame >> initialize [
 
 	| rOOO aAOO |
@@ -37,7 +45,39 @@ SymInertialFrame >> initialize [
 	aAOf := aAFf
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
+SymInertialFrame >> rOFO [
+
+	^ StMFullColumn zero: 3
+]
+
+{ #category : 'run' }
+SymInertialFrame >> runDYNAMIC [
+
+	| assembly |
+	assembly := self soleAssembly.
+	assembly preMbDrun.
+	assembly calcCharacteristicDimensions.
+	[
+	assembly initializeLocally.
+	assembly initializeGlobally.
+	assembly hasChanged ] whileTrue.
+	assembly partsJointsMotionsForcesTorquesDo: [ :item | item postInput ].
+	assembly outputFor: #INPUT.
+	assembly runAllIC.
+	assembly outputFor: #'INITIAL CONDITIONS'.
+	assembly runBasicDynamic.
+	assembly postMbDrun
+]
+
+{ #category : 'accessing' }
+SymInertialFrame >> soleAssembly [
+
+	[ subs size = 1 ] assert.
+	^ subs first
+]
+
+{ #category : 'accessing' }
 SymInertialFrame >> time [
 
 	^ time

@@ -1,18 +1,20 @@
 Class {
-	#name : #GEOSketch,
-	#superclass : #GEOAnyGraphic,
+	#name : 'GEOSketch',
+	#superclass : 'GEOAnyGraphic',
 	#instVars : [
 		'graphics'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSketch class >> nameString [
 	^'Sketch'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOSketch class >> visualWorksMetadata [
 
 	^ #(
@@ -22,67 +24,67 @@ GEOSketch class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSketch >> addGraphic: aGEOGraphic [ 
 	aGEOGraphic container: self.
 	aGEOGraphic refFrame refFrame: refFrame.
 	graphics add: aGEOGraphic
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSketch >> addGraphics: array [ 
 	array do: [:graphic | self addGraphic: graphic]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSketch >> asPolylines [
 	^graphics collect: [:graphic | graphic asPolyline]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSketch >> cGraphic [
 	^graphics
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSketch >> cutCurve: aGEOCurve [ 
 	graphics remove: aGEOCurve
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSketch >> cutGraphic: aGEOGraphic [ 
 	graphics remove: aGEOGraphic
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSketch >> graphics [
 	^graphics
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOSketch >> initialize [
 
 	super initialize.
 	graphics := StCAD_Misc_OrderedSet new "VW_TRANSLATION:StCAD.Misc.OrderedSet:StCAD_Misc_OrderedSet"
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOSketch >> isCutable [
 	^false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOSketch >> isSketch [
 	^true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSketch >> magnifySelf: aDouble [ 
 	self aRefFrame magnifySelf: aDouble.
 	self cGraphic do: [:aGraphic | aGraphic magnifySelf: aDouble]
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 GEOSketch >> postCopy [
 	| originalGraphics |
 	super postCopy.
@@ -91,24 +93,24 @@ GEOSketch >> postCopy [
 	originalGraphics do: [:graphic | self addGraphic: graphic copy]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOSketch >> preSave [
 	super preSave.
 	graphics do: [:graphic | graphic preSave]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOSketch >> release [
 	graphics do: [:graphic | graphic release].
 	super release
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOSketch >> removeGEO: aGEO [ 
 	graphics remove: aGEO
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 GEOSketch >> renderOn: aRenderingContext [ 
 	self interface activeSketch == self 
 		ifTrue: 
@@ -116,7 +118,7 @@ GEOSketch >> renderOn: aRenderingContext [
 				while: [graphics do: [:graphic | graphic renderOn: aRenderingContext]]]
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOSketch >> storeOn: aStream level: level [ 
 	super storeOn: aStream level: level.
 	aStream storeLevel: level + 1 title: 'Graphics'.

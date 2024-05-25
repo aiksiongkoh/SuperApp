@@ -1,16 +1,18 @@
 Class {
-	#name : #MbDDirectionCosineConstraintIqctJqc,
-	#superclass : #MbDDirectionCosineConstraintIqcJqc,
+	#name : 'MbDDirectionCosineConstraintIqctJqc',
+	#superclass : 'MbDDirectionCosineConstraintIqcJqc',
 	#instVars : [
 		'pGpt',
 		'ppGpEIpt',
 		'ppGpEJpt',
 		'ppGptpt'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDDirectionCosineConstraintIqctJqc class >> visualWorksMetadata [
 
 	^ #(
@@ -20,7 +22,7 @@ MbDDirectionCosineConstraintIqctJqc class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDDirectionCosineConstraintIqctJqc class >> withFrmI: afrmI frmJ: afrmJ axisI: aaxisI axisJ: aaxisJ [ 
 	^(afrmI isMemberOf: MbDEndFrameqct) | (afrmI isMemberOf: MbD2EndFrameqct) 
 		& (afrmJ isMemberOf: MbDEndFrameqc) 
@@ -33,12 +35,12 @@ MbDDirectionCosineConstraintIqctJqc class >> withFrmI: afrmI frmJ: afrmJ axisI: 
 			ifFalse: [nil]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineConstraintIqctJqc >> directionCosineClass [
 	^MbDDirectionCosineIeqctJeqc
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDDirectionCosineConstraintIqctJqc >> fillAccICIterError: col [ 
 	| qEdotI sum qEdotJ |
 	super fillAccICIterError: col.
@@ -51,12 +53,12 @@ MbDDirectionCosineConstraintIqctJqc >> fillAccICIterError: col [
 	col at: iG plusNumber: sum
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDDirectionCosineConstraintIqctJqc >> fillVelICError: col [ 
 	col at: iG minusNumber: pGpt
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDDirectionCosineConstraintIqctJqc >> preAccIC [
 	super preAccIC.
 	ppGpEIpt := aAijIeJe ppAijIeJepEIpt.
@@ -64,13 +66,13 @@ MbDDirectionCosineConstraintIqctJqc >> preAccIC [
 	ppGptpt := aAijIeJe ppAijIeJeptpt
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDDirectionCosineConstraintIqctJqc >> preVelIC [
 	super preVelIC.
 	pGpt := aAijIeJe pAijIeJept
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineConstraintIqctJqc >> type [
 	^#essential
 ]

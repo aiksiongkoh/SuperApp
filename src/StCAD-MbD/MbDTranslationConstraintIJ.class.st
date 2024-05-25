@@ -1,13 +1,15 @@
 Class {
-	#name : #MbDTranslationConstraintIJ,
-	#superclass : #MbDConstraintIJ,
+	#name : 'MbDTranslationConstraintIJ',
+	#superclass : 'MbDConstraintIJ',
 	#instVars : [
 		'riIeJeIe'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDTranslationConstraintIJ class >> visualWorksMetadata [
 
 	^ #(
@@ -17,7 +19,7 @@ MbDTranslationConstraintIJ class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDTranslationConstraintIJ class >> withFrmI: afrmI frmJ: afrmJ axis: aaxis [ 
 	| instance |
 	self allSubclasses
@@ -30,12 +32,12 @@ MbDTranslationConstraintIJ class >> withFrmI: afrmI frmJ: afrmJ axis: aaxis [
 			instance notNil ifTrue: [^instance]]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDTranslationConstraintIJ >> calcPostDynCorrectorIteration [
 	aG := riIeJeIe value - aConstant
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDTranslationConstraintIJ >> classString [
 	"Used to access the descriptive name of the constraint."
 	"Needed for multi-language."
@@ -43,100 +45,100 @@ MbDTranslationConstraintIJ >> classString [
 	^TheMbDSystem getString: #'MbD: in-plane constraint '
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDTranslationConstraintIJ >> initialize [
 	super initialize.
 	riIeJeIe := self dispCompClass new
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDTranslationConstraintIJ >> initializeGlobally [
 	riIeJeIe initializeGlobally
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDTranslationConstraintIJ >> initializeLocally [
 	riIeJeIe initializeLocally
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDTranslationConstraintIJ >> postDynCorrectorIteration [
 	riIeJeIe postDynCorrectorIteration.
 	super postDynCorrectorIteration
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDTranslationConstraintIJ >> postDynOutput [
 	riIeJeIe postDynOutput.
 	super postDynOutput
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDTranslationConstraintIJ >> postDynPredictor [
 	riIeJeIe postDynPredictor.
 	super postDynPredictor
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDTranslationConstraintIJ >> postInput [
 	riIeJeIe postInput.
 	super postInput
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDTranslationConstraintIJ >> postPosICIteration [
 	riIeJeIe postPosICIteration.
 	super postPosICIteration
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDTranslationConstraintIJ >> postStaticIteration [
 	riIeJeIe postStaticIteration.
 	super postStaticIteration
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDTranslationConstraintIJ >> preAccIC [
 	riIeJeIe preAccIC.
 	super preAccIC
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDTranslationConstraintIJ >> preDynOutput [
 	riIeJeIe preDynOutput.
 	super preDynOutput
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDTranslationConstraintIJ >> prePosIC [
 	riIeJeIe prePosIC.
 	super prePosIC
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDTranslationConstraintIJ >> preStatic [
 	riIeJeIe preStatic.
 	super preStatic
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDTranslationConstraintIJ >> preVelIC [
 	riIeJeIe preVelIC.
 	super preVelIC
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDTranslationConstraintIJ >> simUpdateAll [
 	riIeJeIe simUpdateAll.
 	super simUpdateAll
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDTranslationConstraintIJ >> type [
 	^#displacement
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDTranslationConstraintIJ >> withFrmI: afrmI frmJ: afrmJ axis: aaxis [ 
 	frmI := afrmI.
 	frmJ := afrmJ.

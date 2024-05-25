@@ -1,13 +1,15 @@
 Class {
-	#name : #VerySparseVector,
-	#superclass : #SpecialLinearAlgebra,
+	#name : 'VerySparseVector',
+	#superclass : 'SpecialLinearAlgebra',
 	#instVars : [
 		'fullsize'
 	],
-	#category : #'StMath-StMathArraySpecial'
+	#category : 'StMath-StMathArraySpecial',
+	#package : 'StMath',
+	#tag : 'StMathArraySpecial'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 VerySparseVector class >> visualWorksMetadata [
 
 	^ #(
@@ -17,7 +19,7 @@ VerySparseVector class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 VerySparseVector >> numberOfElements [
 	"Answer the number of elements in the full vector or matrix."
 

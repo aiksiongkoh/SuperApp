@@ -1,20 +1,22 @@
 Class {
-	#name : #GEONoRotationJoint,
-	#superclass : #GEOJoint,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEONoRotationJoint',
+	#superclass : 'GEOJoint',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEONoRotationJoint class >> mbdClass [
 	^MbDNoRotationJoint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEONoRotationJoint class >> nameString [
 	^'NoRotationJoint'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEONoRotationJoint class >> visualWorksMetadata [
 
 	^ #(

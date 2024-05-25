@@ -1,14 +1,16 @@
 Class {
-	#name : #MbDOmeCompIeqcJecO,
-	#superclass : #MbDOmeCompIecJecO,
+	#name : 'MbDOmeCompIeqcJecO',
+	#superclass : 'MbDOmeCompIecJecO',
 	#instVars : [
 		'pomeIeJeOipEI',
 		'pomeIeJeOipEdotI'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDOmeCompIeqcJecO class >> visualWorksMetadata [
 
 	^ #(
@@ -18,7 +20,7 @@ MbDOmeCompIeqcJecO class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDOmeCompIeqcJecO class >> withFrmI: afrmI frmJ: afrmJ axis: aaxis [ 
 	^(afrmI isMemberOf: MbDEndFrameqc)
 		& (afrmJ isMemberOf: MbDEndFramec)
@@ -29,26 +31,26 @@ MbDOmeCompIeqcJecO class >> withFrmI: afrmI frmJ: afrmJ axis: aaxis [
 		ifFalse: [nil]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDOmeCompIeqcJecO >> calcPostDynCorrectorIteration [
 	super calcPostDynCorrectorIteration.
 	pomeIeJeOipEI := (frmI pomeOeOpE at: axis) negated.
 	pomeIeJeOipEdotI := (frmI pomeOeOpEdot at: axis) negated
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDOmeCompIeqcJecO >> initialize [
 	super initialize.
 	pomeIeJeOipEI := StMFullRow new: 4.
 	pomeIeJeOipEdotI := StMFullRow new: 4
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDOmeCompIeqcJecO >> pvaluepEI [
 	^pomeIeJeOipEI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDOmeCompIeqcJecO >> pvaluepEdotI [
 	^pomeIeJeOipEdotI
 ]

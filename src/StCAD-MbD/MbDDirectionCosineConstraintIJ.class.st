@@ -1,15 +1,17 @@
 Class {
-	#name : #MbDDirectionCosineConstraintIJ,
-	#superclass : #MbDConstraintIJ,
+	#name : 'MbDDirectionCosineConstraintIJ',
+	#superclass : 'MbDConstraintIJ',
 	#instVars : [
 		'axisI',
 		'axisJ',
 		'aAijIeJe'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDDirectionCosineConstraintIJ class >> visualWorksMetadata [
 
 	^ #(
@@ -19,7 +21,7 @@ MbDDirectionCosineConstraintIJ class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDDirectionCosineConstraintIJ class >> withFrmI: afrmI frmJ: afrmJ axisI: aaxisI axisJ: aaxisJ [ 
 	| instance |
 	self allSubclasses
@@ -33,28 +35,28 @@ MbDDirectionCosineConstraintIJ class >> withFrmI: afrmI frmJ: afrmJ axisI: aaxis
 			instance notNil ifTrue: [^instance]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineConstraintIJ >> addToJointForceI: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineConstraintIJ >> addToJointForceJ: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineConstraintIJ >> addpFIeiGOplamto: mat [ 
 	"pGpXI is zero."
 	"Do nothing."
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDirectionCosineConstraintIJ >> calcPostDynCorrectorIteration [
 	aG := aAijIeJe aAijIeJe - aConstant
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineConstraintIJ >> classString [
 	"Used to access the descriptive name of the constraint."
 	"Needed for multi-language."
@@ -62,100 +64,100 @@ MbDDirectionCosineConstraintIJ >> classString [
 	^TheMbDSystem getString: #'MbD: perpendicular constraint '
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDirectionCosineConstraintIJ >> initialize [
 	super initialize.
 	aAijIeJe := self directionCosineClass new
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDirectionCosineConstraintIJ >> initializeGlobally [
 	aAijIeJe initializeGlobally
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDirectionCosineConstraintIJ >> initializeLocally [
 	aAijIeJe initializeLocally
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDDirectionCosineConstraintIJ >> postDynCorrectorIteration [
 	aAijIeJe postDynCorrectorIteration.
 	super postDynCorrectorIteration
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDDirectionCosineConstraintIJ >> postDynOutput [
 	aAijIeJe postDynOutput.
 	super postDynOutput
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDDirectionCosineConstraintIJ >> postDynPredictor [
 	aAijIeJe postDynPredictor.
 	super postDynPredictor
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDDirectionCosineConstraintIJ >> postInput [
 	aAijIeJe postInput.
 	super postInput
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDDirectionCosineConstraintIJ >> postPosICIteration [
 	aAijIeJe postPosICIteration.
 	super postPosICIteration
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDDirectionCosineConstraintIJ >> postStaticIteration [
 	aAijIeJe postStaticIteration.
 	super postStaticIteration
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDDirectionCosineConstraintIJ >> preAccIC [
 	aAijIeJe preAccIC.
 	super preAccIC
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDDirectionCosineConstraintIJ >> preDynOutput [
 	aAijIeJe preDynOutput.
 	super preDynOutput
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDDirectionCosineConstraintIJ >> prePosIC [
 	aAijIeJe prePosIC.
 	super prePosIC
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDDirectionCosineConstraintIJ >> preStatic [
 	aAijIeJe preStatic.
 	super preStatic
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDDirectionCosineConstraintIJ >> preVelIC [
 	aAijIeJe preVelIC.
 	super preVelIC
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDDirectionCosineConstraintIJ >> simUpdateAll [
 	aAijIeJe simUpdateAll.
 	super simUpdateAll
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineConstraintIJ >> type [
 	^#perpendicular
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDirectionCosineConstraintIJ >> withFrmI: afrmI frmJ: afrmJ axisI: aaxisI axisJ: aaxisJ [ 
 	frmI := afrmI.
 	frmJ := afrmJ.

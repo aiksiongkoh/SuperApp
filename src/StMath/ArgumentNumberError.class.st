@@ -1,10 +1,12 @@
 Class {
-	#name : #ArgumentNumberError,
-	#superclass : #SymbolicFunctionError,
-	#category : #'StMath-Exception'
+	#name : 'ArgumentNumberError',
+	#superclass : 'SymbolicFunctionError',
+	#category : 'StMath-Exception',
+	#package : 'StMath',
+	#tag : 'Exception'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 ArgumentNumberError class >> visualWorksMetadata [
 
 	^ #(

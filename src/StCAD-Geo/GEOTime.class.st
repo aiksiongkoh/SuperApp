@@ -1,10 +1,12 @@
 Class {
-	#name : #GEOTime,
-	#superclass : #GEOFunction,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEOTime',
+	#superclass : 'GEOFunction',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOTime class >> visualWorksMetadata [
 
 	^ #(
@@ -14,12 +16,12 @@ GEOTime class >> visualWorksMetadata [
 
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOTime >> cadStringOn: aStream [ 
 	aStream nextPutAll: self name
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOTime >> createMbD [
 	| mbdTime geoTime |
 	mbdTime := self interface mbdSystem mbdTime.
@@ -29,23 +31,23 @@ GEOTime >> createMbD [
 			self x: mbdTime expression: geoTime simplified]
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOTime >> createPOVRay [
 	"Do nothing."
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOTime >> deleteMbD [
 	x := nil.
 	expression := nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTime >> dimension [
 	^'time'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTime >> name [
 	^'time'
 ]

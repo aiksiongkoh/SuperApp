@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDGearConstraintIqcJqc,
-	#superclass : #MbDGearConstraintIqcJc,
+	#name : 'MbDGearConstraintIqcJqc',
+	#superclass : 'MbDGearConstraintIqcJc',
 	#instVars : [
 		'pGpXJ',
 		'pGpEJ',
@@ -14,10 +14,12 @@ Class {
 		'iqXJ',
 		'iqEJ'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDGearConstraintIqcJqc class >> visualWorksMetadata [
 
 	^ #(
@@ -27,19 +29,19 @@ MbDGearConstraintIqcJqc class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDGearConstraintIqcJqc class >> withFrmI: afrmI frmJ: afrmJ [ 
 	^(afrmI isMemberOf: MbDEndFrameqc) & (afrmJ isMemberOf: MbDEndFrameqc) 
 		ifTrue: [self new withFrmI: afrmI frmJ: afrmJ]
 		ifFalse: [nil]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDGearConstraintIqcJqc >> addToJointForceJ: col [ 
 	col equalSelfPlusFullColumn: pGpXJ times: lam
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDGearConstraintIqcJqc >> addToJointTorqueJ: col [ 
 	| cForceT rJpJeJp pAOJppEJ aBOJp fpAOJppEJrJpJeJp dum lampGpE c2Torque |
 	cForceT := pGpXJ times: lam.
@@ -55,17 +57,17 @@ MbDGearConstraintIqcJqc >> addToJointTorqueJ: col [
 	col equalSelfPlusFullColumn: c2Torque times: 0.5
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDGearConstraintIqcJqc >> addpFIeiGOpEJto: mat [ 
 	mat equalSelfPlusFullMatrix: ppGpXIpEJ times: lam
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDGearConstraintIqcJqc >> addpFIeiGOpXJto: mat [ 
 	mat equalSelfPlusFullMatrix: ppGpXIpXJ times: lam
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDGearConstraintIqcJqc >> addpTIeiGOpEJto: mat [ 
 	| aB term1 prOIeOpEIT pFIeiGOpEJover2 term2 pTIeiGOpEJ |
 	aB := frmI aBOp.
@@ -77,7 +79,7 @@ MbDGearConstraintIqcJqc >> addpTIeiGOpEJto: mat [
 	mat equalSelfPlusFullMatrix: pTIeiGOpEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDGearConstraintIqcJqc >> addpTIeiGOpXJto: mat [ 
 	| aB term1 prOIeOpEIT pFIeiGOpXJover2 term2 pTIeiGOpXJ |
 	aB := frmI aBOp.
@@ -89,7 +91,7 @@ MbDGearConstraintIqcJqc >> addpTIeiGOpXJto: mat [
 	mat equalSelfPlusFullMatrix: pTIeiGOpXJ
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDGearConstraintIqcJqc >> calcPostDynCorrectorIteration [
 	super calcPostDynCorrectorIteration.
 	self calc_pGpXJ.
@@ -103,59 +105,59 @@ MbDGearConstraintIqcJqc >> calcPostDynCorrectorIteration [
 	self calc_ppGpEJpEJ
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDGearConstraintIqcJqc >> calc_pGpEJ [
 	pGpEJ := orbitJeIe pvaluepEI + (orbitIeJe pvaluepEJ times: self ratio)
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDGearConstraintIqcJqc >> calc_pGpXJ [
 	pGpXJ := orbitJeIe pvaluepXI + (orbitIeJe pvaluepXJ times: self ratio)
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDGearConstraintIqcJqc >> calc_ppGpEIpEJ [
 	ppGpEIpEJ := orbitJeIe ppvaluepEIpEJ transpose 
 				+ (orbitIeJe ppvaluepEIpEJ times: self ratio)
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDGearConstraintIqcJqc >> calc_ppGpEIpXJ [
 	ppGpEIpXJ := orbitJeIe ppvaluepXIpEJ transpose 
 				+ (orbitIeJe ppvaluepEIpXJ times: self ratio)
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDGearConstraintIqcJqc >> calc_ppGpEJpEJ [
 	ppGpEJpEJ := orbitJeIe ppvaluepEIpEI 
 				+ (orbitIeJe ppvaluepEJpEJ times: self ratio)
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDGearConstraintIqcJqc >> calc_ppGpXIpEJ [
 	ppGpXIpEJ := orbitJeIe ppvaluepEIpXJ transpose 
 				+ (orbitIeJe ppvaluepXIpEJ times: self ratio)
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDGearConstraintIqcJqc >> calc_ppGpXIpXJ [
 	ppGpXIpXJ := orbitJeIe ppvaluepXIpXJ transpose 
 				+ (orbitIeJe ppvaluepXIpXJ times: self ratio)
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDGearConstraintIqcJqc >> calc_ppGpXJpEJ [
 	ppGpXJpEJ := orbitJeIe ppvaluepXIpEI 
 				+ (orbitIeJe ppvaluepXJpEJ times: self ratio)
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDGearConstraintIqcJqc >> calc_ppGpXJpXJ [
 	ppGpXJpXJ := orbitJeIe ppvaluepXIpXI 
 				+ (orbitIeJe ppvaluepXJpXJ times: self ratio)
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDGearConstraintIqcJqc >> fillAccICIterError: col [ 
 	| qXdotI qEdotI qXdotJ qEdotJ sum |
 	super fillAccICIterError: col.
@@ -178,14 +180,14 @@ MbDGearConstraintIqcJqc >> fillAccICIterError: col [
 	col at: iG plusNumber: sum
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDGearConstraintIqcJqc >> fillPosICError: col [ 
 	super fillPosICError: col.
 	col at: iqXJ plusFullColumn: pGpXJ times: lam.
 	col at: iqEJ plusFullColumn: pGpEJ times: lam
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDGearConstraintIqcJqc >> fillPosICJacob: mat [ 
 	| ppGpXIpXJlam ppGpXIpEJlam ppGpEIpXJlam ppGpEIpEJlam ppGpXJpEJlam |
 	super fillPosICJacob: mat.
@@ -207,7 +209,7 @@ MbDGearConstraintIqcJqc >> fillPosICJacob: mat [
 	mat at: iqEJ and: iqEJ plusFullMatrix: ppGpEJpEJ times: lam.
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDGearConstraintIqcJqc >> fillPosKineJacob: mat [ 
 	super fillPosKineJacob: mat.
 	mat
@@ -220,7 +222,7 @@ MbDGearConstraintIqcJqc >> fillPosKineJacob: mat [
 		plusFullRow: pGpEJ
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDGearConstraintIqcJqc >> fillVelICJacob: mat [ 
 	super fillVelICJacob: mat.
 	mat at: iG and: iqXJ plusFullRow: pGpXJ.
@@ -229,7 +231,7 @@ MbDGearConstraintIqcJqc >> fillVelICJacob: mat [
 	mat at: iqEJ and: iG plusFullColumn: pGpEJ transpose
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDGearConstraintIqcJqc >> fillpFpy: mat [ 
 	| ppGpXIpXJlam ppGpXIpEJlam ppGpEIpXJlam ppGpEIpEJlam ppGpXJpEJlam |
 	super fillpFpy: mat.
@@ -249,14 +251,14 @@ MbDGearConstraintIqcJqc >> fillpFpy: mat [
 	mat at: iqEJ and: iqEJ plusFullMatrix: ppGpEJpEJ times: lam.
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDGearConstraintIqcJqc >> fillpFpydot: mat [ 
 	super fillpFpydot: mat.
 	mat at: iqXJ and: iG plusFullColumn: pGpXJ transpose.
 	mat at: iqEJ and: iG plusFullColumn: pGpEJ transpose
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDGearConstraintIqcJqc >> useEquationNumbers [
 	super useEquationNumbers.
 	iqXJ := frmJ iqX.

@@ -1,14 +1,16 @@
 Class {
-	#name : #DAEIntegrator,
-	#superclass : #IntegratorInterface,
+	#name : 'DAEIntegrator',
+	#superclass : 'IntegratorInterface',
 	#instVars : [
 		'neqn',
 		'ncon'
 	],
-	#category : #'StMath-StMathIntegrator'
+	#category : 'StMath-StMathIntegrator',
+	#package : 'StMath',
+	#tag : 'StMathIntegrator'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 DAEIntegrator class >> visualWorksMetadata [
 
 	^ #(
@@ -18,12 +20,12 @@ DAEIntegrator class >> visualWorksMetadata [
 
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 DAEIntegrator >> checkForDiscontinuity [
 	system checkForDiscontinuity
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 DAEIntegrator >> checkForOutputThrough: t [ 
 	"Inclusive of t."
 
@@ -56,32 +58,32 @@ DAEIntegrator >> checkForOutputThrough: t [
 			self postDAEOutput]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 DAEIntegrator >> fillF: col [ 
 	^system fillF: col
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 DAEIntegrator >> fillY: aColumn [ 
 	^system fillY: aColumn
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 DAEIntegrator >> fillYdot: aColumn [ 
 	^system fillYdot: aColumn
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 DAEIntegrator >> fillpFpy: matrix [ 
 	^system fillpFpy: matrix
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 DAEIntegrator >> fillpFpydot: mat [ 
 	^system fillpFpydot: mat
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 DAEIntegrator >> initialize [
 	super initialize.
 	statistics := IdentityDictionary new.
@@ -89,48 +91,48 @@ DAEIntegrator >> initialize [
 	integrator system: self
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 DAEIntegrator >> initializeGlobally [
 	super initializeGlobally.
 	neqn := system neqn
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DAEIntegrator >> iterMax [
 	^system iterMax
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DAEIntegrator >> neqn [
 	^neqn
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 DAEIntegrator >> postDAECorrector [
 	system postDAECorrector
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 DAEIntegrator >> postDAECorrectorIteration [
 	system postDAECorrectorIteration
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 DAEIntegrator >> postDAEFirstStep [
 	system postDAEFirstStep
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 DAEIntegrator >> postDAEOutput [
 	system postDAEOutput
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 DAEIntegrator >> postDAEPredictor [
 	system postDAEPredictor
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 DAEIntegrator >> postDAEStep [
 	system postDAEStep.
 	integrator istep > 0 ifTrue: ["Noise make checking at the start unreliable."
@@ -138,52 +140,52 @@ DAEIntegrator >> postDAEStep [
 	self checkForOutputThrough: integrator t
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 DAEIntegrator >> postRun [
 	system postDAEIntegrator
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 DAEIntegrator >> preDAECorrector [
 	system preDAECorrector
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 DAEIntegrator >> preDAECorrectorIteration [
 	system preDAECorrectorIteration
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 DAEIntegrator >> preDAEFirstStep [
 	system preDAEFirstStep
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 DAEIntegrator >> preDAEOutput [
 	system preDAEOutput
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 DAEIntegrator >> preDAEPredictor [
 	system preDAEPredictor
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 DAEIntegrator >> preDAEStep [
 	system preDAEStep
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 DAEIntegrator >> preRun [
 	system preDAEIntegrator
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 DAEIntegrator >> reportStats [
 	system useDAEStats: statistics
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 DAEIntegrator >> suggestSmallerOrAcceptFirstStepSize: hnew [ 
 	| hnew2 |
 	hnew2 := system suggestSmallerOrAcceptFirstStepSize: hnew.
@@ -198,7 +200,7 @@ DAEIntegrator >> suggestSmallerOrAcceptFirstStepSize: hnew [
 	^hnew2
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 DAEIntegrator >> suggestSmallerOrAcceptStepSize: hnew [ 
 	| hnew2 |
 	hnew2 := system suggestSmallerOrAcceptStepSize: hnew.
@@ -213,53 +215,53 @@ DAEIntegrator >> suggestSmallerOrAcceptStepSize: hnew [
 	^hnew2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DAEIntegrator >> t: aDouble [ 
 	^system t: aDouble
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DAEIntegrator >> time: aDouble [ 
 	^system time: aDouble
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DAEIntegrator >> tnew: aDouble [ 
 	self halt: 'Check if used.'.
 	^system tnew: aDouble
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 DAEIntegrator >> updateForDAECorrector [
 	system updateForDAECorrector
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 DAEIntegrator >> useDAEStepStats: stats [ 
 	system useDAEStepStats: stats
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 DAEIntegrator >> useTrialStepStats: stats [ 
 	system useDAETrialStepStats: stats
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DAEIntegrator >> y [
 	^system y
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DAEIntegrator >> y: aColumn [ 
 	^system y: aColumn
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DAEIntegrator >> ydot [
 	^system ydot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DAEIntegrator >> ydot: aColumn [ 
 	^system ydot: aColumn
 ]

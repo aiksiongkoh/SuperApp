@@ -1,16 +1,18 @@
 Class {
-	#name : #Editor,
-	#superclass : #ApplicationModel,
+	#name : 'Editor',
+	#superclass : 'ApplicationModel',
 	#instVars : [
 		'selection',
 		'treeView',
 		'cadView',
 		'aMediator'
 	],
-	#category : #'StCAD-UI-App'
+	#category : 'StCAD-UI-App',
+	#package : 'StCAD-UI',
+	#tag : 'App'
 }
 
-{ #category : #resources }
+{ #category : 'resources' }
 Editor class >> handleImage [
 
 	"Tools.UIMaskEditor new openOnClass: self andSelector: #handleImage"
@@ -27,7 +29,7 @@ Editor class >> handleImage [
 			   usingBits: #[ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ]) "VW_TRANSLATION:Graphics.ColorValue:Graphics_ColorValue" "VW_TRANSLATION:Core.Array:Core_Array" "VW_TRANSLATION:Graphics.MappedPalette:Graphics_MappedPalette"
 ]
 
-{ #category : #resources }
+{ #category : 'resources' }
 Editor class >> handleImage2 [
 	"Tools.UIMaskEditor new openOnClass: self andSelector: #handleImage2"
 
@@ -35,7 +37,7 @@ Editor class >> handleImage2 [
 	^CachedImage on: (Image extent: 5@5 depth: 1 bitsPerPixel: 1 palette: CoveragePalette monoMaskPalette usingBits: #[248 0 0 0 248 0 0 0 248 0 0 0 248 0 0 0 248 0 0 0])
 ]
 
-{ #category : #resources }
+{ #category : 'resources' }
 Editor class >> menuBar [
 
 	"Tools.MenuEditor new openOnClass: self andSelector: #menuBar"
@@ -485,7 +487,7 @@ Editor class >> menuBar [
 	     #( 19 ) nil ) decodeAsLiteralArray
 ]
 
-{ #category : #resources }
+{ #category : 'resources' }
 Editor class >> menuTreeView [
 
 	"MenuEditor new openOnClass: self andSelector: #menuTreeView"
@@ -496,7 +498,7 @@ Editor class >> menuTreeView [
 	     #( 1 ) nil ) decodeAsLiteralArray
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 Editor class >> visualWorksMetadata [
 
 	^ #(
@@ -506,7 +508,7 @@ Editor class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'interface specs' }
+{ #category : 'interface specs' }
 Editor class >> windowSpec [
 
 	"Tools.UIPainter new openOnClass: self andSelector: #windowSpec"
@@ -543,22 +545,22 @@ Editor class >> windowSpec [
 	              #inPlaceEdit: #rootExpander: true ) ) ) )
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Editor >> aMediator [
 	^aMediator
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Editor >> aMediator: anObject [ 
 	aMediator := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Editor >> aTool [
 	^aMediator aTool
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Editor >> animationWindow [
 	^self dependents detect: 
 			[:dependent | 
@@ -567,7 +569,7 @@ Editor >> animationWindow [
 		ifNone: nil
 ]
 
-{ #category : #displaying }
+{ #category : 'displaying' }
 Editor >> animationWindowRaise [
 	| selfWindow animationWindow animationBuilder |
 	animationWindow := self animationWindow.
@@ -588,33 +590,33 @@ Editor >> animationWindowRaise [
 				raise]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Editor >> buttonState [
 	^#pick
 ]
 
-{ #category : #aspects }
+{ #category : 'aspects' }
 Editor >> cadView [
 	^cadView isNil 
 		ifTrue: [cadView := OpenGLView model: self]
 		ifFalse: [cadView]
 ]
 
-{ #category : #ad }
+{ #category : 'ad' }
 Editor >> changeAdTitle [
 	self mainWindow 
 		label: 'CADSM     ' , aMediator aFilename asString , '          ' 
 				, self adTitle
 ]
 
-{ #category : #aspects }
+{ #category : 'aspects' }
 Editor >> doubleClick: aTreeController [ 
 	"Let the tree toggle the state of expandation of the selected node."
 
 	aTreeController toggleExpand
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 Editor >> initialize [
 	super initialize.
 	aMediator := Mediator new.
@@ -622,22 +624,22 @@ Editor >> initialize [
 	self cadView aCamera: (aMediator aUniverse cCamera at: 1)
 ]
 
-{ #category : #'menubar items' }
+{ #category : 'menubar items' }
 Editor >> menuFileOpenAssembly [
 	self changeRequest ifTrue: [aMediator menuFileOpenAssembly]
 ]
 
-{ #category : #'menubar items' }
+{ #category : 'menubar items' }
 Editor >> menuInspect [
 	self inspect
 ]
 
-{ #category : #'menubar items' }
+{ #category : 'menubar items' }
 Editor >> menuSimulationAnimation [
 	self animationWindowRaise
 ]
 
-{ #category : #'menubar items' }
+{ #category : 'menubar items' }
 Editor >> menuViewPresentationHideLine [
 	self changeRequest 
 		ifTrue: 
@@ -647,7 +649,7 @@ Editor >> menuViewPresentationHideLine [
 			self triggerEvent: #projection]
 ]
 
-{ #category : #'menubar items' }
+{ #category : 'menubar items' }
 Editor >> menuViewPresentationSolid [
 	self changeRequest 
 		ifTrue: 
@@ -657,7 +659,7 @@ Editor >> menuViewPresentationSolid [
 			self triggerEvent: #projection]
 ]
 
-{ #category : #'menubar items' }
+{ #category : 'menubar items' }
 Editor >> menuViewPresentationWireframe [
 	self changeRequest 
 		ifTrue: 
@@ -667,7 +669,7 @@ Editor >> menuViewPresentationWireframe [
 			self triggerEvent: #projection]
 ]
 
-{ #category : #'menubar items' }
+{ #category : 'menubar items' }
 Editor >> menuViewTiltRotateUniverse [
 	self changeRequest 
 		ifTrue: 
@@ -676,7 +678,7 @@ Editor >> menuViewTiltRotateUniverse [
 			self triggerEvent: #projection]
 ]
 
-{ #category : #'menubar items' }
+{ #category : 'menubar items' }
 Editor >> menuViewYupQuadmpm [
 	self changeRequest 
 		ifTrue: 
@@ -685,7 +687,7 @@ Editor >> menuViewYupQuadmpm [
 			self triggerEvent: #projection]
 ]
 
-{ #category : #'menubar items' }
+{ #category : 'menubar items' }
 Editor >> menuViewYupXright [
 	self changeRequest 
 		ifTrue: 
@@ -694,12 +696,12 @@ Editor >> menuViewYupXright [
 			self triggerEvent: #projection]
 ]
 
-{ #category : #'menubar items' }
+{ #category : 'menubar items' }
 Editor >> menuViewZoomIn [
 	self changeRequest ifTrue: [aMediator doZoomIn]
 ]
 
-{ #category : #'menubar items' }
+{ #category : 'menubar items' }
 Editor >> menuViewZupQuadmmp [
 	self changeRequest 
 		ifTrue: 
@@ -708,7 +710,7 @@ Editor >> menuViewZupQuadmmp [
 			self triggerEvent: #projection]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 Editor >> postBuildWith: aBuilder [ 
 	builder window application: self.
 	self aMediator when: #select
@@ -737,17 +739,17 @@ Editor >> postBuildWith: aBuilder [
 		perform: #updateTreeViewFromCadView
 ]
 
-{ #category : #displaying }
+{ #category : 'displaying' }
 Editor >> renderOn: aRenderingContext [ 
 	aMediator renderOn: aRenderingContext
 ]
 
-{ #category : #'menubar items' }
+{ #category : 'menubar items' }
 Editor >> scroll: aPoint [ 
 	aMediator scrollView: cadView by: aPoint
 ]
 
-{ #category : #aspects }
+{ #category : 'aspects' }
 Editor >> selection [
 	"This method was generated by UIDefiner.  Any edits made here
 	may be lost whenever methods are automatically defined.  The
@@ -761,12 +763,12 @@ Editor >> selection [
 			[selection]
 ]
 
-{ #category : #aspects }
+{ #category : 'aspects' }
 Editor >> selectionValue: cadGO [ 
 	self selection value: cadGO printString
 ]
 
-{ #category : #aspects }
+{ #category : 'aspects' }
 Editor >> treeView [
 	"This method was generated by UIDefiner.  Any edits made here
 	may be lost whenever methods are automatically defined.  The
@@ -780,11 +782,11 @@ Editor >> treeView [
 			[treeView]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 Editor >> updateCadViewFromTreeView [
 ]
 
-{ #category : #aspects }
+{ #category : 'aspects' }
 Editor >> updateTreeModel: controller [
 	| newRoot treeModel originalRoot |
 	newRoot := aMediator aUniverse isNil

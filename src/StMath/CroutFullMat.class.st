@@ -1,10 +1,12 @@
 Class {
-	#name : #CroutFullMat,
-	#superclass : #MatrixCroutDecomposition,
-	#category : #'StMath-StMathMatrixSolver'
+	#name : 'CroutFullMat',
+	#superclass : 'MatrixCroutDecomposition',
+	#category : 'StMath-StMathMatrixSolver',
+	#package : 'StMath',
+	#tag : 'StMathMatrixSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 CroutFullMat class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ CroutFullMat class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'back substitution' }
+{ #category : 'back substitution' }
 CroutFullMat >> backSubstituteIntoU [
 	"U is upper triangular with ones in the diagonal."
 
@@ -34,7 +36,7 @@ CroutFullMat >> backSubstituteIntoU [
 					- sum]
 ]
 
-{ #category : #solution }
+{ #category : 'solution' }
 CroutFullMat >> formLij: p [ 
 	| sum rowi |
 	p to: m
@@ -47,7 +49,7 @@ CroutFullMat >> formLij: p [
 			rowi at: p minusNumber: sum]
 ]
 
-{ #category : #solution }
+{ #category : 'solution' }
 CroutFullMat >> formUij: p [ 
 	| rowp lpp sum upj |
 	rowp := matrixA at: p.
@@ -63,7 +65,7 @@ CroutFullMat >> formUij: p [
 			rowp at: j put: upj]
 ]
 
-{ #category : #'forward substitution' }
+{ #category : 'forward substitution' }
 CroutFullMat >> forwardSubstituteIntoLD [
 	"LD is lower triangular with nonzero and arbitrary diagonals."
 
@@ -82,7 +84,7 @@ CroutFullMat >> forwardSubstituteIntoLD [
 	^rightHandSideB := vectorc
 ]
 
-{ #category : #solution }
+{ #category : 'solution' }
 CroutFullMat >> inverse: aMatrix [ 
 	"ForAndBackSub be optimized for the identity matrix."
 

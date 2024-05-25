@@ -1,5 +1,6 @@
 Class {
-	#name : #ASMTGravity,
-	#superclass : #ASMTItem,
-	#category : #'StCAD-Basic'
+	#name : 'ASMTGravity',
+	#superclass : 'ASMTItem',
+	#category : 'StCAD-Basic',
+	#package : 'StCAD-Basic'
 }

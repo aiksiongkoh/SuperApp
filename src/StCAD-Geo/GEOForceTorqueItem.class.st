@@ -1,19 +1,21 @@
 Class {
-	#name : #GEOForceTorqueItem,
-	#superclass : #GEOContainedItem,
+	#name : 'GEOForceTorqueItem',
+	#superclass : 'GEOContainedItem',
 	#instVars : [
 		'markerI',
 		'markerJ'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GEOForceTorqueItem class >> markerI: markeri markerJ: markerj [ 
 	^super new markerI: markeri markerJ: markerj
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOForceTorqueItem class >> visualWorksMetadata [
 
 	^ #(
@@ -23,48 +25,48 @@ GEOForceTorqueItem class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOForceTorqueItem >> aMarkerI [
 	^markerI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOForceTorqueItem >> aMarkerI: markeri [ 
 	markerI := markeri
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOForceTorqueItem >> aMarkerJ [
 	^markerJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOForceTorqueItem >> aMarkerJ: markerj [ 
 	markerJ := markerj
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOForceTorqueItem >> canUpdateForFrame: integer [ 
 	^true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOForceTorqueItem >> connectorList: collection [ 
 	collection add: self
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOForceTorqueItem >> createMbD [
 	self dataSeries: OrderedCollection new.
 	self discontinuities: OrderedCollection new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOForceTorqueItem >> dataClass [
 	^GEOKineIForceIKineJ
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOForceTorqueItem >> dataFromCurrentState [
 	| answer |
 	answer := GEOForceTorqueData new.
@@ -73,7 +75,7 @@ GEOForceTorqueItem >> dataFromCurrentState [
 	^answer
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOForceTorqueItem >> dataFromMbD [
 	| mbdUnits mbdItem answer |
 	mbdUnits := self mbdUnits.
@@ -84,7 +86,7 @@ GEOForceTorqueItem >> dataFromMbD [
 	^answer
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOForceTorqueItem >> dataIntersectLine: geoLine tolerance: tol [ 
 	| forceLine answer |
 	forceLine := GEOLine start: markerI refFrame rOfO end: markerJ refFrame rOfO.
@@ -94,7 +96,7 @@ GEOForceTorqueItem >> dataIntersectLine: geoLine tolerance: tol [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOForceTorqueItem >> dataSeriesForChart [
 	| kineIs kineJs forceIs index kineIforceIkineJ |
 	kineIs := markerI dataSeriesForChart.
@@ -117,19 +119,19 @@ GEOForceTorqueItem >> dataSeriesForChart [
 			Array new]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOForceTorqueItem >> dataTypes [
 	^self dataClass new dataTypes
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOForceTorqueItem >> deleteMbD [
 	self mbdObject: nil.
 	markerI deleteMbD.
 	markerJ deleteMbD
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOForceTorqueItem >> functionParser [
 	| parser |
 	parser := ForceFunctionParser new.
@@ -139,19 +141,19 @@ GEOForceTorqueItem >> functionParser [
 	^parser
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOForceTorqueItem >> isConnectedTo: markerList [ 
 	^(markerList includes: markerI)
 		or: [markerList includes: markerJ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOForceTorqueItem >> markerI: markeri markerJ: markerj [ 
 	markerI := markeri.
 	markerJ := markerj
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 GEOForceTorqueItem >> renderOn: aRenderingContext [
 
 	aRenderingContext lineWidth: 2.
@@ -160,17 +162,17 @@ GEOForceTorqueItem >> renderOn: aRenderingContext [
 		(Array with: markerI rOfO with: markerJ rOfO)
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOForceTorqueItem >> storeInputFromMbD [
 	"Do nothing."
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOForceTorqueItem >> storeInputState [
 	"Do nothing."
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOForceTorqueItem >> storeOn: aStream level: level [ 
 	aStream storeLevel: level title: self nameString.
 	aStream
@@ -187,13 +189,13 @@ GEOForceTorqueItem >> storeOn: aStream level: level [
 		object: markerJ fullName
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOForceTorqueItem >> storePOVOn: aStream level: level [ 
 	aStream storePOVLevel: level
 		title: ('// <1s>' expandMacrosWith: self fullNamePOV)
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOForceTorqueItem >> storePOVTimeSeriesOn: aStream [ 
 	| dataSeries fullNamePOV series |
 	dataSeries := self dataSeries.
@@ -214,7 +216,7 @@ GEOForceTorqueItem >> storePOVTimeSeriesOn: aStream [
 		series: (series collect: [:data | (data at: 3) ])
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOForceTorqueItem >> storePOVdatCurrentOn: aStream [ 
 	| dataSeries fullNamePOV series |
 	dataSeries := Array with: self dataFromCurrentState.
@@ -235,7 +237,7 @@ GEOForceTorqueItem >> storePOVdatCurrentOn: aStream [
 		series: (series collect: [:data | data at: 3])
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOForceTorqueItem >> storeTimeSeriesOn: aStream [ 
 	| dataSeries series |
 	aStream nextPutAll: self nameString; nextPutAll: 'Series'; space; nextPutAll: self fullName; cr.
@@ -268,27 +270,27 @@ GEOForceTorqueItem >> storeTimeSeriesOn: aStream [
 		series: (series collect: [:data | data at: 3])
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOForceTorqueItem >> updateForFrame1: integer [ 
 	"Do nothing."
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOForceTorqueItem >> updateForFrame: integer [ 
 	"Do nothing."
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOForceTorqueItem >> updateFromInitiallyAssembledState [
 	"Do nothing."
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOForceTorqueItem >> updateFromInputState [
 	"Do nothing."
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOForceTorqueItem >> updateFromMbD [
 	| data |
 	data := self dataFromMbD.

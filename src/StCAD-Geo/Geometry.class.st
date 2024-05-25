@@ -1,16 +1,18 @@
 Class {
-	#name : #Geometry,
-	#superclass : #SpatialItem,
+	#name : 'Geometry',
+	#superclass : 'SpatialItem',
 	#instVars : [
 		'isSpatial'
 	],
 	#classVars : [
 		'Geo'
 	],
-	#category : #'StCAD-Geo-Basic'
+	#category : 'StCAD-Geo-Basic',
+	#package : 'StCAD-Geo',
+	#tag : 'Basic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 Geometry class >> visualWorksMetadata [
 
 	^ #(
@@ -20,12 +22,12 @@ Geometry class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Geometry >> aModel [
 	^aSup aModel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Geometry >> aNurbs [
 	^(self triggerEvent: #getNurbs) ifNil: 
 			[| answer |
@@ -34,7 +36,7 @@ Geometry >> aNurbs [
 			answer]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Geometry >> aNurbs: aNurbs [ 
 	self removeActionsForEvent: #getNurbs.
 	aNurbs ifNotNil: 
@@ -44,17 +46,17 @@ Geometry >> aNurbs: aNurbs [
 				perform: #yourself]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Geometry >> aSketch [
 	^aSup aSketch
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Geometry >> aSketchRefFrame [
 	^aSup aSketch aRefFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Geometry >> create_glNurbs [
 
 	| answer aModelFrame aAMf rMfM |
@@ -73,7 +75,7 @@ Geometry >> create_glNurbs [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Geometry >> glNurbs [
 	^(self triggerEvent: #glNurbs) ifNil: 
 			[| answer |
@@ -82,7 +84,7 @@ Geometry >> glNurbs [
 			answer]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Geometry >> glNurbs: glNurbs [ 
 	self removeActionsForEvent: #glNurbs.
 	glNurbs ifNotNil: 
@@ -92,7 +94,7 @@ Geometry >> glNurbs: glNurbs [
 				perform: #yourself]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Geometry >> glTrimNurbs [
 	| answer aModelFrame aAMf rMfM |
 	answer := self rfpfNurbs.
@@ -110,34 +112,34 @@ Geometry >> glTrimNurbs [
 	^answer
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 Geometry >> initialize [
 	super initialize.
 	isSpatial := true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Geometry >> isSpatial [
 	^isSpatial
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Geometry >> isSpatial: anObject [
 	isSpatial := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Geometry >> removeSup [
 	aSup ifNotNil: [:a | a removeGeometry: self]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 Geometry >> rfpfNurbs [
 
 	self subclassResponsibility
 ]
 
-{ #category : #viewing }
+{ #category : 'viewing' }
 Geometry >> showWithAxes [
 	"(1 , 1 , 1 cylinder: 1 height: 2) showWithAxes."
 

@@ -2,12 +2,14 @@
 All elements are zeros except for one element which is unity.
 "
 Class {
-	#name : #BasisColumn,
-	#superclass : #BasisVector,
-	#category : #'StMath-StMathArraySpecial'
+	#name : 'BasisColumn',
+	#superclass : 'BasisVector',
+	#category : 'StMath-StMathArraySpecial',
+	#package : 'StMath',
+	#tag : 'StMathArraySpecial'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 BasisColumn class >> visualWorksMetadata [
 
 	^ #(

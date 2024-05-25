@@ -5,12 +5,14 @@ Instance Variables:
 
 "
 Class {
-	#name : #Help,
-	#superclass : #Object,
-	#category : #'StMath-StMathHelp'
+	#name : 'Help',
+	#superclass : 'Object',
+	#category : 'StMath-StMathHelp',
+	#package : 'StMath',
+	#tag : 'StMathHelp'
 }
 
-{ #category : #exampleSymbolicMath }
+{ #category : 'exampleSymbolicMath' }
 Help class >> exampleAbs [
 	"self halt. self exampleAbs."
 
@@ -32,7 +34,7 @@ Help class >> exampleAbs [
 	deriv outputOn: 'dummy2.txt' interval: (-1.0 to: 1.0 by: 0.1)
 ]
 
-{ #category : #exampleSymbolicMath }
+{ #category : 'exampleSymbolicMath' }
 Help class >> exampleArcTan [
 	"self halt. self exampleArcTan."
 
@@ -54,7 +56,7 @@ Help class >> exampleArcTan [
 	deriv outputOn: 'dummy2.txt' interval: (-10.0 to: 10.0 by: 0.5)
 ]
 
-{ #category : #exampleDifferenceOperator }
+{ #category : 'exampleDifferenceOperator' }
 Help class >> exampleBackwardDifferenceScalar [
 	"self halt. self exampleBackwardDifferenceScalar."
 
@@ -102,7 +104,7 @@ Help class >> exampleBackwardDifferenceScalar [
 	block value: 'vddddot = ' value: 4
 ]
 
-{ #category : #exampleDifferenceOperator }
+{ #category : 'exampleDifferenceOperator' }
 Help class >> exampleBackwardDifferenceVector [
 	"self halt. self exampleBackwardDifferenceVector."
 
@@ -150,7 +152,7 @@ Help class >> exampleBackwardDifferenceVector [
 	block value: 'vddddot = ' value: 4
 ]
 
-{ #category : #exampleSymbolicMath }
+{ #category : 'exampleSymbolicMath' }
 Help class >> exampleCos [
 	"self halt. self exampleCos."
 
@@ -172,7 +174,7 @@ Help class >> exampleCos [
 	deriv outputOn: 'dummy2.txt' interval: (-10.0 to: 10.0 by: 0.5)
 ]
 
-{ #category : #exampleSymbolicMath }
+{ #category : 'exampleSymbolicMath' }
 Help class >> exampleExp [
 	"self halt. self exampleExp."
 
@@ -194,7 +196,7 @@ Help class >> exampleExp [
 	deriv outputOn: 'dummy2.txt' interval: (-1.0 to: 1.0 by: 0.1)
 ]
 
-{ #category : #exampleDifferenceOperator }
+{ #category : 'exampleDifferenceOperator' }
 Help class >> exampleExtrapolatorScalar [
 	"self halt. self exampleExtrapolatorScalar."
 
@@ -222,7 +224,7 @@ Help class >> exampleExtrapolatorScalar [
 	Transcript cr; show: 'vdddot = '; show: (extrapol valuedddotWith: series) printString
 ]
 
-{ #category : #exampleDifferenceOperator }
+{ #category : 'exampleDifferenceOperator' }
 Help class >> exampleExtrapolatorVector [
 	"self halt. self exampleExtrapolatorVector."
 
@@ -250,7 +252,7 @@ Help class >> exampleExtrapolatorVector [
 	Transcript cr; show: 'vdddot = '; show: (extrapol valuedddotWith: series) printString
 ]
 
-{ #category : #exampleFullColumn }
+{ #category : 'exampleFullColumn' }
 Help class >> exampleFullColumn1 [
 	"self halt. self exampleFullColumn1."
 
@@ -271,7 +273,7 @@ Help class >> exampleFullColumn1 [
 	vector length = (vector normL: 2) ifFalse: [self error: 'Check this.']
 ]
 
-{ #category : #exampleFullColumn }
+{ #category : 'exampleFullColumn' }
 Help class >> exampleFullColumn2 [
 	"self halt. self exampleFullColumn2."
 
@@ -315,7 +317,7 @@ Help class >> exampleFullColumn2 [
 	vector2 = vector negated ifFalse: [self error: 'Check this.']
 ]
 
-{ #category : #exampleFullColumn }
+{ #category : 'exampleFullColumn' }
 Help class >> exampleFullColumn3 [
 	"self halt. self exampleFullColumn3."
 
@@ -374,7 +376,7 @@ Help class >> exampleFullColumn3 [
 	vector2 = vector ifFalse: [self error: 'Check this.']
 ]
 
-{ #category : #exampleFullColumn }
+{ #category : 'exampleFullColumn' }
 Help class >> exampleFullColumn4 [
 	"self halt. self exampleFullColumn4."
 
@@ -410,7 +412,7 @@ Help class >> exampleFullColumn4 [
 	vector2 isZero ifFalse: [self error: 'Check this.']
 ]
 
-{ #category : #exampleFullColumn }
+{ #category : 'exampleFullColumn' }
 Help class >> exampleFullColumn4a [
 	"self halt. self exampleFullColumn4a."
 
@@ -446,7 +448,7 @@ Help class >> exampleFullColumn4a [
 	vector2 isZero ifFalse: [self error: 'Check this.']
 ]
 
-{ #category : #exampleFullColumn }
+{ #category : 'exampleFullColumn' }
 Help class >> exampleFullColumn5 [
 	"self halt. self exampleFullColumn5."
 
@@ -463,7 +465,7 @@ Help class >> exampleFullColumn5 [
 	answer1 := vector2 transpose timesFullRow: vector transpose
 ]
 
-{ #category : #exampleFullColumn }
+{ #category : 'exampleFullColumn' }
 Help class >> exampleFullColumn6 [
 	"self halt. self exampleFullColumn6."
 
@@ -490,7 +492,7 @@ Help class >> exampleFullColumn6 [
 	answer1 = answer2 ifFalse: [self halt: 'Check this.']
 ]
 
-{ #category : #exampleFullMatrix }
+{ #category : 'exampleFullMatrix' }
 Help class >> exampleFullMatrix1 [
 	"self halt. self exampleFullMatrix1."
 
@@ -513,7 +515,7 @@ Help class >> exampleFullMatrix1 [
 	matrix rowSumNorm = (matrix at: m) sumOfAbsElements ifFalse: [self error: 'Check this.']
 ]
 
-{ #category : #exampleFullMatrix }
+{ #category : 'exampleFullMatrix' }
 Help class >> exampleFullMatrix2 [
 	"self halt. self exampleFullMatrix2."
 
@@ -555,7 +557,7 @@ Help class >> exampleFullMatrix2 [
 	matrix2 = matrix negated ifFalse: [self error: 'Check this.']
 ]
 
-{ #category : #exampleFullMatrix }
+{ #category : 'exampleFullMatrix' }
 Help class >> exampleFullMatrix2a [
 	"self halt. self exampleFullMatrix2a."
 
@@ -597,7 +599,7 @@ Help class >> exampleFullMatrix2a [
 	matrix2 = matrix negated ifFalse: [self error: 'Check this.']
 ]
 
-{ #category : #exampleFullMatrix }
+{ #category : 'exampleFullMatrix' }
 Help class >> exampleFullMatrix3 [
 	"self halt. self exampleFullMatrix3."
 
@@ -653,7 +655,7 @@ Help class >> exampleFullMatrix3 [
 	matrix2 = matrix ifFalse: [self error: 'Check this.']
 ]
 
-{ #category : #exampleFullMatrix }
+{ #category : 'exampleFullMatrix' }
 Help class >> exampleFullMatrix3a [
 	"self halt. self exampleFullMatrix3a."
 
@@ -682,7 +684,7 @@ Help class >> exampleFullMatrix3a [
 	matrix2 = (matrix times: 0.0) ifFalse: [self error: 'Check this.']
 ]
 
-{ #category : #exampleFullMatrix }
+{ #category : 'exampleFullMatrix' }
 Help class >> exampleFullMatrix3b [
 	"self halt. self exampleFullMatrix3b."
 
@@ -714,7 +716,7 @@ Help class >> exampleFullMatrix3b [
 	matrix2 = (matrix * 0.0) ifFalse: [self error: 'Check this.']
 ]
 
-{ #category : #exampleFullMatrix }
+{ #category : 'exampleFullMatrix' }
 Help class >> exampleFullMatrix4 [
 	"self halt. self exampleFullMatrix4."
 
@@ -747,7 +749,7 @@ Help class >> exampleFullMatrix4 [
 	answer1 = answer2 ifFalse: [self halt: 'Check this.']
 ]
 
-{ #category : #exampleFullMatrix }
+{ #category : 'exampleFullMatrix' }
 Help class >> exampleFullMatrix5 [
 	"self halt. self exampleFullMatrix5."
 
@@ -778,7 +780,7 @@ Help class >> exampleFullMatrix5 [
 	answer1 = answer2 ifFalse: [self halt: 'Check this.']
 ]
 
-{ #category : #exampleFullMatrix }
+{ #category : 'exampleFullMatrix' }
 Help class >> exampleFullMatrix6 [
 	"self halt. self exampleFullMatrix6."
 
@@ -809,7 +811,7 @@ Help class >> exampleFullMatrix6 [
 	(matrix row: 1) = (matrix row: 2) ifFalse: [self halt: 'Check this.']
 ]
 
-{ #category : #exampleFullRow }
+{ #category : 'exampleFullRow' }
 Help class >> exampleFullRow1 [
 	"self halt. self exampleFullRow1."
 
@@ -830,7 +832,7 @@ Help class >> exampleFullRow1 [
 	vector length = (vector normL: 2) ifFalse: [self error: 'Check this.']
 ]
 
-{ #category : #exampleFullRow }
+{ #category : 'exampleFullRow' }
 Help class >> exampleFullRow2 [
 	"self halt. self exampleFullRow2."
 
@@ -874,7 +876,7 @@ Help class >> exampleFullRow2 [
 	vector2 = vector negated ifFalse: [self error: 'Check this.']
 ]
 
-{ #category : #exampleFullRow }
+{ #category : 'exampleFullRow' }
 Help class >> exampleFullRow3 [
 	"self halt. self exampleFullRow3."
 
@@ -933,7 +935,7 @@ Help class >> exampleFullRow3 [
 	vector2 = vector ifFalse: [self error: 'Check this.']
 ]
 
-{ #category : #exampleFullRow }
+{ #category : 'exampleFullRow' }
 Help class >> exampleFullRow4 [
 	"self halt. self exampleFullRow4."
 
@@ -969,7 +971,7 @@ Help class >> exampleFullRow4 [
 	vector2 isZero ifFalse: [self error: 'Check this.']
 ]
 
-{ #category : #exampleSymbolicMath }
+{ #category : 'exampleSymbolicMath' }
 Help class >> exampleGeneralSpline [
 	"self halt. self exampleGeneralSpline."
 
@@ -995,7 +997,7 @@ Help class >> exampleGeneralSpline [
 	deriv outputOn: 'dummy2.txt' interval: (0.0 to: 6.0 by: 0.1)
 ]
 
-{ #category : #exampleSymbolicMath }
+{ #category : 'exampleSymbolicMath' }
 Help class >> exampleGeneralSpline2 [
 	"self halt. self exampleGeneralSpline2."
 
@@ -1021,7 +1023,7 @@ Help class >> exampleGeneralSpline2 [
 	deriv outputOn: 'dummy2.txt' interval: (0.0 to: 6.0 by: 0.1)
 ]
 
-{ #category : #exampleIntegrator }
+{ #category : 'exampleIntegrator' }
 Help class >> exampleIntegratorIndexThree [
 	"DAE for a simple pendulum."
 	"Ref: Numerical Solution Initial-Value Problems in Differential-Algebraic Equations by K.E. Brenan et 
@@ -1102,7 +1104,7 @@ Help class >> exampleIntegratorIndexThree [
 	solver outputOnFile: filenameString
 ]
 
-{ #category : #exampleIntegrator }
+{ #category : 'exampleIntegrator' }
 Help class >> exampleIntegratorIndexTwo [
 	"DAE for a simple pendulum."
 	"Ref: Numerical Solution Initial-Value Problems in Differential-Algebraic Equations by K.E. Brenan et 
@@ -1184,7 +1186,7 @@ Help class >> exampleIntegratorIndexTwo [
 	solver outputOnFile: filenameString
 ]
 
-{ #category : #exampleIntegrator }
+{ #category : 'exampleIntegrator' }
 Help class >> exampleIntegratorODE [
 	"ODE for a simple pendulum."
 	"Ref: Numerical Solution Initial-Value Problems in Differential-Algebraic Equations by K.E. Brenan et 
@@ -1237,7 +1239,7 @@ Help class >> exampleIntegratorODE [
 	solver outputOnFile: filenameString
 ]
 
-{ #category : #exampleIntegrator }
+{ #category : 'exampleIntegrator' }
 Help class >> exampleIntegratorODE1 [
 	"ODE for a simple pendulum."
 	"Ref: Numerical Solution Initial-Value Problems in Differential-Algebraic Equations by K.E. Brenan et 
@@ -1290,7 +1292,7 @@ Help class >> exampleIntegratorODE1 [
 	solver outputOnFile: filenameString
 ]
 
-{ #category : #exampleSymbolicMath }
+{ #category : 'exampleSymbolicMath' }
 Help class >> exampleLeastSquaresFitPolynomial [
 	"self halt. self exampleLeastSquaresFitPolynomial."
 
@@ -1316,7 +1318,7 @@ Help class >> exampleLeastSquaresFitPolynomial [
 	deriv outputOn: 'dummy2.txt' interval: (0.0 to: 6.0 by: 0.1)
 ]
 
-{ #category : #exampleSymbolicMath }
+{ #category : 'exampleSymbolicMath' }
 Help class >> exampleLg [
 	"self halt. self exampleLg."
 
@@ -1330,7 +1332,7 @@ Help class >> exampleLg [
 	func outputOn: 'dummy.txt' interval: (0.01 to: 100.0 by: 1.0)
 ]
 
-{ #category : #exampleSymbolicMath }
+{ #category : 'exampleSymbolicMath' }
 Help class >> exampleLn [
 	"self halt. self exampleLn."
 
@@ -1344,7 +1346,7 @@ Help class >> exampleLn [
 	func outputOn: 'dummy.txt' interval: (0.01 to: 100.0 by: 1.0)
 ]
 
-{ #category : #exampleMatrixSolver }
+{ #category : 'exampleMatrixSolver' }
 Help class >> exampleMatrixSolver1 [
 	"This example tests the handling of a singular matrix."
 	"self halt. self exampleMatrixSolver1."
@@ -1355,7 +1357,7 @@ Help class >> exampleMatrixSolver1 [
 	self testAllSolversWithMatrix: aA vector: b
 ]
 
-{ #category : #exampleMatrixSolver }
+{ #category : 'exampleMatrixSolver' }
 Help class >> exampleMatrixSolver1a [
 	"This example tests the handling of a singular matrix."
 	"self halt. self exampleMatrixSolver1a."
@@ -1366,7 +1368,7 @@ Help class >> exampleMatrixSolver1a [
 	self testAllSolversWithMatrix: aA vector: b
 ]
 
-{ #category : #exampleMatrixSolver }
+{ #category : 'exampleMatrixSolver' }
 Help class >> exampleMatrixSolver2 [
 	"self halt. self exampleMatrixSolver2."
 
@@ -1376,7 +1378,7 @@ Help class >> exampleMatrixSolver2 [
 	self testAllSolversWithMatrix: aA vector: b
 ]
 
-{ #category : #exampleMatrixSolver }
+{ #category : 'exampleMatrixSolver' }
 Help class >> exampleMatrixSolver2a [
 	"self halt. self exampleMatrixSolver2a."
 
@@ -1386,7 +1388,7 @@ Help class >> exampleMatrixSolver2a [
 	self testAllSolversWithMatrix: aA vector: b
 ]
 
-{ #category : #exampleMatrixSolver }
+{ #category : 'exampleMatrixSolver' }
 Help class >> exampleMatrixSolver3 [
 	"self halt. self exampleMatrixSolver3."
 
@@ -1396,7 +1398,7 @@ Help class >> exampleMatrixSolver3 [
 	self testAllSolversWithMatrix: aA vector: b
 ]
 
-{ #category : #exampleMatrixSolver }
+{ #category : 'exampleMatrixSolver' }
 Help class >> exampleMatrixSolver4 [
 	"self halt. self exampleMatrixSolver4."
 
@@ -1416,7 +1418,7 @@ Help class >> exampleMatrixSolver4 [
 	self testAllSolversWithMatrix: aA vector: b
 ]
 
-{ #category : #exampleMatrixSolver }
+{ #category : 'exampleMatrixSolver' }
 Help class >> exampleMatrixSolver5 [
 	"self halt. self exampleMatrixSolver5."
 
@@ -1436,7 +1438,7 @@ Help class >> exampleMatrixSolver5 [
 	self testAllSolversWithMatrix: aA vector: b
 ]
 
-{ #category : #exampleMatrixSolver }
+{ #category : 'exampleMatrixSolver' }
 Help class >> exampleMatrixSolver6 [
 	"self halt. self exampleMatrixSolver6."
 
@@ -1467,7 +1469,7 @@ Help class >> exampleMatrixSolver6 [
 	self testAllSolversWithMatrix: aA vector: b
 ]
 
-{ #category : #exampleMatrixSolver }
+{ #category : 'exampleMatrixSolver' }
 Help class >> exampleMatrixSolver7 [
 	"self halt. self exampleMatrixSolver7."
 
@@ -1498,7 +1500,7 @@ Help class >> exampleMatrixSolver7 [
 	self testAllSolversWithMatrix: aA vector: b
 ]
 
-{ #category : #exampleMatrixSolver }
+{ #category : 'exampleMatrixSolver' }
 Help class >> exampleMatrixSolver8 [
 	"self halt. self exampleMatrixSolver8."
 
@@ -1530,7 +1532,7 @@ Help class >> exampleMatrixSolver8 [
 	self testAllSolversWithMatrix: aA vector: b
 ]
 
-{ #category : #exampleNewtonRaphson }
+{ #category : 'exampleNewtonRaphson' }
 Help class >> exampleNewtonRaphsonScalar [
 	"self halt. self exampleNewtonRaphsonScalar."
 
@@ -1547,7 +1549,7 @@ Help class >> exampleNewtonRaphsonScalar [
 	Transcript cr; show: 'eqn1 at root = '; show: eqn1 value printString
 ]
 
-{ #category : #exampleNewtonRaphson }
+{ #category : 'exampleNewtonRaphson' }
 Help class >> exampleNewtonRaphsonScalar1 [
 	"self halt. self exampleNewtonRaphsonScalar1."
 
@@ -1564,7 +1566,7 @@ Help class >> exampleNewtonRaphsonScalar1 [
 	Transcript cr; show: 'eqn1 at root = '; show: eqn1 value printString
 ]
 
-{ #category : #exampleNewtonRaphson }
+{ #category : 'exampleNewtonRaphson' }
 Help class >> exampleNewtonRaphsonScalar2 [
 	"self halt. self exampleNewtonRaphsonScalar2."
 
@@ -1581,7 +1583,7 @@ Help class >> exampleNewtonRaphsonScalar2 [
 	Transcript cr; show: 'eqn1 at root = '; show: eqn1 value printString
 ]
 
-{ #category : #exampleNewtonRaphson }
+{ #category : 'exampleNewtonRaphson' }
 Help class >> exampleNewtonRaphsonVector [
 	"self halt. self exampleNewtonRaphsonVector."
 
@@ -1605,7 +1607,7 @@ Help class >> exampleNewtonRaphsonVector [
 	Transcript cr; show: 'eqn2 at root = '; show: eqn2 value printString
 ]
 
-{ #category : #exampleNewtonRaphson }
+{ #category : 'exampleNewtonRaphson' }
 Help class >> exampleNewtonRaphsonVector1 [
 	"self halt. self exampleNewtonRaphsonVector1."
 
@@ -1629,7 +1631,7 @@ Help class >> exampleNewtonRaphsonVector1 [
 	Transcript cr; show: 'eqn2 at root = '; show: eqn2 value printString
 ]
 
-{ #category : #exampleNewtonRaphson }
+{ #category : 'exampleNewtonRaphson' }
 Help class >> exampleNewtonRaphsonVector2 [
 	"self halt. self exampleNewtonRaphsonVector2."
 
@@ -1653,7 +1655,7 @@ Help class >> exampleNewtonRaphsonVector2 [
 	Transcript cr; show: 'eqn2 at root = '; show: eqn2 value printString
 ]
 
-{ #category : #exampleSymbolicMath }
+{ #category : 'exampleSymbolicMath' }
 Help class >> examplePolynomial [
 	"self halt. self examplePolynomial."
 
@@ -1671,7 +1673,7 @@ Help class >> examplePolynomial [
 	deriv outputOn: 'dummy2.txt' interval: (-1.0 to: 1.0 by: 0.01)
 ]
 
-{ #category : #exampleSymbolicMath }
+{ #category : 'exampleSymbolicMath' }
 Help class >> exampleSin [
 	"self halt. self exampleSin."
 
@@ -1688,7 +1690,7 @@ Help class >> exampleSin [
 	func outputOn: 'dummy.txt' interval: (-10.0 to: 10.0 by: 0.5)
 ]
 
-{ #category : #exampleSymbolicMath }
+{ #category : 'exampleSymbolicMath' }
 Help class >> exampleSmoothAbs [
 	"self halt. self exampleSmoothAbs."
 
@@ -1706,7 +1708,7 @@ Help class >> exampleSmoothAbs [
 	deriv outputOn: 'dummy2.txt' interval: (-1.0 to: 1.0 by: 0.01)
 ]
 
-{ #category : #exampleSymbolicMath }
+{ #category : 'exampleSymbolicMath' }
 Help class >> exampleSmoothCubicStep [
 	"self halt. self exampleSmoothCubicStep."
 
@@ -1729,7 +1731,7 @@ Help class >> exampleSmoothCubicStep [
 	deriv outputOn: 'dummy2.txt' interval: (-4.0 to: 4.0 by: 0.1)
 ]
 
-{ #category : #exampleSymbolicMath }
+{ #category : 'exampleSymbolicMath' }
 Help class >> exampleSmoothSineStep [
 	"self halt. self exampleSmoothSineStep."
 
@@ -1753,7 +1755,7 @@ Help class >> exampleSmoothSineStep [
 	func outputOn: 'dummy.txt' interval: (-4.0 to: 4.0 by: 0.1)
 ]
 
-{ #category : #exampleSparseMatrix }
+{ #category : 'exampleSparseMatrix' }
 Help class >> exampleSparseMatrix1 [
 	"self halt. self exampleSparseMatrix1."
 
@@ -1776,7 +1778,7 @@ Help class >> exampleSparseMatrix1 [
 	matrix rowSumNorm = (matrix at: m) sumOfAbsElements ifFalse: [self error: 'Check this.']
 ]
 
-{ #category : #exampleSparseMatrix }
+{ #category : 'exampleSparseMatrix' }
 Help class >> exampleSparseMatrix2 [
 	"self halt. self exampleSparseMatrix2."
 
@@ -1800,7 +1802,7 @@ Help class >> exampleSparseMatrix2 [
 	matrix2 = matrix negated ifFalse: [self error: 'Check this.']
 ]
 
-{ #category : #exampleSparseMatrix }
+{ #category : 'exampleSparseMatrix' }
 Help class >> exampleSparseMatrix3 [
 	"self halt. self exampleSparseMatrix3."
 
@@ -1827,7 +1829,7 @@ Help class >> exampleSparseMatrix3 [
 	matrix2 = matrix ifFalse: [self error: 'Check this.']
 ]
 
-{ #category : #exampleSparseMatrix }
+{ #category : 'exampleSparseMatrix' }
 Help class >> exampleSparseMatrix3a [
 	"self halt. self exampleSparseMatrix3a."
 
@@ -1856,7 +1858,7 @@ Help class >> exampleSparseMatrix3a [
 	matrix2 = (matrix times: 0.0) ifFalse: [self error: 'Check this.']
 ]
 
-{ #category : #exampleSparseMatrix }
+{ #category : 'exampleSparseMatrix' }
 Help class >> exampleSparseMatrix4 [
 	"self halt. self exampleSparseMatrix4."
 
@@ -1889,7 +1891,7 @@ Help class >> exampleSparseMatrix4 [
 	answer1 = answer2 asFullMatrix ifFalse: [self halt: 'Check this.']
 ]
 
-{ #category : #exampleSparseMatrix }
+{ #category : 'exampleSparseMatrix' }
 Help class >> exampleSparseMatrix5 [
 	"self halt. self exampleSparseMatrix5."
 
@@ -1920,7 +1922,7 @@ Help class >> exampleSparseMatrix5 [
 	answer1 = answer2 ifFalse: [self halt: 'Check this.']
 ]
 
-{ #category : #exampleSparseMatrix }
+{ #category : 'exampleSparseMatrix' }
 Help class >> exampleSparseMatrix6 [
 	"self halt. self exampleSparseMatrix6."
 
@@ -1951,7 +1953,7 @@ Help class >> exampleSparseMatrix6 [
 	(matrix row: 1) = (matrix row: 2) ifFalse: [self halt: 'Check this.']
 ]
 
-{ #category : #exampleSparseRow }
+{ #category : 'exampleSparseRow' }
 Help class >> exampleSparseRow1 [
 	"self halt. self exampleSparseRow1."
 
@@ -1972,7 +1974,7 @@ Help class >> exampleSparseRow1 [
 	vector length = (vector normL: 2) ifFalse: [self error: 'Check this.']
 ]
 
-{ #category : #exampleSymbolicMath }
+{ #category : 'exampleSymbolicMath' }
 Help class >> exampleSqrt [
 	"self halt. self exampleSqrt."
 
@@ -1987,7 +1989,7 @@ Help class >> exampleSqrt [
 	func outputOn: 'dummy.txt' interval: (0.01 to: 100.0 by: 1.0)
 ]
 
-{ #category : #exampleDifferenceOperator }
+{ #category : 'exampleDifferenceOperator' }
 Help class >> exampleStartingBDFScalar [
 	"self halt. self exampleStartingBDFScalar."
 
@@ -2028,7 +2030,7 @@ Help class >> exampleStartingBDFScalar [
 	block value: 'vddddot = ' value: 4
 ]
 
-{ #category : #exampleDifferenceOperator }
+{ #category : 'exampleDifferenceOperator' }
 Help class >> exampleStartingBDFVector [
 	"self halt. self exampleStartingBDFVector."
 
@@ -2069,7 +2071,7 @@ Help class >> exampleStartingBDFVector [
 	block value: 'vddddot = ' value: 4
 ]
 
-{ #category : #exampleSymbolicMath }
+{ #category : 'exampleSymbolicMath' }
 Help class >> exampleStep [
 	"self halt. self exampleStep."
 
@@ -2090,7 +2092,7 @@ Help class >> exampleStep [
 	func outputOn: 'dummy.txt' interval: (-2.0 to: 2.0 by: 0.1)
 ]
 
-{ #category : #exampleSymbolicAssembly }
+{ #category : 'exampleSymbolicAssembly' }
 Help class >> exampleSymbolicAssembly [
 
 	"StMathHelp exampleSymbolicAssembly"
@@ -2116,7 +2118,7 @@ Help class >> exampleSymbolicAssembly [
 	aKinematicIJ inspect
 ]
 
-{ #category : #exampleSymbolicMath }
+{ #category : 'exampleSymbolicMath' }
 Help class >> exampleTan [
 	"self halt. self exampleTan."
 
@@ -2133,7 +2135,7 @@ Help class >> exampleTan [
 	func outputOn: 'dummy.txt' interval: (-5.0 to: 5.0 by: 0.1)
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 Help class >> readMe [
 	"StMath is a set of math objects that I have derived from a motion simulation program. It is not 
 	intended to be comprehensive, but I believe it is suitable for engineering type applications and I am 
@@ -2162,7 +2164,7 @@ Help class >> readMe [
 	^self commentOnly
 ]
 
-{ #category : #exampleMatrixSolver }
+{ #category : 'exampleMatrixSolver' }
 Help class >> testAllSolversWithMatrix: aA vector: b [ 
 	"
 	| aA b | 
@@ -2197,7 +2199,7 @@ Help class >> testAllSolversWithMatrix: aA vector: b [
 						vector: b]]
 ]
 
-{ #category : #exampleMatrixSolver }
+{ #category : 'exampleMatrixSolver' }
 Help class >> testSolverClass: solverClass matrix: aA vector: b [ 
 	"
 	| solverClass aA b | 
@@ -2228,7 +2230,7 @@ Help class >> testSolverClass: solverClass matrix: aA vector: b [
 	Transcript flush
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 Help class >> visualWorksMetadata [
 
 	^ #(
@@ -2237,7 +2239,7 @@ Help class >> visualWorksMetadata [
 
 ]
 
-{ #category : #readMe }
+{ #category : 'readMe' }
 Help >> readMe [
 	"Read documentation in the class side methods."
 

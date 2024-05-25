@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDMarkerFrame,
-	#superclass : #MbDCartesianFrame,
+	#name : 'MbDMarkerFrame',
+	#superclass : 'MbDCartesianFrame',
 	#instVars : [
 		'partFrame',
 		'rpmp',
@@ -13,10 +13,12 @@ Class {
 		'ppAOmpEpE',
 		'endFrames'
 	],
-	#category : #'StCAD-MbD-MbDBasic'
+	#category : 'StCAD-MbD-MbDBasic',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDBasic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDMarkerFrame class >> visualWorksMetadata [
 
 	^ #(
@@ -26,42 +28,42 @@ MbDMarkerFrame class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> aAOm [
 	^aAOm
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> aAdotjOm: j [ 
 	^partFrame aAdotOp timesFullColumn: (aApm column: j)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> aApm [
 	^aApm
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> aApm: aA [ 
 	aApm := aA
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> aBOp [
 	^partFrame aBOp
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> aOmO [
 	^partFrame aOpO + (partFrame aAddotOp timesFullColumn: rpmp)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> bePerturbed: delta fillqsulam: col [ 
 	endFrames do: [:eFrm | eFrm bePerturbed: delta fillqsulam: col]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDMarkerFrame >> calcPostDynCorrectorIteration [
 	| rOpO aAOp pAOppE pAOppEi |
 	rOpO := partFrame rOpO.
@@ -75,112 +77,112 @@ MbDMarkerFrame >> calcPostDynCorrectorIteration [
 			pAOmpE at: i put: (pAOppEi timesFullMatrix: aApm)]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> endFrames [
 	^endFrames
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> fillpqsumu: col [ 
 	endFrames do: [:eFrm | eFrm fillpqsumu: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> fillpqsumudot: col [ 
 	endFrames do: [:eFrm | eFrm fillpqsumudot: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> fillqsu: col [ 
 	endFrames do: [:eFrm | eFrm fillqsu: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> fillqsuWeights: col [ 
 	endFrames do: [:eFrm | eFrm fillqsuWeights: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> fillqsuddotlam: col [ 
 	endFrames do: [:eFrm | eFrm fillqsuddotlam: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> fillqsudot: col [ 
 	endFrames do: [:eFrm | eFrm fillqsudot: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> fillqsudotPlam: col [ 
 	endFrames do: [:eFrm | eFrm fillqsudotPlam: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> fillqsudotPlamDeriv: col [ 
 	endFrames do: [:eFrm | eFrm fillqsudotPlamDeriv: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> fillqsudotWeights: col [ 
 	endFrames do: [:eFrm | eFrm fillqsudotWeights: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> fillqsulam: col [ 
 	endFrames do: [:eFrm | eFrm fillqsulam: col]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDMarkerFrame >> initialize [
 	prOmOpE := StMFullMatrix new: 3 by: 4.
 	pAOmpE := StMFullColumn new: 4.
 	endFrames := OrderedCollection new
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDMarkerFrame >> initializeGlobally [
 	endFrames do: [:eFrm | eFrm initializeGlobally]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDMarkerFrame >> initializeLocally [
 	pprOmOpEpE := MbDEulerParameters ppApEpEtimesColumn: rpmp.
 	ppAOmpEpE := MbDEulerParameters ppApEpEtimesMatrix: aApm.
 	endFrames do: [:eFrm | eFrm initializeLocally]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> iqE [
 	^partFrame iqE
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> iqX [
 	^partFrame iqX
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> isOn: pFrm [ 
 	partFrame := pFrm.
 	partFrame markerFrames add: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> omeOmO [
 	^partFrame omeOpO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> pAOmpE [
 	^pAOmpE
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> pAOppE [
 	^partFrame pAOppE
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> pAdotjOmpE: jj [ 
 	| pAdotOppE aAjjpm answer pAdotOppEj pAdotjjpmpEj |
 	pAdotOppE := partFrame pAdotOppE.
@@ -198,7 +200,7 @@ MbDMarkerFrame >> pAdotjOmpE: jj [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> pAdotjOmpET: jj [ 
 	| pAdotOppE aAjjpm answer answeri pAdotOppEi pAdotjjpmpEi |
 	pAdotOppE := partFrame pAdotOppE.
@@ -212,128 +214,128 @@ MbDMarkerFrame >> pAdotjOmpET: jj [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> partFrame [
 	^partFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> partFrame: frame [ 
 	partFrame := frame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> pomeOmOpE [
 	^partFrame pomeOpOpE
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> pomeOmOpEdot [
 	^partFrame pomeOpOpEdot
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDMarkerFrame >> postDynCorrectorIteration [
 	super postDynCorrectorIteration.
 	endFrames do: [:endFrm | endFrm postDynCorrectorIteration]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDMarkerFrame >> postDynOutput [
 	super postDynOutput.
 	endFrames do: [:endFrm | endFrm postDynOutput]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDMarkerFrame >> postDynPredictor [
 	super postDynPredictor.
 	endFrames do: [:endFrm | endFrm postDynPredictor]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDMarkerFrame >> postDynStep [
 	endFrames do: [:endFrm | endFrm postDynStep]
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDMarkerFrame >> postInput [
 	super postInput.
 	endFrames do: [:endFrm | endFrm postInput]
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDMarkerFrame >> postPosIC [
 	endFrames do: [:endFrm | endFrm postPosIC]
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDMarkerFrame >> postPosICIteration [
 	super postPosICIteration.
 	endFrames do: [:endFrm | endFrm postPosICIteration]
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDMarkerFrame >> postStaticIteration [
 	super postStaticIteration.
 	endFrames do: [:endFrm | endFrm postStaticIteration]
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDMarkerFrame >> postVelIC [
 	endFrames do: [:endFrm | endFrm postVelIC]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> ppAOmpEpE [
 	^ppAOmpEpE
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> pprOmOpEpE [
 	^pprOmOpEpE
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> prOmOpE [
 	^prOmOpE
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDMarkerFrame >> preAccIC [
 	super preAccIC.
 	endFrames do: [:endFrm | endFrm preAccIC]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDMarkerFrame >> preDyn [
 	endFrames do: [:endFrm | endFrm preDyn]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDMarkerFrame >> preDynOutput [
 	super preDynOutput.
 	endFrames do: [:endFrm | endFrm preDynOutput]
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDMarkerFrame >> prePosIC [
 	super prePosIC.
 	endFrames do: [:endFrm | endFrm prePosIC]
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDMarkerFrame >> preStatic [
 	super preStatic.
 	endFrames do: [:endFrm | endFrm preStatic]
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDMarkerFrame >> preVelIC [
 	super preVelIC.
 	endFrames do: [:endFrm | endFrm preVelIC]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> pvOmOpE [
 	| answer pAdotOppE answeri pAdotOpipEj |
 	answer := StMFullMatrix new: 3 by: 4.
@@ -346,129 +348,129 @@ MbDMarkerFrame >> pvOmOpE [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> qEddot [
 	^partFrame qEddot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> qEdot [
 	^partFrame qEdot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> qX [
 	^partFrame qX
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> qXddot [
 	^partFrame qXddot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> qXdot [
 	^partFrame qXdot
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDMarkerFrame >> rOeOOFrmem: rmemCol [ 
 	^rOmO + (aAOm timesFullColumn: rmemCol)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> rOmO [
 	^rOmO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> rOmO: aColumn [ 
 	rOmO := aColumn
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDMarkerFrame >> rmemOFrOeO: rOeOCol [ 
 	^aAOm transposeTimesFullColumn: (rOeOCol minusFullColumn: rOmO)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> rpep [
 	self halt: 'check if used.'.
 	^rpmp
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> rpmp [
 	^rpmp
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> rpmp: col [ 
 	rpmp := col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> setpqsumu: col [ 
 	endFrames do: [:eFrm | eFrm setpqsumu: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> setpqsumuddot: col [ 
 	endFrames do: [:eFrm | eFrm setpqsumuddot: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> setpqsumudot: col [ 
 	endFrames do: [:eFrm | eFrm setpqsumudot: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> setqsu: col [ 
 	endFrames do: [:eFrm | eFrm setqsu: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> setqsuddotlam: col [ 
 	endFrames do: [:eFrm | eFrm setqsuddotlam: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> setqsudot: col [ 
 	endFrames do: [:eFrm | eFrm setqsudot: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> setqsudotPlam: col [ 
 	endFrames do: [:eFrm | eFrm setqsudotPlam: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> setqsudotPlamDeriv: col [ 
 	endFrames do: [:eFrm | eFrm setqsudotPlamDeriv: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> setqsudotlam: col [ 
 	endFrames do: [:eFrm | eFrm setqsudotlam: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> setqsulam: col [ 
 	endFrames do: [:eFrm | eFrm setqsulam: col]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDMarkerFrame >> simUpdateAll [
 	super simUpdateAll.
 	endFrames do: [:endFrm | endFrm simUpdateAll]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDMarkerFrame >> storeDynState [
 	endFrames do: [:endFrm | endFrm storeDynState]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDMarkerFrame >> swapXandZaxes [
 	"Swap column 1 and 3 of aApm. Negate column 2."
 
@@ -481,11 +483,11 @@ MbDMarkerFrame >> swapXandZaxes [
 			rowi at: 2 put: (rowi at: 2) negated]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> vOeO_of_rmem: rmem [
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDMarkerFrame >> vOmO [
 	^partFrame vOpO + (partFrame aAdotOp timesFullColumn: rpmp)
 ]

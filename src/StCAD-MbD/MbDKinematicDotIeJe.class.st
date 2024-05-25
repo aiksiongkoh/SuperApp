@@ -48,12 +48,14 @@ IJ
 		IctJct
 "
 Class {
-	#name : #MbDKinematicDotIeJe,
-	#superclass : #MbDKinematicIeJe,
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#name : 'MbDKinematicDotIeJe',
+	#superclass : 'MbDKinematicIeJe',
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDKinematicDotIeJe class >> visualWorksMetadata [
 
 	^ #(
@@ -63,87 +65,87 @@ MbDKinematicDotIeJe class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicDotIeJe >> isKinedotIJ [
 	^true
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDKinematicDotIeJe >> postCollisionCorrectorIteration [
 	self calcPostDynCorrectorIteration
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDKinematicDotIeJe >> postCollisionPredictor [
 	self calcPostDynCorrectorIteration
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDKinematicDotIeJe >> postStaticIteration [
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicDotIeJe >> pvaluepEI [
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicDotIeJe >> pvaluepEJ [
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicDotIeJe >> pvaluepEK [
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicDotIeJe >> pvaluepEdotI [
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicDotIeJe >> pvaluepEdotJ [
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicDotIeJe >> pvaluepEdotK [
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicDotIeJe >> pvaluepXI [
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicDotIeJe >> pvaluepXJ [
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicDotIeJe >> pvaluepXK [
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicDotIeJe >> pvaluepXdotI [
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicDotIeJe >> pvaluepXdotJ [
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicDotIeJe >> pvaluepXdotK [
 	^nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDKinematicDotIeJe >> value [
 	self subclassResponsibility
 ]

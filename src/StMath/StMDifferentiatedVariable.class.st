@@ -7,15 +7,17 @@ Instance Variables:
 wrt	<OrderedCollection>	stores the differential variables in order of differentiation use.
 "
 Class {
-	#name : #StMDifferentiatedVariable,
-	#superclass : #StMDependentVariable,
+	#name : 'StMDifferentiatedVariable',
+	#superclass : 'StMDependentVariable',
 	#instVars : [
 		'wrts'
 	],
-	#category : #'StMath-Symbolic'
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #'binary storage' }
+{ #category : 'binary storage' }
 StMDifferentiatedVariable class >> binaryReaderBlockForVersion: oldVersion format: oldFormat [ 
 	"Remove the instance variable 'value dependents x name wrts'."
 	"Remove the instance variable 'name value x wrts'."
@@ -37,7 +39,7 @@ StMDifferentiatedVariable class >> binaryReaderBlockForVersion: oldVersion forma
 	^super binaryReaderBlockForVersion: oldVersion format: oldFormat
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMDifferentiatedVariable class >> visualWorksMetadata [
 
 	^ #(
@@ -47,17 +49,17 @@ StMDifferentiatedVariable class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMDifferentiatedVariable class >> with: var wrts: derivs [ 
 	^super new x: var wrts: derivs
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 StMDifferentiatedVariable >> copy [
 	^self shallowCopy postCopy
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMDifferentiatedVariable >> differentiateWRT: variable [ 
 	| answer |
 	answer := self copy.
@@ -65,7 +67,7 @@ StMDifferentiatedVariable >> differentiateWRT: variable [
 	^answer
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMDifferentiatedVariable >> differentiateWRTx [
 	| xcopy answer |
 	xcopy := x copy.
@@ -76,19 +78,19 @@ StMDifferentiatedVariable >> differentiateWRTx [
 	^answer
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 StMDifferentiatedVariable >> initialize [
 	super initialize.
 	wrts := OrderedCollection new
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 StMDifferentiatedVariable >> postCopy [
 	x := x copy.
 	wrts := wrts collect: [:a | a copy]
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 StMDifferentiatedVariable >> printOn: aStream [ 
 	aStream nextPutAll: 'diff('.
 	aStream print: x.
@@ -99,7 +101,7 @@ StMDifferentiatedVariable >> printOn: aStream [
 	aStream nextPut: $)
 ]
 
-{ #category : #changing }
+{ #category : 'changing' }
 StMDifferentiatedVariable >> substitute: var1 with: var2 [ 
 	| xx wrts2 |
 	^self = var1
@@ -110,12 +112,12 @@ StMDifferentiatedVariable >> substitute: var1 with: var2 [
 			self class with: xx wrts: wrts2]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMDifferentiatedVariable >> wrtsAdd: variable [ 
 	wrts add: variable
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMDifferentiatedVariable >> x: arg [ 
 	| xold |
 	xold := x.
@@ -123,7 +125,7 @@ StMDifferentiatedVariable >> x: arg [
 	wrts := wrts collect: [:wrt | wrt substitute: xold with: x]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 StMDifferentiatedVariable >> x: var wrts: derivs [ 
 	x := self conditionArgument: var.
 	wrts := derivs collect: [:deriv | self conditionArgument: deriv]

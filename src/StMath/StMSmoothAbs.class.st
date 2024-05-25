@@ -12,12 +12,14 @@ Instance Variables:
 epsilon	<StMConstant>	f(x) = a + c*x*x.		-epsilon < x < epsilon
 "
 Class {
-	#name : #StMSmoothAbs,
-	#superclass : #StMPiecewiseFunctionX,
-	#category : #'StMath-Symbolic'
+	#name : 'StMSmoothAbs',
+	#superclass : 'StMPiecewiseFunctionX',
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMSmoothAbs class >> visualWorksMetadata [
 
 	^ #(
@@ -27,12 +29,12 @@ StMSmoothAbs class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMSmoothAbs class >> with: var epsilon: xx1 [ 
 	^super new x: var epsilon: xx1
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 StMSmoothAbs >> x: arg epsilon: eps [ 
 	| a b c coeffs epsilon |
 	x := self conditionArgument: arg.

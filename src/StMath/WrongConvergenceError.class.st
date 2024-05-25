@@ -1,10 +1,12 @@
 Class {
-	#name : #WrongConvergenceError,
-	#superclass : #NewtonRaphsonError,
-	#category : #'StMath-Exception'
+	#name : 'WrongConvergenceError',
+	#superclass : 'NewtonRaphsonError',
+	#category : 'StMath-Exception',
+	#package : 'StMath',
+	#tag : 'Exception'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 WrongConvergenceError class >> visualWorksMetadata [
 
 	^ #(

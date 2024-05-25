@@ -1,14 +1,16 @@
 Class {
-	#name : #GEOEllipse,
-	#superclass : #GEOCurve,
+	#name : 'GEOEllipse',
+	#superclass : 'GEOCurve',
 	#instVars : [
 		'xRadius',
 		'yRadius'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GEOEllipse class >> origin: origin xRadius: xr yRadius: yr [ 
 	^super new
 		origin: origin
@@ -16,7 +18,7 @@ GEOEllipse class >> origin: origin xRadius: xr yRadius: yr [
 		yRadius: yr
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOEllipse class >> visualWorksMetadata [
 
 	^ #(
@@ -26,12 +28,12 @@ GEOEllipse class >> visualWorksMetadata [
 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOEllipse >> isClosed [
 	^true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOEllipse >> maxCorner: rSmaxS [ 
 	| rSoriginS rOriginMaxF rOriginMaxf |
 	rSoriginS := refFrame rFfF.
@@ -42,13 +44,13 @@ GEOEllipse >> maxCorner: rSmaxS [
 	self changed
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOEllipse >> origin: col [ 
 	refFrame rFfF: col.
 	self changed
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOEllipse >> origin: col xRadius: xr yRadius: yr [ 
 	refFrame rFfF: col.
 	xRadius := xr.
@@ -56,7 +58,7 @@ GEOEllipse >> origin: col xRadius: xr yRadius: yr [
 	self changed
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOEllipse >> rfpointsf [
 	| nseg rfpointsf angle xi yi dangle |
 	nseg := 16.
@@ -76,7 +78,7 @@ GEOEllipse >> rfpointsf [
 	^rfpointsf
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOEllipse >> storeOn: aStream level: level [ 
 	aStream storeLevel: level title: 'Ellipse'.
 	self refFrame store2DOn: aStream level: level + 1.
@@ -90,19 +92,19 @@ GEOEllipse >> storeOn: aStream level: level [
 		object: yRadius
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOEllipse >> xRadius [
 	^xRadius
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOEllipse >> xRadius: xr yRadius: yr [ 
 	xRadius := xr max: 0.0.
 	yRadius := yr max: 0.0.
 	self changed
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOEllipse >> yRadius [
 	^yRadius
 ]

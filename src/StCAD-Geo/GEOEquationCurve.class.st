@@ -1,13 +1,15 @@
 Class {
-	#name : #GEOEquationCurve,
-	#superclass : #GEOCurve,
+	#name : 'GEOEquationCurve',
+	#superclass : 'GEOCurve',
 	#instVars : [
 		'rfpfEqn'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOEquationCurve class >> visualWorksMetadata [
 
 	^ #(
@@ -17,7 +19,7 @@ GEOEquationCurve class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOEquationCurve >> renderOn: aRenderingContext withCurveMarker: aCurveMarker [ 
 	aRenderingContext pushTransformation: refFrame aMFf
 		while: 
@@ -27,17 +29,17 @@ GEOEquationCurve >> renderOn: aRenderingContext withCurveMarker: aCurveMarker [
 			aCurveMarker basicRenderOn: aRenderingContext]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOEquationCurve >> rfpfEqn [
 	^rfpfEqn
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOEquationCurve >> rfpfEqn: eqn [ 
 	rfpfEqn := eqn
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOEquationCurve >> rfpointsf [
 	| nseg ds rfpointsf s |
 	nseg := 256.

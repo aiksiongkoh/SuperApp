@@ -1,19 +1,21 @@
 Class {
-	#name : #GEORectangle,
-	#superclass : #GEOCurve,
+	#name : 'GEORectangle',
+	#superclass : 'GEOCurve',
 	#instVars : [
 		'xLength',
 		'yLength'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GEORectangle class >> minCorner: min maxCorner: max [ 
 	^self new minCorner: min maxCorner: max
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEORectangle class >> visualWorksMetadata [
 
 	^ #(
@@ -23,19 +25,19 @@ GEORectangle class >> visualWorksMetadata [
 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEORectangle >> isClosed [
 	^true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORectangle >> magnifySelf: aDouble [ 
 	self aRefFrame magnifySelf: aDouble.
 	xLength := xLength * aDouble.
 	yLength := yLength * aDouble
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORectangle >> maxCorner [
 	^refFrame rFfF + (refFrame aAFf timesFullColumn: (StMFullColumn
 				with: xLength
@@ -43,22 +45,22 @@ GEORectangle >> maxCorner [
 				with: 0.0))
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORectangle >> maxCorner: max [ 
 	self minCorner: self minCorner maxCorner: max
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORectangle >> minCorner [
 	^refFrame rFfF
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORectangle >> minCorner: min [ 
 	self minCorner: min maxCorner: self maxCorner
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORectangle >> minCorner: min maxCorner1: max [ 
 	| rMinMaxF rMinMaxf |
 	refFrame rFfF: min.
@@ -69,7 +71,7 @@ GEORectangle >> minCorner: min maxCorner1: max [
 	self changed
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORectangle >> minCorner: min maxCorner: max [ 
 	| rMinMaxF rMinMaxf |
 	refFrame rFfF: min.
@@ -81,7 +83,7 @@ GEORectangle >> minCorner: min maxCorner: max [
 	self changed
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORectangle >> rfpointsf [
 	| rfpointsf |
 	rfpointsf := StMArray new: 5.
@@ -102,7 +104,7 @@ GEORectangle >> rfpointsf [
 	^rfpointsf
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEORectangle >> storeOn: aStream level: level [ 
 	aStream storeLevel: level title: 'Rectangle'.
 	self refFrame store2DOn: aStream level: level + 1.
@@ -116,7 +118,7 @@ GEORectangle >> storeOn: aStream level: level [
 		object: yLength
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORectangle >> theta: angle [ 
 	| aA cosAngle sinAngle |
 	aA := (StMFullMatrix zero: 3 by: 3).
@@ -131,22 +133,22 @@ GEORectangle >> theta: angle [
 	self changed
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORectangle >> xLength [
 	^xLength
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORectangle >> xLength: double [ 
 	xLength := double
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORectangle >> yLength [
 	^yLength
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEORectangle >> yLength: double [ 
 	yLength := double
 ]

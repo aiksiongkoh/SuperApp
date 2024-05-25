@@ -1,6 +1,6 @@
 Class {
-	#name : #GEOSolidModel,
-	#superclass : #GEOSolidModelingItem,
+	#name : 'GEOSolidModel',
+	#superclass : 'GEOSolidModelingItem',
 	#instVars : [
 		'vertexs',
 		'edges',
@@ -8,22 +8,24 @@ Class {
 		'boundingBox',
 		'momentsOfVolume'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'triggering events' }
+{ #category : 'triggering events' }
 GEOSolidModel class >> constructEventsTriggered [
 	^(super constructEventsTriggered)
 		add: #getDisplayList;
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GEOSolidModel class >> for: part [ 
 	^super new part: part
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOSolidModel class >> visualWorksMetadata [
 
 	^ #(
@@ -33,22 +35,22 @@ GEOSolidModel class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSolidModel >> aAPp [
 	^momentsOfVolume aAPp
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSolidModel >> aBoundingBox [
 	^boundingBox
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSolidModel >> aDisplayList [
 	^self triggerEvent: #getDisplayList
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSolidModel >> aDisplayList: aDisplayList [ 
 	self removeActionsForEvent: #getDisplayList.
 	aDisplayList notNil 
@@ -59,22 +61,22 @@ GEOSolidModel >> aDisplayList: aDisplayList [
 				perform: #yourself]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSolidModel >> addCurveMarker: geoMarker [ 
 	container addCurveMarker: geoMarker
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSolidModel >> addMarker: geoMarker [ 
 	container addMarker: geoMarker
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSolidModel >> boundingBox [
 	^boundingBox
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 GEOSolidModel >> buildExtrudedFeature: geoExtrudedFeature [ 
 	| fsEsVs |
 	fsEsVs := geoExtrudedFeature facesEdgesVertexs.
@@ -84,27 +86,27 @@ GEOSolidModel >> buildExtrudedFeature: geoExtrudedFeature [
 	vertexs addAll: (fsEsVs at: 3)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSolidModel >> cEdge [
 	^edges
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSolidModel >> cFace [
 	^faces
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSolidModel >> cMomentOfVolume [
 	^momentsOfVolume
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSolidModel >> cVertex [
 	^vertexs
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOSolidModel >> calcBoundingBox [
 	"Assume solidModel has been built and valid."
 
@@ -113,32 +115,32 @@ GEOSolidModel >> calcBoundingBox [
 		into: [:bbox :vertex | bbox expandToBound: vertex point]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOSolidModel >> calcMomentsOfVolume [
 	momentsOfVolume := GEOInertiaMatrixSolver new momentsOfVolume: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSolidModel >> center [
 	^boundingBox center
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSolidModel >> faces [
 	^faces
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSolidModel >> featureOrder [
 	^container featureOrder
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOSolidModel >> hasCentroid [
 	^momentsOfVolume notNil
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOSolidModel >> initialize [
 
 	vertexs := StCAD_Misc_OrderedSet new. "VW_TRANSLATION:StCAD.Misc.OrderedSet:StCAD_Misc_OrderedSet"
@@ -147,7 +149,7 @@ GEOSolidModel >> initialize [
 	boundingBox := BoundingBox new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSolidModel >> magnifySelf: aDouble [ 
 	self cVertex do: [:aVertex | aVertex magnifySelf: aDouble].
 	self cEdge do: [:aEdge | aEdge magnifySelf: aDouble].
@@ -157,46 +159,46 @@ GEOSolidModel >> magnifySelf: aDouble [
 		ifNotNil: [:cMomentOfVolume | cMomentOfVolume magnifySelf: aDouble]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSolidModel >> markers [
 	^container markers
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSolidModel >> momentsOfVolume [
 	^momentsOfVolume
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSolidModel >> momentsOfVolume: momentsOfVol [ 
 	momentsOfVolume := momentsOfVol
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSolidModel >> part: part [ 
 	container := part
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 GEOSolidModel >> preSave [
 	super preSave.
 	faces do: [:face | face preSave].
 	self removeDisplayList
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSolidModel >> refFrame [
 	^container refFrame
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOSolidModel >> release [
 	self removeDisplayList.
 	faces do: [:face | face release].
 	super release
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 GEOSolidModel >> releaseFacesEdgesVertexs [
 
 	self removeDisplayList.
@@ -210,7 +212,7 @@ GEOSolidModel >> releaseFacesEdgesVertexs [
 	momentsOfVolume := nil
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 GEOSolidModel >> removeDisplayList [
 	self aDisplayList ifNotNil: 
 			[:listID | 
@@ -218,17 +220,17 @@ GEOSolidModel >> removeDisplayList [
 			self aDisplayList: nil]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOSolidModel >> removeGEO: aGEO [ 
 	"Do nothing for now."
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 GEOSolidModel >> renderOn1: aRenderingContext [ 
 	faces do: [:face | face renderOn: aRenderingContext]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 GEOSolidModel >> renderOn2: aRenderingContext [ 
 	| array |
 aRenderingContext enableDepthTest.
@@ -241,7 +243,7 @@ aRenderingContext enableDepthTest.
 "	(array at: 6) renderOn: aRenderingContext"
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 GEOSolidModel >> renderOn3: aOpenGLContext [ 
 	| block |
 	block := 
@@ -259,7 +261,7 @@ GEOSolidModel >> renderOn3: aOpenGLContext [
 				ifFalse: block]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 GEOSolidModel >> renderOn: aOpenGLContext [ 
 	| block |
 	block := 
@@ -277,7 +279,7 @@ GEOSolidModel >> renderOn: aOpenGLContext [
 				ifFalse: block]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSolidModel >> solidModel [
 	^self
 ]

@@ -1,20 +1,22 @@
 Class {
-	#name : #GEOTranslationalMotion,
-	#superclass : #GEOMotion,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEOTranslationalMotion',
+	#superclass : 'GEOMotion',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTranslationalMotion class >> mbdClass [
 	^MbDZTranslation
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTranslationalMotion class >> nameString [
 	^'TranslationalMotion'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOTranslationalMotion class >> visualWorksMetadata [
 
 	^ #(
@@ -24,7 +26,7 @@ GEOTranslationalMotion class >> visualWorksMetadata [
 
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOTranslationalMotion >> createMbD [
 	| zFunc parser stack func mbdZTranslation |
 	super createMbD.
@@ -45,7 +47,7 @@ GEOTranslationalMotion >> createMbD [
 	mbdZTranslation zBlk: zFunc
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOTranslationalMotion >> createMbD1 [
 	| mbdZTranslation |
 	super createMbD.
@@ -53,14 +55,14 @@ GEOTranslationalMotion >> createMbD1 [
 	mbdZTranslation zBlk: zIJ simplified
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTranslationalMotion >> joint [
 	^self interface jointList detect: [:joint | ((joint isMemberOf: GEOTranslationalJoint)
 			or: [joint isMemberOf: GEOCylindricalJoint])
 			and: [joint aMarkerI == markerI and: [joint aMarkerJ == markerJ]]]
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOTranslationalMotion >> storeOn: aStream level: level [ 
 	aStream storeLevel: level title: self nameString.
 	aStream
@@ -77,12 +79,12 @@ GEOTranslationalMotion >> storeOn: aStream level: level [
 		object: zIJ
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOTranslationalMotion >> validateFormulas [
 	self zFunc
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOTranslationalMotion >> zFunc [
 	| parser stack func |
 	^zIJ isNil

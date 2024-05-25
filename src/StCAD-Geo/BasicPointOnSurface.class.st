@@ -1,14 +1,15 @@
 Class {
-	#name : #BasicPointOnSurface,
-	#superclass : #BasicPoint,
+	#name : 'BasicPointOnSurface',
+	#superclass : 'BasicPoint',
 	#instVars : [
 		'aSurface',
 		'uv'
 	],
-	#category : #'StCAD-Geo'
+	#category : 'StCAD-Geo',
+	#package : 'StCAD-Geo'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 BasicPointOnSurface class >> visualWorksMetadata [
 
 	^ #(

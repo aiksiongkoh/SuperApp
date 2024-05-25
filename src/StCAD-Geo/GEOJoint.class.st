@@ -1,13 +1,15 @@
 Class {
-	#name : #GEOJoint,
-	#superclass : #GEORelativeConstraintSet,
+	#name : 'GEOJoint',
+	#superclass : 'GEORelativeConstraintSet',
 	#classVars : [
 		'Geo'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -17,23 +19,23 @@ GEOJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOJoint >> cut [
 	container cutJoint: self.
 	super cut
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOJoint >> isJoint [
 	^true
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 GEOJoint >> magnifySelf: aDouble [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOJoint >> uncut [
 	container addJoint: self
 ]

@@ -1,10 +1,12 @@
 Class {
-	#name : #DiscontinuityError,
-	#superclass : #IntegratorError,
-	#category : #'StMath-StMathIntegrator'
+	#name : 'DiscontinuityError',
+	#superclass : 'IntegratorError',
+	#category : 'StMath-StMathIntegrator',
+	#package : 'StMath',
+	#tag : 'StMathIntegrator'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 DiscontinuityError class >> visualWorksMetadata [
 
 	^ #(

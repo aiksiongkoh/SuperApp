@@ -2,23 +2,25 @@
 SparseMatrix contains StMIdentityDictionary's.
 "
 Class {
-	#name : #StMSparseMatrix,
-	#superclass : #StMRowTypeMatrix,
-	#type : #variable,
-	#category : #'StMath-StMathArray'
+	#name : 'StMSparseMatrix',
+	#superclass : 'StMRowTypeMatrix',
+	#type : 'variable',
+	#category : 'StMath-StMathArray',
+	#package : 'StMath',
+	#tag : 'StMathArray'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMSparseMatrix class >> newWithElements: a2DArray [ 
 	^(StMFullMatrix newWithElements: a2DArray) asSparseMatrix
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMSparseMatrix class >> veryShortName [
 	^'SpMat'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMSparseMatrix class >> visualWorksMetadata [
 
 	^ #(
@@ -28,7 +30,7 @@ StMSparseMatrix class >> visualWorksMetadata [
 
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 StMSparseMatrix >> asFullMatrix [
 	| nrow answer |
 	nrow := self nrow.
@@ -37,7 +39,7 @@ StMSparseMatrix >> asFullMatrix [
 	^answer
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMSparseMatrix >> by: secondSize [ 
 	"Add second dimension to matrix. Used by new:by: only."
 
@@ -50,12 +52,12 @@ StMSparseMatrix >> by: secondSize [
 			self at: i put: rowi]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMSparseMatrix >> matrixSolverClass [
 	^GESpMatParPvMarkoFast
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMSparseMatrix >> minusSparseMatrix: aSparseMatrix [ 
 	"a - b."
 	"Assume all checking of validity of this operation has been done."
@@ -68,7 +70,7 @@ StMSparseMatrix >> minusSparseMatrix: aSparseMatrix [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMSparseMatrix >> minusSparseMatrix: aSparseMatrix times: beta [ 
 	"a - b."
 	"Assume all checking of validity of this operation has been done."
@@ -82,7 +84,7 @@ StMSparseMatrix >> minusSparseMatrix: aSparseMatrix times: beta [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMSparseMatrix >> plusSparseMatrix: aSparseMatrix [ 
 	"a + b."
 	"Assume all checking of validity of this operation has been done."
@@ -95,7 +97,7 @@ StMSparseMatrix >> plusSparseMatrix: aSparseMatrix [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMSparseMatrix >> plusSparseMatrix: aSparseMatrix times: beta [ 
 	"a + b."
 	"Assume all checking of validity of this operation has been done."
@@ -109,12 +111,12 @@ StMSparseMatrix >> plusSparseMatrix: aSparseMatrix times: beta [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMSparseMatrix >> secondDimensionClass [
 	^StMSparseRow
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMSparseMatrix >> times: alpha minusSparseMatrix: aSparseMatrix [ 
 	"a*alpha + b."
 	"Assume all checking of validity of this operation has been done."
@@ -127,7 +129,7 @@ StMSparseMatrix >> times: alpha minusSparseMatrix: aSparseMatrix [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMSparseMatrix >> times: alpha minusSparseMatrix: aSparseMatrix times: beta [ 
 	"a*alpha + b."
 	"Assume all checking of validity of this operation has been done."
@@ -142,7 +144,7 @@ StMSparseMatrix >> times: alpha minusSparseMatrix: aSparseMatrix times: beta [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMSparseMatrix >> times: alpha plusSparseMatrix: aSparseMatrix [ 
 	"a*alpha + b."
 	"Assume all checking of validity of this operation has been done."
@@ -155,7 +157,7 @@ StMSparseMatrix >> times: alpha plusSparseMatrix: aSparseMatrix [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMSparseMatrix >> times: alpha plusSparseMatrix: aSparseMatrix times: beta [ 
 	"a*alpha + b."
 	"Assume all checking of validity of this operation has been done."
@@ -170,7 +172,7 @@ StMSparseMatrix >> times: alpha plusSparseMatrix: aSparseMatrix times: beta [
 	^answer
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 StMSparseMatrix >> transpose [
 	"Returns a new Matrix which is the transpose of self."
 

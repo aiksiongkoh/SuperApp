@@ -1,13 +1,15 @@
 Class {
-	#name : #MbDPosICNewtonRaphson2,
-	#superclass : #MbDAnyPosICNewtonRaphson2,
+	#name : 'MbDPosICNewtonRaphson2',
+	#superclass : 'MbDAnyPosICNewtonRaphson2',
 	#instVars : [
 		'pivotRowLimits'
 	],
-	#category : #'StCAD-MbD-MbDSolver'
+	#category : 'StCAD-MbD-MbDSolver',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDPosICNewtonRaphson2 class >> visualWorksMetadata [
 
 	^ #(
@@ -17,7 +19,7 @@ MbDPosICNewtonRaphson2 class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDPosICNewtonRaphson2 >> assignEquationNumbers [
 	"Equation order is q,s,u,lambar,lam."
 
@@ -71,7 +73,7 @@ MbDPosICNewtonRaphson2 >> assignEquationNumbers [
 				with: n
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDPosICNewtonRaphson2 >> handleSingularMatrix [
 	nSingularMatrixError := nSingularMatrixError + 1.
 	nSingularMatrixError = 1 
@@ -91,12 +93,12 @@ MbDPosICNewtonRaphson2 >> handleSingularMatrix [
 						ifFalse: [self halt: 'Check this.']]]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDPosICNewtonRaphson2 >> isConverged [
 	^self isConvergedToNumericalLimit
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDPosICNewtonRaphson2 >> lookForRedundantConstraints [
 	| posICsolver |
 	system logString: #'MbD: \Checking for redundant constraints.'.
@@ -111,7 +113,7 @@ MbDPosICNewtonRaphson2 >> lookForRedundantConstraints [
 	ObjectMemory garbageCollect
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDPosICNewtonRaphson2 >> lookForRedundantConstraints1 [
 	| posICsolver |
 	system logString: #'MbD: \Checking for redundant constraints.'.
@@ -125,7 +127,7 @@ MbDPosICNewtonRaphson2 >> lookForRedundantConstraints1 [
 	ObjectMemory garbageCollect
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDPosICNewtonRaphson2 >> lookForRedundantConstraints2 [
 	"
 	Alternate trying with RowPivoting and FullPivoting. 
@@ -153,18 +155,18 @@ MbDPosICNewtonRaphson2 >> lookForRedundantConstraints2 [
 			matrixSolver := self matrixSolverClass new]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPosICNewtonRaphson2 >> pivotRowLimits [
 	^pivotRowLimits
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDPosICNewtonRaphson2 >> preRun [
 	system logString: #'MbD: \Assembling system. '.
 	super preRun
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDPosICNewtonRaphson2 >> run [
 	[super run]
 		on: SingularMatrixError
@@ -179,7 +181,7 @@ MbDPosICNewtonRaphson2 >> run [
 			ex restart]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDPosICNewtonRaphson2 >> solveEquations1 [
 	
 	[iterNo > 2 

@@ -1,14 +1,16 @@
 Class {
-	#name : #MbDAbsConstraint,
-	#superclass : #MbDConstraint,
+	#name : 'MbDAbsConstraint',
+	#superclass : 'MbDConstraint',
 	#instVars : [
 		'axis',
 		'iqXminusOnePlusAxis'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDAbsConstraint class >> visualWorksMetadata [
 
 	^ #(
@@ -18,19 +20,19 @@ MbDAbsConstraint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDAbsConstraint >> axis: aInteger [ 
 	axis := aInteger
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDAbsConstraint >> calcPostDynCorrectorIteration [
 	axis < 4
 		ifTrue: [aG := owner qX at: axis]
 		ifFalse: [aG := owner qE at: axis - 3]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDAbsConstraint >> classString [
 	"Used to access the descriptive name of the constraint."
 	"Needed for multi-language."
@@ -38,7 +40,7 @@ MbDAbsConstraint >> classString [
 	^TheMbDSystem getString: #'MbD: absolute constraint '
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDAbsConstraint >> fillAccICIterError: col [ 
 	| sum |
 	col at: iqXminusOnePlusAxis plusNumber: lam.
@@ -48,7 +50,7 @@ MbDAbsConstraint >> fillAccICIterError: col [
 	col at: iG plusNumber: sum
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDAbsConstraint >> fillCollisionError: col [ 
 	"lamDeriv is now PlamDeriv."
 	"qEddot is now qEdotDeriv."
@@ -61,34 +63,34 @@ MbDAbsConstraint >> fillCollisionError: col [
 	col at: iG plusNumber: sum
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDAbsConstraint >> fillPosICError: col [ 
 	super fillPosICError: col.
 	col at: iqXminusOnePlusAxis plusNumber: lam
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDAbsConstraint >> fillPosICJacob: mat [ 
 	mat at: iG and: iqXminusOnePlusAxis plusNumber: 1.0.
 	mat at: iqXminusOnePlusAxis and: iG plusNumber: 1.0
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDAbsConstraint >> fillPosKineJacob: mat [ 
 	mat at: iG and: iqXminusOnePlusAxis plusNumber: 1.0
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDAbsConstraint >> fillVelICJacob: mat [ 
 	self fillPosICJacob: mat
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDAbsConstraint >> fillVelKineJacob: mat [ 
 	self fillPosKineJacob: mat
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDAbsConstraint >> fillpFpy: mat [ 
 	mat
 		at: iG
@@ -96,7 +98,7 @@ MbDAbsConstraint >> fillpFpy: mat [
 		plusNumber: 1.0
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDAbsConstraint >> fillpFpydot: mat [ 
 	mat
 		at: iqXminusOnePlusAxis
@@ -104,7 +106,7 @@ MbDAbsConstraint >> fillpFpydot: mat [
 		plusNumber: 1.0
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDAbsConstraint >> useEquationNumbers [
 	iqXminusOnePlusAxis := owner iqX - 1 + axis
 ]

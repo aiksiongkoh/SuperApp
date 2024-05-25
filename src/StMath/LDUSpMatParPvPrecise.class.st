@@ -1,15 +1,17 @@
 Class {
-	#name : #LDUSpMatParPvPrecise,
-	#superclass : #LDUSpMatParPv,
-	#category : #'StMath-StMathMatrixSolver'
+	#name : 'LDUSpMatParPvPrecise',
+	#superclass : 'LDUSpMatParPv',
+	#category : 'StMath-StMathMatrixSolver',
+	#package : 'StMath',
+	#tag : 'StMathMatrixSolver'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 LDUSpMatParPvPrecise class >> isAbstractClass [
 	^false
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 LDUSpMatParPvPrecise class >> visualWorksMetadata [
 
 	^ #(
@@ -19,7 +21,7 @@ LDUSpMatParPvPrecise class >> visualWorksMetadata [
 
 ]
 
-{ #category : #pivoting }
+{ #category : 'pivoting' }
 LDUSpMatParPvPrecise >> doPivoting: p [ 
 	"Search from bottom to top."
 	"Do scaling and partial pivoting with actual swapping of rows."

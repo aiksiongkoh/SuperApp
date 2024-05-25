@@ -1,20 +1,22 @@
 Class {
-	#name : #GEOPointInPlaneJoint,
-	#superclass : #GEOInPlaneJoint,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEOPointInPlaneJoint',
+	#superclass : 'GEOInPlaneJoint',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPointInPlaneJoint class >> mbdClass [
 	^MbDPointInPlaneJoint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOPointInPlaneJoint class >> nameString [
 	^'PointInPlaneJoint'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOPointInPlaneJoint class >> visualWorksMetadata [
 
 	^ #(

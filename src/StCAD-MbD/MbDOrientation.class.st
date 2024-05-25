@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDOrientation,
-	#superclass : #MbDPrescribedMotion,
-	#category : #'StCAD-MbD-MbDMotion'
+	#name : 'MbDOrientation',
+	#superclass : 'MbDPrescribedMotion',
+	#category : 'StCAD-MbD-MbDMotion',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDMotion'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDOrientation class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ MbDOrientation class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDOrientation >> classString [
 	"Used to access the descriptive name of the joint."
 	"Needed for multi-language."
@@ -22,7 +24,7 @@ MbDOrientation >> classString [
 	^TheMbDSystem getString: #'MbD: Orientation '
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDOrientation >> initializeGlobally [
 	constraints isEmpty
 		ifTrue: 

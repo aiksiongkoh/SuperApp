@@ -1,24 +1,26 @@
 Class {
-	#name : #GEOSurfaceMarker,
-	#superclass : #GEOAnyMarker,
+	#name : 'GEOSurfaceMarker',
+	#superclass : 'GEOAnyMarker',
 	#instVars : [
 		's',
 		'rFfFSurface'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSurfaceMarker class >> nameString [
 	^'SurfaceMarker'
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GEOSurfaceMarker class >> newOnFace: face [ 
 	^super new face: face
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOSurfaceMarker class >> visualWorksMetadata [
 
 	^ #(
@@ -28,7 +30,7 @@ GEOSurfaceMarker class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSurfaceMarker >> aAeqnfat: col [ 
 	| prmemps tem1 tem2 iem kem jem aAme |
 	prmemps := rFfFSurface pvalueps: col.
@@ -44,7 +46,7 @@ GEOSurfaceMarker >> aAeqnfat: col [
 	^aAme
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSurfaceMarker >> aApm [
 	| aAPp aAPm |
 	aAPp := self anyPart aAPp.
@@ -52,18 +54,18 @@ GEOSurfaceMarker >> aApm [
 	^aAPp transposeTimesFullMatrix: aAPm
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 GEOSurfaceMarker >> basicRenderOn: aRenderingContext [ 
 	super renderOn: aRenderingContext
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOSurfaceMarker >> canUpdateForFrame: integer [ 
 	^[(self dataSeries at: integer) notNil]
 		on: Object subscriptOutOfBoundsSignal do: [:ex | ex return: false]
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOSurfaceMarker >> createMbD [
 	| sSize mkr eFrm |
 	sSize := 2.
@@ -84,19 +86,19 @@ GEOSurfaceMarker >> createMbD [
 	self mbdObject: eFrm
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSurfaceMarker >> cut [
 	container cutMarker: self.
 	rFfFSurface refFrame cut.
 	self triggerEvent: #release
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSurfaceMarker >> dataClass [
 	^GEORelPosVelAccData
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOSurfaceMarker >> dataFromCurrentState [
 	| answer |
 	answer := GEOSSdotSddotData new.
@@ -106,7 +108,7 @@ GEOSurfaceMarker >> dataFromCurrentState [
 	^answer
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOSurfaceMarker >> dataFromCurrentStatePOV [
 	"
 	reqnfeqn := eqn y: s.
@@ -148,7 +150,7 @@ GEOSurfaceMarker >> dataFromCurrentStatePOV [
 	^markerData
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOSurfaceMarker >> dataFromMbD [
 	| mbdTime mbdItem answer |
 	mbdTime := self mbdUnits time.
@@ -160,7 +162,7 @@ GEOSurfaceMarker >> dataFromMbD [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSurfaceMarker >> dataSeriesForChart [
 	"
 	reqnfeqn := eqn y: s.
@@ -216,7 +218,7 @@ GEOSurfaceMarker >> dataSeriesForChart [
 		ifFalse: [Array new]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSurfaceMarker >> face: face [ 
 	| interface name polyline rFpointsF sSeries |
 	interface := face interface.
@@ -238,33 +240,33 @@ GEOSurfaceMarker >> face: face [
 	interface createUpdateSelectGOfor: self
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOSurfaceMarker >> isCutable [
 	^false
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOSurfaceMarker >> preSave [
 	super preSave.
 	rFfFSurface preSave
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSurfaceMarker >> rFfFSurface [
 	^rFfFSurface
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSurfaceMarker >> rFfFat: col [ 
 	^rFfFSurface rfpfEqn value: col
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 GEOSurfaceMarker >> renderOn: aRenderingContext [ 
 	rFfFSurface renderOn: aRenderingContext withSurfaceMarker: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSurfaceMarker >> rpmp [
 	| anyPart rPmP rPpP aAPp |
 	anyPart := self anyPart.
@@ -274,12 +276,12 @@ GEOSurfaceMarker >> rpmp [
 	^aAPp transposeTimesFullColumn: (rPmP minusFullColumn: rPpP)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSurfaceMarker >> s [
 	^s
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSurfaceMarker >> s: col [ 
 	| rFfF prmemps tem1 tem2 iem kem jem aAFf |
 	s := col.
@@ -297,19 +299,19 @@ GEOSurfaceMarker >> s: col [
 	refFrame quietlyrFfF: rFfF aAFf: aAFf
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSurfaceMarker >> sets: col [ 
 	s := col
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOSurfaceMarker >> storeInputState [
 	| data |
 	data := self dataFromCurrentState.
 	self inputData: data
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOSurfaceMarker >> storeOn: aStream level: level [ 
 	aStream storeLevel: level title: 'RefSurface'.
 	rFfFSurface refFrame storeOn: aStream level: level + 1.
@@ -326,7 +328,7 @@ GEOSurfaceMarker >> storeOn: aStream level: level [
 		object: s
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOSurfaceMarker >> storePOVdatCurrentOn: aStream [
 	| dataSeries fullNamePOV series |
 	dataSeries := Array with: self dataFromCurrentStatePOV.
@@ -376,20 +378,20 @@ GEOSurfaceMarker >> storePOVdatCurrentOn: aStream [
 		series: (series collect: [:data | (data at: 3) radiansToDegrees.]).
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSurfaceMarker >> uncut [
 	rFfFSurface refFrame uncut.
 	container uncutMarker: self
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOSurfaceMarker >> updateForFrame: integer [ 
 	| data |
 	data := self dataSeries at: integer.
 	self s: data s
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOSurfaceMarker >> updateFromInitiallyAssembledState [
 	| dataSeries data |
 	dataSeries := self dataSeries.
@@ -399,14 +401,14 @@ GEOSurfaceMarker >> updateFromInitiallyAssembledState [
 			data notNil ifTrue: [self s: data s]]
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOSurfaceMarker >> updateFromInputState [
 	| data |
 	data := self inputData.
 	data notNil ifTrue: [self s: data s]
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOSurfaceMarker >> updateFromMbD [
 	| data |
 	data := self dataFromMbD.

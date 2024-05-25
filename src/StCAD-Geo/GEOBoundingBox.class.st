@@ -2,16 +2,18 @@
 This class is obselete. It is required to read *.asm created with freecad8 or CADSM1 or earlier versions.
 "
 Class {
-	#name : #GEOBoundingBox,
-	#superclass : #GEOItem,
+	#name : 'GEOBoundingBox',
+	#superclass : 'GEOItem',
 	#instVars : [
 		'minCorner',
 		'maxCorner'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'binary storage' }
+{ #category : 'binary storage' }
 GEOBoundingBox class >> binaryReaderBlockForVersion: oldVersion format: oldFormat [ 
 	"
 	Change order from 
@@ -35,12 +37,12 @@ GEOBoundingBox class >> binaryReaderBlockForVersion: oldVersion format: oldForma
 	^super binaryReaderBlockForVersion: oldVersion format: oldFormat
 ]
 
-{ #category : #'binary storage' }
+{ #category : 'binary storage' }
 GEOBoundingBox class >> binaryRepresentationVersion [
 	^30
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOBoundingBox class >> visualWorksMetadata [
 
 	^ #(
@@ -50,55 +52,55 @@ GEOBoundingBox class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOBoundingBox >> center [
 	^minCorner + maxCorner / 2.0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOBoundingBox >> corner [
 	^maxCorner
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOBoundingBox >> expandToBound: point [ 
 	minCorner := minCorner min: point.
 	maxCorner := maxCorner max: point
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOBoundingBox >> extent [
 	^maxCorner - minCorner
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOBoundingBox >> initialize [
 	minCorner := StMFullColumn new: 3.
 	maxCorner := StMFullColumn new: 3
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOBoundingBox >> maxCorner [
 	^maxCorner
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOBoundingBox >> minCorner [
 	^minCorner
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOBoundingBox >> origin [
 	^minCorner
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 GEOBoundingBox >> postCopy [
 	minCorner := minCorner copy.
 	maxCorner := maxCorner copy
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOBoundingBox >> printOn: aStream [ 
 	aStream print: self class.
 	aStream nextPut: $(.
@@ -110,7 +112,7 @@ GEOBoundingBox >> printOn: aStream [
 	aStream nextPut: $)
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOBoundingBox >> zeroSelf [
 	minCorner zeroSelf.
 	maxCorner zeroSelf

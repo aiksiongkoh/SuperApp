@@ -1,14 +1,16 @@
 Class {
-	#name : #GEOWEFace,
-	#superclass : #GEOSolidModelingItem,
+	#name : 'GEOWEFace',
+	#superclass : 'GEOSolidModelingItem',
 	#instVars : [
 		'edge',
 		'polyline'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOWEFace class >> visualWorksMetadata [
 
 	^ #(
@@ -18,18 +20,18 @@ GEOWEFace class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWEFace >> aPolyline [
 	^polyline
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWEFace >> addCurveMarker: geoMarker [ 
 	geoMarker refFrame refFrame: polyline refFrame.
 	container addCurveMarker: geoMarker
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWEFace >> addMarker1: geoMarker [
 
 	| markers |
@@ -42,30 +44,30 @@ GEOWEFace >> addMarker1: geoMarker [
 	markers add: geoMarker
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWEFace >> addMarker: geoMarker [ 
 	geoMarker refFrame refFrame: polyline refFrame.
 	geoMarker guideFrame: polyline refFrame.
 	container addMarker: geoMarker
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWEFace >> container: cont edge: edg [ 
 	container := cont.
 	edge := edg
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWEFace >> edge [
 	^edge
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWEFace >> edge: wingedEdge [ 
 	edge := wingedEdge
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWEFace >> eqnOfPlaneInPart [
 	| partRefFrame planeRefFrame abc rPtPlPt d answer partRefFrameAOfT |
 	partRefFrame := self part refFrame.
@@ -80,58 +82,58 @@ GEOWEFace >> eqnOfPlaneInPart [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWEFace >> inPlaneFrame [
 	^self interface projectionFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWEFace >> isFace [
 	^true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWEFace >> isPlanar [
 	^true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWEFace >> magnifySelf: aDouble [ 
 	self aPolyline magnifySelf: aDouble
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWEFace >> markers [
 	^container markers
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWEFace >> movingFrame [
 	^self part refFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWEFace >> nvertex [
 	^polyline rfpointsf size - 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWEFace >> plane [
 	^polyline refFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWEFace >> polyline [
 	^polyline
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWEFace >> polyline: poly [ 
 	polyline := poly.
 	polyline container: self
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 GEOWEFace >> postCopy [
 	"edge is updated in GEOSolidModel>postCopy."
 
@@ -139,7 +141,7 @@ GEOWEFace >> postCopy [
 	self polyline: polyline copy
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 GEOWEFace >> postCopy1 [
 	"Do self>markers first because marker set is stored in eventTable."
 	"edge is updated in GEOSolidModel>postCopy."
@@ -151,13 +153,13 @@ GEOWEFace >> postCopy1 [
 	originalMarkers notNil ifTrue: [originalMarkers do: [:marker | self addMarker: marker copy]]
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 GEOWEFace >> preSave [
 	super preSave.
 	polyline preSave
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWEFace >> rOpointsO [
 	| rPvertexsP nvertex rOpointsO partRefFrame rOPO aAOP rPpP rOpO |
 	rPvertexsP := edge faceVertexsFor: self.
@@ -176,40 +178,40 @@ GEOWEFace >> rOpointsO [
 	^rOpointsO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWEFace >> rPpointsP [
 	| partRefFrame |
 	partRefFrame := self part refFrame.
 	^polyline rOpointsO collect: [:rOpO | partRefFrame rfpffromrOpO: rOpO]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWEFace >> refFrame [
 	^polyline refFrame
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 GEOWEFace >> release [
 	polyline release.
 	super release
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 GEOWEFace >> renderOn1: aRenderingContext [ 
 	polyline renderPolygonOn: aRenderingContext
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 GEOWEFace >> renderOn: aRenderingContext [ 
 	polyline renderPolyfaceOn: aRenderingContext
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWEFace >> solidModel [
 	^container ifNotNil: [:aSup | aSup solidModel]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWEFace >> translateSelfBy: delta [ 
 	^self part translateSelfBy: delta
 ]

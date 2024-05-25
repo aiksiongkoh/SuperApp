@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDCouplerConstraint,
-	#superclass : #MbDConstraint,
-	#category : #'StCAD-MbD-MbDConstraint'
+	#name : 'MbDCouplerConstraint',
+	#superclass : 'MbDConstraint',
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDCouplerConstraint class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ MbDCouplerConstraint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDCouplerConstraint >> classString [
 	"Used to access the descriptive name of the constraint."
 	"Needed for multi-language."

@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDPartFrame,
-	#superclass : #MbDCartesianFrame,
+	#name : 'MbDPartFrame',
+	#superclass : 'MbDCartesianFrame',
 	#instVars : [
 		'part',
 		'iqX',
@@ -15,10 +15,12 @@ Class {
 		'aGabs',
 		'markerFrames'
 	],
-	#category : #'StCAD-MbD-MbDBasic'
+	#category : 'StCAD-MbD-MbDBasic',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDBasic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDPartFrame class >> visualWorksMetadata [
 
 	^ #(
@@ -28,17 +30,17 @@ MbDPartFrame class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> aA [
 	^qE aA
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> aAOp [
 	^qE aA
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> aAddotOp [
 	| aMbDEulerParametersDDot |
 	aMbDEulerParametersDDot := MbDEulerParametersDDot fromqEdot: qEdot
@@ -47,42 +49,42 @@ MbDPartFrame >> aAddotOp [
 	^aMbDEulerParametersDDot aAddot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> aAdot [
 	^qEdot aAdot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> aAdotOp [
 	^qEdot aAdot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> aB [
 	^qE aB
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> aBOp [
 	^qE aB
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> aC [
 	^qE aC
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> aCdot [
 	^qEdot aCdot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> aOpO [
 	^qXddot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> alpOpO [
 	| aB aBdot |
 	aB := qE aB.
@@ -92,7 +94,7 @@ MbDPartFrame >> alpOpO [
 		times: 2.0
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDPartFrame >> asFixed [
 	| con |
 	1 to: 6 do: [:i | 
@@ -100,7 +102,7 @@ MbDPartFrame >> asFixed [
 			aGabs add: con]
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDPartFrame >> bePerturbed: delta fillqsulam: col [ 
 	"Fill q, s and lam into col."
 
@@ -121,13 +123,13 @@ MbDPartFrame >> bePerturbed: delta fillqsulam: col [
 	aGabs do: [:con | con bePerturbed: delta fillqsulam: col]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDPartFrame >> calcPostCollisionCorrectorIteration [
 	qEdot calcAdotBdotCdot.
 	qEdot calcpAdotpE
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDPartFrame >> calcPostDynCorrectorIteration [
 	qE calcABC.
 	qE calcpApE.
@@ -135,13 +137,13 @@ MbDPartFrame >> calcPostDynCorrectorIteration [
 	qEdot calcpAdotpE
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDPartFrame >> calcPostPosICIteration [
 	qE calcABC.
 	qE calcpApE
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> classString [
 	"Used to access the descriptive name of the joint."
 	"Needed for multi-language."
@@ -149,7 +151,7 @@ MbDPartFrame >> classString [
 	^TheMbDSystem getString: #'MbD: Part '
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDPartFrame >> constraintsReport [
 	| dummy |
 	dummy := aGabs select: [:con | con isRedundant].
@@ -160,130 +162,130 @@ MbDPartFrame >> constraintsReport [
 			dummy do: [:con | con logString: #'MbD: \    %1' withArgument: con classString]]
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDPartFrame >> fillAccICIterError: col [ 
 	markerFrames do: [:mkr | mkr fillAccICIterError: col].
 	aGeu fillAccICIterError: col.
 	aGabs do: [:con | con fillAccICIterError: col]
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDPartFrame >> fillAccICIterJacob: mat [ 
 	markerFrames do: [:mkr | mkr fillAccICIterJacob: mat].
 	aGeu fillAccICIterJacob: mat.
 	aGabs do: [:con | con fillAccICIterJacob: mat]
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDPartFrame >> fillCollisionError: col [ 
 	markerFrames do: [:mkr | mkr fillCollisionError: col].
 	aGeu fillCollisionError: col.
 	aGabs do: [:con | con fillCollisionError: col]
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDPartFrame >> fillCollisionpFpydot: mat [ 
 	markerFrames do: [:mkr | mkr fillCollisionpFpydot: mat].
 	aGeu fillCollisionpFpydot: mat.
 	aGabs do: [:con | con fillCollisionpFpydot: mat]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> fillConstraints: collection [ 
 	aGeu fillConstraints: collection.
 	aGabs do: [:con | con fillConstraints: collection]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDPartFrame >> fillDynError: col [ 
 	markerFrames do: [:mkr | mkr fillDynError: col].
 	aGeu fillDynError: col.
 	aGabs do: [:con | con fillDynError: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> fillEssenConstraints: collection [ 
 	aGeu fillEssenConstraints: collection.
 	aGabs do: [:con | con fillEssenConstraints: collection]
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDPartFrame >> fillPosICError: col [ 
 	markerFrames do: [:mkr | mkr fillPosICError: col].
 	aGeu fillPosICError: col.
 	aGabs do: [:con | con fillPosICError: col]
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDPartFrame >> fillPosICJacob: mat [ 
 	markerFrames do: [:mkr | mkr fillPosICJacob: mat].
 	aGeu fillPosICJacob: mat.
 	aGabs do: [:con | con fillPosICJacob: mat]
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDPartFrame >> fillPosKineError: col [ 
 	markerFrames do: [:mkr | mkr fillPosKineError: col].
 	aGeu fillPosKineError: col.
 	aGabs do: [:con | con fillPosKineError: col]
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDPartFrame >> fillPosKineJacob: mat [ 
 	markerFrames do: [:mkr | mkr fillPosKineJacob: mat].
 	aGeu fillPosKineJacob: mat.
 	aGabs do: [:con | con fillPosKineJacob: mat]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> fillRedundantConstraints: collection [ 
 	aGeu fillRedundantConstraints: collection.
 	aGabs do: [:con | con fillRedundantConstraints: collection]
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDPartFrame >> fillStaticError: col [ 
 	markerFrames do: [:mkr | mkr fillStaticError: col].
 	aGeu fillStaticError: col.
 	aGabs do: [:con | con fillStaticError: col]
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDPartFrame >> fillStaticJacob: mat [ 
 	markerFrames do: [:mkr | mkr fillStaticJacob: mat].
 	aGeu fillStaticJacob: mat.
 	aGabs do: [:con | con fillStaticJacob: mat]
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDPartFrame >> fillVelICError: col [ 
 	markerFrames do: [:mkr | mkr fillVelICError: col].
 	aGeu fillVelICError: col.
 	aGabs do: [:con | con fillVelICError: col]
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDPartFrame >> fillVelICJacob: mat [ 
 	markerFrames do: [:mkr | mkr fillVelICJacob: mat].
 	aGeu fillVelICJacob: mat.
 	aGabs do: [:con | con fillVelICJacob: mat]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDPartFrame >> fillpFpy: mat [ 
 	markerFrames do: [:mkr | mkr fillpFpy: mat].
 	aGeu fillpFpy: mat.
 	aGabs do: [:con | con fillpFpy: mat]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDPartFrame >> fillpFpydot: mat [ 
 	markerFrames do: [:mkr | mkr fillpFpydot: mat].
 	aGeu fillpFpydot: mat.
 	aGabs do: [:con | con fillpFpydot: mat]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> fillpqsumu: col [ 
 	"Fill q, s and lam into col."
 
@@ -294,7 +296,7 @@ MbDPartFrame >> fillpqsumu: col [
 	aGabs do: [:con | con fillpqsumu: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> fillpqsumudot: col [ 
 	col at: iqX putFullColumn: qXdot.
 	col at: iqE putFullColumn: qEdot.
@@ -303,19 +305,19 @@ MbDPartFrame >> fillpqsumudot: col [
 	aGabs do: [:con | con fillpqsumudot: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> fillqsu: col [ 
 	col at: iqX putFullColumn: qX.
 	col at: iqE putFullColumn: qE.
 	markerFrames do: [:mkr | mkr fillqsu: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> fillqsuWeights: col [ 
 	markerFrames do: [:mkr | mkr fillqsuWeights: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> fillqsuddotlam: col [ 
 	col at: iqX putFullColumn: qXddot.
 	col at: iqE putFullColumn: qEddot.
@@ -324,14 +326,14 @@ MbDPartFrame >> fillqsuddotlam: col [
 	aGabs do: [:con | con fillqsuddotlam: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> fillqsudot: col [ 
 	col at: iqX putFullColumn: qXdot.
 	col at: iqE putFullColumn: qEdot.
 	markerFrames do: [:mkr | mkr fillqsudot: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> fillqsudotPlam: col [ 
 	col at: iqX putFullColumn: qXdot.
 	col at: iqE putFullColumn: qEdot.
@@ -340,7 +342,7 @@ MbDPartFrame >> fillqsudotPlam: col [
 	aGabs do: [:con | con fillqsudotPlam: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> fillqsudotPlamDeriv: col [ 
 	"qXddot is now qXdotDeriv for collision."
 
@@ -351,12 +353,12 @@ MbDPartFrame >> fillqsudotPlamDeriv: col [
 	aGabs do: [:con | con fillqsudotPlamDeriv: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> fillqsudotWeights: col [ 
 	markerFrames do: [:mkr | mkr fillqsudotWeights: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> fillqsulam: col [ 
 	"Fill q, s and lam into col."
 
@@ -367,7 +369,7 @@ MbDPartFrame >> fillqsulam: col [
 	aGabs do: [:con | con fillqsulam: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> iGabs: integer [ 
 	| count |
 	count := integer.
@@ -375,12 +377,12 @@ MbDPartFrame >> iGabs: integer [
 	^count
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> iGeu: integer [ 
 	^aGeu iG: integer
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDPartFrame >> initialize [
 	markerFrames := OrderedCollection new.
 	aGeu := MbDEulerConstraint new.
@@ -388,21 +390,21 @@ MbDPartFrame >> initialize [
 	aGabs := OrderedCollection new
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDPartFrame >> initializeGlobally [
 	markerFrames do: [:mkr | mkr initializeGlobally].
 	aGeu initializeGlobally.
 	aGabs do: [:con | con initializeGlobally]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDPartFrame >> initializeLocally [
 	markerFrames do: [:mkr | mkr initializeLocally].
 	aGeu initializeLocally.
 	aGabs do: [:con | con initializeLocally]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> iq: integer [ 
 	| count |
 	count := integer.
@@ -414,82 +416,82 @@ MbDPartFrame >> iq: integer [
 	^count
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> iqE [
 	^iqE
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> iqE: aInteger [ 
 	iqE := aInteger
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> iqX [
 	^iqX
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> iqX: aInteger [ 
 	iqX := aInteger
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> markerFrames [
 	^markerFrames
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> omeOpO [
 	^qEdot omeOpO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> omeOpO: omeOpO [ 
 	qEdot := MbDEulerParametersDot fromqEOp: qE andOmegaOpO: omeOpO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> pAOppE [
 	^qE pApE
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> pAdotOppE [
 	^qEdot pAdotpE
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> pApE [
 	^qE pApE
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> pCpE [
 	^qE pCpE
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> part [
 	^part
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> part: aMbDPart [ 
 	part := aMbDPart
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> pomeOpOpE [
 	^qEdot pomeOpOpE
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> pomeOpOpEdot [
 	^qEdot pomeOpOpEdot
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDPartFrame >> postCollisionCorrectorIteration [
 	self calcPostCollisionCorrectorIteration.
 "	markerFrames do: [:mkr | mkr postCollisionCorrectorIteration].
@@ -497,7 +499,7 @@ MbDPartFrame >> postCollisionCorrectorIteration [
 	aGabs do: [:con | con postCollisionCorrectorIteration]"
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDPartFrame >> postCollisionPredictor [
 	self calcPostCollisionCorrectorIteration.
 "	markerFrames do: [:mkr | mkr postCollisionPredictor].
@@ -505,7 +507,7 @@ MbDPartFrame >> postCollisionPredictor [
 	aGabs do: [:con | con postCollisionPredictor]"
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDPartFrame >> postDynCorrectorIteration [
 	super postDynCorrectorIteration.
 	markerFrames do: [:mkr | mkr postDynCorrectorIteration].
@@ -513,7 +515,7 @@ MbDPartFrame >> postDynCorrectorIteration [
 	aGabs do: [:con | con postDynCorrectorIteration]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDPartFrame >> postDynOutput [
 	super postDynOutput.
 	markerFrames do: [:mkr | mkr postDynOutput].
@@ -521,7 +523,7 @@ MbDPartFrame >> postDynOutput [
 	aGabs do: [:con | con postDynOutput]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDPartFrame >> postDynPredictor [
 	super postDynPredictor.
 	markerFrames do: [:mkr | mkr postDynPredictor].
@@ -529,14 +531,14 @@ MbDPartFrame >> postDynPredictor [
 	aGabs do: [:con | con postDynPredictor]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDPartFrame >> postDynStep [
 	markerFrames do: [:mkr | mkr postDynStep].
 	aGeu postDynStep.
 	aGabs do: [:con | con postDynStep]
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDPartFrame >> postInput [
 	qXddot := (StMFullColumn zero: 3).
 	qEddot := (StMFullColumn zero: 4).
@@ -546,14 +548,14 @@ MbDPartFrame >> postInput [
 	aGabs do: [:con | con postInput]
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDPartFrame >> postPosIC [
 	markerFrames do: [:mkr | mkr postPosIC].
 	aGeu postPosIC.
 	aGabs do: [:con | con postPosIC]
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDPartFrame >> postPosICIteration [
 	super postPosICIteration.
 	markerFrames do: [:mkr | mkr postPosICIteration].
@@ -561,7 +563,7 @@ MbDPartFrame >> postPosICIteration [
 	aGabs do: [:con | con postPosICIteration]
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDPartFrame >> postStaticIteration [
 	super postStaticIteration.
 	markerFrames do: [:mkr | mkr postStaticIteration].
@@ -569,7 +571,7 @@ MbDPartFrame >> postStaticIteration [
 	aGabs do: [:con | con postStaticIteration]
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDPartFrame >> postVelIC [
 	qEdot calcAdotBdotCdot.
 	qEdot calcpAdotpE.
@@ -578,7 +580,7 @@ MbDPartFrame >> postVelIC [
 	aGabs do: [:con | con postVelIC]
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDPartFrame >> preAccIC [
 	qXddot := (StMFullColumn zero: 3).
 	qEddot := (StMFullColumn zero: 4).
@@ -588,28 +590,28 @@ MbDPartFrame >> preAccIC [
 	aGabs do: [:con | con preAccIC]
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDPartFrame >> preCollision [
 	markerFrames do: [:mkr | mkr preCollision].
 	aGeu preCollision.
 	aGabs do: [:con | con preCollision]
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDPartFrame >> preCollisionDerivativeIC [
 	markerFrames do: [:mkr | mkr preCollisionDerivativeIC].
 	aGeu preCollisionDerivativeIC.
 	aGabs do: [:con | con preCollisionDerivativeIC]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDPartFrame >> preDyn [
 	markerFrames do: [:mkr | mkr preDyn].
 	aGeu preDyn.
 	aGabs do: [:con | con preDyn]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDPartFrame >> preDynOutput [
 	super preDynOutput.
 	markerFrames do: [:mkr | mkr preDynOutput].
@@ -617,14 +619,14 @@ MbDPartFrame >> preDynOutput [
 	aGabs do: [:con | con preDynOutput]
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDPartFrame >> preICRestart [
 	markerFrames do: [:mkr | mkr preICRestart].
 	aGeu preICRestart.
 	aGabs do: [:con | con preICRestart]
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDPartFrame >> prePosIC [
 	iqX := nil.
 	iqE := nil.
@@ -634,7 +636,7 @@ MbDPartFrame >> prePosIC [
 	aGabs do: [:con | con prePosIC]
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDPartFrame >> prePosKine [
 	iqX := nil.
 	iqE := nil.
@@ -644,7 +646,7 @@ MbDPartFrame >> prePosKine [
 	aGabs do: [:con | con prePosKine]
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDPartFrame >> preStatic [
 	qXdot zeroSelf.
 	qEdot zeroSelf.
@@ -654,7 +656,7 @@ MbDPartFrame >> preStatic [
 	aGabs do: [:con | con preStatic]
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDPartFrame >> preVelIC [
 	super preVelIC.
 	markerFrames do: [:mkr | mkr preVelIC].
@@ -662,12 +664,12 @@ MbDPartFrame >> preVelIC [
 	aGabs do: [:con | con preVelIC]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> qE [
 	^qE
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> qE: vector [ 
 	"qEdot must always point to current qE."
 
@@ -675,69 +677,69 @@ MbDPartFrame >> qE: vector [
 	qEdot notNil ifTrue: [qEdot qE: qE]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> qEddot [
 	^qEddot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> qEddot: column [ 
 	qEddot := column
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> qEdot [
 	^qEdot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> qEdot: column [ 
 	self error: 'Should not use because qEdot must hold onto qE correctly.'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> qX [
 	^qX
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> qX: vector [ 
 	qX := vector
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> qXddot [
 	^qXddot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> qXddot: column [ 
 	qXddot := column
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> qXdot [
 	^qXdot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> qXdot: vector [ 
 	qXdot := vector
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> rOpO [
 	^qX
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDPartFrame >> removeRedundantConstraints: redundantEqns [ 
 	markerFrames do: [:mkr | mkr removeRedundantConstraints: redundantEqns].
 	aGeu removeRedundantConstraints: redundantEqns.
 	aGabs do: [:con | con removeRedundantConstraints: redundantEqns]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> setpqsumu: col [ 
 	qX equalFullColumn: col at: iqX.
 	qE equalFullColumn: col at: iqE.
@@ -746,7 +748,7 @@ MbDPartFrame >> setpqsumu: col [
 	aGabs do: [:con | con setpqsumu: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> setpqsumuddot: col [ 
 	qXddot equalFullColumn: col at: iqX.
 	qEddot equalFullColumn: col at: iqE.
@@ -755,7 +757,7 @@ MbDPartFrame >> setpqsumuddot: col [
 	aGabs do: [:con | con setpqsumuddot: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> setpqsumudot: col [ 
 	qXdot equalFullColumn: col at: iqX.
 	qEdot equalFullColumn: col at: iqE.
@@ -764,14 +766,14 @@ MbDPartFrame >> setpqsumudot: col [
 	aGabs do: [:con | con setpqsumudot: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> setqsu: col [ 
 	qX equalFullColumn: col at: iqX.
 	qE equalFullColumn: col at: iqE.
 	markerFrames do: [:mkr | mkr setqsu: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> setqsuddotlam: col [ 
 	qXddot equalFullColumn: col at: iqX.
 	qEddot equalFullColumn: col at: iqE.
@@ -780,14 +782,14 @@ MbDPartFrame >> setqsuddotlam: col [
 	aGabs do: [:con | con setqsuddotlam: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> setqsudot: col [ 
 	qXdot equalFullColumn: col at: iqX.
 	qEdot equalFullColumn: col at: iqE.
 	markerFrames do: [:mkr | mkr setqsudot: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> setqsudotPlam: col [ 
 	qXdot equalFullColumn: col at: iqX.
 	qEdot equalFullColumn: col at: iqE.
@@ -796,7 +798,7 @@ MbDPartFrame >> setqsudotPlam: col [
 	aGabs do: [:con | con setqsudotPlam: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> setqsudotPlamDeriv: col [ 
 	"qXddot is now qXdotDeriv for collision."
 
@@ -807,7 +809,7 @@ MbDPartFrame >> setqsudotPlamDeriv: col [
 	aGabs do: [:con | con setqsudotPlamDeriv: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> setqsudotlam: col [ 
 	qXdot equalFullColumn: col at: iqX.
 	qEdot equalFullColumn: col at: iqE.
@@ -816,7 +818,7 @@ MbDPartFrame >> setqsudotlam: col [
 	aGabs do: [:con | con setqsudotlam: col]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> setqsulam: col [ 
 	qX equalFullColumn: col at: iqX.
 	qE equalFullColumn: col at: iqE.
@@ -825,7 +827,7 @@ MbDPartFrame >> setqsulam: col [
 	aGabs do: [:con | con setqsulam: col]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDPartFrame >> simUpdateAll [
 	super simUpdateAll.
 	markerFrames do: [:mkr | mkr simUpdateAll].
@@ -833,14 +835,14 @@ MbDPartFrame >> simUpdateAll [
 	aGabs do: [:con | con simUpdateAll]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDPartFrame >> storeDynState [
 	markerFrames do: [:mkr | mkr storeDynState].
 	aGeu storeDynState.
 	aGabs do: [:con | con storeDynState]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDPartFrame >> suggestSmallerOrAcceptDynStepSize: hnew [ 
 	| speed htran omegaMagnitude hrot hnew2 |
 	hnew2 := hnew.
@@ -866,14 +868,14 @@ MbDPartFrame >> suggestSmallerOrAcceptDynStepSize: hnew [
 	^hnew2
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDPartFrame >> useEquationNumbers [
 	markerFrames do: [:mFrm | mFrm useEquationNumbers].
 	aGeu useEquationNumbers.
 	aGabs do: [:con | con useEquationNumbers]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPartFrame >> vOpO [
 	^qXdot
 ]

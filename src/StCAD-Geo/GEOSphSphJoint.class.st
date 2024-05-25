@@ -1,23 +1,25 @@
 Class {
-	#name : #GEOSphSphJoint,
-	#superclass : #GEOJoint,
+	#name : 'GEOSphSphJoint',
+	#superclass : 'GEOJoint',
 	#instVars : [
 		'distanceIJ'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSphSphJoint class >> mbdClass [
 	^MbDSphSphJoint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSphSphJoint class >> nameString [
 	^'SphSphJoint'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOSphSphJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -27,7 +29,7 @@ GEOSphSphJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOSphSphJoint >> createMbD [
 	| mbdSphSphJoint |
 	super createMbD.
@@ -35,22 +37,22 @@ GEOSphSphJoint >> createMbD [
 	mbdSphSphJoint distanceIJ: distanceIJ / self mbdUnits length
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSphSphJoint >> distanceIJ [
 	^distanceIJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOSphSphJoint >> distanceIJ: anObject [
 	distanceIJ := anObject
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 GEOSphSphJoint >> magnifySelf: aDouble [ 
 	distanceIJ := distanceIJ * aDouble
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOSphSphJoint >> storeOn: aStream level: level [ 
 	super storeOn: aStream level: level.
 	aStream

@@ -1,10 +1,12 @@
 Class {
-	#name : #LDUFullMat,
-	#superclass : #MatrixLDU,
-	#category : #'StMath-StMathMatrixSolver'
+	#name : 'LDUFullMat',
+	#superclass : 'MatrixLDU',
+	#category : 'StMath-StMathMatrixSolver',
+	#package : 'StMath',
+	#tag : 'StMathMatrixSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 LDUFullMat class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ LDUFullMat class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'back substitution' }
+{ #category : 'back substitution' }
 LDUFullMat >> backSubstituteIntoDU [
 	"DU is upper triangular with nonzero and arbitrary diagonals."
 
@@ -36,7 +38,7 @@ LDUFullMat >> backSubstituteIntoDU [
 					- sum / (rowi at: i)]
 ]
 
-{ #category : #'forward substitution' }
+{ #category : 'forward substitution' }
 LDUFullMat >> forwardSubstituteIntoL [
 	"L is lower triangular with nonzero and ones in diagonal."
 
@@ -55,7 +57,7 @@ LDUFullMat >> forwardSubstituteIntoL [
 	^rightHandSideB := vectorc
 ]
 
-{ #category : #solution }
+{ #category : 'solution' }
 LDUFullMat >> inverse: aMatrix saveOriginal: saveOriginal [ 
 	"ForAndBackSub be optimized for the identity matrix."
 

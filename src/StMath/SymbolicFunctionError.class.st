@@ -1,10 +1,12 @@
 Class {
-	#name : #SymbolicFunctionError,
-	#superclass : #Exception,
-	#category : #'StMath-Exception'
+	#name : 'SymbolicFunctionError',
+	#superclass : 'Exception',
+	#category : 'StMath-Exception',
+	#package : 'StMath',
+	#tag : 'Exception'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 SymbolicFunctionError class >> visualWorksMetadata [
 
 	^ #(

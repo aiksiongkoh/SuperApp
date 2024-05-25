@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDTime,
-	#superclass : #StMTime,
-	#category : #'StCAD-MbD-MbDBasic'
+	#name : 'MbDTime',
+	#superclass : 'StMTime',
+	#category : 'StCAD-MbD-MbDBasic',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDBasic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDTime class >> visualWorksMetadata [
 
 	^ #(
@@ -14,22 +16,22 @@ MbDTime class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDTime >> fillJointForces: orderedCollection [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDTime >> fillJointTorques: orderedCollection [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDTime >> fillKineIJs: orderedCollection [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDTime >> fillKinedotIJs: orderedCollection [ 
 	"Do nothing."
 ]

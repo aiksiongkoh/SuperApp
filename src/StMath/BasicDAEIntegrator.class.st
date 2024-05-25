@@ -32,8 +32,8 @@ Make aStMBasicDAEIntegrator very general.
 
 "
 Class {
-	#name : #BasicDAEIntegrator,
-	#superclass : #BasicIntegrator,
+	#name : 'BasicDAEIntegrator',
+	#superclass : 'BasicIntegrator',
 	#instVars : [
 		'y',
 		'ydot',
@@ -54,10 +54,12 @@ Class {
 		'integRelTol',
 		'truncError'
 	],
-	#category : #'StMath-StMathIntegrator'
+	#category : 'StMath-StMathIntegrator',
+	#package : 'StMath',
+	#tag : 'StMathIntegrator'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 BasicDAEIntegrator class >> visualWorksMetadata [
 
 	^ #(
@@ -67,7 +69,7 @@ BasicDAEIntegrator class >> visualWorksMetadata [
 
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> calcG [
 	"It is ok to modify pFpydot since its values are not reused."
 
@@ -78,13 +80,13 @@ BasicDAEIntegrator >> calcG [
 	^aG
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> calcOperatorMatrix [
 	super calcOperatorMatrix.
 	extrapolator calcOperatorMatrix
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> calcTruncError [
 	"Calculate the leading term of truncation error in Taylor series."
 
@@ -96,7 +98,7 @@ BasicDAEIntegrator >> calcTruncError [
 	truncError := const * yndotNorm * hpower
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> changeTime [
 	self order: orderNew.
 	h := hnew.
@@ -106,7 +108,7 @@ BasicDAEIntegrator >> changeTime [
 	self calcOperatorMatrix
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> corErrorNormFrom: error wrt: ref [ 
 	^self
 		rms: error
@@ -115,7 +117,7 @@ BasicDAEIntegrator >> corErrorNormFrom: error wrt: ref [
 		absoluteTol: corAbsTol
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> correct [
 	[
 	[system preDAECorrector.
@@ -130,7 +132,7 @@ BasicDAEIntegrator >> correct [
 			ex return]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> correctFirstStep [
 	| hout1000 ydotNorm hydot |
 	[
@@ -160,23 +162,23 @@ BasicDAEIntegrator >> correctFirstStep [
 			ex return]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> correctValuesAtFirstStep [
 	newtonRaphson run
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> correctValuesAtNextStep [
 	newtonRaphson run
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> fillF [
 	system fillF: aF zeroSelf.
 	^aF
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> firstStep [
 	istep := 0.
 	self preFirstStep.
@@ -200,13 +202,13 @@ BasicDAEIntegrator >> firstStep [
 	self reportStepStats
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicDAEIntegrator >> iStep: integer [ 
 	super iStep: integer.
 	extrapolator iStep: integer
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> incrementTime [
 	super incrementTime.
 	ypast addFirst: y.
@@ -217,7 +219,7 @@ BasicDAEIntegrator >> incrementTime [
 			ydotpast removeLast]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 BasicDAEIntegrator >> initialize [
 	super initialize.
 	extrapolator := Extrapolator new.
@@ -228,7 +230,7 @@ BasicDAEIntegrator >> initialize [
 	ydotpast := OrderedCollection new
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 BasicDAEIntegrator >> initializeGlobally [
 	"Get info from system and prepare for start of simulation."
 	"Integrator asks system for info. Not system setting integrator."
@@ -249,7 +251,7 @@ BasicDAEIntegrator >> initializeGlobally [
 	pFpydot := StMSparseMatrix new: size by: size
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> integErrorNormFrom: error wrt: ref [ 
 	^self
 		rms: error
@@ -258,7 +260,7 @@ BasicDAEIntegrator >> integErrorNormFrom: error wrt: ref [
 		absoluteTol: integAbsTol
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> isConvergedFor: iterNo and1: dyNorms [ 
 	| dyNormIterNo rho smallEnoughTol smallEnough |
 	dyNormIterNo := dyNorms at: iterNo.
@@ -271,7 +273,7 @@ BasicDAEIntegrator >> isConvergedFor: iterNo and1: dyNorms [
 			smallEnough or: [rho < 1.0 and: [rho * dyNormIterNo / (1.0 - rho) < 0.33]]]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> isConvergedFor: iterNo and: dyNorms [ 
 	| dyNormIterNo rho smallEnoughTol smallEnough |
 	dyNormIterNo := dyNorms at: iterNo.
@@ -284,7 +286,7 @@ BasicDAEIntegrator >> isConvergedFor: iterNo and: dyNorms [
 			smallEnough or: [rho < 1.0 and: [rho * dyNormIterNo / (1.0 - rho) < 0.33]]]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> isRedoingFirstStep [
 	iTry > 100 ifTrue: [TooManyTriesError raiseSignal].
 	^(corOK not or: [truncError > 1.0])
@@ -299,18 +301,18 @@ BasicDAEIntegrator >> isRedoingFirstStep [
 			hnew > (4.0 * h) and: [hnew < system hmax]]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> isRedoingStep [
 	iTry > 100 ifTrue: [TooManyTriesError raiseSignal].
 	^corOK not or: [truncError > 1.0]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicDAEIntegrator >> iterMax [
 	^system iterMax
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> nextStep [
 	self preStep.
 	iTry := 1.
@@ -333,19 +335,19 @@ BasicDAEIntegrator >> nextStep [
 	self reportStepStats
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicDAEIntegrator >> order: integer [ 
 	super order: integer.
 	extrapolator order: integer - 1
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> postDAECorrector [
 	corOK := true.
 	self calcTruncError
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> postDAECorrectorIteration [
 	ydot := self yDeriv: 1.
 	system y: y.
@@ -353,25 +355,25 @@ BasicDAEIntegrator >> postDAECorrectorIteration [
 	system postDAECorrectorIteration
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> postFirstStep [
 	t := tnew.
 	system postDAEFirstStep
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> postStep [
 	t := tnew.
 	system postDAEStep
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> preDAECorrector [
 	corOK := nil.
 	truncError := nil
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> preDAECorrectorIteration [
 	"It is ok to modify pFpydot since its values are not reused."
 
@@ -383,17 +385,17 @@ BasicDAEIntegrator >> preDAECorrectorIteration [
 	aG := pFpy plusSparseMatrix: (pFpydot magnifySelf: alp)
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> preFirstStep [
 	system preDAEFirstStep
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> preStep [
 	system preDAEStep
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> predict [
 	system preDAEPredictor.
 	self predictValuesAtNextStep.
@@ -402,7 +404,7 @@ BasicDAEIntegrator >> predict [
 	system postDAEPredictor
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> predictFirstStep [
 	system preDAEPredictor.
 	self predictValuesAtFirstStep.
@@ -411,7 +413,7 @@ BasicDAEIntegrator >> predictFirstStep [
 	system postDAEPredictor
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> predictValuesAtFirstStep [
 	y := (ypast at: 1)
 				plusFullColumn: (ydotpast at: 1)
@@ -419,7 +421,7 @@ BasicDAEIntegrator >> predictValuesAtFirstStep [
 	ydot := (ydotpast at: 1) copy
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> predictValuesAtNextStep [
 	"ydot := extrapolator valueWith: ydotpast."
 	"Poor prediction. Extra iteration of the corrector is needed."
@@ -428,12 +430,12 @@ BasicDAEIntegrator >> predictValuesAtNextStep [
 	ydot := self yDeriv: 1
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> reportStepStats [
 	system useDAEStepStats: statistics
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> reportTrialStepStats [
 	statistics at: #istep put: istep.
 	statistics at: #t put: t.
@@ -443,11 +445,11 @@ BasicDAEIntegrator >> reportTrialStepStats [
 	system useTrialStepStats: statistics
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> rms: vector wrt: baseVector relativeTol: relativeTol absoluteTol: absoluteTol [ 
 	"Answer a weighted rms norm."
 	"Elements with relativeTol == nil are not included in norm."
-	"For m significant digits set relToli := 1.0d-m."
+	"For m significant digits set relToli := 1.0e-m."
 	"Set absToli to value where vectori abs is insignificant."
 
 	| n count sumOfSquares relToli weighti vectori vectoriOverWeighti |
@@ -468,7 +470,7 @@ BasicDAEIntegrator >> rms: vector wrt: baseVector relativeTol: relativeTol absol
 	^(sumOfSquares / count asDouble) sqrt
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> selectBasicStepSize [
 	"Shampine's book pp 337-8."
 	"Brenan's book pp 128."
@@ -481,20 +483,20 @@ BasicDAEIntegrator >> selectBasicStepSize [
 			[const := 1.0 / order factorial.
 			yndot := self yDeriv: order.
 			yndotNorm := (self integErrorNormFrom: yndot wrt: y)
-						max: 1.0d-15.
+						max: 1.0e-15.
 			dum := conservativeFactor / (const * yndotNorm).
 			hdum := dum raisedTo: 1.0 / order]
 		ifFalse: 
 			[const := 1.0 / (order + 1) factorial.
 			yndot := self dyOrderPlusOnedt.
 			yndotNorm := (self integErrorNormFrom: yndot wrt: y)
-						max: 1.0d-15.
+						max: 1.0e-15.
 			dum := conservativeFactor / (const * yndotNorm).
 			hdum := dum raisedTo: 1.0 / (order + 1)].
 	^hdum
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> selectFirstStepSize [
 	| hout1000 ydotNorm hydot |
 	iTry == 1
@@ -511,7 +513,7 @@ BasicDAEIntegrator >> selectFirstStepSize [
 	hnew := system suggestSmallerOrAcceptFirstStepSize: hnew
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> selectOrderNormal [
 	"Brenan's book pp. 126-7"
 	"Check last nterm of Taylor series plus first term of remainder."
@@ -540,7 +542,7 @@ BasicDAEIntegrator >> selectOrderNormal [
 		ifTrue: [order < orderMax ifTrue: [orderNew := order + 1]]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> selectStepSize [
 	corOK
 		ifTrue: [self selectStepSizeNormal]
@@ -548,7 +550,7 @@ BasicDAEIntegrator >> selectStepSize [
 	hnew := system suggestSmallerOrAcceptStepSize: hnew
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> selectStepSizeNormal [
 	"Shampine's book pp 337-8."
 	"Brenan's book pp 128."
@@ -586,13 +588,13 @@ BasicDAEIntegrator >> selectStepSizeNormal [
 				ifFalse: [hnew := 0.25 * h]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicDAEIntegrator >> time: double [ 
 	super time: double.
 	extrapolator time: double
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> updateForDAECorrector [
 	ydot := self yDeriv: 1.
 	system y: y.
@@ -600,27 +602,27 @@ BasicDAEIntegrator >> updateForDAECorrector [
 	system updateForDAECorrector
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> useDAECorrectorStats: stats [ 
 	statistics at: #corIterNo put: (stats at: #iterNo)
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicDAEIntegrator >> useNewtonRaphsonStats: stats [ 
 	statistics at: #corIterNo put: (stats at: #iterNo)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicDAEIntegrator >> y [
 	^y
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicDAEIntegrator >> y: col [ 
 	y := col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicDAEIntegrator >> ydot [
 	^ydot
 ]

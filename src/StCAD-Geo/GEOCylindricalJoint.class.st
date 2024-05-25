@@ -1,20 +1,22 @@
 Class {
-	#name : #GEOCylindricalJoint,
-	#superclass : #GEOInLineJoint,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEOCylindricalJoint',
+	#superclass : 'GEOInLineJoint',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCylindricalJoint class >> mbdClass [
 	^MbDCylindricalJoint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOCylindricalJoint class >> nameString [
 	^'CylindricalJoint'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOCylindricalJoint class >> visualWorksMetadata [
 
 	^ #(

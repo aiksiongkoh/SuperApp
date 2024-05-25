@@ -1,14 +1,16 @@
 Class {
-	#name : #GEOForceTorqueData,
-	#superclass : #GEOData,
+	#name : 'GEOForceTorqueData',
+	#superclass : 'GEOData',
 	#instVars : [
 		'aFIO',
 		'aTIO'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOForceTorqueData class >> visualWorksMetadata [
 
 	^ #(
@@ -18,29 +20,29 @@ GEOForceTorqueData class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOForceTorqueData >> aFIO [
 	aFIO == nil ifTrue: [self aFIO: (StMFullColumn zero: 3)].
 	^aFIO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOForceTorqueData >> aFIO: col [ 
 	aFIO := col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOForceTorqueData >> aTIO [
 	aTIO == nil ifTrue: [self aTIO: (StMFullColumn zero: 3)].
 	^aTIO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOForceTorqueData >> aTIO: col [ 
 	aTIO := col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOForceTorqueData >> asArray [
 	| aStream |
 	aStream := (Array new: 6) writeStream.
@@ -49,7 +51,7 @@ GEOForceTorqueData >> asArray [
 	^aStream contents
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOForceTorqueData >> initialize [
 	"Do nothing."
 ]

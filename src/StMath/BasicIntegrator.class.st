@@ -1,6 +1,6 @@
 Class {
-	#name : #BasicIntegrator,
-	#superclass : #Integrator,
+	#name : 'BasicIntegrator',
+	#superclass : 'Integrator',
 	#instVars : [
 		'istep',
 		'iTry',
@@ -16,10 +16,12 @@ Class {
 		'opBDF',
 		'continue'
 	],
-	#category : #'StMath-StMathIntegrator'
+	#category : 'StMath-StMathIntegrator',
+	#package : 'StMath',
+	#tag : 'StMathIntegrator'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 BasicIntegrator class >> visualWorksMetadata [
 
 	^ #(
@@ -29,23 +31,23 @@ BasicIntegrator class >> visualWorksMetadata [
 
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicIntegrator >> calcOperatorMatrix [
 	opBDF calcOperatorMatrix
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicIntegrator >> continue: boolean [ 
 	continue := boolean
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicIntegrator >> iStep: integer [ 
 	istep := integer.
 	opBDF iStep: integer
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicIntegrator >> incrementTime [
 	| istepNew |
 	tpast addFirst: t.
@@ -59,12 +61,12 @@ BasicIntegrator >> incrementTime [
 	system incrementTime: tnew
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicIntegrator >> incrementTry [
 	iTry := iTry + 1
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 BasicIntegrator >> initialize [
 	super initialize.
 	statistics := IdentityDictionary new.
@@ -73,7 +75,7 @@ BasicIntegrator >> initialize [
 	opBDF timeNodes: tpast
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 BasicIntegrator >> initializeGlobally [
 	"Get info from system and prepare for start of simulation."
 	"Integrator asks system for info. Not system setting integrator."
@@ -83,72 +85,72 @@ BasicIntegrator >> initializeGlobally [
 	self orderMax: system orderMax
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 BasicIntegrator >> initializeLocally [
 	continue := true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicIntegrator >> istep [
 	^istep
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicIntegrator >> opBDF [
 	^opBDF
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicIntegrator >> order: integer [ 
 	order := integer.
 	opBDF order: integer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicIntegrator >> orderMax: integer [ 
 	integer == nil
 		ifTrue: [orderMax := 5]
 		ifFalse: [orderMax := integer asInteger]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicIntegrator >> postFirstStep [
 	t := tnew.
 	system postFirstStep
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicIntegrator >> postRun [
 	"Do nothing."
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicIntegrator >> postStep [
 	t := tnew.
 	system postStep
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicIntegrator >> preFirstStep [
 	system preFirstStep
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicIntegrator >> preRun [
 	"Do nothing."
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicIntegrator >> preStep [
 	system preStep
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicIntegrator >> reportStats [
 	"Do nothing."
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicIntegrator >> run [
 	self preRun.
 	self initializeLocally.
@@ -160,42 +162,42 @@ BasicIntegrator >> run [
 	self postRun
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicIntegrator >> selectOrder [
 	"Increase order consecutively with step."
 
 	iTry == 1 ifTrue: [orderNew := istep + 1 min: orderMax]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 BasicIntegrator >> subsequentSteps [
 	[continue]
 		whileTrue: [self nextStep]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicIntegrator >> t [
 	^t
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicIntegrator >> t: double [ 
 	t := double.
 	self time: double
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicIntegrator >> time: double [ 
 	opBDF time: double
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicIntegrator >> tnew: double [ 
 	tnew := double.
 	self time: double
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BasicIntegrator >> tprevious [
 	^tpast at: 1
 ]

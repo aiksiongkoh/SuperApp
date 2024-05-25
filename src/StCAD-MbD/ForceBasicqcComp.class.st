@@ -1,14 +1,16 @@
 Class {
-	#name : #ForceBasicqcComp,
-	#superclass : #ForTorBasic,
+	#name : 'ForceBasicqcComp',
+	#superclass : 'ForTorBasic',
 	#instVars : [
 		'iqXaxis',
 		'prOeOaxispET'
 	],
-	#category : #'StCAD-MbD-MbDForce'
+	#category : 'StCAD-MbD-MbDForce',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDForce'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 ForceBasicqcComp class >> visualWorksMetadata [
 
 	^ #(
@@ -18,20 +20,20 @@ ForceBasicqcComp class >> visualWorksMetadata [
 
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 ForceBasicqcComp >> calcPostDynCorrectorIteration [
 	"rpep is not a constant for aMbDEndFrameqccq, qcs or qct."
 
 	prOeOaxispET := (endFrame prOeOpE at: parent axis) transpose
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 ForceBasicqcComp >> fillAccICIterError: col aFTOi: aFTOi [ 
 	col at: iqXaxis plusNumber: aFTOi.
 	col at: iqE plusFullColumn: (prOeOaxispET times: aFTOi)
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 ForceBasicqcComp >> fillAccICIterJacob: mat pFTOiplam: pFTOiplam [ 
 	mat
 		at: iqXaxis
@@ -43,13 +45,13 @@ ForceBasicqcComp >> fillAccICIterJacob: mat pFTOiplam: pFTOiplam [
 		plusSparseMatrix: (prOeOaxispET timesSparseRow: pFTOiplam)
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForceBasicqcComp >> fillDynError: col aFTOi: aFTOi [ 
 	col at: iqXaxis plusNumber: aFTOi.
 	col at: iqE plusFullColumn: (prOeOaxispET times: aFTOi)
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForceBasicqcComp >> fillpFpy: mat aFTOi: aFTOi [ 
 	| axis pprOeOpEpE iqEm1 pprOeOpEpEi mati pprOeOpEpEij |
 	axis := parent axis.
@@ -68,7 +70,7 @@ ForceBasicqcComp >> fillpFpy: mat aFTOi: aFTOi [
 							* aFTOi]]
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForceBasicqcComp >> fillpFpy: mat pFTOipEj: pFTOipEj partj: partj [ 
 	| iqEj |
 	iqEj := partj iqE.
@@ -82,7 +84,7 @@ ForceBasicqcComp >> fillpFpy: mat pFTOipEj: pFTOipEj partj: partj [
 		plusFullMatrix: (prOeOaxispET timesFullRow: pFTOipEj)
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForceBasicqcComp >> fillpFpy: mat pFTOipXj: pFTOipXj pFTOipEj: pFTOipEj partj: partj [ 
 	self
 		fillpFpy: mat
@@ -94,7 +96,7 @@ ForceBasicqcComp >> fillpFpy: mat pFTOipXj: pFTOipXj pFTOipEj: pFTOipEj partj: p
 		partj: partj
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForceBasicqcComp >> fillpFpy: mat pFTOipXj: pFTOipXj partj: partj [ 
 	| iqXj |
 	iqXj := partj iqX.
@@ -108,7 +110,7 @@ ForceBasicqcComp >> fillpFpy: mat pFTOipXj: pFTOipXj partj: partj [
 		plusFullMatrix: (prOeOaxispET timesFullRow: pFTOipXj)
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForceBasicqcComp >> fillpFpydot: mat pFTOipEdotj: pFTOipEdotj partj: partj [ 
 	| iqEj |
 	iqEj := partj iqE.
@@ -122,7 +124,7 @@ ForceBasicqcComp >> fillpFpydot: mat pFTOipEdotj: pFTOipEdotj partj: partj [
 		plusFullMatrix: (prOeOaxispET timesFullRow: pFTOipEdotj)
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForceBasicqcComp >> fillpFpydot: mat pFTOipXdotj: pFTOipXdotj pFTOipEdotj: pFTOipEdotj partj: partj [ 
 	self
 		fillpFpydot: mat
@@ -134,7 +136,7 @@ ForceBasicqcComp >> fillpFpydot: mat pFTOipXdotj: pFTOipXdotj pFTOipEdotj: pFTOi
 		partj: partj
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForceBasicqcComp >> fillpFpydot: mat pFTOipXdotj: pFTOipXdotj partj: partj [ 
 	| iqXj |
 	iqXj := partj iqX.
@@ -148,7 +150,7 @@ ForceBasicqcComp >> fillpFpydot: mat pFTOipXdotj: pFTOipXdotj partj: partj [
 		plusFullMatrix: (prOeOaxispET timesFullRow: pFTOipXdotj)
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForceBasicqcComp >> fillpFpydot: mat pFTOipmudot: pFTOipmudot [ 
 	mat
 		at: iqXaxis
@@ -160,7 +162,7 @@ ForceBasicqcComp >> fillpFpydot: mat pFTOipmudot: pFTOipmudot [
 		plusSparseMatrix: (prOeOaxispET timesSparseRow: pFTOipmudot)
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 ForceBasicqcComp >> useEquationNumbers [
 	super useEquationNumbers.
 	iqXaxis := endFrame partFrame iqX + parent axis - 1

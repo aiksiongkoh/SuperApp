@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDDistanceConstraintIqctJqc,
-	#superclass : #MbDDistanceConstraintIqcJqc,
+	#name : 'MbDDistanceConstraintIqctJqc',
+	#superclass : 'MbDDistanceConstraintIqcJqc',
 	#instVars : [
 		'pGpt',
 		'ppGpXIpt',
@@ -9,10 +9,12 @@ Class {
 		'ppGpEJpt',
 		'ppGptpt'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDDistanceConstraintIqctJqc class >> visualWorksMetadata [
 
 	^ #(
@@ -22,7 +24,7 @@ MbDDistanceConstraintIqctJqc class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDDistanceConstraintIqctJqc class >> withFrmI: afrmI frmJ: afrmJ axis: aaxis [ 
 	^(afrmI isMemberOf: MbDEndFrameqct) | (afrmI isMemberOf: MbD2EndFrameqct) 
 		& (afrmJ isMemberOf: MbDEndFrameqc) 
@@ -34,7 +36,7 @@ MbDDistanceConstraintIqctJqc class >> withFrmI: afrmI frmJ: afrmJ axis: aaxis [
 			ifFalse: [nil]
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDDistanceConstraintIqctJqc >> fillAccICIterError: col [ 
 	| qEdotI sum qXdotI qXdotJ qEdotJ |
 	super fillAccICIterError: col.
@@ -51,17 +53,17 @@ MbDDistanceConstraintIqctJqc >> fillAccICIterError: col [
 	col at: iG plusNumber: sum
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDDistanceConstraintIqctJqc >> fillVelICError: col [ 
 	col at: iG minusNumber: pGpt
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDistanceConstraintIqctJqc >> init_distIeJe [
 	distIeJe := MbDDistIeqctJeqc new
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDDistanceConstraintIqctJqc >> preAccIC [
 	super preAccIC.
 	ppGpXIpt := distIeJe ppvaluepXIpt.
@@ -71,13 +73,13 @@ MbDDistanceConstraintIqctJqc >> preAccIC [
 	ppGptpt := distIeJe ppvalueptpt
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDDistanceConstraintIqctJqc >> preVelIC [
 	super preVelIC.
 	pGpt := distIeJe pvaluept
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistanceConstraintIqctJqc >> type [
 	^#essential
 ]

@@ -1,10 +1,12 @@
 Class {
-	#name : #GEOTorqueIJKi,
-	#superclass : #GEOFunctionIJKi,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEOTorqueIJKi',
+	#superclass : 'GEOFunctionIJKi',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOTorqueIJKi class >> visualWorksMetadata [
 
 	^ #(
@@ -14,12 +16,12 @@ GEOTorqueIJKi class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTorqueIJKi >> dimension [
 	^'torque'
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOTorqueIJKi >> mbdUnit [
 	^self mbdUnits torque
 ]

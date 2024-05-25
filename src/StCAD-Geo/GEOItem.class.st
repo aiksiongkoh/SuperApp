@@ -1,15 +1,17 @@
 Class {
-	#name : #GEOItem,
-	#superclass : #Object,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEOItem',
+	#superclass : 'Object',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 GEOItem class >> new [
 	^super new initialize
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOItem class >> visualWorksMetadata [
 
 	^ #(
@@ -18,17 +20,17 @@ GEOItem class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOItem >> initialize [
 	self subclassResponsibility
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOItem >> initializeGlobally [
 	self subclassResponsibility
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 GEOItem >> initializeLocally [
 	self subclassResponsibility
 ]

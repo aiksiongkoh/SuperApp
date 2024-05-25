@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDAccICNewtonRaphson2,
-	#superclass : #MbDAccNewtonRaphson2,
-	#category : #'StCAD-MbD-MbDSolver'
+	#name : 'MbDAccICNewtonRaphson2',
+	#superclass : 'MbDAccNewtonRaphson2',
+	#category : 'StCAD-MbD-MbDSolver',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDAccICNewtonRaphson2 class >> visualWorksMetadata [
 
 	^ #(
@@ -14,12 +16,12 @@ MbDAccICNewtonRaphson2 class >> visualWorksMetadata [
 
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDAccICNewtonRaphson2 >> isConverged [
 	^self isConvergedToNumericalLimit
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDAccICNewtonRaphson2 >> preRun [
 	system logString: #'MbD: \Solving for acceleration initial conditions.'.
 	super preRun

@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDIntermittentCVCVJoint,
-	#superclass : #MbDCVCVJoint,
+	#name : 'MbDIntermittentCVCVJoint',
+	#superclass : 'MbDCVCVJoint',
 	#instVars : [
 		'tstart',
 		'contactForce',
@@ -17,10 +17,12 @@ Class {
 		'impulseStart',
 		'normalImpulse'
 	],
-	#category : #'StCAD-MbD-MbDJoint'
+	#category : 'StCAD-MbD-MbDJoint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDJoint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDIntermittentCVCVJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -30,7 +32,7 @@ MbDIntermittentCVCVJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDIntermittentCVCVJoint >> aIeJeOIez [
 	| aAjOIe aIeJeO |
 	aAjOIe := frmI aAjOe: 3.
@@ -38,13 +40,13 @@ MbDIntermittentCVCVJoint >> aIeJeOIez [
 	^aAjOIe dot: aIeJeO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDIntermittentCVCVJoint >> coeffRestitution: aDouble [ 
 	coeffRestitution := [aDouble asDouble]
 				on: MessageNotUnderstood do: [:ex | 0.0]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDIntermittentCVCVJoint >> connectsI: mkrII toJ: mkrJJ [ 
 	super connectsI: mkrII toJ: mkrJJ.
 	frmI isOnClosedCurve
@@ -53,17 +55,17 @@ MbDIntermittentCVCVJoint >> connectsI: mkrII toJ: mkrJJ [
 			SimulationStoppingError raiseSignal]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDIntermittentCVCVJoint >> contactForceTol [
 	^1.0d-5
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDIntermittentCVCVJoint >> impactVelocityTol [
 	^1.0d-6
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDIntermittentCVCVJoint >> initialize [
 	super initialize.
 	contactForcePast := OrderedCollection new.
@@ -72,47 +74,47 @@ MbDIntermittentCVCVJoint >> initialize [
 	unusedConstraints := OrderedCollection new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDIntermittentCVCVJoint >> interpolator [
 	^interpolator
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDIntermittentCVCVJoint >> postAccIC [
 	self recordContactForceAndSeparationDistance
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDIntermittentCVCVJoint >> postDynOutput [
 	self recordContactForceAndSeparationDistance.
 	rIeJe postDynOutput
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDIntermittentCVCVJoint >> postDynStep [
 	self recordContactForceAndSeparationDistance.
 	rIeJe postDynStep
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDIntermittentCVCVJoint >> preDyn [
 	super preDyn.
 	interpolator := TheMbDSystem mbdSystemSolver opBDF.
 	leastSquaresFit := StMLeastSquaresFitPolynomial new
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDIntermittentCVCVJoint >> preDynOutput [
 	self recordContactForceAndSeparationDistance.
 	rIeJe preDynOutput
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDIntermittentCVCVJoint >> separationTol [
 	^1.0d-4
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDIntermittentCVCVJoint >> storeDynState [
 	contactForcePast addFirst: contactForce.
 	separationPast addFirst: separation.
@@ -122,17 +124,17 @@ MbDIntermittentCVCVJoint >> storeDynState [
 			separationPast removeLast]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDIntermittentCVCVJoint >> tstart [
 	^tstart
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDIntermittentCVCVJoint >> tstart: aDouble [ 
 	tstart := aDouble
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDIntermittentCVCVJoint >> vIeJeOIez [
 	| aAjOIe vIeJeO |
 	aAjOIe := frmI aAjOe: 3.

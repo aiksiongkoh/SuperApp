@@ -1,10 +1,12 @@
 Class {
-	#name : #SimulationStoppingError,
-	#superclass : #Exception,
-	#category : #'StCAD-MbD-Exception'
+	#name : 'SimulationStoppingError',
+	#superclass : 'Exception',
+	#category : 'StCAD-MbD-Exception',
+	#package : 'StCAD-MbD',
+	#tag : 'Exception'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 SimulationStoppingError class >> visualWorksMetadata [
 
 	^ #(

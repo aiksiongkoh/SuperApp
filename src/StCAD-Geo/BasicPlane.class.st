@@ -1,10 +1,11 @@
 Class {
-	#name : #BasicPlane,
-	#superclass : #BasicSurface,
-	#category : #'StCAD-Geo'
+	#name : 'BasicPlane',
+	#superclass : 'BasicSurface',
+	#category : 'StCAD-Geo',
+	#package : 'StCAD-Geo'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 BasicPlane class >> visualWorksMetadata [
 
 	^ #(

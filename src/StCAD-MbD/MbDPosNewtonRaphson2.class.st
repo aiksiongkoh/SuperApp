@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDPosNewtonRaphson2,
-	#superclass : #MbDSystemNewtonRaphson2,
-	#category : #'StCAD-MbD-MbDSolver'
+	#name : 'MbDPosNewtonRaphson2',
+	#superclass : 'MbDSystemNewtonRaphson2',
+	#category : 'StCAD-MbD-MbDSolver',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDPosNewtonRaphson2 class >> visualWorksMetadata [
 
 	^ #(
@@ -14,12 +16,12 @@ MbDPosNewtonRaphson2 class >> visualWorksMetadata [
 
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDPosNewtonRaphson2 >> askSystemToUpdate [
 	system partsJointsMotionsDo: [:item | item postPosICIteration]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDPosNewtonRaphson2 >> incrementIterNo [
 	iterNo >= iterMax
 		ifTrue: 
@@ -30,12 +32,12 @@ MbDPosNewtonRaphson2 >> incrementIterNo [
 	iterNo := iterNo + 1
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDPosNewtonRaphson2 >> postRun [
 	system partsJointsMotionsDo: [:item | item postPosIC]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDPosNewtonRaphson2 >> preRun [
 	system partsJointsMotionsDo: [:item | item prePosIC]
 ]

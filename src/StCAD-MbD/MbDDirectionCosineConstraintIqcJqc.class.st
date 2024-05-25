@@ -1,16 +1,18 @@
 Class {
-	#name : #MbDDirectionCosineConstraintIqcJqc,
-	#superclass : #MbDDirectionCosineConstraintIqcJc,
+	#name : 'MbDDirectionCosineConstraintIqcJqc',
+	#superclass : 'MbDDirectionCosineConstraintIqcJc',
 	#instVars : [
 		'pGpEJ',
 		'ppGpEIpEJ',
 		'ppGpEJpEJ',
 		'iqEJ'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDDirectionCosineConstraintIqcJqc class >> visualWorksMetadata [
 
 	^ #(
@@ -20,7 +22,7 @@ MbDDirectionCosineConstraintIqcJqc class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDDirectionCosineConstraintIqcJqc class >> withFrmI: afrmI frmJ: afrmJ axisI: aaxisI axisJ: aaxisJ [ 
 	^(afrmI isMemberOf: MbDEndFrameqc)
 		& (afrmJ isMemberOf: MbDEndFrameqc)
@@ -32,7 +34,7 @@ MbDDirectionCosineConstraintIqcJqc class >> withFrmI: afrmI frmJ: afrmJ axisI: a
 		ifFalse: [nil]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineConstraintIqcJqc >> addToJointTorqueJ: col [ 
 	| aBOJp lampGpE c2Torque |
 	aBOJp := frmJ aBOp.
@@ -41,7 +43,7 @@ MbDDirectionCosineConstraintIqcJqc >> addToJointTorqueJ: col [
 	col equalSelfPlusFullColumn: c2Torque times: 0.5
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineConstraintIqcJqc >> addpTIeiGOpEJto: mat [ 
 	"ppGpXIpEJ := zero. 
 	term2 := zero."
@@ -53,7 +55,7 @@ MbDDirectionCosineConstraintIqcJqc >> addpTIeiGOpEJto: mat [
 	mat equalSelfPlusFullMatrix: pTIeiGOpEJ
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDirectionCosineConstraintIqcJqc >> calcPostDynCorrectorIteration [
 	super calcPostDynCorrectorIteration.
 	pGpEJ := aAijIeJe pAijIeJepEJ.
@@ -61,12 +63,12 @@ MbDDirectionCosineConstraintIqcJqc >> calcPostDynCorrectorIteration [
 	ppGpEJpEJ := aAijIeJe ppAijIeJepEJpEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDirectionCosineConstraintIqcJqc >> directionCosineClass [
 	^MbDDirectionCosineIeqcJeqc
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDDirectionCosineConstraintIqcJqc >> fillAccICIterError: col [ 
 	| qEdotI qEdotJ sum |
 	super fillAccICIterError: col.
@@ -80,7 +82,7 @@ MbDDirectionCosineConstraintIqcJqc >> fillAccICIterError: col [
 	col at: iG plusNumber: sum
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDDirectionCosineConstraintIqcJqc >> fillCollisionError: col [ 
 	"lamDeriv is now PlamDeriv."
 	"qEddot is now qEdotDeriv."
@@ -93,13 +95,13 @@ MbDDirectionCosineConstraintIqcJqc >> fillCollisionError: col [
 	col at: iG plusNumber: sum
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDDirectionCosineConstraintIqcJqc >> fillPosICError: col [ 
 	super fillPosICError: col.
 	col at: iqEJ plusFullColumn: pGpEJ times: lam
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDDirectionCosineConstraintIqcJqc >> fillPosICJacob: mat [ 
 	| ppGpEIpEJlam |
 	super fillPosICJacob: mat.
@@ -110,7 +112,7 @@ MbDDirectionCosineConstraintIqcJqc >> fillPosICJacob: mat [
 	mat at: iqEJ and: iqEJ plusFullMatrix: ppGpEJpEJ times: lam
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDDirectionCosineConstraintIqcJqc >> fillPosKineJacob: mat [ 
 	super fillPosKineJacob: mat.
 	mat
@@ -119,14 +121,14 @@ MbDDirectionCosineConstraintIqcJqc >> fillPosKineJacob: mat [
 		plusFullRow: pGpEJ
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDDirectionCosineConstraintIqcJqc >> fillVelICJacob: mat [ 
 	super fillVelICJacob: mat.
 	mat at: iG and: iqEJ plusFullRow: pGpEJ.
 	mat at: iqEJ and: iG plusFullColumn: pGpEJ transpose
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDDirectionCosineConstraintIqcJqc >> fillpFpy: mat [ 
 	| ppGpEIpEJlam |
 	super fillpFpy: mat.
@@ -136,13 +138,13 @@ MbDDirectionCosineConstraintIqcJqc >> fillpFpy: mat [
 	mat at: iqEJ and: iqEJ plusFullMatrix: ppGpEJpEJ times: lam
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDDirectionCosineConstraintIqcJqc >> fillpFpydot: mat [ 
 	super fillpFpydot: mat.
 	mat at: iqEJ and: iG plusFullColumn: pGpEJ transpose
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDirectionCosineConstraintIqcJqc >> useEquationNumbers [
 	super useEquationNumbers.
 	iqEJ := frmJ iqE

@@ -1,15 +1,17 @@
 Class {
-	#name : #StMAbs,
-	#superclass : #StMIntrinsicFunctionX,
-	#category : #'StMath-Symbolic'
+	#name : 'StMAbs',
+	#superclass : 'StMIntrinsicFunctionX',
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMAbs class >> functionSymbol [
 	^'abs'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMAbs class >> visualWorksMetadata [
 
 	^ #(
@@ -19,7 +21,7 @@ StMAbs class >> visualWorksMetadata [
 
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMAbs >> differentiateWRTx [
 	^StMStep
 		with: x copy
@@ -28,12 +30,12 @@ StMAbs >> differentiateWRTx [
 		y2: 1.0
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 StMAbs >> printFuntionNameOn: aStream [
 	aStream nextPutAll: 'abs'
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMAbs >> value [
 	^x value abs
 ]

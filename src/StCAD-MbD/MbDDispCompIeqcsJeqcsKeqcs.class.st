@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDDispCompIeqcsJeqcsKeqcs,
-	#superclass : #MbDDispCompIeqcsJeqcKeqcs,
+	#name : 'MbDDispCompIeqcsJeqcsKeqcs',
+	#superclass : 'MbDDispCompIeqcsJeqcKeqcs',
 	#instVars : [
 		'sSizeJ',
 		'priIeJeKepsJ',
@@ -9,10 +9,12 @@ Class {
 		'ppriIeJeKepsJpEK',
 		'ppriIeJeKepsJpsK'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDDispCompIeqcsJeqcsKeqcs class >> visualWorksMetadata [
 
 	^ #(
@@ -22,7 +24,7 @@ MbDDispCompIeqcsJeqcsKeqcs class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDDispCompIeqcsJeqcsKeqcs class >> withFrmI: afrmI frmJ: afrmJ frmK: afrmK axisK: integer [ 
 	^(afrmI isKindOf: MbDEndFrameqcs)
 		& (afrmJ isKindOf: MbDEndFrameqcs) & (afrmK isKindOf: MbDEndFrameqcs)
@@ -34,7 +36,7 @@ MbDDispCompIeqcsJeqcsKeqcs class >> withFrmI: afrmI frmJ: afrmJ frmK: afrmK axis
 		ifFalse: [nil]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDispCompIeqcsJeqcsKeqcs >> calcPostDynCorrectorIteration [
 	| prIeJeOpsJT pprIeJeOpEJpsJ pprIeJeOpsJpsJ ppriIeJeKepEJipsJ pprIeJeOpEJipsJ ppriIeJeKepsJipsJ pprIeJeOpsJipsJ ppriIeJeKepsJipsJj ppriIeJeKepsJipEK ppriIeJeKepsJipsK |
 	super calcPostDynCorrectorIteration.
@@ -62,7 +64,7 @@ MbDDispCompIeqcsJeqcsKeqcs >> calcPostDynCorrectorIteration [
 			1 to: sSizeK do: [:j | ppriIeJeKepsJipsK at: j put: ((pAjOKepsKT at: j) dot: (prIeJeOpsJT at: i))]]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDispCompIeqcsJeqcsKeqcs >> initializeLocally [
 	super initializeLocally.
 	sSizeJ := frmJ sSize.
@@ -73,52 +75,52 @@ MbDDispCompIeqcsJeqcsKeqcs >> initializeLocally [
 	ppriIeJeKepsJpsK := StMFullMatrix new: sSizeJ by: sSizeK
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqcsJeqcsKeqcs >> ppriIeJeKepEJpsJ [
 	^ppriIeJeKepEJpsJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqcsJeqcsKeqcs >> ppriIeJeKepsJpEK [
 	^ppriIeJeKepsJpEK
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqcsJeqcsKeqcs >> ppriIeJeKepsJpsJ [
 	^ppriIeJeKepsJpsJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqcsJeqcsKeqcs >> ppriIeJeKepsJpsK [
 	^ppriIeJeKepsJpsK
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqcsJeqcsKeqcs >> ppvaluepEJpsJ [
 	^ppriIeJeKepEJpsJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqcsJeqcsKeqcs >> ppvaluepsJpEK [
 	^ppriIeJeKepsJpEK
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqcsJeqcsKeqcs >> ppvaluepsJpsJ [
 	^ppriIeJeKepsJpsJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqcsJeqcsKeqcs >> ppvaluepsJpsK [
 	^ppriIeJeKepsJpsK
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqcsJeqcsKeqcs >> priIeJeKepsJ [
 	^priIeJeKepsJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDispCompIeqcsJeqcsKeqcs >> pvaluepsJ [
 	^priIeJeKepsJ
 ]

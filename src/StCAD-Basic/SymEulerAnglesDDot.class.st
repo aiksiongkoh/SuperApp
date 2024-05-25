@@ -1,7 +1,7 @@
 Class {
-	#name : #SymEulerAnglesDDot,
-	#superclass : #SymEulerArray,
-	#type : #variable,
+	#name : 'SymEulerAnglesDDot',
+	#superclass : 'SymEulerArray',
+	#type : 'variable',
 	#instVars : [
 		'aEulerAnglesDot',
 		'cAddot',
@@ -9,10 +9,11 @@ Class {
 		'alpF',
 		'alpf'
 	],
-	#category : #'StCAD-Basic'
+	#category : 'StCAD-Basic',
+	#package : 'StCAD-Basic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 SymEulerAnglesDDot class >> visualWorksMetadata [
 
 	^ #(
@@ -22,7 +23,7 @@ SymEulerAnglesDDot class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SymEulerAnglesDDot class >> with: angledot [ 
 	| answer |
 	answer := super new: 3.
@@ -30,52 +31,52 @@ SymEulerAnglesDDot class >> with: angledot [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerAnglesDDot >> aAddot [
 	^aAddot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerAnglesDDot >> aEulerAngles [
 	^aEulerAnglesDot aEulerAngles
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerAnglesDDot >> aEulerAnglesDot [
 	^aEulerAnglesDot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerAnglesDDot >> aTime [
 	^aEulerAnglesDot aTime
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerAnglesDDot >> alpF [
 	^alpF
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerAnglesDDot >> alpF: anObject [
 	alpF := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerAnglesDDot >> alpf [
 	^alpf
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerAnglesDDot >> alpf: anObject [
 	^alpf := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerAnglesDDot >> cAddot [
 	^cAddot
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 SymEulerAnglesDDot >> calc [
 	| rotOrder cA cAdot |
 	aEulerAnglesDot calc.
@@ -133,7 +134,7 @@ SymEulerAnglesDDot >> calc [
 					+ ((cA at: 1) timesFullMatrix: ((cA at: 2) timesFullMatrix: (cAddot at: 3)))
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 SymEulerAnglesDDot >> calcSymbolic [
 	| rotOrder cA cAdot aTime |
 	aEulerAnglesDot calcSymbolic.
@@ -204,17 +205,17 @@ SymEulerAnglesDDot >> calcSymbolic [
 			alpf := aEulerAnglesDot omef differentiateWRT: aTime]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 SymEulerAnglesDDot >> initialize: angledot [ 
 	aEulerAnglesDot := angledot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SymEulerAnglesDDot >> rotOrder [
 	^aEulerAnglesDot rotOrder
 ]
 
-{ #category : #'basic ops' }
+{ #category : 'basic ops' }
 SymEulerAnglesDDot >> simplified [
 	| answer |
 	answer := super simplified.

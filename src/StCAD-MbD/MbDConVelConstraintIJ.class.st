@@ -1,14 +1,16 @@
 Class {
-	#name : #MbDConVelConstraintIJ,
-	#superclass : #MbDConstraintIJ,
+	#name : 'MbDConVelConstraintIJ',
+	#superclass : 'MbDConstraintIJ',
 	#instVars : [
 		'aA12IeJe',
 		'aA21IeJe'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDConVelConstraintIJ class >> visualWorksMetadata [
 
 	^ #(
@@ -18,7 +20,7 @@ MbDConVelConstraintIJ class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDConVelConstraintIJ class >> withFrmI: afrmI frmJ: afrmJ [ 
 	| instance |
 	self allSubclasses
@@ -28,28 +30,28 @@ MbDConVelConstraintIJ class >> withFrmI: afrmI frmJ: afrmJ [
 			instance notNil ifTrue: [^instance]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConVelConstraintIJ >> addToJointForceI: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConVelConstraintIJ >> addToJointForceJ: col [ 
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConVelConstraintIJ >> addpFIeiGOplamto: mat [ 
 	"pGpXI is zero."
 	"Do nothing."
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDConVelConstraintIJ >> calcPostDynCorrectorIteration [
 	aG := aA12IeJe aAijIeJe + aA21IeJe aAijIeJe - aConstant
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDConVelConstraintIJ >> classString [
 	"Used to access the descriptive name of the constraint."
 	"Needed for multi-language."
@@ -57,120 +59,120 @@ MbDConVelConstraintIJ >> classString [
 	^TheMbDSystem getString: #'MbD: one constant velocity constraint '
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDConVelConstraintIJ >> initA12IeJe [
 	self subclassResponsibility
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDConVelConstraintIJ >> initA21IeJe [
 	self subclassResponsibility
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDConVelConstraintIJ >> initialize [
 	super initialize.
 	self initA12IeJe.
 	self initA21IeJe
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDConVelConstraintIJ >> initializeGlobally [
 	aA12IeJe initializeGlobally.
 	aA21IeJe initializeGlobally
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDConVelConstraintIJ >> initializeLocally [
 	aA12IeJe initializeLocally.
 	aA21IeJe initializeLocally
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDConVelConstraintIJ >> postDynCorrectorIteration [
 	aA12IeJe postDynCorrectorIteration.
 	aA21IeJe postDynCorrectorIteration.
 	super postDynCorrectorIteration
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDConVelConstraintIJ >> postDynOutput [
 	aA12IeJe postDynOutput.
 	aA21IeJe postDynOutput.
 	super postDynOutput
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDConVelConstraintIJ >> postDynPredictor [
 	aA12IeJe postDynPredictor.
 	aA21IeJe postDynPredictor.
 	super postDynPredictor
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDConVelConstraintIJ >> postInput [
 	aA12IeJe postInput.
 	aA21IeJe postInput.
 	super postInput
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDConVelConstraintIJ >> postPosICIteration [
 	aA12IeJe postPosICIteration.
 	aA21IeJe postPosICIteration.
 	super postPosICIteration
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDConVelConstraintIJ >> postStaticIteration [
 	aA12IeJe postStaticIteration.
 	aA21IeJe postStaticIteration.
 	super postStaticIteration
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDConVelConstraintIJ >> preAccIC [
 	aA12IeJe preAccIC.
 	aA21IeJe preAccIC.
 	super preAccIC
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDConVelConstraintIJ >> preDynOutput [
 	aA12IeJe preDynOutput.
 	aA21IeJe preDynOutput.
 	super preDynOutput
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDConVelConstraintIJ >> prePosIC [
 	aA12IeJe prePosIC.
 	aA21IeJe prePosIC.
 	super prePosIC
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 MbDConVelConstraintIJ >> preStatic [
 	aA12IeJe preStatic.
 	aA21IeJe preStatic.
 	super preStatic
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDConVelConstraintIJ >> preVelIC [
 	aA12IeJe preVelIC.
 	aA21IeJe preVelIC.
 	super preVelIC
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDConVelConstraintIJ >> simUpdateAll [
 	aA12IeJe simUpdateAll.
 	aA21IeJe simUpdateAll.
 	super simUpdateAll
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDConVelConstraintIJ >> withFrmI: afrmI frmJ: afrmJ [ 
 	frmI := afrmI.
 	frmJ := afrmJ.

@@ -1,16 +1,18 @@
 Class {
-	#name : #MbDAtPointConstraintIqcJc,
-	#superclass : #MbDAtPointConstraintIJ,
+	#name : 'MbDAtPointConstraintIqcJc',
+	#superclass : 'MbDAtPointConstraintIJ',
 	#instVars : [
 		'pGpEI',
 		'ppGpEIpEI',
 		'iqXIminusOnePlusAxis',
 		'iqEI'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDAtPointConstraintIqcJc class >> visualWorksMetadata [
 
 	^ #(
@@ -20,7 +22,7 @@ MbDAtPointConstraintIqcJc class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDAtPointConstraintIqcJc class >> withFrmI: afrmI frmJ: afrmJ axis: aaxis [ 
 	^(afrmI isMemberOf: MbDEndFrameqc)
 		& (afrmJ isMemberOf: MbDEndFramec)
@@ -31,12 +33,12 @@ MbDAtPointConstraintIqcJc class >> withFrmI: afrmI frmJ: afrmJ axis: aaxis [
 		ifFalse: [nil]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDAtPointConstraintIqcJc >> addToJointForceI: col [ 
 	col at: axis minusNumber: lam
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDAtPointConstraintIqcJc >> addToJointTorqueI: jointTorque [ 
 	| cForceT rIpIeIp pAOIppEI aBOIp fpAOIppEIrIpIeIp dum lampGpE c2Torque |
 	cForceT := (StMFullRow zero: 3).
@@ -53,13 +55,13 @@ MbDAtPointConstraintIqcJc >> addToJointTorqueI: jointTorque [
 	jointTorque equalSelfPlusFullColumn: c2Torque times: 0.5
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDAtPointConstraintIqcJc >> addpFIeiGOplamto: mat [ 
 	(mat at: axis)
 		at: iG plusNumber: -1.0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDAtPointConstraintIqcJc >> addpTIeiGOpEIto: mat [ 
 	"ppGpXIpEI := zero. 
 	pFIeiGOpEIover4 := zero 
@@ -85,7 +87,7 @@ MbDAtPointConstraintIqcJc >> addpTIeiGOpEIto: mat [
 	mat equalSelfPlusFullMatrix: pTIeiGOpEI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDAtPointConstraintIqcJc >> addpTIeiGOplamto: mat [ 
 	| halfB term1 prOIeOpEIT pFIeiGOplam term2 pTIeiGOplam |
 	halfB := frmI aBOp times: 0.5.
@@ -98,18 +100,18 @@ MbDAtPointConstraintIqcJc >> addpTIeiGOplamto: mat [
 	mat at: 1 and: iG plusFullColumn: pTIeiGOplam
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDAtPointConstraintIqcJc >> calcPostDynCorrectorIteration [
 	super calcPostDynCorrectorIteration.
 	pGpEI := riIeJeO priIeJeOpEI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDAtPointConstraintIqcJc >> dispCompClass [
 	^MbDDispCompIeqcJecO
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDAtPointConstraintIqcJc >> fillAccICIterError: col [ 
 	| qEdotI sum |
 	col at: iqXIminusOnePlusAxis minusNumber: lam.
@@ -122,7 +124,7 @@ MbDAtPointConstraintIqcJc >> fillAccICIterError: col [
 	col at: iG plusNumber: sum
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 MbDAtPointConstraintIqcJc >> fillCollisionError: col [ 
 	"lamDeriv is now PlamDeriv."
 	"qEddot is now qEdotDeriv."
@@ -136,14 +138,14 @@ MbDAtPointConstraintIqcJc >> fillCollisionError: col [
 	col at: iG plusNumber: sum
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDAtPointConstraintIqcJc >> fillPosICError: col [ 
 	super fillPosICError: col.
 	col at: iqXIminusOnePlusAxis minusNumber: lam.
 	col at: iqEI plusFullColumn: pGpEI times: lam
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDAtPointConstraintIqcJc >> fillPosICJacob: mat [ 
 	mat at: iG and: iqXIminusOnePlusAxis plusNumber: -1.0.
 	mat at: iqXIminusOnePlusAxis and: iG plusNumber: -1.0.
@@ -152,13 +154,13 @@ MbDAtPointConstraintIqcJc >> fillPosICJacob: mat [
 	mat at: iqEI and: iqEI plusFullMatrix: ppGpEIpEI times: lam
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDAtPointConstraintIqcJc >> fillPosKineJacob: mat [ 
 	mat at: iG and: iqXIminusOnePlusAxis plusNumber: -1.0.
 	mat at: iG and: iqEI plusFullRow: pGpEI
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDAtPointConstraintIqcJc >> fillVelICJacob: mat [ 
 	mat at: iG and: iqXIminusOnePlusAxis plusNumber: -1.0.
 	mat at: iqXIminusOnePlusAxis and: iG plusNumber: -1.0.
@@ -166,26 +168,26 @@ MbDAtPointConstraintIqcJc >> fillVelICJacob: mat [
 	mat at: iqEI and: iG plusFullColumn: pGpEI transpose
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDAtPointConstraintIqcJc >> fillpFpy: mat [ 
 	mat at: iG and: iqXIminusOnePlusAxis plusNumber: -1.0.
 	mat at: iG and: iqEI plusFullRow: pGpEI.
 	mat at: iqEI and: iqEI plusFullMatrix: ppGpEIpEI times: lam
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDAtPointConstraintIqcJc >> fillpFpydot: mat [ 
 	mat at: iqXIminusOnePlusAxis and: iG plusNumber: -1.0.
 	mat at: iqEI and: iG plusFullColumn: pGpEI transpose
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDAtPointConstraintIqcJc >> initializeGlobally [
 	super initializeGlobally.
 	ppGpEIpEI := riIeJeO ppriIeJeOpEIpEI
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDAtPointConstraintIqcJc >> useEquationNumbers [
 	iqXIminusOnePlusAxis := frmI iqX - 1 + axis.
 	iqEI := frmI iqE

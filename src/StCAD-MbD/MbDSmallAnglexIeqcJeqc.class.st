@@ -1,15 +1,17 @@
 Class {
-	#name : #MbDSmallAnglexIeqcJeqc,
-	#superclass : #MbDSmallAnglexIeqcJec,
+	#name : 'MbDSmallAnglexIeqcJeqc',
+	#superclass : 'MbDSmallAnglexIeqcJec',
 	#instVars : [
 		'pthexpEJ',
 		'ppthexpEIpEJ',
 		'ppthexpEJpEJ'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDSmallAnglexIeqcJeqc class >> visualWorksMetadata [
 
 	^ #(
@@ -19,7 +21,7 @@ MbDSmallAnglexIeqcJeqc class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDSmallAnglexIeqcJeqc class >> withFrmI: afrmI frmJ: afrmJ [ 
 	^(afrmI isMemberOf: MbDEndFrameqc)
 		& (afrmJ isMemberOf: MbDEndFrameqc)
@@ -27,7 +29,7 @@ MbDSmallAnglexIeqcJeqc class >> withFrmI: afrmI frmJ: afrmJ [
 		ifFalse: [nil]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDSmallAnglexIeqcJeqc >> calcPostDynCorrectorIteration [
 	super calcPostDynCorrectorIteration.
 	pthexpEJ := aA23IeJe pvaluepEJ negated.
@@ -35,37 +37,37 @@ MbDSmallAnglexIeqcJeqc >> calcPostDynCorrectorIteration [
 	ppthexpEJpEJ := aA23IeJe ppvaluepEJpEJ negated
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDSmallAnglexIeqcJeqc >> initialize [
 	aA23IeJe := MbDDirectionCosineIeqcJeqc new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSmallAnglexIeqcJeqc >> ppthexpEIpEJ [
 	^ppthexpEIpEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSmallAnglexIeqcJeqc >> ppthexpEJpEJ [
 	^ppthexpEJpEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSmallAnglexIeqcJeqc >> ppvaluepEIpEJ [
 	^ppthexpEIpEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSmallAnglexIeqcJeqc >> ppvaluepEJpEJ [
 	^ppthexpEJpEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSmallAnglexIeqcJeqc >> pthexpEJ [
 	^pthexpEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDSmallAnglexIeqcJeqc >> pvaluepEJ [
 	^pthexpEJ
 ]

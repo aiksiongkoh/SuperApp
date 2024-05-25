@@ -1,14 +1,16 @@
 Class {
-	#name : #StMConstant,
-	#superclass : #StMSymbolic,
+	#name : 'StMConstant',
+	#superclass : 'StMSymbolic',
 	#instVars : [
 		'name',
 		'value'
 	],
-	#category : #'StMath-Symbolic'
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #'binary storage' }
+{ #category : 'binary storage' }
 StMConstant class >> binaryReaderBlockForVersion: oldVersion format: oldFormat [ 
 	"Remove the instance variable 'value dependents x name'."
 
@@ -28,12 +30,12 @@ StMConstant class >> binaryReaderBlockForVersion: oldVersion format: oldFormat [
 	^super binaryReaderBlockForVersion: oldVersion format: oldFormat
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMConstant class >> name: symbol [ 
 	^super new name: symbol
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMConstant class >> visualWorksMetadata [
 
 	^ #(
@@ -43,87 +45,87 @@ StMConstant class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 StMConstant class >> with: arg [ 
 	^self basicNew value: arg
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 StMConstant >> = anObject [ 
 	"Answer whether the receiver and the argument represent the same shape"
 
 	^self class == anObject class and: [value = anObject value]
 ]
 
-{ #category : #'message handling' }
+{ #category : 'message handling' }
 StMConstant >> argsPerform: selector withArguments: anArray [ 
 	"Do nothing."
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 StMConstant >> copy [
 	"A Constant is immutable so it is ok to reuse."
 	"Do nothing."
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMConstant >> differentiateWRT: variable [ 
 	^StMConstant with: 0
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMConstant >> expandUntil: set [ 
 	"Do nothing."
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMConstant >> isConstant [
 	^true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMConstant >> isOne [
 	^value = 1
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StMConstant >> isZero [
 	^value = 0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMConstant >> name: symbol [ 
 	name := symbol asSymbol
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMConstant >> partialDifferentiateWRT: variable [ 
 	^StMConstant with: 0
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 StMConstant >> printOn: aStream [ 
 	aStream print: value
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMConstant >> simplifyUntil: set [ 
 	"Do nothing."
 ]
 
-{ #category : #changing }
+{ #category : 'changing' }
 StMConstant >> substitute: var1 with: var2 [ 
 	^self == var1
 		ifTrue: [var2]
 		ifFalse: [self]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMConstant >> value [
 	^value
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 StMConstant >> value: arg [ 
 	value := arg isNumber
 				ifTrue: [arg]

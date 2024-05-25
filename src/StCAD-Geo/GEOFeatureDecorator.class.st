@@ -1,13 +1,15 @@
 Class {
-	#name : #GEOFeatureDecorator,
-	#superclass : #GEOAnyFeature,
+	#name : 'GEOFeatureDecorator',
+	#superclass : 'GEOAnyFeature',
 	#instVars : [
 		'feature'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOFeatureDecorator class >> visualWorksMetadata [
 
 	^ #(
@@ -17,7 +19,7 @@ GEOFeatureDecorator class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOFeatureDecorator >> asTreeNode [
 	| answer |
 	answer := super asTreeNode.
@@ -25,7 +27,7 @@ GEOFeatureDecorator >> asTreeNode [
 	^answer
 ]
 
-{ #category : #become }
+{ #category : 'become' }
 GEOFeatureDecorator >> becomeFeature [
 	| newSelf |
 	newSelf := self feature.
@@ -33,45 +35,45 @@ GEOFeatureDecorator >> becomeFeature [
 	self become: newSelf
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOFeatureDecorator >> feature [
 	^feature
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOFeatureDecorator >> feature: aFeature [ 
 	aFeature container: self.
 	feature := aFeature
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOFeatureDecorator >> hasSketch [
 	^feature hasSketch
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 GEOFeatureDecorator >> preSave [
 	super preSave.
 	feature preSave
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOFeatureDecorator >> refFrame [
 	^feature refFrame
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 GEOFeatureDecorator >> release [
 	feature release.
 	super release
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOFeatureDecorator >> sketch [
 	^feature sketch
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOFeatureDecorator >> sketchList: collection [ 
 	feature sketchList: collection
 ]

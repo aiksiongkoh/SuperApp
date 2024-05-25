@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDVelKineSolver2,
-	#superclass : #MbDVelSolver2,
-	#category : #'StCAD-MbD-MbDSolver'
+	#name : 'MbDVelKineSolver2',
+	#superclass : 'MbDVelSolver2',
+	#category : 'StCAD-MbD-MbDSolver',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDVelKineSolver2 class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ MbDVelKineSolver2 class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDVelKineSolver2 >> assignEquationNumbers [
 	"Equation order is q,s,u."
 
@@ -52,7 +54,7 @@ MbDVelKineSolver2 >> assignEquationNumbers [
 	n == nvar ifFalse: [NotKinematicError raiseSignal]
 ]
 
-{ #category : #run }
+{ #category : 'run' }
 MbDVelKineSolver2 >> run [
 	| qsudot |
 	system logString: #'MbD: \Solving for kinematic velocity.'.

@@ -1,14 +1,15 @@
 Class {
-	#name : #BasicEllipticArc,
-	#superclass : #BasicEllipse,
+	#name : 'BasicEllipticArc',
+	#superclass : 'BasicEllipse',
 	#instVars : [
 		'theStart',
 		'theEnd'
 	],
-	#category : #'StCAD-Geo'
+	#category : 'StCAD-Geo',
+	#package : 'StCAD-Geo'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 BasicEllipticArc class >> visualWorksMetadata [
 
 	^ #(

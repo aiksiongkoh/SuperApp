@@ -1,15 +1,17 @@
 Class {
-	#name : #StMLg,
-	#superclass : #StMIntrinsicFunctionX,
-	#category : #'StMath-Symbolic'
+	#name : 'StMLg',
+	#superclass : 'StMIntrinsicFunctionX',
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StMLg class >> functionSymbol [
 	^'lg'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMLg class >> visualWorksMetadata [
 
 	^ #(
@@ -19,18 +21,18 @@ StMLg class >> visualWorksMetadata [
 
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMLg >> differentiateWRTx [
-	^StMProduct with: (StMPower with: x copy raisedTo: (StMConstant with: -1))
-		times: (StMConstant with: 1.0 exp log)
+
+	^ StMReciprocal with: (StMProduct with: x copy with: (StMLn with: 10))
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 StMLg >> printFuntionNameOn: aStream [
 	aStream nextPutAll: 'lg'
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMLg >> value [
 	^x value log
 ]

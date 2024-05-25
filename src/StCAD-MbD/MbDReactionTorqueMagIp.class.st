@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDReactionTorqueMagIp,
-	#superclass : #MbDReactionMag,
+	#name : 'MbDReactionTorqueMagIp',
+	#superclass : 'MbDReactionMag',
 	#instVars : [
 		'aTIp',
 		'pTIppXI',
@@ -9,10 +9,12 @@ Class {
 		'pTIppEJ',
 		'pTIpplam'
 	],
-	#category : #'StCAD-MbD-MbDReaction'
+	#category : 'StCAD-MbD-MbDReaction',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDReaction'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDReactionTorqueMagIp class >> visualWorksMetadata [
 
 	^ #(
@@ -22,7 +24,7 @@ MbDReactionTorqueMagIp class >> visualWorksMetadata [
 
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDReactionTorqueMagIp >> calcPostDynCorrectorIteration [
 	| aTIeJtO uTIeJtO |
 	aTIeJtO := joint aTIeJtO.
@@ -43,42 +45,42 @@ MbDReactionTorqueMagIp >> calcPostDynCorrectorIteration [
 			pTIpplam := uTIeJtO transpose timesSparseMatrix: joint pTIeJtOplam]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReactionTorqueMagIp >> isJointTorque [
 	^true
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 MbDReactionTorqueMagIp >> postInput [
 	aTIp := joint aTIeJtO length
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReactionTorqueMagIp >> pvaluepEI [
 	^pTIppEI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReactionTorqueMagIp >> pvaluepEJ [
 	^pTIppEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReactionTorqueMagIp >> pvaluepXI [
 	^pTIppXI
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReactionTorqueMagIp >> pvaluepXJ [
 	^pTIppXJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReactionTorqueMagIp >> pvalueplam [
 	^pTIpplam
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDReactionTorqueMagIp >> value [
 	^aTIp
 ]

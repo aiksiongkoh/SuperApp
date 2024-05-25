@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDAtPointJoint,
-	#superclass : #MbDSphericalJoint,
-	#category : #'StCAD-MbD-MbDJoint'
+	#name : 'MbDAtPointJoint',
+	#superclass : 'MbDSphericalJoint',
+	#category : 'StCAD-MbD-MbDJoint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDJoint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDAtPointJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ MbDAtPointJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDAtPointJoint >> classString [
 	"Used to access the descriptive name of the joint."
 	"Needed for multi-language."

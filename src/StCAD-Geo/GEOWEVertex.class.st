@@ -1,14 +1,16 @@
 Class {
-	#name : #GEOWEVertex,
-	#superclass : #GEOSolidModelingItem,
+	#name : 'GEOWEVertex',
+	#superclass : 'GEOSolidModelingItem',
 	#instVars : [
 		'point',
 		'edge'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOWEVertex class >> visualWorksMetadata [
 
 	^ #(
@@ -18,37 +20,37 @@ GEOWEVertex class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWEVertex >> aPoint [
 	^point
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWEVertex >> edge [
 	^edge
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWEVertex >> edge: wingedEdge [ 
 	edge := wingedEdge
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWEVertex >> magnifySelf: aDouble [ 
 	self aPoint magnifySelf: aDouble
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWEVertex >> point [
 	^point
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOWEVertex >> point: col [ 
 	point := col
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 GEOWEVertex >> postCopy [
 	"edge is updated in GEOSolidModel>postCopy."
 

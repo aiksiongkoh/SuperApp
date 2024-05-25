@@ -1,15 +1,17 @@
 Class {
-	#name : #GEOdAngleIJy,
-	#superclass : #GEOAngleIJ,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEOdAngleIJy',
+	#superclass : 'GEOAngleIJ',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOdAngleIJy class >> functionSymbol [
 	^'dAngleIJy'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOdAngleIJy class >> visualWorksMetadata [
 
 	^ #(
@@ -19,12 +21,12 @@ GEOdAngleIJy class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOdAngleIJy >> dataSeries [
 	^geoIJ dataSeriesForChart collect: [:kineIkineJ | kineIkineJ bryantIJ2]
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOdAngleIJy >> mbdClass [
 	^MbDSmallAngleyIecJec
 ]

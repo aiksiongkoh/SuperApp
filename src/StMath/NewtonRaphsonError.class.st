@@ -1,10 +1,12 @@
 Class {
-	#name : #NewtonRaphsonError,
-	#superclass : #Exception,
-	#category : #'StMath-Exception'
+	#name : 'NewtonRaphsonError',
+	#superclass : 'Exception',
+	#category : 'StMath-Exception',
+	#package : 'StMath',
+	#tag : 'Exception'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 NewtonRaphsonError class >> visualWorksMetadata [
 
 	^ #(

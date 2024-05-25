@@ -1,16 +1,18 @@
 Class {
-	#name : #GEOProjectionFrame2,
-	#superclass : #GEOCartesianFrame2,
+	#name : 'GEOProjectionFrame2',
+	#superclass : 'GEOCartesianFrame2',
 	#instVars : [
 		'rOPO',
 		'aAOP',
 		'aAOPT',
 		'pixelPerMetre'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOProjectionFrame2 class >> visualWorksMetadata [
 
 	^ #(
@@ -20,19 +22,19 @@ GEOProjectionFrame2 class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOProjectionFrame2 >> aAOP [
 	aAOP == nil ifTrue: [self calc].
 	^aAOP
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOProjectionFrame2 >> aAOPT [
 	aAOPT == nil ifTrue: [self calc].
 	^aAOPT
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOProjectionFrame2 >> aParallelCameraWithBounds: aRect [ 
 	"
 	ProjectionFrame x is to the right. ProjectionFrame y is down.	
@@ -77,7 +79,7 @@ GEOProjectionFrame2 >> aParallelCameraWithBounds: aRect [
 	^aCamera
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOProjectionFrame2 >> aParallelCameraWithBounds: aRect inPreferredRect: aDrawingRect [ 
 	"
 	ProjectionFrame x is to the right. ProjectionFrame y is down.	
@@ -122,7 +124,7 @@ GEOProjectionFrame2 >> aParallelCameraWithBounds: aRect inPreferredRect: aDrawin
 	^aCamera
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOProjectionFrame2 >> aPerspectiveCameraWithBounds: aRect [ 
 	"
 	ProjectionFrame x is to the right. ProjectionFrame y is down.	
@@ -170,7 +172,7 @@ GEOProjectionFrame2 >> aPerspectiveCameraWithBounds: aRect [
 	^aCamera
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 GEOProjectionFrame2 >> calc [
 	rOfO := rFfF.
 	aAOf := aAFf.
@@ -179,7 +181,7 @@ GEOProjectionFrame2 >> calc [
 	aAOPT := aAOP transpose
 ]
 
-{ #category : #change }
+{ #category : 'change' }
 GEOProjectionFrame2 >> changed [
 	rOPO := nil.
 	aAOP := nil.
@@ -187,7 +189,7 @@ GEOProjectionFrame2 >> changed [
 	super changed
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOProjectionFrame2 >> fixedAtRef [
 	"Fix at world origin."
 	"Convert y axis from pointing up to pointing down."
@@ -206,28 +208,28 @@ GEOProjectionFrame2 >> fixedAtRef [
 	self changed
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 GEOProjectionFrame2 >> isInterface [
 	^true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOProjectionFrame2 >> metrePerPixel [
 	^pixelPerMetre reciprocal
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOProjectionFrame2 >> pixelPerMetre [
 	^pixelPerMetre
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOProjectionFrame2 >> pixelPerMetre: scale [ 
 	pixelPerMetre := scale asDouble.
 	self changed
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOProjectionFrame2 >> positionMemento [
 
 	| aMemento |
@@ -239,17 +241,17 @@ GEOProjectionFrame2 >> positionMemento [
 	^ aMemento
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOProjectionFrame2 >> rDPPx [
 	^0 @ 0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOProjectionFrame2 >> rDpPxfromrOpO: rOpO [ 
 	^self rDpPxfromrPpP: (self rPpPfromrOpO: rOpO)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOProjectionFrame2 >> rDpPxfromrPpP: rPpP [ 
 	"rDpPx is in 2D integer coordinates."
 
@@ -258,7 +260,7 @@ GEOProjectionFrame2 >> rDpPxfromrPpP: rPpP [
 			* pixelPerMetre) rounded
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOProjectionFrame2 >> rFfF: r aAFf: aA pixelPerMetre: scale [ 
 	rFfF := r.
 	aAFf := aA.
@@ -266,25 +268,25 @@ GEOProjectionFrame2 >> rFfF: r aAFf: aA pixelPerMetre: scale [
 	self changed
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOProjectionFrame2 >> rFfF: r pixelPerMetre: scale [ 
 	rFfF := r.
 	pixelPerMetre := scale asDouble.
 	self changed
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOProjectionFrame2 >> rOPO [
 	rOPO == nil ifTrue: [self calc].
 	^rOPO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOProjectionFrame2 >> rOpOfromrPpP: rPpP [ 
 	^self rOPO + (self aAOP timesFullColumn: rPpP)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOProjectionFrame2 >> rPpPfromrDpPx: rDpPx [ 
 	^StMFullColumn
 		with: rDpPx x / pixelPerMetre
@@ -292,12 +294,12 @@ GEOProjectionFrame2 >> rPpPfromrDpPx: rDpPx [
 		with: 0.0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOProjectionFrame2 >> rPpPfromrOpO: rOpO [ 
 	^self aAOPT timesFullColumn: rOpO - self rOPO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOProjectionFrame2 >> refFrame: aFrame [ 
 	"aFrame should be the WorldFrame."
 

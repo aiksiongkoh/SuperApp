@@ -1,10 +1,12 @@
 Class {
-	#name : #ForTorActReactComp,
-	#superclass : #ForTorActReact,
-	#category : #'StCAD-MbD-MbDForce'
+	#name : 'ForTorActReactComp',
+	#superclass : 'ForTorActReact',
+	#category : 'StCAD-MbD-MbDForce',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDForce'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 ForTorActReactComp class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ ForTorActReactComp class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ForTorActReactComp >> axis [
 	^forTorAction axis
 ]

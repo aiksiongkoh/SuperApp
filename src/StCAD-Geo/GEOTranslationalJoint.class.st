@@ -1,20 +1,22 @@
 Class {
-	#name : #GEOTranslationalJoint,
-	#superclass : #GEOJoint,
-	#category : #'StCAD-Geo-GEO'
+	#name : 'GEOTranslationalJoint',
+	#superclass : 'GEOJoint',
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTranslationalJoint class >> mbdClass [
 	^MbDTranslationalJoint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTranslationalJoint class >> nameString [
 	^'TranslationalJoint'
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOTranslationalJoint class >> visualWorksMetadata [
 
 	^ #(

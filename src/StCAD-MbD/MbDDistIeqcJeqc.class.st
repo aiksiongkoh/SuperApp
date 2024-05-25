@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDDistIeqcJeqc,
-	#superclass : #MbDDistIeqcJec,
+	#name : 'MbDDistIeqcJeqc',
+	#superclass : 'MbDDistIeqcJec',
 	#instVars : [
 		'prIeJepXJ',
 		'prIeJepEJ',
@@ -13,10 +13,12 @@ Class {
 		'pprIeJepEJpEJ',
 		'prIeJeOpEJT'
 	],
-	#category : #'StCAD-MbD-MbDKinematicIJ'
+	#category : 'StCAD-MbD-MbDKinematicIJ',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDKinematicIJ'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDDistIeqcJeqc class >> visualWorksMetadata [
 
 	^ #(
@@ -26,7 +28,7 @@ MbDDistIeqcJeqc class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDDistIeqcJeqc class >> withFrmI: afrmI frmJ: afrmJ [ 
 	^(afrmI isMemberOf: MbDEndFrameqc)
 		& (afrmJ isMemberOf: MbDEndFrameqc)
@@ -34,7 +36,7 @@ MbDDistIeqcJeqc class >> withFrmI: afrmI frmJ: afrmJ [
 		ifFalse: [nil]
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDDistIeqcJeqc >> calcPrivate [
 	| prIeJeOpEJ pprIeJeOpEJpEJ pprIeJepXIipXJ prIeJepXIi element pprIeJepEIipXJ prIeJepEIi mprIeJeOpEIiT pprIeJepXJipXJ prIeJepXJi pprIeJepXIipEJ prIeJeOipEJ pprIeJepEIipEJ pprIeJepXJipEJ pprIeJepEJipEJ prIeJepEJi pprIeJeOpEJipEJ prIeJeOpEJiT uIeJeOT |
 	super calcPrivate.
@@ -132,7 +134,7 @@ MbDDistIeqcJeqc >> calcPrivate [
 					pprIeJepEJipEJ at: j put: element / rIeJe]]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDDistIeqcJeqc >> initialize [
 	super initialize.
 	prIeJepXJ := StMFullRow new: 3.
@@ -146,57 +148,57 @@ MbDDistIeqcJeqc >> initialize [
 	pprIeJepEJpEJ := StMFullMatrix new: 4 by: 4
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistIeqcJeqc >> ppvaluepEIpEJ [
 	^pprIeJepEIpEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistIeqcJeqc >> ppvaluepEIpXJ [
 	^pprIeJepEIpXJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistIeqcJeqc >> ppvaluepEJpEJ [
 	^pprIeJepEJpEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistIeqcJeqc >> ppvaluepXIpEJ [
 	^pprIeJepXIpEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistIeqcJeqc >> ppvaluepXIpXJ [
 	^pprIeJepXIpXJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistIeqcJeqc >> ppvaluepXJpEJ [
 	^pprIeJepXJpEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistIeqcJeqc >> ppvaluepXJpXJ [
 	^pprIeJepXJpXJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistIeqcJeqc >> prIeJeOpEJ [
 	^frmJ prOeOpE
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistIeqcJeqc >> prIeJepEJ [
 	^prIeJepEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistIeqcJeqc >> prIeJepXJ [
 	^prIeJepXJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistIeqcJeqc >> puIeJeOpEJ [
 	| answer prIeJeOpEJ oneOverrIeJe oneOverrIeJeSq answeri prIeJeOpEJi rIeJeOi aij |
 	answer := StMFullMatrix new: 3 by: 4.
@@ -213,7 +215,7 @@ MbDDistIeqcJeqc >> puIeJeOpEJ [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistIeqcJeqc >> puIeJeOpXJ [
 	| answer m1OverrIeJe m1OverrIeJeSq answeri rIeJeOi aij |
 	answer := StMFullMatrix new: 3 by: 3.
@@ -229,12 +231,12 @@ MbDDistIeqcJeqc >> puIeJeOpXJ [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistIeqcJeqc >> pvaluepEJ [
 	^prIeJepEJ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDDistIeqcJeqc >> pvaluepXJ [
 	^prIeJepXJ
 ]

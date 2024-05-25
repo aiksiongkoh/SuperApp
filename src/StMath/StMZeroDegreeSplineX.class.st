@@ -1,10 +1,12 @@
 Class {
-	#name : #StMZeroDegreeSplineX,
-	#superclass : #StMGeneralSplineX,
-	#category : #'StMath-Symbolic'
+	#name : 'StMZeroDegreeSplineX',
+	#superclass : 'StMGeneralSplineX',
+	#category : 'StMath-Symbolic',
+	#package : 'StMath',
+	#tag : 'Symbolic'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 StMZeroDegreeSplineX class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ StMZeroDegreeSplineX class >> visualWorksMetadata [
 
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 StMZeroDegreeSplineX >> y: xx [ 
 	"y(x) := yi + dydxi*hi + d2ydx2i*hi^2/2! + d3ydx3i*hi^3/3! +"
 

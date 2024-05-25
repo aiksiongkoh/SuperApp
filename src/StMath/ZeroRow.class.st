@@ -1,10 +1,12 @@
 Class {
-	#name : #ZeroRow,
-	#superclass : #ZeroVector,
-	#category : #'StMath-StMathArraySpecial'
+	#name : 'ZeroRow',
+	#superclass : 'ZeroVector',
+	#category : 'StMath-StMathArraySpecial',
+	#package : 'StMath',
+	#tag : 'StMathArraySpecial'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 ZeroRow class >> visualWorksMetadata [
 
 	^ #(

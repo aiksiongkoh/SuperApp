@@ -1,13 +1,15 @@
 Class {
-	#name : #GEOMarker,
-	#superclass : #GEOAnyMarker,
+	#name : 'GEOMarker',
+	#superclass : 'GEOAnyMarker',
 	#instVars : [
 		'guideFrame'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOMarker class >> visualWorksMetadata [
 
 	^ #(
@@ -17,7 +19,7 @@ GEOMarker class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMarker >> aApm [
 	| aAPp aAPm |
 	aAPp := self anyPart aAPp.
@@ -25,7 +27,7 @@ GEOMarker >> aApm [
 	^aAPp transposeTimesFullMatrix: aAPm
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMarker >> aPVADataFromPartPVAData: partData [ 
 	| rPfP aAPf markerData rOPO aAOP vOPO omeOPO aOPO alpOPO rPfO |
 	rPfP := refFrame rFfF.
@@ -48,12 +50,12 @@ GEOMarker >> aPVADataFromPartPVAData: partData [
 	^markerData
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMarker >> addCurrentStateToDataSeries [
 	"Do nothing."
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOMarker >> createMbD [
 	| mkr eFrm |
 	mkr := MbDMarkerFrame new.
@@ -67,13 +69,13 @@ GEOMarker >> createMbD [
 	self mbdObject: eFrm
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMarker >> cut [
 	guideFrame cut.
 	super cut
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMarker >> dataFromCurrentState [
 	| rPfP aAPf partData markerData rOPO aAOP vOPO omeOPO aOPO alpOPO rPfO |
 	rPfP := refFrame rFfF.
@@ -98,7 +100,7 @@ GEOMarker >> dataFromCurrentState [
 	^markerData
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMarker >> dataSeriesForChart [
 	| rPfP aAPf timeSeries partDataSeries index markerData rOPO aAOP vOPO omeOPO aOPO alpOPO rPfO dataSeries |
 	rPfP := refFrame rFfF.
@@ -135,7 +137,7 @@ GEOMarker >> dataSeriesForChart [
 		ifFalse: [Array new]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMarker >> dataSeriesForChart1 [
 	| rPfP aAPf timeSeries partDataSeries index markerData rOPO aAOP vOPO omeOPO aOPO alpOPO rPfO |
 	rPfP := refFrame rFfF.
@@ -167,36 +169,36 @@ GEOMarker >> dataSeriesForChart1 [
 		ifFalse: [Array new]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMarker >> guideFrame [
 	^guideFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMarker >> guideFrame: aFrame [ 
 	"Do not initialize body since it complicates postCopy."
 
 	guideFrame := aFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMarker >> inPlaneFrame [
 	^guideFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMarker >> magnifySelf: aDouble [ 
 	self aRefFrame magnifySelf: aDouble.
 	guideFrame ~~ container aRefFrame 
 		ifTrue: [guideFrame magnifySelf: aDouble]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMarker >> newDataSeries [
 	"Do nothing."
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 GEOMarker >> postCopy [
 	super postCopy.
 	self guideFrame: guideFrame copy.
@@ -204,19 +206,19 @@ GEOMarker >> postCopy [
 	container addMarker: self
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 GEOMarker >> preSave [
 	super preSave.
 	guideFrame preSave
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 GEOMarker >> release [
 	guideFrame release.
 	super release
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMarker >> rpmp [
 	| anyPart rPmP rPpP aAPp |
 	anyPart := self anyPart.
@@ -226,7 +228,7 @@ GEOMarker >> rpmp [
 	^aAPp transposeTimesFullColumn: (rPmP minusFullColumn: rPpP)
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 GEOMarker >> storeOn: aStream level: level [ 
 	| dummyEndFrame |
 	aStream
@@ -246,18 +248,18 @@ GEOMarker >> storeOn: aStream level: level [
 	dummyEndFrame storeOn: aStream level: level + 3
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMarker >> translateBy: shiftXYZ [ 
 	refFrame translateBy: shiftXYZ
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOMarker >> uncut [
 	guideFrame uncut.
 	super uncut
 ]
 
-{ #category : #DYN }
+{ #category : 'DYN' }
 GEOMarker >> updateForFrame: integer [ 
 	| dataSeries data |
 	dataSeries := self dataSeries.

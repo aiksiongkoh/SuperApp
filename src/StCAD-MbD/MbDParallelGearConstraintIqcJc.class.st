@@ -1,6 +1,6 @@
 Class {
-	#name : #MbDParallelGearConstraintIqcJc,
-	#superclass : #MbDParallelGearConstraintIJ,
+	#name : 'MbDParallelGearConstraintIqcJc',
+	#superclass : 'MbDParallelGearConstraintIJ',
 	#instVars : [
 		'pGpXI',
 		'pGpEI',
@@ -9,10 +9,12 @@ Class {
 		'iqXI',
 		'iqEI'
 	],
-	#category : #'StCAD-MbD-MbDConstraint'
+	#category : 'StCAD-MbD-MbDConstraint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDConstraint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDParallelGearConstraintIqcJc class >> visualWorksMetadata [
 
 	^ #(
@@ -22,19 +24,19 @@ MbDParallelGearConstraintIqcJc class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MbDParallelGearConstraintIqcJc class >> withFrmI: afrmI frmJ: afrmJ [ 
 	^(afrmI isMemberOf: MbDEndFrameqc) & (afrmJ isMemberOf: MbDEndFramec) 
 		ifTrue: [self new withFrmI: afrmI frmJ: afrmJ]
 		ifFalse: [nil]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDParallelGearConstraintIqcJc >> addToJointForceI: col [ 
 	col equalSelfPlusFullColumn: pGpXI times: lam
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDParallelGearConstraintIqcJc >> addToJointTorqueI: jointTorque [ 
 	| cForceT rIpIeIp pAOIppEI aBOIp fpAOIppEIrIpIeIp dum lampGpE c2Torque |
 	cForceT := pGpXI times: lam.
@@ -50,17 +52,17 @@ MbDParallelGearConstraintIqcJc >> addToJointTorqueI: jointTorque [
 	jointTorque equalSelfPlusFullColumn: c2Torque times: 0.5
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDParallelGearConstraintIqcJc >> addpFIeiGOpEIto: mat [ 
 	mat equalSelfPlusFullMatrix: ppGpXIpEI times: lam
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDParallelGearConstraintIqcJc >> addpFIeiGOplamto: mat [ 
 	mat at: 1 and: iG plusFullColumn: pGpXI transpose
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDParallelGearConstraintIqcJc >> calcPostDynCorrectorIteration [
 	super calcPostDynCorrectorIteration.
 	self calc_pGpXI.
@@ -69,32 +71,32 @@ MbDParallelGearConstraintIqcJc >> calcPostDynCorrectorIteration [
 	self calc_ppGpEIpEI
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDParallelGearConstraintIqcJc >> calc_pGpEI [
 	pGpEI := thezIeJe pvaluepEI - (orbitIeJe pvaluepEI times: ratioPlusOne)
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDParallelGearConstraintIqcJc >> calc_pGpXI [
 	"thezIeJe pvaluepXI = 0"
 
 	pGpXI := orbitIeJe pvaluepXI times: ratioPlusOne negated
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDParallelGearConstraintIqcJc >> calc_ppGpEIpEI [
 	ppGpEIpEI := thezIeJe ppvaluepEIpEI 
 				- (orbitIeJe ppvaluepEIpEI times: ratioPlusOne)
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 MbDParallelGearConstraintIqcJc >> calc_ppGpXIpEI [
 	"thezIeJe ppvaluepXIpEI = 0"
 
 	ppGpXIpEI := orbitIeJe ppvaluepXIpEI times: ratioPlusOne negated
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 MbDParallelGearConstraintIqcJc >> fillAccICIterError: col [ 
 	| qXdotI qEdotI sum |
 	col at: iqXI plusFullColumn: pGpXI times: lam.
@@ -109,14 +111,14 @@ MbDParallelGearConstraintIqcJc >> fillAccICIterError: col [
 	col at: iG plusNumber: sum
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDParallelGearConstraintIqcJc >> fillPosICError: col [ 
 	super fillPosICError: col.
 	col at: iqXI plusFullColumn: pGpXI times: lam.
 	col at: iqEI plusFullColumn: pGpEI times: lam
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDParallelGearConstraintIqcJc >> fillPosICJacob: mat [ 
 	| ppGpXIpEIlam |
 	mat at: iG and: iqXI plusFullRow: pGpXI.
@@ -128,7 +130,7 @@ MbDParallelGearConstraintIqcJc >> fillPosICJacob: mat [
 	mat at: iqEI and: iqEI plusFullMatrix: ppGpEIpEI times: lam
 ]
 
-{ #category : #posIC }
+{ #category : 'posIC' }
 MbDParallelGearConstraintIqcJc >> fillPosKineJacob: mat [ 
 	mat
 		at: iG
@@ -140,7 +142,7 @@ MbDParallelGearConstraintIqcJc >> fillPosKineJacob: mat [
 		plusFullRow: pGpEI
 ]
 
-{ #category : #velIC }
+{ #category : 'velIC' }
 MbDParallelGearConstraintIqcJc >> fillVelICJacob: mat [ 
 	mat at: iG and: iqXI plusFullRow: pGpXI.
 	mat at: iqXI and: iG plusFullColumn: pGpXI transpose.
@@ -148,7 +150,7 @@ MbDParallelGearConstraintIqcJc >> fillVelICJacob: mat [
 	mat at: iqEI and: iG plusFullColumn: pGpEI transpose
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDParallelGearConstraintIqcJc >> fillpFpy: mat [ 
 	| ppGpXIpEIlam |
 	mat at: iG and: iqXI plusFullRow: pGpXI.
@@ -158,13 +160,13 @@ MbDParallelGearConstraintIqcJc >> fillpFpy: mat [
 	mat at: iqEI and: iqEI plusFullMatrix: ppGpEIpEI times: lam.
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 MbDParallelGearConstraintIqcJc >> fillpFpydot: mat [ 
 	mat at: iqXI and: iG plusFullColumn: pGpXI transpose.
 	mat at: iqEI and: iG plusFullColumn: pGpEI transpose
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDParallelGearConstraintIqcJc >> useEquationNumbers [
 	iqXI := frmI iqX.
 	iqEI := frmI iqE

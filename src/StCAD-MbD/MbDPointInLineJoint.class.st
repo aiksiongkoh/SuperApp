@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDPointInLineJoint,
-	#superclass : #MbDInLineJoint,
-	#category : #'StCAD-MbD-MbDJoint'
+	#name : 'MbDPointInLineJoint',
+	#superclass : 'MbDInLineJoint',
+	#category : 'StCAD-MbD-MbDJoint',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDJoint'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDPointInLineJoint class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ MbDPointInLineJoint class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MbDPointInLineJoint >> classString [
 	"Used to access the descriptive name of the joint."
 
@@ -23,7 +25,7 @@ MbDPointInLineJoint >> classString [
 	^TheMbDSystem getString: #'MbD: PointInLine Joint '
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDPointInLineJoint >> initializeGlobally [
 	constraints isEmpty
 		ifTrue: 

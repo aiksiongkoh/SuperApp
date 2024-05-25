@@ -1,6 +1,6 @@
 Class {
-	#name : #ForTorFunction,
-	#superclass : #ForceTorqueItem,
+	#name : 'ForTorFunction',
+	#superclass : 'ForceTorqueItem',
 	#instVars : [
 		'kineIJs',
 		'kinedotIJs',
@@ -10,10 +10,12 @@ Class {
 		'pFTpkinedotIJFuncs',
 		'pFTpJtActFuncs'
 	],
-	#category : #'StCAD-MbD-MbDForce'
+	#category : 'StCAD-MbD-MbDForce',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDForce'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 ForTorFunction class >> visualWorksMetadata [
 
 	^ #(
@@ -23,44 +25,44 @@ ForTorFunction class >> visualWorksMetadata [
 
 ]
 
-{ #category : #calc }
+{ #category : 'calc' }
 ForTorFunction >> calcPostDynCorrectorIteration [
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ForTorFunction >> forTor [
 	^forTorFunc value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ForTorFunction >> forTorFunc [
 	^forTorFunc
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ForTorFunction >> forTorFunc: function [ 
 	forTorFunc := function
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ForTorFunction >> formula [
 	^forTorFunc
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ForTorFunction >> formula: function [ 
 	forTorFunc := function
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 ForTorFunction >> initialize [
 	kineIJs := OrderedCollection new.
 	kinedotIJs := OrderedCollection new.
 	jointActions := OrderedCollection new
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 ForTorFunction >> initializeGlobally [
 	kineIJs do: [:kineIJ | kineIJ initializeGlobally].
 	kinedotIJs do: [:kinedotIJ | kinedotIJ initializeGlobally].
@@ -70,7 +72,7 @@ ForTorFunction >> initializeGlobally [
 	pFTpJtActFuncs := jointActions collect: [:jointAction | (forTorFunc differentiateWRT: jointAction) simplified]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 ForTorFunction >> initializeLocally [
 	forTorFunc fillKineIJs: kineIJs.
 	forTorFunc fillKinedotIJs: kinedotIJs.
@@ -81,37 +83,37 @@ ForTorFunction >> initializeLocally [
 	jointActions do: [:jointAction | jointAction initializeLocally]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ForTorFunction >> jointActions [
 	^jointActions
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ForTorFunction >> kineIJs [
 	^kineIJs
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ForTorFunction >> kinedotIJs [
 	^kinedotIJs
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ForTorFunction >> pFTpJtActs [
 	^pFTpJtActFuncs collect: [:pFTpJtActFunc | pFTpJtActFunc value]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ForTorFunction >> pFTpkineIJs [
 	^pFTpkineIJFuncs collect: [:pFTpkineIJFunc | pFTpkineIJFunc value]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ForTorFunction >> pFTpkinedotIJs [
 	^pFTpkinedotIJFuncs collect: [:pFTpkinedotIJFunc | pFTpkinedotIJFunc value]
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 ForTorFunction >> postAccICIteration [
 	kineIJs do: [:kineIJ | kineIJ postAccICIteration].
 	kinedotIJs do: [:kinedotIJ | kinedotIJ postAccICIteration].
@@ -119,7 +121,7 @@ ForTorFunction >> postAccICIteration [
 	super postAccICIteration
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 ForTorFunction >> postCollisionCorrectorIteration [
 	kineIJs do: [:kineIJ | kineIJ postCollisionCorrectorIteration].
 	kinedotIJs do: [:kinedotIJ | kinedotIJ postCollisionCorrectorIteration].
@@ -127,7 +129,7 @@ ForTorFunction >> postCollisionCorrectorIteration [
 	super postCollisionCorrectorIteration
 ]
 
-{ #category : #collision }
+{ #category : 'collision' }
 ForTorFunction >> postCollisionPredictor [
 	kineIJs do: [:kineIJ | kineIJ postCollisionPredictor].
 	kinedotIJs do: [:kinedotIJ | kinedotIJ postCollisionPredictor].
@@ -135,7 +137,7 @@ ForTorFunction >> postCollisionPredictor [
 	super postCollisionPredictor
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorFunction >> postDynCorrectorIteration [
 	kineIJs do: [:kineIJ | kineIJ postDynCorrectorIteration].
 	kinedotIJs do: [:kinedotIJ | kinedotIJ postDynCorrectorIteration].
@@ -143,7 +145,7 @@ ForTorFunction >> postDynCorrectorIteration [
 	super postDynCorrectorIteration
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorFunction >> postDynOutput [
 	kineIJs do: [:kineIJ | kineIJ postDynOutput].
 	kinedotIJs do: [:kinedotIJ | kinedotIJ postDynOutput].
@@ -151,7 +153,7 @@ ForTorFunction >> postDynOutput [
 	super postDynOutput
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorFunction >> postDynPredictor [
 	kineIJs do: [:kineIJ | kineIJ postDynPredictor].
 	kinedotIJs do: [:kinedotIJ | kinedotIJ postDynPredictor].
@@ -159,7 +161,7 @@ ForTorFunction >> postDynPredictor [
 	super postDynPredictor
 ]
 
-{ #category : #'input-output' }
+{ #category : 'input-output' }
 ForTorFunction >> postInput [
 	kineIJs do: [:kineIJ | kineIJ postInput].
 	kinedotIJs do: [:kinedotIJ | kinedotIJ postInput].
@@ -167,7 +169,7 @@ ForTorFunction >> postInput [
 	super postInput
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 ForTorFunction >> postStaticIteration [
 	kineIJs do: [:kineIJ | kineIJ postStaticIteration].
 	kinedotIJs do: [:kinedotIJ | kinedotIJ postStaticIteration].
@@ -175,7 +177,7 @@ ForTorFunction >> postStaticIteration [
 	super postStaticIteration
 ]
 
-{ #category : #accIC }
+{ #category : 'accIC' }
 ForTorFunction >> preAccIC [
 	kineIJs do: [:kineIJ | kineIJ preAccIC].
 	kinedotIJs do: [:kinedotIJ | kinedotIJ preAccIC].
@@ -183,7 +185,7 @@ ForTorFunction >> preAccIC [
 	super preAccIC
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorFunction >> preDynOutput [
 	kineIJs do: [:kineIJ | kineIJ preDynOutput].
 	kinedotIJs do: [:kinedotIJ | kinedotIJ preDynOutput].
@@ -191,7 +193,7 @@ ForTorFunction >> preDynOutput [
 	super preDynOutput
 ]
 
-{ #category : #static }
+{ #category : 'static' }
 ForTorFunction >> preStatic [
 	kineIJs do: [:kineIJ | kineIJ preStatic].
 	kinedotIJs do: [:kinedotIJ | kinedotIJ preStatic].
@@ -199,7 +201,7 @@ ForTorFunction >> preStatic [
 	super preStatic
 ]
 
-{ #category : #dynamic }
+{ #category : 'dynamic' }
 ForTorFunction >> simUpdateAll [
 	kineIJs do: [:kineIJ | kineIJ simUpdateAll].
 	kinedotIJs do: [:kinedotIJ | kinedotIJ simUpdateAll].
@@ -207,7 +209,7 @@ ForTorFunction >> simUpdateAll [
 	super simUpdateAll
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 ForTorFunction >> useEquationNumbers [
 	"Do nothing."
 ]

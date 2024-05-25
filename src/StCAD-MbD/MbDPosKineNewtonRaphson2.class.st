@@ -1,10 +1,12 @@
 Class {
-	#name : #MbDPosKineNewtonRaphson2,
-	#superclass : #MbDPosNewtonRaphson2,
-	#category : #'StCAD-MbD-MbDSolver'
+	#name : 'MbDPosKineNewtonRaphson2',
+	#superclass : 'MbDPosNewtonRaphson2',
+	#category : 'StCAD-MbD-MbDSolver',
+	#package : 'StCAD-MbD',
+	#tag : 'MbDSolver'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 MbDPosKineNewtonRaphson2 class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +16,7 @@ MbDPosKineNewtonRaphson2 class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDPosKineNewtonRaphson2 >> assignEquationNumbers [
 	"Equation order is q,s,u."
 
@@ -55,19 +57,19 @@ MbDPosKineNewtonRaphson2 >> assignEquationNumbers [
 			NotKinematicError raiseSignal]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDPosKineNewtonRaphson2 >> fillPyPx [
 	pypx zeroSelf.
 	system partsJointsMotionsDo: [:item | item fillPosKineJacob: pypx]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDPosKineNewtonRaphson2 >> fillY [
 	y zeroSelf.
 	system partsJointsMotionsDo: [:item | item fillPosKineError: y]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 MbDPosKineNewtonRaphson2 >> initializeGlobally [
 	super initializeGlobally.
 	system partsJointsMotionsDo: [:item | item fillqsu: x].
@@ -75,18 +77,18 @@ MbDPosKineNewtonRaphson2 >> initializeGlobally [
 	dxTol := system errorTolPosKine
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDPosKineNewtonRaphson2 >> logSingularMatrixMessage [
 	system 
 		logString: #'MbD: \Kinematic solver has encountered a singular matrix.'
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDPosKineNewtonRaphson2 >> passRootToSystem [
 	system partsJointsMotionsDo: [:item | item setqsu: x]
 ]
 
-{ #category : #solving }
+{ #category : 'solving' }
 MbDPosKineNewtonRaphson2 >> preRun [
 	system logString: #'MbD: \Solving for kinematic position.'.
 	system partsJointsMotionsDo: [:item | item prePosKine]

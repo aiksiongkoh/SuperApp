@@ -1,16 +1,18 @@
 Class {
-	#name : #GEOTimePosVelAccDynData,
-	#superclass : #GEOTimePosVelAccData,
+	#name : 'GEOTimePosVelAccDynData',
+	#superclass : 'GEOTimePosVelAccData',
 	#instVars : [
 		'rfpf',
 		'aAfp',
 		'mass',
 		'aJpp'
 	],
-	#category : #'StCAD-Geo-GEO'
+	#category : 'StCAD-Geo-GEO',
+	#package : 'StCAD-Geo',
+	#tag : 'GEO'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 GEOTimePosVelAccDynData class >> visualWorksMetadata [
 
 	^ #(
@@ -20,17 +22,17 @@ GEOTimePosVelAccDynData class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccDynData >> aAfp: mat [ 
 	aAfp := mat
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccDynData >> aJpp: mat [ 
 	aJpp := mat
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccDynData >> angularKineticEnergy [
 	| omeOpp |
 	omeOpp := aAOf transpose timesFullColumn: omeOfO.
@@ -38,37 +40,37 @@ GEOTimePosVelAccDynData >> angularKineticEnergy [
 		/ 2.0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccDynData >> angularMomentum [
 	^self angularMomentump length
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccDynData >> angularMomentumO1 [
 	^(aAOf row: 1)
 		dot: self angularMomentump
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccDynData >> angularMomentumO2 [
 	^(aAOf row: 2)
 		dot: self angularMomentump
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccDynData >> angularMomentumO3 [
 	^(aAOf row: 3)
 		dot: self angularMomentump
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccDynData >> angularMomentump [
 	| omeOpp |
 	omeOpp := aAOf transpose timesFullColumn: omeOfO.
 	^aJpp timesFullColumn: omeOpp
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccDynData >> dataTypes [
 	| answer |
 	answer := super dataTypes.
@@ -94,53 +96,53 @@ GEOTimePosVelAccDynData >> dataTypes [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccDynData >> inertialForce [
 	^aOfO length * mass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccDynData >> inertialForceO1 [
 	^(aOfO at: 1)
 		* mass negated
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccDynData >> inertialForceO2 [
 	^(aOfO at: 2)
 		* mass negated
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccDynData >> inertialForceO3 [
 	^(aOfO at: 3)
 		* mass negated
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccDynData >> inertialTorque [
 	^self inertialTorquep length
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccDynData >> inertialTorqueO1 [
 	^(aAOf row: 1)
 		dot: self inertialTorquep
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccDynData >> inertialTorqueO2 [
 	^(aAOf row: 2)
 		dot: self inertialTorquep
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccDynData >> inertialTorqueO3 [
 	^(aAOf row: 3)
 		dot: self inertialTorquep
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccDynData >> inertialTorquep [
 	| omeOpp alpOpp |
 	omeOpp := aAOf transpose timesFullColumn: omeOfO.
@@ -149,45 +151,45 @@ GEOTimePosVelAccDynData >> inertialTorquep [
 		+ (omeOpp cross: (aJpp timesFullColumn: omeOpp))) negated
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccDynData >> linearKineticEnergy [
 	^vOfO sumOfSquares * mass / 2.0
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccDynData >> linearMomentum [
 	^vOfO length * mass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccDynData >> linearMomentumO1 [
 	^(vOfO at: 1)
 		* mass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccDynData >> linearMomentumO2 [
 	^(vOfO at: 2)
 		* mass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccDynData >> linearMomentumO3 [
 	^(vOfO at: 3)
 		* mass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccDynData >> mass: double [ 
 	mass := double
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccDynData >> rfpf: col [ 
 	rfpf := col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 GEOTimePosVelAccDynData >> totalKineticEnergy [
 	^self linearKineticEnergy + self angularKineticEnergy
 ]
