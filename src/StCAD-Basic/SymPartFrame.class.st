@@ -103,7 +103,7 @@ SymPartFrame >> initialize [
 	qE2 := StMDependentVariable name: #qE2.
 	qE3 := StMDependentVariable name: #qE3.
 	qE4 := StMDependentVariable name: #qE4.
-	qE := SymEulerParameters
+	qE := StMEulerParameters
 		      with: qE1
 		      with: qE2
 		      with: qE3

@@ -1,6 +1,6 @@
 Class {
 	#name : 'SymEulerParametersDot',
-	#superclass : 'SymEulerArray',
+	#superclass : 'StMEulerArray',
 	#type : 'variable',
 	#instVars : [
 		'qE',

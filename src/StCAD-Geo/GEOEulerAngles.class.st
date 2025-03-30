@@ -1,6 +1,6 @@
 Class {
 	#name : 'GEOEulerAngles',
-	#superclass : 'SymEulerArray',
+	#superclass : 'StMEulerArray',
 	#type : 'variable',
 	#instVars : [
 		'aA'

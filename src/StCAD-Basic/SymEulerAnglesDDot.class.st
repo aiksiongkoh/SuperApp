@@ -1,6 +1,6 @@
 Class {
 	#name : 'SymEulerAnglesDDot',
-	#superclass : 'SymEulerArray',
+	#superclass : 'StMEulerArray',
 	#type : 'variable',
 	#instVars : [
 		'aEulerAnglesDot',

@@ -819,7 +819,7 @@ StMFullMatrix >> eulerParameters [
 
 	| traceA qE OneMinusTraceDivFour dumSq dum max num maxE FourE |
 	traceA := self trace.
-	qE := SymEulerParameters new.
+	qE := StMEulerParameters new.
 	OneMinusTraceDivFour := 1.0 - traceA / 4.0.
 	1 to: 3
 		do: 
