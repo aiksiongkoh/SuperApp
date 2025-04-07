@@ -57,7 +57,7 @@ ASMTRefContainer >> parseRefCurves: lines [
 ASMTRefContainer >> parseRefPoint: lines [
 
 	| refPoint |
-	refPoint := ASMTRefPoint new.
+	refPoint := ASMTPointRefFrame new.
 	self addRefPoint: refPoint.
 	refPoint parseASMT: lines
 ]

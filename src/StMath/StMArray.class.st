@@ -551,7 +551,8 @@ StMArray class >> newWithElements: aArray [
 
 { #category : 'accessing' }
 StMArray class >> veryShortName [
-	^self shortName
+
+	^ 'Arr'
 ]
 
 { #category : 'VisualWorks metadata' }
@@ -715,6 +716,12 @@ StMArray >> asSparseRow [
 StMArray >> asSymbolic [
 
 	^ self collect: [ :item | item asSymbolic ]
+]
+
+{ #category : 'converting' }
+StMArray >> asValue [
+
+	^ self collect: [ :e | e asValue ]
 ]
 
 { #category : 'ops on self' }
@@ -889,6 +896,14 @@ StMArray >> equal: stmArray times: number [
 		ifFalse: [1 to: self size do: [:i | (self at: i)
 					equal: (stmArray at: i)
 					times: number]]
+]
+
+{ #category : 'comparing' }
+StMArray >> equal: array tol: tol [
+	"Assume self and stmArray are same type and dimensions."
+
+	1 to: self size do: [ :i | ((self at: i) equal: (array at: i) tol: tol) ifFalse: [ ^ false ] ].
+	^ true
 ]
 
 { #category : 'ops on self' }
@@ -1097,7 +1112,7 @@ StMArray >> maxElementOfVector [
 { #category : 'accessing' }
 StMArray >> maxPrint [
 
-	^ 5000
+	^ 50000
 ]
 
 { #category : 'basic ops' }
@@ -1442,6 +1457,12 @@ StMArray >> simplified [
 	^self collect: [:item | item simplified]
 ]
 
+{ #category : 'evaluating' }
+StMArray >> simplifyAll [
+
+	^ self collect: [ :item | item simplifyAll ]
+]
+
 { #category : 'accessing' }
 StMArray >> standardDeviation [
 	"
@@ -1566,13 +1587,13 @@ StMArray >> sumOfSquares [
 
 	| selfAt1 |
 	selfAt1 := self at: 1.
-	^selfAt1 isFloat
-		ifTrue: [self sumOfSquaresOfVector]
-		ifFalse: 
-			[| sum |
-			sum := selfAt1 sumOfSquares.
-			2 to: self size do: [:i | sum := sum + (self at: i) sumOfSquares].
-			sum]
+	^ selfAt1 isSequenceable not
+		  ifTrue: [ self sumOfSquaresOfVector ]
+		  ifFalse: [
+			  | sum |
+			  sum := selfAt1 sumOfSquares.
+			  2 to: self size do: [ :i | sum := sum + (self at: i) sumOfSquares ].
+			  sum ]
 ]
 
 { #category : 'norms' }

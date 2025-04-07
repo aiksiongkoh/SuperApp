@@ -5,7 +5,6 @@ Class {
 		'system',
 		'parts',
 		'jointsMotions',
-		'forcesTorques',
 		'sensors',
 		'variables',
 		'icTypeSolver',
@@ -30,7 +29,8 @@ Class {
 		'iterMaxDyn',
 		'orderMax',
 		'translationLimit',
-		'rotationLimit'
+		'rotationLimit',
+		'forTors'
 	],
 	#category : 'StCAD-MbD-MbDSolver',
 	#package : 'StCAD-MbD',
@@ -236,7 +236,7 @@ MbDSystemSolver2 >> initialize [
 MbDSystemSolver2 >> initializeGlobally [
 	parts := system parts.
 	jointsMotions := system jointsMotions.
-	forcesTorques := system forcesTorques.
+	forTors := system forTors.
 	sensors := system sensors.
 	variables := system variables
 ]
@@ -418,9 +418,15 @@ MbDSystemSolver2 >> outputStepSize [
 MbDSystemSolver2 >> parJoiMotForTorSenVarDo: aBlock [ 
 	parts do: aBlock.
 	jointsMotions do: aBlock.
-	forcesTorques do: aBlock.
+	forTors do: aBlock.
 	sensors do: aBlock.
 	variables do: aBlock
+]
+
+{ #category : 'accessing' }
+MbDSystemSolver2 >> partFrames [
+
+	^ system partFrames
 ]
 
 { #category : 'accessing' }
@@ -432,6 +438,14 @@ MbDSystemSolver2 >> parts [
 MbDSystemSolver2 >> partsJointsMotionsDo: aBlock [ 
 	parts do: aBlock.
 	jointsMotions do: aBlock
+]
+
+{ #category : 'accessing' }
+MbDSystemSolver2 >> partsJointsMotionsForTorsSensorsDo: aBlock [ 
+	parts do: aBlock.
+	jointsMotions do: aBlock.
+	forTors do: aBlock.
+	sensors do: aBlock
 ]
 
 { #category : 'accessing' }
@@ -523,34 +537,25 @@ MbDSystemSolver2 >> runAllIC [
 
 { #category : 'run' }
 MbDSystemSolver2 >> runBasicCollision [
-	
-	["Use a new StMDAEIntegrator each time to wipe out past history."
 
-	"A specialized integrator for collision may be better."
-
+	[ "Use a new StMDAEIntegrator each time to wipe out past history.""A specialized integrator for collision may be better."
 	basicIntegrator := MbDCollisionIntegrator new.
 	basicIntegrator system: self.
 	basicIntegrator run.
 	basicIntegrator := nil.
-	ObjectMemory garbageCollect] 
-			on: DiscontinuityError
-			do: 
-				[:ex | 
-				"basicIntegrator should have found end of collision."
-
-				"It has told system to change to the new topology."
-
-				| discontinuityTypes |
-				discontinuityTypes := ex parameter.
-				(discontinuityTypes 
-					contains: [:type | #(#LIFTOFF #TOUCHDOWN) includes: type]) 
-						ifTrue: 
-							[basicIntegrator := nil.
-							ObjectMemory garbageCollect.
-							ex return]
-						ifFalse: 
-							[self logString: #'MbD: \Unknown discontinuity found in collision.'.
-							SimulationStoppingError raiseSignal]]
+	Smalltalk garbageCollect ]
+		on: DiscontinuityError
+		do: [ :ex | "basicIntegrator should have found end of collision.""It has told system to change to the new topology."
+			| discontinuityTypes |
+			discontinuityTypes := ex parameter.
+			(discontinuityTypes contains: [ :type | #( #LIFTOFF #TOUCHDOWN ) includes: type ])
+				ifTrue: [
+					basicIntegrator := nil.
+					Smalltalk garbageCollect.
+					ex return ]
+				ifFalse: [
+					self logString: #'MbD: \Unknown discontinuity found in collision.'.
+					SimulationStoppingError signal ] ]
 ]
 
 { #category : 'run' }
@@ -675,7 +680,7 @@ MbDSystemSolver2 >> runPosICTwiceVelICAccICCheckDiscontinuity [
 	
 	[self runPosICTwiceVelICAccIC.
 	system hasDiscontinuityAtIC]
-		whileTrue: [system partsJointsMotionsDo: [:item | item preICRestart]]
+		whileTrue: [system allDo: [:item | item preICRestart]]
 ]
 
 { #category : 'run' }

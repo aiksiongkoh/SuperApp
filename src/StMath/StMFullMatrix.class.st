@@ -25,18 +25,20 @@ StMFullMatrix class >> fromCollection: aCollection aBlock: aBlock [
 ]
 
 { #category : 'instance creation' }
-StMFullMatrix class >> newWithElements: a2DArray [ 
+StMFullMatrix class >> newWithElements: a2DArray [
+
 	| answer |
 	answer := a2DArray shallowCopy changeClassToThatOf: (self new: 0).
-	1 to: answer nrow do: [:i | answer at: i put: (StMFullRow newWithElements: (a2DArray at: i))].
-	^answer
+	1 to: answer nrow do: [ :i | answer at: i put: (StMFullRow newWithElements: (a2DArray at: i)) ].
+	^ answer
 ]
 
 { #category : 'instance creation' }
-StMFullMatrix class >> rotateSymbolicx: the [ 
+StMFullMatrix class >> rotateSymbolicx: the [
+
 	| zero one sthe cthe answer |
-	zero := 0.0 asConstant.
-	one := 1.0 asConstant.
+	zero := 0.0 asSymbolic.
+	one := 1.0 asSymbolic.
 	sthe := the sin.
 	cthe := the cos.
 	answer := self new: 3 by: 3.
@@ -52,13 +54,14 @@ StMFullMatrix class >> rotateSymbolicx: the [
 		at: 1 put: zero;
 		at: 2 put: sthe;
 		at: 3 put: cthe.
-	^answer
+	^ answer
 ]
 
 { #category : 'instance creation' }
-StMFullMatrix class >> rotateSymbolicx: the rotDot: thedot [ 
+StMFullMatrix class >> rotateSymbolicx: the rotDot: thedot [
+
 	| zero sthe cthe sthedot cthedot answer |
-	zero := 0.0 asConstant.
+	zero := 0.0 asSymbolic.
 	sthe := the sin.
 	cthe := the cos.
 	sthedot := cthe * thedot.
@@ -76,7 +79,7 @@ StMFullMatrix class >> rotateSymbolicx: the rotDot: thedot [
 		at: 1 put: zero;
 		at: 2 put: sthedot;
 		at: 3 put: cthedot.
-	^answer
+	^ answer
 ]
 
 { #category : 'instance creation' }
@@ -106,10 +109,11 @@ StMFullMatrix class >> rotateSymbolicx: the rotDot: thedot rotDDot: theddot [
 ]
 
 { #category : 'instance creation' }
-StMFullMatrix class >> rotateSymbolicy: the [ 
+StMFullMatrix class >> rotateSymbolicy: the [
+
 	| zero one sthe cthe answer |
-	zero := 0.0 asConstant.
-	one := 1.0 asConstant.
+	zero := 0.0 asSymbolic.
+	one := 1.0 asSymbolic.
 	sthe := the sin.
 	cthe := the cos.
 	answer := self new: 3 by: 3.
@@ -125,13 +129,14 @@ StMFullMatrix class >> rotateSymbolicy: the [
 		at: 1 put: sthe negated;
 		at: 2 put: zero;
 		at: 3 put: cthe.
-	^answer
+	^ answer
 ]
 
 { #category : 'instance creation' }
-StMFullMatrix class >> rotateSymbolicy: the rotDot: thedot [ 
+StMFullMatrix class >> rotateSymbolicy: the rotDot: thedot [
+
 	| zero sthe cthe sthedot cthedot answer |
-	zero := 0.0 asConstant.
+	zero := 0.0 asSymbolic.
 	sthe := the sin.
 	cthe := the cos.
 	sthedot := cthe * thedot.
@@ -149,7 +154,7 @@ StMFullMatrix class >> rotateSymbolicy: the rotDot: thedot [
 		at: 1 put: sthedot negated;
 		at: 2 put: zero;
 		at: 3 put: cthedot.
-	^answer
+	^ answer
 ]
 
 { #category : 'instance creation' }
@@ -179,10 +184,11 @@ StMFullMatrix class >> rotateSymbolicy: the rotDot: thedot rotDDot: theddot [
 ]
 
 { #category : 'instance creation' }
-StMFullMatrix class >> rotateSymbolicz: the [ 
+StMFullMatrix class >> rotateSymbolicz: the [
+
 	| zero one sthe cthe answer |
-	zero := 0.0 asConstant.
-	one := 1.0 asConstant.
+	zero := 0.0 asSymbolic.
+	one := 1.0 asSymbolic.
 	sthe := the sin.
 	cthe := the cos.
 	answer := self new: 3 by: 3.
@@ -198,13 +204,14 @@ StMFullMatrix class >> rotateSymbolicz: the [
 		at: 1 put: zero;
 		at: 2 put: zero;
 		at: 3 put: one.
-	^answer
+	^ answer
 ]
 
 { #category : 'instance creation' }
-StMFullMatrix class >> rotateSymbolicz: the rotDot: thedot [ 
+StMFullMatrix class >> rotateSymbolicz: the rotDot: thedot [
+
 	| zero sthe cthe sthedot cthedot answer |
-	zero := 0.0 asConstant.
+	zero := 0.0 asSymbolic.
 	sthe := the sin.
 	cthe := the cos.
 	sthedot := cthe * thedot.
@@ -222,7 +229,7 @@ StMFullMatrix class >> rotateSymbolicz: the rotDot: thedot [
 		at: 1 put: zero;
 		at: 2 put: zero;
 		at: 3 put: zero.
-	^answer
+	^ answer
 ]
 
 { #category : 'instance creation' }
@@ -714,6 +721,60 @@ StMFullMatrix >> at: i and: j plusNumber: aNumber [
 			+ aNumber
 ]
 
+{ #category : 'ops on self' }
+StMFullMatrix >> at: i1 and: j1 plusTransposeFullRow: aFullRow [
+	"Similar to at:and:plusFullColumn:"
+
+	| iOffset rowi |
+	[ aFullRow isMemberOf: StMFullRow ] assert.
+	iOffset := i1 - 1.
+	1 to: aFullRow size do: [ :ii |
+		rowi := self at: iOffset + ii.
+		rowi at: j1 put: (rowi at: j1) + (aFullRow at: ii) ]
+]
+
+{ #category : 'as yet unclassified' }
+StMFullMatrix >> bryantAngles [
+
+	| answer sthe2y the1x the2y the3z cthe1x sthe1x y x |
+	answer := SymEulerAngles new. "Default bryant angles"
+	[ answer rotOrder = #( 1 2 3 ) ] assert.
+	sthe2y := self at: 1 and: 3.
+	sthe2y abs > 0.9999
+		ifTrue: [
+			sthe2y strictlyPositive
+				ifTrue: [
+					the1x := Float
+						         arcTanMpiTOpiY: (self at: 2 and: 1)
+						         overX: (self at: 2 and: 2).
+					the2y := Float pi / 2.0.
+					the3z := 0.0 ]
+				ifFalse: [
+					the1x := Float
+						         arcTanMpiTOpiY: (self at: 3 and: 2)
+						         overX: (self at: 3 and: 1).
+					the2y := Float pi / -2.0.
+					the3z := 0.0 ] ]
+		ifFalse: [
+			the1x := Float
+				         arcTanMpiTOpiY: (self at: 2 and: 3) negated
+				         overX: (self at: 3 and: 3).
+			cthe1x := the1x cos.
+			sthe1x := the1x sin.
+			y := sthe2y.
+			x := cthe1x abs > sthe1x abs
+				     ifTrue: [ (self at: 3 and: 3) / cthe1x ]
+				     ifFalse: [ (self at: 2 and: 3) / sthe1x negated ].
+			the2y := Float arcTanMpiTOpiY: y overX: x.
+			the3z := Float
+				         arcTanMpiTOpiY: (self at: 1 and: 2) negated
+				         overX: (self at: 1 and: 1) ].
+	answer at: 1 put: the1x.
+	answer at: 2 put: the2y.
+	answer at: 3 put: the3z.
+	^ answer
+]
+
 { #category : 'basic ops' }
 StMFullMatrix >> eigenvalues [
 	"3 by 3 positive definite case only. Generalise later."
@@ -883,6 +944,86 @@ StMFullMatrix >> eulerParameters [
 	^qE conditionSelf calc
 ]
 
+{ #category : 'accessing' }
+StMFullMatrix >> eulerParameters: qE [
+	"Given [A], compute Euler parameter. Fill in qE."
+
+	| traceA OneMinusTraceDivFour dumSq dum max maxE FourE |
+	traceA := self trace.
+	OneMinusTraceDivFour := 1.0 - traceA / 4.0.
+	1 to: 3 do: [ :i |
+		dumSq := (self at: i and: i) / 2.0 + OneMinusTraceDivFour.
+		dum := dumSq > 0.0
+			       ifTrue: [ dumSq sqrt ]
+			       ifFalse: [ 0.0 ].
+		qE at: i put: dum ].
+	dumSq := 1.0 + traceA / 4.0.
+	dum := dumSq > 0.0
+		       ifTrue: [ dumSq sqrt ]
+		       ifFalse: [ 0.0 ].
+	qE at: 4 put: dum.
+	max := 0.0.
+	1 to: 4 do: [ :i |
+		dum := qE at: i. "dum is not negative."
+		max < dum ifTrue: [
+			max := dum.
+			maxE := i ] ].
+	maxE = 1 ifTrue: [
+		FourE := 4.0 * (qE at: 1).
+		qE at: 2 put: (self at: 1 and: 2) + (self at: 2 and: 1) / FourE.
+		qE at: 3 put: (self at: 1 and: 3) + (self at: 3 and: 1) / FourE.
+		qE at: 4 put: (self at: 3 and: 2) - (self at: 2 and: 3) / FourE ].
+	maxE = 2 ifTrue: [
+		FourE := 4.0 * (qE at: 2).
+		qE at: 1 put: (self at: 1 and: 2) + (self at: 2 and: 1) / FourE.
+		qE at: 3 put: (self at: 2 and: 3) + (self at: 3 and: 2) / FourE.
+		qE at: 4 put: (self at: 1 and: 3) - (self at: 3 and: 1) / FourE ].
+	maxE = 3 ifTrue: [
+		FourE := 4.0 * (qE at: 3).
+		qE at: 1 put: (self at: 1 and: 3) + (self at: 3 and: 1) / FourE.
+		qE at: 2 put: (self at: 2 and: 3) + (self at: 3 and: 2) / FourE.
+		qE at: 4 put: (self at: 2 and: 1) - (self at: 1 and: 2) / FourE ].
+	maxE = 4 ifTrue: [
+		FourE := 4.0 * (qE at: 4).
+		qE at: 1 put: (self at: 3 and: 2) - (self at: 2 and: 3) / FourE.
+		qE at: 2 put: (self at: 1 and: 3) - (self at: 3 and: 1) / FourE.
+		qE at: 3 put: (self at: 2 and: 1) - (self at: 1 and: 2) / FourE ].
+	^ qE conditionSelf calc
+]
+
+{ #category : 'as yet unclassified' }
+StMFullMatrix >> extendTo: aAO2 factor: factor [
+	"
+		Alternate derivation to check
+		{IJK} = [A]O1[A]12{ijk}
+		{IJK} = [A]O2{ijk}
+		[A]O2 = [A]O1[A]12
+		[A]12 = [A]O1T[A]O2
+	"
+
+	| aAO1 cosHalfTheta12 qE1mid halfTheta12 sinHalfTheta12 aA12 qE12 axisOfRotation halfTheta1mid cosHalfTheta1mid sinHalfTheta1mid aAOmid |
+	[ self nrow == 3 and: [ self ncol == 3 ] ] assert.
+	aAO1 := self.
+	aA12 := aAO1 transposeTimesFullMatrix: aAO2.
+	qE12 := aA12 stmEulerParameters.
+	cosHalfTheta12 := qE12 at: 4.
+	halfTheta12 := cosHalfTheta12 arcCos.
+	sinHalfTheta12 := halfTheta12 sin.
+	axisOfRotation := StMFullColumn new: 3.
+	1 to: 3 do: [ :i | axisOfRotation at: i put: (qE12 at: i) ].
+	axisOfRotation normalizeSelf.
+
+	halfTheta1mid := factor * halfTheta12.
+	cosHalfTheta1mid := halfTheta1mid cos.
+	sinHalfTheta1mid := halfTheta1mid sin.
+	qE1mid := StMEulerParameters new.
+	qE1mid at: 1 putFullColumn: (axisOfRotation times: sinHalfTheta1mid).
+	qE1mid at: 4 put: cosHalfTheta1mid.
+	qE1mid calcABC.
+	aAOmid := aAO1 timesFullMatrix: qE1mid aA.
+	^ aAOmid
+]
+
 { #category : 'testing' }
 StMFullMatrix >> isDiagonalToWithin: ratio [ 
 	| maxElement tol nrow |
@@ -970,6 +1111,18 @@ StMFullMatrix >> secondDimensionClass [
 	^StMFullRow
 ]
 
+{ #category : 'accessing' }
+StMFullMatrix >> stmEulerParameters [
+
+	^ self eulerParameters: StMEulerParameters new
+]
+
+{ #category : 'accessing' }
+StMFullMatrix >> symEulerParameters [
+
+	^ self eulerParameters: SymEulerParameters new
+]
+
 { #category : 'basic ops' }
 StMFullMatrix >> times: alpha minusFullMatrix: aFullMatrix [ 
 	"a*alpha - b."
@@ -1028,6 +1181,18 @@ StMFullMatrix >> times: beta plusFullMatrix: aFullMatrix times: alpha [
 				plusFullRow: (aFullMatrix at: i)
 				times: alpha)].
 	^answer
+]
+
+{ #category : 'as yet unclassified' }
+StMFullMatrix >> timesTransposeFullRow: aFullRow times: num [
+
+	| m answer |
+	[ aFullRow isMemberOf: StMFullRow ] assert.
+	m := self nrow.
+	[ self ncol == aFullRow size ] assert.
+	answer := StMFullColumn new: m.
+	1 to: m do: [ :i | answer at: i put: ((self at: i) dot: aFullRow) * num ].
+	^ answer
 ]
 
 { #category : 'basic ops' }

@@ -68,7 +68,7 @@ MbDDynIntegrator >> checkForDiscontinuity [
 	t := integrator t.
 	tprevious := integrator tprevious.
 	tstartNew := (direction * t) nextLargerNumber / direction.
-	system partsJointsMotionsForcesTorquesDo: [:item | tstartNew := item checkForDynDiscontinuityBetween: tprevious and: tstartNew].
+	system allDo: [:item | tstartNew := item checkForDynDiscontinuityBetween: tprevious and: tstartNew].
 	direction * tstartNew > (direction * t)
 		ifTrue: ["No discontinuity in step"
 			^self]
@@ -79,7 +79,7 @@ MbDDynIntegrator >> checkForDiscontinuity [
 			system tstart: tstartNew.
 			system toutFirst: tout.
 			discontinuityTypes := OrderedCollection new.
-			system partsJointsMotionsForcesTorquesDo: [:item | item discontinuityAt: tstartNew addTypeTo: discontinuityTypes].
+			system allDo: [:item | item discontinuityAt: tstartNew addTypeTo: discontinuityTypes].
 			DiscontinuityError signalWith: discontinuityTypes]
 ]
 
@@ -102,7 +102,7 @@ MbDDynIntegrator >> checkForOutputThrough: t [
 			yddotout := integrator yDeriv: 2 at: tout.
 			system time: tout.
 			system
-				partsJointsMotionsDo: 
+				allDo: 
 					[:item | 
 					item setpqsumu: yout.
 					item setpqsumudot: ydotout.
@@ -117,7 +117,7 @@ MbDDynIntegrator >> checkForOutputThrough: t [
 			y := integrator y.
 			ydot := integrator ydot.
 			system
-				partsJointsMotionsDo: 
+				allDo: 
 					[:item | 
 					item setpqsumu: y.
 					item setpqsumudot: ydot].
@@ -126,32 +126,32 @@ MbDDynIntegrator >> checkForOutputThrough: t [
 
 { #category : 'run' }
 MbDDynIntegrator >> fillF: col [ 
-	system partsJointsMotionsForcesTorquesDo: [:item | item fillDynError: col]
+	system allDo: [:item | item fillDynError: col]
 ]
 
 { #category : 'run' }
 MbDDynIntegrator >> fillY: aColumn [ 
-	system partsJointsMotionsDo: [:item | item fillpqsumu: aColumn]
+	system allDo: [:item | item fillpqsumu: aColumn]
 ]
 
 { #category : 'run' }
 MbDDynIntegrator >> fillYdot: aColumn [ 
-	system partsJointsMotionsDo: [:item | item fillpqsumudot: aColumn]
+	system allDo: [:item | item fillpqsumudot: aColumn]
 ]
 
 { #category : 'run' }
 MbDDynIntegrator >> fillpFpy: matrix [ 
-	system partsJointsMotionsForcesTorquesDo: [:item | item fillpFpy: matrix]
+	system allDo: [:item | item fillpFpy: matrix]
 ]
 
 { #category : 'run' }
 MbDDynIntegrator >> fillpFpydot: mat [ 
-	system partsJointsMotionsForcesTorquesDo: [:item | item fillpFpydot: mat]
+	system allDo: [:item | item fillpFpydot: mat]
 ]
 
 { #category : 'run' }
 MbDDynIntegrator >> incrementTime: aDouble [ 
-	system partsJointsMotionsForcesTorquesDo: [:item | item storeDynState].
+	system allDo: [:item | item storeDynState].
 	system time: aDouble
 ]
 
@@ -165,12 +165,12 @@ MbDDynIntegrator >> interpolateAt: tArg [
 	yddotout := integrator yDeriv: 2 at: tArg.
 	system time: tArg.
 	system
-		partsJointsMotionsDo: 
+		allDo: 
 			[:item | 
 			item setpqsumu: yout.
 			item setpqsumudot: ydotout.
 			item setpqsumuddot: yddotout].
-	system partsJointsMotionsForcesTorquesDo: [:item | item simUpdateAll]
+	system allDo: [:item | item simUpdateAll]
 ]
 
 { #category : 'accessing' }
@@ -180,17 +180,17 @@ MbDDynIntegrator >> iterMax [
 
 { #category : 'run' }
 MbDDynIntegrator >> postDAECorrector [
-	system partsJointsMotionsForcesTorquesDo: [:item | item postDynCorrector]
+	system allDo: [:item | item postDynCorrector]
 ]
 
 { #category : 'run' }
 MbDDynIntegrator >> postDAECorrectorIteration [
-	system partsJointsMotionsForcesTorquesDo: [:item | item postDynCorrectorIteration]
+	system allDo: [:item | item postDynCorrectorIteration]
 ]
 
 { #category : 'run' }
 MbDDynIntegrator >> postDAEFirstStep [
-	system partsJointsMotionsForcesTorquesDo: [:item | item postDynFirstStep].
+	system allDo: [:item | item postDynFirstStep].
 	integrator istep > 0 ifTrue: ["Noise make checking at the start unreliable."
 		self checkForDiscontinuity].
 	self checkForOutputThrough: integrator t
@@ -198,17 +198,17 @@ MbDDynIntegrator >> postDAEFirstStep [
 
 { #category : 'run' }
 MbDDynIntegrator >> postDAEOutput [
-	system partsJointsMotionsForcesTorquesDo: [:item | item postDynOutput]
+	system allDo: [:item | item postDynOutput]
 ]
 
 { #category : 'run' }
 MbDDynIntegrator >> postDAEPredictor [
-	system partsJointsMotionsForcesTorquesDo: [:item | item postDynPredictor]
+	system allDo: [:item | item postDynPredictor]
 ]
 
 { #category : 'run' }
 MbDDynIntegrator >> postDAEStep [
-	system partsJointsMotionsForcesTorquesDo: [:item | item postDynStep].
+	system allDo: [:item | item postDynStep].
 	integrator istep > 0 ifTrue: ["Noise make checking at the start unreliable."
 		self checkForDiscontinuity].
 	self checkForOutputThrough: integrator t
@@ -216,43 +216,43 @@ MbDDynIntegrator >> postDAEStep [
 
 { #category : 'run' }
 MbDDynIntegrator >> postRun [
-	system partsJointsMotionsForcesTorquesDo: [:item | item postDyn]
+	system allDo: [:item | item postDyn]
 ]
 
 { #category : 'run' }
 MbDDynIntegrator >> preDAECorrector [
-	system partsJointsMotionsForcesTorquesDo: [:item | item preDynCorrector]
+	system allDo: [:item | item preDynCorrector]
 ]
 
 { #category : 'run' }
 MbDDynIntegrator >> preDAECorrectorIteration [
-	system partsJointsMotionsForcesTorquesDo: [:item | item preDynCorrectorIteration]
+	system allDo: [:item | item preDynCorrectorIteration]
 ]
 
 { #category : 'run' }
 MbDDynIntegrator >> preDAEFirstStep [
-	system partsJointsMotionsForcesTorquesDo: [:item | item preDynFirstStep]
+	system allDo: [:item | item preDynFirstStep]
 ]
 
 { #category : 'run' }
 MbDDynIntegrator >> preDAEOutput [
-	system partsJointsMotionsForcesTorquesDo: [:item | item preDynOutput]
+	system allDo: [:item | item preDynOutput]
 ]
 
 { #category : 'run' }
 MbDDynIntegrator >> preDAEPredictor [
-	system partsJointsMotionsForcesTorquesDo: [:item | item preDynPredictor]
+	system allDo: [:item | item preDynPredictor]
 ]
 
 { #category : 'run' }
 MbDDynIntegrator >> preDAEStep [
-	system partsJointsMotionsForcesTorquesDo: [:item | item preDynStep]
+	system allDo: [:item | item preDynStep]
 ]
 
 { #category : 'run' }
 MbDDynIntegrator >> preRun [
 	system logString: #'MbD: \Starting dynamic analysis.'.
-	system partsJointsMotionsForcesTorquesDo: [:item | item preDyn]
+	system allDo: [:item | item preDyn]
 ]
 
 { #category : 'run' }
@@ -262,46 +262,36 @@ MbDDynIntegrator >> reportStats [
 
 { #category : 'run' }
 MbDDynIntegrator >> run [
-	
+
 	[
-	[[super run] on: SingularMatrixError
-		do: 
-			[:ex | 
+	[
+	[ super run ]
+		on: SingularMatrixError
+		do: [ :ex |
 			self logString: #'MbD: \Solver has encountered a singular matrix.'.
-			self 
-				logString: #'MbD: \Check to see if a massless or a very low mass part is under constrained.'.
-			self 
-				logString: #'MbD: \Check to see if the system is in a locked position.'.
-			self 
-				logString: #'MbD: \Check to see if the error tolerance is too demanding.'.
-			self 
-				logString: #'MbD: \Check to see if a curve-curve is about to have multiple contact points.'.
-			SimulationStoppingError raiseSignal]] 
-			on: TooSmallStepSizeError
-			do: 
-				[:ex | 
-				self 
-					logString: #'MbD: \Step size is prevented from going below the user specified minimum.'.
-				self 
-					logString: #'MbD: \Check to see if the system is in a locked position.'.
-				self 
-					logString: #'MbD: \Check to see if a curve-curve is about to have multiple contact points.'.
-				self 
-					logString: #'MbD: \If they are not, lower the permitted minimum step size.'.
-				SimulationStoppingError raiseSignal]] 
-			on: TooManyTriesError
-			do: 
-				[:ex | 
-				self 
-					logString: #'MbD: \Check to see if the error tolerance is too demanding.'.
-				SimulationStoppingError raiseSignal]
+			self logString: #'MbD: \Check to see if a massless or a very low mass part is under constrained.'.
+			self logString: #'MbD: \Check to see if the system is in a locked position.'.
+			self logString: #'MbD: \Check to see if the error tolerance is too demanding.'.
+			self logString: #'MbD: \Check to see if a curve-curve is about to have multiple contact points.'.
+			SimulationStoppingError signal ] ]
+		on: TooSmallStepSizeError
+		do: [ :ex |
+			self logString: #'MbD: \Step size is prevented from going below the user specified minimum.'.
+			self logString: #'MbD: \Check to see if the system is in a locked position.'.
+			self logString: #'MbD: \Check to see if a curve-curve is about to have multiple contact points.'.
+			self logString: #'MbD: \If they are not, lower the permitted minimum step size.'.
+			SimulationStoppingError signal ] ]
+		on: TooManyTriesError
+		do: [ :ex |
+			self logString: #'MbD: \Check to see if the error tolerance is too demanding.'.
+			SimulationStoppingError signal ]
 ]
 
 { #category : 'run' }
 MbDDynIntegrator >> suggestSmallerOrAcceptFirstStepSize: hnew [ 
 	| hnew2 |
 	hnew2 := hnew.
-	system partsJointsMotionsForcesTorquesDo: [:item | hnew2 := item suggestSmallerOrAcceptDynFirstStepSize: hnew2].
+	system allDo: [:item | hnew2 := item suggestSmallerOrAcceptDynFirstStepSize: hnew2].
 "
 	hnew2 > hmax
 		ifTrue: 
@@ -316,24 +306,26 @@ MbDDynIntegrator >> suggestSmallerOrAcceptFirstStepSize: hnew [
 ]
 
 { #category : 'run' }
-MbDDynIntegrator >> suggestSmallerOrAcceptStepSize: hnew [ 
+MbDDynIntegrator >> suggestSmallerOrAcceptStepSize: hnew [
+
 	| hnew2 |
 	hnew2 := hnew.
-	system partsJointsMotionsForcesTorquesDo: [:item | hnew2 := item suggestSmallerOrAcceptDynStepSize: hnew2].
-	hnew2 > hmax
-		ifTrue: 
-			[hnew2 := hmax.
-			self logString: #'StM: \Step size is at user specified maximum.'].
-	hnew2 < hmin
-		ifTrue: 
-			[self logString: #'StM: \Step size %1 < %2 user specified minimum.' withArguments: (Array with: hnew2 asFloat printString with: hmin asFloat printString).
-			TooSmallStepSizeError raiseSignal].
-	^hnew2
+	system allDo: [ :item |
+		hnew2 := item suggestSmallerOrAcceptDynStepSize: hnew2 ].
+	hnew2 > hmax ifTrue: [
+		hnew2 := hmax.
+		self logString: #'StM: \Step size is at user specified maximum.' ].
+	hnew2 < hmin ifTrue: [
+		self
+			logString: #'StM: \Step size %1 < %2 user specified minimum.'
+			withArguments: (Array with: hnew2 asFloat printString with: hmin asFloat printString).
+		TooSmallStepSizeError signal ].
+	^ hnew2
 ]
 
 { #category : 'run' }
 MbDDynIntegrator >> updateForDAECorrector [
-	system partsJointsMotionsForcesTorquesDo: [:item | item postDynCorrectorIteration]
+	system allDo: [:item | item postDynCorrectorIteration]
 ]
 
 { #category : 'run' }
@@ -348,10 +340,10 @@ MbDDynIntegrator >> useTrialStepStats: stats [
 
 { #category : 'accessing' }
 MbDDynIntegrator >> y: aColumn [ 
-	system partsJointsMotionsDo: [:item | item setpqsumu: aColumn]
+	system allDo: [:item | item setpqsumu: aColumn]
 ]
 
 { #category : 'accessing' }
 MbDDynIntegrator >> ydot: aColumn [ 
-	system partsJointsMotionsDo: [:item | item setpqsumudot: aColumn]
+	system allDo: [:item | item setpqsumudot: aColumn]
 ]

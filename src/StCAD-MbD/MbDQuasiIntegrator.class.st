@@ -25,7 +25,7 @@ MbDQuasiIntegrator >> checkForDiscontinuity [
 	t := integrator t.
 	tprevious := integrator tprevious.
 	tstartNew := (direction * t) nextLargerNumber / direction.
-	system partsJointsMotionsForcesTorquesDo: [:item | tstartNew := item checkForDynDiscontinuityBetween: tprevious and: tstartNew].
+	system allDo: [:item | tstartNew := item checkForDynDiscontinuityBetween: tprevious and: tstartNew].
 	direction * tstartNew > (direction * t)
 		ifTrue: ["No discontinuity in step"
 			^self]
@@ -36,7 +36,7 @@ MbDQuasiIntegrator >> checkForDiscontinuity [
 			system tstart: tstartNew.
 			system toutFirst: tout.
 			discontinuityTypes := OrderedCollection new.
-			system partsJointsMotionsForcesTorquesDo: [:item | item discontinuityAt: tstartNew addTypeTo: discontinuityTypes].
+			system allDo: [:item | item discontinuityAt: tstartNew addTypeTo: discontinuityTypes].
 			DiscontinuityError signalWith: discontinuityTypes]
 ]
 
@@ -76,7 +76,7 @@ MbDQuasiIntegrator >> checkForOutputThrough: t [
 
 { #category : 'run' }
 MbDQuasiIntegrator >> incrementTime: aDouble [ 
-	system partsJointsMotionsForcesTorquesDo: [:item | item storeDynState].
+	system allDo: [:item | item storeDynState].
 	system time: aDouble
 ]
 
@@ -97,7 +97,7 @@ MbDQuasiIntegrator >> interpolateAt: tArg [
 
 { #category : 'run' }
 MbDQuasiIntegrator >> postFirstStep [
-	system partsJointsMotionsForcesTorquesDo: [:item | item postDynFirstStep].
+	system allDo: [:item | item postDynFirstStep].
 	integrator istep > 0 ifTrue: ["Noise make checking at the start unreliable."
 		self checkForDiscontinuity].
 	self checkForOutputThrough: integrator t
@@ -105,12 +105,12 @@ MbDQuasiIntegrator >> postFirstStep [
 
 { #category : 'run' }
 MbDQuasiIntegrator >> postRun [
-	system partsJointsMotionsForcesTorquesDo: [:item | item postDyn]
+	system allDo: [:item | item postDyn]
 ]
 
 { #category : 'run' }
 MbDQuasiIntegrator >> postStep [
-	system partsJointsMotionsForcesTorquesDo: [:item | item postDynStep].
+	system allDo: [:item | item postDynStep].
 	integrator istep > 0 ifTrue: ["Noise make checking at the start unreliable."
 		self checkForDiscontinuity].
 	self checkForOutputThrough: integrator t
@@ -118,17 +118,17 @@ MbDQuasiIntegrator >> postStep [
 
 { #category : 'run' }
 MbDQuasiIntegrator >> preFirstStep [
-	system partsJointsMotionsForcesTorquesDo: [:item | item preDynFirstStep]
+	system allDo: [:item | item preDynFirstStep]
 ]
 
 { #category : 'run' }
 MbDQuasiIntegrator >> preRun [
-	system partsJointsMotionsForcesTorquesDo: [:item | item preDyn]
+	system allDo: [:item | item preDyn]
 ]
 
 { #category : 'run' }
 MbDQuasiIntegrator >> preStep [
-	system partsJointsMotionsForcesTorquesDo: [:item | item preDynStep]
+	system allDo: [:item | item preDynStep]
 ]
 
 { #category : 'run' }
@@ -138,39 +138,29 @@ MbDQuasiIntegrator >> reportStats [
 
 { #category : 'run' }
 MbDQuasiIntegrator >> run [
-	
+
 	[
-	[[super run] on: SingularMatrixError
-		do: 
-			[:ex | 
+	[
+	[ super run ]
+		on: SingularMatrixError
+		do: [ :ex |
 			self logString: #'MbD: \Solver has encountered a singular matrix.'.
-			self 
-				logString: #'MbD: \Check to see if a massless or a very low mass part is under constrained.'.
-			self 
-				logString: #'MbD: \Check to see if the system is in a locked position.'.
-			self 
-				logString: #'MbD: \Check to see if the error tolerance is too demanding.'.
-			self 
-				logString: #'MbD: \Check to see if a curve-curve is about to have multiple contact points.'.
-			SimulationStoppingError raiseSignal]] 
-			on: TooSmallStepSizeError
-			do: 
-				[:ex | 
-				self 
-					logString: #'MbD: \Step size is prevented from going below the user specified minimum.'.
-				self 
-					logString: #'MbD: \Check to see if the system is in a locked position.'.
-				self 
-					logString: #'MbD: \Check to see if a curve-curve is about to have multiple contact points.'.
-				self 
-					logString: #'MbD: \If they are not, lower the permitted minimum step size.'.
-				SimulationStoppingError raiseSignal]] 
-			on: TooManyTriesError
-			do: 
-				[:ex | 
-				self 
-					logString: #'MbD: \Check to see if the error tolerance is too demanding.'.
-				SimulationStoppingError raiseSignal]
+			self logString: #'MbD: \Check to see if a massless or a very low mass part is under constrained.'.
+			self logString: #'MbD: \Check to see if the system is in a locked position.'.
+			self logString: #'MbD: \Check to see if the error tolerance is too demanding.'.
+			self logString: #'MbD: \Check to see if a curve-curve is about to have multiple contact points.'.
+			SimulationStoppingError signal ] ]
+		on: TooSmallStepSizeError
+		do: [ :ex |
+			self logString: #'MbD: \Step size is prevented from going below the user specified minimum.'.
+			self logString: #'MbD: \Check to see if the system is in a locked position.'.
+			self logString: #'MbD: \Check to see if a curve-curve is about to have multiple contact points.'.
+			self logString: #'MbD: \If they are not, lower the permitted minimum step size.'.
+			SimulationStoppingError signal ] ]
+		on: TooManyTriesError
+		do: [ :ex |
+			self logString: #'MbD: \Check to see if the error tolerance is too demanding.'.
+			SimulationStoppingError signal ]
 ]
 
 { #category : 'run' }
@@ -179,35 +169,39 @@ MbDQuasiIntegrator >> runInitialConditionTypeSolution [
 ]
 
 { #category : 'run' }
-MbDQuasiIntegrator >> suggestSmallerOrAcceptFirstStepSize: hnew [ 
+MbDQuasiIntegrator >> suggestSmallerOrAcceptFirstStepSize: hnew [
+
 	| hnew2 |
 	hnew2 := hnew.
-	system partsJointsMotionsForcesTorquesDo: [:item | hnew2 := item suggestSmallerOrAcceptDynFirstStepSize: hnew2].
-	hnew2 > hmax
-		ifTrue: 
-			[hnew2 := hmax.
-			self logString: #'StM: \Step size is at user specified maximum.'].
-	hnew2 < hmin
-		ifTrue: 
-			[self logString: #'StM: \Step size %1 < %2 user specified minimum.' withArguments: (Array with: hnew2 asFloat printString with: hmin asFloat printString).
-			TooSmallStepSizeError raiseSignal].
-	^hnew2
+	system allDo: [ :item |
+		hnew2 := item suggestSmallerOrAcceptDynFirstStepSize: hnew2 ].
+	hnew2 > hmax ifTrue: [
+		hnew2 := hmax.
+		self logString: #'StM: \Step size is at user specified maximum.' ].
+	hnew2 < hmin ifTrue: [
+		self
+			logString: #'StM: \Step size %1 < %2 user specified minimum.'
+			withArguments: (Array with: hnew2 asFloat printString with: hmin asFloat printString).
+		TooSmallStepSizeError signal ].
+	^ hnew2
 ]
 
 { #category : 'run' }
-MbDQuasiIntegrator >> suggestSmallerOrAcceptStepSize: hnew [ 
+MbDQuasiIntegrator >> suggestSmallerOrAcceptStepSize: hnew [
+
 	| hnew2 |
 	hnew2 := hnew.
-	system partsJointsMotionsForcesTorquesDo: [:item | hnew2 := item suggestSmallerOrAcceptDynStepSize: hnew2].
-	hnew2 > hmax
-		ifTrue: 
-			[hnew2 := hmax.
-			self logString: #'StM: \Step size is at user specified maximum.'].
-	hnew2 < hmin
-		ifTrue: 
-			[self logString: #'StM: \Step size %1 < %2 user specified minimum.' withArguments: (Array with: hnew2 asFloat printString with: hmin asFloat printString).
-			TooSmallStepSizeError raiseSignal].
-	^hnew2
+	system allDo: [ :item |
+		hnew2 := item suggestSmallerOrAcceptDynStepSize: hnew2 ].
+	hnew2 > hmax ifTrue: [
+		hnew2 := hmax.
+		self logString: #'StM: \Step size is at user specified maximum.' ].
+	hnew2 < hmin ifTrue: [
+		self
+			logString: #'StM: \Step size %1 < %2 user specified minimum.'
+			withArguments: (Array with: hnew2 asFloat printString with: hmin asFloat printString).
+		TooSmallStepSizeError signal ].
+	^ hnew2
 ]
 
 { #category : 'run' }

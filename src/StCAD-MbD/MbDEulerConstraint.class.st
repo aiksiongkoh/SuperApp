@@ -21,6 +21,18 @@ MbDEulerConstraint class >> visualWorksMetadata [
 ]
 
 { #category : 'calc' }
+MbDEulerConstraint >> calcAll [
+
+	self assert: false
+]
+
+{ #category : 'calc' }
+MbDEulerConstraint >> calcG [
+
+	self assert: false
+]
+
+{ #category : 'calc' }
 MbDEulerConstraint >> calcPostDynCorrectorIteration [
 	| qE |
 	qE := owner qE.
@@ -127,4 +139,10 @@ MbDEulerConstraint >> pGpE [
 { #category : 'initialize-release' }
 MbDEulerConstraint >> useEquationNumbers [
 	iqE := owner iqE
+]
+
+{ #category : 'calc' }
+MbDEulerConstraint >> useVelICEqnNo [
+
+	self assert: false
 ]

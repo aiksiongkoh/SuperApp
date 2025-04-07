@@ -53,6 +53,17 @@ StMFullVector class >> with: firstObject with: secondObject with1: thirdObject [
 	^newCollection
 ]
 
+{ #category : 'converting' }
+StMFullVector >> asFullMatrix [
+
+	| nrow answer |
+	nrow := self size.
+	[ (self at: 1) isSequenceable ] assert.
+	answer := StMFullMatrix new: nrow.
+	1 to: nrow do: [ :i | answer at: i put: (self at: i) asFullRow ].
+	^ answer
+]
+
 { #category : 'ops on self' }
 StMFullVector >> at: i1 minusFullVector: aFullVector [ 
 	| iOffset i |
@@ -246,6 +257,12 @@ StMFullVector >> equalSelfTimes: alpha plusFullVector: aFullVector times: beta [
 	1 to: self size do: [:i | self at: i put: (self at: i)
 				* alpha + ((aFullVector at: i)
 					* beta)]
+]
+
+{ #category : 'as yet unclassified' }
+StMFullVector >> extendTo: qE2 factor: factor [
+
+	^ self times: 1.0 - factor plusFullColumn: qE2 times: factor
 ]
 
 { #category : 'ops on self' }

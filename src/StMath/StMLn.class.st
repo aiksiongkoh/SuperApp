@@ -28,6 +28,12 @@ StMLn >> differentiateWRTx [
 ]
 
 { #category : 'printing' }
+StMLn >> funcName [
+
+	^ 'ln'
+]
+
+{ #category : 'printing' }
 StMLn >> printFuntionNameOn: aStream [
 	aStream nextPutAll: 'ln'
 ]

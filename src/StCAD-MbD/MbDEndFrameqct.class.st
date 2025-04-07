@@ -1,3 +1,6 @@
+"
+phiThePsiBlks uses column of angles
+"
 Class {
 	#name : 'MbDEndFrameqct',
 	#superclass : 'MbDEndFrameqc',

@@ -136,6 +136,15 @@ StMPolynomialX >> expandUntil: set [
 		ifFalse: [self asExpression expandUntil: set]
 ]
 
+{ #category : 'comparing' }
+StMPolynomialX >> hash [
+
+	| hash |
+	hash := super hash.
+	hash := hash bitXor: coeffs hash.
+	^ hash
+]
+
 { #category : 'testing' }
 StMPolynomialX >> isZero [
 	coeffs do: [:coeff | coeff isZero ifFalse: [^false]].
@@ -186,13 +195,16 @@ StMPolynomialX >> printOn1: aStream [
 ]
 
 { #category : 'printing' }
-StMPolynomialX >> printOn: aStream [ 
-	aStream print: self class.
-	aStream nextPutAll: '('.
-	aStream print: x.
-	aStream space.
-	coeffs isNil ifFalse: [coeffs do: [:coeff | coeff printOn: aStream]
-			separatedBy: [aStream space]].
+StMPolynomialX >> printOn: aStream [
+
+	aStream
+		print: self class;
+		nextPut: $(;
+		print: x.
+	coeffs do: [ :coeff |
+		aStream
+			nextPutAll: ', ';
+			print: coeff ].
 	aStream nextPut: $)
 ]
 

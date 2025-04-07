@@ -59,13 +59,13 @@ MbDCollisionDerivativeICNewtonRaphson2 >> assignEquationNumbers [
 { #category : 'solving' }
 MbDCollisionDerivativeICNewtonRaphson2 >> fillPyPx [
 	pypx zeroSelf.
-	system partsJointsMotionsDo: [:item | item fillCollisionDerivativeICJacob: pypx]
+	system allDo: [:item | item fillCollisionDerivativeICJacob: pypx]
 ]
 
 { #category : 'solving' }
 MbDCollisionDerivativeICNewtonRaphson2 >> fillY [
 	y zeroSelf.
-	system partsJointsMotionsDo: [:item | item fillCollisionDerivativeICError: y]
+	system allDo: [:item | item fillCollisionDerivativeICError: y]
 ]
 
 { #category : 'initialize-release' }
@@ -90,16 +90,16 @@ MbDCollisionDerivativeICNewtonRaphson2 >> logSingularMatrixMessage [
 
 { #category : 'solving' }
 MbDCollisionDerivativeICNewtonRaphson2 >> passRootToSystem [
-	system partsJointsMotionsDo: [:item | item setqsudotPlamDeriv: x]
+	system allDo: [:item | item setqsudotPlamDeriv: x]
 ]
 
 { #category : 'solving' }
 MbDCollisionDerivativeICNewtonRaphson2 >> postRun [
-	system partsJointsMotionsDo: [:item | item postCollisionDerivativeIC]
+	system allDo: [:item | item postCollisionDerivativeIC]
 ]
 
 { #category : 'solving' }
 MbDCollisionDerivativeICNewtonRaphson2 >> preRun [
 	system logString: #'MbD: \Solving for collision derivative initial conditions.'.
-	system partsJointsMotionsDo: [:item | item preCollisionDerivativeIC]
+	system allDo: [:item | item preCollisionDerivativeIC]
 ]

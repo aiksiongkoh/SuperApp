@@ -27,6 +27,12 @@ StMExp >> differentiateWRTx [
 ]
 
 { #category : 'printing' }
+StMExp >> funcName [
+
+	^ 'exp'
+]
+
+{ #category : 'printing' }
 StMExp >> printFuntionNameOn: aStream [
 	aStream nextPutAll: 'exp'
 ]

@@ -88,6 +88,16 @@ StMFunctionXY >> expandUntil: set [
 				ifFalse: [copy]]
 ]
 
+{ #category : 'comparing' }
+StMFunctionXY >> hash [
+
+	| hash |
+	hash := self class hash.
+	hash := hash bitXor: x hash.
+	hash := hash bitXor: y hash.
+	^ hash
+]
+
 { #category : 'evaluating' }
 StMFunctionXY >> partialDifferentiateWRT: variable [ 
 	| dfdx dxdvar dfdy dydvar |
@@ -107,13 +117,15 @@ StMFunctionXY >> postCopy [
 ]
 
 { #category : 'printing' }
-StMFunctionXY >> printOn: aStream [ 
-	aStream print: self class.
-	aStream nextPut: $(.
-	aStream print: x.
-	aStream space.
-	aStream print: y.
-	aStream nextPut: $)
+StMFunctionXY >> printOn: aStream [
+
+	aStream
+		print: self class;
+		nextPut: $(;
+		print: x;
+		nextPutAll: ', ';
+		print: y;
+		nextPut: $)
 ]
 
 { #category : 'evaluating' }
@@ -142,6 +154,12 @@ StMFunctionXY >> substitute: var1 with: var2 [
 ]
 
 { #category : 'accessing' }
+StMFunctionXY >> x [
+
+	^ x
+]
+
+{ #category : 'accessing' }
 StMFunctionXY >> x: arg [ 
 	x := self conditionArgument: arg
 ]
@@ -150,6 +168,12 @@ StMFunctionXY >> x: arg [
 StMFunctionXY >> x: argx y: argy [ 
 	x := self conditionArgument: argx.
 	y := self conditionArgument: argy
+]
+
+{ #category : 'accessing' }
+StMFunctionXY >> y [
+
+	^ y
 ]
 
 { #category : 'accessing' }

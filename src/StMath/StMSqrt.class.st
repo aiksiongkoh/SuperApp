@@ -29,6 +29,12 @@ StMSqrt >> differentiateWRTx [
 ]
 
 { #category : 'printing' }
+StMSqrt >> funcName [
+
+	^ 'sqrt'
+]
+
+{ #category : 'printing' }
 StMSqrt >> printFuntionNameOn: aStream [
 	aStream nextPutAll: 'sqrt'
 ]

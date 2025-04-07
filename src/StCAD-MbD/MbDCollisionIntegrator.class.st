@@ -68,52 +68,56 @@ MbDCollisionIntegrator >> checkForDiscontinuity [
 	t := integrator t.
 	tprevious := integrator tprevious.
 	tstartNew := (direction * t) nextLargerNumber / direction.
-	system partsJointsMotionsForcesTorquesDo: [:item | tstartNew := item checkForCollisionDiscontinuityBetween: tprevious and: tstartNew].
+	system allDo: [:item | tstartNew := item checkForCollisionDiscontinuityBetween: tprevious and: tstartNew].
 	direction * tstartNew > (direction * t)
 		ifTrue: ["No discontinuity in step"
 			^self]
 		ifFalse: 
 			[self interpolateAt: tstartNew.
 			discontinuityTypes := OrderedCollection new.
-			system partsJointsMotionsForcesTorquesDo: [:item | item discontinuityAt: tstartNew addTypeTo: discontinuityTypes].
+			system allDo: [:item | item discontinuityAt: tstartNew addTypeTo: discontinuityTypes].
 			DiscontinuityError signalWith: discontinuityTypes]
 ]
 
 { #category : 'run' }
 MbDCollisionIntegrator >> fillF: col [ 
-	system partsJointsMotionsForcesTorquesDo: [:item | item fillCollisionError: col]
+	system allDo: [:item | item fillCollisionError: col]
 ]
 
 { #category : 'run' }
 MbDCollisionIntegrator >> fillY: aColumn [ 
 	"Plam is impulse like."
 
-	system partsJointsMotionsDo: [:item | item fillqsudotPlam: aColumn]
+	system allDo: [:item | item fillqsudotPlam: aColumn]
 ]
 
 { #category : 'run' }
 MbDCollisionIntegrator >> fillYdot: aColumn [ 
-	system partsJointsMotionsDo: [:item | item fillqsudotPlamDeriv: aColumn]
+	system allDo: [:item | item fillqsudotPlamDeriv: aColumn]
 ]
 
 { #category : 'run' }
-MbDCollisionIntegrator >> fillpFpy: matrix [ 
-	"system partsJointsMotionsForcesTorquesDo: [:item | item fillCollisionpFpy: matrix]"
+MbDCollisionIntegrator >> fillpFpy: matrix [
+	"system partsJointsMotionsForTorsDo: [:item | item fillCollisionpFpy: matrix]"
+
 	"Collision is pure ODE."
+
 	"Do nothing."
+
+	
 ]
 
 { #category : 'run' }
 MbDCollisionIntegrator >> fillpFpydot: matrix [ 
-	system partsJointsMotionsForcesTorquesDo: [:item | item fillCollisionpFpydot: matrix]
+	system allDo: [:item | item fillCollisionpFpydot: matrix]
 ]
 
 { #category : 'run' }
 MbDCollisionIntegrator >> incrementTime: aDouble [ 
 	"For collision, time is actually normal impulse."
 
-	system partsJointsMotionsForcesTorquesDo: [:item | item storeCollisionState].
-	system partsJointsMotionsForcesTorquesDo: [:item | item normalImpulse: aDouble]
+	system allDo: [:item | item storeCollisionState].
+	system allDo: [:item | item normalImpulse: aDouble]
 ]
 
 { #category : 'initialize-release' }
@@ -151,12 +155,12 @@ MbDCollisionIntegrator >> interpolateAt: impulse [
 	yout := integrator yDeriv: 0 at: impulse.
 	ydotout := integrator yDeriv: 1 at: impulse.
 	system
-		partsJointsMotionsDo: 
+		allDo: 
 			[:item | 
 			item normalImpulse: impulse.
 			item setqsudotPlam: yout.
 			item setqsudotPlamDeriv: ydotout].
-	system partsJointsMotionsForcesTorquesDo: [:item | item simUpdateAll]
+	system allDo: [:item | item simUpdateAll]
 ]
 
 { #category : 'accessing' }
@@ -166,17 +170,17 @@ MbDCollisionIntegrator >> iterMax [
 
 { #category : 'run' }
 MbDCollisionIntegrator >> postDAECorrector [
-	system partsJointsMotionsForcesTorquesDo: [:item | item postCollisionCorrector]
+	system allDo: [:item | item postCollisionCorrector]
 ]
 
 { #category : 'run' }
 MbDCollisionIntegrator >> postDAECorrectorIteration [
-	system partsJointsMotionsForcesTorquesDo: [:item | item postCollisionCorrectorIteration]
+	system allDo: [:item | item postCollisionCorrectorIteration]
 ]
 
 { #category : 'run' }
 MbDCollisionIntegrator >> postDAEFirstStep [
-	system partsJointsMotionsForcesTorquesDo: [:item | item postCollisionStep].
+	system allDo: [:item | item postCollisionStep].
 	integrator istep > 0 ifTrue: ["Noise make checking at the start unreliable."
 		self checkForDiscontinuity]
 ]
@@ -188,34 +192,34 @@ MbDCollisionIntegrator >> postDAEOutput [
 
 { #category : 'run' }
 MbDCollisionIntegrator >> postDAEPredictor [
-	system partsJointsMotionsForcesTorquesDo: [:item | item postCollisionPredictor]
+	system allDo: [:item | item postCollisionPredictor]
 ]
 
 { #category : 'run' }
 MbDCollisionIntegrator >> postDAEStep [
-	system partsJointsMotionsForcesTorquesDo: [:item | item postCollisionStep].
+	system allDo: [:item | item postCollisionStep].
 	integrator istep > 0 ifTrue: ["Noise make checking at the start unreliable."
 		self checkForDiscontinuity]
 ]
 
 { #category : 'run' }
 MbDCollisionIntegrator >> postRun [
-	system partsJointsMotionsForcesTorquesDo: [:item | item postCollision]
+	system allDo: [:item | item postCollision]
 ]
 
 { #category : 'run' }
 MbDCollisionIntegrator >> preDAECorrector [
-	system partsJointsMotionsForcesTorquesDo: [:item | item preCollisionCorrector]
+	system allDo: [:item | item preCollisionCorrector]
 ]
 
 { #category : 'run' }
 MbDCollisionIntegrator >> preDAECorrectorIteration [
-	system partsJointsMotionsForcesTorquesDo: [:item | item preCollisionCorrectorIteration]
+	system allDo: [:item | item preCollisionCorrectorIteration]
 ]
 
 { #category : 'run' }
 MbDCollisionIntegrator >> preDAEFirstStep [
-	system partsJointsMotionsForcesTorquesDo: [:item | item preCollisionStep]
+	system allDo: [:item | item preCollisionStep]
 ]
 
 { #category : 'run' }
@@ -225,18 +229,18 @@ MbDCollisionIntegrator >> preDAEOutput [
 
 { #category : 'run' }
 MbDCollisionIntegrator >> preDAEPredictor [
-	system partsJointsMotionsForcesTorquesDo: [:item | item preCollisionPredictor]
+	system allDo: [:item | item preCollisionPredictor]
 ]
 
 { #category : 'run' }
 MbDCollisionIntegrator >> preDAEStep [
-	system partsJointsMotionsForcesTorquesDo: [:item | item preCollisionStep]
+	system allDo: [:item | item preCollisionStep]
 ]
 
 { #category : 'run' }
 MbDCollisionIntegrator >> preRun [
 	system logString: #'MbD: \Starting collision analysis.'.
-	system partsJointsMotionsForcesTorquesDo: [:item | item preCollision]
+	system allDo: [:item | item preCollision]
 ]
 
 { #category : 'run' }
@@ -249,7 +253,7 @@ MbDCollisionIntegrator >> reportStats [
 MbDCollisionIntegrator >> suggestSmallerOrAcceptFirstStepSize: hnew [ 
 	| hnew2 |
 	hnew2 := hnew.
-	system partsJointsMotionsForcesTorquesDo: [:item | hnew2 := item suggestSmallerOrAcceptCollisionFirstStepSize: hnew2].
+	system allDo: [:item | hnew2 := item suggestSmallerOrAcceptCollisionFirstStepSize: hnew2].
 	^hnew2 min: 1.0
 ]
 
@@ -257,13 +261,13 @@ MbDCollisionIntegrator >> suggestSmallerOrAcceptFirstStepSize: hnew [
 MbDCollisionIntegrator >> suggestSmallerOrAcceptStepSize: hnew [ 
 	| hnew2 |
 	hnew2 := hnew.
-	system partsJointsMotionsForcesTorquesDo: [:item | hnew2 := item suggestSmallerOrAcceptCollisionStepSize: hnew2].
+	system allDo: [:item | hnew2 := item suggestSmallerOrAcceptCollisionStepSize: hnew2].
 	^hnew2
 ]
 
 { #category : 'run' }
 MbDCollisionIntegrator >> updateForDAECorrector [
-	system partsJointsMotionsForcesTorquesDo: [:item | item postCollisionCorrectorIteration]
+	system allDo: [:item | item postCollisionCorrectorIteration]
 ]
 
 { #category : 'run' }
@@ -278,10 +282,10 @@ MbDCollisionIntegrator >> useTrialStepStats: stats [
 
 { #category : 'accessing' }
 MbDCollisionIntegrator >> y: aColumn [ 
-	system partsJointsMotionsDo: [:item | item setqsudotPlam: aColumn]
+	system allDo: [:item | item setqsudotPlam: aColumn]
 ]
 
 { #category : 'accessing' }
 MbDCollisionIntegrator >> ydot: aColumn [ 
-	system partsJointsMotionsDo: [:item | item setqsudotPlamDeriv: aColumn]
+	system allDo: [:item | item setqsudotPlamDeriv: aColumn]
 ]

@@ -63,29 +63,25 @@ MbDVelICSolver2 >> run [
 
 { #category : 'run' }
 MbDVelICSolver2 >> runBasic [
+
 	| qsudotOld qsudotWeights qsudotlam |
-	system partsJointsMotionsDo: [:item | item preVelIC].
+	self allDo: [ :item | item preVelIC ].
 	self assignEquationNumbers.
-	system partsJointsMotionsDo: [:item | item useEquationNumbers].
+	self allDo: [ :item | item useEquationNumbers ].
 	qsudotOld := StMFullColumn new: nqsu.
 	qsudotWeights := StMDiagonalMatrix new: nqsu.
 	errorVector := StMFullColumn new: n.
 	jacobian := StMSparseMatrix new: n by: n.
-	system partsJointsMotionsDo: [:item | item fillqsudot: qsudotOld].
-	system 
-		partsJointsMotionsDo: [:item | item fillqsudotWeights: qsudotWeights].
+	self allDo: [ :item | item fillqsudot: qsudotOld ].
+	self allDo: [ :item | item fillqsudotWeights: qsudotWeights ].
 	errorVector zeroSelf.
-	errorVector at: 1
-		plusFullColumn: (qsudotWeights timesFullColumn: qsudotOld).
-	system partsJointsMotionsDo: [:item | item fillVelICError: errorVector].
+	errorVector at: 1 plusFullColumn: (qsudotWeights timesFullColumn: qsudotOld).
+	self allDo: [ :item | item fillVelICError: errorVector ].
 	jacobian zeroSelf.
-	jacobian 
-		at: 1
-		and: 1
-		plusDiagonalMatrix: qsudotWeights.
-	system partsJointsMotionsDo: [:item | item fillVelICJacob: jacobian].
+	jacobian at: 1 and: 1 plusDiagonalMatrix: qsudotWeights.
+	self allDo: [ :item | item fillVelICJacob: jacobian ].
 	matrixSolver := self matrixSolverClass new.
 	qsudotlam := self solveEquations.
-	system partsJointsMotionsDo: [:item | item setqsudotlam: qsudotlam].
-	system partsJointsMotionsDo: [:item | item postVelIC]
+	self allDo: [ :item | item setqsudotlam: qsudotlam ].
+	self allDo: [ :item | item postVelIC ]
 ]

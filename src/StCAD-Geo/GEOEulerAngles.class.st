@@ -1,13 +1,9 @@
 Class {
 	#name : 'GEOEulerAngles',
-	#superclass : 'StMEulerArray',
+	#superclass : 'StMEulerAngles',
 	#type : 'variable',
-	#instVars : [
-		'aA'
-	],
-	#category : 'StCAD-Geo-GEO',
-	#package : 'StCAD-Geo',
-	#tag : 'GEO'
+	#category : 'StCAD-Geo',
+	#package : 'StCAD-Geo'
 }
 
 { #category : 'conditioning' }

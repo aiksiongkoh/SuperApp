@@ -11,6 +11,12 @@ Class {
 }
 
 { #category : 'accessing' }
+ASMTPrincipalMassMarker >> aAaF [
+
+	^ sup aAaf
+]
+
+{ #category : 'accessing' }
 ASMTPrincipalMassMarker >> aJpp [
 
 	^ aJpp
@@ -44,6 +50,18 @@ ASMTPrincipalMassMarker >> mass [
 ASMTPrincipalMassMarker >> mass: anObject [
 
 	mass := anObject
+]
+
+{ #category : 'accessing' }
+ASMTPrincipalMassMarker >> omeaFa [
+
+	^ sup omeafa
+]
+
+{ #category : 'accessing' }
+ASMTPrincipalMassMarker >> omeafa [
+
+	^ self omeaFa
 ]
 
 { #category : 'parsing' }
@@ -82,7 +100,31 @@ ASMTPrincipalMassMarker >> parseMomentOfInertias: lines [
 ]
 
 { #category : 'accessing' }
+ASMTPrincipalMassMarker >> qEaf [
+
+	^ self aAaf symEulerParameters
+]
+
+{ #category : 'accessing' }
 ASMTPrincipalMassMarker >> qEp [
 
-	^ self aAOf eulerParameters
+	^ self aAOf symEulerParameters
+]
+
+{ #category : 'accessing' }
+ASMTPrincipalMassMarker >> raFa [
+
+	^ sup rafa
+]
+
+{ #category : 'as yet unclassified' }
+ASMTPrincipalMassMarker >> rafa [
+
+	^ self raFa + (self aAaF timesFullColumn: rFfF)
+]
+
+{ #category : 'accessing' }
+ASMTPrincipalMassMarker >> vaFa [
+
+	^ sup vafa
 ]

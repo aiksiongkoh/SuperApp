@@ -130,50 +130,45 @@ LDUSpMat >> forwardSubstituteIntoL [
 ]
 
 { #category : 'solution' }
-LDUSpMat >> preSolve: aMatrix saveOriginal: saveOriginal [ 
+LDUSpMat >> preSolve: aMatrix saveOriginal: saveOriginal [
 	"A conditioned copy of aMatrix is solved."
 
 	| rowi maxRowElement |
-	(m == aMatrix nrow and: [n == aMatrix ncol]) 
-		ifFalse: 
-			[m := aMatrix nrow.
-			n := aMatrix ncol.
-			matrixA := StMSparseMatrix new: m.
-			matrixL := StMSparseMatrix new: m by: n.
-			matrixD := StMDiagonalMatrix new: m.
-			matrixU := StMSparseMatrix new: m by: n.
-			rowScalings := StMFullColumn new: m.
-			pivotValues := StMFullColumn new: m.
-			rowOrder := StMArray new: m.
-			privateIndicesOfNonZerosInPivotRow := OrderedCollection new.
-			rowPositionsOfNonZerosInPivotColumn := OrderedCollection new].
-	1 to: m
-		do: 
-			[:i | 
-			rowi := (aMatrix at: i) asSparseRow.
-			maxRowElement := rowi maxElement.
-			maxRowElement > 0 ifFalse: [SingularMatrixError raiseSignal].
-			rowScalings at: i put: 1.0 / maxRowElement.
-			matrixA at: i
-				put: (rowi conditionedWithTol: singularPivotTolerance * maxRowElement).
-			rowOrder at: i put: i]
+	(m == aMatrix nrow and: [ n == aMatrix ncol ]) ifFalse: [
+		m := aMatrix nrow.
+		n := aMatrix ncol.
+		matrixA := StMSparseMatrix new: m.
+		matrixL := StMSparseMatrix new: m by: n.
+		matrixD := StMDiagonalMatrix new: m.
+		matrixU := StMSparseMatrix new: m by: n.
+		rowScalings := StMFullColumn new: m.
+		pivotValues := StMFullColumn new: m.
+		rowOrder := StMArray new: m.
+		privateIndicesOfNonZerosInPivotRow := OrderedCollection new.
+		rowPositionsOfNonZerosInPivotColumn := OrderedCollection new ].
+	1 to: m do: [ :i |
+		rowi := (aMatrix at: i) asSparseRow.
+		maxRowElement := rowi maxElement.
+		maxRowElement > 0 ifFalse: [ SingularMatrixError signal ].
+		rowScalings at: i put: 1.0 / maxRowElement.
+		matrixA at: i put: (rowi conditionedWithTol: singularPivotTolerance * maxRowElement).
+		rowOrder at: i put: i ]
 ]
 
 { #category : 'forward elimination' }
-LDUSpMat >> privateIndicesOfNonZerosInPivotRow: pivotRow withoutKey: discardKey [ 
+LDUSpMat >> privateIndicesOfNonZerosInPivotRow: pivotRow withoutKey: discardKey [
 	"pivotRow is aStMSparseRow."
 
 	| count index key |
 	count := 0.
 	index := 1.
 	markowitzPivotRowCount := pivotRow tally - 1.
-	privateIndicesOfNonZerosInPivotRow setIndices.
-	[count < markowitzPivotRowCount]
-		whileTrue: 
-			[key := pivotRow basicAt: index.
-			key == nil ifFalse: [key == discardKey
-					ifFalse: 
-						[count := count + 1.
-						privateIndicesOfNonZerosInPivotRow add: index]].
-			index := index + 1]
+	privateIndicesOfNonZerosInPivotRow reset.
+	[ count < markowitzPivotRowCount ] whileTrue: [
+		key := pivotRow basicAt: index.
+		key == nil ifFalse: [
+			key == discardKey ifFalse: [
+				count := count + 1.
+				privateIndicesOfNonZerosInPivotRow add: index ] ].
+		index := index + 1 ]
 ]

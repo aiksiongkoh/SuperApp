@@ -214,11 +214,11 @@ NewtonRaphson >> fillY [
 
 { #category : 'solving' }
 NewtonRaphson >> incrementIterNo [
+
 	iterNo := iterNo + 1.
-	iterNo > iterMax
-		ifTrue: 
-			[self reportStats.
-			MaximumIterationError raiseSignal]
+	iterNo > iterMax ifTrue: [
+		self reportStats.
+		MaximumIterationError signal ]
 ]
 
 { #category : 'initialize-release' }
@@ -239,8 +239,8 @@ NewtonRaphson >> initializeLocally [
 	iterNo := 0.
 	nDivergence := 0.
 	nBackTracking := 0.
-	dxNorms setIndices.
-	yNorms setIndices.
+	dxNorms removeAll.
+	yNorms removeAll.
 	yNormOld := MachineAccuracy OfLargestDouble
 ]
 

@@ -16,10 +16,11 @@ StMSymbolic class >> visualWorksMetadata [
 ]
 
 { #category : 'ops' }
-StMSymbolic >> * arg [ 
+StMSymbolic >> * arg [
+
 	| func |
 	func := self conditionArgument: arg.
-	^StMProduct with: self copy times: func copy
+	^ (StMProduct with: self copy times: func copy) simplified
 ]
 
 { #category : 'ops' }
@@ -52,7 +53,10 @@ StMSymbolic >> = anObject [
 
 { #category : 'ops' }
 StMSymbolic >> abs [
-	^StMAbs with: self copy
+
+	^ self isZero
+		  ifTrue: [ StMConstant with: 0.0 ]
+		  ifFalse: [ StMAbs with: self copy ]
 ]
 
 { #category : 'message handling' }
@@ -65,7 +69,10 @@ StMSymbolic >> adaptToNumber: rcvr andSend: selector [
 
 { #category : 'ops' }
 StMSymbolic >> arcTan [
-	^StMArcTan with: self copy
+
+	^ self isZero
+		  ifTrue: [ StMConstant with: 0.0 ]
+		  ifFalse: [ StMArcTan with: self copy ]
 ]
 
 { #category : 'message handling' }
@@ -90,6 +97,12 @@ StMSymbolic >> asFunctionOf: xarg and: yarg [
 		with: xarg
 		and: yarg
 		expression: self
+]
+
+{ #category : 'changing' }
+StMSymbolic >> asSymbolic [
+
+	^ self
 ]
 
 { #category : 'StCAD-UI' }
@@ -118,7 +131,10 @@ StMSymbolic >> conditionArgument: arg [
 
 { #category : 'ops' }
 StMSymbolic >> cos [
-	^StMCos with: self copy
+
+	^ self isZero
+		  ifTrue: [ StMConstant with: 1.0 ]
+		  ifFalse: [ StMCos with: self copy ]
 ]
 
 { #category : 'evaluating' }
@@ -133,10 +149,43 @@ StMSymbolic >> doesNotUnderstand: aMessage [
 
 { #category : 'ops' }
 StMSymbolic >> exp [
-	^StMExp with: self copy
+
+	^ self isZero
+		  ifTrue: [ StMConstant with: 1.0 ]
+		  ifFalse: [ StMExp with: self copy ]
 ]
 
-{ #category : 'initialize-release' }
+{ #category : 'evaluating' }
+StMSymbolic >> expandUntil: set [
+
+	^ self
+]
+
+{ #category : 'testing' }
+StMSymbolic >> hasCosSq [
+
+	^ false
+]
+
+{ #category : 'testing' }
+StMSymbolic >> hasSinSq [
+
+	^ false
+]
+
+{ #category : 'comparing' }
+StMSymbolic >> hash [
+
+	self halt: 'Check this.'
+]
+
+{ #category : 'accessing' }
+StMSymbolic >> independentVar [
+
+	^ nil
+]
+
+{ #category : 'initialization' }
 StMSymbolic >> initialize [
 	"Do nothing"
 ]
@@ -147,8 +196,32 @@ StMSymbolic >> isConstant [
 ]
 
 { #category : 'testing' }
+StMSymbolic >> isCos [
+
+	^ false
+]
+
+{ #category : 'testing' }
+StMSymbolic >> isIndependentVariable [
+
+	^ false
+]
+
+{ #category : 'testing' }
+StMSymbolic >> isNegative [
+
+	^ false
+]
+
+{ #category : 'testing' }
 StMSymbolic >> isOne [
 	^false
+]
+
+{ #category : 'testing' }
+StMSymbolic >> isPower [
+
+	^ false
 ]
 
 { #category : 'testing' }
@@ -169,6 +242,12 @@ StMSymbolic >> isSequenceable [
 ]
 
 { #category : 'testing' }
+StMSymbolic >> isSin [
+
+	^ false
+]
+
+{ #category : 'testing' }
 StMSymbolic >> isSum [
 	^false
 ]
@@ -176,6 +255,18 @@ StMSymbolic >> isSum [
 { #category : 'testing' }
 StMSymbolic >> isSymbolic [
 	^true
+]
+
+{ #category : 'testing' }
+StMSymbolic >> isTrig [
+
+	^ false
+]
+
+{ #category : 'testing' }
+StMSymbolic >> isUnity [
+
+	^ self isConstant and: [ self value = 1.0 ]
 ]
 
 { #category : 'testing' }
@@ -190,12 +281,18 @@ StMSymbolic >> isZero [
 
 { #category : 'ops' }
 StMSymbolic >> lg [
-	^StMLg with: self copy
+
+	^ self isOne
+		  ifTrue: [ StMConstant with: 0.0 ]
+		  ifFalse: [ StMLg with: self copy ]
 ]
 
 { #category : 'ops' }
 StMSymbolic >> ln [
-	^StMLn with: self copy
+
+	^ self isOne
+		  ifTrue: [ StMConstant with: 0.0 ]
+		  ifFalse: [ StMLn with: self copy ]
 ]
 
 { #category : 'ops' }
@@ -207,7 +304,10 @@ StMSymbolic >> minus: arg [
 
 { #category : 'ops' }
 StMSymbolic >> negated [
-	^StMNegative with: self copy
+
+	^ self isZero
+		  ifTrue: [ StMConstant with: 0.0 ]
+		  ifFalse: [ StMNegative with: self copy ]
 ]
 
 { #category : 'testing' }
@@ -230,6 +330,8 @@ StMSymbolic >> plus: arg [
 
 { #category : 'copying' }
 StMSymbolic >> postCopy [
+	"Should always mean instance variables are copied too."
+
 	self subclassResponsibility
 ]
 
@@ -239,10 +341,11 @@ StMSymbolic >> printOn: aStream [
 ]
 
 { #category : 'ops' }
-StMSymbolic >> raisedTo: arg [ 
+StMSymbolic >> raisedTo: arg [
+
 	| exponent |
 	exponent := self conditionArgument: arg.
-	^StMPower with: self copy raisedTo: exponent copy
+	^ (StMPower with: self copy raisedTo: exponent copy) simplified
 ]
 
 { #category : 'ops' }
@@ -258,14 +361,122 @@ StMSymbolic >> simplified [
 	^answer simplifyUntil: Set new
 ]
 
+{ #category : 'evaluating' }
+StMSymbolic >> simplifyAll [
+	"
+	Maxima
+	Constant folding: Combining constants (e.g., 2 + 3 becomes 5).
+	Basic arithmetic operations: Simplifying expressions like x + 0 to x or x * 1 to x.
+	Polynomial simplifications: Combining like terms, expanding products, and factoring.
+	Rational expressions: Simplifying fractions by finding the greatest common divisor (GCD) of the numerator and denominator.
+	Trigonometric Simplifications:
+	Exponential and Logarithmic Simplifications:
+	Special Functions:
+	Handling symbolic expressions and applying rules to simplify them.
+	SymPy
+	Expansion and Factorization:
+	Rational Function Simplification:
+	Power Simplification:
+	Trigonometric Simplification:
+	Logarithmic Simplification:
+	Radical Simplification:
+	Bessel Function Simplification:
+	Custom Simplification:
+	Reduce
+	Expansion
+	Factoring
+	Combining Like Terms
+	Applying Algebraic Identities
+	Rational Function Simplification
+	"
+
+	^ self simplifyZero simplifyOne simplifyNegative simplifyConstant simplifyReciprocal simplifyPower simplifyLogExp
+		  simplifyTrig simplifyProduct simplifySum
+]
+
+{ #category : 'evaluating' }
+StMSymbolic >> simplifyConstant [
+
+	
+]
+
+{ #category : 'evaluating' }
+StMSymbolic >> simplifyLogExp [
+	"Do nothing."
+
+	
+]
+
+{ #category : 'evaluating' }
+StMSymbolic >> simplifyNegative [
+	"Do nothing."
+
+	
+]
+
+{ #category : 'evaluating' }
+StMSymbolic >> simplifyOne [
+	"Do nothing."
+
+	
+]
+
+{ #category : 'evaluating' }
+StMSymbolic >> simplifyPower [
+	"Do nothing."
+
+	
+]
+
+{ #category : 'evaluating' }
+StMSymbolic >> simplifyProduct [
+	"Do nothing."
+
+	
+]
+
+{ #category : 'evaluating' }
+StMSymbolic >> simplifyReciprocal [
+	"Do nothing."
+
+	
+]
+
+{ #category : 'evaluating' }
+StMSymbolic >> simplifySum [
+	"Do nothing."
+
+	
+]
+
+{ #category : 'evaluating' }
+StMSymbolic >> simplifyTrig [
+	"Do nothing."
+
+	
+]
+
+{ #category : 'evaluating' }
+StMSymbolic >> simplifyZero [
+	"Do nothing."
+
+	
+]
+
 { #category : 'ops' }
 StMSymbolic >> sin [
-	^StMSin with: self copy
+
+	^ self isZero
+		  ifTrue: [ StMConstant with: 0.0 ]
+		  ifFalse: [ StMSin with: self copy ]
 ]
 
 { #category : 'ops' }
 StMSymbolic >> sqrt [
-	^StMSqrt with: self copy
+
+	^ self isZero
+		  ifTrue: [ StMConstant with: 0.0 ]
+		  ifFalse: [ StMSqrt with: self copy ]
 ]
 
 { #category : 'changing' }
@@ -275,7 +486,10 @@ StMSymbolic >> substitute: var1 with: var2 [
 
 { #category : 'ops' }
 StMSymbolic >> tan [
-	^StMTan with: self copy
+
+	^ self isZero
+		  ifTrue: [ StMConstant with: 0.0 ]
+		  ifFalse: [ StMTan with: self copy ]
 ]
 
 { #category : 'ops' }
@@ -308,4 +522,11 @@ StMSymbolic >> timesSum: aSum [
 { #category : 'evaluating' }
 StMSymbolic >> value [
 	self subclassResponsibility
+]
+
+{ #category : 'accessing - structure variables' }
+StMSymbolic >> x: arg [
+	"Do nothing."
+
+	
 ]

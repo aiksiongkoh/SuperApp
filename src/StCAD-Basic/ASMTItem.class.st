@@ -22,6 +22,12 @@ ASMTItem >> allMarkers [
 	^ self root allMarkers
 ]
 
+{ #category : 'accessing' }
+ASMTItem >> asmtTime [
+
+	^ sup asmtTime
+]
+
 { #category : 'DYN' }
 ASMTItem >> deleteMbD [
 
@@ -77,9 +83,9 @@ ASMTItem >> mbdObject [
 ]
 
 { #category : 'accessing' }
-ASMTItem >> mbdObject: anObject [
+ASMTItem >> mbdObject: mbdObj [
 
-	mbdObject := anObject
+	mbdObject := mbdObj
 ]
 
 { #category : 'accessing' }

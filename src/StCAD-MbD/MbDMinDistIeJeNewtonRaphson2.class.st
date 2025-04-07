@@ -33,8 +33,9 @@ MbDMinDistIeJeNewtonRaphson2 >> fillY [
 
 { #category : 'solving' }
 MbDMinDistIeJeNewtonRaphson2 >> incrementIterNo [
+
 	iterNo := iterNo + 1.
-	iterNo > iterMax ifTrue: [MaximumIterationError raiseSignal]
+	iterNo > iterMax ifTrue: [ MaximumIterationError signal ]
 ]
 
 { #category : 'initialize-release' }

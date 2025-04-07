@@ -47,6 +47,12 @@ StMExpressionX >> expandUntil: set [
 		ifFalse: [expression expandUntil: set]
 ]
 
+{ #category : 'comparing' }
+StMExpressionX >> hash [
+
+	^ super hash bitXor: expression hash
+]
+
 { #category : 'evaluating' }
 StMExpressionX >> partialDifferentiateWRT: variable [ 
 	^expression partialDifferentiateWRT: variable
@@ -59,11 +65,13 @@ StMExpressionX >> postCopy [
 ]
 
 { #category : 'printing' }
-StMExpressionX >> printOn: aStream [ 
-	aStream print: self class.
-	aStream nextPut: $(.
-	aStream print: expression.
-	aStream nextPut: $)
+StMExpressionX >> printOn: aStream [
+
+	aStream
+		print: self class;
+		nextPut: $(;
+		print: expression;
+		nextPut: $)
 ]
 
 { #category : 'evaluating' }

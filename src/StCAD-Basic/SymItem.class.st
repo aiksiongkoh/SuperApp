@@ -9,6 +9,12 @@ Class {
 	#package : 'StCAD-Basic'
 }
 
+{ #category : 'accessing' }
+SymItem >> aB [
+
+	^ sup aB
+]
+
 { #category : 'examples' }
 SymItem >> aaaa [
 
@@ -27,10 +33,181 @@ SymItem >> aaaaaa [
 	^ self
 ]
 
+{ #category : 'ops' }
+SymItem >> assignAccICEqnNum: eqnNo [
+
+	^ eqnNo
+]
+
+{ #category : 'ops' }
+SymItem >> assignVelICEqnNum: eqnNo [
+
+	^ eqnNo
+]
+
+{ #category : 'calc' }
+SymItem >> calcAll [
+
+	self subclassResponsibility
+]
+
+{ #category : 'accessing' }
+SymItem >> classString [
+
+	^ self className
+]
+
+{ #category : 'accessing' }
+SymItem >> constraintsReport [
+	"Do nothing."
+
+	
+]
+
 { #category : 'examples' }
 SymItem >> d [
 
 	^ self
+]
+
+{ #category : 'accIC' }
+SymItem >> fillAccICIterError: col [
+	"Do nothing."
+
+	
+]
+
+{ #category : 'accIC' }
+SymItem >> fillAccICIterJacob: mat [
+	"Do nothing."
+
+	
+]
+
+{ #category : 'accessing' }
+SymItem >> fillConstraints: collection [
+	"Do nothing."
+
+	
+]
+
+{ #category : 'accessing' }
+SymItem >> fillContactEndFrames: collection [
+	"Do nothing."
+
+	
+]
+
+{ #category : 'accessing' }
+SymItem >> fillDispConstraints: collection [
+	"Do nothing."
+
+	
+]
+
+{ #category : 'accessing' }
+SymItem >> fillEssenConstraints: aCollection [
+	"Do nothing."
+
+	
+]
+
+{ #category : 'accessing' }
+SymItem >> fillPartFrames: aCollection [
+	"Do nothing."
+
+	
+]
+
+{ #category : 'accessing' }
+SymItem >> fillPerpenConstraints: collection [
+	"Do nothing."
+
+	
+]
+
+{ #category : 'posIC' }
+SymItem >> fillPosICError: col [
+	"Default is do nothing."
+
+	
+]
+
+{ #category : 'posIC' }
+SymItem >> fillPosICJacob: mat [
+	"Default is do nothing."
+
+	
+]
+
+{ #category : 'accessing' }
+SymItem >> fillRedundantConstraints: aCollection [
+	"Do nothing."
+
+	
+]
+
+{ #category : 'velIC' }
+SymItem >> fillVelICError: col [
+	"Default is do nothing."
+
+	
+]
+
+{ #category : 'velIC' }
+SymItem >> fillVelICJacob: mat [
+	"Default is do nothing."
+
+	
+]
+
+{ #category : 'ops' }
+SymItem >> fillVelICWeights: col [
+	"Do nothing."
+
+	
+]
+
+{ #category : 'accessing' }
+SymItem >> fillqsu: collection [
+	"Do nothing."
+
+	
+]
+
+{ #category : 'accessing' }
+SymItem >> fillqsuWeights: collection [
+	"Do nothing."
+
+	
+]
+
+{ #category : 'accessing' }
+SymItem >> fillqsuddotlam: col [
+	"Default is do nothing."
+
+	
+]
+
+{ #category : 'accessing' }
+SymItem >> fillqsudot: col [
+	"Default is do nothing."
+
+	
+]
+
+{ #category : 'accessing' }
+SymItem >> fillqsudotWeights: col [
+	"Default is do nothing."
+
+	
+]
+
+{ #category : 'accessing' }
+SymItem >> fillqsulam: collection [
+	"Do nothing."
+
+	
 ]
 
 { #category : 'testing' }
@@ -47,26 +224,38 @@ SymItem >> hasChanged: bool [
 
 { #category : 'initialization' }
 SymItem >> initializeGlobally [
-	"Called once only."
 
-	"Initialize all constant dependent instance variables using local and global objects."
-
-	"Default is do nothing."
-
-	
+	self shouldNotImplement
 ]
 
 { #category : 'initialization' }
 SymItem >> initializeLocally [
-	"Called once only."
 
-	"Assume that the independent instance variables are already set."
+	self shouldNotImplement
+]
 
-	"Initialize all constant dependent instance variables using local objects only."
+{ #category : 'output' }
+SymItem >> logString: aString [
 
-	"Default is do nothing."
+	Transcript
+		show: aString;
+		cr
+]
 
-	
+{ #category : 'output' }
+SymItem >> logString: string withArgument: string1 [
+
+	Transcript
+		show: (string mbdMessage expandWithArgument: string1);
+		cr
+]
+
+{ #category : 'output' }
+SymItem >> logString: string withArguments: arrayOfStrings [
+
+	Transcript
+		show: (string mbdMessage expandWithArguments: arrayOfStrings);
+		cr
 ]
 
 { #category : 'accessing' }
@@ -76,15 +265,135 @@ SymItem >> name [
 ]
 
 { #category : 'accessing' }
-SymItem >> name: anObject [
+SymItem >> name: string [
 
-	name := anObject
+	name := string
 ]
 
 { #category : 'accessing' }
 SymItem >> owner: aSym [
 
 	sup := aSym
+]
+
+{ #category : 'accessing' }
+SymItem >> partFrames [
+
+	^ sup partFrames
+]
+
+{ #category : 'input-output' }
+SymItem >> postInput [
+	"Do nothing."
+
+	
+]
+
+{ #category : 'posIC' }
+SymItem >> postPosIC [
+	"Do nothing."
+
+	
+]
+
+{ #category : 'posIC' }
+SymItem >> postPosICIteration [
+	"Do nothing."
+
+	
+]
+
+{ #category : 'velIC' }
+SymItem >> postVelIC [
+	"Do nothing."
+
+	
+]
+
+{ #category : 'accessing' }
+SymItem >> pqdotpv [
+
+	^ sup pqdotpv
+]
+
+{ #category : 'accIC' }
+SymItem >> preAccIC [
+	"Do nothing."
+
+	
+]
+
+{ #category : 'posIC' }
+SymItem >> prePosIC [
+	"Do nothing."
+
+	
+]
+
+{ #category : 'velIC' }
+SymItem >> preVelIC [
+	"Do nothing."
+
+	
+]
+
+{ #category : 'accessing' }
+SymItem >> qEddot [
+
+	^ sup qEddot
+]
+
+{ #category : 'accessing' }
+SymItem >> qEdot [
+
+	^ sup qEdot
+]
+
+{ #category : 'accessing' }
+SymItem >> qXddot [
+
+	^ sup qXddot
+]
+
+{ #category : 'accessing' }
+SymItem >> qXdot [
+
+	^ sup qXdot
+]
+
+{ #category : 'removing' }
+SymItem >> removeRedundantConstraints: redundantEqns [
+	"Do nothing."
+
+	
+]
+
+{ #category : 'initialization' }
+SymItem >> setVelICValues: col [
+	"Do nothing."
+
+	
+]
+
+{ #category : 'accessing' }
+SymItem >> setqsu: collection [
+	"Do nothing."
+
+	
+]
+
+{ #category : 'accessing' }
+SymItem >> setqsudotlam: col [
+	"Default is do nothing."
+
+	
+]
+
+{ #category : 'accessing' }
+SymItem >> setqsulam: aCollection [
+	"Do nothing."
+
+	
 ]
 
 { #category : 'accessing' }
@@ -97,4 +406,24 @@ SymItem >> sup [
 SymItem >> sup: owner [
 
 	sup := owner
+]
+
+{ #category : 'accessing' }
+SymItem >> time [
+
+	^ sup time
+]
+
+{ #category : 'accessing' }
+SymItem >> useEquationNumbers [
+	"Do nothing."
+
+	
+]
+
+{ #category : 'ops' }
+SymItem >> useVelICEqnNo [
+	"Do nothing."
+
+	
 ]

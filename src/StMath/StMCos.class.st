@@ -1,6 +1,6 @@
 Class {
 	#name : 'StMCos',
-	#superclass : 'StMIntrinsicFunctionX',
+	#superclass : 'StMTrig',
 	#category : 'StMath-Symbolic',
 	#package : 'StMath',
 	#tag : 'Symbolic'
@@ -21,9 +21,27 @@ StMCos class >> visualWorksMetadata [
 
 ]
 
+{ #category : 'converting' }
+StMCos >> asValue [
+
+	^ x asValue cos
+]
+
 { #category : 'evaluating' }
 StMCos >> differentiateWRTx [
 	^StMNegative with: (StMSin with: x copy)
+]
+
+{ #category : 'printing' }
+StMCos >> funcName [
+
+	^ 'cos'
+]
+
+{ #category : 'testing' }
+StMCos >> isCos [
+
+	^ true
 ]
 
 { #category : 'printing' }

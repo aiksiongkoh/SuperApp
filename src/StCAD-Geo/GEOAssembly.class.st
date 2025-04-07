@@ -12,16 +12,17 @@ Class {
 
 { #category : 'triggering events' }
 GEOAssembly class >> constructEventsTriggered [
-	^(super constructEventsTriggered)
-		add: #getAnimationData;
-		add: #getForcesTorques;
-		add: #getGravity;
-		add: #getSimulationData;
-		add: #getTime;
-		add: #getTimesAtDiscontinuities;
-		add: #getTimeSeries;
-		add: #getcLighting;
-		yourself
+
+	^ super constructEventsTriggered
+		  add: #getAnimationData;
+		  add: #getForTors;
+		  add: #getGravity;
+		  add: #getSimulationData;
+		  add: #getTime;
+		  add: #getTimesAtDiscontinuities;
+		  add: #getTimeSeries;
+		  add: #getcLighting;
+		  yourself
 ]
 
 { #category : 'accessing' }
@@ -75,9 +76,20 @@ GEOAssembly >> addAnyPart: geoAnyPart [
 ]
 
 { #category : 'accessing' }
+GEOAssembly >> addForTor: geoForTor [ 
+	geoForTor container: self.
+	self forTors add: geoForTor
+]
+
+{ #category : 'accessing' }
+GEOAssembly >> addForTors: array [ 
+	array do: [:joint | self addForTor: joint]
+]
+
+{ #category : 'accessing' }
 GEOAssembly >> addForce: geoForce [ 
 	geoForce container: self.
-	self forcesTorques add: geoForce
+	self forTors add: geoForce
 ]
 
 { #category : 'accessing' }
@@ -155,7 +167,7 @@ GEOAssembly >> addParts: array [
 { #category : 'accessing' }
 GEOAssembly >> addTorque: geoTorque [ 
 	geoTorque container: self.
-	self forcesTorques add: geoTorque
+	self forTors add: geoTorque
 ]
 
 { #category : 'accessing' }
@@ -213,29 +225,27 @@ GEOAssembly >> anyParts [
 
 { #category : 'accessing' }
 GEOAssembly >> asTreeNode [
+
 	| answer |
 	answer := super asTreeNode.
-	answer children 
-		addFirst: (self treeNodesBlock value: anyParts value: 'Parts').
-	answer children 
-		addFirst: (self treeNodesBlock value: self cLighting value: 'Lighting').
-	answer children 
-		addLast: (self treeNodesBlock value: constraintSets value: 'JointsMotions').
-	answer children addLast: (self treeNodesBlock value: self forcesTorques
-				value: 'ForcesTorques').
+	answer children addFirst: (self treeNodesBlock value: anyParts value: 'Parts').
+	answer children addFirst: (self treeNodesBlock value: self cLighting value: 'Lighting').
+	answer children addLast: (self treeNodesBlock value: constraintSets value: 'JointsMotions').
+	answer children addLast: (self treeNodesBlock value: self forTors value: 'ForTors').
 	answer children addLast: self gravity asTreeNode.
-	^answer
+	^ answer
 ]
 
 { #category : 'accessing' }
 GEOAssembly >> asTreeNode1 [
+
 	| answer |
 	answer := super asTreeNode.
 	answer children addFirst: (self treeNodesBlock value: anyParts value: 'Parts').
 	answer children addLast: (self treeNodesBlock value: constraintSets value: 'JointsMotions').
-	answer children addLast: (self treeNodesBlock value: self forcesTorques value: 'ForcesTorques').	"
+	answer children addLast: (self treeNodesBlock value: self forTors value: 'ForTors'). "
 	answer children addLast: self gravity asTreeNode."
-	^answer
+	^ answer
 ]
 
 { #category : 'accessing' }
@@ -260,6 +270,12 @@ GEOAssembly >> boundingBox [
 { #category : 'accessing' }
 GEOAssembly >> cAnyPart [
 	^anyParts
+]
+
+{ #category : 'accessing' }
+GEOAssembly >> cForTor [
+
+	^ self triggerEvent: #getForTors
 ]
 
 { #category : 'accessing' }
@@ -381,16 +397,14 @@ GEOAssembly >> calcCharacteristicTime [
 ]
 
 { #category : 'DYN' }
-GEOAssembly >> canUpdateForFrame: integer [ 
-	(super canUpdateForFrame: integer)
-		ifFalse: [^false].
-	anyParts do: [:anyPart | (anyPart canUpdateForFrame: integer)
-			ifFalse: [^false]].
-	constraintSets do: [:constraintSet | (constraintSet canUpdateForFrame: integer)
-			ifFalse: [^false]].
-	self forcesTorques do: [:forceTorque | (forceTorque canUpdateForFrame: integer)
-			ifFalse: [^false]].
-	^true
+GEOAssembly >> canUpdateForFrame: integer [
+
+	(super canUpdateForFrame: integer) ifFalse: [ ^ false ].
+	anyParts do: [ :anyPart | (anyPart canUpdateForFrame: integer) ifFalse: [ ^ false ] ].
+	constraintSets do: [ :constraintSet |
+		(constraintSet canUpdateForFrame: integer) ifFalse: [ ^ false ] ].
+	self forTors do: [ :forTor | (forTor canUpdateForFrame: integer) ifFalse: [ ^ false ] ].
+	^ true
 ]
 
 { #category : 'accessing' }
@@ -400,15 +414,16 @@ GEOAssembly >> connectorList [
 	self jointList do: [:geoIJ | answer add: geoIJ].
 	self motionList do: [:geoIJ | answer add: geoIJ].
 	self kineIJList do: [:geoIJ | answer add: geoIJ].
-	self forceTorqueList do: [:geoIJ | answer add: geoIJ].
+	self forTorList do: [:geoIJ | answer add: geoIJ].
 	^answer
 ]
 
 { #category : 'accessing' }
-GEOAssembly >> connectorList: collection [ 
-	anyParts do: [:anyPart | anyPart connectorList: collection].
-	constraintSets do: [:constraintSet | constraintSet connectorList: collection].
-	self forcesTorques do: [:forceTorque | forceTorque connectorList: collection]
+GEOAssembly >> connectorList: collection [
+
+	anyParts do: [ :anyPart | anyPart connectorList: collection ].
+	constraintSets do: [ :constraintSet | constraintSet connectorList: collection ].
+	self forTors do: [ :forTor | forTor connectorList: collection ]
 ]
 
 { #category : 'accessing' }
@@ -453,7 +468,7 @@ GEOAssembly >> createMbD [
 			self geoTime: nil.
 			self timeSeries: nil.
 			self timesAtDiscontinuities: nil.
-			self forcesTorques: nil].
+			self forTors: nil].
 	self animationData: nil.
 	super createMbD.
 	block := 
@@ -462,15 +477,16 @@ GEOAssembly >> createMbD [
 				do: [:item | item createMbD]].
 	block value: anyParts.
 	block value: constraintSets.
-	block value: self forcesTorques
+	block value: self forTors
 ]
 
 { #category : 'DYN' }
 GEOAssembly >> createMbD1 [
+
 	| simulationData mbdSystemSolver mbdUnits |
 	container isInterface
-		ifTrue: 
-			[self gravity createMbD.
+		ifTrue: [
+			self gravity createMbD.
 			self geoTime createMbD.
 			self timesAtDiscontinuities: OrderedCollection new.
 			simulationData := self aSimulationData.
@@ -493,20 +509,20 @@ GEOAssembly >> createMbD1 [
 			mbdSystemSolver iterMaxDyn: simulationData iterMaxDyn abs.
 			mbdSystemSolver orderMax: simulationData orderMax abs.
 			mbdSystemSolver translationLimit: simulationData translationLimit abs / mbdUnits length.
-			mbdSystemSolver rotationLimit: simulationData rotationLimit abs]
-		ifFalse: 
-			[self gravity: nil.
+			mbdSystemSolver rotationLimit: simulationData rotationLimit abs ]
+		ifFalse: [
+			self gravity: nil.
 			self mbdUnits: nil.
 			self aSimulationData: nil.
 			self geoTime: nil.
 			self timeSeries: nil.
 			self timesAtDiscontinuities: nil.
-			self forcesTorques: nil].
+			self forTors: nil ].
 	self animationData: nil.
 	super createMbD.
-	anyParts do: [:anyPart | anyPart createMbD].
-	constraintSets do: [:constraintSet | constraintSet createMbD].
-	self forcesTorques do: [:forceTorque | forceTorque createMbD]
+	anyParts do: [ :anyPart | anyPart createMbD ].
+	constraintSets do: [ :constraintSet | constraintSet createMbD ].
+	self forTors do: [ :forTor | forTor createMbD ]
 ]
 
 { #category : 'accessing' }
@@ -516,8 +532,13 @@ GEOAssembly >> cut [
 ]
 
 { #category : 'accessing' }
+GEOAssembly >> cutForTor: geoForTor [ 
+	self forTors remove: geoForTor
+]
+
+{ #category : 'accessing' }
 GEOAssembly >> cutForce: geoForce [ 
-	self forcesTorques remove: geoForce
+	self forTors remove: geoForce
 ]
 
 { #category : 'accessing' }
@@ -547,7 +568,7 @@ GEOAssembly >> cutPart: geoPart [
 
 { #category : 'accessing' }
 GEOAssembly >> cutTorque: geoTorque [ 
-	self forcesTorques remove: geoTorque
+	self forTors remove: geoTorque
 ]
 
 { #category : 'accessing' }
@@ -557,12 +578,13 @@ GEOAssembly >> defaultGravity [
 
 { #category : 'DYN' }
 GEOAssembly >> deleteMbD [
+
 	super deleteMbD.
 	self gravity deleteMbD.
 	self geoTime deleteMbD.
-	anyParts do: [:anyPart | anyPart deleteMbD].
-	constraintSets do: [:constraintSet | constraintSet deleteMbD].
-	self forcesTorques do: [:forceTorque | forceTorque deleteMbD]
+	anyParts do: [ :anyPart | anyPart deleteMbD ].
+	constraintSets do: [ :constraintSet | constraintSet deleteMbD ].
+	self forTors do: [ :forTor | forTor deleteMbD ]
 ]
 
 { #category : 'accessing' }
@@ -586,13 +608,37 @@ GEOAssembly >> findMarkerNamed: nameComponents [
 ]
 
 { #category : 'accessing' }
+GEOAssembly >> forTorList [
+	^self forTors asSortedCollection: [:a :b | a name <= b name]
+]
+
+{ #category : 'accessing' }
+GEOAssembly >> forTorList: collection [ 
+	collection addAll: self forTors.
+	anyParts do: [:anyPart | anyPart forTorList: collection]
+]
+
+{ #category : 'accessing' }
+GEOAssembly >> forTors [
+
+	^ self triggerEvent: #getForTors
+]
+
+{ #category : 'accessing' }
+GEOAssembly >> forTors: forTors [
+
+	self removeActionsForEvent: #getForTors.
+	forTors notNil ifTrue: [ self when: #getForTors ask: forTors perform: #yourself ]
+]
+
+{ #category : 'accessing' }
 GEOAssembly >> forceList [
-	^(self forcesTorques select: [:set | set isForce]) asList
+	^(self forTors select: [:set | set isForce]) asList
 ]
 
 { #category : 'accessing' }
 GEOAssembly >> forceList: collection [ 
-	collection addAll: (self forcesTorques select: [:set | set isForce]).
+	collection addAll: (self forTors select: [:set | set isForce]).
 	anyParts do: [:anyPart | anyPart forceList: collection]
 ]
 
@@ -628,24 +674,26 @@ GEOAssembly >> generalConstraintSetList [
 ]
 
 { #category : 'accessing' }
-GEOAssembly >> generateUniqueNameFor: aString [ 
+GEOAssembly >> generateUniqueNameFor: aString [
+
 	| aDict aItemList nameList count newName |
 	aDict := IdentityDictionary new.
 	aDict at: 'Part' asSymbol put: #partList.
 	aDict at: 'Joint' asSymbol put: #jointList.
 	aDict at: 'Motion' asSymbol put: #motionList.
-	aDict at: 'ForceTorque' asSymbol put: #forceTorqueList.
+	aDict at: 'ForTor' asSymbol put: #forTorList.
 	aItemList := self perform: (aDict at: aString asSymbol).
-	nameList := aItemList collect: 
-					[:aItem | 
-					(aItem name isKindOf: String) ifTrue: [aItem name asSymbol] ifFalse: [#'']].
+	nameList := aItemList collect: [ :aItem |
+		            (aItem name isKindOf: String)
+			            ifTrue: [ aItem name asSymbol ]
+			            ifFalse: [ #'' ] ].
 	count := 0.
-	
-	[count := count + 1.
+
+	[
+	count := count + 1.
 	newName := aString , count printString.
-	nameList includes: newName asSymbol] 
-			whileTrue.
-	^newName
+	nameList includes: newName asSymbol ] whileTrue.
+	^ newName
 ]
 
 { #category : 'accessing' }
@@ -719,54 +767,49 @@ GEOAssembly >> initialize [
 	super initialize.
 	anyParts := StCAD_Misc_OrderedSet new. "VW_TRANSLATION:StCAD.Misc.OrderedSet:StCAD_Misc_OrderedSet"
 	constraintSets := StCAD_Misc_OrderedSet new.
-	self forcesTorques: StCAD_Misc_OrderedSet new
+	self forTors: StCAD_Misc_OrderedSet new
 ]
 
 { #category : 'accessing' }
 GEOAssembly >> insertAssembly: aAssembly [
-	| shiftXYZ block cNameMarker cNameAnyPart cNameConstraintSet cNameForceTorque nameBlock |
+
+	| shiftXYZ block cNameMarker cNameAnyPart cNameConstraintSet cNameForTor nameBlock |
 	shiftXYZ := StMFullColumn zero: 3.
 	CADXYZDialog openOn: shiftXYZ.
 	aAssembly translateBy: shiftXYZ.
-	block :=
-			[:aItem |
-			(aItem name isKindOf: String)
-				ifTrue: [aItem name asSymbol.]
-				ifFalse: [#''.].].
+	block := [ :aItem |
+	         (aItem name isKindOf: String)
+		         ifTrue: [ aItem name asSymbol ]
+		         ifFalse: [ #'' ] ].
 	cNameMarker := self markers collect: block.
 	cNameAnyPart := self anyParts collect: block.
 	cNameConstraintSet := self constraintSets collect: block.
-	cNameForceTorque := self forcesTorques collect: block.
-	nameBlock :=
-			[:nameList :item |
-			| count newName |
-			count := 0.
-			
-			[count := count + 1.
-			newName := (item name , count printString) asSymbol.
-			nameList includes: newName.]
-					whileTrue.
-			item name: newName.].
-	aAssembly markers do: 
-			[:aMarker |
-			(cNameMarker includes: aMarker name asSymbol)
-				ifTrue: [nameBlock value: cNameMarker value: aMarker.].
-			self addMarker: aMarker.].
-	aAssembly anyParts do: 
-			[:aAnyPart |
-			(cNameAnyPart includes: aAnyPart name asSymbol)
-				ifTrue: [nameBlock value: cNameAnyPart value: aAnyPart.].
-			self addAnyPart: aAnyPart.].
-	aAssembly constraintSets do: 
-			[:aConstraintSet |
-			(cNameConstraintSet includes: aConstraintSet name asSymbol)
-				ifTrue: [nameBlock value: cNameConstraintSet value: aConstraintSet.].
-			self addJoint: aConstraintSet.].
-	aAssembly forcesTorques do: 
-			[:aForceTorque |
-			(cNameForceTorque includes: aForceTorque name asSymbol)
-				ifTrue: [nameBlock value: cNameForceTorque value: aForceTorque.].
-			self addForceTorque: aForceTorque.].
+	cNameForTor := self forTors collect: block.
+	nameBlock := [ :nameList :item |
+	             | count newName |
+	             count := 0.
+
+	             [
+	             count := count + 1.
+	             newName := (item name , count printString) asSymbol.
+	             nameList includes: newName ] whileTrue.
+	             item name: newName ].
+	aAssembly markers do: [ :aMarker |
+		(cNameMarker includes: aMarker name asSymbol) ifTrue: [
+			nameBlock value: cNameMarker value: aMarker ].
+		self addMarker: aMarker ].
+	aAssembly anyParts do: [ :aAnyPart |
+		(cNameAnyPart includes: aAnyPart name asSymbol) ifTrue: [
+			nameBlock value: cNameAnyPart value: aAnyPart ].
+		self addAnyPart: aAnyPart ].
+	aAssembly constraintSets do: [ :aConstraintSet |
+		(cNameConstraintSet includes: aConstraintSet name asSymbol) ifTrue: [
+			nameBlock value: cNameConstraintSet value: aConstraintSet ].
+		self addJoint: aConstraintSet ].
+	aAssembly forTors do: [ :aForTor |
+		(cNameForTor includes: aForTor name asSymbol) ifTrue: [
+			nameBlock value: cNameForTor value: aForTor ].
+		self addForTor: aForTor ]
 ]
 
 { #category : 'testing' }
@@ -806,7 +849,7 @@ GEOAssembly >> magnifySelf: aDouble [
 	self cAnyPart do: [:aAnyPart | aAnyPart magnifySelf: aDouble].
 	self cJoint do: [:aJoint | aJoint magnifySelf: aDouble].
 	self cMotion do: [:aMotion | aMotion magnifySelf: aDouble].
-	self cForceTorque do: [:aForceTorque | aForceTorque magnifySelf: aDouble]
+	self cForTor do: [:aForTor | aForTor magnifySelf: aDouble]
 ]
 
 { #category : 'accessing' }
@@ -829,12 +872,13 @@ GEOAssembly >> motionList: collection [
 
 { #category : 'accessing' }
 GEOAssembly >> newDataSeries [
+
 	self timeSeries: OrderedCollection new.
 	self animationData: nil.
 	super newDataSeries.
-	anyParts do: [:anyPart | anyPart newDataSeries].
-	constraintSets do: [:constraintSet | constraintSet newDataSeries].
-	self forcesTorques do: [:forceTorque | forceTorque newDataSeries]
+	anyParts do: [ :anyPart | anyPart newDataSeries ].
+	constraintSets do: [ :constraintSet | constraintSet newDataSeries ].
+	self forTors do: [ :forTor | forTor newDataSeries ]
 ]
 
 { #category : 'accessing' }
@@ -868,12 +912,13 @@ GEOAssembly >> preRenderOn: renderingContext [
 
 { #category : 'copying' }
 GEOAssembly >> preSave [
-	| forcesTorques |
+
+	| forTors |
 	super preSave.
-	anyParts do: [:anyPart | anyPart preSave].
-	constraintSets do: [:constraintSet | constraintSet preSave].
-	forcesTorques := self forcesTorques.
-	forcesTorques notNil ifTrue: [forcesTorques do: [:forceTorque | forceTorque preSave]]
+	anyParts do: [ :anyPart | anyPart preSave ].
+	constraintSets do: [ :constraintSet | constraintSet preSave ].
+	forTors := self forTors.
+	forTors notNil ifTrue: [ forTors do: [ :forTor | forTor preSave ] ]
 ]
 
 { #category : 'accessing' }
@@ -951,12 +996,12 @@ GEOAssembly >> release [
 	Order of release: connectors, markers, anyParts. 
 	"
 
-	| forcesTorques |
-	constraintSets do: [:constraintSet | constraintSet release].
-	forcesTorques := self forcesTorques.
-	forcesTorques notNil ifTrue: [forcesTorques do: [:forceTorque | forceTorque release]].
-	markers do: [:marker | marker release].
-	anyParts do: [:anyPart | anyPart release].
+	| forTors |
+	constraintSets do: [ :constraintSet | constraintSet release ].
+	forTors := self forTors.
+	forTors notNil ifTrue: [ forTors do: [ :forTor | forTor release ] ].
+	markers do: [ :marker | marker release ].
+	anyParts do: [ :anyPart | anyPart release ].
 	refFrame release.
 	container := nil.
 	self triggerEvent: #release.
@@ -990,30 +1035,26 @@ GEOAssembly >> renderOn2: aRenderingContext [
 ]
 
 { #category : 'rendering' }
-GEOAssembly >> renderOn3: aRenderingContext [ 
+GEOAssembly >> renderOn3: aRenderingContext [
+
 	self preRenderOn: aRenderingContext.
-	aRenderingContext productTransformation: refFrame aMFf
-		while: 
-			[anyParts do: [:anyPart | anyPart renderOn: aRenderingContext].
-			markers do: [:marker | marker renderOn: aRenderingContext].
-			constraintSets 
-				do: [:constraintSet | constraintSet renderOn: aRenderingContext].
-			self forcesTorques 
-				do: [:forceTorque | forceTorque renderOn: aRenderingContext]]
+	aRenderingContext productTransformation: refFrame aMFf while: [
+		anyParts do: [ :anyPart | anyPart renderOn: aRenderingContext ].
+		markers do: [ :marker | marker renderOn: aRenderingContext ].
+		constraintSets do: [ :constraintSet | constraintSet renderOn: aRenderingContext ].
+		self forTors do: [ :forTor | forTor renderOn: aRenderingContext ] ]
 ]
 
 { #category : 'rendering' }
-GEOAssembly >> renderOn: aRenderingContext [ 
+GEOAssembly >> renderOn: aRenderingContext [
+
 	self preRenderOn: aRenderingContext.
-	aRenderingContext pushTransformation: refFrame aMFf
-		while: 
-			[anyParts do: [:anyPart | anyPart renderOn: aRenderingContext].
-			"(anyParts detect: [:anyPart | anyPart name = #sn5]) renderOn: aRenderingContext."
-			markers do: [:marker | marker renderOn: aRenderingContext].
-			constraintSets 
-				do: [:constraintSet | constraintSet renderOn: aRenderingContext].
-			self forcesTorques 
-				do: [:forceTorque | forceTorque renderOn: aRenderingContext]]
+	aRenderingContext pushTransformation: refFrame aMFf while: [
+		anyParts do: [ :anyPart | anyPart renderOn: aRenderingContext ].
+		"(anyParts detect: [:anyPart | anyPart name = #sn5]) renderOn: aRenderingContext."
+		markers do: [ :marker | marker renderOn: aRenderingContext ].
+		constraintSets do: [ :constraintSet | constraintSet renderOn: aRenderingContext ].
+		self forTors do: [ :forTor | forTor renderOn: aRenderingContext ] ]
 ]
 
 { #category : 'accessing' }
@@ -1028,18 +1069,20 @@ GEOAssembly >> sketchList: collection [
 
 { #category : 'DYN' }
 GEOAssembly >> storeInputFromMbD [
+
 	super storeInputFromMbD.
-	anyParts do: [:anyPart | anyPart storeInputFromMbD].
-	constraintSets do: [:constraintSet | constraintSet storeInputFromMbD].
-	self forcesTorques do: [:forceTorque | forceTorque storeInputFromMbD]
+	anyParts do: [ :anyPart | anyPart storeInputFromMbD ].
+	constraintSets do: [ :constraintSet | constraintSet storeInputFromMbD ].
+	self forTors do: [ :forTor | forTor storeInputFromMbD ]
 ]
 
 { #category : 'DYN' }
 GEOAssembly >> storeInputState [
+
 	super storeInputState.
-	anyParts do: [:anyPart | anyPart storeInputState].
-	constraintSets do: [:constraintSet | constraintSet storeInputState].
-	self forcesTorques do: [:forceTorque | forceTorque storeInputState]
+	anyParts do: [ :anyPart | anyPart storeInputState ].
+	constraintSets do: [ :constraintSet | constraintSet storeInputState ].
+	self forTors do: [ :forTor | forTor storeInputState ]
 ]
 
 { #category : 'printing' }
@@ -1074,7 +1117,7 @@ GEOAssembly >> storeOn: aStream level: level [
 	self generalConstraintSetList 
 		do: [:item | item storeOn: aStream level: level + 3].
 	aStream storeLevel: level + 1 title: 'ForceTorques'.
-	self forceTorqueList do: [:item | item storeOn: aStream level: level + 2].
+	self forTorList do: [:item | item storeOn: aStream level: level + 2].
 	self gravity storeOn: aStream level: level + 1.
 	self aSimulationData storeOn: aStream level: level + 1.
 	self animationData storeOn: aStream level: level + 1
@@ -1118,7 +1161,7 @@ GEOAssembly >> storePOVTimeSeriesOn: aStream [
 			self motionList do: [:item | item storePOVTimeSeriesOn: aStream].
 			self generalConstraintSetList 
 				do: [:item | item storePOVTimeSeriesOn: aStream].
-			self forceTorqueList do: [:item | item storePOVTimeSeriesOn: aStream]]
+			self forTorList do: [:item | item storePOVTimeSeriesOn: aStream]]
 ]
 
 { #category : 'printing' }
@@ -1137,7 +1180,7 @@ GEOAssembly >> storePOVdatCurrentOn: aStream [
 			self motionList do: [:item | item storePOVdatCurrentOn: aStream].
 			self generalConstraintSetList 
 				do: [:item | item storePOVdatCurrentOn: aStream].
-			self forceTorqueList do: [:item | item storePOVdatCurrentOn: aStream]]
+			self forTorList do: [:item | item storePOVdatCurrentOn: aStream]]
 ]
 
 { #category : 'printing' }
@@ -1225,7 +1268,7 @@ GEOAssembly >> storeTimeSeriesOn: aStream [
 			self jointList do: [:item | item storeTimeSeriesOn: aStream].
 			self motionList do: [:item | item storeTimeSeriesOn: aStream].
 			self generalConstraintSetList do: [:item | item storeTimeSeriesOn: aStream].
-			self forceTorqueList do: [:item | item storeTimeSeriesOn: aStream]]
+			self forTorList do: [:item | item storeTimeSeriesOn: aStream]]
 ]
 
 { #category : 'accessing' }
@@ -1271,53 +1314,59 @@ GEOAssembly >> uncut [
 ]
 
 { #category : 'DYN' }
-GEOAssembly >> updateForFrame1: integer [ 
+GEOAssembly >> updateForFrame1: integer [
+
 	super updateForFrame: integer.
-	anyParts do: [:anyPart | anyPart updateForFrame: integer].
-	constraintSets do: [:constraintSet | constraintSet updateForFrame: integer].
-	self forcesTorques do: [:forceTorque | forceTorque updateForFrame: integer]
+	anyParts do: [ :anyPart | anyPart updateForFrame: integer ].
+	constraintSets do: [ :constraintSet | constraintSet updateForFrame: integer ].
+	self forTors do: [ :forTor | forTor updateForFrame: integer ]
 ]
 
 { #category : 'DYN' }
-GEOAssembly >> updateForFrame2: integer [ 
+GEOAssembly >> updateForFrame2: integer [
+
 	super updateForFrame: integer.
-	anyParts do: [:anyPart | anyPart updateForFrame: integer].
-	constraintSets do: [:constraintSet | constraintSet updateForFrame: integer].
-	self forcesTorques do: [:forceTorque | forceTorque updateForFrame: integer]
+	anyParts do: [ :anyPart | anyPart updateForFrame: integer ].
+	constraintSets do: [ :constraintSet | constraintSet updateForFrame: integer ].
+	self forTors do: [ :forTor | forTor updateForFrame: integer ]
 ]
 
 { #category : 'DYN' }
-GEOAssembly >> updateForFrame: integer [ 
+GEOAssembly >> updateForFrame: integer [
+
 	super updateForFrame: integer.
-	anyParts do: [:anyPart | anyPart updateForFrame: integer].
-	markers do: [:marker | marker updateForFrame: integer].
-	constraintSets do: [:constraintSet | constraintSet updateForFrame: integer].
-	self forcesTorques do: [:forceTorque | forceTorque updateForFrame: integer]
+	anyParts do: [ :anyPart | anyPart updateForFrame: integer ].
+	markers do: [ :marker | marker updateForFrame: integer ].
+	constraintSets do: [ :constraintSet | constraintSet updateForFrame: integer ].
+	self forTors do: [ :forTor | forTor updateForFrame: integer ]
 ]
 
 { #category : 'DYN' }
 GEOAssembly >> updateFromInitiallyAssembledState [
+
 	super updateFromInitiallyAssembledState.
-	anyParts do: [:anyPart | anyPart updateFromInitiallyAssembledState].
-	constraintSets do: [:constraintSet | constraintSet updateFromInitiallyAssembledState].
-	self forcesTorques do: [:forceTorque | forceTorque updateFromInitiallyAssembledState]
+	anyParts do: [ :anyPart | anyPart updateFromInitiallyAssembledState ].
+	constraintSets do: [ :constraintSet | constraintSet updateFromInitiallyAssembledState ].
+	self forTors do: [ :forTor | forTor updateFromInitiallyAssembledState ]
 ]
 
 { #category : 'DYN' }
 GEOAssembly >> updateFromInputState [
+
 	super updateFromInputState.
-	anyParts do: [:anyPart | anyPart updateFromInputState].
-	constraintSets do: [:constraintSet | constraintSet updateFromInputState].
-	self forcesTorques do: [:forceTorque | forceTorque updateFromInputState]
+	anyParts do: [ :anyPart | anyPart updateFromInputState ].
+	constraintSets do: [ :constraintSet | constraintSet updateFromInputState ].
+	self forTors do: [ :forTor | forTor updateFromInputState ]
 ]
 
 { #category : 'DYN' }
 GEOAssembly >> updateFromMbD [
+
 	super updateFromMbD.
 	self timeSeries add: self geoTime value.
-	anyParts do: [:anyPart | anyPart updateFromMbD].
-	constraintSets do: [:constraintSet | constraintSet updateFromMbD].
-	self forcesTorques do: [:forceTorque | forceTorque updateFromMbD]
+	anyParts do: [ :anyPart | anyPart updateFromMbD ].
+	constraintSets do: [ :constraintSet | constraintSet updateFromMbD ].
+	self forTors do: [ :forTor | forTor updateFromMbD ]
 ]
 
 { #category : 'accessing' }

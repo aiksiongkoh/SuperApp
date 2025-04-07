@@ -15,3 +15,10 @@ SymItemIJ >> connectsI: frmI toJ: frmJ [
 	endFrmI := frmI.
 	endFrmJ := frmJ
 ]
+
+{ #category : 'initialize-release' }
+SymItemIJ >> withFrmI: eFrmI frmJ: eFrmJ [
+
+	endFrmI := eFrmI.
+	endFrmJ := eFrmJ
+]

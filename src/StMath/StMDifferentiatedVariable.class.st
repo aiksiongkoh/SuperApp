@@ -10,7 +10,8 @@ Class {
 	#name : 'StMDifferentiatedVariable',
 	#superclass : 'StMDependentVariable',
 	#instVars : [
-		'wrts'
+		'wrts',
+		'derivative'
 	],
 	#category : 'StMath-Symbolic',
 	#package : 'StMath',
@@ -54,28 +55,51 @@ StMDifferentiatedVariable class >> with: var wrts: derivs [
 	^super new x: var wrts: derivs
 ]
 
+{ #category : 'comparing' }
+StMDifferentiatedVariable >> = anObject [
+
+	^ self == anObject or: [
+		  self class == anObject class and: [ x = anObject x and: [ wrts = anObject wrts ] ] ]
+]
+
+{ #category : 'converting' }
+StMDifferentiatedVariable >> asValue [
+
+	^ (x isMemberOf: UnknownDependentVariable)
+		  ifTrue: [ value ifNil: [ 0.0 ] ifNotNil: [ value asValue ] ]
+		  ifFalse: [
+			  (x isMemberOf: StMVariableParameter)
+				  ifTrue: [ derivative asValue ]
+				  ifFalse: [ self halt ] ]
+]
+
 { #category : 'copying' }
 StMDifferentiatedVariable >> copy [
 	^self shallowCopy postCopy
 ]
 
 { #category : 'evaluating' }
-StMDifferentiatedVariable >> differentiateWRT: variable [ 
-	| answer |
-	answer := self copy.
-	answer wrtsAdd: variable copy.
-	^answer
+StMDifferentiatedVariable >> differentiateWRT: variable [
+
+	^ variable isIndependentVariable
+		  ifTrue: [
+			  self copy
+				  wrtsAdd: variable copy;
+				  yourself ]
+		  ifFalse: [ StMConstant with: 0.0 ]
 ]
 
 { #category : 'evaluating' }
 StMDifferentiatedVariable >> differentiateWRTx [
+
 	| xcopy answer |
+	self halt.
 	xcopy := x copy.
 	answer := self class new.
 	answer x: xcopy.
-	wrts do: [:wrt | answer wrtsAdd: wrt].
+	wrts do: [ :wrt | answer wrtsAdd: wrt ].
 	answer wrtsAdd: xcopy.
-	^answer
+	^ answer
 ]
 
 { #category : 'initialize-release' }
@@ -91,42 +115,61 @@ StMDifferentiatedVariable >> postCopy [
 ]
 
 { #category : 'printing' }
-StMDifferentiatedVariable >> printOn: aStream [ 
+StMDifferentiatedVariable >> printOn: aStream [
+
 	aStream nextPutAll: 'diff('.
 	aStream print: x.
-	wrts do: 
-			[:wrt | 
-			aStream nextPut: $,.
-			aStream print: wrt].
+	aStream nextPutAll: ' wrt '.
+	wrts do: [ :wrt | aStream print: wrt ] separatedBy: [ aStream nextPut: $, ].
 	aStream nextPut: $)
 ]
 
 { #category : 'changing' }
-StMDifferentiatedVariable >> substitute: var1 with: var2 [ 
+StMDifferentiatedVariable >> substitute: var1 with: var2 [
+
 	| xx wrts2 |
-	^self = var1
-		ifTrue: [var2]
-		ifFalse: 
-			[xx := x substitute: var1 with: var2.
-			wrts2 := wrts collect: [:wrt | wrt substitute: var1 with: var2].
-			self class with: xx wrts: wrts2]
+	self halt.
+	^ self = var1
+		  ifTrue: [ var2 ]
+		  ifFalse: [
+			  xx := x substitute: var1 with: var2.
+			  wrts2 := wrts collect: [ :wrt | wrt substitute: var1 with: var2 ].
+			  self class with: xx wrts: wrts2 ]
 ]
 
 { #category : 'accessing' }
-StMDifferentiatedVariable >> wrtsAdd: variable [ 
-	wrts add: variable
+StMDifferentiatedVariable >> wrts [
+
+	^ wrts
 ]
 
 { #category : 'accessing' }
-StMDifferentiatedVariable >> x: arg [ 
+StMDifferentiatedVariable >> wrtsAdd: variable [
+
+	| var |
+	var := self conditionArgument: variable.
+	wrts add: var.
+	derivative
+		ifNil: [
+			(x isMemberOf: StMVariableParameter)
+				ifTrue: [ derivative := x rhs differentiateWRT: var ]
+				ifFalse: [ [ x isMemberOf: UnknownDependentVariable ] assert ] ]
+		ifNotNil: [ derivative := derivative differentiateWRT: var ]
+]
+
+{ #category : 'accessing' }
+StMDifferentiatedVariable >> x: arg [
+
 	| xold |
+	self halt.
 	xold := x.
 	super x: arg.
-	wrts := wrts collect: [:wrt | wrt substitute: xold with: x]
+	wrts := wrts collect: [ :wrt | wrt substitute: xold with: x ]
 ]
 
 { #category : 'initialize-release' }
-StMDifferentiatedVariable >> x: var wrts: derivs [ 
+StMDifferentiatedVariable >> x: var wrts: derivs [
+
 	x := self conditionArgument: var.
-	wrts := derivs collect: [:deriv | self conditionArgument: deriv]
+	derivs do: [ :deriv | self wrtsAdd: deriv ]
 ]

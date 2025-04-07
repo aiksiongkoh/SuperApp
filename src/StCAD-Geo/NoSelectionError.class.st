@@ -1,6 +1,6 @@
 Class {
 	#name : 'NoSelectionError',
-	#superclass : 'Exception',
+	#superclass : 'Error',
 	#category : 'StCAD-Geo-Exception',
 	#package : 'StCAD-Geo',
 	#tag : 'Exception'

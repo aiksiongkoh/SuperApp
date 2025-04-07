@@ -18,10 +18,12 @@ MbDTimeNewtonRaphson2 class >> visualWorksMetadata [
 
 { #category : 'solving' }
 MbDTimeNewtonRaphson2 >> incrementIterNo [
-	iterNo >= iterMax
-		ifTrue: 
-			[system logString: #'MbD: \Solver cannot locate contact discontinuity after %1 iterations.' withArgument: iterNo printString.
-			SimulationStoppingError raiseSignal].
+
+	iterNo >= iterMax ifTrue: [
+		system
+			logString: #'MbD: \Solver cannot locate contact discontinuity after %1 iterations.'
+			withArgument: iterNo printString.
+		SimulationStoppingError signal ].
 	iterNo := iterNo + 1
 ]
 

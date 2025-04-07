@@ -44,5 +44,5 @@ ForceTorqueItem >> postCollisionPredictor [
 { #category : 'initialize-release' }
 ForceTorqueItem >> submitToSystem [
 	self registerName.
-	TheMbDSystem forcesTorques add: self
+	TheMbDSystem forTors add: self
 ]

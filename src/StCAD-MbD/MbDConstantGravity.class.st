@@ -104,5 +104,5 @@ MbDConstantGravity >> simUpdateAll [
 
 { #category : 'initialize-release' }
 MbDConstantGravity >> submitToSystem [
-	TheMbDSystem forcesTorques add: self
+	TheMbDSystem forTors add: self
 ]

@@ -51,15 +51,27 @@ StMConstant class >> with: arg [
 ]
 
 { #category : 'comparing' }
-StMConstant >> = anObject [ 
+StMConstant >> < anObject [
+
+	^ self value < anObject value
+]
+
+{ #category : 'comparing' }
+StMConstant >> = anObject [
 	"Answer whether the receiver and the argument represent the same shape"
 
-	^self class == anObject class and: [value = anObject value]
+	^ (anObject isNumber or: [self class == anObject class]) and: [ value = anObject value ]
 ]
 
 { #category : 'message handling' }
 StMConstant >> argsPerform: selector withArguments: anArray [ 
 	"Do nothing."
+]
+
+{ #category : 'converting' }
+StMConstant >> asValue [
+
+	^ value
 ]
 
 { #category : 'copying' }
@@ -73,9 +85,25 @@ StMConstant >> differentiateWRT: variable [
 	^StMConstant with: 0
 ]
 
+{ #category : 'testing' }
+StMConstant >> even [
+
+	^ value even
+]
+
 { #category : 'evaluating' }
 StMConstant >> expandUntil: set [ 
 	"Do nothing."
+]
+
+{ #category : 'comparing' }
+StMConstant >> hash [
+
+	| hash |
+	hash := self class hash.
+	hash := hash bitXor: name hash.
+	hash := hash bitXor: value hash.
+	^ hash
 ]
 
 { #category : 'testing' }
@@ -104,13 +132,25 @@ StMConstant >> partialDifferentiateWRT: variable [
 ]
 
 { #category : 'printing' }
-StMConstant >> printOn: aStream [ 
-	aStream print: value
+StMConstant >> printOn: aStream [
+
+	aStream
+		nextPut: $c;
+		print: value
 ]
 
 { #category : 'evaluating' }
-StMConstant >> simplifyUntil: set [ 
+StMConstant >> simplified [
 	"Do nothing."
+
+	
+]
+
+{ #category : 'evaluating' }
+StMConstant >> simplifyUntil: set [
+	"Do nothing."
+
+	
 ]
 
 { #category : 'changing' }

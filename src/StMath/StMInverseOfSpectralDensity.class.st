@@ -119,6 +119,21 @@ StMInverseOfSpectralDensity >> differentiateWRTx [
 	^spline differentiateWRTx
 ]
 
+{ #category : 'comparing' }
+StMInverseOfSpectralDensity >> hash [
+
+	| hash |
+	hash := super hash.
+	hash := hash bitXor: densityScale hash.
+	hash := hash bitXor: deriveOrder hash.
+	hash := hash bitXor: freqMax hash.
+	hash := hash bitXor: freqScale hash.
+	hash := hash bitXor: nfreq hash.
+	hash := hash bitXor: seed hash.
+	hash := hash bitXor: spline hash.
+	^ hash
+]
+
 { #category : 'evaluating' }
 StMInverseOfSpectralDensity >> value [
 	^spline value

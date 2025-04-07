@@ -40,14 +40,15 @@ DAECorrector >> fillY [
 
 { #category : 'solving' }
 DAECorrector >> handleSingularMatrix [
-	(matrixSolver isMemberOf: GESpMatParPvMarkoFast) 
-		ifTrue: 
-			[matrixSolver := GESpMatParPvPrecise new.
-			self solveEquations]
-		ifFalse: 
-			[(matrixSolver isMemberOf: GESpMatParPvPrecise) 
-				ifTrue: [SingularMatrixError raiseSignal]
-				ifFalse: [self halt: 'Check this.']]
+
+	(matrixSolver isMemberOf: GESpMatParPvMarkoFast)
+		ifTrue: [
+			matrixSolver := GESpMatParPvPrecise new.
+			self solveEquations ]
+		ifFalse: [
+			(matrixSolver isMemberOf: GESpMatParPvPrecise)
+				ifTrue: [ SingularMatrixError signal ]
+				ifFalse: [ self halt: 'Check this.' ] ]
 ]
 
 { #category : 'initialize-release' }

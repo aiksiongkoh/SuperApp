@@ -39,22 +39,21 @@ MbDAnyPosICNewtonRaphson2 >> createVectorsAndMatrices [
 
 { #category : 'solving' }
 MbDAnyPosICNewtonRaphson2 >> fillPyPx [
+
 	pypx zeroSelf.
-	pypx 
-		at: 1
-		and: 1
-		minusDiagonalMatrix: qsuWeights.
-	system partsJointsMotionsDo: [:item | item fillPosICJacob: pypx]
+	pypx at: 1 and: 1 minusDiagonalMatrix: qsuWeights.
+	system allDo: [ :item | item fillPosICJacob: pypx ]
 ]
 
 { #category : 'solving' }
 MbDAnyPosICNewtonRaphson2 >> fillY [
+
 	| newMinusOld |
 	newMinusOld := qsuOld negated.
 	newMinusOld equalSelfPlusFullColumn: x at: 1.
 	y zeroSelf.
 	y at: 1 minusFullColumn: (qsuWeights timesFullColumn: newMinusOld).
-	system partsJointsMotionsDo: [:item | item fillPosICError: y]
+	system allDo: [ :item | item fillPosICError: y ]
 ]
 
 { #category : 'initialize-release' }
@@ -65,15 +64,39 @@ MbDAnyPosICNewtonRaphson2 >> initialize [
 
 { #category : 'initialize-release' }
 MbDAnyPosICNewtonRaphson2 >> initializeGlobally [
+
 	super initializeGlobally.
-	system partsJointsMotionsDo: 
-			[:item | 
-			item fillqsu: qsuOld.
-			item fillqsuWeights: qsuWeights.
-			item fillqsulam: x]
+	system allDo: [ :item |
+		item fillqsu: qsuOld.
+		item fillqsuWeights: qsuWeights.
+		item fillqsulam: x ]
+]
+
+{ #category : 'solving' }
+MbDAnyPosICNewtonRaphson2 >> iterate [
+	"
+	Do not skip matrix solution even when yNorm is very small. 
+	This avoids unexpected behaviors when convergence is still 
+	possible. 
+	
+	Do not skip redundant constraint removal even when yNorm is 
+	zero. 
+	"
+
+	iterNo := 0.
+	self fillY.
+	self calcyNorm.
+	yNorms add: yNorm.
+
+	[
+	self incrementIterNo.
+	self fillPyPx.
+	self solveEquations.
+	self calcDXNormImproveRootCalcYNorm.
+	self isConverged ] whileFalse
 ]
 
 { #category : 'solving' }
 MbDAnyPosICNewtonRaphson2 >> passRootToSystem [
-	system partsJointsMotionsDo: [:item | item setqsulam: x]
+	system allDo: [:item | item setqsulam: x]
 ]

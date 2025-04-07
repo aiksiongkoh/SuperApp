@@ -10,6 +10,18 @@ Class {
 }
 
 { #category : 'accessing' }
+ASMTPart >> aAaF [
+
+	^ aAFf
+]
+
+{ #category : 'accessing' }
+ASMTPart >> aAaf [
+
+	^ aAFf
+]
+
+{ #category : 'accessing' }
 ASMTPart >> aJpp [
 
 	^ principalMassMarker aJpp
@@ -38,18 +50,21 @@ ASMTPart >> alpOcmO [
 { #category : 'MbD' }
 ASMTPart >> createMbDin: mbdAssemblyFrm [
 
-	| units mbdPartFrm |
+	| units mbdUnits mbdPartFrm |
 	units := self units.
-	mbdPartFrm := SymPartFrame new.
+	mbdUnits := self mbdUnits.
+	mbdPartFrm := SymPartFrameXEVOmeapa new.
 	mbdObject := mbdPartFrm.
 	mbdPartFrm name: name.
-	mbdPartFrm m: self mass * units mass.
-	mbdPartFrm aJ: self aJpp * units aJ.
-	mbdPartFrm qX: self rOcmO * units length.
-	mbdPartFrm qE: self qEp.
-	mbdPartFrm vX: self vOcmO * units velocity.
-	mbdPartFrm vOmega: self omeOcmO * units omega.
-	mbdAssemblyFrm addPartFrm: mbdPartFrm
+	mbdPartFrm m: self mass * units mass / mbdUnits mass.
+	mbdPartFrm aJ: self aJpp * units aJ / mbdUnits aJ.
+	mbdPartFrm qX: self racma * units length / mbdUnits length.
+	mbdPartFrm qE: self qEacm.
+	mbdPartFrm vX: self vacma * units velocity / mbdUnits velocity.
+	mbdPartFrm vOmega: self omeacma * units omega / mbdUnits omega.
+	mbdAssemblyFrm addPartFrm: mbdPartFrm.
+	"refs asSortedCollection: [ :a :b | a name <= b name ]"
+	refs do: [ :item | item createMbDin: mbdPartFrm ]
 ]
 
 { #category : 'accessing' }
@@ -76,6 +91,18 @@ ASMTPart >> mass [
 ASMTPart >> omeOcmO [
 
 	^ principalMassMarker omeOfO
+]
+
+{ #category : 'accessing' }
+ASMTPart >> omeacma [
+
+	^ principalMassMarker omeafa
+]
+
+{ #category : 'accessing' }
+ASMTPart >> omeafa [
+
+	^ omeFfF
 ]
 
 { #category : 'parsing' }
@@ -149,6 +176,24 @@ ASMTPart >> parsePrincipalMassMarker: lines [
 ]
 
 { #category : 'accessing' }
+ASMTPart >> principalMassFrame [
+
+	^ principalMassMarker
+]
+
+{ #category : 'accessing' }
+ASMTPart >> qEacm [
+
+	^ principalMassMarker qEaf
+]
+
+{ #category : 'accessing' }
+ASMTPart >> qEdotacm [
+
+	^ SymEulerParametersDot fromqEOp: self qEacm andOmegaOpO: self omeacma
+]
+
+{ #category : 'accessing' }
 ASMTPart >> qEp [
 
 	^ principalMassMarker qEp
@@ -161,7 +206,37 @@ ASMTPart >> rOcmO [
 ]
 
 { #category : 'accessing' }
+ASMTPart >> raFa [
+
+	^ sup rFfF
+]
+
+{ #category : 'as yet unclassified' }
+ASMTPart >> racma [
+
+	^ principalMassMarker rafa
+]
+
+{ #category : 'accessing' }
+ASMTPart >> rafa [
+
+	^ rFfF
+]
+
+{ #category : 'accessing' }
 ASMTPart >> vOcmO [
 
 	^ principalMassMarker vOfO
+]
+
+{ #category : 'accessing' }
+ASMTPart >> vacma [
+
+	^ principalMassMarker vafa
+]
+
+{ #category : 'accessing' }
+ASMTPart >> vafa [
+
+	^ vFfF
 ]

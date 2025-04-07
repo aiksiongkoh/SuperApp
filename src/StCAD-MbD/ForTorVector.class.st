@@ -63,19 +63,18 @@ ForTorVector >> fillpFpydot: mat [
 ]
 
 { #category : 'accessing' }
-ForTorVector >> functions: col [ 
+ForTorVector >> functions: col [
+
 	| collection funci compi |
 	collection := OrderedCollection new.
-	1 to: 3
-		do: 
-			[:i | 
-			compi := components at: i.
-			compi forTorFunction formula isNil ifFalse: [self error: #'StM: ForceTorque function can only be initialized once.'].
-			funci := col at: i.
-			(funci notNil and: [funci isZero not])
-				ifTrue: 
-					[compi forTorFunction formula: (col at: i).
-					collection add: compi]].
+	1 to: 3 do: [ :i |
+		compi := components at: i.
+		compi forTorFunction formula isNil ifFalse: [
+			self error: #'StM: ForTor function can only be initialized once.' ].
+		funci := col at: i.
+		(funci notNil and: [ funci isZero not ]) ifTrue: [
+			compi forTorFunction formula: (col at: i).
+			collection add: compi ] ].
 	components := collection
 ]
 

@@ -64,7 +64,13 @@ StMFunction >> arguments: array [
 	self subclassResponsibility
 ]
 
-{ #category : 'initialize-release' }
+{ #category : 'printing' }
+StMFunction >> funcName [
+
+	self subclassResponsibility
+]
+
+{ #category : 'initialization' }
 StMFunction >> initialize [
 	"Do nothing."
 ]

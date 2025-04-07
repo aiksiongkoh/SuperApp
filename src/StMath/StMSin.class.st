@@ -1,6 +1,6 @@
 Class {
 	#name : 'StMSin',
-	#superclass : 'StMIntrinsicFunctionX',
+	#superclass : 'StMTrig',
 	#category : 'StMath-Symbolic',
 	#package : 'StMath',
 	#tag : 'Symbolic'
@@ -21,9 +21,33 @@ StMSin class >> visualWorksMetadata [
 
 ]
 
+{ #category : 'converting' }
+StMSin >> asValue [
+
+	^ x asValue sin
+]
+
 { #category : 'evaluating' }
 StMSin >> differentiateWRTx [
 	^StMCos with: x copy
+]
+
+{ #category : 'printing' }
+StMSin >> funcName [
+
+	^ 'sin'
+]
+
+{ #category : 'testing' }
+StMSin >> isSin [
+
+	^ true
+]
+
+{ #category : 'testing' }
+StMSin >> isZero [
+
+	^ x isZero
 ]
 
 { #category : 'printing' }

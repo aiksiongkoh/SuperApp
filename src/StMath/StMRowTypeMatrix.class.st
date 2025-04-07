@@ -293,6 +293,16 @@ StMRowTypeMatrix >> at: i1 and: j1 plusTransposeFullMatrix: aFullMatrix times: a
 			times: aNumber]
 ]
 
+{ #category : 'ops on self' }
+StMRowTypeMatrix >> at: i1 and: j1 plusTransposeFullRow: aFullRow [
+	"Similar to at:and:plusFullColumn:"
+
+	| iOffset |
+	[ aFullRow isMemberOf: StMFullRow ] assert.
+	iOffset := i1 - 1.
+	1 to: aFullRow size do: [ :ii | (self at: iOffset + ii) at: j1 plusNumber: (aFullRow at: ii) ]
+]
+
 { #category : 'accessing' }
 StMRowTypeMatrix >> at: i and: j put: value [ 
 	"Set element aij."

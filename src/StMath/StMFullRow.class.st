@@ -245,6 +245,17 @@ StMFullRow >> timesFullMatrix: aFullMatrix [
 ]
 
 { #category : 'basic ops' }
+StMFullRow >> timesFullMatrix: aFullMatrix times: num [
+	"Similar to inner dot product."
+
+	| answer |
+	answer := (aFullMatrix at: 1) times: (self at: 1) * num.
+	2 to: self ncol do: [ :j |
+	answer equalSelfPlusFullRow: (aFullMatrix at: j) times: (self at: j) * num ].
+	^ answer
+]
+
+{ #category : 'basic ops' }
 StMFullRow >> timesFullRow: aFullRow [ 
 	self halt: 'Row times: Row is not a valid operation.'
 ]
@@ -270,6 +281,17 @@ StMFullRow >> timesTransposeFullMatrix: aFullMatrix [
 	^answer
 ]
 
+{ #category : 'as yet unclassified' }
+StMFullRow >> timesTransposeFullMatrix: mat times: num [
+
+	| m answer |
+	m := mat nrow.
+	[ self size == mat ncol ] assert.
+	answer := StMFullRow new: m.
+	1 to: m do: [ :j | answer at: j put: (self dot: (mat at: j)) * num ].
+	^ answer
+]
+
 { #category : 'basic ops' }
 StMFullRow >> timesTransposeSparseMatrix: aSparseMatrix [ 
 	"a*bT = a(1,j)b(k,j)"
@@ -285,18 +307,18 @@ StMFullRow >> timesTransposeSparseMatrix: aSparseMatrix [
 { #category : 'basic ops' }
 StMFullRow >> transpose [
 	"Return a row with the same elements."
-	"This method is much faster than the obvious way."
 
-	^self shallowCopy changeClassToThatOf: (StMFullColumn new: 0)
+	^ StMFullColumn withAll: self
 ]
 
 { #category : 'basic ops' }
-StMFullRow >> transposeTimesFullRow: aFullRow [ 
+StMFullRow >> transposeTimesFullRow: aFullRow [
 	"a*b = a(i)b(j)"
 
 	| nrow answer |
+	[ aFullRow isMemberOf: StMFullRow ] assert.
 	nrow := self ncol.
 	answer := StMFullMatrix new: nrow.
-	1 to: nrow do: [:i | answer at: i put: (aFullRow times: (self at: i))].
-	^answer
+	1 to: nrow do: [ :i | answer at: i put: (aFullRow times: (self at: i)) ].
+	^ answer
 ]

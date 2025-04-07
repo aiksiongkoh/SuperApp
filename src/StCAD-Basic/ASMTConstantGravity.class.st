@@ -20,7 +20,7 @@ ASMTConstantGravity >> createMbDin: mbdAssemblyFrm [
 	| constGrav |
 	constGrav := self mbdClass new.
 	mbdObject := constGrav.
-	constGrav gXYZ: gravAcc * self units acceleration.
+	constGrav gXYZ: gravAcc * self units acceleration / self mbdUnits acceleration.
 	mbdAssemblyFrm addField: constGrav
 ]
 

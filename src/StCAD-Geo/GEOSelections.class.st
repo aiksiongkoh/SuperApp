@@ -24,7 +24,8 @@ GEOSelections class >> visualWorksMetadata [
 
 { #category : 'accessing' }
 GEOSelections >> emptySelf [
-	self setIndices
+
+	self reset
 ]
 
 { #category : 'accessing' }
@@ -41,7 +42,8 @@ GEOSelections >> soleSelection [
 ]
 
 { #category : 'accessing' }
-GEOSelections >> soleSelection: aGEO [ 
-	self setIndices.
+GEOSelections >> soleSelection: aGEO [
+
+	self reset.
 	self add: aGEO
 ]

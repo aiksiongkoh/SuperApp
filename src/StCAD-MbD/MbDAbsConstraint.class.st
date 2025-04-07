@@ -110,3 +110,9 @@ MbDAbsConstraint >> fillpFpydot: mat [
 MbDAbsConstraint >> useEquationNumbers [
 	iqXminusOnePlusAxis := owner iqX - 1 + axis
 ]
+
+{ #category : 'initialize-release' }
+MbDAbsConstraint >> useVelICEqnNo [
+
+	self assert: false
+]

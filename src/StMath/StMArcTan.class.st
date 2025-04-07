@@ -1,6 +1,6 @@
 Class {
 	#name : 'StMArcTan',
-	#superclass : 'StMIntrinsicFunctionX',
+	#superclass : 'StMTrig',
 	#category : 'StMath-Symbolic',
 	#package : 'StMath',
 	#tag : 'Symbolic'
@@ -25,6 +25,18 @@ StMArcTan class >> visualWorksMetadata [
 StMArcTan >> differentiateWRTx [
 
 	^ StMReciprocal with: (StMSum with: 1 with: (x copy raisedTo: 2))
+]
+
+{ #category : 'printing' }
+StMArcTan >> funcName [
+
+	^ 'arctan'
+]
+
+{ #category : 'testing' }
+StMArcTan >> isZero [
+
+	^ x isZero
 ]
 
 { #category : 'printing' }

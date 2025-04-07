@@ -10,6 +10,12 @@ Class {
 }
 
 { #category : 'accessing' }
+ASMTSpatialItem >> aAFf [
+
+	^ aAFf
+]
+
+{ #category : 'accessing' }
 ASMTSpatialItem >> aAOF [
 
 	^ sup aAOf
@@ -19,6 +25,12 @@ ASMTSpatialItem >> aAOF [
 ASMTSpatialItem >> aAOf [
 
 	^ self aAOF timesFullMatrix: aAFf
+]
+
+{ #category : 'accessing' }
+ASMTSpatialItem >> aAaf [
+
+	^ self aAaF timesFullMatrix: aAFf
 ]
 
 { #category : 'accessing' }
@@ -50,6 +62,12 @@ ASMTSpatialItem >> parseRotationMatrix: lines [
 ]
 
 { #category : 'accessing' }
+ASMTSpatialItem >> rFfF [
+
+	^ rFfF
+]
+
+{ #category : 'accessing' }
 ASMTSpatialItem >> rOFO [
 
 	^ sup rOfO
@@ -70,5 +88,15 @@ ASMTSpatialItem >> vOFO [
 { #category : 'accessing' }
 ASMTSpatialItem >> vOfO [
 
-	^ self vOFO + (self omeOFO cross: rFfF)
+	| rFfO |
+	rFfO := self aAOF timesFullColumn: rFfF.
+	^ self vOFO + (self omeOFO cross: rFfO)
+]
+
+{ #category : 'accessing' }
+ASMTSpatialItem >> vafa [
+
+	| rFfa |
+	rFfa := self aAaF timesFullColumn: rFfF.
+	^ self vaFa + (self omeaFa cross: rFfa)
 ]

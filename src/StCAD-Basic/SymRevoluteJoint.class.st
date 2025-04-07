@@ -5,6 +5,22 @@ Class {
 	#package : 'StCAD-Basic'
 }
 
+{ #category : 'initialize - release' }
+SymRevoluteJoint >> connectsI: mkrII toJ: mkrJJ [
+
+	super connectsI: mkrII toJ: mkrJJ.
+	self addConstraint: (SymDirectionCosineConstraintIJ
+			 withFrmI: endFrmI
+			 frmJ: endFrmJ
+			 axisI: 3
+			 axisJ: 1).
+	self addConstraint: (SymDirectionCosineConstraintIJ
+			 withFrmI: endFrmI
+			 frmJ: endFrmJ
+			 axisI: 3
+			 axisJ: 2)
+]
+
 { #category : 'initialization' }
 SymRevoluteJoint >> initializeGlobally [
 

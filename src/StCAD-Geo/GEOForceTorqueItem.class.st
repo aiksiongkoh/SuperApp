@@ -69,7 +69,7 @@ GEOForceTorqueItem >> dataClass [
 { #category : 'DYN' }
 GEOForceTorqueItem >> dataFromCurrentState [
 	| answer |
-	answer := GEOForceTorqueData new.
+	answer := GEOForTorData new.
 	answer aFIO: (StMFullColumn zero: 3).
 	answer aTIO: (StMFullColumn zero: 3).
 	^answer
@@ -80,7 +80,7 @@ GEOForceTorqueItem >> dataFromMbD [
 	| mbdUnits mbdItem answer |
 	mbdUnits := self mbdUnits.
 	mbdItem := self mbdObject.
-	answer := GEOForceTorqueData new.
+	answer := GEOForTorData new.
 	answer aFIO: mbdItem aFX * mbdUnits force.
 	answer aTIO: mbdItem aTX * mbdUnits torque.
 	^answer

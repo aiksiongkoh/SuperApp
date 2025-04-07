@@ -32,7 +32,7 @@ MbDDAEIntegrator >> correctorRelativeTolerance [
 MbDDAEIntegrator >> initializeGlobally [
 	super initializeGlobally.
 	self assignEquationNumbers.
-	system partsJointsMotionsForcesTorquesDo: [:item | item useEquationNumbers]
+	system allDo: [:item | item useEquationNumbers]
 ]
 
 { #category : 'accessing' }

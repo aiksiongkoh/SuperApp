@@ -186,33 +186,35 @@ DAEIntegrator >> reportStats [
 ]
 
 { #category : 'run' }
-DAEIntegrator >> suggestSmallerOrAcceptFirstStepSize: hnew [ 
+DAEIntegrator >> suggestSmallerOrAcceptFirstStepSize: hnew [
+
 	| hnew2 |
 	hnew2 := system suggestSmallerOrAcceptFirstStepSize: hnew.
-	hnew2 > hmax
-		ifTrue: 
-			[hnew2 := hmax.
-			self logString: #'StM: \Step size is at user specified maximum.'].
-	hnew2 < hmin
-		ifTrue: 
-			[self logString: #'StM: \Step size %1 < %2 user specified minimum.' withArguments: (Array with: hnew2 asFloat printString with: hmin asFloat printString).
-			TooSmallStepSizeError raiseSignal].
-	^hnew2
+	hnew2 > hmax ifTrue: [
+		hnew2 := hmax.
+		self logString: #'StM: \Step size is at user specified maximum.' ].
+	hnew2 < hmin ifTrue: [
+		self
+			logString: #'StM: \Step size %1 < %2 user specified minimum.'
+			withArguments: (Array with: hnew2 asFloat printString with: hmin asFloat printString).
+		TooSmallStepSizeError signal ].
+	^ hnew2
 ]
 
 { #category : 'run' }
-DAEIntegrator >> suggestSmallerOrAcceptStepSize: hnew [ 
+DAEIntegrator >> suggestSmallerOrAcceptStepSize: hnew [
+
 	| hnew2 |
 	hnew2 := system suggestSmallerOrAcceptStepSize: hnew.
-	hnew2 > hmax
-		ifTrue: 
-			[hnew2 := hmax.
-			self logString: #'StM: \Step size is at user specified maximum.'].
-	hnew2 < hmin
-		ifTrue: 
-			[self logString: #'StM: \Step size %1 < %2 user specified minimum.' withArguments: (Array with: hnew2 asFloat printString with: hmin asFloat printString).
-			TooSmallStepSizeError raiseSignal].
-	^hnew2
+	hnew2 > hmax ifTrue: [
+		hnew2 := hmax.
+		self logString: #'StM: \Step size is at user specified maximum.' ].
+	hnew2 < hmin ifTrue: [
+		self
+			logString: #'StM: \Step size %1 < %2 user specified minimum.'
+			withArguments: (Array with: hnew2 asFloat printString with: hmin asFloat printString).
+		TooSmallStepSizeError signal ].
+	^ hnew2
 ]
 
 { #category : 'accessing' }

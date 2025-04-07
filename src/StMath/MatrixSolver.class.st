@@ -71,17 +71,15 @@ MatrixSolver >> doPivoting: p [
 ]
 
 { #category : 'scaling' }
-MatrixSolver >> findScalingsForRows: i1 to: i2 [ 
+MatrixSolver >> findScalingsForRows: i1 to: i2 [
 	"Row element * scaling <= 1.0."
 
 	| maxRowElement |
 	rowScalings := StMFullColumn new: m.
-	i1 to: i2
-		do: 
-			[:i | 
-			maxRowElement := (matrixA at: i) maxElement.
-			maxRowElement > 0 ifFalse: [SingularMatrixError raiseSignal].
-			rowScalings at: i put: maxRowElement reciprocal]
+	i1 to: i2 do: [ :i |
+		maxRowElement := (matrixA at: i) maxElement.
+		maxRowElement > 0 ifFalse: [ SingularMatrixError signal ].
+		rowScalings at: i put: maxRowElement reciprocal ]
 ]
 
 { #category : 'initialize-release' }
@@ -130,13 +128,11 @@ MatrixSolver >> singularPivotTolerance: double [
 ]
 
 { #category : 'solution' }
-MatrixSolver >> solve: aMatrix with: aVector saveOriginal: saveOriginal [ 
-	self
-		timedSolve: aMatrix
-		with: aVector
-		saveOriginal: saveOriginal.
-	millisecondsToRun > 500 ifTrue: [ObjectMemory garbageCollect].
-	^answerX
+MatrixSolver >> solve: aMatrix with: aVector saveOriginal: saveOriginal [
+
+	self timedSolve: aMatrix with: aVector saveOriginal: saveOriginal.
+	millisecondsToRun > 500 ifTrue: [ Smalltalk garbageCollect ].
+	^ answerX
 ]
 
 { #category : 'solution' }

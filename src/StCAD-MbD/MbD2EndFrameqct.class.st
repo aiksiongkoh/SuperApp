@@ -1,3 +1,6 @@
+"
+phiThePsiBlks uses EulerAngles
+"
 Class {
 	#name : 'MbD2EndFrameqct',
 	#superclass : 'MbDEndFrameqc',

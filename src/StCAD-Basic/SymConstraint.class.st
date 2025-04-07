@@ -11,3 +11,151 @@ Class {
 	#category : 'StCAD-Basic',
 	#package : 'StCAD-Basic'
 }
+
+{ #category : 'ops' }
+SymConstraint >> assignVelICEqnNum: eqnNo [
+
+	self iG: eqnNo.
+	^ eqnNo + 1
+]
+
+{ #category : 'posIC' }
+SymConstraint >> becomeRedundantConstraint [
+
+	| newSelf |
+	iG := nil.
+	newSelf := SymRedundantConstraint new.
+	self become: newSelf.
+	self constraint: newSelf
+]
+
+{ #category : 'calc' }
+SymConstraint >> calcAll [
+
+	lam := 0.0.
+	self calcG
+]
+
+{ #category : 'calc' }
+SymConstraint >> calcG [
+
+	self subclassResponsibility
+]
+
+{ #category : 'accIC' }
+SymConstraint >> fillAccICIterJacob: mat [
+	"Same as velIC."
+
+	self fillVelICJacob: mat
+]
+
+{ #category : 'accessing' }
+SymConstraint >> fillConstraints: collection [
+
+	collection add: self
+]
+
+{ #category : 'accessing' }
+SymConstraint >> fillDispConstraints: collection [
+
+	self type == #displacement ifTrue: [ collection add: self ]
+]
+
+{ #category : 'accessing' }
+SymConstraint >> fillEssenConstraints: collection [
+
+	self type == #essential ifTrue: [ collection add: self ]
+]
+
+{ #category : 'accessing' }
+SymConstraint >> fillPerpenConstraints: collection [
+
+	self type == #perpendicular ifTrue: [ collection add: self ]
+]
+
+{ #category : 'posIC' }
+SymConstraint >> fillPosICError: col [
+
+	col at: iG plusNumber: aG asValue
+]
+
+{ #category : 'accessing' }
+SymConstraint >> fillRedundantConstraints: collection [
+	"Do nothing."
+
+	
+]
+
+{ #category : 'accessing' }
+SymConstraint >> fillqsuddotlam: col [
+
+	col at: iG put: lam
+]
+
+{ #category : 'accessing' }
+SymConstraint >> fillqsulam: col [
+
+	col at: iG put: lam
+]
+
+{ #category : 'accessing' }
+SymConstraint >> iG [
+
+	^ iG
+]
+
+{ #category : 'accessing' }
+SymConstraint >> iG: eqnNo [
+
+	iG := eqnNo
+]
+
+{ #category : 'initialization' }
+SymConstraint >> initialize [
+	"Get unique name."
+
+	name := self identityHash
+]
+
+{ #category : 'testing' }
+SymConstraint >> isRedundant [
+
+	^ false
+]
+
+{ #category : 'removing' }
+SymConstraint >> removeRedundantConstraints: redundantEqns [
+
+	(redundantEqns includes: iG) ifTrue: [ self becomeRedundantConstraint ]
+]
+
+{ #category : 'accessing' }
+SymConstraint >> setVelICValues: col [
+
+	lam := col at: iG
+]
+
+{ #category : 'accessing' }
+SymConstraint >> setqsudotlam: col [
+
+	lam := col at: iG
+]
+
+{ #category : 'accessing' }
+SymConstraint >> setqsulam: col [
+
+	lam := col at: iG
+]
+
+{ #category : 'accessing' }
+SymConstraint >> sup: supFrm [
+
+	super sup: supFrm.
+	self calcAll
+]
+
+{ #category : 'accessing' }
+SymConstraint >> type [
+
+	^ #essential
+]

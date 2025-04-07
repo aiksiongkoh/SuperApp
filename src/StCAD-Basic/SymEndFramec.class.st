@@ -1,31 +1,50 @@
 Class {
 	#name : 'SymEndFramec',
 	#superclass : 'SymEndFrame',
-	#instVars : [
-		'theme'
-	],
 	#category : 'StCAD-Basic',
 	#package : 'StCAD-Basic'
 }
 
+{ #category : 'calc' }
+SymEndFramec >> calcPostDynCorrectorIteration [
+
+	
+]
+
+{ #category : 'calc' }
+SymEndFramec >> calcomeOeO [
+
+	^ sup omeOmO
+]
+
+{ #category : 'calc' }
+SymEndFramec >> calcvOeO [
+
+	^ sup vOmO + (sup pAOmpt timesFullColumn: self rmem)
+]
+
 { #category : 'initialization' }
 SymEndFramec >> initialize [
 
-	| rmem1 rmem2 rmem3 rmem theme1x theme2y theme3z aAme |
+	| rmemc1 rmemc2 rmemc3 themec1x themec2y themec3z |
 	super initialize.
-	rmem1 := StMConstantParameter name: #rmem1.
-	rmem2 := StMConstantParameter name: #rmem2.
-	rmem3 := StMConstantParameter name: #rmem3.
-	rmem := StMFullColumn with: rmem1 with: rmem2 with: rmem3.
-	rFfF := rmem simplified.
-	theme1x := StMConstantParameter name: #theme1x.
-	theme2y := StMConstantParameter name: #theme2y.
-	theme3z := StMConstantParameter name: #theme3z.
-	theme := SymEulerAngles with: theme1x with: theme2y with: theme3z.
-	aAme := theme
-		        calc;
-		        aA.
-	aAFf := aAme simplified
+	rmemc1 := StMConstantParameter name: #rmemc1.
+	rmemc2 := StMConstantParameter name: #rmemc2.
+	rmemc3 := StMConstantParameter name: #rmemc3.
+	rmem := SymFullColumn with: rmemc1 with: rmemc2 with: rmemc3.
+	rFfF := rmem.
+	themec1x := StMConstantParameter name: #themec1x.
+	themec2y := StMConstantParameter name: #themec2y.
+	themec3z := StMConstantParameter name: #themec3z.
+	theme := SymEulerAngles with: themec1x with: themec2y with: themec3z.
+	aAme := theme aA.
+	aAFf := aAme
+]
+
+{ #category : 'accessing' }
+SymEndFramec >> omemem [
+
+	^ SymFullColumn zero: 3
 ]
 
 { #category : 'accessing' }

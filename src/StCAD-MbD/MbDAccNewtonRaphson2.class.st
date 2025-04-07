@@ -18,7 +18,7 @@ MbDAccNewtonRaphson2 class >> visualWorksMetadata [
 
 { #category : 'solving' }
 MbDAccNewtonRaphson2 >> askSystemToUpdate [
-	system partsJointsMotionsForcesTorquesDo: [:item | item postAccICIteration]
+	system allDo: [:item | item postAccICIteration]
 ]
 
 { #category : 'initialize-release' }
@@ -59,28 +59,31 @@ MbDAccNewtonRaphson2 >> assignEquationNumbers [
 { #category : 'solving' }
 MbDAccNewtonRaphson2 >> fillPyPx [
 	pypx zeroSelf.
-	system partsJointsMotionsForcesTorquesDo: [:item | item fillAccICIterJacob: pypx]
+	system allDo: [:item | item fillAccICIterJacob: pypx]
 ]
 
 { #category : 'solving' }
 MbDAccNewtonRaphson2 >> fillY [
 	y zeroSelf.
-	system partsJointsMotionsForcesTorquesDo: [:item | item fillAccICIterError: y]
+	system allDo: [:item | item fillAccICIterError: y]
 ]
 
 { #category : 'solving' }
 MbDAccNewtonRaphson2 >> incrementIterNo [
-	iterNo >= iterMax
-		ifTrue: 
-			[system logString: #'MbD: \No convergence after %1 iterations. \A force function of joint reactions can cause this problem \if the function returns large values.' withArgument: iterNo printString.
-			SimulationStoppingError raiseSignal].
+
+	iterNo >= iterMax ifTrue: [
+		system
+			logString:
+			#'MbD: \No convergence after %1 iterations. \A force function of joint reactions can cause this problem \if the function returns large values.'
+			withArgument: iterNo printString.
+		SimulationStoppingError signal ].
 	iterNo := iterNo + 1
 ]
 
 { #category : 'initialize-release' }
 MbDAccNewtonRaphson2 >> initializeGlobally [
 	super initializeGlobally.
-	system partsJointsMotionsDo: [:item | item fillqsuddotlam: x]
+	system allDo: [:item | item fillqsuddotlam: x]
 ]
 
 { #category : 'solving' }
@@ -91,15 +94,15 @@ MbDAccNewtonRaphson2 >> logSingularMatrixMessage [
 
 { #category : 'solving' }
 MbDAccNewtonRaphson2 >> passRootToSystem [
-	system partsJointsMotionsDo: [:item | item setqsuddotlam: x]
+	system allDo: [:item | item setqsuddotlam: x]
 ]
 
 { #category : 'solving' }
 MbDAccNewtonRaphson2 >> postRun [
-	system partsJointsMotionsForcesTorquesDo: [:item | item postAccIC]
+	system allDo: [:item | item postAccIC]
 ]
 
 { #category : 'solving' }
 MbDAccNewtonRaphson2 >> preRun [
-	system partsJointsMotionsForcesTorquesDo: [:item | item preAccIC]
+	system allDo: [:item | item preAccIC]
 ]

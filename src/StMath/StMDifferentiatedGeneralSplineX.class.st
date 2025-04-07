@@ -49,6 +49,12 @@ StMDifferentiatedGeneralSplineX >> generalSpline: stmGeneralSpline derivativeOrd
 	derivativeOrder := integer asInteger
 ]
 
+{ #category : 'comparing' }
+StMDifferentiatedGeneralSplineX >> hash [
+
+	^ super hash bitXor: derivativeOrder hash
+]
+
 { #category : 'copying' }
 StMDifferentiatedGeneralSplineX >> postCopy [
 	super postCopy.

@@ -22,52 +22,49 @@ LDUSpMatParPvPrecise class >> visualWorksMetadata [
 ]
 
 { #category : 'pivoting' }
-LDUSpMatParPvPrecise >> doPivoting: p [ 
+LDUSpMatParPvPrecise >> doPivoting: p [
 	"Search from bottom to top."
+
 	"Do scaling and partial pivoting with actual swapping of rows."
+
 	"Check for singular pivot."
 
 	| max rowPivot aip mag lookForFirstNonZeroInPivotCol i |
-	rowPositionsOfNonZerosInPivotColumn setIndices.
+	rowPositionsOfNonZerosInPivotColumn reset.
 	lookForFirstNonZeroInPivotCol := true.
 	i := m.
-	[lookForFirstNonZeroInPivotCol]
-		whileTrue: 
-			[aip := (matrixA at: i)
-						at: p.
-			aip == nil
-				ifTrue: [i > p ifFalse: [SingularMatrixError raiseSignal]]
-				ifFalse: 
-					[markowitzPivotColCount := 0.
-					mag := aip * (rowScalings at: i).
-					mag < 0 ifTrue: [mag := 0.0 - mag].
+	[ lookForFirstNonZeroInPivotCol ] whileTrue: [
+		aip := (matrixA at: i) at: p.
+		aip == nil
+			ifTrue: [ i > p ifFalse: [ SingularMatrixError signal ] ]
+			ifFalse: [
+				markowitzPivotColCount := 0.
+				mag := aip * (rowScalings at: i).
+				mag < 0 ifTrue: [ mag := 0.0 - mag ].
+				max := mag.
+				rowPivot := i.
+				lookForFirstNonZeroInPivotCol := false ].
+		i := i - 1 ].
+	[ i >= p ] whileTrue: [
+		aip := (matrixA at: i) at: p.
+		aip == nil ifFalse: [
+			markowitzPivotColCount := markowitzPivotColCount + 1.
+			mag := aip * (rowScalings at: i).
+			mag < 0 ifTrue: [ mag := 0.0 - mag ].
+			mag > max
+				ifTrue: [
 					max := mag.
-					rowPivot := i.
-					lookForFirstNonZeroInPivotCol := false].
-			i := i - 1].
-	[i >= p]
-		whileTrue: 
-			[aip := (matrixA at: i)
-						at: p.
-			aip == nil
-				ifFalse: 
-					[markowitzPivotColCount := markowitzPivotColCount + 1.
-					mag := aip * (rowScalings at: i).
-					mag < 0 ifTrue: [mag := 0.0 - mag].
-					mag > max
-						ifTrue: 
-							[max := mag.
-							rowPositionsOfNonZerosInPivotColumn add: rowPivot.
-							rowPivot := i]
-						ifFalse: [rowPositionsOfNonZerosInPivotColumn add: i]].
-			i := i - 1].
-	p == rowPivot
-		ifFalse: 
-			[matrixA swap: p with: rowPivot.
-			rowScalings swap: p with: rowPivot.
-			rowOrder swap: p with: rowPivot.
-			matrixL swap: p with: rowPivot.
-			aip == nil ifFalse: [rowPositionsOfNonZerosInPivotColumn at: markowitzPivotColCount put: rowPivot]].
+					rowPositionsOfNonZerosInPivotColumn add: rowPivot.
+					rowPivot := i ]
+				ifFalse: [ rowPositionsOfNonZerosInPivotColumn add: i ] ].
+		i := i - 1 ].
+	p == rowPivot ifFalse: [
+		matrixA swap: p with: rowPivot.
+		rowScalings swap: p with: rowPivot.
+		rowOrder swap: p with: rowPivot.
+		matrixL swap: p with: rowPivot.
+		aip == nil ifFalse: [
+			rowPositionsOfNonZerosInPivotColumn at: markowitzPivotColCount put: rowPivot ] ].
 	pivotValues at: p put: max.
-	max < singularPivotTolerance ifTrue: [SingularMatrixError raiseSignal]
+	max < singularPivotTolerance ifTrue: [ SingularMatrixError raiseSignal ]
 ]

@@ -1,6 +1,6 @@
 Class {
 	#name : 'StMTan',
-	#superclass : 'StMIntrinsicFunctionX',
+	#superclass : 'StMTrig',
 	#category : 'StMath-Symbolic',
 	#package : 'StMath',
 	#tag : 'Symbolic'
@@ -25,6 +25,18 @@ StMTan class >> visualWorksMetadata [
 StMTan >> differentiateWRTx [
 
 	^ (StMCos with: x copy) raisedTo: -2
+]
+
+{ #category : 'printing' }
+StMTan >> funcName [
+
+	^ 'tan'
+]
+
+{ #category : 'testing' }
+StMTan >> isZero [
+
+	^ x isZero
 ]
 
 { #category : 'printing' }

@@ -15,7 +15,7 @@ StMTermsFunction class >> inverseTerms: invTrms [
 
 	| instance |
 	instance := self new.
-	instance inverseTerms: invTrms.
+	instance addInverseTerms: invTrms.
 	^ instance
 ]
 
@@ -24,7 +24,7 @@ StMTermsFunction class >> terms: trms [
 
 	| instance |
 	instance := self new.
-	instance terms: trms.
+	instance addTerms: trms.
 	^ instance
 ]
 
@@ -33,8 +33,8 @@ StMTermsFunction class >> terms: trms inverseTerms: invTrms [
 
 	| instance |
 	instance := self new.
-	instance terms: trms.
-	instance inverseTerms: invTrms.
+	instance addTerms: trms.
+	instance addInverseTerms: invTrms.
 	^ instance
 ]
 
@@ -49,35 +49,40 @@ StMTermsFunction class >> visualWorksMetadata [
 ]
 
 { #category : 'instance creation' }
-StMTermsFunction class >> with: arg1 [ 
+StMTermsFunction class >> with: arg1 [
+
 	| instance |
 	instance := self new.
-	instance terms add: (instance conditionArgument: arg1).
-	^instance
+	instance addTerm: (instance conditionArgument: arg1).
+	^ instance
 ]
 
 { #category : 'instance creation' }
-StMTermsFunction class >> with: arg1 with: arg2 [ 
+StMTermsFunction class >> with: arg1 with: arg2 [
+
 	| instance |
 	instance := self new.
-	instance terms add: (instance conditionArgument: arg1).
-	instance terms add: (instance conditionArgument: arg2).
-	^instance
+	instance addTerm: (instance conditionArgument: arg1).
+	instance addTerm: (instance conditionArgument: arg2).
+	^ instance
 ]
 
 { #category : 'instance creation' }
-StMTermsFunction class >> with: arg1 with: arg2 with: arg3 [ 
+StMTermsFunction class >> with: arg1 with: arg2 with: arg3 [
+
 	| instance |
 	instance := self new.
-	instance terms add: (instance conditionArgument: arg1).
-	instance terms add: (instance conditionArgument: arg2).
-	instance terms add: (instance conditionArgument: arg3).
-	^instance
+	instance addTerm: (instance conditionArgument: arg1).
+	instance addTerm: (instance conditionArgument: arg2).
+	instance addTerm: (instance conditionArgument: arg3).
+	^ instance
 ]
 
 { #category : 'comparing' }
-StMTermsFunction >> = anObject [ 
-	^super = anObject and: [terms = anObject terms]
+StMTermsFunction >> = anObject [
+
+	self halt: 'Check this.'.
+	^ super = anObject and: [ terms = anObject terms ]
 ]
 
 { #category : 'accessing' }
@@ -90,7 +95,7 @@ StMTermsFunction >> addInverseTerm: term [
 { #category : 'accessing' }
 StMTermsFunction >> addInverseTerms: collection [
 
-	inverseTerms addAll: collection.
+	collection do: [ :term | self addInverseTerm: term ].
 	^ collection
 ]
 
@@ -102,9 +107,10 @@ StMTermsFunction >> addTerm: term [
 ]
 
 { #category : 'accessing' }
-StMTermsFunction >> addTerms: collection [ 
-	terms addAll: collection.
-	^collection
+StMTermsFunction >> addTerms: collection [
+
+	collection do: [ :term | self addTerm: term ].
+	^ collection
 ]
 
 { #category : 'message handling' }
@@ -112,7 +118,32 @@ StMTermsFunction >> argsPerform: selector withArguments: anArray [
 	terms do: [:term | term perform: selector withArguments: anArray]
 ]
 
-{ #category : 'initialize-release' }
+{ #category : 'simplify' }
+StMTermsFunction >> cancelTerms: newTerms inverseTerms: newInvTerms [
+
+	| commonTerms |
+	commonTerms := newTerms select: [ :trm | newInvTerms includes: trm ].
+	commonTerms do: [ :trm |
+		newTerms remove: trm.
+		newInvTerms remove: trm ]
+]
+
+{ #category : 'as yet unclassified' }
+StMTermsFunction >> collectTerms: newTerms inverseTerms: newInvTerms [ 
+	^ self subclassResponsibility
+]
+
+{ #category : 'comparing' }
+StMTermsFunction >> hash [
+
+	| hash |
+	hash := self class hash.
+	terms do: [ :elem | hash := hash bitXor: elem hash ].
+	inverseTerms do: [ :elem | hash := hash bitXor: elem hash ].
+	^ hash
+]
+
+{ #category : 'initialization' }
 StMTermsFunction >> initialize [
 
 	super initialize.
@@ -163,6 +194,11 @@ StMTermsFunction >> printOn: aStream [
 	aStream nextPut: $)
 ]
 
+{ #category : 'as yet unclassified' }
+StMTermsFunction >> simplifyUntil: set [ 
+	^ self subclassResponsibility
+]
+
 { #category : 'changing' }
 StMTermsFunction >> substitute: var1 with1: var2 [ 
 	terms := terms collect: [:term | term == var1
@@ -175,9 +211,9 @@ StMTermsFunction >> substitute: var1 with: var2 [
 
 	| answer |
 	answer := self class new.
-	answer terms:
+	answer addTerms:
 		(terms collect: [ :term | term substitute: var1 with: var2 ]).
-	answer inverseTerms:
+	answer addInverseTerms:
 		(inverseTerms collect: [ :term | term substitute: var1 with: var2 ]).
 	^ answer
 ]

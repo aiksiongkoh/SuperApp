@@ -27,3 +27,9 @@ StMLeastSquaresFit class >> with: var order: order xs: xxs ys: yys [
 		xs: xxs
 		ys: yys
 ]
+
+{ #category : 'comparing' }
+StMLeastSquaresFit >> hash [
+
+	^ super hash bitXor: xOffset hash
+]

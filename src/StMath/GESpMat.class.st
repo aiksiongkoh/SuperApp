@@ -33,20 +33,19 @@ GESpMat class >> visualWorksMetadata [
 ]
 
 { #category : 'forward elimination' }
-GESpMat >> privateIndicesOfNonZerosInPivotRow: pivotRow withoutKey: discardKey [ 
+GESpMat >> privateIndicesOfNonZerosInPivotRow: pivotRow withoutKey: discardKey [
 	"pivotRow is aStMSparseRow."
 
 	| count index key |
 	count := 0.
 	index := 1.
 	markowitzPivotRowCount := pivotRow tally - 1.
-	privateIndicesOfNonZerosInPivotRow setIndices.
-	[count < markowitzPivotRowCount]
-		whileTrue: 
-			[key := pivotRow basicAt: index.
-			key == nil ifFalse: [key == discardKey
-					ifFalse: 
-						[count := count + 1.
-						privateIndicesOfNonZerosInPivotRow add: index]].
-			index := index + 1]
+	privateIndicesOfNonZerosInPivotRow reset.
+	[ count < markowitzPivotRowCount ] whileTrue: [
+		key := pivotRow basicAt: index.
+		key == nil ifFalse: [
+			key == discardKey ifFalse: [
+				count := count + 1.
+				privateIndicesOfNonZerosInPivotRow add: index ] ].
+		index := index + 1 ]
 ]

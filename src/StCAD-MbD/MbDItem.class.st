@@ -48,8 +48,7 @@ MbDItem class >> TheMbDSystem [
 MbDItem class >> clearTheMbDSystem [
 	"StCAD.StMbD.MbDItem clearTheMbDSystem."
 
-	TheMbDSystem := nil.
-	ObjectMemory garbageCollect
+	Smalltalk garbageCollect
 ]
 
 { #category : 'instance creation' }
@@ -68,7 +67,8 @@ MbDItem class >> visualWorksMetadata [
 
 { #category : 'accessing' }
 MbDItem >> TheMbDSystem [
-	^TheMbDSystem
+
+	^ TheMbDSystem
 ]
 
 { #category : 'accessing' }
@@ -655,31 +655,32 @@ MbDItem >> preVelIC [
 
 { #category : 'accessing' }
 MbDItem >> registerName [
+
 	| namedItems |
-	((name isKindOf: String) and: [name isEmpty not]) 
-		ifTrue: 
-			[namedItems := TheMbDSystem namedItems.
-			(namedItems at: name) isNil 
-				ifTrue: [namedItems at: name put: self]
-				ifFalse: 
-					[self logString: #'MbD: \The name (%1) is defined more than once.'
-						withArgument: name.
-					SimulationStoppingError raiseSignal]]
-		ifFalse: [self error: 'TheMbDSystem is trying to register an unnamed item.']
+	((name isKindOf: String) and: [ name isEmpty not ])
+		ifTrue: [
+			namedItems := TheMbDSystem namedItems.
+			(namedItems at: name) isNil
+				ifTrue: [ namedItems at: name put: self ]
+				ifFalse: [
+					self logString: #'MbD: \The name (%1) is defined more than once.' withArgument: name.
+					SimulationStoppingError signal ] ]
+		ifFalse: [ self error: 'TheMbDSystem is trying to register an unnamed item.' ]
 ]
 
 { #category : 'accessing' }
 MbDItem >> registerName1 [
+
 	| namedItems |
 	name == nil
-		ifTrue: [self error: 'TheMbDSystem is trying to register an unnamed item.']
-		ifFalse: 
-			[namedItems := TheMbDSystem namedItems.
+		ifTrue: [ self error: 'TheMbDSystem is trying to register an unnamed item.' ]
+		ifFalse: [
+			namedItems := TheMbDSystem namedItems.
 			(namedItems at: name) isNil
-				ifTrue: [namedItems at: name put: self]
-				ifFalse: 
-					[self logString: #'MbD: \The name (%1) is defined more than once.' withArgument: name.
-					SimulationStoppingError raiseSignal]]
+				ifTrue: [ namedItems at: name put: self ]
+				ifFalse: [
+					self logString: #'MbD: \The name (%1) is defined more than once.' withArgument: name.
+					SimulationStoppingError signal ] ]
 ]
 
 { #category : 'posIC' }

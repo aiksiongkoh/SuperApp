@@ -3,7 +3,9 @@ Class {
 	#superclass : 'SymConstraint',
 	#instVars : [
 		'pGpE',
-		'iqE'
+		'iqE',
+		'ppGpEpE',
+		'ivE'
 	],
 	#category : 'StCAD-Basic',
 	#package : 'StCAD-Basic'
@@ -19,10 +21,37 @@ SymEulerConstraint class >> visualWorksMetadata [
 
 ]
 
+{ #category : 'ops' }
+SymEulerConstraint >> assignVelICEqnNum: eqnNo [
+
+	^ (sup isKindOf: SymPartFrameXEVOme)
+		  ifTrue: [ "Euler parameter constraint gives null VelIC equation."
+			  self iG: nil.
+			  ^ eqnNo ]
+		  ifFalse: [ super assignVelICEqnNum: eqnNo ]
+]
+
+{ #category : 'calc' }
+SymEulerConstraint >> calcAll [
+
+	| qEcol |
+	super calcAll.
+	qEcol := sup qE asFullRow.
+	pGpE := qEcol collect: [ :ei | aG differentiateWRT: ei ].
+	ppGpEpE := (qEcol collect: [ :ei | pGpE differentiateWRT: ei ]) asFullMatrix
+]
+
+{ #category : 'calc' }
+SymEulerConstraint >> calcG [
+
+	aG := sup qE sumOfSquares - 1.0
+]
+
 { #category : 'calc' }
 SymEulerConstraint >> calcPostDynCorrectorIteration [
 
 	| qE |
+	self halt.
 	qE := sup qE.
 	aG := qE sumOfSquares - 1.0.
 	1 to: 4 do: [ :i | pGpE at: i put: 2.0 * (qE at: i) ]
@@ -45,8 +74,8 @@ SymEulerConstraint >> fillAccICIterError: col [
 	| sum |
 	col at: iqE plusFullColumn: pGpE times: lam.
 	sum := 0.0.
-	sum := sum + (pGpE timesFullColumn: sup qEddot).
-	sum := sum + (2.0 * sup qEdot sumOfSquares).
+	sum := sum + (pGpE timesFullColumn: self qEddot).
+	sum := sum + (2.0 * self qEdot sumOfSquares).
 	col at: iG plusNumber: sum
 ]
 
@@ -64,23 +93,22 @@ SymEulerConstraint >> fillCollisionError: col [
 ]
 
 { #category : 'posIC' }
-SymEulerConstraint >> fillPosICError: col [ 
+SymEulerConstraint >> fillPosICError: col [
+
 	super fillPosICError: col.
-	col at: iqE plusFullColumn: pGpE times: lam
+	col at: iqE plusTransposeFullRow: pGpE asValue times: lam
 ]
 
 { #category : 'posIC' }
-SymEulerConstraint >> fillPosICJacob: mat [ 
-	"ppGpEpE is a diag(2,2,2,2)."
+SymEulerConstraint >> fillPosICJacob: mat [
 
-	| ioffset twolam i |
-	mat at: iG and: iqE plusFullRow: pGpE.
-	mat at: iqE and: iG plusFullColumn: pGpE transpose.
-	ioffset := iqE - 1.
-	twolam := 2.0 * lam.
-	1 to: 4 do: [:ii | 
-			i := ioffset + ii.
-			mat at: i and: i plusNumber: twolam]
+	| pGpq |
+	pGpE ifNotNil: [
+		pGpq := pGpE asValue.
+		mat at: iG and: iqE plusFullRow: pGpq.
+		mat at: iqE and: iG plusTransposeFullRow: pGpq ].
+
+	ppGpEpE ifNotNil: [ mat at: iqE and: iqE plusFullMatrix: (ppGpEpE asValue times: lam) ]
 ]
 
 { #category : 'posIC' }
@@ -92,9 +120,17 @@ SymEulerConstraint >> fillPosKineJacob: mat [
 ]
 
 { #category : 'velIC' }
-SymEulerConstraint >> fillVelICJacob: mat [ 
-	mat at: iG and: iqE plusFullRow: pGpE.
-	mat at: iqE and: iG plusFullColumn: pGpE transpose
+SymEulerConstraint >> fillVelICJacob: mat [
+
+	| pGpq pqdotpv pGpqtimespqdotpv |
+	(sup isKindOf: SymPartFrameXEVOme)
+		ifTrue: [ "Euler parameter constraint gives null VelIC equation." ]
+		ifFalse: [
+			pGpq := pGpE asValue.
+			pqdotpv := sup pqdotpv asValue.
+			pGpqtimespqdotpv := pGpq timesFullMatrix: pqdotpv.
+			mat at: iG and: iqE plusFullRow: pGpqtimespqdotpv.
+			mat at: iqE and: iG plusTransposeFullRow: pGpqtimespqdotpv ]
 ]
 
 { #category : 'dynamic' }
@@ -130,4 +166,10 @@ SymEulerConstraint >> pGpE [
 SymEulerConstraint >> useEquationNumbers [
 
 	iqE := sup iqE
+]
+
+{ #category : 'initialize-release' }
+SymEulerConstraint >> useVelICEqnNo [
+
+	ivE := sup ivE
 ]

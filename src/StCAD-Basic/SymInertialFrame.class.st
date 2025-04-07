@@ -5,12 +5,21 @@ Class {
 	#name : 'SymInertialFrame',
 	#superclass : 'SymCartesianFrame',
 	#instVars : [
-		'symUnits',
-		'time'
+		'rOOO',
+		'aAOO',
+		'vOOO',
+		'omeOOO'
 	],
 	#category : 'StCAD-Basic',
 	#package : 'StCAD-Basic'
 }
+
+{ #category : 'accessing' }
+SymInertialFrame >> aAOf [
+	"aAOf := aAOO := aAFf"
+
+	^ aAFf
+]
 
 { #category : 'adding' }
 SymInertialFrame >> addAssemblyF: aStAssemblyFrame [ 
@@ -19,10 +28,16 @@ SymInertialFrame >> addAssemblyF: aStAssemblyFrame [
 ]
 
 { #category : 'adding' }
-SymInertialFrame >> addAssemblyFrm: assemblyFrame [
+SymInertialFrame >> addAssemblyFrm: assemblyFrm [
 
-	subs add: assemblyFrame.
-	assemblyFrame sup: self
+	subs add: assemblyFrm.
+	assemblyFrm sup: self
+]
+
+{ #category : 'as yet unclassified' }
+SymInertialFrame >> assemblyFrms [
+
+	^ subs
 ]
 
 { #category : 'calc' }
@@ -34,15 +49,19 @@ SymInertialFrame >> calcAll [
 { #category : 'initialization' }
 SymInertialFrame >> initialize [
 
-	| rOOO aAOO |
+	| zeroVec |
 	super initialize.
-	time := StMIndependentVariable name: #t.
-	rOOO := StMFullColumn with: 0.0 with: 0.0 with: 0.0.
-	rFfF := rOOO asSymbolic.
-	rOfO := rFfF.
-	aAOO := StMFullMatrix identity: 3.
-	aAFf := aAOO asSymbolic.
-	aAOf := aAFf
+	zeroVec := SymFullColumn with: 0.0 with: 0.0 with: 0.0.
+	rOOO := zeroVec asSymbolic.
+	rFfF := rOOO.
+	rOfO := rOOO.
+	aAOO := (SymFullMatrix identity: 3) asSymbolic.
+	aAFf := aAOO.
+	aAOf := aAOO.
+	vOOO := zeroVec asSymbolic.
+	vOfO := vOOO.
+	omeOOO := zeroVec asSymbolic.
+	omeOfO := omeOOO
 ]
 
 { #category : 'accessing' }
@@ -54,20 +73,7 @@ SymInertialFrame >> rOFO [
 { #category : 'run' }
 SymInertialFrame >> runDYNAMIC [
 
-	| assembly |
-	assembly := self soleAssembly.
-	assembly preMbDrun.
-	assembly calcCharacteristicDimensions.
-	[
-	assembly initializeLocally.
-	assembly initializeGlobally.
-	assembly hasChanged ] whileTrue.
-	assembly partsJointsMotionsForcesTorquesDo: [ :item | item postInput ].
-	assembly outputFor: #INPUT.
-	assembly runAllIC.
-	assembly outputFor: #'INITIAL CONDITIONS'.
-	assembly runBasicDynamic.
-	assembly postMbDrun
+	self soleAssembly runDYNAMIC
 ]
 
 { #category : 'accessing' }

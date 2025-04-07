@@ -81,6 +81,15 @@ BasicUserFunction >> postCopy [
 	units := units copy
 ]
 
+{ #category : 'printing' }
+BasicUserFunction >> printOn: aStream [
+
+	aStream
+		nextPutAll: 'usrfunc(';
+		print: funcText;
+		nextPutAll: ')'
+]
+
 { #category : 'accessing' }
 BasicUserFunction >> units [
 	^units

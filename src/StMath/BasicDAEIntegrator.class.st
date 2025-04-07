@@ -288,23 +288,21 @@ BasicDAEIntegrator >> isConvergedFor: iterNo and: dyNorms [
 
 { #category : 'run' }
 BasicDAEIntegrator >> isRedoingFirstStep [
-	iTry > 100 ifTrue: [TooManyTriesError raiseSignal].
-	^(corOK not or: [truncError > 1.0])
-		or: 
-			["Look at the next step size."
-			"Aim for first step size and second step size to be similar 
-			in size."
-			"Huge disparity causes poor accuracy for subsequent 
+
+	iTry > 100 ifTrue: [ TooManyTriesError signal ].
+	^ (corOK not or: [ truncError > 1.0 ]) or: [ "Look at the next step size.""Aim for first step size and second step size to be similar 
+			in size.""Huge disparity causes poor accuracy for subsequent 
 			steps."
-			hnew := self selectBasicStepSize.
-			hnew := system suggestSmallerOrAcceptFirstStepSize: hnew.
-			hnew > (4.0 * h) and: [hnew < system hmax]]
+		  hnew := self selectBasicStepSize.
+		  hnew := system suggestSmallerOrAcceptFirstStepSize: hnew.
+		  hnew > (4.0 * h) and: [ hnew < system hmax ] ]
 ]
 
 { #category : 'run' }
 BasicDAEIntegrator >> isRedoingStep [
-	iTry > 100 ifTrue: [TooManyTriesError raiseSignal].
-	^corOK not or: [truncError > 1.0]
+
+	iTry > 100 ifTrue: [ TooManyTriesError signal ].
+	^ corOK not or: [ truncError > 1.0 ]
 ]
 
 { #category : 'accessing' }

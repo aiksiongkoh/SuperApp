@@ -489,5 +489,6 @@ MbDMarkerFrame >> vOeO_of_rmem: rmem [
 
 { #category : 'accessing' }
 MbDMarkerFrame >> vOmO [
-	^partFrame vOpO + (partFrame aAdotOp timesFullColumn: rpmp)
+
+	^ partFrame vOpO + (partFrame aAdotOp timesFullColumn: rpmp)
 ]

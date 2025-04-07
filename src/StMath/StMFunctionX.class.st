@@ -55,12 +55,16 @@ StMFunctionX >> cadStringOn: aStream [
 ]
 
 { #category : 'evaluating' }
-StMFunctionX >> differentiateWRT: variable [ 
+StMFunctionX >> differentiateWRT: variable [
+
 	| dfdx dxdvar |
-	self == variable ifTrue: [^StMConstant with: 1].
+	self == variable ifTrue: [ ^ StMConstant with: 1 ].
+	x ifNil: [ ^ StMConstant with: 0 ].
 	dfdx := self differentiateWRTx.
+	dfdx isZero ifTrue: [ ^ StMConstant with: 0 ].
 	dxdvar := x differentiateWRT: variable.
-	^dfdx times: dxdvar
+	dxdvar isZero ifTrue: [ ^ StMConstant with: 0 ].
+	^ (dfdx times: dxdvar) simplified
 ]
 
 { #category : 'evaluating' }
@@ -81,6 +85,15 @@ StMFunctionX >> expandUntil: set [
 				ifFalse: [copy]]
 ]
 
+{ #category : 'comparing' }
+StMFunctionX >> hash [
+
+	| hash |
+	hash := self class hash.
+	hash := hash bitXor: x hash.
+	^ hash
+]
+
 { #category : 'evaluating' }
 StMFunctionX >> partialDifferentiateWRT: variable [ 
 	| dfdx dxdvar |
@@ -96,6 +109,16 @@ StMFunctionX >> postCopy [
 ]
 
 { #category : 'printing' }
+StMFunctionX >> printOn: aStream [
+
+	aStream
+		nextPutAll: self funcName;
+		nextPut: $(;
+		print: x;
+		nextPut: $)
+]
+
+{ #category : 'printing' }
 StMFunctionX >> print_cArgumentOn: aStream [ 
 	aStream print: x
 ]
@@ -103,6 +126,72 @@ StMFunctionX >> print_cArgumentOn: aStream [
 { #category : 'accessing' }
 StMFunctionX >> setx: arg [ 
 	x := arg
+]
+
+{ #category : 'evaluating' }
+StMFunctionX >> simplifyConstant [
+
+	| newx answer |
+	newx := x simplifyConstant.
+	answer := self class with: newx.
+	^ newx isConstant
+		  ifTrue: [ StMConstant with: answer value ]
+		  ifFalse: [ answer ]
+]
+
+{ #category : 'evaluating' }
+StMFunctionX >> simplifyLogExp [
+
+	| newx answer |
+	newx := x simplifyLogExp.
+	answer := self class with: newx.
+	^ newx isConstant
+		  ifTrue: [ StMConstant with: answer value ]
+		  ifFalse: [ answer ]
+]
+
+{ #category : 'evaluating' }
+StMFunctionX >> simplifyNegative [
+
+	| newx answer |
+	newx := x simplifyNegative.
+	answer := self class with: newx.
+	^ newx isConstant
+		  ifTrue: [ StMConstant with: answer value ]
+		  ifFalse: [ answer ]
+]
+
+{ #category : 'evaluating' }
+StMFunctionX >> simplifyOne [
+
+	| newx answer |
+	newx := x simplifyOne.
+	answer := self class with: newx.
+	^ newx isConstant
+		  ifTrue: [ StMConstant with: answer value ]
+		  ifFalse: [ answer ]
+]
+
+{ #category : 'evaluating' }
+StMFunctionX >> simplifyReciprocal [
+
+	| newx answer |
+	newx := x simplifyReciprocal.
+	answer := self class with: newx.
+	^ newx isConstant
+		  ifTrue: [ StMConstant with: answer value ]
+		  ifFalse: [ answer ]
+]
+
+{ #category : 'evaluating' }
+StMFunctionX >> simplifySum [
+
+	| newx answer |
+	newx := x simplifySum.
+	answer := self class with: newx.
+	^ newx isConstant
+		  ifTrue: [ StMConstant with: answer value ]
+		  ifFalse: [ answer ]
 ]
 
 { #category : 'evaluating' }
@@ -116,6 +205,17 @@ StMFunctionX >> simplifyUntil: set [
 			xx isConstant
 				ifTrue: [StMConstant with: copy value]
 				ifFalse: [copy]]
+]
+
+{ #category : 'evaluating' }
+StMFunctionX >> simplifyZero [
+
+	| newx answer |
+	newx := x simplifyZero.
+	answer := self class with: newx.
+	^ newx isConstant
+		  ifTrue: [ StMConstant with: answer value ]
+		  ifFalse: [ answer ]
 ]
 
 { #category : 'changing' }

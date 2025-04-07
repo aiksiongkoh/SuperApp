@@ -1026,22 +1026,28 @@ Help class >> exampleGeneralSpline2 [
 { #category : 'exampleIntegrator' }
 Help class >> exampleIntegratorIndexThree [
 	"DAE for a simple pendulum."
+
 	"Ref: Numerical Solution Initial-Value Problems in Differential-Algebraic Equations by K.E. Brenan et 
 	al. pp. 154, 1996."
+
 	"x points right. y points up. gravity=1 is down. length=1. phi=0 when pendulum is straight down."
+
 	"Pendulum is initially pointing right with initial velocity of 1 rad/s upwards."
+
 	"self halt. self exampleIntegratorIndexThree."
 
 	| solver t y1 y2 y3 y4 y5 ydot1 ydot2 ydot3 ydot4 ydot5 gravity length eqn1 eqn2 eqn3 eqn4 eqn5 filenameString |
 	self raiseTranscript.
-	Transcript cr; show: 'Index three DAE for a simple pendulum.'.
+	Transcript
+		cr;
+		show: 'Index three DAE for a simple pendulum.'.
 	solver := DifferentialAlgebraicEquationSolver new: 5.
 	t := StMIndependentVariable name: #t.
-	y1 := StMDependentVariable name: #x.
-	y2 := StMDependentVariable name: #y.
-	y3 := StMDependentVariable name: #xdot.
-	y4 := StMDependentVariable name: #ydot.
-	y5 := StMDependentVariable name: #lam.
+	y1 := UnknownDependentVariable name: #x.
+	y2 := UnknownDependentVariable name: #y.
+	y3 := UnknownDependentVariable name: #xdot.
+	y4 := UnknownDependentVariable name: #ydot.
+	y5 := UnknownDependentVariable name: #lam.
 	y1 x: t.
 	y2 x: t.
 	y3 x: t.
@@ -1071,8 +1077,7 @@ Help class >> exampleIntegratorIndexThree [
 	eqn2 := ydot2 - y4.
 	eqn3 := ydot3 + (y1 * y5).
 	eqn4 := ydot4 + (y2 * y5) + gravity.
-	eqn5 := (y1 raisedTo: 2)
-				+ (y2 raisedTo: 2) - (length raisedTo: 2).
+	eqn5 := (y1 raisedTo: 2) + (y2 raisedTo: 2) - (length raisedTo: 2).
 	solver t: t.
 	solver yAt: 1 put: y1.
 	solver yAt: 2 put: y2.
@@ -1100,30 +1105,39 @@ Help class >> exampleIntegratorIndexThree [
 	solver absoluteTol: 1.0e-6.
 	solver run.
 	filenameString := 'dummy2.txt'.
-	Transcript cr; show: 'Tabulated data is in ' , filenameString.
+	Transcript
+		cr;
+		show: 'Tabulated data is in ' , filenameString.
 	solver outputOnFile: filenameString
 ]
 
 { #category : 'exampleIntegrator' }
 Help class >> exampleIntegratorIndexTwo [
 	"DAE for a simple pendulum."
+
 	"Ref: Numerical Solution Initial-Value Problems in Differential-Algebraic Equations by K.E. Brenan et 
 	al. pp. 154, 1996."
+
 	"x points right. y points up. gravity=1 is down. length=1. phi=0 when pendulum is straight down."
+
 	"Pendulum is initially pointing right with initial velocity of 1 rad/s upwards."
+
 	"let mudot = lam. This is an index two problem."
+
 	"self halt. self exampleIntegratorIndexTwo."
 
 	| solver t y1 y2 y3 y4 y5 ydot1 ydot2 ydot3 ydot4 ydot5 gravity length eqn1 eqn2 eqn3 eqn4 eqn5 filenameString |
 	self raiseTranscript.
-	Transcript cr; show: 'Index two DAE for a simple pendulum.'.
+	Transcript
+		cr;
+		show: 'Index two DAE for a simple pendulum.'.
 	solver := DifferentialAlgebraicEquationSolver new: 5.
 	t := StMIndependentVariable name: #t.
-	y1 := StMDependentVariable name: #x.
-	y2 := StMDependentVariable name: #y.
-	y3 := StMDependentVariable name: #xdot.
-	y4 := StMDependentVariable name: #ydot.
-	y5 := StMDependentVariable name: #mu.
+	y1 := UnknownDependentVariable name: #x.
+	y2 := UnknownDependentVariable name: #y.
+	y3 := UnknownDependentVariable name: #xdot.
+	y4 := UnknownDependentVariable name: #ydot.
+	y5 := UnknownDependentVariable name: #mu.
 	y1 x: t.
 	y2 x: t.
 	y3 x: t.
@@ -1153,8 +1167,7 @@ Help class >> exampleIntegratorIndexTwo [
 	eqn2 := ydot2 - y4.
 	eqn3 := ydot3 + (y1 * ydot5).
 	eqn4 := ydot4 + (y2 * ydot5) + gravity.
-	eqn5 := (y1 raisedTo: 2)
-				+ (y2 raisedTo: 2) - (length raisedTo: 2).
+	eqn5 := (y1 raisedTo: 2) + (y2 raisedTo: 2) - (length raisedTo: 2).
 	solver t: t.
 	solver yAt: 1 put: y1.
 	solver yAt: 2 put: y2.
@@ -1182,26 +1195,34 @@ Help class >> exampleIntegratorIndexTwo [
 	solver absoluteTol: 1.0e-4.
 	solver run.
 	filenameString := 'dummy.txt'.
-	Transcript cr; show: 'Tabulated data is in ' , filenameString.
+	Transcript
+		cr;
+		show: 'Tabulated data is in ' , filenameString.
 	solver outputOnFile: filenameString
 ]
 
 { #category : 'exampleIntegrator' }
 Help class >> exampleIntegratorODE [
 	"ODE for a simple pendulum."
+
 	"Ref: Numerical Solution Initial-Value Problems in Differential-Algebraic Equations by K.E. Brenan et 
 	al. pp. 151, 1996."
+
 	"x points right. y points up. gravity=1 is down. length=1. phi=0 when pendulum is straight down."
+
 	"Pendulum is initially pointing right with initial velocity of 1 rad/s upwards."
+
 	"self halt. self exampleIntegratorODE."
 
 	| solver t y1 y2 ydot1 ydot2 gravity length eqn1 eqn2 filenameString |
 	self raiseTranscript.
-	Transcript cr; show: 'ODE for a simple pendulum.'.
+	Transcript
+		cr;
+		show: 'ODE for a simple pendulum.'.
 	solver := DifferentialAlgebraicEquationSolver new: 2.
 	t := StMIndependentVariable name: #t.
-	y1 := StMDependentVariable name: #phi.
-	y2 := StMDependentVariable name: #phidot.
+	y1 := UnknownDependentVariable name: #phi.
+	y2 := UnknownDependentVariable name: #phidot.
 	y1 x: t.
 	y2 x: t.
 	ydot1 := (y1 differentiateWRT: t) simplified.
@@ -1235,26 +1256,34 @@ Help class >> exampleIntegratorODE [
 	solver absoluteTol: 1.0e-4.
 	solver run.
 	filenameString := 'dummy.txt'.
-	Transcript cr; show: 'Tabulated data is in ' , filenameString.
+	Transcript
+		cr;
+		show: 'Tabulated data is in ' , filenameString.
 	solver outputOnFile: filenameString
 ]
 
 { #category : 'exampleIntegrator' }
 Help class >> exampleIntegratorODE1 [
 	"ODE for a simple pendulum."
+
 	"Ref: Numerical Solution Initial-Value Problems in Differential-Algebraic Equations by K.E. Brenan et 
 	al. pp. 151, 1996."
+
 	"x points right. y points up. gravity=1 is down. length=1. phi=0 when pendulum is straight down."
+
 	"Pendulum is initially pointing right with initial velocity of 1 rad/s upwards."
+
 	"self halt. self exampleIntegratorODE1."
 
 	| solver t y1 y2 ydot1 ydot2 gravity length eqn1 eqn2 filenameString |
 	self raiseTranscript.
-	Transcript cr; show: 'ODE for a simple pendulum.'.
+	Transcript
+		cr;
+		show: 'ODE for a simple pendulum.'.
 	solver := DifferentialAlgebraicEquationSolver new: 2.
 	t := StMIndependentVariable name: #t.
-	y1 := StMDependentVariable name: #phi.
-	y2 := StMDependentVariable name: #phidot.
+	y1 := UnknownDependentVariable name: #phi.
+	y2 := UnknownDependentVariable name: #phidot.
 	y1 x: t.
 	y2 x: t.
 	ydot1 := (y1 differentiateWRT: t) simplified.
@@ -1288,7 +1317,9 @@ Help class >> exampleIntegratorODE1 [
 	solver absoluteTol: 1.0e-6.
 	solver run.
 	filenameString := 'dummy.txt'.
-	Transcript cr; show: 'Tabulated data is in ' , filenameString.
+	Transcript
+		cr;
+		show: 'Tabulated data is in ' , filenameString.
 	solver outputOnFile: filenameString
 ]
 

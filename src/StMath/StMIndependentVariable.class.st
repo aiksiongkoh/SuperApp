@@ -31,7 +31,23 @@ StMIndependentVariable >> differentiateWRT: variable [
 		ifFalse: [StMConstant with: 0]
 ]
 
+{ #category : 'accessing' }
+StMIndependentVariable >> independentVar [
+
+	^ self
+]
+
+{ #category : 'testing' }
+StMIndependentVariable >> isIndependentVariable [
+
+	^ true
+]
+
 { #category : 'printing' }
-StMIndependentVariable >> printOn: aStream [ 
-	aStream nextPutAll: name
+StMIndependentVariable >> printOn: aStream [
+
+	aStream nextPutAll: name.
+	aStream nextPut: $(.
+	aStream print: value.
+	aStream nextPut: $)
 ]

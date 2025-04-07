@@ -164,6 +164,16 @@ StMFFT >> doDanielsonLanczosWithSign: sign [
 			mmax := istep]
 ]
 
+{ #category : 'comparing' }
+StMFFT >> hash [
+
+	| hash |
+	hash := self class hash.
+	hash := hash bitXor: xs hash.
+	hash := hash bitXor: ys hash.
+	^ hash
+]
+
 { #category : 'calc' }
 StMFFT >> inverse [
 	self FFTsign: -1 times: 1.0 / xs size

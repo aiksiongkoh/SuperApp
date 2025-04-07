@@ -21,6 +21,6 @@ MbDPerturbedPosICNewtonRaphson2 >> initializeGlobally [
 	| delta |
 	super initializeGlobally.
 	delta := 0.01.
-	system partsJointsMotionsDo: [:item | item bePerturbed: delta fillqsulam: x].
-	system partsJointsMotionsDo: [:item | item postPosICIteration]
+	system allDo: [:item | item bePerturbed: delta fillqsulam: x].
+	system allDo: [:item | item postPosICIteration]
 ]

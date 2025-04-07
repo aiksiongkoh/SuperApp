@@ -1,6 +1,6 @@
 Class {
 	#name : 'IntegratorStoppingNotification',
-	#superclass : 'Exception',
+	#superclass : 'Error',
 	#category : 'StMath-Exception',
 	#package : 'StMath',
 	#tag : 'Exception'

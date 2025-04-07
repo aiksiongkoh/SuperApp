@@ -38,7 +38,7 @@ MbDDragPosICNewtonRaphson2 >> initialize [
 { #category : 'initialize-release' }
 MbDDragPosICNewtonRaphson2 >> initializeGlobally [
 	super initializeGlobally.
-	system partsJointsMotionsDo: 
+	system allDo: 
 			[:item | 
 			item fillqsu: qsuOld.
 			dragPart == item 

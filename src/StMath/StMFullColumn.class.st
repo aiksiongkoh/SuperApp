@@ -85,6 +85,13 @@ StMFullColumn >> at: i plusFullColumn: aFullColumn times: aNumber [
 ]
 
 { #category : 'ops on self' }
+StMFullColumn >> at: i plusTransposeFullRow: aFullRow times: aNumber [
+
+	[ aFullRow isMemberOf: StMFullRow ] assert.
+	super at: i plusFullVector: aFullRow times: aNumber
+]
+
+{ #category : 'ops on self' }
 StMFullColumn >> at: i1 putFullColumn: aFullColumn [ 
 	super at: i1 putFullVector: aFullColumn
 ]
@@ -238,6 +245,12 @@ StMFullColumn >> equalSelfTimes: alpha plusFullColumn: aFullColumn times: beta [
 		equalSelfTimes: alpha
 		plusFullVector: aFullColumn
 		times: beta
+]
+
+{ #category : 'as yet unclassified' }
+StMFullColumn >> extendTo: col factor: factor [
+
+	^ self times: 1.0 - factor plusFullColumn: col times: factor
 ]
 
 { #category : 'ops on self' }
@@ -409,9 +422,8 @@ StMFullColumn >> timesTransposeSparseMatrix: aSparseMatrix [
 { #category : 'basic ops' }
 StMFullColumn >> transpose [
 	"Return a row with the same elements."
-	"This method is much faster than the obvious way."
 
-	^self shallowCopy changeClassToThatOf: (StMFullRow new: 0)
+	^ StMFullRow withAll: self
 ]
 
 { #category : 'basic ops' }

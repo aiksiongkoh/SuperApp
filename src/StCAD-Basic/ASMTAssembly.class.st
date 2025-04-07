@@ -10,13 +10,13 @@ Class {
 		'joints',
 		'motions',
 		'kinematicIJs',
-		'forcesTorques',
 		'fields',
 		'simulationParameters',
 		'animationParameters',
 		'itimes',
 		'timesAtDiscontinuities',
-		'timeSeries'
+		'timeSeries',
+		'forTors'
 	],
 	#category : 'StCAD-Basic',
 	#package : 'StCAD-Basic'
@@ -104,6 +104,12 @@ ASMTAssembly >> allMarkers [
 	^ markerSet
 ]
 
+{ #category : 'accessing' }
+ASMTAssembly >> asmtTime [
+
+	^ time
+]
+
 { #category : 'DYN' }
 ASMTAssembly >> createMbD [
 
@@ -148,26 +154,33 @@ ASMTAssembly >> createMbD [
 ASMTAssembly >> createMbDin: mbdInertialFrm [
 	"Create MbD in SI units"
 
-	| mbdAssemblyFrm mbdTime mbdSysSolver simPara |
+	| mbdAssemblyFrm lengthUnit timeUnit mbdUnits mbdLengthUnit mbdTimeUnit mbdSysSolver simPara |
 	mbdAssemblyFrm := SymAssemblyFrame new.
 	self mbdObject: mbdAssemblyFrm.
+	time createMbDin: mbdAssemblyFrm.
+	lengthUnit := units length.
+	timeUnit := units time.
+	mbdUnits := mbdAssemblyFrm units.
+	mbdLengthUnit := mbdUnits length.
+	mbdTimeUnit := mbdUnits time.	
 	mbdAssemblyFrm name: self name.
-	mbdTime := mbdInertialFrm time.
-	mbdAssemblyFrm rFfF do: [ :r | r x: mbdTime ].
-	mbdAssemblyFrm theOa do: [ :the | the x: mbdTime ].
+	"TODO: rFfF aAFf theOa are to be functions of ASMTTime"
+	mbdAssemblyFrm rOaO: rFfF * lengthUnit / mbdLengthUnit.
+	mbdAssemblyFrm theOa: aAFf bryantAngles.
 	mbdInertialFrm addAssemblyFrm: mbdAssemblyFrm.
-	time createMbDin: mbdInertialFrm.
+	refs asSortedCollection: [ :a :b | a name <= b name ].
 	parts asSortedCollection: [ :a :b | a name <= b name ].
 	joints asSortedCollection: [ :a :b | a name <= b name ].
 	motions asSortedCollection: [ :a :b | a name <= b name ].
 	kinematicIJs asSortedCollection: [ :a :b | a name <= b name ].
-	forcesTorques asSortedCollection: [ :a :b | a name <= b name ].
+	forTors asSortedCollection: [ :a :b | a name <= b name ].
 	fields asSortedCollection: [ :a :b | a name <= b name ].
+	refs do: [ :item | item createMbDin: mbdAssemblyFrm ].
 	parts do: [ :item | item createMbDin: mbdAssemblyFrm ].
 	joints do: [ :item | item createMbDin: mbdAssemblyFrm ].
 	motions do: [ :item | item createMbDin: mbdAssemblyFrm ].
 	kinematicIJs do: [ :item | item createMbDin: mbdAssemblyFrm ].
-	forcesTorques do: [ :item | item createMbDin: mbdAssemblyFrm ].
+	forTors do: [ :item | item createMbDin: mbdAssemblyFrm ].
 	fields do: [ :item | item createMbDin: mbdAssemblyFrm ].
 	mbdSysSolver := mbdAssemblyFrm solver.
 	simPara := simulationParameters.
@@ -175,19 +188,18 @@ ASMTAssembly >> createMbDin: mbdInertialFrm [
 	mbdSysSolver errorTolAccKine: simPara errorTolAccKine.
 	mbdSysSolver iterMaxPosKine: simPara iterMaxPosKine.
 	mbdSysSolver iterMaxAccKine: simPara iterMaxAccKine.
-	mbdSysSolver tstart: simPara tstart * units time.
-	mbdSysSolver tend: simPara tend * units time.
-	mbdSysSolver hmin: simPara hmin * units time.
-	mbdSysSolver hmax: simPara hmax * units time.
-	mbdSysSolver hout: simPara hout * units time.
+	mbdSysSolver tstart: simPara tstart * timeUnit / mbdTimeUnit.
+	mbdSysSolver tend: simPara tend * timeUnit / mbdTimeUnit.
+	mbdSysSolver hmin: simPara hmin * timeUnit / mbdTimeUnit.
+	mbdSysSolver hmax: simPara hmax * timeUnit / mbdTimeUnit.
+	mbdSysSolver hout: simPara hout * timeUnit / mbdTimeUnit.
 	mbdSysSolver corAbsTol: simPara corAbsTol.
 	mbdSysSolver corRelTol: simPara corRelTol.
 	mbdSysSolver intAbsTol: simPara intAbsTol.
 	mbdSysSolver intRelTol: simPara intRelTol.
 	mbdSysSolver iterMaxDyn: simPara iterMaxDyn.
 	mbdSysSolver orderMax: simPara orderMax.
-	mbdSysSolver translationLimit:
-		simPara translationLimit * units length.
+	mbdSysSolver translationLimit: simPara translationLimit * lengthUnit / mbdLengthUnit.
 	mbdSysSolver rotationLimit: simPara rotationLimit
 ]
 
@@ -200,7 +212,7 @@ ASMTAssembly >> deleteMbD [
 	joints do: [ :item | item deleteMbD ].
 	motions do: [ :item | item deleteMbD ].
 	kinematicIJs do: [ :item | item deleteMbD ].
-	forcesTorques do: [ :item | item deleteMbD ].
+	forTors do: [ :item | item deleteMbD ].
 	fields do: [ :item | item deleteMbD ]
 ]
 
@@ -216,7 +228,7 @@ ASMTAssembly >> initialize [
 	joints := OrderedCollection new.
 	motions := OrderedCollection new.
 	kinematicIJs := OrderedCollection new.
-	forcesTorques := OrderedCollection new.
+	forTors := OrderedCollection new.
 	joints := OrderedCollection new.
 	fields := OrderedCollection new.
 	timesAtDiscontinuities := OrderedCollection new.
@@ -254,7 +266,7 @@ ASMTAssembly >> parseASMT: lines [
 	self parseParts: lines.
 	self parseKinematicIJs: lines.
 	self parseConstraintSets: lines.
-	self parseForceTorques: lines.
+	self parseForTors: lines.
 	self parseConstantGravity: lines.
 	self parseSimulationParameters: lines.
 	self parseAnimationParameters: lines.
@@ -263,7 +275,7 @@ ASMTAssembly >> parseASMT: lines [
 	self parsePartSeries: lines.
 	self parseJointSeries: lines.
 	self parseMotionSeries: lines.
-	self parseForceTorqueSeries: lines
+	self parseForTorSeries: lines
 ]
 
 { #category : 'parsing' }
@@ -344,6 +356,28 @@ ASMTAssembly >> parseFile: filepath [
 	str := 'freeCAD: 3D CAD with Motion Simulation  by  askoh.com'.
 	[ lines removeFirst = str ] assert.
 	self parseASMT: lines
+]
+
+{ #category : 'parsing' }
+ASMTAssembly >> parseForTorSeries: lines [
+
+	| continue tokens forTorName forTor |
+	continue := true.
+	[ lines notEmpty and: [ continue ] ] whileTrue: [
+		tokens := lines first substrings.
+		('*ForceTorqueSeries' match: tokens first)
+			ifTrue: [
+				forTorName := tokens second.
+				forTor := forTors detect: [ :jt | jt fullName = forTorName ].
+				forTor parseForTorSeries: lines ]
+			ifFalse: [ continue := false ] ]
+]
+
+{ #category : 'parsing' }
+ASMTAssembly >> parseForTors: lines [
+
+	[ lines removeFirst trim = 'ForceTorques' ] assert.
+	[ lines first trim = 'ForceTorque' ] whileTrue: [ self parseForTor: lines ]
 ]
 
 { #category : 'parsing' }
@@ -491,6 +525,23 @@ ASMTAssembly >> parseParts: lines [
 ]
 
 { #category : 'parsing' }
+ASMTAssembly >> parsePosition3D: lines [
+	"TODO: Read functions of ASMTTime for rFfF which is rOaO."
+
+	[ lines removeFirst trim = 'Position3D' ] assert.
+	rFfF := self readColumnOfDoublesOffTop: lines
+]
+
+{ #category : 'parsing' }
+ASMTAssembly >> parseRotationMatrix: lines [
+	"TODO: Read EulerAngles (theOa) as functions of ASMTTime. aAFf is aAOa."
+
+	[ lines removeFirst trim = 'RotationMatrix' ] assert.
+	aAFf := StMFullMatrix new: 3.
+	1 to: 3 do: [ :i | aAFf at: i put: (self readRowOfDoublesOffTop: lines) ]
+]
+
+{ #category : 'parsing' }
 ASMTAssembly >> parseSimulationParameters: lines [
 
 	| simPara |
@@ -523,6 +574,12 @@ ASMTAssembly >> preMbDrun [
 ]
 
 { #category : 'accessing' }
+ASMTAssembly >> principalMassFrame [
+
+	^ nil
+]
+
+{ #category : 'accessing' }
 ASMTAssembly >> rOFO [
 
 	^ StMFullColumn zero: 3
@@ -537,10 +594,10 @@ ASMTAssembly >> root [
 { #category : 'run' }
 ASMTAssembly >> runDYNAMIC [
 
-	| inertialFrm |
-	inertialFrm := SymInertialFrame new.
-	self createMbDin: inertialFrm.
-	inertialFrm runDYNAMIC
+	| mbdInertialFrm |
+	mbdInertialFrm := SymInertialFrame new.
+	self createMbDin: mbdInertialFrm.
+	mbdInertialFrm runDYNAMIC
 ]
 
 { #category : 'parsing' }

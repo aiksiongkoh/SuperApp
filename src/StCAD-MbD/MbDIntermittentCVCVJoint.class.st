@@ -47,12 +47,14 @@ MbDIntermittentCVCVJoint >> coeffRestitution: aDouble [
 ]
 
 { #category : 'initialize-release' }
-MbDIntermittentCVCVJoint >> connectsI: mkrII toJ: mkrJJ [ 
+MbDIntermittentCVCVJoint >> connectsI: mkrII toJ: mkrJJ [
+
 	super connectsI: mkrII toJ: mkrJJ.
-	frmI isOnClosedCurve
-		ifFalse: 
-			[self logString: #'MbD: \Intermittent curve-curve contact requires the curve for %1 be closed.' withArgument: frmI name printString.
-			SimulationStoppingError raiseSignal]
+	frmI isOnClosedCurve ifFalse: [
+		self
+			logString: #'MbD: \Intermittent curve-curve contact requires the curve for %1 be closed.'
+			withArgument: frmI name printString.
+		SimulationStoppingError signal ]
 ]
 
 { #category : 'accessing' }

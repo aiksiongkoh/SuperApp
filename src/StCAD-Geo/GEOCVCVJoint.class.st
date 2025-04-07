@@ -83,7 +83,7 @@ GEOCVCVJoint >> dataFromMbD [
 	| mbdUnits mbdItem answer aFIeO aTIeO |
 	mbdUnits := self mbdUnits.
 	mbdItem := self mbdObject.
-	answer := GEOForceTorqueData new.
+	answer := GEOForTorData new.
 	aFIeO := mbdItem aFX * mbdUnits force.
 	aTIeO := mbdItem aTX * mbdUnits torque.
 	answer aFIO: aFIeO.

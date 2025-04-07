@@ -75,10 +75,11 @@ MachineAccuracy class >> initialize [
 { #category : 'class initialization' }
 MachineAccuracy class >> initializeX [
 	"To be strictly correct, this should be run everytime the image is started."
+
 	"MachineAccuracy initialize."
 
-	ObjectMemory removeDependent: self.
-	ObjectMemory addDependent: self.
+	Smalltalk removeDependent: self.
+	Smalltalk addDependent: self.
 	self setVariables
 ]
 
@@ -139,11 +140,11 @@ MachineAccuracy class >> setVariables [
 ]
 
 { #category : 'class initialization' }
-MachineAccuracy class >> update: anAspect with: arguments from: anObject [ 
+MachineAccuracy class >> update: anAspect with: arguments from: anObject [
 	"Check for return from snapshot to install."
 
-	(anObject == ObjectMemory and: [anAspect == #earlySystemInstallation])
-		ifTrue: [self setVariables]
+	(anObject == Smalltalk and: [ anAspect == #earlySystemInstallation ]) ifTrue: [
+		self setVariables ]
 ]
 
 { #category : 'VisualWorks metadata' }

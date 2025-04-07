@@ -31,6 +31,12 @@ StMAbs >> differentiateWRTx [
 ]
 
 { #category : 'printing' }
+StMAbs >> funcName [
+
+	^ 'abs'
+]
+
+{ #category : 'printing' }
 StMAbs >> printFuntionNameOn: aStream [
 	aStream nextPutAll: 'abs'
 ]

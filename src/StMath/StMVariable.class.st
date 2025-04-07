@@ -58,6 +58,12 @@ StMVariable >> = anObject [
 	^self == anObject
 ]
 
+{ #category : 'converting' }
+StMVariable >> asValue [
+
+	^ value value
+]
+
 { #category : 'copying' }
 StMVariable >> copy [
 	"A SymVariable is unique."
@@ -67,6 +73,12 @@ StMVariable >> copy [
 { #category : 'evaluating' }
 StMVariable >> expandUntil: set [ 
 	"Do nothing."
+]
+
+{ #category : 'comparing' }
+StMVariable >> hash [
+
+	^ self identityHash
 ]
 
 { #category : 'accessing' }

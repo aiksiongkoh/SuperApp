@@ -955,7 +955,7 @@ GEOCartesianFrame2 >> vOfO: vOfO [
 ]
 
 { #category : 'calc' }
-GEOCartesianFrame2 >> xyPlaneIntersectLine: geoLine [ 
+GEOCartesianFrame2 >> xyPlaneIntersectLine: geoLine [
 	"
 	Find the intesection of the line on the xy plane. 
 	General formula: 
@@ -976,11 +976,10 @@ GEOCartesianFrame2 >> xyPlaneIntersectLine: geoLine [
 	lineVector := rfendf - rfstartf.
 	denominator := lineVector at: 3.
 	denominator abs > 0.1
-		ifTrue: [^rfstartf minus: lineVector times: (rfstartf at: 3)
-					/ denominator]
-		ifFalse: 
-			[Dialog warn: 'It is not possible to locate a point \in a plane viewing it on edge.' withCRs.
-			NearParallelIntersectionError raiseSignal]
+		ifTrue: [ ^ rfstartf minus: lineVector times: (rfstartf at: 3) / denominator ]
+		ifFalse: [
+			Dialog warn: 'It is not possible to locate a point \in a plane viewing it on edge.' withCRs.
+			NearParallelIntersectionError signal ]
 ]
 
 { #category : 'accessing' }

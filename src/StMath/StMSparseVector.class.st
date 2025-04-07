@@ -3,7 +3,7 @@ Used by SparseMatrix. The second dimension size (size2) is stored in SparseMatri
 "
 Class {
 	#name : 'StMSparseVector',
-	#superclass : 'IdentityDictionary',
+	#superclass : 'VWIdentityDictionary',
 	#type : 'variable',
 	#instVars : [
 		'fullsize'
@@ -111,7 +111,7 @@ StMSparseVector >> at: i minusFullVector: aFullVector times: aNumber [
 StMSparseVector >> at: key minusNumber: aNumber [ 
 	"Efficient method for row at: key put: ((row at: key) + aNumber)"
 
-	| length index answer valueArray |
+	| length index answer |
 	length := self basicSize.
 	index := key \\ length + 1.
 	[true]
@@ -412,6 +412,12 @@ StMSparseVector >> maxElement [
 	^answer
 ]
 
+{ #category : 'accessing' }
+StMSparseVector >> maxPrint [
+
+	^ 50000
+]
+
 { #category : 'norms' }
 StMSparseVector >> minAndMaxValues [
 	| min max num valueArray |
@@ -524,6 +530,24 @@ StMSparseVector >> plusSparseVector: aSparseVector times: beta [
 			[answer := self copy.
 			aSparseVector keysAndValuesDo: [:i :value | answer at: i plusNumber: value * beta]].
 	^answer
+]
+
+{ #category : 'printing' }
+StMSparseVector >> printElementsOn: aStream [
+	"Append to the argument aStream a sequence of characters that identifies the receiver."
+
+	| tooMany |
+	tooMany := aStream position + self maxPrint.
+	aStream print: tally / self basicSize.
+	aStream nextPutAll: ' ('.
+	self associationsDo: [ :element |
+		aStream position > tooMany ifTrue: [
+			aStream nextPutAll: '...etc...)'.
+			^ self ].
+		element value isZero ifFalse: [
+			element printOn: aStream.
+			aStream nextPutAll: ', ' ] ].
+	aStream nextPut: $)
 ]
 
 { #category : 'printing' }

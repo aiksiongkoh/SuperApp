@@ -49,25 +49,52 @@ StMDependentVariable >> aIndependentVariable [
 ]
 
 { #category : 'evaluating' }
-StMDependentVariable >> differentiateWRT: variable [ 
+StMDependentVariable >> differentiateWRT: variable [
+
 	| dfdx dxdvar |
-	self == variable ifTrue: [^StMConstant with: 1].
+	self == variable ifTrue: [ ^ StMConstant with: 1 ].
+	x ifNil: [ ^ StMConstant with: 0 ].
 	dfdx := self differentiateWRTx.
+	dfdx isZero ifTrue: [ ^ StMConstant with: 0 ].
 	dxdvar := x differentiateWRT: variable.
-	^dfdx times: dxdvar
+	dxdvar isZero ifTrue: [ ^ StMConstant with: 0 ].
+	^ (dfdx times: dxdvar) simplified
 ]
 
 { #category : 'evaluating' }
 StMDependentVariable >> differentiateWRTx [
-	^StMDifferentiatedVariable with: self wrts: (OrderedCollection with: x copy)
+
+	^ StMDifferentiatedVariable with: self wrts: (OrderedCollection with: x copy)
+]
+
+{ #category : 'accessing' }
+StMDependentVariable >> independentVar [
+
+	^ x independentVar
 ]
 
 { #category : 'printing' }
-StMDependentVariable >> printOn: aStream [ 
+StMDependentVariable >> printOn: aStream [
+
 	aStream nextPutAll: name.
 	aStream nextPut: $(.
 	aStream print: x.
+	aStream nextPut: $,.
+	aStream print: value.
 	aStream nextPut: $)
+]
+
+{ #category : 'evaluating' }
+StMDependentVariable >> simplifyUntil: set [
+
+	x ifNotNil: [
+		x := x simplifyUntil: set.
+		x isZero ifTrue: [ ^ StMConstant with: 0.0 ] ]
+]
+
+{ #category : 'accessing' }
+StMDependentVariable >> x [
+	^ x
 ]
 
 { #category : 'accessing' }

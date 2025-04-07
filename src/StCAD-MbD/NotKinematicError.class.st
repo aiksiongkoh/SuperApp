@@ -1,6 +1,6 @@
 Class {
 	#name : 'NotKinematicError',
-	#superclass : 'Exception',
+	#superclass : 'Error',
 	#category : 'StCAD-MbD-Exception',
 	#package : 'StCAD-MbD',
 	#tag : 'Exception'

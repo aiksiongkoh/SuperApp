@@ -158,45 +158,39 @@ MbDFullySeparatedCVCVJoint >> discontinuityAtICAddTo2: collection [
 ]
 
 { #category : 'accIC' }
-MbDFullySeparatedCVCVJoint >> discontinuityAtICAddTo: collection [ 
+MbDFullySeparatedCVCVJoint >> discontinuityAtICAddTo: collection [
+
 	| sepTol velTol accTol vIeJeOIez |
 	sepTol := self separationTol.
 	velTol := 10.0 * sepTol.
 	accTol := 100.0 * sepTol.
-	separation < sepTol 
-		ifTrue: 
-			[separation > sepTol negated 
-				ifTrue: 
-					["Small separation"
-
-					vIeJeOIez := self vIeJeOIez.
-					vIeJeOIez < velTol 
-						ifTrue: 
-							[vIeJeOIez > velTol negated 
-								ifTrue: 
-									["Small relative velocity"
-
-									self aIeJeOIez < accTol negated 
-										ifTrue: 
-											[self becomeStartingInContactCVCVJoint.
-											collection add: #TOUCHDOWN]]
-								ifFalse: 
-									[coeffRestitution = 0.0 
-										ifTrue: 
-											[self becomeStartingInContactCVCVJoint.
-											collection add: #TOUCHDOWN]
-										ifFalse: 
-											[self becomeInCollisionCVCVJoint.
-											collection add: #REBOUND]]]]
-				ifFalse: 
-					[separationPast isEmpty 
-						ifTrue: 
-							[self becomeStartingInContactCVCVJoint.
-							collection add: #TOUCHDOWN]
-						ifFalse: 
-							[self 
-								logString: #'MbD: \CVCV separation distance have not be calculated accurately. \Make the Maximum Time Step smaller to prevent excessive step sizes.'.
-							SimulationStoppingError raiseSignal]]]
+	separation < sepTol ifTrue: [
+		separation > sepTol negated
+			ifTrue: [ "Small separation"
+				vIeJeOIez := self vIeJeOIez.
+				vIeJeOIez < velTol ifTrue: [
+					vIeJeOIez > velTol negated
+						ifTrue: [ "Small relative velocity"
+							self aIeJeOIez < accTol negated ifTrue: [
+								self becomeStartingInContactCVCVJoint.
+								collection add: #TOUCHDOWN ] ]
+						ifFalse: [
+							coeffRestitution = 0.0
+								ifTrue: [
+									self becomeStartingInContactCVCVJoint.
+									collection add: #TOUCHDOWN ]
+								ifFalse: [
+									self becomeInCollisionCVCVJoint.
+									collection add: #REBOUND ] ] ] ]
+			ifFalse: [
+				separationPast isEmpty
+					ifTrue: [
+						self becomeStartingInContactCVCVJoint.
+						collection add: #TOUCHDOWN ]
+					ifFalse: [
+						self logString:
+							#'MbD: \CVCV separation distance have not be calculated accurately. \Make the Maximum Time Step smaller to prevent excessive step sizes.'.
+						SimulationStoppingError signal ] ] ]
 ]
 
 { #category : 'dynamic' }

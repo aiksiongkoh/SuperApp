@@ -24,7 +24,7 @@ GEOConstraint >> canUpdateForFrame: integer [
 { #category : 'DYN' }
 GEOConstraint >> dataFromCurrentState [
 	| answer |
-	answer := GEOForceTorqueData new.
+	answer := GEOForTorData new.
 	answer aFIO: (StMFullColumn zero: 3).
 	answer aTIO: (StMFullColumn zero: 3).
 	^answer
@@ -43,7 +43,7 @@ GEOConstraint >> dataFromMbD [
 	| mbdUnits mbdItem answer aFIeO aTIeO rImIeO |
 	mbdUnits := self mbdUnits.
 	mbdItem := self mbdObject.
-	answer := GEOForceTorqueData new.
+	answer := GEOForTorData new.
 	aFIeO := mbdItem aFX * mbdUnits force.
 	aTIeO := mbdItem aTX * mbdUnits torque.
 	rImIeO := mbdItem frmI rmeO * mbdUnits length.

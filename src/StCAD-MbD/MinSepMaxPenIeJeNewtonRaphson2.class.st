@@ -67,8 +67,9 @@ MinSepMaxPenIeJeNewtonRaphson2 >> fillY [
 
 { #category : 'solving' }
 MinSepMaxPenIeJeNewtonRaphson2 >> incrementIterNo [
+
 	iterNo := iterNo + 1.
-	iterNo > iterMax ifTrue: [MaximumIterationError raiseSignal]
+	iterNo > iterMax ifTrue: [ MaximumIterationError signal ]
 ]
 
 { #category : 'initialize-release' }

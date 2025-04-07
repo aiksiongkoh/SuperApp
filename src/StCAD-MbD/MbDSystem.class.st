@@ -45,11 +45,11 @@ Class {
 		'mbdTime',
 		'parts',
 		'jointsMotions',
-		'forcesTorques',
 		'sensors',
 		'variables',
 		'hasChanged',
-		'mbdSystemSolver'
+		'mbdSystemSolver',
+		'forTors'
 	],
 	#category : 'StCAD-MbD-MbDBasic',
 	#package : 'StCAD-MbD',
@@ -80,28 +80,35 @@ MbDSystem >> admSystem: admSys [
 MbDSystem >> allConstraints [
 	| allConstraints |
 	allConstraints := OrderedCollection new.
-	self partsJointsMotionsDo: [:item | item fillConstraints: allConstraints].
+	self allDo: [:item | item fillConstraints: allConstraints].
 	^allConstraints
+]
+
+{ #category : 'accessing' }
+MbDSystem >> allDo: aBlock [ 
+	parts do: aBlock.
+	jointsMotions do: aBlock.
+	forTors do: aBlock
 ]
 
 { #category : 'accessing' }
 MbDSystem >> allRedundantConstraints [
 	| allRedundantConstraints |
 	allRedundantConstraints := OrderedCollection new.
-	self partsJointsMotionsDo: [:item | item fillRedundantConstraints: allRedundantConstraints].
+	self allDo: [:item | item fillRedundantConstraints: allRedundantConstraints].
 	^allRedundantConstraints
 ]
 
 { #category : 'dynamic' }
 MbDSystem >> bePerturbed: delta fillqsulam: col [ 
-	self partsJointsMotionsDo: [:item | item bePerturbed: delta fillqsulam: col]
+	self allDo: [:item | item bePerturbed: delta fillqsulam: col]
 ]
 
 { #category : 'accessing' }
 MbDSystem >> cDiscontinuityAtIC [
 	| cDiscontinuity |
 	cDiscontinuity := OrderedCollection new.
-	self partsJointsMotionsForcesTorquesDo: 
+	self allDo: 
 			[:item | 
 			item discontinuityAtICAddTo: cDiscontinuity].
 	^cDiscontinuity
@@ -165,7 +172,7 @@ MbDSystem >> errorTolPosKine [
 MbDSystem >> essentialConstraints2 [
 	| essenConstraints |
 	essenConstraints := OrderedCollection new.
-	self partsJointsMotionsDo: [:item | item fillEssenConstraints: essenConstraints].
+	self allDo: [:item | item fillEssenConstraints: essenConstraints].
 	^essenConstraints
 ]
 
@@ -179,15 +186,15 @@ MbDSystem >> fillStaticWeights: col [
 
 { #category : 'dynamic' }
 MbDSystem >> fillqsulam: col [ 
-	self partsJointsMotionsDo: [:item | item fillqsulam: col]
+	self allDo: [:item | item fillqsulam: col]
 ]
 
 { #category : 'accessing' }
-MbDSystem >> find: aSymbol [ 
-	^namedItems at: aSymbol
-		ifAbsent: 
-			[self logString: #'MbD: \The MbD item named (%1) is not found.' withArgument: aSymbol.
-			SimulationStoppingError raiseSignal]
+MbDSystem >> find: aSymbol [
+
+	^ namedItems at: aSymbol ifAbsent: [
+		  self logString: #'MbD: \The MbD item named (%1) is not found.' withArgument: aSymbol.
+		  SimulationStoppingError signal ]
 ]
 
 { #category : 'run' }
@@ -198,10 +205,15 @@ MbDSystem >> followPart: aGEOPart [
 	self initializeGlobally.
 	self hasChanged] 
 			whileTrue.
-	self partsJointsMotionsForcesTorquesDo: [:item | item postInput].
+	self allDo: [:item | item postInput].
 	mbdSystemSolver followPart: aGEOPart mbdObject.
 	admSystem outputFor: #'INITIAL CONDITIONS'.
 	admSystem postMbDrun
+]
+
+{ #category : 'accessing' }
+MbDSystem >> forTors [
+	^forTors
 ]
 
 { #category : 'accessing' }
@@ -235,7 +247,7 @@ MbDSystem >> hasChanged: boolean [
 MbDSystem >> hasDiscontinuityAtIC [
 	| discontinuityTypes |
 	discontinuityTypes := OrderedCollection new.
-	self partsJointsMotionsForcesTorquesDo: [:item | item discontinuityAtICAddTo: discontinuityTypes].
+	self allDo: [:item | item discontinuityAtICAddTo: discontinuityTypes].
 	^discontinuityTypes isEmpty not
 ]
 
@@ -251,7 +263,7 @@ MbDSystem >> initialize [
 	mbdTime := MbDTime new.
 	parts := OrderedCollection new.
 	jointsMotions := OrderedCollection new.
-	forcesTorques := OrderedCollection new.
+	forTors := OrderedCollection new.
 	sensors := OrderedCollection new.
 	variables := OrderedCollection new.
 	mbdSystemSolver := MbDSystemSolver2 new.
@@ -260,7 +272,7 @@ MbDSystem >> initialize [
 
 { #category : 'initialize-release' }
 MbDSystem >> initializeGlobally [
-	self partsJointsMotionsForcesTorquesDo: [:item | item initializeGlobally].
+	self allDo: [:item | item initializeGlobally].
 	mbdSystemSolver initializeGlobally
 ]
 
@@ -268,7 +280,7 @@ MbDSystem >> initializeGlobally [
 MbDSystem >> initializeLocally [
 	hasChanged := false.
 	self mbdTimeValue: mbdSystemSolver startTime.
-	self partsJointsMotionsForcesTorquesDo: [:item | item initializeLocally].
+	self allDo: [:item | item initializeLocally].
 	mbdSystemSolver initializeLocally
 ]
 
@@ -442,7 +454,7 @@ MbDSystem >> runDYNAMIC [
 	self initializeGlobally.
 	self hasChanged] 
 			whileTrue.
-	self partsJointsMotionsForcesTorquesDo: [:item | item postInput].
+	self allDo: [:item | item postInput].
 	admSystem outputFor: #INPUT.
 	mbdSystemSolver runAllIC.
 	admSystem outputFor: #'INITIAL CONDITIONS'.
@@ -458,7 +470,7 @@ MbDSystem >> runKINEMATIC [
 	self initializeGlobally.
 	self hasChanged] 
 			whileTrue.
-	self partsJointsMotionsForcesTorquesDo: [:item | item postInput].
+	self allDo: [:item | item postInput].
 	admSystem outputFor: #INPUT.
 	mbdSystemSolver runAllIC.
 	admSystem outputFor: #'INITIAL CONDITIONS'.
@@ -474,7 +486,7 @@ MbDSystem >> runQuasiKinematic [
 	self initializeGlobally.
 	self hasChanged] 
 			whileTrue.
-	self partsJointsMotionsForcesTorquesDo: [:item | item postInput].
+	self allDo: [:item | item postInput].
 	admSystem outputFor: #INPUT.
 	mbdSystemSolver runAllIC.
 	admSystem outputFor: #'INITIAL CONDITIONS'.
@@ -490,7 +502,7 @@ MbDSystem >> runSTATICS [
 	self initializeGlobally.
 	self hasChanged] 
 			whileTrue.
-	self partsJointsMotionsForcesTorquesDo: [:item | item postInput].
+	self allDo: [:item | item postInput].
 	admSystem outputFor: #INPUT.
 	mbdSystemSolver runAllIC.
 	mbdSystemSolver runStaticIC.
@@ -506,7 +518,7 @@ MbDSystem >> runSTATICS1 [
 	[self initializeLocally.
 	self initializeGlobally.
 	self hasChanged] whileTrue.
-	self partsJointsMotionsForcesTorquesDo: [:item | item postInput].
+	self allDo: [:item | item postInput].
 	admSystem outputFor: #INPUT.
 	mbdSystemSolver runPosICTwiceVelICAccIC.	"
 	admSystem outputFor: #'INITIAL CONDITIONS'."
@@ -524,7 +536,7 @@ MbDSystem >> runTRANSIENT [
 	self initializeGlobally.
 	self hasChanged] 
 			whileTrue.
-	self partsJointsMotionsForcesTorquesDo: [:item | item postInput].
+	self allDo: [:item | item postInput].
 	admSystem outputFor: #INPUT.
 	mbdSystemSolver runAllIC.
 	admSystem outputFor: #'INITIAL CONDITIONS'.
@@ -539,7 +551,7 @@ MbDSystem >> runTRANSIENT1 [
 	[self initializeLocally.
 	self initializeGlobally.
 	self hasChanged] whileTrue.
-	self partsJointsMotionsForcesTorquesDo: [:item | item postInput].
+	self allDo: [:item | item postInput].
 	admSystem outputFor: #INPUT.
 	mbdSystemSolver runPosICTwiceVelICAccICCheckDiscontinuity.
 	admSystem outputFor: #'INITIAL CONDITIONS'.

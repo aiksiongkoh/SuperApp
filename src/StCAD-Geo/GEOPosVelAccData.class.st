@@ -62,7 +62,7 @@ GEOPosVelAccData >> asArray [
 	| aStream |
 	aStream := (Array new: 19) writeStream.
 	aStream nextPutAll: self rOfO.
-	aStream nextPutAll: self aAOf eulerParameters.
+	aStream nextPutAll: self aAOf stmEulerParameters.
 	aStream nextPutAll: self vOfO.
 	aStream nextPutAll: self omeOfO.
 	aStream nextPutAll: self aOfO.

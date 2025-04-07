@@ -14,6 +14,55 @@ ASMTRotationalMotion class >> mbdClass [
 	^ SymZRotation
 ]
 
+{ #category : 'accessing' }
+ASMTRotationalMotion >> functionParser [
+
+	| parser |
+	parser := StMMotionFunctionParser new.
+	parser container: self.
+	parser initVariables.
+	^ parser
+]
+
+{ #category : 'initialize-release' }
+ASMTRotationalMotion >> initMotions [
+
+	| phiFunc parser stack func mbdZRotation |
+	phiFunc := rotationZ ifNil: [ StMConstant with: 0 ] ifNotNil: [
+		           rotationZ isUserFunction
+			           ifTrue: [
+				           parser := self functionParser.
+				           stack := parser parseUserFunction: rotationZ notifying: nil ifFail: nil.
+				           func := stack last.
+				           func ]
+			           ifFalse: [ rotationZ ] ].
+	phiFunc := phiFunc simplified.
+	mbdZRotation := self mbdObject.
+	mbdZRotation phiBlk: phiFunc.
+	mbdZRotation initMotions
+]
+
+{ #category : 'as yet unclassified' }
+ASMTRotationalMotion >> motionEndFrmI [
+
+	| eFrmcI eFrmtI theta3z parser stack func |
+	eFrmcI := markerI mbdObject.
+	eFrmtI := SymEndFramet new.
+	eFrmtI name: eFrmcI name , 't'.
+	theta3z := rotationZ ifNil: [ StMConstant with: 0 ] ifNotNil: [
+		           rotationZ isUserFunction
+			           ifTrue: [
+				           parser := self functionParser.
+				           stack := parser parseUserFunction: rotationZ notifying: nil ifFail: nil.
+				           func := stack last.
+				           func ]
+			           ifFalse: [ rotationZ ] ].
+	theta3z := theta3z simplified.
+	eFrmtI theta3z: theta3z.
+	eFrmtI sup: eFrmcI markerFrame.
+	^ eFrmtI
+]
+
 { #category : 'parsing' }
 ASMTRotationalMotion >> parseASMT: lines [
 
@@ -26,6 +75,18 @@ ASMTRotationalMotion >> parseASMT: lines [
 { #category : 'parsing' }
 ASMTRotationalMotion >> parseRotationZ: lines [
 
+	| function |
 	[ lines removeFirst trim = 'RotationZ' ] assert.
-	rotationZ := lines removeFirst trim
+	function := BasicUserFunction with: lines removeFirst trim myUnit: 1.0 units: SymUnits new.
+	rotationZ := function
+]
+
+{ #category : 'accessing' }
+ASMTRotationalMotion >> rotZFunc [
+
+	| parser stack func |
+	parser := self functionParser.
+	stack := parser parseUserFunction: rotationZ notifying: nil ifFail: nil.
+	func := stack last.
+	func
 ]

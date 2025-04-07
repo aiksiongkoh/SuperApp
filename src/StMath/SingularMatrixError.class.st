@@ -19,6 +19,14 @@ SingularMatrixError class >> mayResume [
 	^true
 ]
 
+{ #category : 'signalling' }
+SingularMatrixError class >> signalWith: aCollection [
+
+	^ self new
+		  messageText: aCollection;
+		  signal
+]
+
 { #category : 'VisualWorks metadata' }
 SingularMatrixError class >> visualWorksMetadata [
 
@@ -27,4 +35,19 @@ SingularMatrixError class >> visualWorksMetadata [
 		'superclassNamespace' 'StCAD.Math'
 	)
 
+]
+
+{ #category : 'accessing' }
+SingularMatrixError >> parameter [
+
+	^ messageText
+]
+
+{ #category : 'printing' }
+SingularMatrixError >> printOn: aStream [
+
+	aStream
+		nextPutAll: self class name;
+		space;
+		nextPutAll: messageText printString
 ]

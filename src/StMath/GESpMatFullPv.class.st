@@ -88,56 +88,53 @@ GESpMatFullPv >> backSubstituteIntoDU [
 ]
 
 { #category : 'pivoting' }
-GESpMatFullPv >> doPivoting: p [ 
+GESpMatFullPv >> doPivoting: p [
 	"Used by Gauss Elimination only."
+
 	"Do full pivoting."
+
 	"Swap rows but keep columns in place."
+
 	"The elements below the diagonal are removed column by column."
 
 	| max pivotRow pivotCol rowi rowiValues nNonZeros count index jj aij mag jp |
 	max := 0.0.
 	pivotRow := p.
 	pivotCol := p.
-	p to: n do: [:j | (rowPositionsOfNonZerosInColumns at: (colOrder at: j)) setIndices].
-	p to: m do: [:i | 
-			rowi := matrixA at: i.
-			rowiValues := rowi valueArray.
-			nNonZeros := rowi tally.
-			count := 0.
-			index := 1.
-			[count < nNonZeros]
-				whileTrue: 
-					[jj := rowi basicAt: index.
-					jj == nil
-						ifFalse: 
-							[count := count + 1.
-							(rowPositionsOfNonZerosInColumns at: jj) add: i.
-							aij := rowiValues at: index.
-							mag := aij.
-							mag < 0 ifTrue: [mag := 0.0 - mag].
-							mag > max
-								ifTrue: 
-									[max := mag.
-									pivotRow := i.
-									pivotCol := positionsOfOriginalCols at: jj]].
-					index := index + 1]].
-	p == pivotRow
-		ifFalse: 
-			[matrixA swap: p with: pivotRow.
-			rightHandSideB swap: p with: pivotRow.
-			rowOrder swap: p with: pivotRow].
-	p == pivotCol
-		ifFalse: 
-			[colOrder swap: p with: pivotCol.
-			positionsOfOriginalCols at: (colOrder at: p)
-				put: p.
-			positionsOfOriginalCols at: (colOrder at: pivotCol)
-				put: pivotCol].
+	p to: n do: [ :j | (rowPositionsOfNonZerosInColumns at: (colOrder at: j)) reset ].
+	p to: m do: [ :i |
+		rowi := matrixA at: i.
+		rowiValues := rowi valueArray.
+		nNonZeros := rowi tally.
+		count := 0.
+		index := 1.
+		[ count < nNonZeros ] whileTrue: [
+			jj := rowi basicAt: index.
+			jj == nil ifFalse: [
+				count := count + 1.
+				(rowPositionsOfNonZerosInColumns at: jj) add: i.
+				aij := rowiValues at: index.
+				mag := aij.
+				mag < 0 ifTrue: [ mag := 0.0 - mag ].
+				mag > max ifTrue: [
+					max := mag.
+					pivotRow := i.
+					pivotCol := positionsOfOriginalCols at: jj ] ].
+			index := index + 1 ] ].
+	p == pivotRow ifFalse: [
+		matrixA swap: p with: pivotRow.
+		rightHandSideB swap: p with: pivotRow.
+		rowOrder swap: p with: pivotRow ].
+	p == pivotCol ifFalse: [
+		colOrder swap: p with: pivotCol.
+		positionsOfOriginalCols at: (colOrder at: p) put: p.
+		positionsOfOriginalCols at: (colOrder at: pivotCol) put: pivotCol ].
 	pivotValues at: p put: max.
-	max < singularPivotTolerance ifTrue: [SingularMatrixError raiseSignal].
+	max < singularPivotTolerance ifTrue: [ SingularMatrixError signal ].
 	jp := colOrder at: p.
 	rowPositionsOfNonZerosInPivotColumn := rowPositionsOfNonZerosInColumns at: jp.
-	rowPositionsOfNonZerosInPivotColumn first == p ifTrue: [rowPositionsOfNonZerosInPivotColumn removeFirst].
+	rowPositionsOfNonZerosInPivotColumn first == p ifTrue: [
+		rowPositionsOfNonZerosInPivotColumn removeFirst ].
 	markowitzPivotColCount := rowPositionsOfNonZerosInPivotColumn size
 ]
 
@@ -187,33 +184,30 @@ GESpMatFullPv >> postSolve [
 ]
 
 { #category : 'solution' }
-GESpMatFullPv >> preSolve: aMatrix with: aVector saveOriginal: saveOriginal [ 
+GESpMatFullPv >> preSolve: aMatrix with: aVector saveOriginal: saveOriginal [
 	"A conditioned copy of aMatrix is solved."
 
 	| rowi maxRowElement |
-	(m == aMatrix nrow and: [n == aMatrix ncol]) 
-		ifFalse: 
-			[m := aMatrix nrow.
-			n := aMatrix ncol.
-			matrixA := StMSparseMatrix new: m.
-			pivotValues := StMFullColumn new: m.
-			rowOrder := StMArray new: m.
-			colOrder := StMArray new: m.
-			positionsOfOriginalCols := StMArray new: m.
-			privateIndicesOfNonZerosInPivotRow := OrderedCollection new.
-			rowPositionsOfNonZerosInColumns := StMArray new: n.
-			1 to: n
-				do: [:j | rowPositionsOfNonZerosInColumns at: j put: OrderedCollection new]].
-	rightHandSideB := saveOriginal ifTrue: [aVector copy] ifFalse: [aVector].
-	1 to: m
-		do: 
-			[:i | 
-			rowi := (aMatrix at: i) asSparseRow.
-			maxRowElement := rowi maxElement.
-			maxRowElement > 0 ifFalse: [SingularMatrixError raiseSignal].
-			matrixA at: i
-				put: (rowi conditionedWithTol: singularPivotTolerance * maxRowElement).
-			rowOrder at: i put: i.
-			colOrder at: i put: i.
-			positionsOfOriginalCols at: i put: i]
+	(m == aMatrix nrow and: [ n == aMatrix ncol ]) ifFalse: [
+		m := aMatrix nrow.
+		n := aMatrix ncol.
+		matrixA := StMSparseMatrix new: m.
+		pivotValues := StMFullColumn new: m.
+		rowOrder := StMArray new: m.
+		colOrder := StMArray new: m.
+		positionsOfOriginalCols := StMArray new: m.
+		privateIndicesOfNonZerosInPivotRow := OrderedCollection new.
+		rowPositionsOfNonZerosInColumns := StMArray new: n.
+		1 to: n do: [ :j | rowPositionsOfNonZerosInColumns at: j put: OrderedCollection new ] ].
+	rightHandSideB := saveOriginal
+		                  ifTrue: [ aVector copy ]
+		                  ifFalse: [ aVector ].
+	1 to: m do: [ :i |
+		rowi := (aMatrix at: i) asSparseRow.
+		maxRowElement := rowi maxElement.
+		maxRowElement > 0 ifFalse: [ SingularMatrixError signal ].
+		matrixA at: i put: (rowi conditionedWithTol: singularPivotTolerance * maxRowElement).
+		rowOrder at: i put: i.
+		colOrder at: i put: i.
+		positionsOfOriginalCols at: i put: i ]
 ]

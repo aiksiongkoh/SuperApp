@@ -347,7 +347,8 @@ MbDEndFrameqcs >> fillpqsumudot: col [
 ]
 
 { #category : 'accessing' }
-MbDEndFrameqcs >> fillqsu: col [ 
+MbDEndFrameqcs >> fillqsu: col [
+
 	col at: is putFullColumn: s
 ]
 

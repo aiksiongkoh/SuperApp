@@ -28,10 +28,12 @@ MbDZeroImpactVelocityNewtonRaphson2 >> fillY [
 
 { #category : 'solving' }
 MbDZeroImpactVelocityNewtonRaphson2 >> incrementIterNo [
-	iterNo >= iterMax
-		ifTrue: 
-			[system logString: #'MbD: \Solver cannot locate maximum compression in collision after %1 iterations.' withArgument: iterNo printString.
-			SimulationStoppingError raiseSignal].
+
+	iterNo >= iterMax ifTrue: [
+		system
+			logString: #'MbD: \Solver cannot locate maximum compression in collision after %1 iterations.'
+			withArgument: iterNo printString.
+		SimulationStoppingError signal ].
 	iterNo := iterNo + 1
 ]
 

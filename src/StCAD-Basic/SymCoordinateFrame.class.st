@@ -50,13 +50,21 @@ SymCoordinateFrame >> aAOF [
 
 { #category : 'accessing' }
 SymCoordinateFrame >> aAOf [
+	"^ self aAOF timesFullMatrix: aAFf"
 
-	^ self aAOF timesFullMatrix: aAFf
+	^ aAOf
 ]
 
 { #category : 'accessing' }
-SymCoordinateFrame >> body: anASMTAssembly [ 
-	body := anASMTAssembly
+SymCoordinateFrame >> body [
+
+	^ body
+]
+
+{ #category : 'accessing' }
+SymCoordinateFrame >> body: asmtObj [
+
+	body := asmtObj
 ]
 
 { #category : 'initialization' }
@@ -84,9 +92,9 @@ SymCoordinateFrame >> rFfF [
 ]
 
 { #category : 'accessing' }
-SymCoordinateFrame >> rFfF: anObject [
+SymCoordinateFrame >> rFfF: col [
 
-	rFfF := anObject
+	1 to: 3 do: [ :i | (rFfF at: i) value: (col at: i) ]
 ]
 
 { #category : 'accessing' }
@@ -109,8 +117,9 @@ SymCoordinateFrame >> rOFO [
 
 { #category : 'accessing' }
 SymCoordinateFrame >> rOfO [
+	"^ self rOFO + (self aAOF timesFullColumn: rFfF)"
 
-	^ self rOFO + (self aAOF timesFullColumn: rFfF)
+	^ rOfO
 ]
 
 { #category : 'accessing' }

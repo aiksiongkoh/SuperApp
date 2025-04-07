@@ -19,9 +19,36 @@ StMReciprocal >> differentiateWRTx [
 ]
 
 { #category : 'printing' }
+StMReciprocal >> funcName [
+
+	^ '1.0/'
+]
+
+{ #category : 'testing' }
+StMReciprocal >> isTrig [
+
+	self halt: 'Check this.'.
+	^ x isTrig
+]
+
+{ #category : 'printing' }
 StMReciprocal >> printFuntionNameOn: aStream [
 
 	aStream nextPutAll: '1.0/'
+]
+
+{ #category : 'evaluating' }
+StMReciprocal >> simplifyReciprocal [
+
+	| newx answer |
+	newx := x simplifyReciprocal.
+	answer := self class with: newx.
+	^ newx isConstant
+		  ifTrue: [ StMConstant with: answer value ]
+		  ifFalse: [
+			  newx isReciprocal
+				  ifTrue: [ newx x ]
+				  ifFalse: [ answer ] ]
 ]
 
 { #category : 'evaluating' }

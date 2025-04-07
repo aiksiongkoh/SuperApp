@@ -27,6 +27,7 @@ SymAbsConstraint >> axis: aInteger [
 { #category : 'calc' }
 SymAbsConstraint >> calcPostDynCorrectorIteration [
 
+	self halt.
 	axis < 4
 		ifTrue: [ aG := sup qX at: axis ]
 		ifFalse: [ aG := sup qE at: axis - 3 ]
@@ -66,7 +67,8 @@ SymAbsConstraint >> fillCollisionError: col [
 ]
 
 { #category : 'posIC' }
-SymAbsConstraint >> fillPosICError: col [ 
+SymAbsConstraint >> fillPosICError: col [
+
 	super fillPosICError: col.
 	col at: iqXminusOnePlusAxis plusNumber: lam
 ]
@@ -83,7 +85,9 @@ SymAbsConstraint >> fillPosKineJacob: mat [
 ]
 
 { #category : 'velIC' }
-SymAbsConstraint >> fillVelICJacob: mat [ 
+SymAbsConstraint >> fillVelICJacob: mat [
+
+	[ false ] assert.
 	self fillPosICJacob: mat
 ]
 
@@ -112,4 +116,11 @@ SymAbsConstraint >> fillpFpydot: mat [
 SymAbsConstraint >> useEquationNumbers [
 
 	iqXminusOnePlusAxis := sup iqX - 1 + axis
+]
+
+{ #category : 'initialize-release' }
+SymAbsConstraint >> useVelICEqnNo [
+
+	[ false ] assert.
+	iqXminusOnePlusAxis := sup ivX - 1 + axis
 ]

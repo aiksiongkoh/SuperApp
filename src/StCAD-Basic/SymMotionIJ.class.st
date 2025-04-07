@@ -13,6 +13,13 @@ Class {
 	#package : 'StCAD-Basic'
 }
 
+{ #category : 'initialize-release' }
+SymMotionIJ >> initMotions [
+
+	endFrmI rmemBlks: (SymFullColumn with: xBlk with: yBlk with: zBlk).
+	endFrmI phiThePsiBlks: (SymFullColumn with: phiBlk with: theBlk with: psiBlk)
+]
+
 { #category : 'initialization' }
 SymMotionIJ >> initialize [
 
@@ -23,4 +30,16 @@ SymMotionIJ >> initialize [
 	phiBlk := StMConstant with: 0.
 	theBlk := StMConstant with: 0.
 	psiBlk := StMConstant with: 0
+]
+
+{ #category : 'accessing' }
+SymMotionIJ >> phiBlk [
+
+	^ phiBlk
+]
+
+{ #category : 'accessing' }
+SymMotionIJ >> phiBlk: anObject [
+
+	phiBlk := anObject
 ]

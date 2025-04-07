@@ -1,6 +1,6 @@
 Class {
 	#name : 'SymEulerParametersDot',
-	#superclass : 'StMEulerArray',
+	#superclass : 'SymEulerArray',
 	#type : 'variable',
 	#instVars : [
 		'qE',
@@ -183,17 +183,16 @@ SymEulerParametersDot >> dAdt [
 ]
 
 { #category : 'calc' }
-SymEulerParametersDot >> differentiateWRT: var [ 
+SymEulerParametersDot >> differentiateWRT: var [
+
 	| answer |
 	answer := SymEulerParametersDDot with: self.
-	1 to: 4
-		do: 
-			[:i | 
-			| angleVel angleAcc |
-			angleVel := self at: i.
-			angleAcc := (angleVel differentiateWRT: var) simplified.
-			answer at: i put: angleAcc].
-	^answer
+	1 to: 4 do: [ :i |
+		| angleVel angleAcc |
+		angleVel := self at: i.
+		angleAcc := angleVel differentiateWRT: var.
+		answer at: i put: angleAcc ].
+	^ answer
 ]
 
 { #category : 'initialize-release' }

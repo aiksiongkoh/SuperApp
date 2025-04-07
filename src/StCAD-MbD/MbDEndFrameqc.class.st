@@ -8,7 +8,8 @@ Class {
 		'prOeOpE',
 		'pprOeOpEpE',
 		'pAOepE',
-		'ppAOepEpE'
+		'ppAOepEpE',
+		'prOeOpX'
 	],
 	#category : 'StCAD-MbD-MbDBasic',
 	#package : 'StCAD-MbD',
@@ -224,6 +225,12 @@ MbDEndFrameqc >> prOeOpE [
 { #category : 'accessing' }
 MbDEndFrameqc >> priOeOpE: i [ 
 	^prOeOpE at: i
+]
+
+{ #category : 'accessing' }
+MbDEndFrameqc >> priOeOpX: i [
+
+	^ prOeOpX at: i
 ]
 
 { #category : 'accessing' }

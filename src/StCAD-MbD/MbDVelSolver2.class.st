@@ -33,16 +33,17 @@ MbDVelSolver2 >> basicSolveEquations [
 
 { #category : 'run' }
 MbDVelSolver2 >> handleSingularMatrix [
-	^(matrixSolver isMemberOf: GESpMatParPvMarkoFast) 
-		ifTrue: 
-			[matrixSolver := GESpMatParPvPrecise new.
-			self solveEquations]
-		ifFalse: 
-			[(matrixSolver isMemberOf: GESpMatParPvPrecise) 
-				ifTrue: 
-					[self logSingularMatrixMessage.
-					SimulationStoppingError raiseSignal]
-				ifFalse: [self halt: 'Check this.']]
+
+	^ (matrixSolver isMemberOf: GESpMatParPvMarkoFast)
+		  ifTrue: [
+			  matrixSolver := GESpMatParPvPrecise new.
+			  self solveEquations ]
+		  ifFalse: [
+			  (matrixSolver isMemberOf: GESpMatParPvPrecise)
+				  ifTrue: [
+					  self logSingularMatrixMessage.
+					  SimulationStoppingError signal ]
+				  ifFalse: [ self halt: 'Check this.' ] ]
 ]
 
 { #category : 'run' }

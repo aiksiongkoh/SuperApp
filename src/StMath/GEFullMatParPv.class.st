@@ -22,34 +22,29 @@ GEFullMatParPv class >> visualWorksMetadata [
 ]
 
 { #category : 'pivoting' }
-GEFullMatParPv >> doPivoting: p [ 
+GEFullMatParPv >> doPivoting: p [
 	"Use scalings. Do row pivoting."
 
 	| app max rowPivot aip mag |
 	app := (matrixA at: p) at: p.
 	max := app * (rowScalings at: p).
-	max < 0 ifTrue: [max := 0.0 - max].
+	max < 0 ifTrue: [ max := 0.0 - max ].
 	rowPivot := p.
-	p + 1 to: m
-		do: 
-			[:i | 
-			aip := (matrixA at: i) at: p.
-			aip = 0 
-				ifFalse: 
-					[mag := aip * (rowScalings at: i).
-					mag < 0 ifTrue: [mag := 0.0 - mag].
-					mag > max 
-						ifTrue: 
-							[max := mag.
-							rowPivot := i]]].
-	p == rowPivot 
-		ifFalse: 
-			[matrixA swap: p with: rowPivot.
-			rightHandSideB swap: p with: rowPivot.
-			rowScalings swap: p with: rowPivot.
-			rowOrder swap: p with: rowPivot].
+	p + 1 to: m do: [ :i |
+		aip := (matrixA at: i) at: p.
+		aip = 0 ifFalse: [
+			mag := aip * (rowScalings at: i).
+			mag < 0 ifTrue: [ mag := 0.0 - mag ].
+			mag > max ifTrue: [
+				max := mag.
+				rowPivot := i ] ] ].
+	p == rowPivot ifFalse: [
+		matrixA swap: p with: rowPivot.
+		rightHandSideB swap: p with: rowPivot.
+		rowScalings swap: p with: rowPivot.
+		rowOrder swap: p with: rowPivot ].
 	pivotValues at: p put: max.
-	max < singularPivotTolerance ifTrue: [SingularMatrixError raiseSignal]
+	max < singularPivotTolerance ifTrue: [ SingularMatrixError signal ]
 ]
 
 { #category : 'solution' }

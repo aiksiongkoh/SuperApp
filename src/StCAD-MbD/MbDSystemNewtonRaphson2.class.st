@@ -36,23 +36,24 @@ MbDSystemNewtonRaphson2 >> createVectorsAndMatrices [
 
 { #category : 'solving' }
 MbDSystemNewtonRaphson2 >> handleSingularMatrix [
-	(matrixSolver isMemberOf: GESpMatParPvMarkoFast) 
-		ifTrue: 
-			[matrixSolver := GESpMatParPvPrecise new.
-			self solveEquations]
-		ifFalse: 
-			[(matrixSolver isMemberOf: GESpMatParPvPrecise) 
-				ifTrue: 
-					[self logSingularMatrixMessage.
-					SimulationStoppingError raiseSignal]
-				ifFalse: [self halt: 'Check this.']]
+
+	(matrixSolver isMemberOf: GESpMatParPvMarkoFast)
+		ifTrue: [
+			matrixSolver := GESpMatParPvPrecise new.
+			self solveEquations ]
+		ifFalse: [
+			(matrixSolver isMemberOf: GESpMatParPvPrecise)
+				ifTrue: [
+					self logSingularMatrixMessage.
+					SimulationStoppingError signal ]
+				ifFalse: [ self halt: 'Check this.' ] ]
 ]
 
 { #category : 'initialize-release' }
 MbDSystemNewtonRaphson2 >> initializeGlobally [
 	self assignEquationNumbers.
 	system 
-		partsJointsMotionsForcesTorquesDo: [:item | item useEquationNumbers].
+		allDo: [:item | item useEquationNumbers].
 	self createVectorsAndMatrices.
 	matrixSolver := self matrixSolverClass new
 ]

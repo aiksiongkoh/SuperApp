@@ -96,6 +96,16 @@ StMPiecewiseFunctionX >> functions [
 	^functions
 ]
 
+{ #category : 'comparing' }
+StMPiecewiseFunctionX >> hash [
+
+	| hash |
+	hash := super hash.
+	hash := hash bitXor: functions hash.
+	hash := hash bitXor: transitions hash.
+	^ hash
+]
+
 { #category : 'evaluating' }
 StMPiecewiseFunctionX >> partialDifferentiateWRT: variable [ 
 	| derivs answer |

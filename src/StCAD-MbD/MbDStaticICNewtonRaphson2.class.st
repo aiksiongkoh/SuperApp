@@ -23,7 +23,7 @@ MbDStaticICNewtonRaphson2 class >> visualWorksMetadata [
 
 { #category : 'solving' }
 MbDStaticICNewtonRaphson2 >> askSystemToUpdate [
-	system partsJointsMotionsForcesTorquesDo: [:item | item postStaticIteration]
+	system allDo: [:item | item postStaticIteration]
 ]
 
 { #category : 'initialize-release' }
@@ -76,7 +76,7 @@ MbDStaticICNewtonRaphson2 >> fillPyPx [
 		at: 1
 		and: 1
 		minusDiagonalMatrix: qsuWeights.
-	system partsJointsMotionsForcesTorquesDo: [:item | item fillStaticJacob: pypx]
+	system allDo: [:item | item fillStaticJacob: pypx]
 ]
 
 { #category : 'solving' }
@@ -86,23 +86,23 @@ MbDStaticICNewtonRaphson2 >> fillY [
 	newMinusOld equalSelfPlusFullColumn: x at: 1.
 	y zeroSelf.
 	y at: 1 minusFullColumn: (qsuWeights timesFullColumn: newMinusOld).
-	system partsJointsMotionsForcesTorquesDo: [:item | item fillStaticError: y]
+	system allDo: [:item | item fillStaticError: y]
 ]
 
 { #category : 'solving' }
 MbDStaticICNewtonRaphson2 >> incrementIterNo [
-	iterNo >= iterMax
-		ifTrue: 
-			[system logString: #'MbD: \No convergence after %1 iterations.' withArgument: iterNo printString.
-			system logString: #'MbD: \A static solution cannot be found'.
-			SimulationStoppingError raiseSignal].
+
+	iterNo >= iterMax ifTrue: [
+		system logString: #'MbD: \No convergence after %1 iterations.' withArgument: iterNo printString.
+		system logString: #'MbD: \A static solution cannot be found'.
+		SimulationStoppingError signal ].
 	iterNo := iterNo + 1
 ]
 
 { #category : 'initialize-release' }
 MbDStaticICNewtonRaphson2 >> initializeGlobally [
 	super initializeGlobally.
-	system partsJointsMotionsDo: 
+	system allDo: 
 			[:item | 
 			item fillqsu: qsuOld.
 			item fillqsulam: x].
@@ -118,16 +118,16 @@ MbDStaticICNewtonRaphson2 >> logSingularMatrixMessage [
 
 { #category : 'solving' }
 MbDStaticICNewtonRaphson2 >> passRootToSystem [
-	system partsJointsMotionsDo: [:item | item setqsulam: x]
+	system allDo: [:item | item setqsulam: x]
 ]
 
 { #category : 'solving' }
 MbDStaticICNewtonRaphson2 >> postRun [
-	system partsJointsMotionsForcesTorquesDo: [:item | item postStatic]
+	system allDo: [:item | item postStatic]
 ]
 
 { #category : 'solving' }
 MbDStaticICNewtonRaphson2 >> preRun [
 	system logString: #'MbD: \Iterating for static solution.'.
-	system partsJointsMotionsForcesTorquesDo: [:item | item preStatic]
+	system allDo: [:item | item preStatic]
 ]

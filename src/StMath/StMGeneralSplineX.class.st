@@ -647,6 +647,18 @@ StMGeneralSplineX >> dydx: xx [
 	^self derivative: 1 at: xx
 ]
 
+{ #category : 'comparing' }
+StMGeneralSplineX >> hash [
+
+	| hash |
+	hash := super hash.
+	hash := hash bitXor: degree hash.
+	hash := hash bitXor: delta hash.
+	hash := hash bitXor: derivs hash.
+	hash := hash bitXor: index hash.
+	^ hash
+]
+
 { #category : 'initialize-release' }
 StMGeneralSplineX >> initialize [
 	super initialize.

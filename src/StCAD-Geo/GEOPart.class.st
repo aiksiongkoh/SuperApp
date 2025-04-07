@@ -99,6 +99,11 @@ GEOPart >> density: double [
 ]
 
 { #category : 'accessing' }
+GEOPart >> forTorList: collection [ 
+	"Do nothing."
+]
+
+{ #category : 'accessing' }
 GEOPart >> forceList: collection [ 
 	"Do nothing."
 ]
