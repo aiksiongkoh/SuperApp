@@ -23,12 +23,6 @@ SymEndFramet >> calcPostDynCorrectorIteration [
 ]
 
 { #category : 'calc' }
-SymEndFramet >> calcomeOeO [
-
-	^ sup omeOmO + (sup aAOm timesFullColumn: self omemem)
-]
-
-{ #category : 'calc' }
 SymEndFramet >> evalAme [
 	"Do nothing for Symbolic item"
 
@@ -48,6 +42,8 @@ SymEndFramet >> initVariables [
 	| t |
 	super initVariables.
 	t := self time.
+	rFfF do: [ :r | r x: t ].
+	theme do: [ :the | the x: t ].
 	prmempt := rmem differentiateWRT: t.
 	pthemept := theme differentiateWRT: t
 ]
@@ -61,11 +57,13 @@ SymEndFramet >> initialize [
 	rmemt2 := StMVariableParameter name: #rmemt2.
 	rmemt3 := StMVariableParameter name: #rmemt3.
 	rmem := SymFullColumn with: rmemt1 with: rmemt2 with: rmemt3.
+	rFfF := rmem.
 	themet1x := StMVariableParameter name: #themet1x.
 	themet2y := StMVariableParameter name: #themet2y.
 	themet3z := StMVariableParameter name: #themet3z.
 	theme := SymEulerAngles with: themet1x with: themet2y with: themet3z.
-	aAme := theme aA
+	aAme := theme aA.
+	aAFf := aAme
 ]
 
 { #category : 'accessing' }
@@ -90,16 +88,6 @@ SymEndFramet >> pthemept [
 SymEndFramet >> rmemBlks: blks [
 
 	1 to: 3 do: [ :i | (rmem at: i) rhs: (blks at: i) ]
-]
-
-{ #category : 'accessing' }
-SymEndFramet >> sup: markerFrm [
-
-	| t |
-	super sup: markerFrm.
-	t := self time.
-	rFfF do: [ :r | r x: t ].
-	themet do: [ :the | the x: t ]
 ]
 
 { #category : 'accessing' }

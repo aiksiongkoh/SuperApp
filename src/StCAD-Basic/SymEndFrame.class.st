@@ -33,38 +33,12 @@ SymEndFrame >> aAme [
 ]
 
 { #category : 'calc' }
-SymEndFrame >> calcAll [
-
-	super calcAll
-	"	
-	rOeO := (self rOmO + (self aAOm timesFullColumn: rmem)) simplified.
-	aAOe := (self aAOm timesFullMatrix: aAme) simplified.
-	vOeO := (self vOmO + (self pAOmpt timesFullColumn: rmem)) simplified.
-	omeOeO := (self omeOmO + (self aAOm timesFullColumn: self omemem)) simplified.
-	vOfO := vOeO.
-	omeOfO := omeOeO
-	"
-]
-
-{ #category : 'calc' }
 SymEndFrame >> calcKine [
 
 	rOeO := (self rOmO + (self aAOm timesFullColumn: rmem)) simplified.
 	aAOe := (self aAOm timesFullMatrix: aAme) simplified.
 	rOfO := rOeO.
 	aAOf := aAOe
-]
-
-{ #category : 'calc' }
-SymEndFrame >> calcaAOe [
-
-	^ sup aAOm timesFullMatrix: self aAme
-]
-
-{ #category : 'calc' }
-SymEndFrame >> calcrOeO [
-
-	^ sup rOmO + (sup aAOm timesFullColumn: self rmem)
 ]
 
 { #category : 'accessing' }
@@ -178,7 +152,7 @@ SymEndFrame >> rmem [
 { #category : 'accessing' }
 SymEndFrame >> rmem: col [
 
-	1 to: 3 do: [ :i | (rmem at: i) value: (col at: i) ]
+	1 to: 3 do: [ :i | (rmem at: i) value: (col at: i) asSymbolic ]
 ]
 
 { #category : 'accessing' }

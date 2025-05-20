@@ -44,6 +44,12 @@ SymEulerArray >> asFullRow [
 	^ answer
 ]
 
+{ #category : 'accessing' }
+SymEulerArray >> at: i put: object [
+
+	super at: i put: object asSymbolic
+]
+
 { #category : 'ops on self' }
 SymEulerArray >> equalFullColumn: aFullColumn at: ii1 [
 

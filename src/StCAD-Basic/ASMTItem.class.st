@@ -89,6 +89,12 @@ ASMTItem >> mbdObject: mbdObj [
 ]
 
 { #category : 'accessing' }
+ASMTItem >> mbdUnits [
+
+	^ sup mbdUnits
+]
+
+{ #category : 'accessing' }
 ASMTItem >> name [
 
 	^ name

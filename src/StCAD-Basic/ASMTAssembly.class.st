@@ -243,6 +243,12 @@ ASMTAssembly >> mbdObject: mbdAssemblyFrm [
 ]
 
 { #category : 'accessing' }
+ASMTAssembly >> mbdUnits [
+
+	^ mbdObject units
+]
+
+{ #category : 'accessing' }
 ASMTAssembly >> omeOFO [
 
 	^ StMFullColumn zero: 3

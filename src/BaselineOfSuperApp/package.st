@@ -1,1 +1,1 @@
-Package { #name : #BaselineOfSuperApp }
+Package { #name : 'BaselineOfSuperApp' }

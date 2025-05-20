@@ -11,18 +11,6 @@ SymEndFramec >> calcPostDynCorrectorIteration [
 	
 ]
 
-{ #category : 'calc' }
-SymEndFramec >> calcomeOeO [
-
-	^ sup omeOmO
-]
-
-{ #category : 'calc' }
-SymEndFramec >> calcvOeO [
-
-	^ sup vOmO + (sup pAOmpt timesFullColumn: self rmem)
-]
-
 { #category : 'initialization' }
 SymEndFramec >> initialize [
 
@@ -45,10 +33,4 @@ SymEndFramec >> initialize [
 SymEndFramec >> omemem [
 
 	^ SymFullColumn zero: 3
-]
-
-{ #category : 'accessing' }
-SymEndFramec >> sup: aStMarkerFrame [
-
-	sup := aStMarkerFrame
 ]

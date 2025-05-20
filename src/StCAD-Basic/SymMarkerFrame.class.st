@@ -99,36 +99,12 @@ SymMarkerFrame >> assignVelICEqnNum: i [
 ]
 
 { #category : 'accessing' }
-SymMarkerFrame >> calcAll [
-
-	super calcAll.
-	rOmO := (self rOpO + (self aAOp timesFullColumn: rpmp)) simplified.
-	aAOm := (self aAOp timesFullMatrix: aApm) simplified.
-"	vOmO := (self vOpO + (self pAOppt timesFullColumn: rpmp)) simplified.
-	omeOmO := self omeOpO.
-	vOfO := vOmO.
-	omeOfO := omeOmO"
-]
-
-{ #category : 'accessing' }
 SymMarkerFrame >> calcKine [
 
 	rOmO := (self rOpO + (self aAOp timesFullColumn: rpmp)) simplified.
 	aAOm := (self aAOp timesFullMatrix: aApm) simplified.
 	rOfO := rOmO.
 	aAOf := aAOm
-]
-
-{ #category : 'calc' }
-SymMarkerFrame >> calcaAOm [
-
-	^ sup aAOp timesFullMatrix: self aApm
-]
-
-{ #category : 'calc' }
-SymMarkerFrame >> calcrOmO [
-
-	^ sup rOpO + (sup aAOp timesFullColumn: self rpmp)
 ]
 
 { #category : 'as yet unclassified' }
@@ -310,7 +286,7 @@ SymMarkerFrame >> rpmp [
 { #category : 'accessing' }
 SymMarkerFrame >> rpmp: col [
 
-	1 to: 3 do: [ :i | (rpmp at: i) value: (col at: i) ].
+	1 to: 3 do: [ :i | (rpmp at: i) value: (col at: i) asSymbolic ].
 	rpmp := rpmp simplified.
 	rFfF := rpmp
 ]
@@ -337,12 +313,6 @@ SymMarkerFrame >> setqsudotlam: col [
 SymMarkerFrame >> setqsulam: col [
 
 	subs do: [ :eFrm | eFrm setqsulam: col ]
-]
-
-{ #category : 'accessing' }
-SymMarkerFrame >> sup: aStPartFrame [
-
-	sup := aStPartFrame
 ]
 
 { #category : 'accessing' }

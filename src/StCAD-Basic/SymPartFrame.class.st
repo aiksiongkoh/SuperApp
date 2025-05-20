@@ -110,14 +110,6 @@ SymPartFrame >> asFixed [
 ]
 
 { #category : 'calc' }
-SymPartFrame >> calcAll [
-
-	rOfO := self calcrOpO.
-	aAOf := self calcaAOp.
-	subs do: [ :sub | sub calcAll ]
-]
-
-{ #category : 'calc' }
 SymPartFrame >> calcKine [
 
 	rOpO := (self rOaO + (self aAOa timesFullColumn: rapa)) simplified.
@@ -133,33 +125,8 @@ SymPartFrame >> calcPostDynCorrectorIteration [
 ]
 
 { #category : 'calc' }
-SymPartFrame >> calcaAOp [
-
-	^ sup aAOa timesFullMatrix: self aAap
-]
-
-{ #category : 'accessing' }
-SymPartFrame >> calcomeOpO [
-
-	^ sup omeOaO + (sup aAOa timesFullColumn: self omeapa)
-]
-
-{ #category : 'calc' }
 SymPartFrame >> calcpApE [
 	self shouldBeImplemented.
-]
-
-{ #category : 'calc' }
-SymPartFrame >> calcrOpO [
-
-	^ sup rOaO + (sup aAOa timesFullColumn: self rapa)
-]
-
-{ #category : 'calc' }
-SymPartFrame >> calcvOpO [
-
-	^ sup vOaO + (sup pAOapt timesFullColumn: self rapa)
-	  + (sup aAOa timesFullColumn: self vapa)
 ]
 
 { #category : 'accessing' }
@@ -659,18 +626,6 @@ SymPartFrame >> setqsulam: col [
 	aGabs do: [ :con | con setqsulam: col ]
 ]
 
-{ #category : 'accessing' }
-SymPartFrame >> sup: assemblyFrm [
-
-	| t |
-	super sup: assemblyFrm.
-	t := self time.
-	qX do: [ :qi | qi x: t ].
-	qE do: [ :qi | qi x: t ].
-	vX do: [ :vi | vi x: t ].
-	vOmega do: [ :vi | vi x: t ]
-]
-
 { #category : 'initialize-release' }
 SymPartFrame >> useEquationNumbers [
 
@@ -706,12 +661,6 @@ SymPartFrame >> vOmegadot [
 ]
 
 { #category : 'accessing' }
-SymPartFrame >> vOmegadot: col [
-
-	vOmegadot := col asSymbolic
-]
-
-{ #category : 'accessing' }
 SymPartFrame >> vOpO [
 
 	^ vOfO
@@ -733,10 +682,4 @@ SymPartFrame >> vX: col [
 SymPartFrame >> vXdot [
 
 	^ vXdot
-]
-
-{ #category : 'accessing' }
-SymPartFrame >> vXdot: col [
-
-	vXdot := col asSymbolic
 ]

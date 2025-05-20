@@ -113,21 +113,6 @@ SymAssemblyFrame >> allRedundantConstraints [
 	^ allRedundantConstraints
 ]
 
-{ #category : 'calc' }
-SymAssemblyFrame >> calcAll [
-
-	| t theOadot |
-	super calcAll.
-"	t := self time.
-	vOaO := rOaO differentiateWRT: t.
-	theOadot := theOa differentiateWRT: t.
-	omeOaO := theOadot omeFfF.
-	vOfO := vOaO.
-	omeOfO := omeOaO.
-	pAOapt := aAOa differentiateWRT: t.
-"	subs do: [ :sub | sub calcAll ]
-]
-
 { #category : 'DYN' }
 SymAssemblyFrame >> calcCharacteristicDimensions [
 	"Avoid for now."
@@ -140,32 +125,6 @@ SymAssemblyFrame >> calcKine [
 
 	rOfO := rOaO.
 	aAOf := aAOa
-]
-
-{ #category : 'calc' }
-SymAssemblyFrame >> calcaAOa [
-
-	^ aAFf
-]
-
-{ #category : 'calc' }
-SymAssemblyFrame >> calcomeOaO [
-
-	| theOadot |
-	theOadot := theOa differentiateWRT: self time.
-	^ theOadot omeFfF
-]
-
-{ #category : 'calc' }
-SymAssemblyFrame >> calcrOaO [
-
-	^ rFfF
-]
-
-{ #category : 'calc' }
-SymAssemblyFrame >> calcvOaO [
-
-	^ rOfO collect: [ :r | r differentiateWRT: self time ]
 ]
 
 { #category : 'accessing' }
@@ -583,16 +542,6 @@ SymAssemblyFrame >> solver [
 SymAssemblyFrame >> solver: anObject [
 
 	solver := anObject
-]
-
-{ #category : 'accessing' }
-SymAssemblyFrame >> sup: inertialFrm [
-
-	| t |
-	super sup: inertialFrm.
-	t := self time.
-	rFfF do: [ :r | r x: t ].
-	theOa do: [ :the | the x: t ]
 ]
 
 { #category : 'accessing' }

@@ -166,8 +166,9 @@ StMConstant >> value [
 ]
 
 { #category : 'private' }
-StMConstant >> value: arg [ 
+StMConstant >> value: arg [
+
 	value := arg isNumber
-				ifTrue: [arg]
-				ifFalse: [self error: 'Argument must be a constant.']
+		         ifTrue: [ arg ]
+		         ifFalse: [ self error: 'Argument must be a constant.' ]
 ]

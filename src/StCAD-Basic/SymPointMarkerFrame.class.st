@@ -11,18 +11,6 @@ SymPointMarkerFrame >> calcPostDynCorrectorIteration [
 	
 ]
 
-{ #category : 'calc' }
-SymPointMarkerFrame >> calcomeOmO [
-
-	^ sup omeOpO
-]
-
-{ #category : 'accessing' }
-SymPointMarkerFrame >> calcvOmO [
-
-	^ sup vOpO + (sup pAOppt timesFullColumn: self rpmp)
-]
-
 { #category : 'accessing' }
 SymPointMarkerFrame >> omeOmO [
 

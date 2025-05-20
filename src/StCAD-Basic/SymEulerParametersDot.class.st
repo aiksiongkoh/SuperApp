@@ -235,8 +235,9 @@ SymEulerParametersDot >> omeF [
 
 { #category : 'accessing' }
 SymEulerParametersDot >> omeOpO [
-	^(self aB timesFullColumn: self)
-		times: 2.0
+
+	self halt: 'Should be just omeFfF'.
+	^ (self aB timesFullColumn: self) times: 2.0
 ]
 
 { #category : 'accessing' }

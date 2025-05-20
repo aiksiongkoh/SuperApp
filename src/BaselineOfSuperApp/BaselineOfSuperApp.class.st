@@ -1,10 +1,11 @@
 Class {
-	#name : #BaselineOfSuperApp,
-	#superclass : #BaselineOf,
-	#category : #BaselineOfSuperApp
+	#name : 'BaselineOfSuperApp',
+	#superclass : 'BaselineOf',
+	#category : 'BaselineOfSuperApp',
+	#package : 'BaselineOfSuperApp'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BaselineOfSuperApp >> baseline: spec [
 
 	<baseline>
@@ -54,7 +55,7 @@ BaselineOfSuperApp >> baseline: spec [
 			package: 'VWCompatibility' ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BaselineOfSuperApp >> projectClass [
 	^ MetacelloCypressBaselineProject
 ]

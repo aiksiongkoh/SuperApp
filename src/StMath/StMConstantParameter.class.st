@@ -1,3 +1,7 @@
+"
+StMConstantParameter persists.
+Cannot be absorbed by StMConstant.
+"
 Class {
 	#name : 'StMConstantParameter',
 	#superclass : 'StMConstant',
@@ -46,4 +50,12 @@ StMConstantParameter >> simplifyUntil: set [
 StMConstantParameter >> value [
 
 	^ value ifNil: [ self ]
+]
+
+{ #category : 'private' }
+StMConstantParameter >> value: arg [
+
+	value := arg isConstant
+		         ifTrue: [ arg ]
+		         ifFalse: [ self error: 'Argument must be a constant.' ]
 ]

@@ -17,13 +17,6 @@ Class {
 	#package : 'StCAD-Basic'
 }
 
-{ #category : 'calc' }
-SymEndFrames >> calcAll [
-
-	super calcAll.
-	self halt
-]
-
 { #category : 'accessing' }
 SymEndFrames >> fillContactEndFrames: collection [
 
@@ -90,11 +83,13 @@ SymEndFrames >> initialize [
 	rmems3 := StMVariableParameter name: #rmems3.
 	rmem := SymFullColumn with: rmems1 with: rmems2 with: rmems3.
 	rmem do: [ :r | r x: s ].
+	rFfF := rmem.
 	themes1x := StMConstantParameter name: #themes1x.
 	themes2y := StMConstantParameter name: #themes2y.
 	themes3z := StMConstantParameter name: #themes3z.
 	theme := SymEulerAngles with: themes1x with: themes2y with: themes3z.
-	aAme := theme aA
+	aAme := theme aA.
+	aAFf := aAme
 ]
 
 { #category : 'initialization' }
@@ -119,13 +114,4 @@ SymEndFrames >> setqsudotlam: col [
 SymEndFrames >> setqsulam: col [
 
 	s equalFullColumn: col at: is
-]
-
-{ #category : 'accessing' }
-SymEndFrames >> sup: markerFrm [
-
-	| t |
-	super sup: markerFrm.
-	t := self time.
-	s do: [ :si | si x: t ]
 ]

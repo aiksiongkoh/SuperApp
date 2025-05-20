@@ -54,7 +54,8 @@ SymCartesianFrame >> calcAll [
 
 	self calcKine.
 	self calcAllrOfO.
-	self calcAllaAOf
+	self calcAllaAOf.
+	subs do: [ :sub | sub calcAll ]
 ]
 
 { #category : 'as yet unclassified' }
