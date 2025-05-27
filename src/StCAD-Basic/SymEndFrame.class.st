@@ -32,6 +32,12 @@ SymEndFrame >> aAme [
 	^ aAFf
 ]
 
+{ #category : 'as yet unclassified' }
+SymEndFrame >> calcAllKE [
+	"Do nothing."
+
+]
+
 { #category : 'calc' }
 SymEndFrame >> calcKine [
 

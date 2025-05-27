@@ -210,6 +210,12 @@ SymItem >> fillqsulam: collection [
 	
 ]
 
+{ #category : 'as yet unclassified' }
+SymItem >> fillvdotsuddotlam: col [
+
+	self fillqsuddotlam: col
+]
+
 { #category : 'testing' }
 SymItem >> hasChanged [
 

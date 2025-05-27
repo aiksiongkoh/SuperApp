@@ -64,12 +64,6 @@ SymMbDAccNewtonRaphson >> incrementIterNo [
 	iterNo := iterNo + 1
 ]
 
-{ #category : 'initialize-release' }
-SymMbDAccNewtonRaphson >> initializeGlobally [
-	super initializeGlobally.
-	system allDo: [:item | item fillqsuddotlam: x]
-]
-
 { #category : 'solving' }
 SymMbDAccNewtonRaphson >> logSingularMatrixMessage [
 	system 

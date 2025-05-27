@@ -26,7 +26,7 @@ SymEndFrames >> fillContactEndFrames: collection [
 { #category : 'accessing' }
 SymEndFrames >> fillqsu: col [
 
-	col at: is putFullColumn: s asValue
+	col at: is putFullColumn: s asNumber
 ]
 
 { #category : 'accessing' }
@@ -47,7 +47,7 @@ SymEndFrames >> fillqsuddotlam: col [
 { #category : 'accessing' }
 SymEndFrames >> fillqsudot: col [
 
-	col at: is putFullColumn: sdot asValue
+	col at: is putFullColumn: sdot asNumber
 ]
 
 { #category : 'accessing' }
@@ -61,7 +61,7 @@ SymEndFrames >> fillqsudotWeights: col [
 { #category : 'accessing' }
 SymEndFrames >> fillqsulam: col [
 
-	col at: is putFullColumn: s asValue
+	col at: is putFullColumn: s asNumber
 ]
 
 { #category : 'accessing' }

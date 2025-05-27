@@ -163,6 +163,16 @@ StMSum >> addTerm: term [
 ]
 
 { #category : 'converting' }
+StMSum >> asNumber [
+
+	| answer |
+	answer := const.
+	terms do: [ :term | answer := answer + term asNumber ].
+	inverseTerms do: [ :term | answer := answer - term asNumber ].
+	^ answer
+]
+
+{ #category : 'converting' }
 StMSum >> asValue [
 
 	| answer |

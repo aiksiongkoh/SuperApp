@@ -55,6 +55,7 @@ SymCartesianFrame >> calcAll [
 	self calcKine.
 	self calcAllrOfO.
 	self calcAllaAOf.
+	self calcAllKE.
 	subs do: [ :sub | sub calcAll ]
 ]
 

@@ -63,6 +63,17 @@ StMDifferentiatedVariable >> = anObject [
 ]
 
 { #category : 'converting' }
+StMDifferentiatedVariable >> asNumber [
+
+	^ (x isMemberOf: UnknownDependentVariable)
+		  ifTrue: [ value ifNil: [ 0.0 ] ifNotNil: [ value asNumber ] ]
+		  ifFalse: [
+			  (x isMemberOf: StMVariableParameter)
+				  ifTrue: [ derivative asNumber ]
+				  ifFalse: [ self halt ] ]
+]
+
+{ #category : 'converting' }
 StMDifferentiatedVariable >> asValue [
 
 	^ (x isMemberOf: UnknownDependentVariable)

@@ -113,6 +113,13 @@ SymAssemblyFrame >> allRedundantConstraints [
 	^ allRedundantConstraints
 ]
 
+{ #category : 'as yet unclassified' }
+SymAssemblyFrame >> calcAllKE [
+	"Do nothing."
+
+	
+]
+
 { #category : 'DYN' }
 SymAssemblyFrame >> calcCharacteristicDimensions [
 	"Avoid for now."

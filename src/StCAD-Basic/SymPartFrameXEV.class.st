@@ -19,7 +19,8 @@ SymPartFrameXEV >> initialize [
 	vX2 := UnknownDependentVariable name: #vX2.
 	vX3 := UnknownDependentVariable name: #vX3.
 	vX := SymFullColumn with: vX1 with: vX2 with: vX3.
-	vapa := vX
+	vapa := vX.
+	vXdot := SymFullColumn with: 0.0 with: 0.0 with: 0.0
 ]
 
 { #category : 'accessing' }

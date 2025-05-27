@@ -12,6 +12,13 @@ Class {
 	#package : 'StCAD-Basic'
 }
 
+{ #category : 'as yet unclassified' }
+SymConstraint >> assignVdotICEqnNum: i [
+
+	iG := i.
+	^ i + 1
+]
+
 { #category : 'ops' }
 SymConstraint >> assignVelICEqnNum: eqnNo [
 
@@ -76,7 +83,7 @@ SymConstraint >> fillPerpenConstraints: collection [
 { #category : 'posIC' }
 SymConstraint >> fillPosICError: col [
 
-	col at: iG plusNumber: aG asValue
+	col at: iG plusNumber: aG asNumber
 ]
 
 { #category : 'accessing' }

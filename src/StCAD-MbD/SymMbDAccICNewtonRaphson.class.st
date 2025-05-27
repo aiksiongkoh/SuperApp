@@ -23,6 +23,13 @@ SymMbDAccICNewtonRaphson >> assignEquationNumbers [
 	n := eqnNo - 1
 ]
 
+{ #category : 'initialize-release' }
+SymMbDAccICNewtonRaphson >> initializeGlobally [
+
+	super initializeGlobally.
+	system allDo: [ :item | item fillqsuddotlam: x ]
+]
+
 { #category : 'solving' }
 SymMbDAccICNewtonRaphson >> isConverged [
 

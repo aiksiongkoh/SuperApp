@@ -59,6 +59,12 @@ StMVariable >> = anObject [
 ]
 
 { #category : 'converting' }
+StMVariable >> asNumber [
+
+	^ value asNumber
+]
+
+{ #category : 'converting' }
 StMVariable >> asValue [
 
 	^ value value

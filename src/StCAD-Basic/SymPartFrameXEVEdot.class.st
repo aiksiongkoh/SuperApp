@@ -22,8 +22,8 @@ Class {
 { #category : 'velIC' }
 SymPartFrameXEVEdot >> fillVelICError: col [
 
-	col at: ivX putFullColumn: (wqXdot timesFullColumn: qXdot asValue).
-	col at: ivE putFullColumn: (wqEdot timesFullColumn: qEdot asValue).
+	col at: ivX putFullColumn: (wqXdot timesFullColumn: qXdot asNumber).
+	col at: ivE putFullColumn: (wqEdot timesFullColumn: qEdot asNumber).
 	super fillVelICError: col
 ]
 

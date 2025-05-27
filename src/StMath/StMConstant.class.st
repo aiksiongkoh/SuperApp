@@ -69,9 +69,15 @@ StMConstant >> argsPerform: selector withArguments: anArray [
 ]
 
 { #category : 'converting' }
-StMConstant >> asValue [
+StMConstant >> asNumber [
 
 	^ value
+]
+
+{ #category : 'converting' }
+StMConstant >> asValue [
+
+	^ value asValue
 ]
 
 { #category : 'copying' }

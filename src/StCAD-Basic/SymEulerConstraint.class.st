@@ -96,7 +96,7 @@ SymEulerConstraint >> fillCollisionError: col [
 SymEulerConstraint >> fillPosICError: col [
 
 	super fillPosICError: col.
-	col at: iqE plusTransposeFullRow: pGpE asValue times: lam
+	col at: iqE plusTransposeFullRow: pGpE asNumber times: lam
 ]
 
 { #category : 'posIC' }
@@ -104,11 +104,11 @@ SymEulerConstraint >> fillPosICJacob: mat [
 
 	| pGpq |
 	pGpE ifNotNil: [
-		pGpq := pGpE asValue.
+		pGpq := pGpE asNumber.
 		mat at: iG and: iqE plusFullRow: pGpq.
 		mat at: iqE and: iG plusTransposeFullRow: pGpq ].
 
-	ppGpEpE ifNotNil: [ mat at: iqE and: iqE plusFullMatrix: (ppGpEpE asValue times: lam) ]
+	ppGpEpE ifNotNil: [ mat at: iqE and: iqE plusFullMatrix: (ppGpEpE asNumber times: lam) ]
 ]
 
 { #category : 'posIC' }
@@ -126,8 +126,8 @@ SymEulerConstraint >> fillVelICJacob: mat [
 	(sup isKindOf: SymPartFrameXEVOme)
 		ifTrue: [ "Euler parameter constraint gives null VelIC equation." ]
 		ifFalse: [
-			pGpq := pGpE asValue.
-			pqdotpv := sup pqdotpv asValue.
+			pGpq := pGpE asNumber.
+			pqdotpv := sup pqdotpv asNumber.
 			pGpqtimespqdotpv := pGpq timesFullMatrix: pqdotpv.
 			mat at: iG and: iqE plusFullRow: pGpqtimespqdotpv.
 			mat at: iqE and: iG plusTransposeFullRow: pGpqtimespqdotpv ]

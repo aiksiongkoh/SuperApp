@@ -160,10 +160,10 @@ SymConstraintIJ >> fillAccICIterError: col [
 SymConstraintIJ >> fillPosICError: col [
 
 	super fillPosICError: col.
-	iqXI ifNotNil: [ col at: iqXI plusTransposeFullRow: pGpXI asValue times: lam ].
-	iqEI ifNotNil: [ col at: iqEI plusTransposeFullRow: pGpEI asValue times: lam ].
-	iqXJ ifNotNil: [ col at: iqXJ plusTransposeFullRow: pGpXJ asValue times: lam ].
-	iqEJ ifNotNil: [ col at: iqEJ plusTransposeFullRow: pGpEJ asValue times: lam ]
+	iqXI ifNotNil: [ col at: iqXI plusTransposeFullRow: pGpXI asNumber times: lam ].
+	iqEI ifNotNil: [ col at: iqEI plusTransposeFullRow: pGpEI asNumber times: lam ].
+	iqXJ ifNotNil: [ col at: iqXJ plusTransposeFullRow: pGpXJ asNumber times: lam ].
+	iqEJ ifNotNil: [ col at: iqEJ plusTransposeFullRow: pGpEJ asNumber times: lam ]
 ]
 
 { #category : 'posIC' }
@@ -171,47 +171,47 @@ SymConstraintIJ >> fillPosICJacob: mat [
 
 	| pGpq |
 	pGpXI ifNotNil: [
-		pGpq := pGpXI asValue.
+		pGpq := pGpXI asNumber.
 		mat at: iG and: iqXI plusFullRow: pGpq.
 		mat at: iqXI and: iG plusTransposeFullRow: pGpq ].
 	pGpEI ifNotNil: [
-		pGpq := pGpEI asValue.
+		pGpq := pGpEI asNumber.
 		mat at: iG and: iqEI plusFullRow: pGpq.
 		mat at: iqEI and: iG plusTransposeFullRow: pGpq ].
 	pGpXJ ifNotNil: [
-		pGpq := pGpXJ asValue.
+		pGpq := pGpXJ asNumber.
 		mat at: iG and: iqXJ plusFullRow: pGpq.
 		mat at: iqXJ and: iG plusTransposeFullRow: pGpq ].
 	pGpEJ ifNotNil: [
-		pGpq := pGpEJ asValue.
+		pGpq := pGpEJ asNumber.
 		mat at: iG and: iqEJ plusFullRow: pGpq.
 		mat at: iqEJ and: iG plusTransposeFullRow: pGpq ].
 
-	ppGpXIpXI ifNotNil: [ mat at: iqXI and: iqXI plusFullMatrix: (ppGpXIpXI asValue times: lam) ].
-	ppGpXIpEI ifNotNil: [ mat at: iqXI and: iqEI plusFullMatrix: (ppGpXIpEI asValue times: lam) ].
-	ppGpXIpXJ ifNotNil: [ mat at: iqXI and: iqXJ plusFullMatrix: (ppGpXIpXJ asValue times: lam) ].
-	ppGpXIpEJ ifNotNil: [ mat at: iqXI and: iqEJ plusFullMatrix: (ppGpXIpEJ asValue times: lam) ].
+	ppGpXIpXI ifNotNil: [ mat at: iqXI and: iqXI plusFullMatrix: (ppGpXIpXI asNumber times: lam) ].
+	ppGpXIpEI ifNotNil: [ mat at: iqXI and: iqEI plusFullMatrix: (ppGpXIpEI asNumber times: lam) ].
+	ppGpXIpXJ ifNotNil: [ mat at: iqXI and: iqXJ plusFullMatrix: (ppGpXIpXJ asNumber times: lam) ].
+	ppGpXIpEJ ifNotNil: [ mat at: iqXI and: iqEJ plusFullMatrix: (ppGpXIpEJ asNumber times: lam) ].
 
-	ppGpEIpXI ifNotNil: [ mat at: iqEI and: iqXI plusFullMatrix: (ppGpEIpXI asValue times: lam) ].
-	ppGpEIpEI ifNotNil: [ mat at: iqEI and: iqEI plusFullMatrix: (ppGpEIpEI asValue times: lam) ].
-	ppGpEIpXJ ifNotNil: [ mat at: iqEI and: iqXJ plusFullMatrix: (ppGpEIpXJ asValue times: lam) ].
-	ppGpEIpEJ ifNotNil: [ mat at: iqEI and: iqEJ plusFullMatrix: (ppGpEIpEJ asValue times: lam) ].
+	ppGpEIpXI ifNotNil: [ mat at: iqEI and: iqXI plusFullMatrix: (ppGpEIpXI asNumber times: lam) ].
+	ppGpEIpEI ifNotNil: [ mat at: iqEI and: iqEI plusFullMatrix: (ppGpEIpEI asNumber times: lam) ].
+	ppGpEIpXJ ifNotNil: [ mat at: iqEI and: iqXJ plusFullMatrix: (ppGpEIpXJ asNumber times: lam) ].
+	ppGpEIpEJ ifNotNil: [ mat at: iqEI and: iqEJ plusFullMatrix: (ppGpEIpEJ asNumber times: lam) ].
 
-	ppGpXJpXI ifNotNil: [ mat at: iqXJ and: iqXI plusFullMatrix: (ppGpXJpXI asValue times: lam) ].
-	ppGpXJpEI ifNotNil: [ mat at: iqXJ and: iqEI plusFullMatrix: (ppGpXJpEI asValue times: lam) ].
-	ppGpXJpXJ ifNotNil: [ mat at: iqXJ and: iqXJ plusFullMatrix: (ppGpXJpXJ asValue times: lam) ].
-	ppGpXJpEJ ifNotNil: [ mat at: iqXJ and: iqEJ plusFullMatrix: (ppGpXJpEJ asValue times: lam) ].
+	ppGpXJpXI ifNotNil: [ mat at: iqXJ and: iqXI plusFullMatrix: (ppGpXJpXI asNumber times: lam) ].
+	ppGpXJpEI ifNotNil: [ mat at: iqXJ and: iqEI plusFullMatrix: (ppGpXJpEI asNumber times: lam) ].
+	ppGpXJpXJ ifNotNil: [ mat at: iqXJ and: iqXJ plusFullMatrix: (ppGpXJpXJ asNumber times: lam) ].
+	ppGpXJpEJ ifNotNil: [ mat at: iqXJ and: iqEJ plusFullMatrix: (ppGpXJpEJ asNumber times: lam) ].
 
-	ppGpEJpXI ifNotNil: [ mat at: iqEJ and: iqXI plusFullMatrix: (ppGpEJpXI asValue times: lam) ].
-	ppGpEJpEI ifNotNil: [ mat at: iqEJ and: iqEI plusFullMatrix: (ppGpEJpEI asValue times: lam) ].
-	ppGpEJpXJ ifNotNil: [ mat at: iqEJ and: iqXJ plusFullMatrix: (ppGpEJpXJ asValue times: lam) ].
-	ppGpEJpEJ ifNotNil: [ mat at: iqEJ and: iqEJ plusFullMatrix: (ppGpEJpEJ asValue times: lam) ]
+	ppGpEJpXI ifNotNil: [ mat at: iqEJ and: iqXI plusFullMatrix: (ppGpEJpXI asNumber times: lam) ].
+	ppGpEJpEI ifNotNil: [ mat at: iqEJ and: iqEI plusFullMatrix: (ppGpEJpEI asNumber times: lam) ].
+	ppGpEJpXJ ifNotNil: [ mat at: iqEJ and: iqXJ plusFullMatrix: (ppGpEJpXJ asNumber times: lam) ].
+	ppGpEJpEJ ifNotNil: [ mat at: iqEJ and: iqEJ plusFullMatrix: (ppGpEJpEJ asNumber times: lam) ]
 ]
 
 { #category : 'velIC' }
 SymConstraintIJ >> fillVelICError: col [
 
-	col at: iG minusNumber: pGpt asValue
+	col at: iG minusNumber: pGpt asNumber
 ]
 
 { #category : 'velIC' }
@@ -219,25 +219,25 @@ SymConstraintIJ >> fillVelICJacob: mat [
 
 	pGpXI ifNotNil: [
 		| pGpq |
-		pGpq := pGpXI asValue.
+		pGpq := pGpXI asNumber.
 		mat at: iG and: iqXI plusFullRow: pGpq.
 		mat at: iqXI and: iG plusTransposeFullRow: pGpq ].
 	pGpEI ifNotNil: [
 		| pGpq pqdotpv pGpqtimespqdotpv |
-		pGpq := pGpEI asValue.
-		pqdotpv := endFrmI pqdotpv asValue.
+		pGpq := pGpEI asNumber.
+		pqdotpv := endFrmI pqdotpv asNumber.
 		pGpqtimespqdotpv := pGpq timesFullMatrix: pqdotpv.
 		mat at: iG and: iqEI plusFullRow: pGpqtimespqdotpv.
 		mat at: iqEI and: iG plusFullColumn: pGpqtimespqdotpv ].
 	pGpXJ ifNotNil: [
 		| pGpq |
-		pGpq := pGpXJ asValue.
+		pGpq := pGpXJ asNumber.
 		mat at: iG and: iqXJ plusFullRow: pGpq.
 		mat at: iqXJ and: iG plusTransposeFullRow: pGpq ].
 	pGpEJ ifNotNil: [
 		| pGpq pqdotpv pGpqtimespqdotpv |
-		pGpq := pGpEJ asValue.
-		pqdotpv := endFrmJ pqdotpv asValue.
+		pGpq := pGpEJ asNumber.
+		pqdotpv := endFrmJ pqdotpv asNumber.
 		pGpqtimespqdotpv := pGpq timesFullMatrix: pqdotpv.
 		mat at: iG and: iqEJ plusFullRow: pGpqtimespqdotpv.
 		mat at: iqEJ and: iG plusFullColumn: pGpqtimespqdotpv ]

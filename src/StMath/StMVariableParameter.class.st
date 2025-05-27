@@ -23,6 +23,12 @@ StMVariableParameter class >> visualWorksMetadata [
 ]
 
 { #category : 'converting' }
+StMVariableParameter >> asNumber [
+
+	^ rhs ifNotNil: [ rhs asNumber ] ifNil: [ super asNumber ]
+]
+
+{ #category : 'converting' }
 StMVariableParameter >> asValue [
 
 	^ rhs ifNotNil: [ rhs asValue ] ifNil: [ super asValue ]

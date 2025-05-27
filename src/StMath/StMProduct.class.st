@@ -152,6 +152,16 @@ StMProduct >> addTerm: term [
 ]
 
 { #category : 'converting' }
+StMProduct >> asNumber [
+
+	| answer |
+	answer := coeff.
+	terms do: [ :term | answer := answer * term asNumber ].
+	inverseTerms do: [ :term | answer := answer / term asNumber ].
+	^ answer
+]
+
+{ #category : 'converting' }
 StMProduct >> asValue [
 
 	| answer |

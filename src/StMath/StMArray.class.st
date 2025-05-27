@@ -698,6 +698,12 @@ StMArray >> asFullRow [
 ]
 
 { #category : 'converting' }
+StMArray >> asNumber [
+
+	^ self collect: [ :e | e asNumber ]
+]
+
+{ #category : 'converting' }
 StMArray >> asSparseColumn [
 	self subclassResponsibility
 ]

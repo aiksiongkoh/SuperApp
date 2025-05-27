@@ -16,6 +16,12 @@ StMConstantParameter >> = anObject [
 	^ super = anObject and: [ name = anObject name ]
 ]
 
+{ #category : 'converting' }
+StMConstantParameter >> asNumber [
+
+	^ value asNumber
+]
+
 { #category : 'testing' }
 StMConstantParameter >> isConstant [
 

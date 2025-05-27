@@ -6,11 +6,20 @@ Class {
 		'vOmegadot',
 		'ivOmega',
 		'wvX',
-		'wvOmega'
+		'wvOmega',
+		'pTpE'
 	],
 	#category : 'StCAD-Basic',
 	#package : 'StCAD-Basic'
 }
+
+{ #category : 'as yet unclassified' }
+SymPartFrameXEVOme >> assignVdotICEqnNum: i [
+
+	ivX := i.
+	ivOmega := i + 3.
+	^ i + 6
+]
 
 { #category : 'ops' }
 SymPartFrameXEVOme >> assignVelICEqnNum: eqnNo [
@@ -20,11 +29,23 @@ SymPartFrameXEVOme >> assignVelICEqnNum: eqnNo [
 	^ eqnNo + 6
 ]
 
+{ #category : 'as yet unclassified' }
+SymPartFrameXEVOme >> fillAccICVdotIterError: col [
+
+	col at: iqX minusFullColumn: pXdot.
+	col at: iqE minusFullColumn: pEdot.
+	col at: iqE plusFullColumn: pTpE.
+
+	subs do: [ :mkr | mkr fillAccICVdotIterError: col ].
+	aGeu fillAccICVdotIterError: col.
+	aGabs do: [ :con | con fillAccICVdotIterError: col ]
+]
+
 { #category : 'velIC' }
 SymPartFrameXEVOme >> fillVelICError: col [
 
-	col at: ivX putFullColumn: (wvX timesFullColumn: vX asValue).
-	col at: ivOmega putFullColumn: (wvOmega timesFullColumn: vOmega asValue).
+	col at: ivX putFullColumn: (wvX timesFullColumn: vX asNumber).
+	col at: ivOmega putFullColumn: (wvOmega timesFullColumn: vOmega asNumber).
 	super fillVelICError: col
 ]
 
@@ -34,6 +55,16 @@ SymPartFrameXEVOme >> fillVelICJacob: mat [
 	mat at: ivX and: ivX plusDiagonalMatrix: wvX.
 	mat at: ivOmega and: ivOmega plusDiagonalMatrix: wvOmega.
 	super fillVelICJacob: mat
+]
+
+{ #category : 'as yet unclassified' }
+SymPartFrameXEVOme >> fillvdotsuddotlam: col [
+
+	col at: ivX putFullColumn: vXdot.
+	col at: ivOmega putFullColumn: vOmegadot.
+	subs do: [ :mkr | mkr fillvdotsuddotlam: col ].
+	aGeu fillvdotsuddotlam: col.
+	aGabs do: [ :con | con fillvdotsuddotlam: col ]
 ]
 
 { #category : 'accessing' }

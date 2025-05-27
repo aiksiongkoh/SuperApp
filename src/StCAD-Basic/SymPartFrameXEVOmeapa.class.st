@@ -24,7 +24,8 @@ SymPartFrameXEVOmeapa >> initialize [
 	vOmeapa2 := UnknownDependentVariable name: #vOmeapa2.
 	vOmeapa3 := UnknownDependentVariable name: #vOmeapa3.
 	vOmega := SymFullColumn with: vOmeapa1 with: vOmeapa2 with: vOmeapa3.
-	omeapa := vOmega
+	omeapa := vOmega.
+	vOmegadot := SymFullColumn with: 0.0 with: 0.0 with: 0.0
 ]
 
 { #category : 'accessing' }

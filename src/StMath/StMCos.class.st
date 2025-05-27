@@ -22,6 +22,12 @@ StMCos class >> visualWorksMetadata [
 ]
 
 { #category : 'converting' }
+StMCos >> asNumber [
+
+	^ x asNumber cos
+]
+
+{ #category : 'converting' }
 StMCos >> asValue [
 
 	^ x asValue cos

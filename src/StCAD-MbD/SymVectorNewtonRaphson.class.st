@@ -75,6 +75,24 @@ SymVectorNewtonRaphson >> matrixSolverClass [
 	^GEFullMatParPv
 ]
 
+{ #category : 'printing' }
+SymVectorNewtonRaphson >> printOn: aStream [
+	"Append to the argument, aStream, a sequence of characters that
+	identifies the receiver."
+
+	aStream
+		nextPut: $a;
+		nextPutAll: self class name;
+		nextPut: $(;
+		nextPutAll: 'n = ';
+		print: n;
+		nextPutAll: ', iterNo = ';
+		print: iterNo;
+		nextPutAll: ', dxNorm = ';
+		print: dxNorm;
+		nextPut: $)
+]
+
 { #category : 'accessing' }
 SymVectorNewtonRaphson >> pypx: mat [ 
 	pypx := mat

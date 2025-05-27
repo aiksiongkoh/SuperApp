@@ -22,6 +22,12 @@ StMSin class >> visualWorksMetadata [
 ]
 
 { #category : 'converting' }
+StMSin >> asNumber [
+
+	^ x asNumber sin
+]
+
+{ #category : 'converting' }
 StMSin >> asValue [
 
 	^ x asValue sin

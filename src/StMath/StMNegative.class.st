@@ -31,6 +31,12 @@ StMNegative class >> with: arg [
 ]
 
 { #category : 'converting' }
+StMNegative >> asNumber [
+
+	^ x asNumber negated
+]
+
+{ #category : 'converting' }
 StMNegative >> asValue [
 
 	^ x asValue negated

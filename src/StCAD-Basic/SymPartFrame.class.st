@@ -109,6 +109,11 @@ SymPartFrame >> asFixed [
 		aGabs add: con ]
 ]
 
+{ #category : 'as yet unclassified' }
+SymPartFrame >> calcAllKE [
+	self shouldBeImplemented.
+]
+
 { #category : 'calc' }
 SymPartFrame >> calcKine [
 
@@ -233,8 +238,8 @@ SymPartFrame >> fillVelICJacob: mat [
 { #category : 'accessing' }
 SymPartFrame >> fillqsu: col [
 
-	col at: iqX putFullColumn: qX asValue.
-	col at: iqE putFullColumn: qE asFullColumn asValue.
+	col at: iqX putFullColumn: qX asNumber.
+	col at: iqE putFullColumn: qE asFullColumn asNumber.
 	subs do: [ :mFrm | mFrm fillqsu: col ]
 ]
 
@@ -284,8 +289,8 @@ SymPartFrame >> fillqsuddotlam: col [
 { #category : 'accessing' }
 SymPartFrame >> fillqsudot: col [
 
-	col at: iqX putFullColumn: qXdot asValue.
-	col at: iqE putFullColumn: qEdot asFullColumn asValue.
+	col at: iqX putFullColumn: qXdot asNumber.
+	col at: iqE putFullColumn: qEdot asFullColumn asNumber.
 	subs do: [ :mkr | mkr fillqsudot: col ]
 ]
 
@@ -322,8 +327,8 @@ SymPartFrame >> fillqsudotWeights: col [
 SymPartFrame >> fillqsulam: col [
 	"Fill q, s and lam into col."
 
-	col at: iqX putFullColumn: qX asValue.
-	col at: iqE putFullColumn: qE asFullColumn asValue.
+	col at: iqX putFullColumn: qX asNumber.
+	col at: iqE putFullColumn: qE asFullColumn asNumber.
 	subs do: [ :mkr | mkr fillqsulam: col ].
 	aGeu fillqsulam: col.
 	aGabs do: [ :con | con fillqsulam: col ]

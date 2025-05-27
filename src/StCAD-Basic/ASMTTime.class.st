@@ -6,6 +6,12 @@ Class {
 }
 
 { #category : 'converting' }
+ASMTTime >> asNumber [
+
+	^ expression asNumber
+]
+
+{ #category : 'converting' }
 ASMTTime >> asValue [
 
 	^ expression asValue

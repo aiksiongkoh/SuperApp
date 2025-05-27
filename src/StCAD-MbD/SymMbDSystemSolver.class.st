@@ -478,7 +478,7 @@ SymMbDSystemSolver >> rotationLimit: double [
 { #category : 'run' }
 SymMbDSystemSolver >> runAccIC [
 
-	icTypeSolver := SymMbDAccICNewtonRaphson new.
+	icTypeSolver := SymMbDAccICVdotNewtonRaphson new.
 	icTypeSolver system: self.
 	icTypeSolver run
 ]

@@ -98,6 +98,12 @@ SymMarkerFrame >> assignVelICEqnNum: i [
 	^ eqnNo
 ]
 
+{ #category : 'as yet unclassified' }
+SymMarkerFrame >> calcAllKE [
+	"Do nothing."
+
+]
+
 { #category : 'accessing' }
 SymMarkerFrame >> calcKine [
 
@@ -111,6 +117,13 @@ SymMarkerFrame >> calcKine [
 SymMarkerFrame >> endFrms [
 
 	^ subs
+]
+
+{ #category : 'as yet unclassified' }
+SymMarkerFrame >> fillAccICVdotIterError: col [
+	"Do nothing."
+
+	
 ]
 
 { #category : 'accessing' }

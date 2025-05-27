@@ -23,6 +23,12 @@ StMPower class >> with: base raisedTo: exponent [
 ]
 
 { #category : 'converting' }
+StMPower >> asNumber [
+
+	^ x asNumber raisedTo: y asNumber
+]
+
+{ #category : 'converting' }
 StMPower >> asValue [
 
 	^ x asValue raisedTo: y asValue
