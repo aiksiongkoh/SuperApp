@@ -5,34 +5,29 @@ SymPartFrame is at center of mass and oriented in principal directions.
 
 qE:			<EulerParameters>	State variable. EulerParameters from a to p
 qX:			<FullColumn>			State variable. Displacements rapa(t)
-vOmega:	<FullColumn>			State variable. Angular velocities ome_apa(t)
+vOmega:	<FullColumn>			State variable. Angular velocities omeapa(t) or omeapp(t)
 vX:			<FullColumn>			State variable. Velocities vapa(t)
+
+Kinetic Energy
+KE = (1/2)\*mass\*vOpOT\*vOpO + (1/2)\*omegaOppT\*aJpp\*omegaOpp
+General Momenta
+pX = pTpqXdot = pvapapqXdot\*pvOpOpvapa\*pTpvOpO = mass\*aAOa\*vOpO
+pE = pTpqEdot = pOmegaOpp_pqEdot\*pTpomegaOpp = 2\*aCapT \* aJpp\*omegaOpp
 
 "
 Class {
 	#name : 'SymPartFrame',
-	#superclass : 'SymCartesianFrame',
+	#superclass : 'SymDependentFrame',
 	#instVars : [
 		'iqX',
 		'iqE',
 		'qX',
 		'qE',
-		'qXdot',
-		'qEdot',
-		'qXddot',
-		'qEddot',
 		'aGeu',
 		'aGabs',
 		'mass',
 		'aJpp',
 		'density',
-		'rOpO',
-		'aAOp',
-		'vOpO',
-		'omeOpO',
-		'rapa',
-		'aAap',
-		'vapa',
 		'kineticEnergyT',
 		'omeOpp',
 		'pTpOmeOpp',
@@ -41,7 +36,9 @@ Class {
 		'pXdot',
 		'pE',
 		'pEdot',
-		'ppTpEpEdot'
+		'ppTpEpEdot',
+		'pTpE',
+		'vOpO'
 	],
 	#category : 'StCAD-Basic',
 	#package : 'StCAD-Basic'
@@ -56,14 +53,25 @@ SymPartFrame >> aAOp [
 { #category : 'accessing' }
 SymPartFrame >> aAap [
 
-	^aAap
-	
+	^ aAFf
 ]
 
 { #category : 'accessing' }
 SymPartFrame >> aB [
 
 	^ qE aB
+]
+
+{ #category : 'accessing' }
+SymPartFrame >> aC [
+
+	^ qE aC
+]
+
+{ #category : 'accessing' }
+SymPartFrame >> aCap [
+
+	^ qE aC
 ]
 
 { #category : 'accessing' }
@@ -84,6 +92,22 @@ SymPartFrame >> aJpp: anObject [
 	aJpp := anObject
 ]
 
+{ #category : 'as yet unclassified' }
+SymPartFrame >> aVpos [
+	"qposdot := aVpos * vpos"
+
+	"aVpos is identity matrix 3x3."
+
+	^ self shouldNotImplement
+]
+
+{ #category : 'as yet unclassified' }
+SymPartFrame >> aVrot [
+	"qrotdot := aVrot * vrot"
+
+	^ self subclassResponsibility
+]
+
 { #category : 'adding' }
 SymPartFrame >> addMarkerF: aStMarkerFrame [
 
@@ -98,29 +122,35 @@ SymPartFrame >> addMarkerFrm: markerFrm [
 	markerFrm sup: self
 ]
 
-{ #category : 'converting' }
-SymPartFrame >> asFixed [
+{ #category : 'calc' }
+SymPartFrame >> calcAll [
 
-	| con |
-	1 to: 6 do: [ :i |
-		con := SymAbsConstraint new
-			       axis: i;
-			       sup: self.
-		aGabs add: con ]
-]
-
-{ #category : 'as yet unclassified' }
-SymPartFrame >> calcAllKE [
-	self shouldBeImplemented.
+	self calcAllrOfO.
+	self calcAllaAOf.
+	self calcAllKE
 ]
 
 { #category : 'calc' }
-SymPartFrame >> calcKine [
+SymPartFrame >> calcAllKE [
 
-	rOpO := (self rOaO + (self aAOa timesFullColumn: rapa)) simplified.
-	aAOp := (self aAOa timesFullMatrix: aAap) simplified.
-	rOfO := rOpO.
-	aAOf := aAOp
+	self calcvOpO.
+	self calcomeOpp.
+	self calcKE.
+	self calcMomenta.
+	self calcpTpE
+]
+
+{ #category : 'as yet unclassified' }
+SymPartFrame >> calcKE [
+
+	kineticEnergyT := 0.5 * (mass * vOpO sumOfSquares
+	                   + (omeOpp dot: (aJpp timesFullColumn: omeOpp)))
+]
+
+{ #category : 'calc' }
+SymPartFrame >> calcMomenta [
+
+	self subclassResponsibility
 ]
 
 { #category : 'calc' }
@@ -129,9 +159,28 @@ SymPartFrame >> calcPostDynCorrectorIteration [
 
 ]
 
+{ #category : 'as yet unclassified' }
+SymPartFrame >> calcomeOpp [
+
+	self subclassResponsibility
+]
+
 { #category : 'calc' }
 SymPartFrame >> calcpApE [
 	self shouldBeImplemented.
+]
+
+{ #category : 'calc' }
+SymPartFrame >> calcpTpE [
+
+	pTpE := kineticEnergyT differentiateWRT: qE asFullColumn
+]
+
+{ #category : 'as yet unclassified' }
+SymPartFrame >> calcvOpO [
+
+	vOpO := self vOaO + (self aAdotOa timesFullColumn: self rapa)
+	        + (self aAOa timesFullColumn: self vapa)
 ]
 
 { #category : 'accessing' }
@@ -168,6 +217,16 @@ SymPartFrame >> fillAccICIterJacob: mat [
 	subs do: [ :mkr | mkr fillAccICIterJacob: mat ].
 	aGeu fillAccICIterJacob: mat.
 	aGabs do: [ :con | con fillAccICIterJacob: mat ]
+]
+
+{ #category : 'as yet unclassified' }
+SymPartFrame >> fillAccICVdotIterJacob: mat [
+
+	| mX mE |
+	mat at: iqX and: iqX minusDiagonalMatrix: mX.
+	mat at: iqE and: iqE minusFullMatrix: mE.
+	subs do: [ :mkr | mkr fillAccICVdotIterJacob: mat ].
+	aGeu fillAccICVdotIterJacob: mat
 ]
 
 { #category : 'accessing' }
@@ -277,24 +336,6 @@ SymPartFrame >> fillqsuWeights: col [
 ]
 
 { #category : 'accessing' }
-SymPartFrame >> fillqsuddotlam: col [
-
-	col at: iqX putFullColumn: qXddot.
-	col at: iqE putFullColumn: qEddot.
-	subs do: [ :mkr | mkr fillqsuddotlam: col ].
-	aGeu fillqsuddotlam: col.
-	aGabs do: [ :con | con fillqsuddotlam: col ]
-]
-
-{ #category : 'accessing' }
-SymPartFrame >> fillqsudot: col [
-
-	col at: iqX putFullColumn: qXdot asNumber.
-	col at: iqE putFullColumn: qEdot asFullColumn asNumber.
-	subs do: [ :mkr | mkr fillqsudot: col ]
-]
-
-{ #category : 'accessing' }
 SymPartFrame >> fillqsudotWeights: col [
 	"wqXdot and wqEdot are set to their respective inertias."
 
@@ -337,7 +378,7 @@ SymPartFrame >> fillqsulam: col [
 { #category : 'calc' }
 SymPartFrame >> initialize [
 
-	| qX1 qX2 qX3 rapa1 rapa2 rapa3 qE1 qE2 qE3 qE4 |
+	| qX1 qX2 qX3 rapa1 rapa2 rapa3 rapa qE1 qE2 qE3 qE4 aAap |
 	super initialize.
 	qX1 := UnknownDependentVariable name: #qX1.
 	qX2 := UnknownDependentVariable name: #qX2.
@@ -362,6 +403,12 @@ SymPartFrame >> initialize [
 	aGeu := SymEulerConstraint new.
 	aGeu sup: self.
 	aGabs := OrderedCollection new
+]
+
+{ #category : 'initialization' }
+SymPartFrame >> initializeGlobally [
+
+	subs do: [ :mkr | mkr initializeGlobally ]
 ]
 
 { #category : 'initialization' }
@@ -437,7 +484,7 @@ SymPartFrame >> mass: anObject [
 { #category : 'accessing' }
 SymPartFrame >> omeOpO [
 
-	^ omeOfO
+	^ self omeOfO
 ]
 
 { #category : 'accessing' }
@@ -457,6 +504,20 @@ SymPartFrame >> pAOppt [
 	| time |
 	time := self time.
 	^ aAOf collect: [ :row | row collect: [ :aij | (aij differentiateWRT: time) simplified ] ]
+]
+
+{ #category : 'accessing' }
+SymPartFrame >> part [
+
+	^ self
+]
+
+{ #category : 'input-output' }
+SymPartFrame >> postInput [
+
+	super postInput.
+	subs do: [ :mkrFrm | mkrFrm postInput ].
+	aGeu postInput
 ]
 
 { #category : 'as yet unclassified' }
@@ -510,6 +571,16 @@ SymPartFrame >> prOpOpX [
 	^ sup aAOa
 ]
 
+{ #category : 'posIC' }
+SymPartFrame >> prePosIC [
+
+	iqX := nil.
+	iqE := nil.
+	super prePosIC.
+	subs do: [ :mkr | mkr prePosIC ].
+	aGeu prePosIC
+]
+
 { #category : 'accessing' }
 SymPartFrame >> qE [
 
@@ -523,30 +594,6 @@ SymPartFrame >> qE: eulerPara [
 ]
 
 { #category : 'accessing' }
-SymPartFrame >> qEddot [
-
-	^ qEddot
-]
-
-{ #category : 'accessing' }
-SymPartFrame >> qEddot: anObject [
-
-	qEddot := anObject
-]
-
-{ #category : 'accessing' }
-SymPartFrame >> qEdot [
-
-	^ qEdot
-]
-
-{ #category : 'accessing' }
-SymPartFrame >> qEdot: col [
-
-	qEdot := col asSymbolic
-]
-
-{ #category : 'accessing' }
 SymPartFrame >> qX [
 
 	^ qX
@@ -555,44 +602,34 @@ SymPartFrame >> qX [
 { #category : 'accessing' }
 SymPartFrame >> qX: col [
 
-	1 to: 3 do: [ :i | (qX at: i) value: (col at: i) ]
+	1 to: 3 do: [ :i | (qX at: i) rhs: (col at: i) ]
 ]
 
-{ #category : 'accessing' }
-SymPartFrame >> qXddot [
+{ #category : 'as yet unclassified' }
+SymPartFrame >> qpos [
+	"Generalized coordinates for position."
 
-	^ qXddot
+	^ qX
 ]
 
-{ #category : 'accessing' }
-SymPartFrame >> qXddot: anObject [
+{ #category : 'as yet unclassified' }
+SymPartFrame >> qrot [
+	"Generalized coordinates for rotation."
 
-	qXddot := anObject
-]
-
-{ #category : 'accessing' }
-SymPartFrame >> qXdot [
-
-	^ qXdot
-]
-
-{ #category : 'accessing' }
-SymPartFrame >> qXdot: col [
-
-	qXdot := col asSymbolic
+	^ qE
 ]
 
 { #category : 'accessing' }
 SymPartFrame >> rOpO [
 	"sup rOaO + (sup aAOa timesFullColumn: self rapa)"
 
-	^ rOpO
+	^ rOfO
 ]
 
 { #category : 'accessing' }
 SymPartFrame >> rapa [
 
-	^ rapa
+	^ rFfF
 ]
 
 { #category : 'removing' }
@@ -609,16 +646,6 @@ SymPartFrame >> setqsu: col [
 	qX equalFullColumn: col at: iqX.
 	qE equalFullColumn: col at: iqE.
 	subs do: [ :mkr | mkr setqsu: col ]
-]
-
-{ #category : 'accessing' }
-SymPartFrame >> setqsudotlam: col [
-
-	qXdot equalFullColumn: col at: iqX.
-	qEdot equalFullColumn: col at: iqE.
-	subs do: [ :mkr | mkr setqsudotlam: col ].
-	aGeu setqsudotlam: col.
-	aGabs do: [ :con | con setqsudotlam: col ]
 ]
 
 { #category : 'accessing' }
@@ -648,43 +675,33 @@ SymPartFrame >> useVelICEqnNo [
 ]
 
 { #category : 'accessing' }
-SymPartFrame >> vOmega [
-
-	^ vOmega
-]
-
-{ #category : 'accessing' }
-SymPartFrame >> vOmega: col [
-
-	1 to: 3 do: [ :i | (vOmega at: i) value: (col at: i) ]
-]
-
-{ #category : 'accessing' }
-SymPartFrame >> vOmegadot [
-
-	^ vOmegadot
-]
-
-{ #category : 'accessing' }
 SymPartFrame >> vOpO [
 
-	^ vOfO
+	^ prOfOpt
 ]
 
-{ #category : 'accessing' }
-SymPartFrame >> vX [
+{ #category : 'as yet unclassified' }
+SymPartFrame >> vpos [
+	"Generalized velocities for position."
 
-	^ vX
+	^ self subclassResponsibility
 ]
 
-{ #category : 'accessing' }
-SymPartFrame >> vX: col [
+{ #category : 'as yet unclassified' }
+SymPartFrame >> vposdot [
 
-	1 to: 3 do: [ :i | (vX at: i) value: (col at: i) ]
+	^ self subclassResponsibility
 ]
 
-{ #category : 'accessing' }
-SymPartFrame >> vXdot [
+{ #category : 'as yet unclassified' }
+SymPartFrame >> vrot [
+	"Generalized velocities for rotation."
 
-	^ vXdot
+	^ self subclassResponsibility
+]
+
+{ #category : 'as yet unclassified' }
+SymPartFrame >> vrotdot [
+
+	^ self subclassResponsibility
 ]

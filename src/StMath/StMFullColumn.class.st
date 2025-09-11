@@ -39,16 +39,6 @@ StMFullColumn >> asFullColumn [
 ]
 
 { #category : 'converting' }
-StMFullColumn >> asFullMatrix [
-	| nrow answer |
-	nrow := self nrow.
-	answer := StMFullMatrix new: nrow by: 1.
-	1 to: nrow do: [:i | (answer at: i)
-			at: 1 put: (self at: i)].
-	^answer
-]
-
-{ #category : 'converting' }
 StMFullColumn >> asFullRow [
 	^self shallowCopy changeClassToThatOf: (StMFullRow new: 0)
 ]
@@ -434,8 +424,22 @@ StMFullColumn >> transposeTimesFullColumn: aFullColumn [
 ]
 
 { #category : 'basic ops' }
-StMFullColumn >> transposeTimesFullMatrix: aFullMatrix [ 
-	^self transpose timesFullMatrix: aFullMatrix
+StMFullColumn >> transposeTimesFullMatrix: aFullMatrix [
+	"a_i(col) * b_ij(mat) := c_j(row)"
+
+	"self transpose timesFullMatrix: aFullMatrix"
+
+	| a b c |
+	a := self.
+	b := aFullMatrix.
+	c := StMFullRow new: b ncol.
+	1 to: c ncol do: [ :j |
+			| sum |
+			sum := 0.0.
+			1 to: a nrow do: [ :i |
+			sum := sum + ((a at: i) * (b at: i and: j)) ].
+			c at: j put: sum ].
+	^ c
 ]
 
 { #category : 'basic ops' }

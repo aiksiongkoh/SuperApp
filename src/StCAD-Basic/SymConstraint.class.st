@@ -130,6 +130,22 @@ SymConstraint >> isRedundant [
 	^ false
 ]
 
+{ #category : 'input-output' }
+SymConstraint >> postInput [
+
+	lam := 0.0.
+	iG := nil.
+	super postInput
+]
+
+{ #category : 'posIC' }
+SymConstraint >> prePosIC [
+
+	lam := 0.0.
+	iG := nil.
+	super prePosIC
+]
+
 { #category : 'removing' }
 SymConstraint >> removeRedundantConstraints: redundantEqns [
 
@@ -152,13 +168,6 @@ SymConstraint >> setqsudotlam: col [
 SymConstraint >> setqsulam: col [
 
 	lam := col at: iG
-]
-
-{ #category : 'accessing' }
-SymConstraint >> sup: supFrm [
-
-	super sup: supFrm.
-	self calcAll
 ]
 
 { #category : 'accessing' }

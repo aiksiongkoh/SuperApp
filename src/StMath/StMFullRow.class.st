@@ -233,6 +233,16 @@ StMFullRow >> timesFullColumn: aFullColumn [
 ]
 
 { #category : 'basic ops' }
+StMFullRow >> timesFullColumn: aFullColumn times: num [
+
+	| answer |
+	answer := (self at: 1) * (aFullColumn at: 1).
+	2 to: self ncol do: [ :j |
+	answer := answer + ((self at: j) * (aFullColumn at: j) * num) ].
+	^ answer
+]
+
+{ #category : 'basic ops' }
 StMFullRow >> timesFullMatrix: aFullMatrix [ 
 	"Similar to inner dot product."
 

@@ -79,8 +79,11 @@ StMLeastSquaresFitPolynomial >> derivative: n at: xx [
 ]
 
 { #category : 'evaluating' }
-StMLeastSquaresFitPolynomial >> differentiateWRT: variable [ 
-	^polynomial differentiateWRT: variable
+StMLeastSquaresFitPolynomial >> differentiateWRT: var [
+
+	^ var isSequenceable
+		  ifTrue: [ var collect: [ :vari | self differentiateWRT: vari ] ]
+		  ifFalse: [ polynomial differentiateWRT: var ]
 ]
 
 { #category : 'evaluating' }

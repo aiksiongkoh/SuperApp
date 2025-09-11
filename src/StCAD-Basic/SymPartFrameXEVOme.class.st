@@ -1,3 +1,10 @@
+"
+The states are generalized coordinates and generalized velocities
+qX = rapa
+qE = Euler Parameters ap
+vX = vapa = qXdot
+vOmega = omeapa(t) or omeapp(t)
+"
 Class {
 	#name : 'SymPartFrameXEVOme',
 	#superclass : 'SymPartFrameXEV',
@@ -5,9 +12,10 @@ Class {
 		'vOmega',
 		'vOmegadot',
 		'ivOmega',
-		'wvX',
 		'wvOmega',
-		'pTpE'
+		'pEdot123',
+		'pTpE123',
+		'ppE123pvOmega'
 	],
 	#category : 'StCAD-Basic',
 	#package : 'StCAD-Basic'
@@ -29,12 +37,19 @@ SymPartFrameXEVOme >> assignVelICEqnNum: eqnNo [
 	^ eqnNo + 6
 ]
 
+{ #category : 'calc' }
+SymPartFrameXEVOme >> calcpTpE [
+
+	super calcpTpE.
+	pTpE123 := pTpE copyFrom: 1 to: 3
+]
+
 { #category : 'as yet unclassified' }
 SymPartFrameXEVOme >> fillAccICVdotIterError: col [
 
-	col at: iqX minusFullColumn: pXdot.
-	col at: iqE minusFullColumn: pEdot.
-	col at: iqE plusFullColumn: pTpE.
+	col at: ivX minusFullColumn: pXdot asNumber.
+	col at: ivOmega minusFullColumn: pEdot123 asNumber.
+	col at: ivOmega plusFullColumn: pTpE123 asNumber.
 
 	subs do: [ :mkr | mkr fillAccICVdotIterError: col ].
 	aGeu fillAccICVdotIterError: col.
@@ -78,13 +93,13 @@ SymPartFrameXEVOme >> initVariables [
 	vOmega do: [ :vi | vi x: t ].
 	selffullName := self fullName.
 	block := [ :var |
-	         | fullName |
-	         fullName := String new writeStream
-		                     nextPutAll: selffullName;
-		                     nextPut: $/;
-		                     nextPutAll: var name;
-		                     contents.
-	         var name: fullName asSymbol ].
+		         | fullName |
+		         fullName := String new writeStream
+			                     nextPutAll: selffullName;
+			                     nextPut: $/;
+			                     nextPutAll: var name;
+			                     contents.
+		         var name: fullName asSymbol ].
 	qX do: block.
 	qE do: block.
 	vX do: block.
@@ -107,12 +122,6 @@ SymPartFrameXEVOme >> ivOmega [
 SymPartFrameXEVOme >> ivOmega: eqnNo [
 
 	ivOmega := eqnNo
-]
-
-{ #category : 'accessing' }
-SymPartFrameXEVOme >> omeapa [
-
-	^ vOmega
 ]
 
 { #category : 'velIC' }
@@ -156,7 +165,7 @@ SymPartFrameXEVOme >> vOmega [
 { #category : 'accessing' }
 SymPartFrameXEVOme >> vOmega: col [
 
-	1 to: 3 do: [ :i | (vOmega at: i) value: (col at: i) ]
+	1 to: 3 do: [ :i | (vOmega at: i) rhs: (col at: i) ]
 ]
 
 { #category : 'accessing' }
@@ -169,4 +178,22 @@ SymPartFrameXEVOme >> vOmegadot [
 SymPartFrameXEVOme >> vOmegadot: col [
 
 	vOmegadot := col asSymbolic
+]
+
+{ #category : 'as yet unclassified' }
+SymPartFrameXEVOme >> vposdot [
+
+	^ vXdot
+]
+
+{ #category : 'as yet unclassified' }
+SymPartFrameXEVOme >> vrot [
+
+	^ vOmega
+]
+
+{ #category : 'as yet unclassified' }
+SymPartFrameXEVOme >> vrotdot [
+
+	^ vOmegadot
 ]

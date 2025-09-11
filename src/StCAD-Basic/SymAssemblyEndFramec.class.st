@@ -1,18 +1,12 @@
 Class {
-	#name : 'SymEndFramec',
-	#superclass : 'SymEndFrame',
+	#name : 'SymAssemblyEndFramec',
+	#superclass : 'SymAssemblyEndFrame',
 	#category : 'StCAD-Basic',
 	#package : 'StCAD-Basic'
 }
 
-{ #category : 'calc' }
-SymEndFramec >> calcPostDynCorrectorIteration [
-
-	
-]
-
 { #category : 'initialization' }
-SymEndFramec >> initialize [
+SymAssemblyEndFramec >> initialize [
 
 	| rmemc1 rmemc2 rmemc3 rmem themec1x themec2y themec3z theme aAme |
 	super initialize.
@@ -27,34 +21,27 @@ SymEndFramec >> initialize [
 	theme := SymEulerAngles with: themec1x with: themec2y with: themec3z.
 	theFf := theme.
 	aAme := theme aA.
-	aAFf := aAme
-]
-
-{ #category : 'initialization' }
-SymEndFramec >> initializeGlobally [
-	"Do nothing."
-
-	
+	aAFf := theme aA
 ]
 
 { #category : 'instance creation' }
-SymEndFramec >> newEndFramet [
+SymAssemblyEndFramec >> newEndFramet [
 
 	| endFrmt |
-	endFrmt := SymEndFramet new.
+	endFrmt := SymAssemblyEndFramet new.
 	endFrmt name: name , 't'.
 	endFrmt sup: sup.
 	^ endFrmt
 ]
 
 { #category : 'accessing' }
-SymEndFramec >> omemem [
+SymAssemblyEndFramec >> rOeO [
 
-	^ SymFullColumn zero: 3
+	^ rOfO
 ]
 
-{ #category : 'as yet unclassified' }
-SymEndFramec >> rpep: col [
+{ #category : 'accessing' }
+SymAssemblyEndFramec >> rmem: col [
 
 	self rFfF: col
 ]

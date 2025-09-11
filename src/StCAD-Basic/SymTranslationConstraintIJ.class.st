@@ -18,7 +18,6 @@ SymTranslationConstraintIJ class >> withFrmI: eFrmI frmJ: eFrmJ axis: axis [
 { #category : 'calc' }
 SymTranslationConstraintIJ >> calcG [
 
-	riIeJeIe calcAll.
 	aG := riIeJeIe value - aConstant
 ]
 
@@ -28,6 +27,20 @@ SymTranslationConstraintIJ >> initialize [
 	super initialize.
 	riIeJeIe := SymDispCompIJI new.
 	riIeJeIe sup: self
+]
+
+{ #category : 'posIC' }
+SymTranslationConstraintIJ >> postInput [
+
+	riIeJeIe postInput.
+	super postInput
+]
+
+{ #category : 'posIC' }
+SymTranslationConstraintIJ >> prePosIC [
+
+	riIeJeIe prePosIC.
+	super prePosIC
 ]
 
 { #category : 'accessing' }

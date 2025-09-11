@@ -28,7 +28,6 @@ SymAtPointConstraintIJ class >> withFrmI: eFrmI frmJ: eFrmJ frmK: eFrmK axis: ax
 { #category : 'calc' }
 SymAtPointConstraintIJ >> calcG [
 
-	riIeJeO calcAll.
 	aG := riIeJeO value - aConstant
 ]
 
@@ -38,6 +37,26 @@ SymAtPointConstraintIJ >> initialize [
 	super initialize.
 	riIeJeO := SymDispCompIJO new.
 	riIeJeO sup: self
+]
+
+{ #category : 'initialization' }
+SymAtPointConstraintIJ >> initializeGlobally [
+
+	riIeJeO initializeGlobally
+]
+
+{ #category : 'posIC' }
+SymAtPointConstraintIJ >> postInput [
+
+	riIeJeO postInput.
+	super postInput
+]
+
+{ #category : 'posIC' }
+SymAtPointConstraintIJ >> prePosIC [
+
+	riIeJeO prePosIC.
+	super prePosIC
 ]
 
 { #category : 'accessing' }

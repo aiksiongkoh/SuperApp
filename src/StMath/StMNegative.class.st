@@ -107,7 +107,7 @@ StMNegative >> simplifyNegative [
 		  ifTrue: [ StMConstant with: answer value ]
 		  ifFalse: [
 			  newx isNegative
-				  ifTrue: [ newx x ]
+				  ifTrue: [ newx negated ]
 				  ifFalse: [ answer ] ]
 ]
 

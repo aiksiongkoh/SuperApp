@@ -45,7 +45,9 @@ SymEulerAngles class >> with: firstObject with: secondObject with: thirdObject [
 
 { #category : 'accessing' }
 SymEulerAngles >> aA [
-	^aA
+	"Rotation matrix aAFf"
+
+	^ aA
 ]
 
 { #category : 'accessing' }
@@ -125,14 +127,17 @@ SymEulerAngles >> collect: aBlock [
 { #category : 'calc' }
 SymEulerAngles >> differentiateWRT: var [
 
-	| answer |
-	answer := SymEulerAnglesDot with: self.
-	1 to: 3 do: [ :i |
-		| angle angleVel |
-		angle := self at: i.
-		angleVel := angle differentiateWRT: var.
-		answer at: i put: angleVel ].
-	^ answer calcSymbolic
+	^ var isSequenceable
+		  ifTrue: [ self halt ]
+		  ifFalse: [
+				  | answer |
+				  answer := SymEulerAnglesDot with: self.
+				  1 to: 3 do: [ :i |
+						  | angle angleVel |
+						  angle := self at: i.
+						  angleVel := angle differentiateWRT: var.
+						  answer at: i put: angleVel ].
+				  answer calcSymbolic ]
 ]
 
 { #category : 'initialize-release' }

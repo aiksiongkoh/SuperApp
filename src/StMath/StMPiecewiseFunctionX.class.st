@@ -64,13 +64,18 @@ StMPiecewiseFunctionX >> argsPerform: selector withArguments: anArray [
 ]
 
 { #category : 'evaluating' }
-StMPiecewiseFunctionX >> differentiateWRT: variable [ 
-	| derivs |
-	derivs := functions collect: [:function | function differentiateWRT: variable].
-	^StMPiecewiseFunctionX
-		with: x copy
-		functions: derivs
-		transitions: transitions
+StMPiecewiseFunctionX >> differentiateWRT: var [
+
+	^ var isSequenceable
+		  ifTrue: [ var collect: [ :vari | self differentiateWRT: vari ] ]
+		  ifFalse: [
+				  | derivs |
+				  derivs := functions collect: [ :function |
+					            function differentiateWRT: var ].
+				  StMPiecewiseFunctionX
+					  with: x copy
+					  functions: derivs
+					  transitions: transitions ]
 ]
 
 { #category : 'evaluating' }

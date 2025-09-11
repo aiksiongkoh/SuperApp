@@ -39,8 +39,11 @@ StMExpressionXY >> argsPerform: selector withArguments: anArray [
 ]
 
 { #category : 'evaluating' }
-StMExpressionXY >> differentiateWRT: variable [ 
-	^expression differentiateWRT: variable
+StMExpressionXY >> differentiateWRT: var [
+
+	^ var isSequenceable
+		  ifTrue: [ var collect: [ :vari | self differentiateWRT: vari ] ]
+		  ifFalse: [ expression differentiateWRT: var ]
 ]
 
 { #category : 'evaluating' }

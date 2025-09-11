@@ -23,7 +23,6 @@ SymDirectionCosineConstraintIJ class >> withFrmI: eFrmI frmJ: eFrmJ axisI: axisI
 { #category : 'calc' }
 SymDirectionCosineConstraintIJ >> calcG [
 
-	aAijIeJe calcAll.
 	aG := aAijIeJe value - aConstant
 ]
 
@@ -40,6 +39,26 @@ SymDirectionCosineConstraintIJ >> initialize [
 	super initialize.
 	aAijIeJe := SymDirectionCosineIJ new.
 	aAijIeJe sup: self
+]
+
+{ #category : 'initialization' }
+SymDirectionCosineConstraintIJ >> initializeGlobally [
+
+	aAijIeJe initializeGlobally
+]
+
+{ #category : 'posIC' }
+SymDirectionCosineConstraintIJ >> postInput [
+
+	aAijIeJe postInput.
+	super postInput
+]
+
+{ #category : 'posIC' }
+SymDirectionCosineConstraintIJ >> prePosIC [
+
+	aAijIeJe prePosIC.
+	super prePosIC
 ]
 
 { #category : 'accessing' }

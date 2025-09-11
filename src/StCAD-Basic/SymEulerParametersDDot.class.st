@@ -86,15 +86,23 @@ SymEulerParametersDDot >> aCdot [
 ]
 
 { #category : 'accessing' }
-SymEulerParametersDDot >> alpF [
-	^(self aBdot timesFullColumn: qEdot) + (self aB timesFullColumn: self) 
-		times: 2.0
+SymEulerParametersDDot >> alpFfF [
+
+	^ (self aBdot timesFullColumn: qEdot)
+	  + (self aB timesFullColumn: self) times: 2.0
+]
+
+{ #category : 'accessing' }
+SymEulerParametersDDot >> alpFff [
+
+	^ (self aCdot timesFullColumn: qEdot)
+	  + (self aC timesFullColumn: self) times: 2.0
 ]
 
 { #category : 'accessing' }
 SymEulerParametersDDot >> alpOpO [
-	^(self aBdot timesFullColumn: qEdot) + (self aB timesFullColumn: self) 
-		times: 2.0
+
+	^ self alpFfF
 ]
 
 { #category : 'calc' }

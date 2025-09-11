@@ -22,14 +22,17 @@ StMArcTan2 class >> visualWorksMetadata [
 ]
 
 { #category : 'evaluating' }
-StMArcTan2 >> differentiateWRT: variable [ 
-	| arg dargdvar dfuncdarg |
-	self == variable ifTrue: [^StMConstant with: 1].
-	arg := y copy times: x copy reciprocal.
-	dargdvar := arg differentiateWRT: variable.
-	dfuncdarg := ((arg raisedTo: 2)
-				plus: 1) reciprocal.
-	^dfuncdarg times: dargdvar
+StMArcTan2 >> differentiateWRT: var [
+
+	^ var isSequenceable
+		  ifTrue: [ var collect: [ :vari | self differentiateWRT: vari ] ]
+		  ifFalse: [
+				  | arg dargdvar dfuncdarg |
+				  self == var ifTrue: [ ^ StMConstant with: 1 ].
+				  arg := y copy times: x copy reciprocal.
+				  dargdvar := arg differentiateWRT: var.
+				  dfuncdarg := ((arg raisedTo: 2) plus: 1) reciprocal.
+				  dfuncdarg times: dargdvar ]
 ]
 
 { #category : 'evaluating' }

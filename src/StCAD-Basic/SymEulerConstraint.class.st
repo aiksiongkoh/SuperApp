@@ -24,21 +24,22 @@ SymEulerConstraint class >> visualWorksMetadata [
 { #category : 'ops' }
 SymEulerConstraint >> assignVelICEqnNum: eqnNo [
 
+	self halt: 'Check this'.
 	^ (sup isKindOf: SymPartFrameXEVOme)
 		  ifTrue: [ "Euler parameter constraint gives null VelIC equation."
-			  self iG: nil.
-			  ^ eqnNo ]
+				  self iG: nil.
+				  ^ eqnNo ]
 		  ifFalse: [ super assignVelICEqnNum: eqnNo ]
 ]
 
 { #category : 'calc' }
 SymEulerConstraint >> calcAll [
 
-	| qEcol |
+	| qErow |
 	super calcAll.
-	qEcol := sup qE asFullRow.
-	pGpE := qEcol collect: [ :ei | aG differentiateWRT: ei ].
-	ppGpEpE := (qEcol collect: [ :ei | pGpE differentiateWRT: ei ]) asFullMatrix
+	qErow := sup qE asFullRow.
+	pGpE := aG differentiateWRT: qErow.
+	ppGpEpE := pGpE differentiateWRT: qErow
 ]
 
 { #category : 'calc' }
@@ -76,6 +77,39 @@ SymEulerConstraint >> fillAccICIterError: col [
 	sum := 0.0.
 	sum := sum + (pGpE timesFullColumn: self qEddot).
 	sum := sum + (2.0 * self qEdot sumOfSquares).
+	col at: iG plusNumber: sum
+]
+
+{ #category : 'as yet unclassified' }
+SymEulerConstraint >> fillAccICVdotIterError: col [
+	"
+	""qdotT[ppGpqpq]*qdot.""
+	""qdotT[2 2 2 2 diag]*qdot.""
+
+	| sum |
+	col at: iqE plusFullColumn: pGpE times: lam.
+	sum := 0.0d.
+	sum := sum + (pGpE timesFullColumn: owner qEddot).
+	sum := sum + (2.0d * owner qEdot sumOfSquares).
+	col at: iG plusNumber: sum
+"
+
+	| part v vdot aV aVdot aVv pGpEnum sum |
+	part := self part.
+	v := part vrot asNumber.
+	vdot := part vrotdot asNumber.
+	aV := part aVrot asNumber.
+	aVdot := part aVrotdot asNumber.
+	aVv := aV timesFullColumn: v.
+	pGpEnum := pGpE asNumber.
+	col at: iqE plusFullColumn: pGpEnum times: lam.
+	sum := 0.0.
+	sum := sum + (pGpEnum timesFullColumn:
+		        (aVdot timesFullColumn: v) + (aV timesFullColumn: vdot)).
+	sum := sum
+	       +
+	       (aVv transposeTimesFullColumn:
+		        (ppGpEpE asNumber timesFullColumn: aVv)).
 	col at: iG plusNumber: sum
 ]
 

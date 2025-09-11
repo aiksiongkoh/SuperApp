@@ -2,8 +2,9 @@
 The states are generalized coordinates, linear velocity and angular velocity
 qX = rapa
 qE = Euler Parameters ap
-vX = vapa
-vOme = omeapp
+vX = vapa = qXdot
+vOme = omeapp = 2[C]qEdot
+
 "
 Class {
 	#name : 'SymPartFrameXEVOmeapp',
@@ -14,6 +15,13 @@ Class {
 	#category : 'StCAD-Basic',
 	#package : 'StCAD-Basic'
 }
+
+{ #category : 'as yet unclassified' }
+SymPartFrameXEVOmeapp >> aVrot [
+	"qrotdot := aVrot * vrot"
+
+	^ self aC transpose times: 0.5
+]
 
 { #category : 'as yet unclassified' }
 SymPartFrameXEVOmeapp >> initialize [

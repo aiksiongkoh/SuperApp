@@ -25,10 +25,14 @@ StMIndependentVariable >> aIndependentVariable [
 ]
 
 { #category : 'evaluating' }
-StMIndependentVariable >> differentiateWRT: variable [ 
-	^self == variable
-		ifTrue: [StMConstant with: 1]
-		ifFalse: [StMConstant with: 0]
+StMIndependentVariable >> differentiateWRT: var [
+
+	^ var isSequenceable
+		  ifTrue: [ var collect: [ :vari | self differentiateWRT: vari ] ]
+		  ifFalse: [
+				  self == var
+					  ifTrue: [ StMConstant with: 1 ]
+					  ifFalse: [ StMConstant with: 0 ] ]
 ]
 
 { #category : 'accessing' }

@@ -185,14 +185,17 @@ SymEulerParametersDot >> dAdt [
 { #category : 'calc' }
 SymEulerParametersDot >> differentiateWRT: var [
 
-	| answer |
-	answer := SymEulerParametersDDot with: self.
-	1 to: 4 do: [ :i |
-		| angleVel angleAcc |
-		angleVel := self at: i.
-		angleAcc := angleVel differentiateWRT: var.
-		answer at: i put: angleAcc ].
-	^ answer
+	^ var isSequenceable
+		  ifTrue: [ self halt ]
+		  ifFalse: [
+				  | answer |
+				  answer := SymEulerParametersDDot with: self.
+				  1 to: 4 do: [ :i |
+						  | angleVel angleAcc |
+						  angleVel := self at: i.
+						  angleAcc := angleVel differentiateWRT: var.
+						  answer at: i put: angleAcc ].
+				  answer ]
 ]
 
 { #category : 'initialize-release' }
@@ -229,15 +232,21 @@ SymEulerParametersDot >> initialize: aEulerParameters [
 ]
 
 { #category : 'accessing' }
-SymEulerParametersDot >> omeF [
-	^(self aB timesFullColumn: self) times: 2.0
+SymEulerParametersDot >> omeFfF [
+
+	^ (self aB timesFullColumn: self) times: 2.0
+]
+
+{ #category : 'accessing' }
+SymEulerParametersDot >> omeFff [
+
+	^ (self aC timesFullColumn: self) times: 2.0
 ]
 
 { #category : 'accessing' }
 SymEulerParametersDot >> omeOpO [
 
-	self halt: 'Should be just omeFfF'.
-	^ (self aB timesFullColumn: self) times: 2.0
+	^ self omeFfF
 ]
 
 { #category : 'accessing' }

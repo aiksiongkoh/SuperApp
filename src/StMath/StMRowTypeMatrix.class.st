@@ -122,20 +122,24 @@ StMRowTypeMatrix >> at: i1 and: j1 minusDiagonalMatrix: aDiagonalMatrix [
 ]
 
 { #category : 'ops on self' }
-StMRowTypeMatrix >> at: i1 and: j1 minusFullColumn: aFullColumn [ 
+StMRowTypeMatrix >> at: i and: j minusFullColumn: aFullVector [
+	"if aFullVector is aFullRow, its transpose is assumed."
+
 	| iOffset |
-	iOffset := i1 - 1.
-	1 to: aFullColumn size do: [:ii | (self at: iOffset + ii)
-			at: j1 minusNumber: (aFullColumn at: ii)]
+	iOffset := i - 1.
+	1 to: aFullVector size do: [ :ii |
+		(self at: iOffset + ii) at: j minusNumber: (aFullVector at: ii) ]
 ]
 
 { #category : 'ops on self' }
-StMRowTypeMatrix >> at: i1 and: j1 minusFullColumn: aFullColumn times: aNumber [ 
+StMRowTypeMatrix >> at: i and: j minusFullColumn: aFullVector times: aNumber [
+
 	| iOffset |
-	iOffset := i1 - 1.
-	1 to: aFullColumn size do: [:ii | (self at: iOffset + ii)
-			at: j1 minusNumber: (aFullColumn at: ii)
-				* aNumber]
+	iOffset := i - 1.
+	1 to: aFullVector size do: [ :ii |
+			(self at: iOffset + ii)
+				at: j
+				minusNumber: (aFullVector at: ii) * aNumber ]
 ]
 
 { #category : 'ops on self' }
@@ -157,9 +161,10 @@ StMRowTypeMatrix >> at: i1 and: j1 minusFullMatrix: aFullMatrix times: aNumber [
 ]
 
 { #category : 'ops on self' }
-StMRowTypeMatrix >> at: i1 and: j1 minusFullRow: aFullRow [ 
-	(self at: i1)
-		at: j1 minusFullRow: aFullRow
+StMRowTypeMatrix >> at: i and: j minusFullRow: aFullVector [
+	"if aFullVector is aFullColumn, its transpose is assumed."
+
+	(self at: i) at: j minusFullVector: aFullVector
 ]
 
 { #category : 'ops on self' }
@@ -210,11 +215,15 @@ StMRowTypeMatrix >> at: i1 and: j1 plusDiagonalMatrix: aDiagonalMatrix [
 ]
 
 { #category : 'ops on self' }
-StMRowTypeMatrix >> at: i1 and: j1 plusFullColumn: aFullColumn [ 
+StMRowTypeMatrix >> at: i and: j plusFullColumn: aFullVector [
+	"if aFullVector is aFullRow, its transpose is assumed."
+
 	| iOffset |
-	iOffset := i1 - 1.
-	1 to: aFullColumn size do: [:ii | (self at: iOffset + ii)
-			at: j1 plusNumber: (aFullColumn at: ii)]
+	iOffset := i - 1.
+	1 to: aFullVector size do: [ :ii |
+			| rowi |
+			rowi := self at: iOffset + ii.
+			rowi at: j plusNumber: (aFullVector at: ii) ]
 ]
 
 { #category : 'ops on self' }
@@ -224,6 +233,19 @@ StMRowTypeMatrix >> at: i1 and: j1 plusFullColumn: aFullColumn times: aNumber [
 	1 to: aFullColumn size do: [:ii | (self at: iOffset + ii)
 			at: j1 plusNumber: (aFullColumn at: ii)
 				* aNumber]
+]
+
+{ #category : 'ops on self' }
+StMRowTypeMatrix >> at: i and: j plusFullColumnFromRow: aFullRow [
+	"Same as 
+	at: i and: j plusFullColumn: aFullRow transpose"
+
+	| iOffset |
+	iOffset := i - 1.
+	1 to: aFullRow size do: [ :ii |
+			| rowi |
+			rowi := self at: iOffset + ii.
+			rowi at: j plusNumber: (aFullRow at: ii) ]
 ]
 
 { #category : 'ops on self' }
@@ -245,9 +267,10 @@ StMRowTypeMatrix >> at: i1 and: j1 plusFullMatrix: aFullMatrix times: aNumber [
 ]
 
 { #category : 'ops on self' }
-StMRowTypeMatrix >> at: i1 and: j1 plusFullRow: aFullRow [ 
-	(self at: i1)
-		at: j1 plusFullRow: aFullRow
+StMRowTypeMatrix >> at: i and: j plusFullRow: aFullVector [
+	"if aFullVector is aFullColumn, its transpose is assumed."
+
+	(self at: i) at: j plusFullVector: aFullVector
 ]
 
 { #category : 'ops on self' }
@@ -312,13 +335,12 @@ StMRowTypeMatrix >> at: i and: j put: value [
 ]
 
 { #category : 'ops on self' }
-StMRowTypeMatrix >> at: i1 and: j1 putFullColumn: aFullColumn [ 
+StMRowTypeMatrix >> at: i and: j putFullColumn: aFullColumn [
+
 	| iOffset |
-	iOffset := i1 - 1.
-	1 to: aFullColumn size do: [:ii | self
-			at: iOffset + ii
-			and: j1
-			put: (aFullColumn at: ii)]
+	iOffset := i - 1.
+	1 to: aFullColumn size do: [ :ii |
+	self at: iOffset + ii and: j put: (aFullColumn at: ii) ]
 ]
 
 { #category : 'ops on self' }
@@ -344,9 +366,9 @@ StMRowTypeMatrix >> at: i1 and: j1 putFullMatrix: aFullMatrix times: aNumber [
 ]
 
 { #category : 'ops on self' }
-StMRowTypeMatrix >> at: i1 and: j1 putFullRow: aFullRow [ 
-	(self at: i1)
-		at: j1 putFullRow: aFullRow
+StMRowTypeMatrix >> at: i and: j putFullRow: aFullRow [
+
+	(self at: i) at: j putFullRow: aFullRow
 ]
 
 { #category : 'instance creation' }
@@ -657,6 +679,20 @@ StMRowTypeMatrix >> timesFullColumn: aFullColumn [
 ]
 
 { #category : 'basic ops' }
+StMRowTypeMatrix >> timesFullColumn: aFullColumn times: num [
+	"a*b = a(i,j)b(j) sum j."
+
+	| nrow answer |
+	nrow := self nrow.
+	answer := StMFullColumn new: nrow.
+	1 to: nrow do: [ :i |
+			answer
+				at: i
+				put: ((self at: i) timesFullColumn: aFullColumn times: num) ].
+	^ answer
+]
+
+{ #category : 'basic ops' }
 StMRowTypeMatrix >> timesFullMatrix: aFullMatrix [ 
 	"a*b = a(i,j)b(j,k)"
 
@@ -762,6 +798,26 @@ StMRowTypeMatrix >> transposeTimesFullColumn: aFullColumn times: aNumber [
 { #category : 'basic ops' }
 StMRowTypeMatrix >> transposeTimesFullMatrix: aFullMatrix [ 
 	^self transpose timesFullMatrix: aFullMatrix
+]
+
+{ #category : 'basic ops' }
+StMRowTypeMatrix >> transposeTimesFullMatrix: aFullMatrix times: num [
+	"a_ji * b_jk * num := c_ik "
+
+	| a b c |
+	a := self.
+	b := aFullMatrix.
+	c := self class new: a ncol by: b ncol.
+	1 to: c nrow do: [ :i |
+			| ci |
+			ci := c at: i.
+			1 to: c ncol do: [ :k |
+					| sum |
+					sum := 0.0.
+					1 to: a nrow do: [ :j |
+					sum := sum + ((a at: j and: i) * (b at: j and: k)) ].
+					ci at: k put: sum * num ] ].
+	^ c
 ]
 
 { #category : 'basic ops' }

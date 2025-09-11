@@ -51,52 +51,59 @@ SymKinematicIJ >> calcAll [
 	qEJ := endFrmJ qE.
 
 	pkineIJpt := kineIJ differentiateWRT: t.
-	pkineIJpXI := qXI ifNotNil: [ :q | q collect: [ :qi | kineIJ differentiateWRT: qi ] ].
-	pkineIJpEI := qEI ifNotNil: [ :q | q asFullColumn collect: [ :qi | kineIJ differentiateWRT: qi ] ].
-	pkineIJpXJ := qXJ ifNotNil: [ :q | q collect: [ :qi | kineIJ differentiateWRT: qi ] ].
-	pkineIJpEJ := qEJ ifNotNil: [ :q | q asFullColumn collect: [ :qi | kineIJ differentiateWRT: qi ] ].
+	pkineIJpXI := qXI ifNotNil: [ kineIJ differentiateWRT: qXI ].
+	pkineIJpEI := qEI ifNotNil: [
+		              kineIJ differentiateWRT: qEI asFullColumn ].
+	pkineIJpXJ := qXJ ifNotNil: [ kineIJ differentiateWRT: qXJ ].
+	pkineIJpEJ := qEJ ifNotNil: [
+		              kineIJ differentiateWRT: qEJ asFullColumn ].
 
 	ppkineIJptpt := pkineIJpt differentiateWRT: t.
-	ppkineIJptpXI := qXI ifNotNil: [ :q | q collect: [ :qi | pkineIJpt differentiateWRT: qi ] ].
-	ppkineIJptpEI := qEI ifNotNil: [ :q |
-		                 q asFullColumn collect: [ :qi | pkineIJpt differentiateWRT: qi ] ].
-	ppkineIJptpXJ := qXJ ifNotNil: [ :q | q collect: [ :qi | pkineIJpt differentiateWRT: qi ] ].
-	ppkineIJptpEJ := qEJ ifNotNil: [ :q |
-		                 q asFullColumn collect: [ :qi | pkineIJpt differentiateWRT: qi ] ].
+	ppkineIJptpXI := qXI ifNotNil: [ pkineIJpt differentiateWRT: qXI ].
+	ppkineIJptpEI := qEI ifNotNil: [
+		                 pkineIJpt differentiateWRT: qEI asFullColumn ].
+	ppkineIJptpXJ := qXJ ifNotNil: [ pkineIJpt differentiateWRT: qXJ ].
+	ppkineIJptpEJ := qEJ ifNotNil: [
+		                 pkineIJpt differentiateWRT: qEJ asFullColumn ].
 
 	block := [ :qI :qJ |
-	         qI ifNotNil: [ :qa |
-		         qJ ifNotNil: [ :qb |
-			         | m n ppkineIJpapb pkineIJpai ppkineIJpaipbj |
-			         m := qa size.
-			         n := qb size.
-			         ppkineIJpapb := SymFullMatrix new: m by: n.
-			         1 to: m do: [ :i |
-				         pkineIJpai := kineIJ differentiateWRT: (qa at: i).
-				         1 to: n do: [ :j |
-					         ppkineIJpaipbj := pkineIJpai differentiateWRT: (qb at: j).
-					         ppkineIJpapb at: i and: j put: ppkineIJpaipbj ] ].
-			         ppkineIJpapb ] ] ].
+		         qI ifNotNil: [ :qa |
+				         qJ ifNotNil: [ :qb |
+						         | m n ppkineIJpapb pkineIJpai ppkineIJpaipbj |
+						         m := qa size.
+						         n := qb size.
+						         ppkineIJpapb := SymFullMatrix new: m by: n.
+						         1 to: m do: [ :i |
+								         pkineIJpai := kineIJ differentiateWRT: (qa at: i).
+								         1 to: n do: [ :j |
+										         ppkineIJpaipbj := pkineIJpai differentiateWRT:
+											                           (qb at: j).
+										         ppkineIJpapb at: i and: j put: ppkineIJpaipbj ] ].
+						         ppkineIJpapb ] ] ].
 
-	ppkineIJpXIpt := pkineIJpXI ifNotNil: [ pkineIJpXI differentiateWRT: t ].
+	ppkineIJpXIpt := pkineIJpXI ifNotNil: [
+		                 pkineIJpXI differentiateWRT: t ].
 	ppkineIJpXIpXI := block value: qXI value: qXI.
 	ppkineIJpXIpEI := block value: qXI value: qEI.
 	ppkineIJpXIpXJ := block value: qXI value: qXJ.
 	ppkineIJpXIpEJ := block value: qXI value: qEJ.
 
-	ppkineIJpEIpt := pkineIJpEI ifNotNil: [ pkineIJpEI differentiateWRT: t ].
+	ppkineIJpEIpt := pkineIJpEI ifNotNil: [
+		                 pkineIJpEI differentiateWRT: t ].
 	ppkineIJpEIpXI := block value: qEI value: qXI.
 	ppkineIJpEIpEI := block value: qEI value: qEI.
 	ppkineIJpEIpXJ := block value: qEI value: qXJ.
 	ppkineIJpEIpEJ := block value: qEI value: qEJ.
 
-	ppkineIJpXJpt := pkineIJpXJ ifNotNil: [ pkineIJpXJ differentiateWRT: t ].
+	ppkineIJpXJpt := pkineIJpXJ ifNotNil: [
+		                 pkineIJpXJ differentiateWRT: t ].
 	ppkineIJpXJpXI := block value: qXJ value: qXI.
 	ppkineIJpXJpEI := block value: qXJ value: qEI.
 	ppkineIJpXJpXJ := block value: qXJ value: qXJ.
 	ppkineIJpXJpEJ := block value: qXJ value: qEJ.
 
-	ppkineIJpEJpt := pkineIJpEJ ifNotNil: [ pkineIJpEJ differentiateWRT: t ].
+	ppkineIJpEJpt := pkineIJpEJ ifNotNil: [
+		                 pkineIJpEJ differentiateWRT: t ].
 	ppkineIJpEJpXI := block value: qEJ value: qXI.
 	ppkineIJpEJpEI := block value: qEJ value: qEI.
 	ppkineIJpEJpXJ := block value: qEJ value: qXJ.
@@ -107,6 +114,13 @@ SymKinematicIJ >> calcAll [
 SymKinematicIJ >> calcKineIJ [
 
 	self subclassResponsibility
+]
+
+{ #category : 'initialization' }
+SymKinematicIJ >> initializeGlobally [
+	"Do nothing."
+
+	
 ]
 
 { #category : 'evaluating' }

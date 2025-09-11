@@ -779,8 +779,11 @@ StMArray >> conditionedWithTol: tol [
 ]
 
 { #category : 'basic ops' }
-StMArray >> differentiateWRT: aVar [ 
-	^self collect: [:item | item differentiateWRT: aVar]
+StMArray >> differentiateWRT: var [
+
+	^ var isSequenceable
+		  ifTrue: [ self halt ]
+		  ifFalse: [ self collect: [ :item | item differentiateWRT: var ] ]
 ]
 
 { #category : 'basic ops' }

@@ -84,6 +84,20 @@ SymItem >> fillAccICIterJacob: mat [
 	
 ]
 
+{ #category : 'posIC' }
+SymItem >> fillAccICVdotIterError: col [
+	"Default is do nothing."
+
+	
+]
+
+{ #category : 'as yet unclassified' }
+SymItem >> fillAccICVdotIterJacob: mat [
+	"Do nothing."
+
+	
+]
+
 { #category : 'accessing' }
 SymItem >> fillConstraints: collection [
 	"Do nothing."
@@ -228,6 +242,13 @@ SymItem >> hasChanged: bool [
 	^ sup hasChanged: bool
 ]
 
+{ #category : 'accessing' }
+SymItem >> initVariables [
+	"Do nothing."
+
+	
+]
+
 { #category : 'initialization' }
 SymItem >> initializeGlobally [
 
@@ -236,8 +257,13 @@ SymItem >> initializeGlobally [
 
 { #category : 'initialization' }
 SymItem >> initializeLocally [
+	"Assume that the independent instance variables are already set."
 
-	self shouldNotImplement
+	"Initialize all constant dependent instance variables using local objects only."
+
+	"Default is do nothing."
+
+	
 ]
 
 { #category : 'output' }
@@ -283,6 +309,12 @@ SymItem >> owner: aSym [
 ]
 
 { #category : 'accessing' }
+SymItem >> part [
+
+	^ sup part
+]
+
+{ #category : 'accessing' }
 SymItem >> partFrames [
 
 	^ sup partFrames
@@ -290,9 +322,9 @@ SymItem >> partFrames [
 
 { #category : 'input-output' }
 SymItem >> postInput [
-	"Do nothing."
 
-	
+	self initVariables.
+	self calcAll
 ]
 
 { #category : 'posIC' }
@@ -410,6 +442,7 @@ SymItem >> sup [
 
 { #category : 'accessing' }
 SymItem >> sup: owner [
+	"Keep this method simple. Use to connect components in assembly only."
 
 	sup := owner
 ]

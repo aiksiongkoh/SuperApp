@@ -47,7 +47,6 @@ SymMbDVelICSolver >> run [
 SymMbDVelICSolver >> runBasic [
 
 	| qsudotlam |
-	self halt.
 	self allDo: [ :item | item preVelIC ].
 	self assignEquationNumbers.
 	self allDo: [ :item | item useVelICEqnNo ].

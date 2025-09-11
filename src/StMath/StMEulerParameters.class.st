@@ -146,14 +146,17 @@ StMEulerParameters >> conditionSelf [
 { #category : 'basic ops' }
 StMEulerParameters >> differentiateWRT: var [
 
-	| answer |
-	answer := SymEulerParametersDot with: self.
-	1 to: 4 do: [ :i |
-		| angle angleVel |
-		angle := self at: i.
-		angleVel := angle differentiateWRT: var.
-		answer at: i put: angleVel ].
-	^ answer
+	^ var isSequenceable
+		  ifTrue: [ self halt ]
+		  ifFalse: [
+				  | answer |
+				  answer := SymEulerParametersDot with: self.
+				  1 to: 4 do: [ :i |
+						  | angle angleVel |
+						  angle := self at: i.
+						  angleVel := angle differentiateWRT: var.
+						  answer at: i put: angleVel ].
+				  answer ]
 ]
 
 { #category : 'as yet unclassified' }

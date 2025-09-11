@@ -8,7 +8,6 @@ Class {
 	#superclass : 'SymEndFrame',
 	#instVars : [
 		's',
-		'aAmes',
 		'is',
 		'sdot',
 		'sddot'
@@ -75,7 +74,7 @@ SymEndFrames >> initVariables [
 { #category : 'initialization' }
 SymEndFrames >> initialize [
 
-	| rmems1 rmems2 rmems3 themes1x themes2y themes3z |
+	| rmems1 rmems2 rmems3 rmem themes1x themes2y themes3z theme aAme |
 	"Known function of s to define geometry""Prescribed function of s"
 	super initialize.
 	rmems1 := StMVariableParameter name: #rmems1.
@@ -88,6 +87,7 @@ SymEndFrames >> initialize [
 	themes2y := StMConstantParameter name: #themes2y.
 	themes3z := StMConstantParameter name: #themes3z.
 	theme := SymEulerAngles with: themes1x with: themes2y with: themes3z.
+	theFf := theme.
 	aAme := theme aA.
 	aAFf := aAme
 ]

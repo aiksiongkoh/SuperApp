@@ -656,28 +656,13 @@ StMFullMatrix >> asSparseMatrix [
 ]
 
 { #category : 'ops on self' }
-StMFullMatrix >> at: i1 and: j1 minusFullColumn: aFullColumn [ 
-	| iOffset rowi |
-	iOffset := i1 - 1.
-	1 to: aFullColumn size
-		do: 
-			[:ii | 
-			rowi := self at: iOffset + ii.
-			rowi at: j1 put: (rowi at: j1)
-					- (aFullColumn at: ii)]
-]
+StMFullMatrix >> at: i and: j minusFullColumn: aFullVector times: aNumber [
 
-{ #category : 'ops on self' }
-StMFullMatrix >> at: i1 and: j1 minusFullColumn: aFullColumn times: aNumber [ 
 	| iOffset rowi |
-	iOffset := i1 - 1.
-	1 to: aFullColumn size
-		do: 
-			[:ii | 
+	iOffset := i - 1.
+	1 to: aFullVector size do: [ :ii |
 			rowi := self at: iOffset + ii.
-			rowi at: j1 put: (rowi at: j1)
-					- ((aFullColumn at: ii)
-							* aNumber)]
+			rowi at: j put: (rowi at: j) - ((aFullVector at: ii) * aNumber) ]
 ]
 
 { #category : 'ops on self' }
@@ -686,18 +671,6 @@ StMFullMatrix >> at: i and: j minusNumber: aNumber [
 	rowi := self at: i.
 	rowi at: j put: (rowi at: j)
 			- aNumber
-]
-
-{ #category : 'ops on self' }
-StMFullMatrix >> at: i1 and: j1 plusFullColumn: aFullColumn [ 
-	| iOffset rowi |
-	iOffset := i1 - 1.
-	1 to: aFullColumn size
-		do: 
-			[:ii | 
-			rowi := self at: iOffset + ii.
-			rowi at: j1 put: (rowi at: j1)
-					+ (aFullColumn at: ii)]
 ]
 
 { #category : 'ops on self' }

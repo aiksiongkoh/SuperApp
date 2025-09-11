@@ -56,7 +56,7 @@ SymEulerAnglesDot >> cAdot [
 	^cAdot
 ]
 
-{ #category : 'calc' }
+{ #category : 'as yet unclassified' }
 SymEulerAnglesDot >> calc [
 	| rotOrder cA |
 	aEulerAngles calc.
@@ -153,14 +153,17 @@ SymEulerAnglesDot >> collect: aBlock [
 { #category : 'calc' }
 SymEulerAnglesDot >> differentiateWRT: var [
 
-	| answer |
-	answer := SymEulerAnglesDDot with: self.
-	1 to: 3 do: [ :i |
-		| angleVel angleAcc |
-		angleVel := self at: i.
-		angleAcc := angleVel differentiateWRT: var.
-		answer at: i put: angleAcc ].
-	^ answer
+	^ var isSequenceable
+		  ifTrue: [ self halt ]
+		  ifFalse: [
+				  | answer |
+				  answer := SymEulerAnglesDDot with: self.
+				  1 to: 3 do: [ :i |
+						  | angleVel angleAcc |
+						  angleVel := self at: i.
+						  angleAcc := angleVel differentiateWRT: var.
+						  answer at: i put: angleAcc ].
+				  answer ]
 ]
 
 { #category : 'initialize-release' }

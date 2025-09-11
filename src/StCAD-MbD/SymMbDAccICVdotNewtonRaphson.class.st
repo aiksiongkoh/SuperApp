@@ -59,6 +59,6 @@ SymMbDAccICVdotNewtonRaphson >> passRootToSystem [
 { #category : 'solving' }
 SymMbDAccICVdotNewtonRaphson >> preRun [
 
-	system logString: #'MbD: \Solving for acceleration initial conditions.'.
+	system logString: #'MbD: \Solving for acceleration initial conditions. (Vdot)'.
 	super preRun
 ]

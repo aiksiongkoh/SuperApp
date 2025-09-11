@@ -1,15 +1,6 @@
 Class {
 	#name : 'SymEndFrame',
-	#superclass : 'SymCartesianFrame',
-	#instVars : [
-		'aAOe',
-		'rOeO',
-		'omeOeO',
-		'vOeO',
-		'rmem',
-		'aAme',
-		'theme'
-	],
+	#superclass : 'SymDependentFrame',
 	#category : 'StCAD-Basic',
 	#package : 'StCAD-Basic'
 }
@@ -23,7 +14,7 @@ SymEndFrame >> aAOe [
 { #category : 'accessing' }
 SymEndFrame >> aAjOe: j [
 
-	^ aAOe column: j
+	^ aAOf column: j
 ]
 
 { #category : 'accessing' }
@@ -32,39 +23,22 @@ SymEndFrame >> aAme [
 	^ aAFf
 ]
 
-{ #category : 'as yet unclassified' }
-SymEndFrame >> calcAllKE [
-	"Do nothing."
-
-]
-
-{ #category : 'calc' }
-SymEndFrame >> calcKine [
-
-	rOeO := (self rOmO + (self aAOm timesFullColumn: rmem)) simplified.
-	aAOe := (self aAOm timesFullMatrix: aAme) simplified.
-	rOfO := rOeO.
-	aAOf := aAOe
-]
-
 { #category : 'accessing' }
 SymEndFrame >> initVariables [
 
 	| t block selffullName |
 	t := self time.
-	rmem do: [ :r | r x: t ].
-	theme do: [ :the | the x: t ].
+	rFfF do: [ :r | r x: t ].
 	selffullName := self fullName.
 	block := [ :var |
-	         | fullName |
-	         fullName := String new writeStream
-		                     nextPutAll: selffullName;
-		                     nextPut: $/;
-		                     nextPutAll: var name;
-		                     contents.
-	         var name: fullName asSymbol ].
-	rmem do: block.
-	theme do: block
+		         | fullName |
+		         fullName := String new writeStream
+			                     nextPutAll: selffullName;
+			                     nextPut: $/;
+			                     nextPutAll: var name;
+			                     contents.
+		         var name: fullName asSymbol ].
+	rFfF do: block
 ]
 
 { #category : 'accessing' }
@@ -82,7 +56,7 @@ SymEndFrame >> markerFrame: mkrFrm [
 { #category : 'accessing' }
 SymEndFrame >> omeOeO [
 
-	^ omeOfO
+	^ self omeOfO
 ]
 
 { #category : 'accessing' }
@@ -94,18 +68,19 @@ SymEndFrame >> omemem [
 { #category : 'accessing' }
 SymEndFrame >> ppriOeOpEpE: index [
 
-	| qE riOeO ppriOeOpEpE priOeOpEi ppriOeOpEipE ppriOeOpEipEj |
+	| qE rOeO riOeO ppriOeOpEpE priOeOpEi ppriOeOpEipE ppriOeOpEipEj |
+	rOeO := rOfO.
 	qE := self qE.
-	qE ifNil: [ ppriOeOpEpE := nil ] ifNotNil: [
-		riOeO := rOeO at: index.
-		ppriOeOpEpE := SymFullMatrix new: 4 by: 4.
-		1 to: 4 do: [ :i |
-			priOeOpEi := riOeO differentiateWRT: (qE at: i).
-			ppriOeOpEipE := ppriOeOpEpE at: i.
-			1 to: 4 do: [ :j |
-				ppriOeOpEipEj := priOeOpEi differentiateWRT: (qE at: j).
-				ppriOeOpEipE at: j put: ppriOeOpEipEj ] ] ].
-	^ ppriOeOpEpE
+	^ qE ifNotNil: [
+			  riOeO := rOeO at: index.
+			  ppriOeOpEpE := SymFullMatrix new: 4 by: 4.
+			  1 to: 4 do: [ :i |
+					  priOeOpEi := (riOeO differentiateWRT: (qE at: i)) simplified.
+					  ppriOeOpEipE := ppriOeOpEpE at: i.
+					  1 to: 4 do: [ :j |
+							  ppriOeOpEipEj := priOeOpEi differentiateWRT: (qE at: j).
+							  ppriOeOpEipE at: j put: ppriOeOpEipEj simplified ] ].
+			  ppriOeOpEpE ]
 ]
 
 { #category : 'accessing' }
@@ -123,24 +98,19 @@ SymEndFrame >> ppriOeOptpt: i [
 { #category : 'accessing' }
 SymEndFrame >> priOeOpE: index [
 
-	| qE riOeO priOeOpE |
-	self halt.
+	| qE rOeO |
+	rOeO := rFfF.
 	qE := self qE.
-	qE ifNil: [ priOeOpE := nil ] ifNotNil: [
-		riOeO := rOeO at: index.
-		priOeOpE := qE asFullColumn collect: [ :ei | riOeO differentiateWRT: ei ] ].
-	^ priOeOpE
+	^ qE ifNotNil: [ (rOeO at: index) differentiateWRT: qE asFullColumn ]
 ]
 
 { #category : 'accessing' }
 SymEndFrame >> priOeOpX: index [
 
-	| qX riOeO priOeOpX |
+	| qX rOeO |
+	rOeO := rFfF.
 	qX := self qX.
-	qX ifNil: [ priOeOpX := nil ] ifNotNil: [
-		riOeO := rOeO at: index.
-		priOeOpX := qX collect: [ :xi | riOeO differentiateWRT: xi ] ].
-	^ priOeOpX
+	^ qX ifNotNil: [ (rOeO at: index) differentiateWRT: qX asFullColumn ]
 ]
 
 { #category : 'accessing' }
@@ -152,23 +122,24 @@ SymEndFrame >> rOeO [
 { #category : 'accessing' }
 SymEndFrame >> rmem [
 
-	^ rmem
+	^ rFfF
 ]
 
 { #category : 'accessing' }
 SymEndFrame >> rmem: col [
 
-	1 to: 3 do: [ :i | (rmem at: i) value: (col at: i) asSymbolic ]
+	self rFfF: col
 ]
 
 { #category : 'accessing' }
 SymEndFrame >> theme: col [
 
-	1 to: 3 do: [ :i | (theme at: i) value: (col at: i) ]
+	1 to: 3 do: [ :i | (theFf at: i) rhs: (col at: i) ].
+	theFf := theFf simplified
 ]
 
 { #category : 'accessing' }
 SymEndFrame >> vOeO [
 
-	^ vOfO
+	^ prOfOpt
 ]

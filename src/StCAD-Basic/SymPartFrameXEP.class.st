@@ -17,16 +17,26 @@ Class {
 	#package : 'StCAD-Basic'
 }
 
-{ #category : 'accIC' }
-SymPartFrameXEP >> fillAccICIterError: col [
+{ #category : 'as yet unclassified' }
+SymPartFrameXEP >> vpos [
 
-	self halt.
-	col at: iqX minusFullColumn: (mX timesFullColumn: qXddot).
-	col at: iqE minusFullColumn: (mEdot timesFullColumn: qEdot).
-	col at: iqE minusFullColumn: (mE timesFullColumn: qEddot).
-	col at: iqE plusFullColumn: pTpE.
+	^ pX
+]
 
-	subs do: [ :mkr | mkr fillAccICIterError: col ].
-	aGeu fillAccICIterError: col.
-	aGabs do: [ :con | con fillAccICIterError: col ]
+{ #category : 'as yet unclassified' }
+SymPartFrameXEP >> vposdot [
+
+	^ pXdot
+]
+
+{ #category : 'as yet unclassified' }
+SymPartFrameXEP >> vrot [
+
+	^ pE
+]
+
+{ #category : 'as yet unclassified' }
+SymPartFrameXEP >> vrotdot [
+
+	^ pEdot
 ]

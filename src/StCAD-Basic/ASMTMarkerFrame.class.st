@@ -11,7 +11,7 @@ ASMTMarkerFrame >> createMbDin: mbdMarkerFrm [
 	| units mbdUnits mbdEndFrm |
 	units := self units.
 	mbdUnits := self mbdUnits.
-	mbdEndFrm := SymEndFramec new.
+	mbdEndFrm := mbdMarkerFrm newEndFramec.
 	mbdObject := mbdEndFrm.
 	mbdEndFrm name: name.
 	mbdEndFrm rmem: rFfF * units length / mbdUnits length.

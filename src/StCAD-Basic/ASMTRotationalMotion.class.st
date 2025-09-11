@@ -47,19 +47,20 @@ ASMTRotationalMotion >> motionEndFrmI [
 
 	| eFrmcI eFrmtI theta3z parser stack func |
 	eFrmcI := markerI mbdObject.
-	eFrmtI := SymEndFramet new.
-	eFrmtI name: eFrmcI name , 't'.
+	eFrmtI := eFrmcI newEndFramet.
 	theta3z := rotationZ ifNil: [ StMConstant with: 0 ] ifNotNil: [
-		           rotationZ isUserFunction
-			           ifTrue: [
-				           parser := self functionParser.
-				           stack := parser parseUserFunction: rotationZ notifying: nil ifFail: nil.
-				           func := stack last.
-				           func ]
-			           ifFalse: [ rotationZ ] ].
+			           rotationZ isUserFunction
+				           ifTrue: [
+						           parser := self functionParser.
+						           stack := parser
+							                    parseUserFunction: rotationZ
+							                    notifying: nil
+							                    ifFail: nil.
+						           func := stack last.
+						           func ]
+				           ifFalse: [ rotationZ ] ].
 	theta3z := theta3z simplified.
 	eFrmtI theta3z: theta3z.
-	eFrmtI sup: eFrmcI markerFrame.
 	^ eFrmtI
 ]
 

@@ -49,16 +49,19 @@ StMDependentVariable >> aIndependentVariable [
 ]
 
 { #category : 'evaluating' }
-StMDependentVariable >> differentiateWRT: variable [
+StMDependentVariable >> differentiateWRT: var [
 
-	| dfdx dxdvar |
-	self == variable ifTrue: [ ^ StMConstant with: 1 ].
-	x ifNil: [ ^ StMConstant with: 0 ].
-	dfdx := self differentiateWRTx.
-	dfdx isZero ifTrue: [ ^ StMConstant with: 0 ].
-	dxdvar := x differentiateWRT: variable.
-	dxdvar isZero ifTrue: [ ^ StMConstant with: 0 ].
-	^ (dfdx times: dxdvar) simplified
+	^ var isSequenceable
+		  ifTrue: [ var collect: [ :vari | self differentiateWRT: vari ] ]
+		  ifFalse: [
+				  | dfdx dxdvar |
+				  self == var ifTrue: [ ^ StMConstant with: 1 ].
+				  x ifNil: [ ^ StMConstant with: 0 ].
+				  dfdx := self differentiateWRTx.
+				  dfdx isZero ifTrue: [ ^ StMConstant with: 0 ].
+				  dxdvar := x differentiateWRT: var.
+				  dxdvar isZero ifTrue: [ ^ StMConstant with: 0 ].
+				  (dfdx times: dxdvar) simplified ]
 ]
 
 { #category : 'evaluating' }

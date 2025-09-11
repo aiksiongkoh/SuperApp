@@ -5,9 +5,9 @@ Class {
 		'matrixSolver',
 		'n'
 	],
-	#category : 'StCAD-MbD-MbDSolver',
-	#package : 'StCAD-MbD',
-	#tag : 'MbDSolver'
+	#category : 'StMath-StMathNewtonRaphson',
+	#package : 'StMath',
+	#tag : 'StMathNewtonRaphson'
 }
 
 { #category : 'solving' }

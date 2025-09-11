@@ -90,14 +90,17 @@ StMDifferentiatedVariable >> copy [
 ]
 
 { #category : 'evaluating' }
-StMDifferentiatedVariable >> differentiateWRT: variable [
+StMDifferentiatedVariable >> differentiateWRT: var [
 
-	^ variable isIndependentVariable
-		  ifTrue: [
-			  self copy
-				  wrtsAdd: variable copy;
-				  yourself ]
-		  ifFalse: [ StMConstant with: 0.0 ]
+	^ var isSequenceable
+		  ifTrue: [ var collect: [ :vari | self differentiateWRT: vari ] ]
+		  ifFalse: [
+				  var isIndependentVariable
+					  ifTrue: [
+							  self copy
+								  wrtsAdd: var copy;
+								  yourself ]
+					  ifFalse: [ StMConstant with: 0.0 ] ]
 ]
 
 { #category : 'evaluating' }

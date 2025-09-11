@@ -53,15 +53,18 @@ StMFunctionXY >> cadStringOn: aStream [
 ]
 
 { #category : 'evaluating' }
-StMFunctionXY >> differentiateWRT: variable [ 
-	| dfdx dxdvar dfdy dydvar |
-	self == variable ifTrue: [^StMConstant with: 1].
-	dfdx := self differentiateWRTx.
-	dxdvar := x differentiateWRT: variable.
-	dfdy := self differentiateWRTy.
-	dydvar := y differentiateWRT: variable.
-	^(dfdx times: dxdvar)
-		plus: (dfdy times: dydvar)
+StMFunctionXY >> differentiateWRT: var [
+
+	^ var isSequenceable
+		  ifTrue: [ var collect: [ :vari | self differentiateWRT: vari ] ]
+		  ifFalse: [
+				  | dfdx dxdvar dfdy dydvar |
+				  self == var ifTrue: [ ^ StMConstant with: 1 ].
+				  dfdx := self differentiateWRTx.
+				  dxdvar := x differentiateWRT: var.
+				  dfdy := self differentiateWRTy.
+				  dydvar := y differentiateWRT: var.
+				  (dfdx times: dxdvar) plus: (dfdy times: dydvar) ]
 ]
 
 { #category : 'evaluating' }

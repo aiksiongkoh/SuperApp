@@ -44,6 +44,12 @@ StMConstantParameter >> printOn: aStream [
 		nextPut: $)
 ]
 
+{ #category : 'accessing' }
+StMConstantParameter >> rhs: number [
+
+	value := number
+]
+
 { #category : 'evaluating' }
 StMConstantParameter >> simplifyUntil: set [
 

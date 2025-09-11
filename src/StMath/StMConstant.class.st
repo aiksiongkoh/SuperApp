@@ -87,8 +87,11 @@ StMConstant >> copy [
 ]
 
 { #category : 'evaluating' }
-StMConstant >> differentiateWRT: variable [ 
-	^StMConstant with: 0
+StMConstant >> differentiateWRT: var [
+
+	^ var isSequenceable
+		  ifTrue: [ var collect: [ :vari | self differentiateWRT: vari ] ]
+		  ifFalse: [ StMConstant with: 0 ]
 ]
 
 { #category : 'testing' }

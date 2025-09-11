@@ -22,10 +22,14 @@ MbDSymbolicFunction >> argsPerform: selector withArguments: anArray [
 ]
 
 { #category : 'evaluating' }
-MbDSymbolicFunction >> differentiateWRT: variable [ 
-	^self == variable
-		ifTrue: [StMConstant with: 1]
-		ifFalse: [StMConstant with: 0]
+MbDSymbolicFunction >> differentiateWRT: var [
+
+	^ var isSequenceable
+		  ifTrue: [ var collect: [ :vari | self differentiateWRT: vari ] ]
+		  ifFalse: [
+				  self == var
+					  ifTrue: [ StMConstant with: 1 ]
+					  ifFalse: [ StMConstant with: 0 ] ]
 ]
 
 { #category : 'accessing' }

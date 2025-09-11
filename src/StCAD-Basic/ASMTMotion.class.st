@@ -11,13 +11,14 @@ Class {
 { #category : 'MbD' }
 ASMTMotion >> createMbDin: mbdAssemblyFrm [
 
-	| mbdMotion eFrmtI |
-	self halt.
+	| mbdMotion eFrmcI eFrmtI |
 	mbdMotion := self mbdClass new.
 	mbdObject := mbdMotion.
 	mbdMotion name: self name.
+	mbdMotion connectsI: markerI mbdObject toJ: markerJ mbdObject.
+	eFrmcI := markerI mbdObject.
 	eFrmtI := self motionEndFrmI.
-	mbdMotion connectsI: eFrmtI toJ: markerJ mbdObject.
+	eFrmcI become: eFrmtI.
 	mbdAssemblyFrm addMotion: mbdMotion
 ]
 

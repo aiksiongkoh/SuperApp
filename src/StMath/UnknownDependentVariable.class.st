@@ -5,3 +5,9 @@ Class {
 	#package : 'StMath',
 	#tag : 'Symbolic'
 }
+
+{ #category : 'accessing' }
+UnknownDependentVariable >> rhs: number [
+
+	value := number
+]

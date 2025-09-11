@@ -18,7 +18,9 @@ ASMTPointRefFrame >> createMbDin: mbdPartFrm [
 	| units mbdUnits mbdMarkerFrm rpmp cmFrm rpcmp aApcmT rcmmcm aApm aAcmm |
 	units := self units.
 	mbdUnits := self mbdUnits.
-	mbdMarkerFrm := SymPointMarkerFrame new.
+	mbdMarkerFrm := mbdPartFrm isPartFrame
+		                ifTrue: [ SymPointMarkerFrame new ]
+		                ifFalse: [ SymAssemblyPointMarkerFrame new ].
 	mbdObject := mbdMarkerFrm.
 	mbdMarkerFrm name: name.
 	rpmp := rFfF.
@@ -26,15 +28,15 @@ ASMTPointRefFrame >> createMbDin: mbdPartFrm [
 	cmFrm := self principalMassFrame.
 	cmFrm
 		ifNil: [
-			rcmmcm := rpmp.
-			aAcmm := aApm ]
+				rcmmcm := rpmp.
+				aAcmm := aApm ]
 		ifNotNil: [
-			rpcmp := cmFrm rFfF.
-			aApcmT := cmFrm aAFf transpose.
-			rcmmcm := aApcmT timesFullColumn: rpmp - rpcmp.
-			aAcmm := aApcmT timesFullMatrix: aApm ].
-	mbdMarkerFrm rpmp: rcmmcm * units length / mbdUnits length.
-	mbdMarkerFrm thepm: aAcmm bryantAngles.
+				rpcmp := cmFrm rFfF.
+				aApcmT := cmFrm aAFf transpose.
+				rcmmcm := aApcmT timesFullColumn: rpmp - rpcmp.
+				aAcmm := aApcmT timesFullMatrix: aApm ].
+	mbdMarkerFrm rFfF: rcmmcm * units length / mbdUnits length.
+	mbdMarkerFrm aAFf: aAcmm.
 	mbdPartFrm addMarkerFrm: mbdMarkerFrm.
 	markers asSortedCollection: [ :a :b | a name <= b name ].
 	markers do: [ :item | item createMbDin: mbdMarkerFrm ]

@@ -107,14 +107,21 @@ StMPolynomialX >> derivative: n at: xx [
 ]
 
 { #category : 'evaluating' }
-StMPolynomialX >> differentiateWRT: variable [ 
-	| dfuncdx dxdvar dcoeffsdvar |
-	self == variable ifTrue: [^StMConstant with: 1].
-	dfuncdx := self differentiateWRTx.
-	dxdvar := x differentiateWRT: variable.
-	dcoeffsdvar := StMPolynomialX with: x copy coeffs: (coeffs collect: [:coeff | coeff differentiateWRT: variable]).
-	^(dfuncdx times: dxdvar)
-		plus: dcoeffsdvar
+StMPolynomialX >> differentiateWRT: var [
+
+	^ var isSequenceable
+		  ifTrue: [ var collect: [ :vari | self differentiateWRT: vari ] ]
+		  ifFalse: [
+				  | dfuncdx dxdvar dcoeffsdvar |
+				  self == var ifTrue: [ ^ StMConstant with: 1 ].
+				  dfuncdx := self differentiateWRTx.
+				  dxdvar := x differentiateWRT: var.
+				  dcoeffsdvar := StMPolynomialX
+					                 with: x copy
+					                 coeffs:
+					                 (coeffs collect: [ :coeff |
+						                  coeff differentiateWRT: var ]).
+				  (dfuncdx times: dxdvar) plus: dcoeffsdvar ]
 ]
 
 { #category : 'evaluating' }

@@ -3,13 +3,7 @@ InertialFrame is the root that contains everything
 "
 Class {
 	#name : 'SymInertialFrame',
-	#superclass : 'SymCartesianFrame',
-	#instVars : [
-		'rOOO',
-		'aAOO',
-		'vOOO',
-		'omeOOO'
-	],
+	#superclass : 'SymIndependentFrame',
 	#category : 'StCAD-Basic',
 	#package : 'StCAD-Basic'
 }
@@ -42,14 +36,15 @@ SymInertialFrame >> assemblyFrms [
 
 { #category : 'calc' }
 SymInertialFrame >> calcAll [
+	"Do nothing."
 
-	subs do: [ :sub | sub calcAll ]
+	
 ]
 
 { #category : 'initialization' }
 SymInertialFrame >> initialize [
 
-	| zeroVec |
+	| zeroVec rOOO aAOO vOOO |
 	super initialize.
 	zeroVec := SymFullColumn with: 0.0 with: 0.0 with: 0.0.
 	rOOO := zeroVec asSymbolic.
@@ -59,9 +54,8 @@ SymInertialFrame >> initialize [
 	aAFf := aAOO.
 	aAOf := aAOO.
 	vOOO := zeroVec asSymbolic.
-	vOfO := vOOO.
-	omeOOO := zeroVec asSymbolic.
-	omeOfO := omeOOO
+	prOfOpt := vOOO.
+	pAOfpt := (SymFullMatrix zero: 3 by: 3) asSymbolic
 ]
 
 { #category : 'accessing' }
@@ -81,10 +75,4 @@ SymInertialFrame >> soleAssembly [
 
 	[ subs size = 1 ] assert.
 	^ subs first
-]
-
-{ #category : 'accessing' }
-SymInertialFrame >> time [
-
-	^ time
 ]

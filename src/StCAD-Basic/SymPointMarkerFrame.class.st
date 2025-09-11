@@ -11,10 +11,10 @@ SymPointMarkerFrame >> calcPostDynCorrectorIteration [
 	
 ]
 
-{ #category : 'accessing' }
-SymPointMarkerFrame >> omeOmO [
+{ #category : 'instance creation' }
+SymPointMarkerFrame >> newEndFramec [
 
-	^ omeOmO
+	^ SymEndFramec new
 ]
 
 { #category : 'accessing' }
@@ -33,5 +33,5 @@ SymPointMarkerFrame >> pAOmpt [
 { #category : 'accessing' }
 SymPointMarkerFrame >> vOmO [
 
-	^ vOfO
+	^ prOfOpt
 ]

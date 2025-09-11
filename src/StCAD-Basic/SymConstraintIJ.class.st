@@ -61,30 +61,30 @@ SymConstraintIJ >> calcAll [
 	qEJ := endFrmJ qE.
 
 	pGpt := aG differentiateWRT: t.
-	pGpXI := qXI ifNotNil: [ :q | q asFullRow collect: [ :qi | aG differentiateWRT: qi ] ].
-	pGpEI := qEI ifNotNil: [ :q | q asFullRow collect: [ :qi | aG differentiateWRT: qi ] ].
-	pGpXJ := qXJ ifNotNil: [ :q | q asFullRow collect: [ :qi | aG differentiateWRT: qi ] ].
-	pGpEJ := qEJ ifNotNil: [ :q | q asFullRow collect: [ :qi | aG differentiateWRT: qi ] ].
+	pGpXI := qXI ifNotNil: [ aG differentiateWRT: qXI asFullRow ].
+	pGpEI := qEI ifNotNil: [ aG differentiateWRT: qEI asFullRow ].
+	pGpXJ := qXJ ifNotNil: [ aG differentiateWRT: qXJ asFullRow ].
+	pGpEJ := qEJ ifNotNil: [ aG differentiateWRT: qEJ asFullRow ].
 
 	ppGptpt := pGpt differentiateWRT: t.
-	ppGptpXI := qXI ifNotNil: [ :q | q asFullRow collect: [ :qi | pGpt differentiateWRT: qi ] ].
-	ppGptpEI := qEI ifNotNil: [ :q | q asFullRow collect: [ :qi | pGpt differentiateWRT: qi ] ].
-	ppGptpXJ := qXJ ifNotNil: [ :q | q asFullRow collect: [ :qi | pGpt differentiateWRT: qi ] ].
-	ppGptpEJ := qEJ ifNotNil: [ :q | q asFullRow collect: [ :qi | pGpt differentiateWRT: qi ] ].
+	ppGptpXI := qXI ifNotNil: [ pGpt differentiateWRT: qXI asFullRow ].
+	ppGptpEI := qEI ifNotNil: [ pGpt differentiateWRT: qEI asFullRow ].
+	ppGptpXJ := qXJ ifNotNil: [ pGpt differentiateWRT: qXJ asFullRow ].
+	ppGptpEJ := qEJ ifNotNil: [ pGpt differentiateWRT: qEJ asFullRow ].
 
 	block := [ :qI :qJ |
-	         qI ifNotNil: [ :qa |
-		         qJ ifNotNil: [ :qb |
-			         | m n ppGpapb pGpai ppGpaipbj |
-			         m := qa size.
-			         n := qb size.
-			         ppGpapb := SymFullMatrix new: m by: n.
-			         1 to: m do: [ :i |
-				         pGpai := aG differentiateWRT: (qa at: i).
-				         1 to: n do: [ :j |
-					         ppGpaipbj := pGpai differentiateWRT: (qb at: j).
-					         ppGpapb at: i and: j put: ppGpaipbj ] ].
-			         ppGpapb ] ] ].
+		         qI ifNotNil: [ :qa |
+				         qJ ifNotNil: [ :qb |
+						         | m n ppGpapb pGpai ppGpaipbj |
+						         m := qa size.
+						         n := qb size.
+						         ppGpapb := SymFullMatrix new: m by: n.
+						         1 to: m do: [ :i |
+								         pGpai := aG differentiateWRT: (qa at: i).
+								         1 to: n do: [ :j |
+										         ppGpaipbj := pGpai differentiateWRT: (qb at: j).
+										         ppGpapb at: i and: j put: ppGpaipbj ] ].
+						         ppGpapb ] ] ].
 
 	ppGpXIpt := pGpXI ifNotNil: [ pGpXI differentiateWRT: t ].
 	ppGpXIpXI := block value: qXI value: qXI.
@@ -154,6 +154,127 @@ SymConstraintIJ >> fillAccICIterError: col [
 	ppGpEJpEJ ifNotNil: [
 		sum := sum + (qEdotJ transposeTimesFullColumn: (ppGpEJpEJ timesFullColumn: qEdotJ)) ].
 	col at: iG plusNumber: sum
+]
+
+{ #category : 'accIC' }
+SymConstraintIJ >> fillAccICVdotIterError: col [
+
+	| vposI vposdotI vrotI vrotdotI aVrotI aVrotdotI aVvrotI vposJ vposdotJ vrotJ vrotdotJ aVrotJ aVrotdotJ aVvrotJ sum |
+	endFrmI part ifNotNil: [ :partI |
+			vposI := partI vpos asNumber.
+			vposdotI := partI vposdot asNumber.
+			vrotI := partI vrot asNumber.
+			vrotdotI := partI vrotdot asNumber.
+			aVrotI := partI aVrot asNumber.
+			aVrotdotI := partI aVrotdot asNumber.
+			aVvrotI := aVrotI timesFullColumn: vrotI ].
+	endFrmJ part ifNotNil: [ :partJ |
+			vposJ := partJ vpos asNumber.
+			vposdotJ := partJ vposdot asNumber.
+			vrotJ := partJ vrot asNumber.
+			vrotdotJ := partJ vrotdot asNumber.
+			aVrotJ := partJ aVrot asNumber.
+			aVrotdotJ := partJ aVrotdot asNumber.
+			aVvrotJ := aVrotJ timesFullColumn: vrotJ ].
+	pGpXI ifNotNil: [
+		col at: iqXI plusFullColumn: pGpXI asNumber times: lam ].
+	pGpEI ifNotNil: [
+		col at: iqEI plusFullColumn: pGpEI asNumber times: lam ].
+	pGpXJ ifNotNil: [
+		col at: iqXJ plusFullColumn: pGpXJ asNumber times: lam ].
+	pGpEJ ifNotNil: [
+		col at: iqEJ plusFullColumn: pGpEJ asNumber times: lam ].
+	sum := 0.0.
+	pGpXI ifNotNil: [
+		sum := sum + (pGpXI asNumber timesFullColumn: vposdotI) ].
+	pGpEI ifNotNil: [
+			sum := sum
+			       +
+				       (pGpEI asNumber timesFullColumn:
+					        (aVrotdotI timesFullColumn: vrotI)
+					        + (aVrotI timesFullColumn: vrotdotI)) ].
+	pGpXJ ifNotNil: [
+		sum := sum + (pGpXJ asNumber timesFullColumn: vposdotJ) ].
+	pGpEJ ifNotNil: [
+			sum := sum
+			       +
+				       (pGpEJ asNumber timesFullColumn:
+					        (aVrotdotJ timesFullColumn: vrotJ)
+					        + (aVrotJ timesFullColumn: vrotdotJ)) ].
+	sum := sum + ppGptpt asNumber.
+	ppGptpXI ifNotNil: [
+		sum := sum + (2.0 * (ppGptpXI asNumber timesFullColumn: vposI)) ].
+	ppGptpEI ifNotNil: [
+		sum := sum + (2.0 * (ppGptpEI asNumber timesFullColumn: aVvrotI)) ].
+	ppGptpXJ ifNotNil: [
+		sum := sum + (2.0 * (ppGptpXJ asNumber timesFullColumn: vposJ)) ].
+	ppGptpEJ ifNotNil: [
+		sum := sum + (2.0 * (ppGptpEJ asNumber timesFullColumn: aVvrotJ)) ].
+	ppGpXIpXI ifNotNil: [
+			sum := sum + (vposI transposeTimesFullColumn:
+				        (ppGpXIpXI asNumber timesFullColumn: vposI)) ].
+	ppGpXIpEI ifNotNil: [
+			sum := sum + (2.0 * (vposI transposeTimesFullColumn:
+				         (ppGpXIpEI asNumber timesFullColumn: aVvrotI))) ].
+	ppGpXIpXJ ifNotNil: [
+			sum := sum + (2.0 * (vposI transposeTimesFullColumn:
+				         (ppGpXIpXJ asNumber timesFullColumn: vposJ))) ].
+	ppGpXIpEJ ifNotNil: [
+			sum := sum + (2.0 * (vposI transposeTimesFullColumn:
+				         (ppGpXIpEJ asNumber timesFullColumn: aVvrotJ))) ].
+	ppGpEIpEI ifNotNil: [
+			sum := sum + (aVvrotI transposeTimesFullColumn:
+				        (ppGpEIpEI asNumber timesFullColumn: aVvrotI)) ].
+	ppGpEIpXJ ifNotNil: [
+			sum := sum + (2.0 * (aVvrotI transposeTimesFullColumn:
+				         (ppGpEIpXJ asNumber timesFullColumn: vposJ))) ].
+	ppGpEIpEJ ifNotNil: [
+			sum := sum + (2.0 * (aVvrotI transposeTimesFullColumn:
+				         (ppGpEIpEJ asNumber timesFullColumn: aVvrotJ))) ].
+	ppGpXJpXJ ifNotNil: [
+			sum := sum + (vposJ transposeTimesFullColumn:
+				        (ppGpXJpXJ asNumber timesFullColumn: vposJ)) ].
+	ppGpXJpEJ ifNotNil: [
+			sum := sum + (2.0 * (vposJ transposeTimesFullColumn:
+				         (ppGpXJpEJ asNumber timesFullColumn: aVvrotJ))) ].
+	ppGpEJpEJ ifNotNil: [
+			sum := sum + (aVvrotJ transposeTimesFullColumn:
+				        (ppGpEJpEJ asNumber timesFullColumn: aVvrotJ)) ].
+	col at: iG plusNumber: sum
+]
+
+{ #category : 'as yet unclassified' }
+SymConstraintIJ >> fillAccICVdotIterJacob: mat [
+
+	| aVrotI aVrotJ |
+	endFrmI part ifNotNil: [ :partI | aVrotI := partI aVrot asNumber ].
+	endFrmJ part ifNotNil: [ :partJ | aVrotJ := partJ aVrot asNumber ].
+	pGpXI ifNotNil: [
+			| pGpXInum |
+			pGpXInum := pGpXI asNumber.
+			mat at: iG and: iqXI plusFullRow: pGpXInum.
+			mat at: iqXI and: iG plusFullColumn: pGpXInum ].
+	pGpEI ifNotNil: [
+			| pGpEInum |
+			pGpEInum := pGpEI asNumber.
+			mat
+				at: iG
+				and: iqEI
+				plusFullRow: (pGpEInum timesFullMatrix: aVrotI).
+			mat at: iqEI and: iG plusFullColumn: pGpEInum ].
+	pGpXJ ifNotNil: [
+			| pGpXJnum |
+			pGpXJnum := pGpXJ asNumber.
+			mat at: iG and: iqXJ plusFullRow: pGpXJnum.
+			mat at: iqXJ and: iG plusFullColumn: pGpXJnum ].
+	pGpEJ ifNotNil: [
+			| pGpEJnum |
+			pGpEJnum := pGpEJ asNumber.
+			mat
+				at: iG
+				and: iqEJ
+				plusFullRow: (pGpEJnum timesFullMatrix: aVrotJ).
+			mat at: iqEJ and: iG plusFullColumn: pGpEJnum ]
 ]
 
 { #category : 'posIC' }

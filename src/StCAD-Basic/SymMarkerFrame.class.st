@@ -1,15 +1,6 @@
 Class {
 	#name : 'SymMarkerFrame',
-	#superclass : 'SymCartesianFrame',
-	#instVars : [
-		'rOmO',
-		'aAOm',
-		'omeOmO',
-		'aApm',
-		'rpmp',
-		'thepm',
-		'vOmO'
-	],
+	#superclass : 'SymDependentFrame',
 	#category : 'StCAD-Basic',
 	#package : 'StCAD-Basic'
 }
@@ -17,13 +8,13 @@ Class {
 { #category : 'accessing' }
 SymMarkerFrame >> aAOm [
 
-	^ aAOm
+	^ aAOf
 ]
 
 { #category : 'accessing' }
 SymMarkerFrame >> aApm [
 
-	^ aApm
+	^ aAFf
 ]
 
 { #category : 'adding' }
@@ -99,31 +90,9 @@ SymMarkerFrame >> assignVelICEqnNum: i [
 ]
 
 { #category : 'as yet unclassified' }
-SymMarkerFrame >> calcAllKE [
-	"Do nothing."
-
-]
-
-{ #category : 'accessing' }
-SymMarkerFrame >> calcKine [
-
-	rOmO := (self rOpO + (self aAOp timesFullColumn: rpmp)) simplified.
-	aAOm := (self aAOp timesFullMatrix: aApm) simplified.
-	rOfO := rOmO.
-	aAOf := aAOm
-]
-
-{ #category : 'as yet unclassified' }
 SymMarkerFrame >> endFrms [
 
 	^ subs
-]
-
-{ #category : 'as yet unclassified' }
-SymMarkerFrame >> fillAccICVdotIterError: col [
-	"Do nothing."
-
-	
 ]
 
 { #category : 'accessing' }
@@ -201,36 +170,56 @@ SymMarkerFrame >> fillqsulam: col [
 { #category : 'initialization' }
 SymMarkerFrame >> initVariables [
 
-	| t block selffullName |
-	t := self time.
-	rpmp do: [ :r | r x: t ].
-	thepm do: [ :the | the x: t ].
+	| block selffullName |
 	selffullName := self fullName.
 	block := [ :var |
-	         | fullName |
-	         fullName := String new writeStream
-		                     nextPutAll: selffullName;
-		                     nextPut: $/;
-		                     nextPutAll: var name;
-		                     contents.
-	         var name: fullName asSymbol ].
-	rpmp do: block.
-	thepm do: block
+		         | fullName |
+		         fullName := String new writeStream
+			                     nextPutAll: selffullName;
+			                     nextPut: $/;
+			                     nextPutAll: var name;
+			                     contents.
+		         var name: fullName asSymbol ].
+	rFfF do: block.
+	theFf do: block
 ]
 
 { #category : 'initialization' }
 SymMarkerFrame >> initialize [
 
-	| rpmp1 rpmp2 rpmp3 thepm1x thepm2y thepm3z |
+	| rpmp1 rpmp2 rpmp3 rpmp thepm1x thepm2y thepm3z thepm aApm |
 	super initialize.
 	rpmp1 := StMConstantParameter name: #rpmp1.
 	rpmp2 := StMConstantParameter name: #rpmp2.
 	rpmp3 := StMConstantParameter name: #rpmp3.
 	rpmp := SymFullColumn with: rpmp1 with: rpmp2 with: rpmp3.
+	rFfF := rpmp.
 	thepm1x := StMConstantParameter name: #thepm1x.
 	thepm2y := StMConstantParameter name: #thepm2y.
 	thepm3z := StMConstantParameter name: #thepm3z.
-	thepm := SymEulerAngles with: thepm1x with: thepm2y with: thepm3z
+	thepm := SymEulerAngles with: thepm1x with: thepm2y with: thepm3z.
+	theFf := thepm.
+	aApm := thepm aA.
+	aAFf := aApm
+]
+
+{ #category : 'initialization' }
+SymMarkerFrame >> initializeGlobally [
+
+	subs do: [ :eFrm | eFrm initializeGlobally ]
+]
+
+{ #category : 'accessing' }
+SymMarkerFrame >> omeOmO [
+
+	^ self omeOfO
+]
+
+{ #category : 'input-output' }
+SymMarkerFrame >> postInput [
+
+	super postInput.
+	subs do: [ :endFrm | endFrm postInput ]
 ]
 
 { #category : 'accessing' }
@@ -266,22 +255,27 @@ SymMarkerFrame >> pprOmOpEpE [
 { #category : 'accessing' }
 SymMarkerFrame >> prOmOpE [
 
-	| prOmOpE pAOppE pAOppEi |
-	prOmOpE := SymFullMatrix new: 3 by: 4.
-	pAOppE := sup pAOppE.
-	pAOppE ifNil: [
-		prOmOpE := nil.
-		^ prOmOpE ].
-	1 to: 4 do: [ :i |
-		pAOppEi := pAOppE at: i.
-		prOmOpE at: 1 and: i putFullColumn: (pAOppEi timesFullColumn: rpmp) ].
-	^ prOmOpE
+	^ prOfOpE
+]
+
+{ #category : 'accIC' }
+SymMarkerFrame >> preAccIC [
+
+	super preAccIC.
+	subs do: [ :endFrm | endFrm preAccIC ]
+]
+
+{ #category : 'posIC' }
+SymMarkerFrame >> prePosIC [
+
+	super prePosIC.
+	subs do: [ :endFrm | endFrm prePosIC ]
 ]
 
 { #category : 'accessing' }
 SymMarkerFrame >> rOmO [
 
-	^ rOmO
+	^ rOfO
 ]
 
 { #category : 'removing' }
@@ -293,15 +287,13 @@ SymMarkerFrame >> removeEndFrm: endFrm [
 { #category : 'accessing' }
 SymMarkerFrame >> rpmp [
 
-	^ rpmp
+	^ rFfF
 ]
 
 { #category : 'accessing' }
 SymMarkerFrame >> rpmp: col [
 
-	1 to: 3 do: [ :i | (rpmp at: i) value: (col at: i) asSymbolic ].
-	rpmp := rpmp simplified.
-	rFfF := rpmp
+	self rFfF: col
 ]
 
 { #category : 'accessing' }
@@ -331,14 +323,15 @@ SymMarkerFrame >> setqsulam: col [
 { #category : 'accessing' }
 SymMarkerFrame >> thepm [
 
-	^ thepm
+	^ theFf
 ]
 
 { #category : 'accessing' }
 SymMarkerFrame >> thepm: bryantAngles [
 
-	1 to: 3 do: [ :i | (thepm at: i) value: (bryantAngles at: i) ].
-	thepm := thepm simplified.
-	aApm := thepm aA.
+	| aApm |
+	1 to: 3 do: [ :i | (theFf at: i) rhs: (bryantAngles at: i) ].
+	theFf := theFf simplified.
+	aApm := theFf aA.
 	aAFf := aApm
 ]

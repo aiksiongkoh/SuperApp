@@ -1,39 +1,12 @@
-"
-themet is EulerAngles for Marker to EndFrame as functions of time.
-Rotation order of axes is stored in RotOrder in EulerAngles.
-"
 Class {
-	#name : 'SymEndFramet',
-	#superclass : 'SymEndFrame',
-	#instVars : [
-		'pthemept'
-	],
+	#name : 'SymAssemblyEndFramet',
+	#superclass : 'SymAssemblyEndFrame',
 	#category : 'StCAD-Basic',
 	#package : 'StCAD-Basic'
 }
 
-{ #category : 'calc' }
-SymEndFramet >> calcPostDynCorrectorIteration [
-
-
-]
-
-{ #category : 'calc' }
-SymEndFramet >> evalAme [
-	"Do nothing for Symbolic item"
-
-	
-]
-
-{ #category : 'calc' }
-SymEndFramet >> evalrmem [
-	"Do nothing for Symbolic item"
-
-	
-]
-
 { #category : 'accessing' }
-SymEndFramet >> initVariables [
+SymAssemblyEndFramet >> initVariables [
 
 	| t block selffullName |
 	t := self time.
@@ -52,8 +25,8 @@ SymEndFramet >> initVariables [
 	theFf do: block
 ]
 
-{ #category : 'calc' }
-SymEndFramet >> initialize [
+{ #category : 'initialization' }
+SymAssemblyEndFramet >> initialize [
 
 	| rmemt1 rmemt2 rmemt3 rmem themet1x themet2y themet3z theme aAme |
 	super initialize.
@@ -72,32 +45,13 @@ SymEndFramet >> initialize [
 ]
 
 { #category : 'accessing' }
-SymEndFramet >> omemem [
+SymAssemblyEndFramet >> rOeO [
 
-	^ pthemept omeFfF
+	^ rOfO
 ]
 
 { #category : 'accessing' }
-SymEndFramet >> phiThePsiBlks: blks [
-
-	self theme: blks
-]
-
-{ #category : 'accessing' }
-SymEndFramet >> pthemept [
-
-	^ pthemept
-]
-
-{ #category : 'accessing' }
-SymEndFramet >> rmemBlks: blks [
-
-	1 to: 3 do: [ :i | (rFfF at: i) rhs: (blks at: i) ].
-	rFfF := rFfF simplified
-]
-
-{ #category : 'accessing' }
-SymEndFramet >> theta3z: sym [
+SymAssemblyEndFramet >> theta3z: sym [
 
 	(theFf at: 3) rhs: sym
 ]

@@ -237,36 +237,40 @@ StMProduct >> cosSq [
 ]
 
 { #category : 'evaluating' }
-StMProduct >> differentiateWRT: variable [
+StMProduct >> differentiateWRT: var [
 	"Apply chain rule of differentiation."
 
 	"(xyz)' := x'yz + xy'z + xyz'."
 
 	"(a/b)' = a'/b - a*b'/b*b"
 
-	| derivatives derivativeTerms derivative newTermFunctions newTerm block a b tempTerms ap bp apOverb abp bb abpOverbb |
-	block := [ :trms |
-	         derivatives := trms collect: [ :term | term differentiateWRT: variable ].
-	         derivativeTerms := OrderedCollection new.
-	         1 to: trms size do: [ :i |
-		         derivative := derivatives at: i.
-		         newTermFunctions := trms copy.
-		         newTermFunctions at: i put: derivative.
-		         newTerm := StMProduct new.
-		         newTerm addTerms: newTermFunctions.
-		         derivativeTerms add: newTerm simplified ].
-	         (StMSum terms: derivativeTerms) simplified ].
-	a := (StMProduct coeff: coeff terms: terms) simplified.
-	b := (StMProduct terms: inverseTerms) simplified.
-	tempTerms := OrderedCollection with: (StMConstant with: coeff).
-	tempTerms addAll: terms.
-	ap := block value: tempTerms.
-	bp := block value: inverseTerms.
-	apOverb := (ap / b) simplified.
-	abp := (a * bp) simplified.
-	bb := b raisedTo: 2.
-	abpOverbb := (abp / bb) simplified.
-	^ (apOverb - abpOverbb) simplified
+	^ var isSequenceable
+		  ifTrue: [ var collect: [ :vari | self differentiateWRT: vari ] ]
+		  ifFalse: [
+				  | derivatives derivativeTerms derivative newTermFunctions newTerm block a b tempTerms ap bp apOverb abp bb abpOverbb |
+				  block := [ :trms |
+					           derivatives := trms collect: [ :term |
+						                          term differentiateWRT: var ].
+					           derivativeTerms := OrderedCollection new.
+					           1 to: trms size do: [ :i |
+							           derivative := derivatives at: i.
+							           newTermFunctions := trms copy.
+							           newTermFunctions at: i put: derivative.
+							           newTerm := StMProduct new.
+							           newTerm addTerms: newTermFunctions.
+							           derivativeTerms add: newTerm simplified ].
+					           (StMSum terms: derivativeTerms) simplified ].
+				  a := (StMProduct coeff: coeff terms: terms) simplified.
+				  b := (StMProduct terms: inverseTerms) simplified.
+				  tempTerms := OrderedCollection with: (StMConstant with: coeff).
+				  tempTerms addAll: terms.
+				  ap := block value: tempTerms.
+				  bp := block value: inverseTerms.
+				  apOverb := (ap / b) simplified.
+				  abp := (a * bp) simplified.
+				  bb := b raisedTo: 2.
+				  abpOverbb := (abp / bb) simplified.
+				  (apOverb - abpOverbb) simplified ]
 ]
 
 { #category : 'evaluating' }
@@ -366,6 +370,12 @@ StMProduct >> initialize [
 
 	super initialize.
 	coeff := 1.0
+]
+
+{ #category : 'testing' }
+StMProduct >> isNegative [
+
+	^ coeff negative
 ]
 
 { #category : 'testing' }
@@ -557,14 +567,14 @@ StMProduct >> simplifyNegative [
 		term isNegative
 			ifTrue: [
 				posSign := posSign not.
-				newTerms add: term x ]
+				newTerms add: term negated ]
 			ifFalse: [ newTerms add: term ] ].
 	inverseTerms do: [ :trm |
 		term := trm simplifyNegative.
 		term isNegative
 			ifTrue: [
 				posSign := posSign not.
-				newInverseTerms add: term x ]
+				newInverseTerms add: term negated ]
 			ifFalse: [ newInverseTerms add: term ] ].
 	answer := self class terms: newTerms inverseTerms: newInverseTerms.
 	^ posSign
@@ -678,69 +688,81 @@ StMProduct >> simplifyUntil: set [
 	^ (set includes: self)
 		  ifTrue: [ self ]
 		  ifFalse: [
-			  tmpCoeff := coeff.
-			  tmpTrms := terms copy.
-			  tmpInvTrms := inverseTerms copy.
-			  block := [ :term | term simplifyUntil: set ].
-			  tmpTrms := tmpTrms collect: block.
-			  tmpInvTrms := tmpInvTrms collect: block.
-			  block := [ :term |
-			           term isNegative
-				           ifTrue: [
-					           tmpCoeff := tmpCoeff negated.
-					           term x ]
-				           ifFalse: [ term ] ].
-			  tmpTrms := tmpTrms collect: block.
-			  tmpInvTrms := tmpInvTrms collect: block.
-			  tmpTrms asArray do: [ :term |
-				  term isReciprocal ifTrue: [
-					  tmpTrms remove: term.
-					  tmpInvTrms add: term x ] ].
-			  tmpInvTrms asArray do: [ :term |
-				  term isReciprocal ifTrue: [
-					  tmpInvTrms remove: term.
-					  tmpTrms add: term x ] ].
-			  tmpTrms asArray do: [ :term |
-				  term isConstant ifTrue: [
-					  tmpCoeff := tmpCoeff * term value.
-					  tmpTrms remove: term ] ].
-			  tmpInvTrms asArray do: [ :term |
-				  term isConstant ifTrue: [
-					  tmpCoeff := tmpCoeff / term value.
-					  tmpInvTrms remove: term ] ].
-			  tmpCoeff isZero ifTrue: [ ^ StMConstant with: 0.0 ].
-			  tmpTrms asArray do: [ :term |
-				  (tmpInvTrms includes: term) ifTrue: [ "Cancellation"
-					  tmpTrms remove: term.
-					  tmpInvTrms remove: term ] ].
-			  bagTerms := tmpTrms asBag.
-			  bagInverseTerms := tmpInvTrms asBag.
-			  bagTerms sortedCounts.
-			  bagInverseTerms sortedCounts.
-			  newTerms := OrderedCollection new.
-			  newInverseTerms := OrderedCollection new.
-			  bagTerms keysAndValuesDo: [ :k :v |
-				  v = 1
-					  ifTrue: [ newTerms add: k ]
-					  ifFalse: [ newTerms add: ((StMPower with: k raisedTo: v) simplifyUntil: set) ] ].
-			  bagInverseTerms keysAndValuesDo: [ :k :v |
-				  v = 1
-					  ifTrue: [ newInverseTerms add: k ]
-					  ifFalse: [ newInverseTerms add: ((StMPower with: k raisedTo: v) simplifyUntil: set) ] ].
-			  newSize := newTerms size.
-			  newInvSize := newInverseTerms size.
-			  newSize == 0
-				  ifTrue: [
-					  newInvSize == 0
-						  ifTrue: [ StMConstant with: tmpCoeff ]
-						  ifFalse: [
-							  newInvSize == 1
-								  ifTrue: [ StMReciprocal with: (newInverseTerms at: 1) ]
-								  ifFalse: [ StMProduct coeff: tmpCoeff terms: newTerms inverseTerms: newInverseTerms ] ] ]
-				  ifFalse: [
-					  (newSize == 1 and: [ newInvSize == 0 and: [ tmpCoeff = 1.0 ] ])
-						  ifTrue: [ newTerms first ]
-						  ifFalse: [ StMProduct coeff: tmpCoeff terms: newTerms inverseTerms: newInverseTerms ] ] ]
+				  tmpCoeff := coeff.
+				  tmpTrms := terms copy.
+				  tmpInvTrms := inverseTerms copy.
+				  block := [ :term | term simplifyUntil: set ].
+				  tmpTrms := tmpTrms collect: block.
+				  tmpInvTrms := tmpInvTrms collect: block.
+				  block := [ :term |
+					           term isNegative
+						           ifTrue: [
+								           tmpCoeff := tmpCoeff negated.
+								           term negated ]
+						           ifFalse: [ term ] ].
+				  tmpTrms := tmpTrms collect: block.
+				  tmpInvTrms := tmpInvTrms collect: block.
+				  tmpTrms asArray do: [ :term |
+						  term isReciprocal ifTrue: [
+								  tmpTrms remove: term.
+								  tmpInvTrms add: term x ] ].
+				  tmpInvTrms asArray do: [ :term |
+						  term isReciprocal ifTrue: [
+								  tmpInvTrms remove: term.
+								  tmpTrms add: term x ] ].
+				  tmpTrms asArray do: [ :term |
+						  term isConstant ifTrue: [
+								  tmpCoeff := tmpCoeff * term value.
+								  tmpTrms remove: term ] ].
+				  tmpInvTrms asArray do: [ :term |
+						  term isConstant ifTrue: [
+								  tmpCoeff := tmpCoeff / term value.
+								  tmpInvTrms remove: term ] ].
+				  tmpCoeff isZero ifTrue: [ ^ StMConstant with: 0.0 ].
+				  tmpTrms asArray do: [ :term |
+						  (tmpInvTrms includes: term) ifTrue: [ "Cancellation"
+								  tmpTrms remove: term.
+								  tmpInvTrms remove: term ] ].
+				  bagTerms := tmpTrms asBag.
+				  bagInverseTerms := tmpInvTrms asBag.
+				  bagTerms sortedCounts.
+				  bagInverseTerms sortedCounts.
+				  newTerms := OrderedCollection new.
+				  newInverseTerms := OrderedCollection new.
+				  bagTerms keysAndValuesDo: [ :k :v |
+						  v = 1
+							  ifTrue: [ newTerms add: k ]
+							  ifFalse: [
+							  newTerms add:
+								  ((StMPower with: k raisedTo: v) simplifyUntil: set) ] ].
+				  bagInverseTerms keysAndValuesDo: [ :k :v |
+						  v = 1
+							  ifTrue: [ newInverseTerms add: k ]
+							  ifFalse: [
+									  newInverseTerms add:
+										  ((StMPower with: k raisedTo: v) simplifyUntil: set) ] ].
+				  newSize := newTerms size.
+				  newInvSize := newInverseTerms size.
+				  newSize == 0
+					  ifTrue: [
+							  newInvSize == 0
+								  ifTrue: [ StMConstant with: tmpCoeff ]
+								  ifFalse: [
+										  newInvSize == 1
+											  ifTrue: [ StMReciprocal with: (newInverseTerms at: 1) ]
+											  ifFalse: [
+													  StMProduct
+														  coeff: tmpCoeff
+														  terms: newTerms
+														  inverseTerms: newInverseTerms ] ] ]
+					  ifFalse: [
+							  (newSize == 1 and: [ newInvSize == 0 and: [ tmpCoeff = 1.0 ] ])
+								  ifTrue: [ newTerms first ]
+								  ifFalse: [
+										  StMProduct
+											  coeff: tmpCoeff
+											  terms: newTerms
+											  inverseTerms: newInverseTerms ] ] ]
 ]
 
 { #category : 'evaluating' }

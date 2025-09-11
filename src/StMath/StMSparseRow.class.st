@@ -172,6 +172,20 @@ StMSparseRow >> timesFullColumn: aFullColumn [
 ]
 
 { #category : 'basic ops *' }
+StMSparseRow >> timesFullColumn: aFullColumn times: num [
+
+	| answer key |
+	answer := 0.0.
+	1 to: self basicSize do: [ :index |
+			key := self basicAt: index.
+			key == nil ifFalse: [
+					answer := answer
+					          +
+					          ((valueArray at: index) * (aFullColumn at: key) * num) ] ].
+	^ answer
+]
+
+{ #category : 'basic ops *' }
 StMSparseRow >> timesFullMatrix: aFullMatrix [ 
 	"Similar to inner dot product."
 

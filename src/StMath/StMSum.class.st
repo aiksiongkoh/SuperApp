@@ -142,7 +142,7 @@ StMSum >> addInverseTerm: term [
 			self addInverseTerms: term terms ]
 		ifFalse: [
 			term isNegative
-				ifTrue: [ self addTerm: term x ]
+				ifTrue: [ self addTerm: term negated ]
 				ifFalse: [ term isZero ifFalse: [ inverseTerms add: term copy ] ] ].
 	^ term
 ]
@@ -157,7 +157,7 @@ StMSum >> addTerm: term [
 			self addInverseTerms: term inverseTerms ]
 		ifFalse: [
 			term isNegative
-				ifTrue: [ self addInverseTerm: term x ]
+				ifTrue: [ self addInverseTerm: term negated ]
 				ifFalse: [ term isZero ifFalse: [ terms add: term copy ] ] ].
 	^ term
 ]
@@ -242,12 +242,18 @@ StMSum >> const: anObject [
 ]
 
 { #category : 'evaluating' }
-StMSum >> differentiateWRT: variable [
+StMSum >> differentiateWRT: var [
 
-	| termDerivatives invTermDerivatives |
-	termDerivatives := terms collect: [ :term | term differentiateWRT: variable ].
-	invTermDerivatives := inverseTerms collect: [ :term | term differentiateWRT: variable ].
-	^ (StMSum terms: termDerivatives inverseTerms: invTermDerivatives) simplified
+	^ var isSequenceable
+		  ifTrue: [ var collect: [ :vari | self differentiateWRT: vari ] ]
+		  ifFalse: [
+				  | termDerivatives invTermDerivatives |
+				  termDerivatives := terms collect: [ :term |
+					                     term differentiateWRT: var ].
+				  invTermDerivatives := inverseTerms collect: [ :term |
+					                        term differentiateWRT: var ].
+				  (StMSum terms: termDerivatives inverseTerms: invTermDerivatives)
+					  simplified ]
 ]
 
 { #category : 'evaluating' }
@@ -349,7 +355,7 @@ StMSum >> printOn2: aStream [
 	aStream nextPut: $)
 ]
 
-{ #category : 'StCAD-UI' }
+{ #category : 'printing' }
 StMSum >> printOn: aStream [
 
 	aStream
@@ -411,12 +417,12 @@ StMSum >> simplifyNegative [
 	terms do: [ :trm |
 		term := trm simplifyNegative.
 		term isNegative
-			ifTrue: [ newInverseTerms add: term x ]
+			ifTrue: [ newInverseTerms add: term negated ]
 			ifFalse: [ newTerms add: term ] ].
 	inverseTerms do: [ :trm |
 		term := trm simplifyNegative.
 		term isNegative
-			ifTrue: [ newTerms add: term x ]
+			ifTrue: [ newTerms add: term negated ]
 			ifFalse: [ newInverseTerms add: term ] ].
 	^ self class terms: newTerms inverseTerms: newInverseTerms
 ]
@@ -539,11 +545,11 @@ StMSum >> simplifyUntil: set [
 			  tmpTrms asArray do: [ :term |
 				  term isNegative ifTrue: [
 					  tmpTrms remove: term.
-					  tmpInvTrms add: term x ] ].
+					  tmpInvTrms add: term negated ] ].
 			  tmpInvTrms asArray do: [ :term |
 				  term isNegative ifTrue: [
 					  tmpInvTrms remove: term.
-					  tmpTrms add: term x ] ].
+					  tmpTrms add: term negated ] ].
 			  tmpTrms asArray do: [ :term |
 				  term isConstant ifTrue: [
 					  tmpConst := tmpConst + term value.

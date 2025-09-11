@@ -7,22 +7,15 @@ aAOa(the1x(t), the2y(t), the3z(t)) using Bryant angles
 "
 Class {
 	#name : 'SymAssemblyFrame',
-	#superclass : 'SymCartesianFrame',
+	#superclass : 'SymIndependentFrame',
 	#instVars : [
 		'time',
-		'theOa',
 		'joints',
 		'motions',
 		'fields',
 		'hasChanged',
 		'solver',
 		'units',
-		'aAOa',
-		'omeOaO',
-		'rOaO',
-		'vOaO',
-		'pAOapt',
-		'prOaOpt',
 		'forTors',
 		'setsOfRedundantConstraints'
 	],
@@ -33,13 +26,25 @@ Class {
 { #category : 'calc' }
 SymAssemblyFrame >> aAOa [
 
-	^ aAOa
+	^ aAOf
 ]
 
 { #category : 'accessing' }
 SymAssemblyFrame >> aAOp [
 
-	^ aAOa
+	^ aAOf
+]
+
+{ #category : 'accessing' }
+SymAssemblyFrame >> aAddotOa [
+
+	^ ppAOfptpt
+]
+
+{ #category : 'accessing' }
+SymAssemblyFrame >> aAdotOa [
+
+	^ pAOfpt
 ]
 
 { #category : 'adding' }
@@ -113,25 +118,11 @@ SymAssemblyFrame >> allRedundantConstraints [
 	^ allRedundantConstraints
 ]
 
-{ #category : 'as yet unclassified' }
-SymAssemblyFrame >> calcAllKE [
-	"Do nothing."
-
-	
-]
-
 { #category : 'DYN' }
 SymAssemblyFrame >> calcCharacteristicDimensions [
 	"Avoid for now."
 
 	
-]
-
-{ #category : 'as yet unclassified' }
-SymAssemblyFrame >> calcKine [
-
-	rOfO := rOaO.
-	aAOf := aAOa
 ]
 
 { #category : 'accessing' }
@@ -184,25 +175,25 @@ SymAssemblyFrame >> initVariables [
 
 	| t block selffullName |
 	t := self time.
-	rOaO do: [ :r | r x: t ].
-	theOa do: [ :the | the x: t ].
+	rFfF do: [ :r | r x: t ].
+	theFf do: [ :the | the x: t ].
 	selffullName := self fullName.
 	block := [ :var |
-	         | fullName |
-	         fullName := String new writeStream
-		                     nextPutAll: selffullName;
-		                     nextPut: $/;
-		                     nextPutAll: var name;
-		                     contents.
-	         var name: fullName asSymbol ].
-	rOaO do: block.
-	theOa do: block
+		         | fullName |
+		         fullName := String new writeStream
+			                     nextPutAll: selffullName;
+			                     nextPut: $/;
+			                     nextPutAll: var name;
+			                     contents.
+		         var name: fullName asSymbol ].
+	rFfF do: block.
+	theFf do: block
 ]
 
 { #category : 'initialization' }
 SymAssemblyFrame >> initialize [
 
-	| rOaO1 rOaO2 rOaO3 theOa1x theOa2y theOa3z |
+	| rOaO rOaO1 rOaO2 rOaO3 theOa theOa1x theOa2y theOa3z aAOa |
 	super initialize.
 	units := Units new.
 	time := StMIndependentVariable name: #t.
@@ -210,10 +201,14 @@ SymAssemblyFrame >> initialize [
 	rOaO2 := StMVariableParameter name: #rOaO2.
 	rOaO3 := StMVariableParameter name: #rOaO3.
 	rOaO := SymFullColumn with: rOaO1 with: rOaO2 with: rOaO3.
+	rFfF := rOaO.
 	theOa1x := StMVariableParameter name: #theOa1x.
 	theOa2y := StMVariableParameter name: #theOa2y.
 	theOa3z := StMVariableParameter name: #theOa3z.
 	theOa := SymEulerAngles with: theOa1x with: theOa2y with: theOa3z.
+	theFf := theOa.
+	aAOa := theOa aA.
+	aAFf := aAOa.
 	joints := OrderedCollection new.
 	motions := OrderedCollection new.
 	forTors := OrderedCollection new.
@@ -224,25 +219,19 @@ SymAssemblyFrame >> initialize [
 ]
 
 { #category : 'initialization' }
+SymAssemblyFrame >> initializeGlobally [
+
+	self allDo: [ :item | item initializeGlobally ].
+	solver initializeGlobally
+]
+
+{ #category : 'initialization' }
 SymAssemblyFrame >> initializeLocally [
 
 	hasChanged := false.
 	self mbdTimeValue: solver startTime.
-	self partsJointsMotionsForcesTorquesDo: [ :item |
-		item initializeLocally ].
+	self allDo: [ :item | item initializeLocally ].
 	solver initializeLocally
-]
-
-{ #category : 'accessing' }
-SymAssemblyFrame >> iqE [
-
-	^ nil
-]
-
-{ #category : 'accessing' }
-SymAssemblyFrame >> iqX [
-
-	^ nil
 ]
 
 { #category : 'accessing' }
@@ -312,16 +301,23 @@ SymAssemblyFrame >> needToRedoPosIC [
 	^ true
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'accessing' }
 SymAssemblyFrame >> omeOaO [
 
-	^ omeOaO
+	^ self omeOfO
 ]
 
 { #category : 'accessing' }
 SymAssemblyFrame >> omeOpO [
 
-	^ omeOaO
+	self halt.
+	^ self omeOfO
+]
+
+{ #category : 'accessing' }
+SymAssemblyFrame >> omedotOaO [
+
+	^ self omedotOfO
 ]
 
 { #category : 'dynamic' }
@@ -334,7 +330,7 @@ SymAssemblyFrame >> outputFor: aString [
 { #category : 'accessing' }
 SymAssemblyFrame >> pAOapt [
 
-	^ pAOapt
+	^ pAOfpt
 ]
 
 { #category : 'accessing' }
@@ -344,9 +340,9 @@ SymAssemblyFrame >> pAOppE [
 ]
 
 { #category : 'accessing' }
-SymAssemblyFrame >> pAOppt [
+SymAssemblyFrame >> part [
 
-	^ pAOapt
+	^ nil
 ]
 
 { #category : 'accessing' }
@@ -372,7 +368,7 @@ SymAssemblyFrame >> partsJointsMotionsForcesTorquesDo: aBlock [
 	parts do: aBlock.
 	joints do: aBlock.
 	motions do: aBlock.
-	forcesTorques do: aBlock
+	forTors do: aBlock
 ]
 
 { #category : 'enumerating' }
@@ -383,7 +379,7 @@ SymAssemblyFrame >> partsJointsMotionsForcesTorquesFieldsDo: aBlock [
 	parts do: aBlock.
 	joints do: aBlock.
 	motions do: aBlock.
-	forcesTorques do: aBlock.
+	forTors do: aBlock.
 	fields do: aBlock
 ]
 
@@ -400,6 +396,7 @@ SymAssemblyFrame >> perpendicularConstraints2 [
 SymAssemblyFrame >> postInput [
 
 	self mbdTimeValue: solver startTime.
+	super postInput.
 	self allDo: [ :item | item postInput ]
 ]
 
@@ -424,13 +421,8 @@ SymAssemblyFrame >> preMbDrun [
 { #category : 'posIC' }
 SymAssemblyFrame >> prePosIC [
 
+	super prePosIC.
 	self allDo: [ :item | item prePosIC ]
-]
-
-{ #category : 'accessing' }
-SymAssemblyFrame >> qE [
-
-	^ nil
 ]
 
 { #category : 'accessing' }
@@ -441,12 +433,6 @@ SymAssemblyFrame >> qEddot [
 
 { #category : 'accessing' }
 SymAssemblyFrame >> qEdot [
-
-	^ nil
-]
-
-{ #category : 'accessing' }
-SymAssemblyFrame >> qX [
 
 	^ nil
 ]
@@ -466,21 +452,23 @@ SymAssemblyFrame >> qXdot [
 { #category : 'accessing' }
 SymAssemblyFrame >> rOaO [
 
-	^ rOaO
+	^ rOfO
 ]
 
 { #category : 'accessing' }
 SymAssemblyFrame >> rOaO: col [
 
+	| rOaO |
+	rOaO := rFfF.
 	1 to: 3 do: [ :i | (rOaO at: i) rhs: (col at: i) asSymbolic ].
-	rOaO := rOaO simplified.
-	rFfF := rOaO
+	rFfF := rOaO simplified
 ]
 
 { #category : 'accessing' }
 SymAssemblyFrame >> rOpO [
 
-	^ rOaO
+	self halt.
+	^ rOfO
 ]
 
 { #category : 'run' }
@@ -513,6 +501,10 @@ SymAssemblyFrame >> runDYNAMIC [
 
 	self preMbDrun.
 	self calcCharacteristicDimensions.
+	[
+		self initializeLocally.
+		self initializeGlobally.
+		self hasChanged ] whileTrue.
 	self postInput.
 	self outputFor: #INPUT.
 	self runAllIC.
@@ -554,15 +546,17 @@ SymAssemblyFrame >> solver: anObject [
 { #category : 'accessing' }
 SymAssemblyFrame >> theOa [
 
-	^ theOa
+	^ theFf
 ]
 
 { #category : 'accessing' }
 SymAssemblyFrame >> theOa: bryantAngles [
 
-	1 to: 3 do: [ :i | (theOa at: i) rhs: (bryantAngles at: i) asSymbolic ].
-	theOa := theOa simplified.
-	aAOa := theOa aA.
+	| aAOa |
+	1 to: 3 do: [ :i |
+	(theFf at: i) rhs: (bryantAngles at: i) asSymbolic ].
+	theFf := theFf simplified.
+	aAOa := theFf aA.
 	aAFf := aAOa
 ]
 
@@ -587,17 +581,17 @@ SymAssemblyFrame >> units [
 { #category : 'accessing' }
 SymAssemblyFrame >> vOaO [
 
-	^ vOaO
-]
-
-{ #category : 'accessing' }
-SymAssemblyFrame >> vOpO [
-
-	^ vOaO
+	^ prOfOpt
 ]
 
 { #category : 'accessing' }
 SymAssemblyFrame >> variables [
 
 	^ OrderedCollection new
+]
+
+{ #category : 'accessing' }
+SymAssemblyFrame >> vdotOaO [
+
+	^ pprOfOptpt
 ]

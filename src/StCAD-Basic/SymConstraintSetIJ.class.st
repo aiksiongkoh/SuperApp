@@ -27,6 +27,18 @@ SymConstraintSetIJ >> fillAccICIterJacob: mat [
 	constraints do: [ :con | con fillAccICIterJacob: mat ]
 ]
 
+{ #category : 'accIC' }
+SymConstraintSetIJ >> fillAccICVdotIterError: col [
+
+	constraints do: [ :con | con fillAccICVdotIterError: col ]
+]
+
+{ #category : 'as yet unclassified' }
+SymConstraintSetIJ >> fillAccICVdotIterJacob: mat [
+
+	constraints do: [ :con | con fillAccICVdotIterJacob: mat ]
+]
+
 { #category : 'accessing' }
 SymConstraintSetIJ >> fillConstraints: collection [
 
@@ -108,6 +120,18 @@ SymConstraintSetIJ >> initializeGlobally [
 SymConstraintSetIJ >> initializeLocally [
 
 	constraints do: [ :con | con initializeLocally ]
+]
+
+{ #category : 'posIC' }
+SymConstraintSetIJ >> postInput [
+
+	constraints do: [ :con | con postInput ]
+]
+
+{ #category : 'posIC' }
+SymConstraintSetIJ >> prePosIC [
+
+	constraints do: [ :con | con prePosIC ]
 ]
 
 { #category : 'accessing' }

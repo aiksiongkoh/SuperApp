@@ -7,8 +7,7 @@ Class {
 		'aB',
 		'aC',
 		'pApE',
-		'ppApEpE',
-		'answer'
+		'ppApEpE'
 	],
 	#category : 'StCAD-Basic',
 	#package : 'StCAD-Basic'
@@ -60,7 +59,9 @@ SymEulerParameters class >> withAxis: axis theta: theta [
 
 { #category : 'accessing' }
 SymEulerParameters >> aA [
-	^aA
+	"Rotation matrix aAFf"
+
+	^ aA
 ]
 
 { #category : 'accessing' }
@@ -184,14 +185,17 @@ SymEulerParameters >> conditionSelf [
 { #category : 'calc' }
 SymEulerParameters >> differentiateWRT: var [
 
-	| answer |
-	answer := SymEulerParametersDot with: self.
-	1 to: 4 do: [ :i |
-		| angle angleVel |
-		angle := self at: i.
-		angleVel := angle differentiateWRT: var.
-		answer at: i put: angleVel ].
-	^ answer
+	^ var isSequenceable
+		  ifTrue: [ self halt ]
+		  ifFalse: [
+				  | answer |
+				  answer := SymEulerParametersDot with: self.
+				  1 to: 4 do: [ :i |
+						  | angle angleVel |
+						  angle := self at: i.
+						  angleVel := angle differentiateWRT: var.
+						  answer at: i put: angleVel ].
+				  answer ]
 ]
 
 { #category : 'as yet unclassified' }

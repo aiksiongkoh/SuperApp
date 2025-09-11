@@ -1,10 +1,20 @@
+"
+The states are generalized coordinates and generalized velocities
+qX = rapa
+qE = Euler Parameters ap
+vX = vapa = qXdot
+see subclass
+"
 Class {
 	#name : 'SymPartFrameXEV',
 	#superclass : 'SymPartFrame',
 	#instVars : [
 		'vX',
 		'vXdot',
-		'ivX'
+		'ppXpvX',
+		'ivX',
+		'wvX',
+		'mX'
 	],
 	#category : 'StCAD-Basic',
 	#package : 'StCAD-Basic'
@@ -19,7 +29,6 @@ SymPartFrameXEV >> initialize [
 	vX2 := UnknownDependentVariable name: #vX2.
 	vX3 := UnknownDependentVariable name: #vX3.
 	vX := SymFullColumn with: vX1 with: vX2 with: vX3.
-	vapa := vX.
 	vXdot := SymFullColumn with: 0.0 with: 0.0 with: 0.0
 ]
 
@@ -44,7 +53,7 @@ SymPartFrameXEV >> vX [
 { #category : 'accessing' }
 SymPartFrameXEV >> vX: col [
 
-	1 to: 3 do: [ :i | (vX at: i) value: (col at: i) ]
+	1 to: 3 do: [ :i | (vX at: i) rhs: (col at: i) ]
 ]
 
 { #category : 'accessing' }
@@ -61,6 +70,29 @@ SymPartFrameXEV >> vXdot: col [
 
 { #category : 'accessing' }
 SymPartFrameXEV >> vapa [
+
+	^ vX
+]
+
+{ #category : 'as yet unclassified' }
+SymPartFrameXEV >> vdotOpO [
+
+	| vdotOpO |
+	vdotOpO := self vdotOaO + (self aAddotOa timesFullColumn: self rapa)
+	           + (self aAdotOa timesFullColumn: self vapa)
+	           + (self aAdotOa timesFullColumn: self vapa)
+	           + (self aAOa timesFullColumn: self vdotapa).
+	^ vdotOpO
+]
+
+{ #category : 'accessing' }
+SymPartFrameXEV >> vdotapa [
+
+	^ vXdot
+]
+
+{ #category : 'as yet unclassified' }
+SymPartFrameXEV >> vpos [
 
 	^ vX
 ]

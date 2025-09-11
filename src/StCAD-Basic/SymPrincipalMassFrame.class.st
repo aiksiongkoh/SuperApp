@@ -1,6 +1,6 @@
 Class {
 	#name : 'SymPrincipalMassFrame',
-	#superclass : 'SymCartesianFrame',
+	#superclass : 'SymDependentFrame',
 	#instVars : [
 		'mass',
 		'aJpp',

@@ -161,6 +161,25 @@ StMFullVector >> cross: aVector [
 	^answer
 ]
 
+{ #category : 'basic ops' }
+StMFullVector >> differentiateWRT: aVar [
+
+	| nrow answer varRow derivRow funci |
+	^ aVar isSequenceable
+		  ifTrue: [
+				  nrow := self size.
+				  answer := StMFullMatrix new: nrow.
+				  varRow := aVar asFullRow.
+				  1 to: nrow do: [ :i |
+						  funci := self at: i.
+						  [ funci isSequenceable not ] assert.
+						  derivRow := varRow collect: [ :varj |
+							              funci differentiateWRT: varj ].
+						  answer at: i put: derivRow ].
+				  answer ]
+		  ifFalse: [ self collect: [ :item | item differentiateWRT: aVar ] ]
+]
+
 { #category : 'ops on self' }
 StMFullVector >> equalFullVector: aFullVector [ 
 	1 to: self size do: [:i | self at: i put: (aFullVector at: i)]
