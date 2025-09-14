@@ -213,6 +213,144 @@ StMSum >> cadStringOn: aStream [
 			aStream nextPutAll: ')' ]
 ]
 
+{ #category : 'as yet unclassified' }
+StMSum >> collectFunctionTerms [
+
+	| tmpConst tmpTrms tmpInvTrms bagTerms bagInverseTerms newTerms newInverseTerms newSize newInvSize |
+	tmpConst := const copy.
+	tmpTrms := terms copy.
+	tmpInvTrms := inverseTerms copy.
+	bagTerms := tmpTrms asBag.
+	bagInverseTerms := tmpInvTrms asBag.
+	bagTerms sortedCounts.
+	bagInverseTerms sortedCounts.
+	newTerms := OrderedCollection new.
+	newInverseTerms := OrderedCollection new.
+	bagTerms keysAndValuesDo: [ :k :v |
+			v = 1
+				ifTrue: [ newTerms add: k ]
+				ifFalse: [ newTerms add: (StMProduct with: k times: v) ] ].
+	bagInverseTerms keysAndValuesDo: [ :k :v |
+			v = 1
+				ifTrue: [ newInverseTerms add: k ]
+				ifFalse: [ newInverseTerms add: (StMProduct with: k times: v) ] ].
+	newSize := newTerms size.
+	newInvSize := newInverseTerms size.
+	^ newSize == 0
+		  ifTrue: [
+				  newInvSize == 0
+					  ifTrue: [ StMConstant with: tmpConst ]
+					  ifFalse: [
+							  newInvSize == 1
+								  ifTrue: [ StMNegative with: newInverseTerms first ]
+								  ifFalse: [
+										  self class
+											  const: tmpConst
+											  terms: newTerms
+											  inverseTerms: newInverseTerms ] ] ]
+		  ifFalse: [
+				  (newSize == 1 and: [ newInvSize == 0 and: [ tmpConst = 0.0 ] ])
+					  ifTrue: [ newTerms first ]
+					  ifFalse: [
+							  self class
+								  const: tmpConst
+								  terms: newTerms
+								  inverseTerms: newInverseTerms ] ]
+]
+
+{ #category : 'as yet unclassified' }
+StMSum >> collectProductTerms [
+
+	| block plusDict minusDict tmpConst plusProductTrms plusFunctionTrms minusProductTrms minusFunctionTrms coeff invTermsWithEqualFactors invtrm plusSize minusSize plusTerms minusTerms |
+	tmpConst := const copy.
+	plusProductTrms := terms collect: [ :trm | trm isProduct ].
+	plusFunctionTrms := terms collect: [ :trm | trm isProduct not ].
+	minusProductTrms := inverseTerms collect: [ :trm | trm isProduct ].
+	minusFunctionTrms := inverseTerms collect: [ :trm |
+		                     trm isProduct not ].
+	block := [ :productTrms |
+		         | dict |
+		         dict := Dictionary new.
+		         productTrms do: [ :trm |
+				         dict keys
+					         detect: [ :k | trm hasEqualFactors: k ]
+					         ifFound: [ :k | (dict at: k) add: trm ]
+					         ifNone: [
+					         dict at: trm put: (OrderedCollection with: trm) ] ].
+		         dict ].
+	plusDict := block value: plusProductTrms.
+	minusDict := block value: minusProductTrms.
+
+	block := [ :dict |
+		         | productTrms |
+		         productTrms := OrderedCollection new.
+		         dict valuesDo: [ :trms |
+				         trms size > 1 ifTrue: [
+						         coeff := 0.
+						         trms do: [ :trm | coeff := coeff + trm coeff ].
+						         trms first coeff: coeff ].
+				         productTrms add: trms first ].
+		         productTrms ].
+	plusProductTrms := block value: plusDict.
+	minusProductTrms := block value: minusDict.
+
+	plusProductTrms asArray do: [ :term |
+			term isProduct ifTrue: [
+					coeff := term coeff.
+					invTermsWithEqualFactors := OrderedCollection new.
+					minusProductTrms asArray do: [ :invTerm |
+							(term hasEqualFactors: invTerm) ifTrue: [
+									coeff := coeff - invTerm coeff.
+									invTermsWithEqualFactors add: invTerm ] ].
+					coeff > 0.0 ifTrue: [
+							term coeff: coeff.
+							invTermsWithEqualFactors do: [ :trm |
+								minusProductTrms remove: trm ] ].
+					coeff = 0.0 ifTrue: [ "Cancellation"
+							plusProductTrms remove: term.
+							minusProductTrms remove: term ].
+					coeff < 0.0 ifTrue: [
+							plusProductTrms remove: term.
+							invtrm := invTermsWithEqualFactors first.
+							invtrm coeff: coeff abs.
+							invTermsWithEqualFactors removeFirst.
+							invTermsWithEqualFactors do: [ :trm |
+								minusProductTrms remove: trm ] ] ] ].
+	plusTerms := plusFunctionTrms , plusProductTrms.
+	minusTerms := minusFunctionTrms , minusProductTrms.
+	plusSize := plusTerms size.
+	minusSize := minusTerms size.
+	^ plusSize == 0
+		  ifTrue: [
+				  minusSize == 0
+					  ifTrue: [ StMConstant with: tmpConst ]
+					  ifFalse: [
+							  minusSize == 1
+								  ifTrue: [ StMNegative with: (minusTerms at: 1) ]
+								  ifFalse: [
+								  StMSum
+									  const: tmpConst
+									  terms: plusTerms
+									  inverseTerms: minusTerms ] ] ]
+		  ifFalse: [
+				  (plusSize == 1 and: [ minusSize == 0 and: [ tmpConst = 0.0 ] ])
+					  ifTrue: [ plusTerms first ]
+					  ifFalse: [
+					  StMSum
+						  const: tmpConst
+						  terms: plusTerms
+						  inverseTerms: minusTerms ] ]
+]
+
+{ #category : 'as yet unclassified' }
+StMSum >> collectTerms [
+
+	| answer |
+	answer := self collectFunctionTerms.
+	answer := answer collectProductTerms.
+	^ answer
+]
+
 { #category : 'simplify' }
 StMSum >> collectTerms: newTerms inverseTerms: newInvTerms [
 
@@ -326,6 +464,17 @@ StMSum >> isZero [
 	^ const isZero and: [
 		  (terms allSatisfy: [ :term | term isZero ]) and: [
 			  inverseTerms allSatisfy: [ :term | term isZero ] ] ]
+]
+
+{ #category : 'ops' }
+StMSum >> negated [
+
+	| answer |
+	answer := self class
+		          const: self const negated
+		          terms: self inverseTerms
+		          inverseTerms: self terms.
+	^ answer simplified
 ]
 
 { #category : 'evaluating' }
@@ -532,64 +681,97 @@ StMSum >> simplifyTrig [
 { #category : 'evaluating' }
 StMSum >> simplifyUntil: set [
 
-	| newTerms newInverseTerms newSize newInvSize bagTerms bagInverseTerms tmpConst tmpTrms tmpInvTrms block |
+	| newTerms newInverseTerms newSize newInvSize bagTerms bagInverseTerms tmpConst tmpTrms tmpInvTrms block coeff invTermsWithEqualFactors invtrm |
 	^ (set includes: self)
 		  ifTrue: [ self ]
 		  ifFalse: [
-			  tmpConst := const copy.
-			  tmpTrms := terms copy.
-			  tmpInvTrms := inverseTerms copy.
-			  block := [ :term | term simplifyUntil: set ].
-			  tmpTrms := tmpTrms collect: block.
-			  tmpInvTrms := tmpInvTrms collect: block.
-			  tmpTrms asArray do: [ :term |
-				  term isNegative ifTrue: [
-					  tmpTrms remove: term.
-					  tmpInvTrms add: term negated ] ].
-			  tmpInvTrms asArray do: [ :term |
-				  term isNegative ifTrue: [
-					  tmpInvTrms remove: term.
-					  tmpTrms add: term negated ] ].
-			  tmpTrms asArray do: [ :term |
-				  term isConstant ifTrue: [
-					  tmpConst := tmpConst + term value.
-					  tmpTrms remove: term ] ].
-			  tmpInvTrms asArray do: [ :term |
-				  term isConstant ifTrue: [
-					  tmpConst := tmpConst - term value.
-					  tmpInvTrms remove: term ] ].
-			  tmpTrms asArray do: [ :term |
-				  (tmpInvTrms includes: term) ifTrue: [ "Cancellation"
-					  tmpTrms remove: term.
-					  tmpInvTrms remove: term ] ].
-			  bagTerms := tmpTrms asBag.
-			  bagInverseTerms := tmpInvTrms asBag.
-			  bagTerms sortedCounts.
-			  bagInverseTerms sortedCounts.
-			  newTerms := OrderedCollection new.
-			  newInverseTerms := OrderedCollection new.
-			  bagTerms keysAndValuesDo: [ :k :v |
-				  v = 1
-					  ifTrue: [ newTerms add: k ]
-					  ifFalse: [ newTerms add: ((StMProduct with: k times: v) simplifyUntil: set) ] ].
-			  bagInverseTerms keysAndValuesDo: [ :k :v |
-				  v = 1
-					  ifTrue: [ newInverseTerms add: k ]
-					  ifFalse: [ newInverseTerms add: ((StMProduct with: k times: v) simplifyUntil: set) ] ].
-			  newSize := newTerms size.
-			  newInvSize := newInverseTerms size.
-			  newSize == 0
-				  ifTrue: [
-					  newInvSize == 0
-						  ifTrue: [ StMConstant with: tmpConst ]
-						  ifFalse: [
-							  newInvSize == 1
-								  ifTrue: [ StMNegative with: (newInverseTerms at: 1) ]
-								  ifFalse: [ StMSum const: tmpConst terms: newTerms inverseTerms: newInverseTerms ] ] ]
-				  ifFalse: [
-					  (newSize == 1 and: [ newInvSize == 0 and: [ tmpConst = 0.0 ] ])
-						  ifTrue: [ newTerms first ]
-						  ifFalse: [ StMSum const: tmpConst terms: newTerms inverseTerms: newInverseTerms ] ] ]
+				  tmpConst := const copy.
+				  tmpTrms := terms copy.
+				  tmpInvTrms := inverseTerms copy.
+				  block := [ :term | term simplifyUntil: set ].
+				  tmpTrms := tmpTrms collect: block.
+				  tmpInvTrms := tmpInvTrms collect: block.
+				  tmpTrms asArray do: [ :term |
+						  term isNegative ifTrue: [
+								  tmpTrms remove: term.
+								  tmpInvTrms add: term negated ] ].
+				  tmpInvTrms asArray do: [ :term |
+						  term isNegative ifTrue: [
+								  tmpInvTrms remove: term.
+								  tmpTrms add: term negated ] ].
+				  tmpTrms asArray do: [ :term |
+						  term isConstant ifTrue: [
+								  tmpConst := tmpConst + term value.
+								  tmpTrms remove: term ] ].
+				  tmpInvTrms asArray do: [ :term |
+						  term isConstant ifTrue: [
+								  tmpConst := tmpConst - term value.
+								  tmpInvTrms remove: term ] ].
+				  tmpTrms asArray do: [ :term |
+						  (tmpInvTrms includes: term) ifTrue: [ "Cancellation"
+								  tmpTrms remove: term.
+								  tmpInvTrms remove: term ].
+						  term isProduct ifTrue: [
+								  coeff := term coeff.
+								  invTermsWithEqualFactors := OrderedCollection new.
+								  tmpInvTrms asArray do: [ :invTerm |
+										  (term hasEqualFactors: invTerm) ifTrue: [
+												  coeff := coeff - invTerm coeff.
+												  invTermsWithEqualFactors add: invTerm ] ].
+								  coeff > 0.0 ifTrue: [
+										  term coeff: coeff.
+										  invTermsWithEqualFactors do: [ :trm |
+											  tmpInvTrms remove: trm ] ].
+								  coeff = 0.0 ifTrue: [ "Cancellation"
+										  tmpTrms remove: term.
+										  tmpInvTrms remove: term ].
+								  coeff < 0.0 ifTrue: [
+										  tmpTrms remove: term.
+										  invtrm := invTermsWithEqualFactors first.
+										  invtrm coeff: coeff abs.
+										  invTermsWithEqualFactors removeFirst.
+										  invTermsWithEqualFactors do: [ :trm |
+											  tmpInvTrms remove: trm ] ] ] ].
+				  bagTerms := tmpTrms asBag.
+				  bagInverseTerms := tmpInvTrms asBag.
+				  bagTerms sortedCounts.
+				  bagInverseTerms sortedCounts.
+				  newTerms := OrderedCollection new.
+				  newInverseTerms := OrderedCollection new.
+				  bagTerms keysAndValuesDo: [ :k :v |
+						  v = 1
+							  ifTrue: [ newTerms add: k ]
+							  ifFalse: [
+							  newTerms add:
+								  ((StMProduct with: k times: v) simplifyUntil: set) ] ].
+				  bagInverseTerms keysAndValuesDo: [ :k :v |
+						  v = 1
+							  ifTrue: [ newInverseTerms add: k ]
+							  ifFalse: [
+									  newInverseTerms add:
+										  ((StMProduct with: k times: v) simplifyUntil: set) ] ].
+				  newSize := newTerms size.
+				  newInvSize := newInverseTerms size.
+				  newSize == 0
+					  ifTrue: [
+							  newInvSize == 0
+								  ifTrue: [ StMConstant with: tmpConst ]
+								  ifFalse: [
+										  newInvSize == 1
+											  ifTrue: [ StMNegative with: (newInverseTerms at: 1) ]
+											  ifFalse: [
+												  StMSum
+													  const: tmpConst
+													  terms: newTerms
+													  inverseTerms: newInverseTerms ] ] ]
+					  ifFalse: [
+							  (newSize == 1 and: [ newInvSize == 0 and: [ tmpConst = 0.0 ] ])
+								  ifTrue: [ newTerms first ]
+								  ifFalse: [
+									  StMSum
+										  const: tmpConst
+										  terms: newTerms
+										  inverseTerms: newInverseTerms ] ] ]
 ]
 
 { #category : 'evaluating' }

@@ -90,57 +90,6 @@ SymEulerParametersDot >> calcAdotBdotCdot [
 	aE2dot := self at: 2.
 	aE3dot := self at: 3.
 	aE4dot := self at: 4.
-	mE1dot := 0.0 - aE1dot.
-	mE2dot := 0.0 - aE2dot.
-	mE3dot := 0.0 - aE3dot.
-	(aBdot at: 1)
-		at: 1 put: aE4dot;
-		at: 2 put: mE3dot;
-		at: 3 put: aE2dot;
-		at: 4 put: mE1dot.
-	(aBdot at: 2)
-		at: 1 put: aE3dot;
-		at: 2 put: aE4dot;
-		at: 3 put: mE1dot;
-		at: 4 put: mE2dot.
-	(aBdot at: 3)
-		at: 1 put: mE2dot;
-		at: 2 put: aE1dot;
-		at: 3 put: aE4dot;
-		at: 4 put: mE3dot.
-	(aCdot at: 1)
-		at: 1 put: aE4dot;
-		at: 2 put: aE3dot;
-		at: 3 put: mE2dot;
-		at: 4 put: mE1dot.
-	(aCdot at: 2)
-		at: 1 put: mE3dot;
-		at: 2 put: aE4dot;
-		at: 3 put: aE1dot;
-		at: 4 put: mE2dot.
-	(aCdot at: 3)
-		at: 1 put: aE2dot;
-		at: 2 put: mE1dot;
-		at: 3 put: aE4dot;
-		at: 4 put: mE3dot.
-	aAdot := (self aB timesTransposeFullMatrix: aCdot) times: 2.0
-]
-
-{ #category : 'calc' }
-SymEulerParametersDot >> calcSymbolic [
-	qE calcSymbolic.
-	self calcSymbolicAdotBdotCdot
-]
-
-{ #category : 'calc' }
-SymEulerParametersDot >> calcSymbolicAdotBdotCdot [
-	"aAdot, aBdot and aCdot are all calculated together and only here."
-
-	| aE1dot aE2dot aE3dot aE4dot mE1dot mE2dot mE3dot |
-	aE1dot := self at: 1.
-	aE2dot := self at: 2.
-	aE3dot := self at: 3.
-	aE4dot := self at: 4.
 	mE1dot := aE1dot negated.
 	mE2dot := aE2dot negated.
 	mE3dot := aE3dot negated.
@@ -174,7 +123,19 @@ SymEulerParametersDot >> calcSymbolicAdotBdotCdot [
 		at: 2 put: mE1dot;
 		at: 3 put: aE4dot;
 		at: 4 put: mE3dot.
-	aAdot := (self aB timesFullMatrix: aCdot transpose) times: 2.0
+	aAdot := self aB timesTransposeFullMatrix: aCdot times: 2.0
+]
+
+{ #category : 'calc' }
+SymEulerParametersDot >> calcSymbolic [
+	qE calcSymbolic.
+	self calcSymbolicAdotBdotCdot
+]
+
+{ #category : 'calc' }
+SymEulerParametersDot >> calcSymbolicAdotBdotCdot [
+
+	self calcAdotBdotCdot
 ]
 
 { #category : 'accessing' }

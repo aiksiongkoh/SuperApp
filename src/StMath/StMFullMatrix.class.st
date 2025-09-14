@@ -1157,6 +1157,13 @@ StMFullMatrix >> times: beta plusFullMatrix: aFullMatrix times: alpha [
 ]
 
 { #category : 'as yet unclassified' }
+StMFullMatrix >> timesTransposeFullMatrix: mat times: num [
+
+	^ self collect: [ :row |
+		  row timesTransposeFullMatrix: mat times: num ]
+]
+
+{ #category : 'as yet unclassified' }
 StMFullMatrix >> timesTransposeFullRow: aFullRow times: num [
 
 	| m answer |

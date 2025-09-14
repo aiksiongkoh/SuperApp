@@ -281,58 +281,68 @@ StMProduct >> expandUntil: set [
 	^ (set includes: self)
 		  ifTrue: [ self ]
 		  ifFalse: [
-			  tmpCoeff := coeff.
-			  tmpTrms := terms copy.
-			  tmpInvTrms := inverseTerms copy.
-			  tmpTrms asArray do: [ :term |
-				  term isProduct ifTrue: [
-					  tmpTrms addAll: term terms.
-					  tmpInvTrms addAll: term inverseTerms ] ].
-			  tmpInvTrms asArray do: [ :term |
-				  term isProduct ifTrue: [
-					  tmpTrms addAll: term inverseTerms.
-					  tmpInvTrms addAll: term terms ] ].
-			  sumTerms := OrderedCollection new.
-			  sumInverseTerms := OrderedCollection new.
-			  productTerms := OrderedCollection new.
-			  productInverseTerms := OrderedCollection new.
-			  1 to: tmpTrms size do: [ :i |
-				  | term |
-				  term := (tmpTrms at: i) expandUntil: set.
-				  term isSum
-					  ifTrue: [ sumTerms add: term ]
-					  ifFalse: [
-						  term isProduct
-							  ifTrue: [
-								  productTerms addAll: term terms.
-								  productInverseTerms addAll: term inverseTerms ]
+				  tmpCoeff := coeff.
+				  tmpTrms := terms copy.
+				  tmpInvTrms := inverseTerms copy.
+				  tmpTrms asArray do: [ :term |
+						  term isProduct ifTrue: [
+								  tmpCoeff := tmpCoeff * term coeff.
+								  tmpTrms addAll: term terms.
+								  tmpInvTrms addAll: term inverseTerms ] ].
+				  tmpInvTrms asArray do: [ :term |
+						  term isProduct ifTrue: [
+								  tmpCoeff := tmpCoeff / term coeff.
+								  tmpTrms addAll: term inverseTerms.
+								  tmpInvTrms addAll: term terms ] ].
+				  sumTerms := OrderedCollection new.
+				  sumInverseTerms := OrderedCollection new.
+				  productTerms := OrderedCollection new.
+				  productInverseTerms := OrderedCollection new.
+				  tmpTrms do: [ :arg |
+						  | term |
+						  term := arg expandUntil: set.
+						  term isSum
+							  ifTrue: [ sumTerms add: term ]
 							  ifFalse: [
-								  term isZero ifTrue: [ ^ StMConstant with: 0.0 ].
-								  term isOne ifFalse: [ productTerms add: term ] ] ] ].
-			  1 to: tmpInvTrms size do: [ :i |
-				  | term |
-				  term := (tmpInvTrms at: i) expandUntil: set.
-				  term isSum
-					  ifTrue: [ sumInverseTerms add: term ]
-					  ifFalse: [
-						  term isProduct
-							  ifTrue: [
-								  productTerms addAll: term inverseTerms.
-								  productInverseTerms addAll: term terms ]
+									  term isProduct
+										  ifTrue: [
+												  productTerms addAll: term terms.
+												  productInverseTerms addAll: term inverseTerms ]
+										  ifFalse: [
+												  term isZero ifTrue: [ ^ StMConstant with: 0.0 ].
+												  term isOne ifFalse: [ productTerms add: term ] ] ] ].
+				  tmpInvTrms do: [ :arg |
+						  | term |
+						  term := arg expandUntil: set.
+						  term isSum
+							  ifTrue: [ sumInverseTerms add: term ]
 							  ifFalse: [
-								  term isZero ifTrue: [ self halt: 'Check this.' ].
-								  term isOne ifFalse: [ productInverseTerms add: term ] ] ] ].
-			  numeratorFactor := self class terms: productTerms.
-			  denominatorFactor := self class inverseTerms: productInverseTerms.
-			  sumOfProductsOfNumeratorSums := StMSum with: 1.
-			  sumTerms do: [ :sumTerm |
-				  sumOfProductsOfNumeratorSums := sumOfProductsOfNumeratorSums timesSum: sumTerm ].
-			  sumOfProductsOfDenominatorSums := StMSum with: 1.
-			  sumInverseTerms do: [ :sumTerm |
-				  sumOfProductsOfDenominatorSums := sumOfProductsOfDenominatorSums timesSum: sumTerm ].
-			  numerator := numeratorFactor timesSum: sumOfProductsOfNumeratorSums.
-			  denominator := denominatorFactor timesSum: sumOfProductsOfDenominatorSums.
-			  self class coeff: tmpCoeff with: numerator over: denominator ]
+									  term isProduct
+										  ifTrue: [
+												  productTerms addAll: term inverseTerms.
+												  productInverseTerms addAll: term terms ]
+										  ifFalse: [
+												  term isZero ifTrue: [ self halt: 'Check this.' ].
+												  term isOne ifFalse: [ productInverseTerms add: term ] ] ] ].
+				  numeratorFactor := self class terms: productTerms.
+				  denominatorFactor := self class inverseTerms:
+					                       productInverseTerms.
+				  sumOfProductsOfNumeratorSums := StMSum with: 1.
+				  sumTerms do: [ :sumTerm |
+						  sumOfProductsOfNumeratorSums := sumOfProductsOfNumeratorSums
+							                                  timesSum: sumTerm ].
+				  sumOfProductsOfDenominatorSums := StMSum with: 1.
+				  sumInverseTerms do: [ :sumTerm |
+						  sumOfProductsOfDenominatorSums := sumOfProductsOfDenominatorSums
+							                                    timesSum: sumTerm ].
+				  numerator := numeratorFactor timesSum:
+					               sumOfProductsOfNumeratorSums.
+				  denominator := denominatorFactor timesSum:
+					                 sumOfProductsOfDenominatorSums.
+				  tmpCoeff = 1.0 & denominator isOne
+					  ifTrue: [ numerator ]
+					  ifFalse: [
+					  self class coeff: tmpCoeff with: numerator over: denominator ] ]
 ]
 
 { #category : 'testing' }
@@ -348,6 +358,22 @@ StMProduct >> hasCosSq [
 		k isCos ifTrue: [ v even ifTrue: [ ^ true ] ].
 		k isPower ifTrue: [ k x isCos ifTrue: [ k y even ifTrue: [ ^ true ] ] ] ].
 	^ false
+]
+
+{ #category : 'comparing' }
+StMProduct >> hasEqualFactors: anObject [
+
+	| otherTerms otherInverseTerms |
+	^ self == anObject or: [
+			  self class == anObject class and: [
+					  otherTerms := anObject terms.
+					  terms size = otherTerms size and: [
+							  (terms allSatisfy: [ :term | otherTerms includes: term ])
+								  and: [
+										  otherInverseTerms := anObject inverseTerms.
+										  inverseTerms size = otherInverseTerms size and: [
+											  inverseTerms allSatisfy: [ :term |
+												  otherInverseTerms includes: term ] ] ] ] ] ]
 ]
 
 { #category : 'testing' }
@@ -376,6 +402,12 @@ StMProduct >> initialize [
 StMProduct >> isNegative [
 
 	^ coeff negative
+]
+
+{ #category : 'testing' }
+StMProduct >> isOne [
+
+	^ coeff = 1.0 & terms isEmpty & inverseTerms isEmpty
 ]
 
 { #category : 'testing' }

@@ -191,10 +191,10 @@ SymEulerParameters >> differentiateWRT: var [
 				  | answer |
 				  answer := SymEulerParametersDot with: self.
 				  1 to: 4 do: [ :i |
-						  | angle angleVel |
-						  angle := self at: i.
-						  angleVel := angle differentiateWRT: var.
-						  answer at: i put: angleVel ].
+						  | qi qiVel |
+						  qi := self at: i.
+						  qiVel := qi differentiateWRT: var.
+						  answer at: i put: qiVel ].
 				  answer ]
 ]
 
