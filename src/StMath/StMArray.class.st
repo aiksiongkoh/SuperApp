@@ -1463,7 +1463,9 @@ StMArray >> scaleSelfBy: aFullColumn [
 
 { #category : 'basic ops' }
 StMArray >> simplified [
-	^self collect: [:item | item simplified]
+
+	self halt: 'Depreciated.'.
+	^ self collect: [ :item | item simplified ]
 ]
 
 { #category : 'evaluating' }

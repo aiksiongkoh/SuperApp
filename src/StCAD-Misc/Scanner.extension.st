@@ -1,6 +1,6 @@
-Extension { #name : #Scanner }
+Extension { #name : 'Scanner' }
 
-{ #category : #'*StCAD-Misc-StCAD-DEV' }
+{ #category : '*StCAD-Misc-StCAD-DEV' }
 Scanner class >> example1 [
 	"Scanner example1"
 

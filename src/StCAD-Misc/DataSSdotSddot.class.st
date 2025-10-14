@@ -1,15 +1,16 @@
 Class {
-	#name : #DataSSdotSddot,
-	#superclass : #Data,
+	#name : 'DataSSdotSddot',
+	#superclass : 'Data',
 	#instVars : [
 		's',
 		'sdot',
 		'sddot'
 	],
-	#category : #'StCAD-Misc'
+	#category : 'StCAD-Misc',
+	#package : 'StCAD-Misc'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 DataSSdotSddot class >> visualWorksMetadata [
 
 	^ #(
@@ -19,37 +20,37 @@ DataSSdotSddot class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 DataSSdotSddot >> initialize [
 	"Do nothing."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataSSdotSddot >> s [
 	^s
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataSSdotSddot >> s: col [ 
 	s := col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataSSdotSddot >> sddot [
 	^sddot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataSSdotSddot >> sddot: col [ 
 	sddot := col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataSSdotSddot >> sdot [
 	^sdot
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataSSdotSddot >> sdot: col [ 
 	sdot := col
 ]

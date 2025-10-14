@@ -1,10 +1,11 @@
 Class {
-	#name : #Data,
-	#superclass : #Item,
-	#category : #'StCAD-Misc'
+	#name : 'Data',
+	#superclass : 'Item',
+	#category : 'StCAD-Misc',
+	#package : 'StCAD-Misc'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 Data class >> visualWorksMetadata [
 
 	^ #(

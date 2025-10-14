@@ -438,22 +438,22 @@ StMSymbolicParser >> term [
 
 	stack addLast: StMProduct new.
 	self plainFunction ifTrue: [
-		[ self timesFunction or: [ self divideByFunction ] ] whileTrue.
-		stack addLast: [
-			| prod |
-			(prod := stack last) isProduct
-				ifTrue: [
-					prod isOne
-						ifTrue: [ stack removeLast ]
-						ifFalse: [
-							prod terms size = 1
-								ifTrue: [
-									stack removeLast.
-									stack addLast: prod terms first ]
-								ifFalse: [ nil ] ] ]
-				ifFalse: [ self notify: 'Compiler error!' ] ] value.
-		stack removeLast.
-		^ true ].
+			[ self timesFunction or: [ self divideByFunction ] ] whileTrue.
+			stack addLast: [
+					| prod |
+					(prod := stack last) isProduct
+						ifTrue: [
+								prod isOne
+									ifTrue: [ stack removeLast ]
+									ifFalse: [
+											prod numTerms size = 1
+												ifTrue: [
+														stack removeLast.
+														stack addLast: prod numTerms first ]
+												ifFalse: [ nil ] ] ]
+						ifFalse: [ self notify: 'Compiler error!' ] ] value.
+			stack removeLast.
+			^ true ].
 	^ false
 ]
 

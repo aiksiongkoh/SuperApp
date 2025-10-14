@@ -1,6 +1,6 @@
 Class {
-	#name : #DataPosVelAcc,
-	#superclass : #Data,
+	#name : 'DataPosVelAcc',
+	#superclass : 'Data',
 	#instVars : [
 		'refData',
 		'rFfF',
@@ -10,10 +10,11 @@ Class {
 		'aFfF',
 		'alpFfF'
 	],
-	#category : #'StCAD-Misc'
+	#category : 'StCAD-Misc',
+	#package : 'StCAD-Misc'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 DataPosVelAcc class >> visualWorksMetadata [
 
 	^ #(

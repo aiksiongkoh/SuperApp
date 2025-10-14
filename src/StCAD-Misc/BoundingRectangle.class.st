@@ -1,10 +1,11 @@
 Class {
-	#name : #BoundingRectangle,
-	#superclass : #BoundingBox,
-	#category : #'StCAD-Misc'
+	#name : 'BoundingRectangle',
+	#superclass : 'BoundingBox',
+	#category : 'StCAD-Misc',
+	#package : 'StCAD-Misc'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 BoundingRectangle class >> visualWorksMetadata [
 
 	^ #(
@@ -14,13 +15,13 @@ BoundingRectangle class >> visualWorksMetadata [
 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 BoundingRectangle >> initialize [
 	minCorner := StMFullColumn new: 2.
 	maxCorner := StMFullColumn new: 2
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 BoundingRectangle >> uvShift: uvShift [ 
 	minCorner equalSelfPlus: uvShift.
 	maxCorner equalSelfPlus: uvShift

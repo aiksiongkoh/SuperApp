@@ -1,6 +1,6 @@
-Extension { #name : #SmalltalkWorkbench }
+Extension { #name : 'SmalltalkWorkbench' }
 
-{ #category : #'*StCAD-Misc-StCAD-DEV' }
+{ #category : '*StCAD-Misc-StCAD-DEV' }
 SmalltalkWorkbench class >> cMethodOfCADSM [
 	"SmalltalkWorkbench cMethodOfStCAD."
 
@@ -10,14 +10,14 @@ SmalltalkWorkbench class >> cMethodOfCADSM [
 	^cMethod
 ]
 
-{ #category : #'*StCAD-Misc-StCAD-DEV' }
+{ #category : '*StCAD-Misc-StCAD-DEV' }
 SmalltalkWorkbench class >> cPackageModelOfCADSM [
 	"SmalltalkWorkbench cPackageModelOfStCAD."
 
 	^PackageModel allInstances select: [:a | '*CADSM*' match: a name]
 ]
 
-{ #category : #'*StCAD-Misc-StCAD-DEV' }
+{ #category : '*StCAD-Misc-StCAD-DEV' }
 SmalltalkWorkbench class >> cProtocolOfCADSM [
 	"SmalltalkWorkbench cProtocolOfStCAD."
 
@@ -27,7 +27,7 @@ SmalltalkWorkbench class >> cProtocolOfCADSM [
 	^cProtocol
 ]
 
-{ #category : #'*StCAD-Misc-StCAD-DEV' }
+{ #category : '*StCAD-Misc-StCAD-DEV' }
 SmalltalkWorkbench class >> exampleChangeProtocol [
 
 	"SmalltalkWorkbench exampleChangeProtocol."
@@ -40,7 +40,7 @@ SmalltalkWorkbench class >> exampleChangeProtocol [
 	change execute
 ]
 
-{ #category : #'*StCAD-Misc-StCAD-DEV' }
+{ #category : '*StCAD-Misc-StCAD-DEV' }
 SmalltalkWorkbench class >> exampleMisc [
 	"self exampleMisc."
 
@@ -48,7 +48,7 @@ SmalltalkWorkbench class >> exampleMisc [
 	"'koh', 'MbD', 'CAD', 'DYN', 'StMath', 'StDoc', 'StGeo', 'PDMS', 'UI', 'FEM', 'NMT', 'StGeo', 'CADSM'"
 ]
 
-{ #category : #'*StCAD-Misc-StCAD-DEV' }
+{ #category : '*StCAD-Misc-StCAD-DEV' }
 SmalltalkWorkbench class >> renameEveryProtocol: old to: new [
 	"SmalltalkWorkbench renameEveryProtocol: 'CAD' to: 'CADSM-UI'"
 
@@ -64,7 +64,7 @@ SmalltalkWorkbench class >> renameEveryProtocol: old to: new [
 		do: [:aClass | self renameProtocol: old to: new in: aClass]
 ]
 
-{ #category : #'*StCAD-Misc-StCAD-DEV' }
+{ #category : '*StCAD-Misc-StCAD-DEV' }
 SmalltalkWorkbench class >> renameEveryProtocol: old to: new in: classString [
 	"SmalltalkWorkbench renameEveryProtocol: 'As yet unclassified' to: 'accessing' in: 'StCAD.NMT.*'"
 
@@ -91,7 +91,7 @@ SmalltalkWorkbench class >> renameEveryProtocol: old to: new in: classString [
 		do: [:aClass | self renameProtocol: old to: new in: aClass]
 ]
 
-{ #category : #'*StCAD-Misc-StCAD-DEV' }
+{ #category : '*StCAD-Misc-StCAD-DEV' }
 SmalltalkWorkbench class >> renameProtocol: old to: new in: class [
 
 	"SmalltalkWorkbench renameProtocol: 'CAD' to: 'CADSM-UI' in: Core.Collection."

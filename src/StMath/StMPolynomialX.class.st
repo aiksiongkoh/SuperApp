@@ -37,21 +37,21 @@ StMPolynomialX >> argsPerform: selector withArguments: anArray [
 
 { #category : 'changing' }
 StMPolynomialX >> asExpression [
+
 	| answer terms |
 	answer := StMSum new.
-	terms := answer terms.
-	1 to: coeffs size
-		do: 
-			[:i | 
+	terms := answer plusTerms.
+	1 to: coeffs size do: [ :i |
 			| coeff term |
 			coeff := coeffs at: i.
 			i > 2
-				ifTrue: [term := coeff * (x raisedTo: i - 1)]
-				ifFalse: [i = 2
-						ifTrue: [term := coeff * x]
-						ifFalse: [term := coeff]].
-			terms add: term].
-	^answer
+				ifTrue: [ term := coeff * (x raisedTo: i - 1) ]
+				ifFalse: [
+						i = 2
+							ifTrue: [ term := coeff * x ]
+							ifFalse: [ term := coeff ] ].
+			terms add: term ].
+	^ answer
 ]
 
 { #category : 'StCAD-UI' }

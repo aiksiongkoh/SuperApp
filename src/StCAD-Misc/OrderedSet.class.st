@@ -1,34 +1,35 @@
 Class {
-	#name : #OrderedSet,
-	#superclass : #OrderedCollection,
-	#type : #variable,
+	#name : 'OrderedSet',
+	#superclass : 'OrderedCollection',
+	#type : 'variable',
 	#instVars : [
 		'comparisonBlock'
 	],
-	#category : #'StCAD-Misc'
+	#category : 'StCAD-Misc',
+	#package : 'StCAD-Misc'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 OrderedSet class >> new [
 	^self newIdentity: 10
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 OrderedSet class >> new: n [ 
 	^self newIdentity: n
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 OrderedSet class >> newEquality: size [ 
 	^(super new: size) forEquality
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 OrderedSet class >> newIdentity: size [ 
 	^(super new: size) forIdentity
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 OrderedSet class >> visualWorksMetadata [
 
 	^ #(
@@ -37,36 +38,36 @@ OrderedSet class >> visualWorksMetadata [
 
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 OrderedSet >> addFirst: newObject [ 
 	(self includes: newObject) ifFalse: [super addFirst: newObject].
 	^newObject
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 OrderedSet >> addLast: newObject [ 
 	(self includes: newObject) ifFalse: [super addLast: newObject].
 	^newObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OrderedSet >> comparisonBlock [
 	^comparisonBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OrderedSet >> comparisonBlock: anObject [
 	comparisonBlock := anObject
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 OrderedSet >> cyclicShiftElementToTop: block [ 
 	| index |
 	index := self findFirst: block.
 	self shiftElementUp: index - 1
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 OrderedSet >> find: oldObject [ 
 	| index |
 	index := firstIndex.
@@ -77,17 +78,17 @@ OrderedSet >> find: oldObject [
 	index <= lastIndex ifTrue: [^index] ifFalse: [^self notFoundError]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 OrderedSet >> forEquality [
 	comparisonBlock := [:a :b | a = b]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 OrderedSet >> forIdentity [
 	comparisonBlock := [:a :b | a == b]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 OrderedSet >> includes: anObject [ 
 	firstIndex to: lastIndex
 		do: 
@@ -96,7 +97,7 @@ OrderedSet >> includes: anObject [
 	^false
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 OrderedSet >> remove: oldObject ifAbsent: anExceptionBlock [ 
 	"Remove oldObject as one of the receiver's elements.  If several of the
 	elements are equal to oldObject, only one is removed. If no element is equal to
@@ -113,7 +114,7 @@ OrderedSet >> remove: oldObject ifAbsent: anExceptionBlock [
 	^anExceptionBlock value
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 OrderedSet >> shiftElementUp: n [ 
 	1 to: n do: [:i | self addLast: self removeFirst]
 ]

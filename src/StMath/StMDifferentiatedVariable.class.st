@@ -142,13 +142,12 @@ StMDifferentiatedVariable >> printOn: aStream [
 StMDifferentiatedVariable >> substitute: var1 with: var2 [
 
 	| xx wrts2 |
-	self halt.
 	^ self = var1
 		  ifTrue: [ var2 ]
 		  ifFalse: [
-			  xx := x substitute: var1 with: var2.
-			  wrts2 := wrts collect: [ :wrt | wrt substitute: var1 with: var2 ].
-			  self class with: xx wrts: wrts2 ]
+				  xx := x substitute: var1 with: var2.
+				  wrts2 := wrts collect: [ :wrt | wrt substitute: var1 with: var2 ].
+				  self class with: xx wrts: wrts2 ]
 ]
 
 { #category : 'accessing' }

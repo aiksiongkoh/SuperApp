@@ -1,10 +1,11 @@
 Class {
-	#name : #CADSMTest,
-	#superclass : #TestCase,
-	#category : #'StCAD-Misc'
+	#name : 'CADSMTest',
+	#superclass : 'TestCase',
+	#category : 'StCAD-Misc',
+	#package : 'StCAD-Misc'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 CADSMTest class >> visualWorksMetadata [
 
 	^ #(
@@ -14,7 +15,7 @@ CADSMTest class >> visualWorksMetadata [
 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 CADSMTest >> testSymbolicAssembly [
 
 	"CADSMTest new testSymbolicAssembly"

@@ -61,7 +61,7 @@ StMDependentVariable >> differentiateWRT: var [
 				  dfdx isZero ifTrue: [ ^ StMConstant with: 0 ].
 				  dxdvar := x differentiateWRT: var.
 				  dxdvar isZero ifTrue: [ ^ StMConstant with: 0 ].
-				  (dfdx times: dxdvar) simplified ]
+				  (dfdx times: dxdvar) simplifyAll ]
 ]
 
 { #category : 'evaluating' }

@@ -6,7 +6,9 @@ Class {
 	#name : 'StMProduct',
 	#superclass : 'StMTermsFunction',
 	#instVars : [
-		'coeff'
+		'coeff',
+		'numTerms',
+		'denTerms'
 	],
 	#category : 'StMath-Symbolic',
 	#package : 'StMath',
@@ -14,65 +16,61 @@ Class {
 }
 
 { #category : 'instance creation' }
-StMProduct class >> coeff: num terms: trms [
+StMProduct class >> coeff: number numTerms: numTrms [
 
-	^ self new
-		  coeff: num;
-		  addTerms: trms;
-		  yourself
+	^ self
+		  coeff: number
+		  numTerms: numTrms
+		  denTerms: OrderedCollection new
 ]
 
 { #category : 'instance creation' }
-StMProduct class >> coeff: num terms: trms inverseTerms: invTrms [
+StMProduct class >> coeff: coeff numTerms: numTrms denTerms: denTrms [
 
-	^ self new
-		  coeff: num;
-		  addTerms: trms;
-		  addInverseTerms: invTrms;
-		  yourself
-]
-
-{ #category : 'instance creation' }
-StMProduct class >> coeff: float with: numerator over: denominator [
-
-	^ self new
-		  coeff: float;
-		  addTerm: numerator;
-		  addInverseTerm: denominator;
-		  yourself
-]
-
-{ #category : 'as yet unclassified' }
-StMProduct class >> terms: trms inverseTerms: invTrms [
-
-	| instance ntrm ninvTrm |
-	ntrm := trms size.
-	ninvTrm := invTrms size.
-	^ ntrm = 0
+	| numSize denSize |
+	coeff isZero ifTrue: [ ^ StMConstant with: 0.0 ].
+	numSize := numTrms size.
+	denSize := denTrms size.
+	^ numSize = 0
 		  ifTrue: [
-			  ninvTrm = 0
-				  ifTrue: [ StMConstant with: 1.0 ]
-				  ifFalse: [
-					  ninvTrm = 1
-						  ifTrue: [ StMReciprocal with: invTrms first ]
-						  ifFalse: [
-							  instance := self new.
-							  instance addInverseTerms: invTrms.
-							  instance ] ] ]
+				  denSize = 0
+					  ifTrue: [ StMConstant with: coeff ]
+					  ifFalse: [
+							  (denSize = 1 and: [ coeff isOne ])
+								  ifTrue: [ StMReciprocal with: denTrms first ]
+								  ifFalse: [
+										  self new
+											  coeff: coeff;
+											  addDenTerms: denTrms;
+											  yourself ] ] ]
 		  ifFalse: [
-			  ninvTrm = 0
-				  ifTrue: [
-					  ntrm = 1
-						  ifTrue: [ trms first ]
-						  ifFalse: [
-							  instance := self new.
-							  instance addTerms: trms.
-							  instance ] ]
-				  ifFalse: [
-					  instance := self new.
-					  instance addTerms: trms.
-					  instance addInverseTerms: invTrms.
-					  instance ] ]
+				  denSize = 0
+					  ifTrue: [
+							  (numSize = 1 and: [ coeff isOne ])
+								  ifTrue: [ numTrms first ]
+								  ifFalse: [
+										  self new
+											  coeff: coeff;
+											  addNumTerms: numTrms;
+											  yourself ] ]
+					  ifFalse: [
+							  self new
+								  coeff: coeff;
+								  addNumTerms: numTrms;
+								  addDenTerms: denTrms;
+								  yourself ] ]
+]
+
+{ #category : 'accessing' }
+StMProduct class >> denTerms: denTrms [
+
+	^ self coeff: 1.0 numTerms: OrderedCollection new denTerms: denTrms
+]
+
+{ #category : 'accessing' }
+StMProduct class >> numTerms: numTrms [
+
+	^ self coeff: 1.0 numTerms: numTrms denTerms: OrderedCollection new
 ]
 
 { #category : 'VisualWorks metadata' }
@@ -88,22 +86,19 @@ StMProduct class >> visualWorksMetadata [
 { #category : 'instance creation' }
 StMProduct class >> with: numerator over: denominator [
 
-	^ self new
-		  addTerm: numerator;
-		  addInverseTerm: denominator;
-		  yourself
+	^ self
+		  coeff: 1.0
+		  numTerms: (OrderedCollection with: numerator)
+		  denTerms: (OrderedCollection with: denominator)
 ]
 
 { #category : 'instance creation' }
 StMProduct class >> with: arg1 times: arg2 [
 
-	^ super with: arg1 with: arg2
-]
-
-{ #category : 'instance creation' }
-StMProduct class >> with: arg1 times: arg2 times: arg3 [
-
-	^ super with: arg1 with: arg2 with: arg3
+	^ self
+		  coeff: 1.0
+		  numTerms: (OrderedCollection with: arg1 with: arg2)
+		  denTerms: OrderedCollection new
 ]
 
 { #category : 'comparing' }
@@ -111,53 +106,77 @@ StMProduct >> = anObject [
 
 	| otherTerms otherInverseTerms |
 	^ self == anObject or: [
-		  self class == anObject class and: [
-			  self coeff = anObject coeff and: [
-				  otherTerms := anObject terms.
-				  terms size = otherTerms size and: [
-					  (terms allSatisfy: [ :term | otherTerms includes: term ]) and: [
-						  otherInverseTerms := anObject inverseTerms.
-						  inverseTerms size = otherInverseTerms size and: [
-							  inverseTerms allSatisfy: [ :term | otherInverseTerms includes: term ] ] ] ] ] ] ]
+			  self class == anObject class and: [
+					  coeff = anObject coeff and: [
+							  otherTerms := anObject numTerms.
+							  numTerms size = otherTerms size and: [
+									  (numTerms allSatisfy: [ :term | otherTerms includes: term ])
+										  and: [
+												  otherInverseTerms := anObject denTerms.
+												  denTerms size = otherInverseTerms size and: [
+													  denTerms allSatisfy: [ :term |
+														  otherInverseTerms includes: term ] ] ] ] ] ] ]
 ]
 
 { #category : 'accessing' }
-StMProduct >> addInverseTerm: term [
+StMProduct >> addDenTerm: numTerm [
 
-	term isProduct
+	numTerm isProduct
 		ifTrue: [
-			self coeff: self coeff / term coeff.
-			self addTerms: term inverseTerms.
-			self addInverseTerms: term terms ]
+				self coeff: coeff asNumber / numTerm coeff asNumber.
+				self addNumTerms: numTerm denTerms.
+				self addDenTerms: numTerm numTerms ]
 		ifFalse: [
-			term isReciprocal
-				ifTrue: [ self addTerm: term x ]
-				ifFalse: [ term isOne ifFalse: [ inverseTerms add: term copy ] ] ].
-	^ term
+				numTerm isReciprocal
+					ifTrue: [ self addNumTerm: numTerm x ]
+					ifFalse: [
+							numTerm isConstant
+								ifTrue: [ self coeff: coeff asNumber / numTerm asNumber ]
+								ifFalse: [
+								numTerm isOne not ifTrue: [ denTerms add: numTerm ] ] ] ].
+	^ numTerm
 ]
 
 { #category : 'accessing' }
-StMProduct >> addTerm: term [
+StMProduct >> addDenTerms: collection [
 
-	term isProduct
+	collection do: [ :term | self addDenTerm: term ].
+	^ collection
+]
+
+{ #category : 'accessing' }
+StMProduct >> addNumTerm: numTerm [
+
+	numTerm isProduct
 		ifTrue: [
-			self coeff: self coeff * term coeff.
-			self addTerms: term terms.
-			self addInverseTerms: term inverseTerms ]
+				self coeff: coeff asNumber * numTerm coeff asNumber.
+				self addNumTerms: numTerm numTerms.
+				self addDenTerms: numTerm denTerms ]
 		ifFalse: [
-			term isReciprocal
-				ifTrue: [ self addInverseTerm: term x ]
-				ifFalse: [ term isOne ifFalse: [ terms add: term copy ] ] ].
-	^ term
+				numTerm isReciprocal
+					ifTrue: [ self addDenTerm: numTerm x ]
+					ifFalse: [
+							numTerm isConstant
+								ifTrue: [ self coeff: coeff asNumber * numTerm asNumber ]
+								ifFalse: [
+								numTerm isOne not ifTrue: [ numTerms add: numTerm ] ] ] ].
+	^ numTerm
+]
+
+{ #category : 'accessing' }
+StMProduct >> addNumTerms: collection [
+
+	collection do: [ :term | self addNumTerm: term ].
+	^ collection
 ]
 
 { #category : 'converting' }
 StMProduct >> asNumber [
 
 	| answer |
-	answer := coeff.
-	terms do: [ :term | answer := answer * term asNumber ].
-	inverseTerms do: [ :term | answer := answer / term asNumber ].
+	answer := coeff asNumber.
+	numTerms do: [ :term | answer := answer * term asNumber ].
+	denTerms do: [ :term | answer := answer / term asNumber ].
 	^ answer
 ]
 
@@ -165,41 +184,41 @@ StMProduct >> asNumber [
 StMProduct >> asValue [
 
 	| answer |
-	answer := coeff.
-	terms do: [ :term | answer := answer * term asValue ].
-	inverseTerms do: [ :term | answer := answer / term asValue ].
+	answer := coeff asValue.
+	numTerms do: [ :term | answer := answer * term asValue ].
+	denTerms do: [ :term | answer := answer / term asValue ].
 	^ answer
 ]
 
 { #category : 'StCAD-UI' }
 StMProduct >> cadStringOn: aStream [
 
-	terms isEmpty
+	numTerms isEmpty
 		ifTrue: [
-			inverseTerms isEmpty
+			denTerms isEmpty
 				ifTrue: [ aStream nextPutAll: '()/()' ]
 				ifFalse: [
 					aStream nextPutAll: '1.0'.
 					aStream nextPutAll: '/('.
-					1 to: inverseTerms size do: [ :i |
+					1 to: denTerms size do: [ :i |
 						i > 1 ifTrue: [ aStream nextPutAll: '*' ].
-						(inverseTerms at: i) cadStringOn: aStream ].
+						(denTerms at: i) cadStringOn: aStream ].
 					aStream nextPutAll: ')' ] ]
 		ifFalse: [
 			aStream nextPutAll: '('.
-			inverseTerms isEmpty
+			denTerms isEmpty
 				ifTrue: [
-					1 to: terms size do: [ :i |
+					1 to: numTerms size do: [ :i |
 						i > 1 ifTrue: [ aStream nextPutAll: '*' ].
-						(terms at: i) cadStringOn: aStream ] ]
+						(numTerms at: i) cadStringOn: aStream ] ]
 				ifFalse: [
-					1 to: terms size do: [ :i |
+					1 to: numTerms size do: [ :i |
 						i > 1 ifTrue: [ aStream nextPutAll: '*' ].
-						(terms at: i) cadStringOn: aStream ].
+						(numTerms at: i) cadStringOn: aStream ].
 					aStream nextPutAll: ')/('.
-					1 to: inverseTerms size do: [ :i |
+					1 to: denTerms size do: [ :i |
 						i > 1 ifTrue: [ aStream nextPutAll: '*' ].
-						(inverseTerms at: i) cadStringOn: aStream ] ].
+						(denTerms at: i) cadStringOn: aStream ] ].
 			aStream nextPutAll: ')' ]
 ]
 
@@ -210,9 +229,9 @@ StMProduct >> coeff [
 ]
 
 { #category : 'accessing' }
-StMProduct >> coeff: anObject [
+StMProduct >> coeff: number [
 
-	coeff := anObject
+	coeff := number asSymbolic
 ]
 
 { #category : 'simplify' }
@@ -231,9 +250,32 @@ StMProduct >> collectTerms: newTerms inverseTerms: newInvTerms [
 			newInvTerms add: (StMPower with: k raisedTo: v) simplified ] ]
 ]
 
+{ #category : 'ops' }
+StMProduct >> copyWithNum: symbolic [
+	"Do not call simplifyAll to avoid infinite loop."
+
+	^ self class new
+		  addNumTerms: numTerms;
+		  addNumTerm: symbolic;
+		  addDenTerms: denTerms;
+		  yourself
+]
+
 { #category : 'calc' }
 StMProduct >> cosSq [
 	self shouldBeImplemented.
+]
+
+{ #category : 'accessing' }
+StMProduct >> denTerms [
+
+	^ denTerms
+]
+
+{ #category : 'accessing' }
+StMProduct >> denTerms: anObject [
+
+	denTerms := anObject
 ]
 
 { #category : 'evaluating' }
@@ -254,23 +296,30 @@ StMProduct >> differentiateWRT: var [
 					           derivativeTerms := OrderedCollection new.
 					           1 to: trms size do: [ :i |
 							           derivative := derivatives at: i.
-							           newTermFunctions := trms copy.
+							           newTermFunctions := trms shallowCopy.
 							           newTermFunctions at: i put: derivative.
 							           newTerm := StMProduct new.
-							           newTerm addTerms: newTermFunctions.
-							           derivativeTerms add: newTerm simplified ].
-					           (StMSum terms: derivativeTerms) simplified ].
-				  a := (StMProduct coeff: coeff terms: terms) simplified.
-				  b := (StMProduct terms: inverseTerms) simplified.
-				  tempTerms := OrderedCollection with: (StMConstant with: coeff).
-				  tempTerms addAll: terms.
+							           newTerm addNumTerms: newTermFunctions.
+							           derivativeTerms add: newTerm ].
+					           StMSum new
+						           addPlusTerms: derivativeTerms;
+						           yourself ].
+				  a := self class new
+					       coeff: coeff;
+					       numTerms: numTerms;
+					       yourself.
+				  b := self class new
+					       numTerms: denTerms;
+					       yourself.
+				  tempTerms := OrderedCollection with: coeff.
+				  tempTerms addAll: numTerms.
 				  ap := block value: tempTerms.
-				  bp := block value: inverseTerms.
-				  apOverb := (ap / b) simplified.
-				  abp := (a * bp) simplified.
+				  bp := block value: denTerms.
+				  apOverb := ap / b.
+				  abp := a * bp.
 				  bb := b raisedTo: 2.
-				  abpOverbb := (abp / bb) simplified.
-				  (apOverb - abpOverbb) simplified ]
+				  abpOverbb := abp / bb.
+				  apOverb - abpOverbb ]
 ]
 
 { #category : 'evaluating' }
@@ -278,22 +327,23 @@ StMProduct >> expandUntil: set [
 	"(a+b)*(c+d)*(e*f)*g = (a*c + a*d + b*c + b*d)*e*f*g"
 
 	| sumTerms sumInverseTerms productTerms productInverseTerms sumOfProductsOfNumeratorSums numeratorFactor denominatorFactor sumOfProductsOfDenominatorSums numerator denominator tmpCoeff tmpTrms tmpInvTrms |
+	self halt: 'Depreciated.'.
 	^ (set includes: self)
 		  ifTrue: [ self ]
 		  ifFalse: [
 				  tmpCoeff := coeff.
-				  tmpTrms := terms copy.
-				  tmpInvTrms := inverseTerms copy.
+				  tmpTrms := numTerms copy.
+				  tmpInvTrms := denTerms copy.
 				  tmpTrms asArray do: [ :term |
 						  term isProduct ifTrue: [
 								  tmpCoeff := tmpCoeff * term coeff.
-								  tmpTrms addAll: term terms.
-								  tmpInvTrms addAll: term inverseTerms ] ].
+								  tmpTrms addAll: term numTerms.
+								  tmpInvTrms addAll: term denTerms ] ].
 				  tmpInvTrms asArray do: [ :term |
 						  term isProduct ifTrue: [
 								  tmpCoeff := tmpCoeff / term coeff.
-								  tmpTrms addAll: term inverseTerms.
-								  tmpInvTrms addAll: term terms ] ].
+								  tmpTrms addAll: term denTerms.
+								  tmpInvTrms addAll: term numTerms ] ].
 				  sumTerms := OrderedCollection new.
 				  sumInverseTerms := OrderedCollection new.
 				  productTerms := OrderedCollection new.
@@ -306,8 +356,8 @@ StMProduct >> expandUntil: set [
 							  ifFalse: [
 									  term isProduct
 										  ifTrue: [
-												  productTerms addAll: term terms.
-												  productInverseTerms addAll: term inverseTerms ]
+												  productTerms addAll: term numTerms.
+												  productInverseTerms addAll: term denTerms ]
 										  ifFalse: [
 												  term isZero ifTrue: [ ^ StMConstant with: 0.0 ].
 												  term isOne ifFalse: [ productTerms add: term ] ] ] ].
@@ -319,14 +369,13 @@ StMProduct >> expandUntil: set [
 							  ifFalse: [
 									  term isProduct
 										  ifTrue: [
-												  productTerms addAll: term inverseTerms.
-												  productInverseTerms addAll: term terms ]
+												  productTerms addAll: term denTerms.
+												  productInverseTerms addAll: term numTerms ]
 										  ifFalse: [
 												  term isZero ifTrue: [ self halt: 'Check this.' ].
 												  term isOne ifFalse: [ productInverseTerms add: term ] ] ] ].
-				  numeratorFactor := self class terms: productTerms.
-				  denominatorFactor := self class inverseTerms:
-					                       productInverseTerms.
+				  numeratorFactor := self class numTerms: productTerms.
+				  denominatorFactor := self class denTerms: productInverseTerms.
 				  sumOfProductsOfNumeratorSums := StMSum with: 1.
 				  sumTerms do: [ :sumTerm |
 						  sumOfProductsOfNumeratorSums := sumOfProductsOfNumeratorSums
@@ -342,15 +391,18 @@ StMProduct >> expandUntil: set [
 				  tmpCoeff = 1.0 & denominator isOne
 					  ifTrue: [ numerator ]
 					  ifFalse: [
-					  self class coeff: tmpCoeff with: numerator over: denominator ] ]
+					  self class
+						  coeff: tmpCoeff
+						  numTerm: numerator
+						  denTerm: denominator ] ]
 ]
 
 { #category : 'testing' }
 StMProduct >> hasCosSq [
 
 	| bagTerms bagInvBag |
-	bagTerms := terms asBag.
-	bagInvBag := inverseTerms asBag.
+	bagTerms := numTerms asBag.
+	bagInvBag := denTerms asBag.
 	bagTerms keysAndValuesDo: [ :k :v |
 		k isCos ifTrue: [ v even ifTrue: [ ^ true ] ].
 		k isPower ifTrue: [ k x isCos ifTrue: [ k y even ifTrue: [ ^ true ] ] ] ].
@@ -366,13 +418,13 @@ StMProduct >> hasEqualFactors: anObject [
 	| otherTerms otherInverseTerms |
 	^ self == anObject or: [
 			  self class == anObject class and: [
-					  otherTerms := anObject terms.
-					  terms size = otherTerms size and: [
-							  (terms allSatisfy: [ :term | otherTerms includes: term ])
+					  otherTerms := anObject numTerms.
+					  numTerms size = otherTerms size and: [
+							  (numTerms allSatisfy: [ :term | otherTerms includes: term ])
 								  and: [
-										  otherInverseTerms := anObject inverseTerms.
-										  inverseTerms size = otherInverseTerms size and: [
-											  inverseTerms allSatisfy: [ :term |
+										  otherInverseTerms := anObject denTerms.
+										  denTerms size = otherInverseTerms size and: [
+											  denTerms allSatisfy: [ :term |
 												  otherInverseTerms includes: term ] ] ] ] ] ]
 ]
 
@@ -380,8 +432,8 @@ StMProduct >> hasEqualFactors: anObject [
 StMProduct >> hasSinSq [
 
 	| bagTerms bagInvBag |
-	bagTerms := terms asBag.
-	bagInvBag := inverseTerms asBag.
+	bagTerms := numTerms asBag.
+	bagInvBag := denTerms asBag.
 	bagTerms keysAndValuesDo: [ :k :v |
 		k isSin ifTrue: [ v even ifTrue: [ ^ true ] ].
 		k isPower ifTrue: [ k x isSin ifTrue: [ k y even ifTrue: [ ^ true ] ] ] ].
@@ -391,11 +443,24 @@ StMProduct >> hasSinSq [
 	^ false
 ]
 
+{ #category : 'comparing' }
+StMProduct >> hash [
+
+	| hash |
+	hash := self class hash.
+	hash := hash bitXor: coeff hash.
+	numTerms do: [ :elem | hash := hash bitXor: elem hash ].
+	denTerms do: [ :elem | hash := hash bitXor: elem hash ].
+	^ hash
+]
+
 { #category : 'initialization' }
 StMProduct >> initialize [
 
 	super initialize.
-	coeff := 1.0
+	numTerms := OrderedCollection new.
+	denTerms := OrderedCollection new.
+	coeff := 1.0 asSymbolic
 ]
 
 { #category : 'testing' }
@@ -407,7 +472,7 @@ StMProduct >> isNegative [
 { #category : 'testing' }
 StMProduct >> isOne [
 
-	^ coeff = 1.0 & terms isEmpty & inverseTerms isEmpty
+	^ coeff isOne & numTerms isEmpty & denTerms isEmpty
 ]
 
 { #category : 'testing' }
@@ -418,22 +483,22 @@ StMProduct >> isProduct [
 { #category : 'testing' }
 StMProduct >> isTrig [
 
-	^ (terms anySatisfy: [ :trm | trm isTrig ]) or: [ inverseTerms anySatisfy: [ :trm | trm isTrig ] ]
+	^ (numTerms anySatisfy: [ :trm | trm isTrig ]) or: [ denTerms anySatisfy: [ :trm | trm isTrig ] ]
 ]
 
 { #category : 'testing' }
 StMProduct >> isZero [
 
-	^ coeff isZero or: [ terms anySatisfy: [ :term | term isZero ] ]
+	^ coeff isZero or: [ numTerms anySatisfy: [ :term | term isZero ] ]
 ]
 
 { #category : 'ops' }
 StMProduct >> negated [
 
-	| answer |
-	answer := self copy.
-	answer coeff: answer coeff negated.
-	^ answer simplified
+	^ self class
+		  coeff: coeff negated
+		  numTerms: numTerms
+		  denTerms: denTerms
 ]
 
 { #category : 'testing' }
@@ -441,35 +506,48 @@ StMProduct >> negative [
 
 	| neg |
 	neg := false.
-	terms do: [ :term | term negative ifTrue: [ neg := neg not ] ].
-	inverseTerms do: [ :term | term negative ifTrue: [ neg := neg not ] ].
+	numTerms do: [ :term | term negative ifTrue: [ neg := neg not ] ].
+	denTerms do: [ :term | term negative ifTrue: [ neg := neg not ] ].
 	^ neg
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'ops' }
 StMProduct >> negativeProduct [
 
 	| newTerms newInverseTerms positiveProduct |
-	newTerms := terms collect: [ :term |
-		            term negative
-			            ifTrue: [ term x ]
-			            ifFalse: [ term ] ].
-	newInverseTerms := inverseTerms collect: [ :term |
-		                   term negative
-			                   ifTrue: [ term x ]
-			                   ifFalse: [ term ] ].
-	positiveProduct := StMProduct
-		                   terms: newTerms
-		                   inverseTerms: newInverseTerms.
+	newTerms := numTerms collect: [ :term |
+			            term negative
+				            ifTrue: [ term x ]
+				            ifFalse: [ term ] ].
+	newInverseTerms := denTerms collect: [ :term |
+			                   term negative
+				                   ifTrue: [ term x ]
+				                   ifFalse: [ term ] ].
+	positiveProduct := self class
+		                   coeff: coeff
+		                   numTerms: newTerms
+		                   denTerms: newInverseTerms.
 	^ StMNegative with: positiveProduct
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'ops' }
 StMProduct >> negativesRemoved [
 
 	^ self negative
 		  ifTrue: [ StMNegative with: self positiveProduct ]
 		  ifFalse: [ self positiveProduct ]
+]
+
+{ #category : 'accessing' }
+StMProduct >> numTerms [
+
+	^ numTerms
+]
+
+{ #category : 'accessing' }
+StMProduct >> numTerms: anObject [
+
+	numTerms := anObject
 ]
 
 { #category : 'evaluating' }
@@ -483,55 +561,42 @@ StMProduct >> partialDifferentiateWRT: variable [
 	| derivatives derivativeTerms derivative newTermFunctions newTerm block a b ap bp apOverb abp bb abpOverbb |
 	self halt: 'Check this'.
 	block := [ :trms |
-	         derivatives := trms collect: [ :term | term partialDifferentiateWRT: variable ].
-	         derivativeTerms := OrderedCollection new.
-	         1 to: trms size do: [ :i |
-		         derivative := derivatives at: i.
-		         newTermFunctions := trms shallowCopy.
-		         newTermFunctions at: i put: derivative.
-		         newTerm := self class new.
-		         newTerm addTerms: newTermFunctions.
-		         derivativeTerms add: newTerm ].
-	         derivativeTerms ].
-	a := terms asArray.
-	b := inverseTerms asArray.
-	ap := block value: terms.
-	bp := block value: inverseTerms.
-	apOverb := self class terms: ap inverseTerms: b.
+		         derivatives := trms collect: [ :term |
+			                        term partialDifferentiateWRT: variable ].
+		         derivativeTerms := OrderedCollection new.
+		         1 to: trms size do: [ :i |
+				         derivative := derivatives at: i.
+				         newTermFunctions := trms shallowCopy.
+				         newTermFunctions at: i put: derivative.
+				         newTerm := self class new.
+				         newTerm addNumTerms: newTermFunctions.
+				         derivativeTerms add: newTerm ].
+		         derivativeTerms ].
+	a := numTerms asArray.
+	b := denTerms asArray.
+	ap := block value: numTerms.
+	bp := block value: denTerms.
+	apOverb := self class coeff: coeff numTerms: ap denTerms: b.
 	abp := a , bp.
-	bb := (self class terms: b) raisedTo: 2.
+	bb := (self class numTerms: b) raisedTo: 2.
 	abpOverbb := self class new.
-	abpOverbb addTerms: abp.
-	abpOverbb addInverseTerm: bb.
+	abpOverbb addNumTerms: abp.
+	abpOverbb addDenTerm: bb.
 	^ apOverb - abpOverbb
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'ops' }
 StMProduct >> positiveProduct [
 
-	^ StMProduct coeff: coeff abs terms: terms inverseTerms: inverseTerms
+	^ self class coeff: coeff abs numTerms: numTerms denTerms: denTerms
 ]
 
 { #category : 'copying' }
 StMProduct >> postCopy [
 
-	super postCopy.
+	numTerms := numTerms collect: [ :term | term copy ].
+	denTerms := denTerms collect: [ :term | term copy ].
 	coeff := coeff copy
-]
-
-{ #category : 'printing' }
-StMProduct >> printOn1: aStream [
-
-	aStream nextPutAll: '('.
-	coeff printOn: aStream.
-	terms do: [ :term |
-		aStream nextPutAll: '*'.
-		term printOn: aStream ].
-	aStream nextPutAll: ')'.
-	inverseTerms isEmpty ifFalse: [
-		aStream nextPutAll: ')/('.
-		inverseTerms do: [ :term | term printOn: aStream ] separatedBy: [ aStream nextPutAll: '*' ] ].
-	aStream nextPutAll: ')'
 ]
 
 { #category : 'printing' }
@@ -540,11 +605,11 @@ StMProduct >> printOn: aStream [
 	aStream
 		nextPut: $(;
 		print: coeff.
-	terms do: [ :term |
+	numTerms do: [ :term |
 		aStream
 			nextPut: $*;
 			print: term ].
-	inverseTerms do: [ :term |
+	denTerms do: [ :term |
 		aStream
 			nextPut: $/;
 			print: term ].
@@ -554,163 +619,209 @@ StMProduct >> printOn: aStream [
 { #category : 'evaluating' }
 StMProduct >> simplifyConstant [
 
-	| newTerms newInverseTerms constant term |
-	newTerms := OrderedCollection new.
-	newInverseTerms := OrderedCollection new.
-	constant := 1.0.
-	terms do: [ :trm |
-		term := trm simplifyConstant.
-		term isConstant
-			ifTrue: [ constant := constant * term value ]
-			ifFalse: [ newTerms add: term ] ].
-	inverseTerms do: [ :trm |
-		term := trm simplifyConstant.
-		term isConstant
-			ifTrue: [ constant := constant / term value ]
-			ifFalse: [ newInverseTerms add: term ] ].
-	newTerms add: (StMConstant with: constant).
-	^ self class terms: newTerms inverseTerms: newInverseTerms
+	| newCoeff newNumTerms newDenTerms |
+	newCoeff := coeff.
+	newNumTerms := numTerms collect: [ :trm | trm simplifyConstant ].
+	newDenTerms := denTerms collect: [ :trm | trm simplifyConstant ].
+	newNumTerms asArray do: [ :trm |
+			trm isConstant ifTrue: [
+					newCoeff := newCoeff * trm value.
+					newNumTerms remove: trm ] ].
+	newDenTerms asArray do: [ :trm |
+			trm isConstant ifTrue: [
+					newCoeff := newCoeff / trm value.
+					newDenTerms remove: trm ] ].
+	^ self class
+		  coeff: newCoeff
+		  numTerms: newNumTerms
+		  denTerms: newDenTerms
 ]
 
 { #category : 'evaluating' }
 StMProduct >> simplifyLogExp [
 
-	| newTerms newInverseTerms term |
-	newTerms := OrderedCollection new.
-	newInverseTerms := OrderedCollection new.
-	terms do: [ :trm |
-		term := trm simplifyLogExp.
-		newTerms add: term ].
-	inverseTerms do: [ :trm |
-		term := trm simplifyLogExp.
-		newInverseTerms add: term ].
-	^ self class terms: newTerms inverseTerms: newInverseTerms
+	| newNumTerms newDenTerms |
+	newNumTerms := numTerms collect: [ :term | term simplifyLogExp ].
+	newDenTerms := denTerms collect: [ :term | term simplifyLogExp ].
+	^ self class coeff: coeff numTerms: newNumTerms denTerms: newDenTerms
 ]
 
 { #category : 'evaluating' }
 StMProduct >> simplifyNegative [
 
-	| posSign newTerms newInverseTerms term answer |
-	posSign := true.
-	newTerms := OrderedCollection new.
-	newInverseTerms := OrderedCollection new.
-	terms do: [ :trm |
-		term := trm simplifyNegative.
-		term isNegative
-			ifTrue: [
-				posSign := posSign not.
-				newTerms add: term negated ]
-			ifFalse: [ newTerms add: term ] ].
-	inverseTerms do: [ :trm |
-		term := trm simplifyNegative.
-		term isNegative
-			ifTrue: [
-				posSign := posSign not.
-				newInverseTerms add: term negated ]
-			ifFalse: [ newInverseTerms add: term ] ].
-	answer := self class terms: newTerms inverseTerms: newInverseTerms.
-	^ posSign
-		  ifTrue: [ answer ]
-		  ifFalse: [ StMNegative with: answer ]
+	| newCoeff newNumTerms newDenTerms block |
+	newCoeff := coeff.
+	newNumTerms := numTerms collect: [ :trm | trm simplifyNegative ].
+	newDenTerms := denTerms collect: [ :trm | trm simplifyNegative ].
+	block := [ :trm |
+		         trm isNegative
+			         ifTrue: [
+					         newCoeff := newCoeff negated.
+					         trm negated ]
+			         ifFalse: [ trm ] ].
+	newNumTerms := newNumTerms collect: block.
+	newDenTerms := newDenTerms collect: block.
+	^ self class
+		  coeff: newCoeff
+		  numTerms: newNumTerms
+		  denTerms: newDenTerms
 ]
 
 { #category : 'evaluating' }
 StMProduct >> simplifyOne [
 
-	| newTerms newInverseTerms term |
-	newTerms := OrderedCollection new.
-	newInverseTerms := OrderedCollection new.
-	terms do: [ :trm |
-		term := trm simplifyOne.
-		term isOne ifFalse: [ newTerms add: term ] ].
-	inverseTerms do: [ :trm |
-		term := trm simplifyOne.
-		term isOne ifFalse: [ newInverseTerms add: term ] ].
-	^ self class terms: newTerms inverseTerms: newInverseTerms
+	| newNumTerms newDenTerms term |
+	newNumTerms := OrderedCollection new.
+	newDenTerms := OrderedCollection new.
+	numTerms do: [ :trm |
+			term := trm simplifyOne.
+			term isOne ifFalse: [ newNumTerms add: term ] ].
+	denTerms do: [ :trm |
+			term := trm simplifyOne.
+			term isOne ifFalse: [ newDenTerms add: term ] ].
+	^ self class coeff: coeff numTerms: newNumTerms denTerms: newDenTerms
 ]
 
 { #category : 'evaluating' }
 StMProduct >> simplifyPower [
 
-	| newTerms newInverseTerms term |
-	newTerms := OrderedCollection new.
-	newInverseTerms := OrderedCollection new.
-	terms do: [ :trm |
-		term := trm simplifyPower.
-		newTerms add: term ].
-	inverseTerms do: [ :trm |
-		term := trm simplifyPower.
-		newInverseTerms add: term ].
-	^ self class terms: newTerms inverseTerms: newInverseTerms
+	| newNumTerms newDenTerms |
+	newNumTerms := numTerms collect: [ :term | term simplifyPower ].
+	newDenTerms := denTerms collect: [ :term | term simplifyPower ].
+	^ self class coeff: coeff numTerms: newNumTerms denTerms: newDenTerms
 ]
 
 { #category : 'evaluating' }
 StMProduct >> simplifyProduct [
 
-	| newTerms newInverseTerms term |
-	newTerms := OrderedCollection new.
-	newInverseTerms := OrderedCollection new.
-	terms do: [ :trm |
-		term := trm simplifyProduct.
-		newTerms add: term ].
-	inverseTerms do: [ :trm |
-		term := trm simplifyProduct.
-		newInverseTerms add: term ].
-	[ newTerms allSatisfy: [ :trm | trm isNegative not and: [ trm isReciprocal not ] ] ] assert.
-	[ newInverseTerms allSatisfy: [ :trm | trm isNegative not and: [ trm isReciprocal not ] ] ] assert.
-	self cancelTerms: newTerms inverseTerms: newInverseTerms.
-	self collectTerms: newTerms inverseTerms: newInverseTerms.
-	^ self class terms: newTerms inverseTerms: newInverseTerms
+	| newCoeff block newNumTerms newDenTerms |
+	"Cancellation"
+	numTerms := numTerms collect: [ :trm | trm simplifyProduct ].
+	denTerms := denTerms collect: [ :trm | trm simplifyProduct ].
+	[
+		numTerms , denTerms allSatisfy: [ :trm |
+			trm isNegative not and: [ trm isReciprocal not ] ] ] assert.
+	numTerms asArray do: [ :trm |
+			(denTerms includes: trm) ifTrue: [
+					numTerms remove: trm.
+					denTerms remove: trm ] ].
+	newCoeff := coeff.
+	numTerms asArray do: [ :term |
+			term isProduct ifTrue: [
+					newCoeff := newCoeff * term coeff.
+					numTerms addAll: term numTerms.
+					denTerms addAll: term denTerms ] ].
+	denTerms asArray do: [ :term |
+			term isProduct ifTrue: [
+					newCoeff := newCoeff / term coeff.
+					numTerms addAll: term denTerms.
+					denTerms addAll: term numTerms ] ].
+	block := [ :trms |
+		         | bag newTrms |
+		         bag := trms asBag.
+		         bag sortedCounts.
+		         newTrms := OrderedCollection new.
+		         bag keysAndValuesDo: [ :k :v |
+				         v = 1
+					         ifTrue: [ newTrms add: k ]
+					         ifFalse: [ newTrms add: (StMPower with: k raisedTo: v) ] ].
+		         newTrms ].
+	newNumTerms := block value: numTerms.
+	newDenTerms := block value: denTerms.
+	^ self class coeff: coeff numTerms: newNumTerms denTerms: newDenTerms
 ]
 
 { #category : 'evaluating' }
 StMProduct >> simplifyReciprocal [
 
-	| newTerms newInverseTerms term |
-	newTerms := OrderedCollection new.
-	newInverseTerms := OrderedCollection new.
-	terms do: [ :trm |
-		term := trm simplifyReciprocal.
-		term isReciprocal
-			ifTrue: [ newInverseTerms add: term x ]
-			ifFalse: [ newTerms add: term ] ].
-	inverseTerms do: [ :trm |
-		term := trm simplifyReciprocal.
-		term isReciprocal
-			ifTrue: [ newTerms add: term x ]
-			ifFalse: [ newInverseTerms add: term ] ].
-	^ self class terms: newTerms inverseTerms: newInverseTerms
+	| newCoeff newNumTerms newDenTerms |
+	newCoeff := coeff.
+	newNumTerms := numTerms collect: [ :trm | trm simplifyReciprocal ].
+	newDenTerms := denTerms collect: [ :trm | trm simplifyReciprocal ].
+	newNumTerms asArray do: [ :trm |
+			trm isReciprocal ifTrue: [
+					newNumTerms remove: trm.
+					newDenTerms add: trm reciprocal ] ].
+	newDenTerms asArray do: [ :trm |
+			trm isReciprocal ifTrue: [
+					newDenTerms remove: trm.
+					newNumTerms add: trm reciprocal ] ].
+	^ self class
+		  coeff: newCoeff
+		  numTerms: newNumTerms
+		  denTerms: newDenTerms
 ]
 
 { #category : 'evaluating' }
 StMProduct >> simplifySum [
+	"(a+b)*(c+d)*(e*f)*g = (a*c + a*d + b*c + b*d)*e*f*g"
 
-	| newTerms newInverseTerms term |
-	newTerms := OrderedCollection new.
-	newInverseTerms := OrderedCollection new.
-	terms do: [ :trm |
-		term := trm simplifySum.
-		newTerms add: term ].
-	inverseTerms do: [ :trm |
-		term := trm simplifySum.
-		newInverseTerms add: term ].
-	^ self class terms: newTerms inverseTerms: newInverseTerms
+	| newCoeff newNumTerms newDenTerms sumNumTerms sumDenTerms productNumTerms productDenTerms set numeratorFactor denominatorFactor sumOfProductsOfNumeratorSums sumOfProductsOfDenominatorSums numerator denominator |
+	newCoeff := coeff.
+	newNumTerms := numTerms collect: [ :term | term simplifySum ].
+	newDenTerms := denTerms collect: [ :term | term simplifySum ].
+	newNumTerms asArray do: [ :term |
+			term isProduct ifTrue: [
+					newCoeff := newCoeff * term coeff.
+					newNumTerms addAll: term numTerms.
+					newDenTerms addAll: term denTerms ] ].
+	newDenTerms asArray do: [ :term |
+			term isProduct ifTrue: [
+					newCoeff := newCoeff / term coeff.
+					newNumTerms addAll: term denTerms.
+					newDenTerms addAll: term numTerms ] ].
+	sumNumTerms := OrderedCollection new.
+	sumDenTerms := OrderedCollection new.
+	productNumTerms := OrderedCollection new.
+	productDenTerms := OrderedCollection new.
+	newNumTerms do: [ :term |
+			term isSum
+				ifTrue: [ sumNumTerms add: term ]
+				ifFalse: [
+						term isProduct
+							ifTrue: [
+									productNumTerms addAll: term numTerms.
+									productDenTerms addAll: term denTerms ]
+							ifFalse: [
+									term isZero ifTrue: [ ^ StMConstant with: 0.0 ].
+									term isOne ifFalse: [ productNumTerms add: term ] ] ] ].
+	newDenTerms do: [ :term |
+			term isSum
+				ifTrue: [ sumDenTerms add: term ]
+				ifFalse: [
+						term isProduct
+							ifTrue: [
+									productNumTerms addAll: term denTerms.
+									productDenTerms addAll: term numTerms ]
+							ifFalse: [
+									term isZero ifTrue: [ self halt: 'Check this.' ].
+									term isOne ifFalse: [ productDenTerms add: term ] ] ] ].
+	numeratorFactor := self class numTerms: productNumTerms.
+	denominatorFactor := self class denTerms: productDenTerms.
+	sumOfProductsOfNumeratorSums := StMSum with: 1.
+	sumNumTerms do: [ :sumTerm |
+			sumOfProductsOfNumeratorSums := sumOfProductsOfNumeratorSums
+				                                timesSum: sumTerm ].
+	sumOfProductsOfDenominatorSums := StMSum with: 1.
+	sumDenTerms do: [ :sumTerm |
+			sumOfProductsOfDenominatorSums := sumOfProductsOfDenominatorSums
+				                                  timesSum: sumTerm ].
+	numerator := numeratorFactor timesSum: sumOfProductsOfNumeratorSums.
+	denominator := denominatorFactor timesSum:
+		               sumOfProductsOfDenominatorSums.
+	^ self class
+		  coeff: newCoeff
+		  numTerms: numerator
+		  denTerms: denominator
 ]
 
 { #category : 'evaluating' }
 StMProduct >> simplifyTrig [
 
-	| newTerms newInverseTerms term |
-	newTerms := OrderedCollection new.
-	newInverseTerms := OrderedCollection new.
-	terms do: [ :trm |
-		term := trm simplifyTrig.
-		newTerms add: term ].
-	inverseTerms do: [ :trm |
-		term := trm simplifyTrig.
-		newInverseTerms add: term ].
-	"Apply trig identities here."
-	^ self class terms: newTerms inverseTerms: newInverseTerms
+	| newNumTerms newDenTerms |
+	newNumTerms := numTerms collect: [ :term | term simplifyTrig ].
+	newDenTerms := denTerms collect: [ :term | term simplifyTrig ].
+	^ self class coeff: coeff numTerms: newNumTerms denTerms: newDenTerms
 ]
 
 { #category : 'evaluating' }
@@ -721,8 +832,8 @@ StMProduct >> simplifyUntil: set [
 		  ifTrue: [ self ]
 		  ifFalse: [
 				  tmpCoeff := coeff.
-				  tmpTrms := terms copy.
-				  tmpInvTrms := inverseTerms copy.
+				  tmpTrms := numTerms copy.
+				  tmpInvTrms := denTerms copy.
 				  block := [ :term | term simplifyUntil: set ].
 				  tmpTrms := tmpTrms collect: block.
 				  tmpInvTrms := tmpInvTrms collect: block.
@@ -783,56 +894,72 @@ StMProduct >> simplifyUntil: set [
 										  newInvSize == 1
 											  ifTrue: [ StMReciprocal with: (newInverseTerms at: 1) ]
 											  ifFalse: [
-													  StMProduct
+													  self class
 														  coeff: tmpCoeff
-														  terms: newTerms
-														  inverseTerms: newInverseTerms ] ] ]
+														  numTerms: newTerms
+														  denTerms: newInverseTerms ] ] ]
 					  ifFalse: [
 							  (newSize == 1 and: [ newInvSize == 0 and: [ tmpCoeff = 1.0 ] ])
 								  ifTrue: [ newTerms first ]
 								  ifFalse: [
-										  StMProduct
+										  self class
 											  coeff: tmpCoeff
-											  terms: newTerms
-											  inverseTerms: newInverseTerms ] ] ]
+											  numTerms: newTerms
+											  denTerms: newInverseTerms ] ] ]
 ]
 
 { #category : 'evaluating' }
 StMProduct >> simplifyZero [
 
-	| newTerms newInverseTerms term |
-	newTerms := OrderedCollection new.
-	newInverseTerms := OrderedCollection new.
-	terms do: [ :trm |
-		term := trm simplifyZero.
-		term isZero
-			ifTrue: [ ^ StMConstant with: 0.0 ]
-			ifFalse: [ newTerms add: term ] ].
-	inverseTerms do: [ :trm |
-		term := trm simplifyZero.
-		term isZero
-			ifTrue: [ self halt: 'Check this.' ]
-			ifFalse: [ newInverseTerms add: term ] ].
-	^ self class terms: newTerms inverseTerms: newInverseTerms
+	| newNumTerms newDenTerms newTerm |
+	coeff isZero ifTrue: [ ^ StMConstant with: 0.0 ].
+	numTerms := numTerms.
+	denTerms := denTerms.
+	newNumTerms := OrderedCollection new.
+	newDenTerms := OrderedCollection new.
+	numTerms do: [ :term |
+			newTerm := term simplifyZero.
+			newTerm isZero
+				ifTrue: [ ^ StMConstant with: 0.0 ]
+				ifFalse: [ newNumTerms add: newTerm ] ].
+	denTerms do: [ :term |
+			newTerm := term simplifyZero.
+			newTerm isZero
+				ifTrue: [ self halt: 'Check this.' ]
+				ifFalse: [ newDenTerms add: newTerm ] ].
+	^ self class coeff: coeff numTerms: newNumTerms denTerms: newDenTerms
 ]
 
-{ #category : 'accessing' }
-StMProduct >> timesFunction: aFunction [
+{ #category : 'changing' }
+StMProduct >> substitute: var1 with: var2 [
 
 	| answer |
-	answer := self copy.
-	(aFunction isConstant and: [ aFunction value = 1.0 ]) ifFalse: [ answer addTerm: aFunction copy ].
+	answer := self class new.
+	answer addNumTerms:
+		(numTerms collect: [ :term | term substitute: var1 with: var2 ]).
+	answer addDenTerms:
+		(denTerms collect: [ :term | term substitute: var1 with: var2 ]).
 	^ answer
+]
+
+{ #category : 'ops' }
+StMProduct >> timesFunction: symbolic [
+
+	^ self class new
+		  addNumTerms: numTerms;
+		  addNumTerm: symbolic;
+		  addDenTerms: denTerms;
+		  yourself
 ]
 
 { #category : 'accessing' }
 StMProduct >> timesProduct: aProduct [
 
 	| answer |
-	answer := self copy.
-	answer coeff: self coeff * aProduct coeff.
-	answer addTerms: aProduct copy terms.
-	answer addInverseTerms: aProduct copy inverseTerms.
+	answer := self class new.
+	answer coeff: coeff asNumber * aProduct coeff asNumber.
+	answer addNumTerms: numTerms , aProduct numTerms.
+	answer addDenTerms: denTerms , aProduct denTerms.
 	^ answer
 ]
 
@@ -840,45 +967,14 @@ StMProduct >> timesProduct: aProduct [
 StMProduct >> timesSum: aSum [
 	"(a*b*c)*(A + B + C) = (a*b*c*A + a*b*c*B + a*b*c*C)"
 
-	| answer sumTERMs termTERM sumInverseTERMs |
+	| answer |
 	[ aSum isSum ] assert.
-	^ self isConstant
-		  ifTrue: [
-			  aSum isConstant
-				  ifTrue: [ StMConstant with: self value * aSum value ]
-				  ifFalse: [
-					  answer := (aSum terms size = 1 and: [ aSum inverseTerms size = 0 ])
-						            ifTrue: [ aSum terms first ]
-						            ifFalse: [ aSum ].
-					  self value = 1.0
-						  ifTrue: [ answer ]
-						  ifFalse: [ self times: answer ] ] ]
-		  ifFalse: [
-			  aSum isConstant
-				  ifTrue: [
-					  answer := (self terms size = 1 and: [ self inverseTerms size = 0 ])
-						            ifTrue: [ self terms first ]
-						            ifFalse: [ self ].
-					  aSum value = 1.0
-						  ifTrue: [ answer ]
-						  ifFalse: [ aSum times: answer ] ]
-				  ifFalse: [
-					  answer := StMSum new.
-					  sumTERMs := aSum terms.
-					  sumInverseTERMs := aSum inverseTerms.
-					  sumTERMs do: [ :sumTERM |
-						  termTERM := sumTERM isProduct
-							              ifTrue: [ self timesProduct: sumTERM ]
-							              ifFalse: [ self timesFunction: sumTERM ].
-						  answer addTerm: termTERM ].
-					  sumInverseTERMs do: [ :sumTERM |
-						  termTERM := sumTERM isProduct
-							              ifTrue: [ self timesProduct: sumTERM ]
-							              ifFalse: [ self timesFunction: sumTERM ].
-						  answer addInverseTerm: termTERM ].
-					  (answer terms size = 1 and: [ answer inverseTerms size = 0 ])
-						  ifTrue: [ answer terms first ]
-						  ifFalse: [ answer ] ] ]
+	answer := StMSum new.
+	answer addPlusTerm: (self times: aSum const).
+	aSum plusTerms do: [ :term | answer addPlusTerm: (self times: term) ].
+	aSum minusTerms do: [ :term |
+		answer addMinusTerm: (self times: term) ].
+	^ answer
 ]
 
 { #category : 'evaluating' }
@@ -886,7 +982,7 @@ StMProduct >> value [
 
 	| answer |
 	answer := 1.0.
-	terms do: [ :term | answer := answer * term value ].
-	inverseTerms do: [ :term | answer := answer / term value ].
+	numTerms do: [ :term | answer := answer * term value ].
+	denTerms do: [ :term | answer := answer / term value ].
 	^ answer
 ]

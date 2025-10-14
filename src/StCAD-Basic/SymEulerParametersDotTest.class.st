@@ -9,7 +9,7 @@ Class {
 { #category : 'as yet unclassified' }
 SymEulerParametersDotTest >> testAdotAT [
 
-	| time qE1 qE2 qE3 qE4 qE qEdot aAdotAT mAAdotT |
+	| time qE1 qE2 qE3 qE4 qE qEdot aAdotAT mAAdotT lhs minusTrms rhs |
 	time := StMIndependentVariable name: #t.
 	qE1 := UnknownDependentVariable name: #qE1.
 	qE2 := UnknownDependentVariable name: #qE2.
@@ -24,7 +24,16 @@ SymEulerParametersDotTest >> testAdotAT [
 	qE do: [ :qi | qi x: time ].
 	qEdot := qE differentiateWRT: time.
 	qEdot calcSymbolic.
-	aAdotAT := (qEdot aAdot timesTransposeFullMatrix: qE aA) simplified.
+	aAdotAT := ((qEdot aAdot timesTransposeFullMatrix: qE aA)
+		            at: 1
+		            and: 1) simplifyAll.
+	lhs := StMPower with: qE1 raisedTo: 2.
+	minusTrms := OrderedCollection new.
+	minusTrms add: (StMPower with: qE2 raisedTo: 2).
+	minusTrms add: (StMPower with: qE3 raisedTo: 2).
+	minusTrms add: (StMPower with: qE4 raisedTo: 2).
+	rhs := StMSum const: 1 plusTerms: Array new minusTerms: minusTrms.
+	aAdotAT := (aAdotAT substitute: lhs with: rhs) simplifyAll.
 	mAAdotT := (qE aA timesTransposeFullMatrix: qEdot aAdot) negated
 		           simplified.
 	self assert: aAdotAT equals: mAAdotT

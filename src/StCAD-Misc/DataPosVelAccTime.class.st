@@ -1,13 +1,14 @@
 Class {
-	#name : #DataPosVelAccTime,
-	#superclass : #DataPosVelAcc,
+	#name : 'DataPosVelAccTime',
+	#superclass : 'DataPosVelAcc',
 	#instVars : [
 		'time'
 	],
-	#category : #'StCAD-Misc'
+	#category : 'StCAD-Misc',
+	#package : 'StCAD-Misc'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 DataPosVelAccTime class >> visualWorksMetadata [
 
 	^ #(

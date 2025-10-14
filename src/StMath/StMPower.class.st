@@ -43,14 +43,14 @@ StMPower >> cadStringOn: aStream [
 
 { #category : 'evaluating' }
 StMPower >> differentiateWRTx [
-	| ycopy |
-	ycopy := y copy.
-	^ycopy times: (x copy raisedTo: (ycopy plus: -1)) simplified
+
+	^ y times: (x raisedTo: (y minus: 1))
 ]
 
 { #category : 'evaluating' }
 StMPower >> differentiateWRTy [
-	^(self copy times: (StMLn with: x copy)) simplified
+
+	^ self times: (StMLn with: x)
 ]
 
 { #category : 'testing' }
@@ -96,6 +96,13 @@ StMPower >> simplifyUntil: set [
 				yy isOne ifTrue: [ ^ xx ].
 				yy even ifTrue: [ xx isNegative ifTrue: [ ^ StMPower with: xx negated with: yy ] ] ] ].
 	^ copy
+]
+
+{ #category : 'evaluating' }
+StMPower >> simplifyZero [
+
+	x = 0.0 ifTrue: [ ^ StMConstant with: 0.0 ].
+	y = 0.0 ifTrue: [ ^ StMConstant with: 1.0 ]
 ]
 
 { #category : 'evaluating' }

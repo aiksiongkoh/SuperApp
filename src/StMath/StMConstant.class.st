@@ -151,6 +151,7 @@ StMConstant >> printOn: aStream [
 { #category : 'evaluating' }
 StMConstant >> simplified [
 	"Do nothing."
+	self halt: 'Depreciated.'.
 
 	
 ]

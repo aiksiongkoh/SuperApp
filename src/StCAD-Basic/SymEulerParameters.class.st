@@ -105,7 +105,7 @@ SymEulerParameters >> calcABC [
 	(aC at: 1) at: 1 put: aE4; at: 2 put: aE3; at: 3 put: mE2; at: 4 put: mE1.
 	(aC at: 2) at: 1 put: mE3; at: 2 put: aE4; at: 3 put: aE1; at: 4 put: mE2.
 	(aC at: 3) at: 1 put: aE2; at: 2 put: mE1; at: 3 put: aE4; at: 4 put: mE3.
-	aA := (aB timesTransposeFullMatrix: aC) simplified
+	aA := (aB timesTransposeFullMatrix: aC) simplifyAll 
 ]
 
 { #category : 'calc' }

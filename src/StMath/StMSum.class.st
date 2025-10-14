@@ -1,25 +1,50 @@
 "
-terms and inverseTerms do not store negatives.
+plusTerms and minusTerms do not store negatives.
 "
 Class {
 	#name : 'StMSum',
 	#superclass : 'StMTermsFunction',
 	#instVars : [
-		'const'
+		'const',
+		'plusTerms',
+		'minusTerms'
 	],
 	#category : 'StMath-Symbolic',
 	#package : 'StMath',
 	#tag : 'Symbolic'
 }
 
-{ #category : 'as yet unclassified' }
-StMSum class >> const: num terms: trms inverseTerms: invTrms [
+{ #category : 'instance creation' }
+StMSum class >> const: number plusTerms: plusTrms minusTerms: minusTrms [
 
-	^ self new
-		  const: num;
-		  addTerms: trms;
-		  addInverseTerms: invTrms;
-		  yourself
+	| plusSize minusSize |
+	"
+	[ plusTrms allSatisfy: [ :trm | trm isSum not ] ] assert.
+	[ minusTrms allSatisfy: [ :trm | trm isSum not ] ] assert.
+"
+	plusSize := plusTrms size.
+	minusSize := minusTrms size.
+	^ plusSize == 0
+		  ifTrue: [
+				  minusSize == 0
+					  ifTrue: [ StMConstant with: number ]
+					  ifFalse: [
+							  minusSize == 1
+								  ifTrue: [ StMNegative with: minusTrms first ]
+								  ifFalse: [
+										  self new
+											  const: number;
+											  addMinusTerms: minusTrms;
+											  yourself ] ] ]
+		  ifFalse: [
+				  (plusSize == 1 and: [ minusSize == 0 and: [ number isZero ] ])
+					  ifTrue: [ plusTrms first ]
+					  ifFalse: [
+							  self new
+								  const: number;
+								  addPlusTerms: plusTrms;
+								  addMinusTerms: minusTrms;
+								  yourself ] ]
 ]
 
 { #category : 'instance creation' }
@@ -27,8 +52,8 @@ StMSum class >> const: float with: arg1 minus: arg2 [
 
 	^ self new
 		  const: float;
-		  addTerm: arg1;
-		  addInverseTerm: arg2;
+		  addPlusTerm: arg1;
+		  addMinusTerm: arg2;
 		  yourself
 ]
 
@@ -42,49 +67,6 @@ StMSum class >> const: float with: arg1 plus: arg2 [
 		  yourself
 ]
 
-{ #category : 'instance creation' }
-StMSum class >> terms: trms inverseTerms1: invTrms [
-
-	| instance ntrm ninvTrm |
-	ntrm := trms size.
-	ninvTrm := invTrms size.
-	^ ntrm = 0
-		  ifTrue: [
-			  ninvTrm = 0
-				  ifTrue: [ StMConstant with: 0.0 ]
-				  ifFalse: [
-					  ninvTrm = 1
-						  ifTrue: [ StMNegative with: invTrms first ]
-						  ifFalse: [
-							  instance := self new.
-							  instance addInverseTerms: invTrms.
-							  instance ] ] ]
-		  ifFalse: [
-			  ninvTrm = 0
-				  ifTrue: [
-					  ntrm = 1
-						  ifTrue: [ trms first ]
-						  ifFalse: [
-							  instance := self new.
-							  instance addTerms: trms.
-							  instance ] ]
-				  ifFalse: [
-					  instance := self new.
-					  instance addTerms: trms.
-					  instance addInverseTerms: invTrms.
-					  instance ] ]
-]
-
-{ #category : 'instance creation' }
-StMSum class >> terms: trms inverseTerms: invTrms [
-
-	| instance |
-	instance := self new.
-	instance addTerms: trms.
-	instance addInverseTerms: invTrms.
-	^ instance simplified
-]
-
 { #category : 'VisualWorks metadata' }
 StMSum class >> visualWorksMetadata [
 
@@ -96,25 +78,35 @@ StMSum class >> visualWorksMetadata [
 ]
 
 { #category : 'instance creation' }
+StMSum class >> with: plusTrm [
+
+	| instance |
+	instance := self new.
+	^ instance
+		  addPlusTerm: (instance conditionArgument: plusTrm);
+		  yourself
+]
+
+{ #category : 'instance creation' }
 StMSum class >> with: arg1 minus: arg2 [
 
 	| instance |
-	instance := StMSum new.
-	instance addTerm: arg1.
-	instance addInverseTerm: arg2.
+	instance := self new.
 	^ instance
+		  addPlusTerm: (instance conditionArgument: arg1);
+		  addMinusTerm: (instance conditionArgument: arg2);
+		  yourself
 ]
 
 { #category : 'instance creation' }
 StMSum class >> with: arg1 plus: arg2 [
 
-	^ super with: arg1 with: arg2
-]
-
-{ #category : 'instance creation' }
-StMSum class >> with: arg1 plus: arg2 plus: arg3 [
-
-	^ super with: arg1 with: arg2 with: arg3
+	| instance |
+	instance := self new.
+	^ instance
+		  addPlusTerm: (instance conditionArgument: arg1);
+		  addPlusTerm: (instance conditionArgument: arg2);
+		  yourself
 ]
 
 { #category : 'comparing' }
@@ -124,51 +116,71 @@ StMSum >> = anObject [
 	^ self == anObject or: [
 		  self class == anObject class and: [
 			  self const = anObject const and: [
-				  otherTerms := anObject terms.
-				  terms size = otherTerms size and: [
-					  (terms allSatisfy: [ :term | otherTerms includes: term ]) and: [
-						  otherInverseTerms := anObject inverseTerms.
-						  inverseTerms size = otherInverseTerms size and: [
-							  inverseTerms allSatisfy: [ :term | otherInverseTerms includes: term ] ] ] ] ] ] ]
+				  otherTerms := anObject plusTerms.
+				  plusTerms size = otherTerms size and: [
+					  (plusTerms allSatisfy: [ :term | otherTerms includes: term ]) and: [
+						  otherInverseTerms := anObject minusTerms.
+						  minusTerms size = otherInverseTerms size and: [
+							  minusTerms allSatisfy: [ :term | otherInverseTerms includes: term ] ] ] ] ] ] ]
 ]
 
 { #category : 'accessing' }
-StMSum >> addInverseTerm: term [
+StMSum >> addMinusTerm: term [
 
 	term isSum
 		ifTrue: [
-			self const: self const - term const.
-			self addTerms: term inverseTerms.
-			self addInverseTerms: term terms ]
+				self const: const asNumber - term const asNumber.
+				self addPlusTerms: term minusTerms.
+				self addMinusTerms: term plusTerms ]
 		ifFalse: [
-			term isNegative
-				ifTrue: [ self addTerm: term negated ]
-				ifFalse: [ term isZero ifFalse: [ inverseTerms add: term copy ] ] ].
+				term isNegative
+					ifTrue: [ self addPlusTerm: term negated ]
+					ifFalse: [
+							term isConstant
+								ifTrue: [ self const: const asNumber - term asNumber ]
+								ifFalse: [ term isZero not ifTrue: [ minusTerms add: term ] ] ] ].
 	^ term
 ]
 
 { #category : 'accessing' }
-StMSum >> addTerm: term [
+StMSum >> addMinusTerms: collection [
+
+	collection do: [ :term | self addMinusTerm: term ].
+	^ collection
+]
+
+{ #category : 'accessing' }
+StMSum >> addPlusTerm: term [
 
 	term isSum
 		ifTrue: [
-			self const: self const + term const.
-			self addTerms: term terms.
-			self addInverseTerms: term inverseTerms ]
+				self const: const asNumber + term const asNumber.
+				self addPlusTerms: term plusTerms.
+				self addMinusTerms: term minusTerms ]
 		ifFalse: [
-			term isNegative
-				ifTrue: [ self addInverseTerm: term negated ]
-				ifFalse: [ term isZero ifFalse: [ terms add: term copy ] ] ].
+				term isNegative
+					ifTrue: [ self addMinusTerm: term negated ]
+					ifFalse: [
+							term isConstant
+								ifTrue: [ self const: const asNumber + term asNumber ]
+								ifFalse: [ term isZero not ifTrue: [ plusTerms add: term ] ] ] ].
 	^ term
+]
+
+{ #category : 'accessing' }
+StMSum >> addPlusTerms: collection [
+
+	collection do: [ :term | self addPlusTerm: term ].
+	^ collection
 ]
 
 { #category : 'converting' }
 StMSum >> asNumber [
 
 	| answer |
-	answer := const.
-	terms do: [ :term | answer := answer + term asNumber ].
-	inverseTerms do: [ :term | answer := answer - term asNumber ].
+	answer := const asNumber.
+	self plusTerms do: [ :term | answer := answer + term asNumber ].
+	self minusTerms do: [ :term | answer := answer - term asNumber ].
 	^ answer
 ]
 
@@ -176,173 +188,152 @@ StMSum >> asNumber [
 StMSum >> asValue [
 
 	| answer |
-	answer := const.
-	terms do: [ :term | answer := answer + term asValue ].
-	inverseTerms do: [ :term | answer := answer - term asValue ].
+	answer := const asValue.
+	plusTerms do: [ :term | answer := answer + term asValue ].
+	minusTerms do: [ :term | answer := answer - term asValue ].
 	^ answer
 ]
 
 { #category : 'StCAD-UI' }
 StMSum >> cadStringOn: aStream [
 
-	terms isEmpty
+	plusTerms isEmpty
 		ifTrue: [
-			inverseTerms isEmpty
+			minusTerms isEmpty
 				ifTrue: [ self halt: 'Check this' ]
 				ifFalse: [
 					aStream nextPutAll: '-('.
-					1 to: inverseTerms size do: [ :i |
+					1 to: minusTerms size do: [ :i |
 						i > 1 ifTrue: [ aStream nextPutAll: ' + ' ].
-						(inverseTerms at: i) cadStringOn: aStream ].
+						(minusTerms at: i) cadStringOn: aStream ].
 					aStream nextPutAll: ')' ] ]
 		ifFalse: [
 			aStream nextPutAll: '('.
-			inverseTerms isEmpty
+			minusTerms isEmpty
 				ifTrue: [
-					1 to: terms size do: [ :i |
+					1 to: plusTerms size do: [ :i |
 						i > 1 ifTrue: [ aStream nextPutAll: ' + ' ].
-						(terms at: i) cadStringOn: aStream ] ]
+						(plusTerms at: i) cadStringOn: aStream ] ]
 				ifFalse: [
-					1 to: terms size do: [ :i |
+					1 to: plusTerms size do: [ :i |
 						i > 1 ifTrue: [ aStream nextPutAll: ' + ' ].
-						(terms at: i) cadStringOn: aStream ].
+						(plusTerms at: i) cadStringOn: aStream ].
 					aStream nextPutAll: ') - ('.
-					1 to: inverseTerms size do: [ :i |
+					1 to: minusTerms size do: [ :i |
 						i > 1 ifTrue: [ aStream nextPutAll: ' + ' ].
-						(inverseTerms at: i) cadStringOn: aStream ] ].
+						(minusTerms at: i) cadStringOn: aStream ] ].
 			aStream nextPutAll: ')' ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'simplify' }
 StMSum >> collectFunctionTerms [
 
-	| tmpConst tmpTrms tmpInvTrms bagTerms bagInverseTerms newTerms newInverseTerms newSize newInvSize |
-	tmpConst := const copy.
-	tmpTrms := terms copy.
-	tmpInvTrms := inverseTerms copy.
-	bagTerms := tmpTrms asBag.
-	bagInverseTerms := tmpInvTrms asBag.
-	bagTerms sortedCounts.
-	bagInverseTerms sortedCounts.
-	newTerms := OrderedCollection new.
-	newInverseTerms := OrderedCollection new.
-	bagTerms keysAndValuesDo: [ :k :v |
+	| bagPlusTerms bagMinusTerms newPlusTerms newMinusTerms newPlusSize newMinusSize |
+	bagPlusTerms := plusTerms asBag.
+	bagMinusTerms := minusTerms asBag.
+	bagPlusTerms sortedCounts.
+	bagMinusTerms sortedCounts.
+	newPlusTerms := OrderedCollection new.
+	newMinusTerms := OrderedCollection new.
+	bagPlusTerms keysAndValuesDo: [ :k :v |
 			v = 1
-				ifTrue: [ newTerms add: k ]
-				ifFalse: [ newTerms add: (StMProduct with: k times: v) ] ].
-	bagInverseTerms keysAndValuesDo: [ :k :v |
+				ifTrue: [ newPlusTerms add: k ]
+				ifFalse: [ newPlusTerms add: (StMProduct with: k times: v) ] ].
+	bagMinusTerms keysAndValuesDo: [ :k :v |
 			v = 1
-				ifTrue: [ newInverseTerms add: k ]
-				ifFalse: [ newInverseTerms add: (StMProduct with: k times: v) ] ].
-	newSize := newTerms size.
-	newInvSize := newInverseTerms size.
-	^ newSize == 0
+				ifTrue: [ newMinusTerms add: k ]
+				ifFalse: [ newMinusTerms add: (StMProduct with: k times: v) ] ].
+	newPlusSize := newPlusTerms size.
+	newMinusSize := newMinusTerms size.
+	^ newPlusSize == 0
 		  ifTrue: [
-				  newInvSize == 0
-					  ifTrue: [ StMConstant with: tmpConst ]
+				  newMinusSize == 0
+					  ifTrue: [ const ]
 					  ifFalse: [
-							  newInvSize == 1
-								  ifTrue: [ StMNegative with: newInverseTerms first ]
+							  newMinusSize == 1
+								  ifTrue: [ StMNegative with: newMinusTerms first ]
 								  ifFalse: [
-										  self class
-											  const: tmpConst
-											  terms: newTerms
-											  inverseTerms: newInverseTerms ] ] ]
+										  self class new
+											  const: const;
+											  addPlusTerms: newPlusTerms;
+											  addMinusTerms: newMinusTerms;
+											  yourself ] ] ]
 		  ifFalse: [
-				  (newSize == 1 and: [ newInvSize == 0 and: [ tmpConst = 0.0 ] ])
-					  ifTrue: [ newTerms first ]
+				  (newPlusSize == 1 and: [
+					   newMinusSize == 0 and: [ const isZero ] ])
+					  ifTrue: [ newPlusTerms first ]
 					  ifFalse: [
-							  self class
-								  const: tmpConst
-								  terms: newTerms
-								  inverseTerms: newInverseTerms ] ]
+							  self class new
+								  const: const;
+								  addPlusTerms: newPlusTerms;
+								  addMinusTerms: newMinusTerms;
+								  yourself ] ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'simplify' }
 StMSum >> collectProductTerms [
 
-	| block plusDict minusDict tmpConst plusProductTrms plusFunctionTrms minusProductTrms minusFunctionTrms coeff invTermsWithEqualFactors invtrm plusSize minusSize plusTerms minusTerms |
-	tmpConst := const copy.
-	plusProductTrms := terms collect: [ :trm | trm isProduct ].
-	plusFunctionTrms := terms collect: [ :trm | trm isProduct not ].
-	minusProductTrms := inverseTerms collect: [ :trm | trm isProduct ].
-	minusFunctionTrms := inverseTerms collect: [ :trm |
-		                     trm isProduct not ].
-	block := [ :productTrms |
+	| block plusDict minusDict plusProductTerms plusFunctionTerms minusProductTerms minusFunctionTerms coeff minusTermsWithEqualFactors minusTrm newPlusTerms newMinusTerms |
+	"Cancellation"
+	plusProductTerms := plusTerms select: [ :trm | trm isProduct ].
+	plusFunctionTerms := plusTerms select: [ :trm | trm isProduct not ].
+	minusProductTerms := minusTerms select: [ :trm | trm isProduct ].
+	minusFunctionTerms := minusTerms select: [ :trm | trm isProduct not ].
+	block := [ :productTerms |
 		         | dict |
 		         dict := Dictionary new.
-		         productTrms do: [ :trm |
+		         productTerms do: [ :trm |
 				         dict keys
 					         detect: [ :k | trm hasEqualFactors: k ]
 					         ifFound: [ :k | (dict at: k) add: trm ]
 					         ifNone: [
 					         dict at: trm put: (OrderedCollection with: trm) ] ].
 		         dict ].
-	plusDict := block value: plusProductTrms.
-	minusDict := block value: minusProductTrms.
-
+	plusDict := block value: plusProductTerms.
+	minusDict := block value: minusProductTerms.
 	block := [ :dict |
-		         | productTrms |
-		         productTrms := OrderedCollection new.
+		         | productTerms |
+		         productTerms := OrderedCollection new.
 		         dict valuesDo: [ :trms |
 				         trms size > 1 ifTrue: [
-						         coeff := 0.
+						         coeff := 0 asSymbolic.
 						         trms do: [ :trm | coeff := coeff + trm coeff ].
 						         trms first coeff: coeff ].
-				         productTrms add: trms first ].
-		         productTrms ].
-	plusProductTrms := block value: plusDict.
-	minusProductTrms := block value: minusDict.
-
-	plusProductTrms asArray do: [ :term |
+				         productTerms add: trms first ].
+		         productTerms ].
+	plusProductTerms := block value: plusDict.
+	minusProductTerms := block value: minusDict.
+	plusProductTerms asArray do: [ :term |
 			term isProduct ifTrue: [
 					coeff := term coeff.
-					invTermsWithEqualFactors := OrderedCollection new.
-					minusProductTrms asArray do: [ :invTerm |
+					minusTermsWithEqualFactors := OrderedCollection new.
+					minusProductTerms asArray do: [ :invTerm |
 							(term hasEqualFactors: invTerm) ifTrue: [
 									coeff := coeff - invTerm coeff.
-									invTermsWithEqualFactors add: invTerm ] ].
-					coeff > 0.0 ifTrue: [
+									minusTermsWithEqualFactors add: invTerm ] ].
+					coeff asNumber > 0.0 ifTrue: [
 							term coeff: coeff.
-							invTermsWithEqualFactors do: [ :trm |
-								minusProductTrms remove: trm ] ].
-					coeff = 0.0 ifTrue: [ "Cancellation"
-							plusProductTrms remove: term.
-							minusProductTrms remove: term ].
-					coeff < 0.0 ifTrue: [
-							plusProductTrms remove: term.
-							invtrm := invTermsWithEqualFactors first.
-							invtrm coeff: coeff abs.
-							invTermsWithEqualFactors removeFirst.
-							invTermsWithEqualFactors do: [ :trm |
-								minusProductTrms remove: trm ] ] ] ].
-	plusTerms := plusFunctionTrms , plusProductTrms.
-	minusTerms := minusFunctionTrms , minusProductTrms.
-	plusSize := plusTerms size.
-	minusSize := minusTerms size.
-	^ plusSize == 0
-		  ifTrue: [
-				  minusSize == 0
-					  ifTrue: [ StMConstant with: tmpConst ]
-					  ifFalse: [
-							  minusSize == 1
-								  ifTrue: [ StMNegative with: (minusTerms at: 1) ]
-								  ifFalse: [
-								  StMSum
-									  const: tmpConst
-									  terms: plusTerms
-									  inverseTerms: minusTerms ] ] ]
-		  ifFalse: [
-				  (plusSize == 1 and: [ minusSize == 0 and: [ tmpConst = 0.0 ] ])
-					  ifTrue: [ plusTerms first ]
-					  ifFalse: [
-					  StMSum
-						  const: tmpConst
-						  terms: plusTerms
-						  inverseTerms: minusTerms ] ]
+							minusTermsWithEqualFactors do: [ :trm |
+								minusProductTerms remove: trm ] ].
+					coeff isZero ifTrue: [
+							plusProductTerms remove: term.
+							minusProductTerms remove: term ].
+					coeff asNumber < 0.0 ifTrue: [
+							plusProductTerms remove: term.
+							minusTrm := minusTermsWithEqualFactors first.
+							minusTrm coeff: coeff abs.
+							minusTermsWithEqualFactors removeFirst.
+							minusTermsWithEqualFactors do: [ :trm |
+								minusProductTerms remove: trm ] ] ] ].
+	newPlusTerms := plusFunctionTerms , plusProductTerms.
+	newMinusTerms := minusFunctionTerms , minusProductTerms.
+	^ self class
+		  const: const
+		  plusTerms: newPlusTerms
+		  minusTerms: newMinusTerms
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'simplify' }
 StMSum >> collectTerms [
 
 	| answer |
@@ -374,9 +365,22 @@ StMSum >> const [
 ]
 
 { #category : 'accessing' }
-StMSum >> const: anObject [
+StMSum >> const: number [
 
-	const := anObject
+	const := number asSymbolic
+]
+
+{ #category : 'ops' }
+StMSum >> copyWithPlus: symbolic [
+
+	| answer |
+	answer := self class new.
+	answer addPlusTerm: (const asSymbolic times: symbolic).
+	plusTerms do: [ :plusTerm |
+		answer addPlusTerm: (plusTerm times: symbolic) ].
+	minusTerms do: [ :minusTerm |
+		answer addMinusTerm: (minusTerm times: symbolic) ].
+	^ answer simplifyAll
 ]
 
 { #category : 'evaluating' }
@@ -385,13 +389,15 @@ StMSum >> differentiateWRT: var [
 	^ var isSequenceable
 		  ifTrue: [ var collect: [ :vari | self differentiateWRT: vari ] ]
 		  ifFalse: [
-				  | termDerivatives invTermDerivatives |
-				  termDerivatives := terms collect: [ :term |
+				  | plusDerivatives minusDerivatives |
+				  plusDerivatives := plusTerms collect: [ :term |
 					                     term differentiateWRT: var ].
-				  invTermDerivatives := inverseTerms collect: [ :term |
-					                        term differentiateWRT: var ].
-				  (StMSum terms: termDerivatives inverseTerms: invTermDerivatives)
-					  simplified ]
+				  minusDerivatives := minusTerms collect: [ :term |
+					                      term differentiateWRT: var ].
+				  self class
+					  const: 0.0
+					  plusTerms: plusDerivatives
+					  minusTerms: minusDerivatives ]
 ]
 
 { #category : 'evaluating' }
@@ -402,55 +408,71 @@ StMSum >> expandUntil: set [
 	^ (set includes: self)
 		  ifTrue: [ self ]
 		  ifFalse: [
-			  newConst := const.
-			  newTerms := OrderedCollection new.
-			  newInverseTerms := OrderedCollection new.
-			  1 to: terms size do: [ :i |
-				  term := (terms at: i) expandUntil: set.
-				  term isSum
-					  ifTrue: [
-						  newConst := newConst + term const.
-						  newTerms addAll: term terms.
-						  newInverseTerms addAll: term inverseTerms ]
-					  ifFalse: [
-						  term isZero ifFalse: [
-							  term isNegative
-								  ifTrue: [ newInverseTerms add: term negated ]
-								  ifFalse: [ newTerms add: term ] ] ] ].
-			  1 to: inverseTerms size do: [ :i |
-				  term := (inverseTerms at: i) expandUntil: set.
-				  term isSum
-					  ifTrue: [
-						  newConst := newConst - term const.
-						  newInverseTerms addAll: term terms.
-						  newTerms addAll: term inverseTerms ]
-					  ifFalse: [
-						  term isZero ifFalse: [
-							  term isNegative
-								  ifTrue: [ newTerms add: term negated ]
-								  ifFalse: [ newInverseTerms add: term ] ] ] ].
-			  StMSum const: newConst terms: newTerms inverseTerms: newInverseTerms ]
+				  newConst := const.
+				  newTerms := OrderedCollection new.
+				  newInverseTerms := OrderedCollection new.
+				  1 to: plusTerms size do: [ :i |
+						  term := (plusTerms at: i) expandUntil: set.
+						  term isSum
+							  ifTrue: [
+									  newConst := newConst + term const.
+									  newTerms addAll: term plusTerms.
+									  newInverseTerms addAll: term minusTerms ]
+							  ifFalse: [
+									  term isZero ifFalse: [
+											  term isNegative
+												  ifTrue: [ newInverseTerms add: term negated ]
+												  ifFalse: [ newTerms add: term ] ] ] ].
+				  1 to: minusTerms size do: [ :i |
+						  term := (minusTerms at: i) expandUntil: set.
+						  term isSum
+							  ifTrue: [
+									  newConst := newConst - term const.
+									  newInverseTerms addAll: term plusTerms.
+									  newTerms addAll: term minusTerms ]
+							  ifFalse: [
+									  term isZero ifFalse: [
+											  term isNegative
+												  ifTrue: [ newTerms add: term negated ]
+												  ifFalse: [ newInverseTerms add: term ] ] ] ].
+				  self class new
+					  const: newConst
+					  plusTerms: newTerms
+					  minusTerms: newInverseTerms ]
+]
+
+{ #category : 'comparing' }
+StMSum >> hash [
+
+	| hash |
+	hash := self class hash.
+	hash := hash bitXor: const hash.
+	plusTerms do: [ :elem | hash := hash bitXor: elem hash ].
+	minusTerms do: [ :elem | hash := hash bitXor: elem hash ].
+	^ hash
 ]
 
 { #category : 'initialization' }
 StMSum >> initialize [
 
 	super initialize.
-	const := 0.0
+	plusTerms := OrderedCollection new.
+	minusTerms := OrderedCollection new.
+	const := 0.0 asSymbolic
 ]
 
 { #category : 'testing' }
 StMSum >> isConstant [
 
-	^ terms size = 0
+	^ plusTerms size = 0
 		  ifTrue: [
-			  inverseTerms size = 0
+			  minusTerms size = 0
 				  ifTrue: [ true ]
-				  ifFalse: [ inverseTerms allSatisfy: [ :trm | trm isConstant ] ] ]
+				  ifFalse: [ minusTerms allSatisfy: [ :trm | trm isConstant ] ] ]
 		  ifFalse: [
-			  inverseTerms size = 0
-				  ifTrue: [ terms allSatisfy: [ :trm | trm isConstant ] ]
-				  ifFalse: [ terms , inverseTerms allSatisfy: [ :trm | trm isConstant ] ] ]
+			  minusTerms size = 0
+				  ifTrue: [ plusTerms allSatisfy: [ :trm | trm isConstant ] ]
+				  ifFalse: [ plusTerms , minusTerms allSatisfy: [ :trm | trm isConstant ] ] ]
 ]
 
 { #category : 'testing' }
@@ -462,44 +484,120 @@ StMSum >> isSum [
 StMSum >> isZero [
 
 	^ const isZero and: [
-		  (terms allSatisfy: [ :term | term isZero ]) and: [
-			  inverseTerms allSatisfy: [ :term | term isZero ] ] ]
+		  (plusTerms allSatisfy: [ :term | term isZero ]) and: [
+			  minusTerms allSatisfy: [ :term | term isZero ] ] ]
+]
+
+{ #category : 'ops' }
+StMSum >> minus: symbolic [
+
+	^ symbolic isSum
+		  ifTrue: [ self minusSum: symbolic ]
+		  ifFalse: [
+				  self class new
+					  addPlusTerms: plusTerms;
+					  addMinusTerms: minusTerms;
+					  addMinusTerm: symbolic;
+					  simplifyAll ]
+]
+
+{ #category : 'ops' }
+StMSum >> minusSum: aSum [
+
+	[ aSum isSum ] assert.
+	^ self class new
+		  const: const - aSum const;
+		  addPlusTerms: plusTerms , aSum minusTerms;
+		  addMinusTerms: minusTerms , aSum plusTerms;
+		  simplifyAll
+]
+
+{ #category : 'accessing' }
+StMSum >> minusTerms [
+
+	^ minusTerms
+]
+
+{ #category : 'accessing' }
+StMSum >> minusTerms: anObject [
+
+	minusTerms := anObject
 ]
 
 { #category : 'ops' }
 StMSum >> negated [
 
 	| answer |
-	answer := self class
-		          const: self const negated
-		          terms: self inverseTerms
-		          inverseTerms: self terms.
-	^ answer simplified
+	answer := self class new
+		          const: const negated
+		          plusTerms: minusTerms
+		          minusTerms: plusTerms.
+	^ answer
 ]
 
 { #category : 'evaluating' }
 StMSum >> partialDifferentiateWRT: variable [
 
-	| termDerivatives invTermDerivatives |
-	termDerivatives := terms collect: [ :term |
+	| plusDerivatives minusDerivatives |
+	plusDerivatives := plusTerms collect: [ :term |
 		                   term partialDifferentiateWRT: variable ].
-	invTermDerivatives := inverseTerms collect: [ :term |
+	minusDerivatives := minusTerms collect: [ :term |
 		                      term partialDifferentiateWRT: variable ].
-	^ StMSum terms: termDerivatives inverseTerms: invTermDerivatives
+	^ self class
+		  const: 0
+		  plusTerms: plusDerivatives
+		  minusTerms: minusDerivatives
+]
+
+{ #category : 'ops' }
+StMSum >> plus: symbolic [
+
+	^ symbolic isSum
+		  ifTrue: [ self plusSum: symbolic ]
+		  ifFalse: [
+				  self class new
+					  addPlusTerms: plusTerms;
+					  addPlusTerm: symbolic;
+					  addMinusTerms: minusTerms;
+					  simplifyAll ]
+]
+
+{ #category : 'ops' }
+StMSum >> plusSum: aSum [
+
+	[ aSum isSum ] assert.
+	^ self class new
+		  const: const + aSum const;
+		  addPlusTerms: plusTerms , aSum plusTerms;
+		  addMinusTerms: minusTerms , aSum minusTerms;
+		  simplifyAll
+]
+
+{ #category : 'accessing' }
+StMSum >> plusTerms [
+
+	^ plusTerms
+]
+
+{ #category : 'accessing' }
+StMSum >> plusTerms: anObject [
+
+	plusTerms := anObject
 ]
 
 { #category : 'copying' }
 StMSum >> postCopy [
 
-	super postCopy.
+	plusTerms := plusTerms collect: [ :term | term copy ].
+	minusTerms := minusTerms collect: [ :term | term copy ].
 	const := const copy
 ]
 
 { #category : 'printing' }
 StMSum >> printOn2: aStream [ 
 	aStream nextPut: $(.
-	terms ifNotNil: 
-			[terms do: [:term | term printOn: aStream]
+	plusTerms ifNotNil: 
+			[plusTerms do: [:term | term printOn: aStream]
 				separatedBy: [aStream nextPutAll: ' + ']].
 	aStream nextPut: $)
 ]
@@ -510,175 +608,161 @@ StMSum >> printOn: aStream [
 	aStream
 		nextPut: $(;
 		print: const.
-	terms do: [ :term |
+	plusTerms do: [ :term |
 		aStream
 			nextPutAll: ' + ';
 			print: term ].
-	inverseTerms do: [ :term |
+	minusTerms do: [ :term |
 		aStream
 			nextPutAll: ' - ';
 			print: term ].
 	aStream nextPut: $)
 ]
 
-{ #category : 'evaluating' }
+{ #category : 'simplify' }
 StMSum >> simplifyConstant [
 
-	| newTerms newInverseTerms constant term |
-	newTerms := OrderedCollection new.
-	newInverseTerms := OrderedCollection new.
-	constant := 0.0.
-	terms do: [ :trm |
-		term := trm simplifyConstant.
-		term isConstant
-			ifTrue: [ constant := constant + term value ]
-			ifFalse: [ newTerms add: term ] ].
-	inverseTerms do: [ :trm |
-		term := trm simplifyConstant.
-		term isConstant
-			ifTrue: [ constant := constant - term value ]
-			ifFalse: [ newInverseTerms add: term ] ].
-	newTerms add: (StMConstant with: constant).
-	^ self class terms: newTerms inverseTerms: newInverseTerms
+	| newPlusTerms newMinusTerms constant newTerm |
+	plusTerms := plusTerms.
+	minusTerms := minusTerms.
+	newPlusTerms := OrderedCollection new.
+	newMinusTerms := OrderedCollection new.
+	constant := const.
+	plusTerms do: [ :term |
+			newTerm := term simplifyConstant.
+			newTerm isConstant
+				ifTrue: [ constant := constant + newTerm value ]
+				ifFalse: [ newPlusTerms add: newTerm ] ].
+	minusTerms do: [ :term |
+			newTerm := term simplifyConstant.
+			newTerm isConstant
+				ifTrue: [ constant := constant - newTerm value ]
+				ifFalse: [ newMinusTerms add: newTerm ] ].
+	^ self class
+		  const: constant
+		  plusTerms: newPlusTerms
+		  minusTerms: newMinusTerms
 ]
 
-{ #category : 'evaluating' }
+{ #category : 'simplify' }
 StMSum >> simplifyLogExp [
 
-	| newTerms newInverseTerms term |
-	newTerms := OrderedCollection new.
-	newInverseTerms := OrderedCollection new.
-	terms do: [ :trm |
-		term := trm simplifyLogExp.
-		newTerms add: term ].
-	inverseTerms do: [ :trm |
-		term := trm simplifyLogExp.
-		newInverseTerms add: term ].
-	^ self class terms: newTerms inverseTerms: newInverseTerms
+	| newPlusTerms newMinusTerms |
+	newPlusTerms := plusTerms collect: [ :trm | trm simplifyLogExp ].
+	newMinusTerms := minusTerms collect: [ :trm | trm simplifyLogExp ].
+	^ self class
+		  const: const
+		  plusTerms: newPlusTerms
+		  minusTerms: newMinusTerms
 ]
 
-{ #category : 'evaluating' }
+{ #category : 'simplify' }
 StMSum >> simplifyNegative [
 
-	| newTerms newInverseTerms term |
-	newTerms := OrderedCollection new.
-	newInverseTerms := OrderedCollection new.
-	terms do: [ :trm |
-		term := trm simplifyNegative.
-		term isNegative
-			ifTrue: [ newInverseTerms add: term negated ]
-			ifFalse: [ newTerms add: term ] ].
-	inverseTerms do: [ :trm |
-		term := trm simplifyNegative.
-		term isNegative
-			ifTrue: [ newTerms add: term negated ]
-			ifFalse: [ newInverseTerms add: term ] ].
-	^ self class terms: newTerms inverseTerms: newInverseTerms
+	| newPlusTerms newMinusTerms newTerm |
+	plusTerms := plusTerms.
+	minusTerms := minusTerms.
+	newPlusTerms := OrderedCollection new.
+	newMinusTerms := OrderedCollection new.
+	plusTerms do: [ :term |
+			newTerm := term simplifyNegative.
+			newTerm isNegative
+				ifTrue: [ newMinusTerms add: newTerm negated ]
+				ifFalse: [ newPlusTerms add: newTerm ] ].
+	minusTerms do: [ :term |
+			newTerm := term simplifyNegative.
+			newTerm isNegative
+				ifTrue: [ newPlusTerms add: newTerm negated ]
+				ifFalse: [ newMinusTerms add: newTerm ] ].
+	^ self class
+		  const: const
+		  plusTerms: newPlusTerms
+		  minusTerms: newMinusTerms
 ]
 
-{ #category : 'evaluating' }
+{ #category : 'simplify' }
 StMSum >> simplifyOne [
 
-	| newTerms newInverseTerms term |
-	newTerms := OrderedCollection new.
-	newInverseTerms := OrderedCollection new.
-	terms do: [ :trm |
-		term := trm simplifyOne.
-		newTerms add: term ].
-	inverseTerms do: [ :trm |
-		term := trm simplifyOne.
-		newInverseTerms add: term ].
-	^ self class terms: newTerms inverseTerms: newInverseTerms
+	| newPlusTerms newMinusTerms |
+	newPlusTerms := plusTerms collect: [ :trm | trm simplifyOne ].
+	newMinusTerms := minusTerms collect: [ :trm | trm simplifyOne ].
+	^ self class
+		  const: const
+		  plusTerms: newPlusTerms
+		  minusTerms: newMinusTerms
 ]
 
-{ #category : 'evaluating' }
+{ #category : 'simplify' }
 StMSum >> simplifyPower [
 
-	| newTerms newInverseTerms term |
-	newTerms := OrderedCollection new.
-	newInverseTerms := OrderedCollection new.
-	terms do: [ :trm |
-		term := trm simplifyPower.
-		newTerms add: term ].
-	inverseTerms do: [ :trm |
-		term := trm simplifyPower.
-		newInverseTerms add: term ].
-	^ self class terms: newTerms inverseTerms: newInverseTerms
+	| newPlusTerms newMinusTerms |
+	newPlusTerms := plusTerms collect: [ :trm | trm simplifyPower ].
+	newMinusTerms := minusTerms collect: [ :trm | trm simplifyPower ].
+	^ self class
+		  const: const
+		  plusTerms: newPlusTerms
+		  minusTerms: newMinusTerms
 ]
 
-{ #category : 'evaluating' }
+{ #category : 'simplify' }
 StMSum >> simplifyProduct [
 
-	| newTerms newInverseTerms term |
-	newTerms := OrderedCollection new.
-	newInverseTerms := OrderedCollection new.
-	terms do: [ :trm |
-		term := trm simplifyProduct.
-		newTerms add: term ].
-	inverseTerms do: [ :trm |
-		term := trm simplifyProduct.
-		newInverseTerms add: term ].
-	"self halt: 'Check this.'."
-	^ self class terms: newTerms inverseTerms: newInverseTerms
+	| newPlusTerms newMinusTerms |
+	newPlusTerms := plusTerms collect: [ :trm | trm simplifyProduct ].
+	newMinusTerms := minusTerms collect: [ :trm | trm simplifyProduct ].
+	^ self class
+		  const: const
+		  plusTerms: newPlusTerms
+		  minusTerms: newMinusTerms
 ]
 
-{ #category : 'evaluating' }
+{ #category : 'simplify' }
 StMSum >> simplifyReciprocal [
 
-	| newTerms newInverseTerms term |
-	newTerms := OrderedCollection new.
-	newInverseTerms := OrderedCollection new.
-	terms do: [ :trm |
-		term := trm simplifyReciprocal.
-		newTerms add: term ].
-	inverseTerms do: [ :trm |
-		term := trm simplifyReciprocal.
-		newInverseTerms add: term ].
-	^ self class terms: newTerms inverseTerms: newInverseTerms
+	| newPlusTerms newMinusTerms |
+	newPlusTerms := plusTerms collect: [ :trm | trm simplifyReciprocal ].
+	newMinusTerms := minusTerms collect: [ :trm | trm simplifyReciprocal ].
+	^ self class
+		  const: const
+		  plusTerms: newPlusTerms
+		  minusTerms: newMinusTerms
 ]
 
-{ #category : 'evaluating' }
+{ #category : 'simplify' }
 StMSum >> simplifySum [
 
-	| newTerms newInverseTerms term |
-	newTerms := OrderedCollection new.
-	newInverseTerms := OrderedCollection new.
-	terms do: [ :trm |
-		term := trm simplifySum.
-		newTerms add: term ].
-	inverseTerms do: [ :trm |
-		term := trm simplifySum.
-		newInverseTerms add: term ].
-	[ newTerms allSatisfy: [ :trm | trm isNegative not ] ] assert.
-	[ newInverseTerms allSatisfy: [ :trm | trm isNegative not ] ] assert.
-	self cancelTerms: newTerms inverseTerms: newInverseTerms.
-	self collectTerms: newTerms inverseTerms: newInverseTerms.
-	^ self class terms: newTerms inverseTerms: newInverseTerms
+	| newSum |
+	plusTerms := plusTerms collect: [ :trm | trm simplifySum ].
+	minusTerms := minusTerms collect: [ :trm | trm simplifySum ].
+	newSum := self class
+		          const: const
+		          plusTerms: plusTerms
+		          minusTerms: minusTerms.
+	^ newSum collectTerms
 ]
 
-{ #category : 'evaluating' }
+{ #category : 'simplify' }
 StMSum >> simplifyTrig [
 
-	| newTerms newInverseTerms term newTermsTrig newInvTermsTrig cosSqTerms sinSqTerms cosSqInvTerms sinSqInvTerms |
-	newTerms := OrderedCollection new.
-	newInverseTerms := OrderedCollection new.
-	terms do: [ :trm |
-		term := trm simplifyTrig.
-		newTerms add: term ].
-	inverseTerms do: [ :trm |
-		term := trm simplifyTrig.
-		newInverseTerms add: term ].
-	newTermsTrig := newTerms select: [ :trm | trm isTrig ].
-	newInvTermsTrig := newInverseTerms select: [ :trm | trm isTrig ].
-	cosSqTerms := newTermsTrig select: [ :trm | trm hasCosSq ].
-	sinSqTerms := newTermsTrig select: [ :trm | trm hasSinSq ].
-	cosSqInvTerms := newInvTermsTrig select: [ :trm | trm hasCosSq ].
-	sinSqInvTerms := newInvTermsTrig select: [ :trm | trm hasSinSq ].
+	| newPlusTerms newMinusTerms plusTermsTrig minusTermsTrig cosSqPlusTerms sinSqPlusTerms cosSqMinusTerms sinSqMinusTerms |
+	newPlusTerms := plusTerms collect: [ :trm | trm simplifyTrig ].
+	newMinusTerms := minusTerms collect: [ :trm | trm simplifyTrig ].
+
+	plusTermsTrig := newPlusTerms select: [ :trm | trm isTrig ].
+	minusTermsTrig := newMinusTerms select: [ :trm | trm isTrig ].
+	cosSqPlusTerms := plusTermsTrig select: [ :trm | trm hasCosSq ].
+	sinSqPlusTerms := plusTermsTrig select: [ :trm | trm hasSinSq ].
+	cosSqMinusTerms := minusTermsTrig select: [ :trm | trm hasCosSq ].
+	sinSqMinusTerms := minusTermsTrig select: [ :trm | trm hasSinSq ].
 	"self halt: 'Apply trig identities here.'."
-	^ self class terms: newTerms inverseTerms: newInverseTerms
+	[ plusTermsTrig isEmpty and: [ minusTermsTrig isEmpty ] ] assert.
+	^ self class
+		  const: const
+		  plusTerms: newPlusTerms
+		  minusTerms: newMinusTerms
 ]
 
-{ #category : 'evaluating' }
+{ #category : 'simplify' }
 StMSum >> simplifyUntil: set [
 
 	| newTerms newInverseTerms newSize newInvSize bagTerms bagInverseTerms tmpConst tmpTrms tmpInvTrms block coeff invTermsWithEqualFactors invtrm |
@@ -686,8 +770,8 @@ StMSum >> simplifyUntil: set [
 		  ifTrue: [ self ]
 		  ifFalse: [
 				  tmpConst := const copy.
-				  tmpTrms := terms copy.
-				  tmpInvTrms := inverseTerms copy.
+				  tmpTrms := plusTerms copy.
+				  tmpInvTrms := minusTerms copy.
 				  block := [ :term | term simplifyUntil: set ].
 				  tmpTrms := tmpTrms collect: block.
 				  tmpInvTrms := tmpInvTrms collect: block.
@@ -760,85 +844,94 @@ StMSum >> simplifyUntil: set [
 										  newInvSize == 1
 											  ifTrue: [ StMNegative with: (newInverseTerms at: 1) ]
 											  ifFalse: [
-												  StMSum
-													  const: tmpConst
-													  terms: newTerms
-													  inverseTerms: newInverseTerms ] ] ]
+													  self class new
+														  const: tmpConst
+														  plusTerms: newTerms
+														  minusTerms: newInverseTerms ] ] ]
 					  ifFalse: [
 							  (newSize == 1 and: [ newInvSize == 0 and: [ tmpConst = 0.0 ] ])
 								  ifTrue: [ newTerms first ]
 								  ifFalse: [
-									  StMSum
-										  const: tmpConst
-										  terms: newTerms
-										  inverseTerms: newInverseTerms ] ] ]
+										  self class new
+											  const: tmpConst
+											  plusTerms: newTerms
+											  minusTerms: newInverseTerms ] ] ]
 ]
 
-{ #category : 'evaluating' }
+{ #category : 'simplify' }
 StMSum >> simplifyZero [
 
-	| newTerms newInverseTerms term |
-	newTerms := OrderedCollection new.
-	newInverseTerms := OrderedCollection new.
-	terms do: [ :trm |
-		term := trm simplifyZero.
-		term isZero ifFalse: [ newTerms add: term ] ].
-	inverseTerms do: [ :trm |
-		term := trm simplifyZero.
-		term isZero ifFalse: [ newInverseTerms add: term ] ].
-	^ self class terms: newTerms inverseTerms: newInverseTerms
+	| block newPlusTerms newMinusTerms newTerm |
+	block := [ :trms |
+		         | newTrms |
+		         newTrms := OrderedCollection new.
+		         trms do: [ :term |
+				         newTerm := term simplifyZero.
+				         newTerm isZero ifFalse: [ newTrms add: newTerm ] ].
+		         newTrms ].
+	newPlusTerms := block value: plusTerms.
+	newMinusTerms := block value: minusTerms.
+	^ self class
+		  const: const
+		  plusTerms: newPlusTerms
+		  minusTerms: newMinusTerms
 ]
 
-{ #category : 'accessing' }
-StMSum >> timesFunction: aFunction [ 
-	^aFunction timesSum: self
-]
+{ #category : 'changing' }
+StMSum >> substitute: var1 with: var2 [
 
-{ #category : 'accessing' }
-StMSum >> timesProduct: aProduct [ 
-	^aProduct timesSum: self
+	| answer |
+	answer := self class new.
+	answer addPlusTerms:
+		(plusTerms collect: [ :term | term substitute: var1 with: var2 ]).
+	answer addMinusTerms:
+		(minusTerms collect: [ :term | term substitute: var1 with: var2 ]).
+	^ answer
 ]
 
 { #category : 'ops' }
-StMSum >> timesSum: addendSum [
+StMSum >> timesFunction: symbolic [
+
+	| answer |
+	answer := self class new.
+	answer addPlusTerm: (StMProduct with: const times: symbolic).
+	plusTerms do: [ :plusTerm |
+		answer addPlusTerm: (plusTerm timesFunction: symbolic) ].
+	minusTerms do: [ :minusTerm |
+		answer addMinusTerm: (minusTerm timesFunction: symbolic) ].
+	^ answer
+]
+
+{ #category : 'accessing' }
+StMSum >> timesProduct: aProduct [
+
+	^ aProduct timesSum: self
+]
+
+{ #category : 'ops' }
+StMSum >> timesSum: aSum [
 	"(a + b)*(A + B + C) = (a*A + a*B + a*C + b*A + b*B + b*C)"
 
-	| answer addendConst addendTERMs addendInverseTERMs |
-	answer := StMSum new.
-	addendConst := addendSum const.
-	addendTERMs := addendSum terms.
-	addendInverseTERMs := addendSum inverseTerms.
-	answer const: const * addendConst.
-	addendTERMs do: [ :addendTERM | answer addTerm: addendTERM * const ].
-	addendInverseTERMs do: [ :addendInverseTERM | answer addInverseTerm: addendInverseTERM * const ].
-	terms do: [ :term |
-		answer addTerm: term * addendConst.
-		addendTERMs do: [ :addendTERM |
-			| termxTERM |
-			termxTERM := addendTERM isProduct
-				             ifTrue: [ term timesProduct: addendTERM ]
-				             ifFalse: [ term timesFunction: addendTERM ].
-			answer addTerm: termxTERM ].
-		addendInverseTERMs do: [ :addendInverseTERM |
-			| termxInvTERM |
-			termxInvTERM := addendInverseTERM isProduct
-				                ifTrue: [ term timesProduct: addendInverseTERM ]
-				                ifFalse: [ term timesFunction: addendInverseTERM ].
-			answer addInverseTerm: termxInvTERM ] ].
-	inverseTerms do: [ :invterm |
-		answer addInverseTerm: invterm * addendConst.
-		addendTERMs do: [ :addendTERM |
-			| invtermxTERM |
-			invtermxTERM := addendTERM isProduct
-				                ifTrue: [ invterm timesProduct: addendTERM ]
-				                ifFalse: [ invterm timesFunction: addendTERM ].
-			answer addInverseTerm: invtermxTERM ].
-		addendInverseTERMs do: [ :addendInverseTERM |
-			| invtermxInvTERM |
-			invtermxInvTERM := addendInverseTERM isProduct
-				                   ifTrue: [ invterm timesProduct: addendInverseTERM ]
-				                   ifFalse: [ invterm timesFunction: addendInverseTERM ].
-			answer addTerm: invtermxInvTERM ] ].
+	| answer |
+	[ aSum isSum ] assert.
+	answer := self class new.
+	answer addPlusTerm: const * aSum const.
+	aSum plusTerms do: [ :term |
+		answer addPlusTerm: (term timesFunction: const) ].
+	aSum minusTerms do: [ :term |
+		answer addMinusTerm: (term timesFunction: const) ].
+	plusTerms do: [ :plusTerm |
+			answer addPlusTerm: (plusTerm timesFunction: aSum const).
+			aSum plusTerms do: [ :term |
+				answer addPlusTerm: (plusTerm times: term) ].
+			aSum minusTerms do: [ :term |
+				answer addMinusTerm: (plusTerm times: term) ] ].
+	minusTerms do: [ :minusTerm |
+			answer addMinusTerm: (minusTerm timesFunction: aSum const).
+			aSum plusTerms do: [ :term |
+				answer addMinusTerm: (minusTerm times: term) ].
+			aSum minusTerms do: [ :term |
+				answer addPlusTerm: (minusTerm times: term) ] ].
 	^ answer
 ]
 
@@ -847,7 +940,7 @@ StMSum >> value [
 
 	| answer |
 	answer := 0.0.
-	terms do: [ :term | answer := answer + term value ].
-	inverseTerms do: [ :term | answer := answer - term value ].
+	plusTerms do: [ :term | answer := answer + term value ].
+	minusTerms do: [ :term | answer := answer - term value ].
 	^ answer
 ]

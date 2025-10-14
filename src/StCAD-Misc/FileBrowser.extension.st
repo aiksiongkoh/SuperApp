@@ -1,6 +1,6 @@
-Extension { #name : #FileBrowser }
+Extension { #name : 'FileBrowser' }
 
-{ #category : #'*StCAD-Misc-StCAD-DEV' }
+{ #category : '*StCAD-Misc-StCAD-DEV' }
 FileBrowser class >> renameFilesInDir [
 	"FileBrowser renameFilesInDir"
 

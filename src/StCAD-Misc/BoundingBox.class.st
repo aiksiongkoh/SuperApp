@@ -1,19 +1,20 @@
 Class {
-	#name : #BoundingBox,
-	#superclass : #Item,
+	#name : 'BoundingBox',
+	#superclass : 'Item',
 	#instVars : [
 		'minCorner',
 		'maxCorner'
 	],
-	#category : #'StCAD-Misc'
+	#category : 'StCAD-Misc',
+	#package : 'StCAD-Misc'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 BoundingBox class >> origin: originPoint corner: cornerPoint [ 
 	^self new origin: originPoint corner: cornerPoint
 ]
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 BoundingBox class >> visualWorksMetadata [
 
 	^ #(
@@ -23,7 +24,7 @@ BoundingBox class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BoundingBox >> cCorner [
 	"Collection of corners of box."
 
@@ -48,12 +49,12 @@ BoundingBox >> cCorner [
 	^answer
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 BoundingBox >> center [
 	^minCorner + maxCorner / 2.0
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 BoundingBox >> contains: aBoundingBox [ 
 	"Answer whether the receiver is equal to aBoundingBox or whether aBoundingBox
 	is contained within the receiver."
@@ -62,54 +63,54 @@ BoundingBox >> contains: aBoundingBox [
 		and: [aBoundingBox maxCorner <= maxCorner]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 BoundingBox >> containsPoint: aPoint [
 
 	^minCorner <= aPoint and: [aPoint <= maxCorner]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BoundingBox >> corner [
 	^maxCorner
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BoundingBox >> diagonal_length [
 	^(maxCorner - minCorner) length
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BoundingBox >> dx [
 	^(maxCorner at: 1) - (minCorner at: 1)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BoundingBox >> dy [
 	^(maxCorner at: 2) - (minCorner at: 2)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BoundingBox >> dz [
 	^(maxCorner at: 3) - (minCorner at: 3)
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 BoundingBox >> expandToBound1: point [ 
 	minCorner := minCorner min: point.
 	maxCorner := maxCorner max: point
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 BoundingBox >> expandToBound: aPointOrBox [ 
 	aPointOrBox fitSelfInBox: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BoundingBox >> extent [
 	^maxCorner - minCorner
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 BoundingBox >> fitSelfInBox: aBoundingBox [ 
 	self isDefined 
 		ifTrue: 
@@ -120,7 +121,7 @@ BoundingBox >> fitSelfInBox: aBoundingBox [
 				ifFalse: [aBoundingBox origin: minCorner copy corner: maxCorner copy]]
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 BoundingBox >> inRefFrame: aFrame [ 
 	"I am f frame. Transform to F frame."
 
@@ -134,18 +135,18 @@ BoundingBox >> inRefFrame: aFrame [
 		ifFalse: [self]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 BoundingBox >> initialize [
 	minCorner := StMFullColumn new: 3.
 	maxCorner := StMFullColumn new: 3
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 BoundingBox >> isDefined [
 	^(minCorner at: 1) isFloat
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 BoundingBox >> magnifySelf: aDouble [ 
 	self isDefined 
 		ifTrue: 
@@ -153,17 +154,17 @@ BoundingBox >> magnifySelf: aDouble [
 			maxCorner magnifySelf: aDouble]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BoundingBox >> maxCorner [
 	^maxCorner
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BoundingBox >> maxx [
 	^maxCorner at: 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BoundingBox >> maxxmaxymaxz [
 	| answer |
 	answer := StMFullColumn new: 3.
@@ -173,7 +174,7 @@ BoundingBox >> maxxmaxymaxz [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BoundingBox >> maxxmaxyminz [
 	| answer |
 	answer := StMFullColumn new: 3.
@@ -183,7 +184,7 @@ BoundingBox >> maxxmaxyminz [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BoundingBox >> maxxminymaxz [
 	| answer |
 	answer := StMFullColumn new: 3.
@@ -193,7 +194,7 @@ BoundingBox >> maxxminymaxz [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BoundingBox >> maxxminyminz [
 	| answer |
 	answer := StMFullColumn new: 3.
@@ -203,17 +204,17 @@ BoundingBox >> maxxminyminz [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BoundingBox >> maxy [
 	^maxCorner at: 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BoundingBox >> maxz [
 	^maxCorner at: 3
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 BoundingBox >> merge: aBoundingBox [ 
 	"Answer a BoundingBox that contains both the receiver and  the
 	argument aBoundingBox."
@@ -222,17 +223,17 @@ BoundingBox >> merge: aBoundingBox [
 		corner: (maxCorner max: aBoundingBox maxCorner)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BoundingBox >> minCorner [
 	^minCorner
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BoundingBox >> minx [
 	^minCorner at: 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BoundingBox >> minxmaxymaxz [
 	| answer |
 	answer := StMFullColumn new: 3.
@@ -242,7 +243,7 @@ BoundingBox >> minxmaxymaxz [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BoundingBox >> minxmaxyminz [
 	| answer |
 	answer := StMFullColumn new: 3.
@@ -252,7 +253,7 @@ BoundingBox >> minxmaxyminz [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BoundingBox >> minxminymaxz [
 	| answer |
 	answer := StMFullColumn new: 3.
@@ -262,7 +263,7 @@ BoundingBox >> minxminymaxz [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BoundingBox >> minxminyminz [
 	| answer |
 	answer := StMFullColumn new: 3.
@@ -272,34 +273,34 @@ BoundingBox >> minxminyminz [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BoundingBox >> miny [
 	^minCorner at: 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BoundingBox >> minz [
 	^minCorner at: 3
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BoundingBox >> origin [
 	^minCorner
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BoundingBox >> origin: originPoint corner: cornerPoint [ 
 	minCorner := originPoint.
 	maxCorner := cornerPoint
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 BoundingBox >> postCopy [
 	minCorner := minCorner copy.
 	maxCorner := maxCorner copy
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 BoundingBox >> printOn: aStream [ 
 	aStream
 		print: self class;
@@ -312,7 +313,7 @@ BoundingBox >> printOn: aStream [
 		nextPut: $)
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 BoundingBox >> reverseSelf [
 	| aPoint bPoint |
 	aPoint := minCorner.
@@ -324,17 +325,17 @@ BoundingBox >> reverseSelf [
 	self expandToBound: bPoint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BoundingBox >> umax [
 	^maxCorner at: 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BoundingBox >> umin [
 	^minCorner at: 1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BoundingBox >> uvwOfPoint: aPoint [ 
 	| answer min max x range u |
 	answer := StMFullColumn new: 3.
@@ -352,7 +353,7 @@ BoundingBox >> uvwOfPoint: aPoint [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BoundingBox >> uvwScale [
 	| answer range scale |
 	answer := StMFullColumn new: 3.
@@ -367,33 +368,33 @@ BoundingBox >> uvwScale [
 	^answer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BoundingBox >> vmax [
 	^maxCorner at: 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BoundingBox >> vmin [
 	^minCorner at: 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BoundingBox >> wmax [
 	^maxCorner at: 3
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BoundingBox >> wmin [
 	^minCorner at: 3
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 BoundingBox >> zeroSelf [
 	minCorner zeroSelf.
 	maxCorner zeroSelf
 ]
 
-{ #category : #'ops on self' }
+{ #category : 'ops on self' }
 BoundingBox >> zeroZcoord [
 	minCorner at: 3 put: 0.0.
 	maxCorner at: 3 put: 0.0

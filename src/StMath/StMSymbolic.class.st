@@ -18,16 +18,13 @@ StMSymbolic class >> visualWorksMetadata [
 { #category : 'ops' }
 StMSymbolic >> * arg [
 
-	| func |
-	func := self conditionArgument: arg.
-	^ (StMProduct with: self copy times: func copy) simplified
+	^ self times: arg
 ]
 
 { #category : 'ops' }
-StMSymbolic >> + arg [ 
-	| func |
-	func := self conditionArgument: arg.
-	^StMSum with: self copy plus: func copy
+StMSymbolic >> + arg [
+
+	^ self plus: arg
 ]
 
 { #category : 'ops' }
@@ -43,7 +40,7 @@ StMSymbolic >> / arg [
 
 	| func |
 	func := self conditionArgument: arg.
-	^ StMProduct with: self copy over: func
+	^ StMProduct with: self shallowCopy over: func
 ]
 
 { #category : 'comparing' }
@@ -296,10 +293,11 @@ StMSymbolic >> ln [
 ]
 
 { #category : 'ops' }
-StMSymbolic >> minus: arg [ 
+StMSymbolic >> minus: arg [
+
 	| func |
 	func := self conditionArgument: arg.
-	^StMSum with: self copy plus: func negated
+	^ StMSum with: self minus: func
 ]
 
 { #category : 'ops' }
@@ -322,10 +320,11 @@ StMSymbolic >> partialDifferentiateWRT: variable [
 ]
 
 { #category : 'ops' }
-StMSymbolic >> plus: arg [ 
+StMSymbolic >> plus: arg [
+
 	| func |
 	func := self conditionArgument: arg.
-	^StMSum with: self copy plus: func copy
+	^ StMSum with: self plus: func
 ]
 
 { #category : 'copying' }
@@ -345,7 +344,7 @@ StMSymbolic >> raisedTo: arg [
 
 	| exponent |
 	exponent := self conditionArgument: arg.
-	^ (StMPower with: self copy raisedTo: exponent copy) simplified
+	^ StMPower with: self raisedTo: exponent
 ]
 
 { #category : 'ops' }
@@ -357,6 +356,7 @@ StMSymbolic >> reciprocal [
 { #category : 'evaluating' }
 StMSymbolic >> simplified [
 	| answer |
+	self halt: 'Depreciated.'.
 	answer := self expandUntil: Set new.
 	^answer simplifyUntil: Set new
 ]
@@ -493,30 +493,39 @@ StMSymbolic >> tan [
 ]
 
 { #category : 'ops' }
-StMSymbolic >> times: arg [ 
-	| func |
-	func := self conditionArgument: arg.
-	^StMProduct with: self copy times: func copy
+StMSymbolic >> times: symbolic [
+
+	^ symbolic isSum
+		  ifTrue: [ self timesSum: symbolic ]
+		  ifFalse: [
+				  symbolic isProduct
+					  ifTrue: [ self timesProduct: symbolic ]
+					  ifFalse: [ self timesFunction: symbolic ] ]
 ]
 
 { #category : 'ops' }
-StMSymbolic >> timesFunction: aFunction [ 
-	^self * aFunction
+StMSymbolic >> timesFunction: symbolic [
+
+	^ StMProduct with: self times: symbolic
 ]
 
 { #category : 'ops' }
-StMSymbolic >> timesProduct: aProduct [ 
+StMSymbolic >> timesProduct: aProduct [
+
+	^ aProduct timesFunction: self
+]
+
+{ #category : 'ops' }
+StMSymbolic >> timesSum: aSum [
+
 	| answer |
-	answer := aProduct copy.
-	answer terms addFirst: self copy.
-	^answer
-]
-
-{ #category : 'ops' }
-StMSymbolic >> timesSum: aSum [ 
-	| product |
-	product := StMProduct with: self.
-	^product timesSum: aSum
+	[ aSum isSum ] assert.
+	answer := StMSum new.
+	answer addPlusTerm: (self times: aSum const).
+	aSum plusTerms do: [ :term | answer addPlusTerm: (self times: term) ].
+	aSum minusTerms do: [ :term |
+		answer addMinusTerm: (self times: term) ].
+	^ answer
 ]
 
 { #category : 'evaluating' }

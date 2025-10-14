@@ -1,14 +1,15 @@
 Class {
-	#name : #DataForceTorque,
-	#superclass : #Data,
+	#name : 'DataForceTorque',
+	#superclass : 'Data',
 	#instVars : [
 		'aFIO',
 		'aTIO'
 	],
-	#category : #'StCAD-Misc'
+	#category : 'StCAD-Misc',
+	#package : 'StCAD-Misc'
 }
 
-{ #category : #'VisualWorks metadata' }
+{ #category : 'VisualWorks metadata' }
 DataForceTorque class >> visualWorksMetadata [
 
 	^ #(
@@ -18,29 +19,29 @@ DataForceTorque class >> visualWorksMetadata [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataForceTorque >> aFIO [
 	aFIO == nil ifTrue: [self aFIO: (StMFullColumn zero: 3)].
 	^aFIO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataForceTorque >> aFIO: col [ 
 	aFIO := col
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataForceTorque >> aTIO [
 	aTIO == nil ifTrue: [self aTIO: (StMFullColumn zero: 3)].
 	^aTIO
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataForceTorque >> aTIO: col [ 
 	aTIO := col
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 DataForceTorque >> initialize [
 	"Do nothing."
 ]
